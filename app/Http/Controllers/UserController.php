@@ -27,7 +27,6 @@ class UserController extends Controller
 
     public function __construct()
     {
-
     }
 
     public function changePassword(Request $request)
@@ -55,11 +54,12 @@ class UserController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $request->validate([
+        $rules = [
             'current_password' => "required",
             'new_password' => "required|same:confirm_password|min:8|different:current_password",
             'confirm_password' => 'required|min:8'
-        ]);
+        ];
+        $request->validate($rules, validationMessage($rules));
 
         try {
             if (demoCheck()) {
@@ -79,16 +79,13 @@ class UserController extends Controller
                     Session::flush();
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
                     return redirect()->back();
-
                 } else {
                     Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
                     return redirect()->back();
-
                 }
             } else {
                 Toastr::error('Current password not match!', 'Failed');
                 return redirect()->back();
-
             }
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
@@ -97,11 +94,19 @@ class UserController extends Controller
 
     public function update_user(Request $request)
     {
-        $request->validate([
-            'name' => "required",
-            'email' => "required|unique:users,email," . Auth::id(),
-            'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:1|unique:users,phone,' . Auth::id(),
-        ]);
+        $rules = [
+            'name' => 'required',
+            'phone' => 'required|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
+            'password' => 'bail|nullable|min:8|confirmed',
+            'gender' => 'required',
+            'short_details' => 'nullable|max:255',
+            'facebook' => 'nullable|url',
+            'twitter' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'instagram' => 'nullable|url',
+        ];
+        $request->validate($rules, validationMessage($rules));
 
         try {
             if (demoCheck()) {
@@ -114,6 +119,7 @@ class UserController extends Controller
             $user->city = $request->city;
             $user->state = $request->state;
             $user->zip = $request->zip;
+            $user->gender = $request->gender;
             $user->currency_id = $request->currency;
             $user->language_id = $request->language;
 
@@ -136,7 +142,6 @@ class UserController extends Controller
                 $mailchimp = new MailchimpController();
                 $mailchimp->mailchimp($request->subscription_api_key);
                 $sub_status = $mailchimp->connected;
-
             } elseif ($request->subscription_method == "GetResponse") {
                 $getResponse = new GetResponseController();
                 $getResponse->getResponseApi($request->subscription_api_key);
@@ -146,7 +151,6 @@ class UserController extends Controller
                 $acelleController = new AcelleController();
                 $acelle = $acelleController->getAcelleApiResponse();
                 $sub_status = $acelleController->connected;
-
             }
             if ($request->file('image') != "") {
                 $user->image = $this->saveImage($request->file('image'));
@@ -175,7 +179,6 @@ class UserController extends Controller
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
-
     }
 
     public function changeLanguage($language_code)
@@ -195,7 +198,6 @@ class UserController extends Controller
                 Session::put('locale', $language->code);
                 Session::put('language_name', $language->name);
                 Session::put('language_rtl', $language->rtl);
-
             }
             App::setLocale($language->code);
             $success_msg = trans('setting.Successfully changed language');
@@ -219,7 +221,16 @@ class UserController extends Controller
             $route = 'student.secretLogin';
             $this->middleware([$route]);
             $hasPermission = permissionCheck('student.secretLogin');
-        } elseif ($user->role_id == 2) {
+        } elseif ($user->role_id == 2 || $user->role_id == 9) {
+            if ($user->password == null) {
+                if ($user->role_id == 9) {
+                    session()->put('type', 'tutor');
+                    Toastr::error('Please Create this User First', trans('common.Failed'));
+                } else {
+                    Toastr::error('Please change the password to access secret login.', trans('common.Failed'));
+                }
+                return redirect()->back();
+            }
             $url = route('dashboard');
             $this->middleware(['student.secretLogin']);
             $hasPermission = permissionCheck('student.secretLogin');
@@ -246,6 +257,7 @@ class UserController extends Controller
 
     public function secretLoginExit()
     {
+
         if (Session::has('impersonated')) {
             $originalUserId = Session::get('impersonated_original');
             Session::forget('impersonated');

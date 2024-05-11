@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BillingDetails extends Model
 {
     protected $connection = 'mysql';
-
+    protected $table = 'billing_details';
     protected $guarded = [];
 
     public function country()

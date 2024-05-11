@@ -17,6 +17,7 @@ use Modules\Payment\Entities\Cart;
 use Modules\StudentSetting\Entities\BookmarkCourse;
 use Modules\VirtualClass\Entities\ClassComplete;
 use Modules\Zoom\Entities\ZoomMeeting;
+use Modules\Team\Entities\TeamMeeting;
 
 class ClassDetailsPageSection extends Component
 {
@@ -31,7 +32,6 @@ class ClassDetailsPageSection extends Component
 
     public function render()
     {
-
         $course_reviews = DB::table('course_reveiws')->select('user_id')->where('course_id', $this->course->id)->get();
 
         if (Auth::check()) {
@@ -39,7 +39,6 @@ class ClassDetailsPageSection extends Component
         } else {
             $isEnrolled = false;
         }
-
 
         $bookmarked = BookmarkCourse::where('user_id', Auth::id())->where('course_id', $this->course->id)->count();
         if ($bookmarked == 0) {
@@ -68,14 +67,27 @@ class ClassDetailsPageSection extends Component
                 }
             }
         }
+        if (Auth::check()) {
+        // if (Auth::check() && $this->course->isLoginUserEnrolled) {
 
-        if (Auth::check() && $this->course->isLoginUserEnrolled) {
+            if ($this->course->class->host == "Zoom" || $this->course->class->host == 'Team') {
+                $host = $this->course->class->host;
+                switch ($host) {
+                  case 'Zoom':
+                  $nextMeeting = ZoomMeeting::where('class_id', $this->course->class->id)
+                  ->where('date_of_meeting', date('m/d/Y'))
+                      ->orderBy('start_time', 'asc')
+                      ->get();
+                    break;
+                  case 'Team':
+                  $nextMeeting = TeamMeeting::where('class_id', $this->course->class->id)
+                  ->where('date_of_meeting', date('m/d/Y'))
+                      ->orderBy('start_time', 'asc')
+                      ->get();
+                  break;
 
+                }
 
-            if ($this->course->class->host == "Zoom") {
-                $nextMeeting = ZoomMeeting::where('class_id', $this->course->class->id)->where('date_of_meeting', date('m/d/Y'))
-                    ->orderBy('start_time', 'asc')
-                    ->get();
                 $this->course->nextMeeting = null;
                 $hasClass = false;
                 foreach ($nextMeeting as $next) {
@@ -88,7 +100,8 @@ class ClassDetailsPageSection extends Component
                         }
                     }
                 }
-            } elseif ($this->course->class->host == "BBB") {
+            }
+            elseif ($this->course->class->host == "BBB") {
                 if (isModuleActive("BBB")) {
 
                     $nextMeeting = BbbMeeting::where('class_id', $this->course->class->id)->where('date', date('m/d/Y'))

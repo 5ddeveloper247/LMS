@@ -21,12 +21,14 @@ class PaymentController extends Controller
             $courses = Course::whereNotNull('special_commission')->with('user', 'enrolls')->paginate(10);
             $allcourses = Course::all();
             $commission = Settings('commission');
+            $percent_tax = Settings('percent_tax') ?? 0;
+            $fixed_tax = Settings('fixed_tax') ?? 0;
             $instructors = User::whereNotNull('special_commission')->whereIn('role_id', [1, 2])->paginate(10);
             $instructor_commission = 100 - $commission;
             $users = User::whereIn('role_id', [1, 2])->get();
 
 
-            return view('payment::commission', compact('users', 'allcourses', 'courses', 'commission', 'users', 'instructor_commission', 'instructors'));
+            return view('payment::commission', compact('users', 'allcourses', 'courses', 'commission', 'users', 'instructor_commission', 'instructors','percent_tax','fixed_tax'));
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
 
@@ -62,6 +64,25 @@ class PaymentController extends Controller
 
         }
 
+    }
+
+    public function saveTax(Request $request){
+      $rules = [
+          'fixed_tax' => 'required|numeric|min:0',
+          'percent_tax' => 'required|numeric|min:0|max:100',
+      ];
+      $this->validate($request, $rules, validationMessage($rules));
+
+      try {
+          UpdateGeneralSetting('fixed_tax',$request->fixed_tax);
+          UpdateGeneralSetting('percent_tax',$request->percent_tax);
+
+          Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+          return redirect()->back();
+      } catch (\Exception $e) {
+          GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
+
+      }
     }
 
     public function saveFlat(Request $request)

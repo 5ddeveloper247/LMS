@@ -17,6 +17,7 @@ class RoutePermissionCheck
     {
         if (auth()->check()) {
             $user = auth()->user();
+
             if ($user->role_id == 1) {
                 return $next($request);
             } else {

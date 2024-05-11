@@ -20,6 +20,7 @@
             </div>
         </div>
     </section>
+
 @endsection
 
 @include('setting::page_components.script')

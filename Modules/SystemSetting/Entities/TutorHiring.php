@@ -6,7 +6,7 @@ namespace Modules\SystemSetting\Entities;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Modules\CourseSetting\Entities\Course;
-
+use Modules\StudentSetting\Entities\TutorReveiws;
 
 class TutorHiring extends Model
 {
@@ -26,5 +26,8 @@ class TutorHiring extends Model
     {
         return $this->belongsTo(Course::class, 'course_id', 'id');
     }
-
+    public function tutorReviewRating()
+    {
+        return $this->hasOne(TutorReveiws::class, 'hiring_id', 'id');
+    }
 }

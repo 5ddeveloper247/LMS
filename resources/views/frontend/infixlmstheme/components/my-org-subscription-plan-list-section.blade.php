@@ -90,7 +90,7 @@
 
                                 @endphp
 
-                                <div class="col-xl-4 col-md-6">
+                                <div class="col-xl-4 col-sm-6 col-12">
                                     @if($course->type==1)
                                         <div class="couse_wizged">
                                             <div class="thumb">

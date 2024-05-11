@@ -7,6 +7,7 @@ use App\Traits\Tenantable;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
+use Modules\Blog\Entities\Blog;
 
 class BlogCategory extends Model
 {
@@ -26,6 +27,11 @@ class BlogCategory extends Model
     public function parent()
     {
         return $this->belongsTo(BlogCategory::class, 'parent_id')->with('parent')->withDefault();
+    }
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class,'category_id');
     }
 
     public function childs()

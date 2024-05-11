@@ -11,17 +11,19 @@
                 background: {{@$cookie->bg_color}};
             }
 
-            .theme_cookies .cookie_btn {
+            /* .theme_cookies .cookie_btn {
                 background: {{$cookie->text_color}};
-            }
+            } */
         </style>
         <div class="theme_cookies" style="display: none">
             <div class="theme_cookies_info flex-fill">
                 <div class="icon">
                     <img src="{{asset(@$cookie->image)}}" alt="">
+                    {{-- <img src="{{ asset('/public/uploads/images/footerimg/cookiess.png') }}"> --}}
                 </div>
                 <p>{!! @$cookie->details !!}</p>
             </div>
+            <button type="button" class="cookie_reject_btn" onclick="setCookies();">Reject</button>
             <button type="button" class="cookie_btn" onclick="setCookies();">{{@$cookie->btn_text}}</button>
         </div>
     @endif

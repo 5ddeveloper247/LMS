@@ -109,7 +109,7 @@ class BlogController extends Controller
 
             if ($request->image) {
                 $blog->image = $this->saveImage($request->image);
-                $blog->thumbnail = $this->saveImage($request->image);
+                $blog->thumbnail = $this->saveCroppedImage($request->hidden_file);
             }
             $blog->save();
 
@@ -121,13 +121,11 @@ class BlogController extends Controller
                 $blog->save();
                 $this->saveOrgBlogBranch($blog, $request->branch);
                 $this->saveOrgBlogPosition($blog, $request->position);
-
             }
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->route('blogs.index');
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
-
         }
     }
 
@@ -189,7 +187,7 @@ class BlogController extends Controller
             $blog->category_id = $request->category;
             if ($request->image) {
                 $blog->image = $this->saveImage($request->image);
-                $blog->thumbnail = $this->saveImage($request->image);
+                $blog->thumbnail = $this->saveCroppedImage($request->hidden_file);
             }
             $blog->save();
             if (isModuleActive('Org')) {
@@ -205,10 +203,8 @@ class BlogController extends Controller
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->route('blogs.index');
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
-
         }
     }
 
@@ -267,7 +263,6 @@ class BlogController extends Controller
             return redirect()->back();
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
-
         }
     }
 }

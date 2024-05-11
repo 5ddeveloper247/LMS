@@ -91,5 +91,8 @@ class Kernel extends HttpKernel
         'maintenanceMode' => MaintenanceModeMiddleware::class,
         'subdomain' => \App\Http\Middleware\SubdomainMiddleware::class,
         'saasAdmin' => \App\Http\Middleware\SaasAdmin::class,
+        'UserAgreementCheck' => \App\Http\Middleware\UserAuthorzIationAgreementCheckMiddleware::class,
+        'checkstudentenrolled' => \App\Http\Middleware\checkStudentisEnrolled::class,
+        'HeaderMenuPermissions' => \App\Http\Middleware\HeaderMenuPermissions::class,
     ];
 }

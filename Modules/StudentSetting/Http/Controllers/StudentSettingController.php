@@ -3,46 +3,47 @@
 namespace Modules\StudentSetting\Http\Controllers;
 
 
+use App\Events\OneToOneConnection;
+use App\Http\Controllers\Controller;
 use App\Jobs\SendGeneralEmail;
 use App\Models\UserApplication;
 use App\Models\UserAuthorzIationAgreement;
 use App\Models\UserSetting;
-use App\Traits\ImageStore;
-use Carbon\Carbon;
-use App\User;
-use App\Subscription;
+use App\Notifications\GeneralNotification;
 use App\StudentCustomField;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use DrewM\MailChimp\MailChimp;
-use App\Events\OneToOneConnection;
-use Modules\Org\Entities\OrgBranch;
-use App\Http\Controllers\Controller;
+use App\Subscription;
+use App\Traits\ImageStore;
+use App\User;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
+use DrewM\MailChimp\MailChimp;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Modules\Org\Entities\OrgPosition;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
-use Modules\Group\Entities\GroupMember;
-use App\Notifications\GeneralNotification;
-use Illuminate\Support\Facades\File;
-use Modules\Payment\Entities\PaymentPlans;
-use Modules\SkillAndPathway\Entities\GroupStudent;
-use Modules\StudentSetting\Entities\Program;
-use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 use Modules\CourseSetting\Entities\Course;
-use Modules\Payment\Entities\InstructorPayout;
-use Modules\Group\Repositories\GroupRepository;
 use Modules\CourseSetting\Entities\CourseEnrolled;
+use Modules\CourseSetting\Entities\CourseReveiw;
+use Modules\FrontendManage\Entities\HomePageFaq;
+use Modules\Group\Entities\GroupMember;
+use Modules\Group\Repositories\GroupRepository;
 use Modules\Newsletter\Entities\NewsletterSetting;
 use Modules\Newsletter\Http\Controllers\AcelleController;
+use Modules\Org\Entities\OrgBranch;
+use Modules\Org\Entities\OrgPosition;
+use Modules\Payment\Entities\Checkout;
+use Modules\Payment\Entities\InstructorPayout;
+use Modules\SkillAndPathway\Entities\GroupStudent;
+use Modules\StudentSetting\Entities\Program;
 use Modules\Survey\Entities\Survey;
 use Modules\Survey\Http\Controllers\SurveyController;
-use Modules\FrontendManage\Entities\HomePageFaq;
-use Modules\Payment\Entities\Checkout;
+use Yajra\DataTables\Facades\DataTables;
+use App\Models\CloverPayment;
 
 class StudentSettingController extends Controller
 {
@@ -68,21 +69,22 @@ class StudentSettingController extends Controller
     public function storeAgreementForm(Request $request)
     {
         if (empty($request->file('agreement_form'))) {
-            return  $this->formUploadResponse(422, 'error', '#', 'Please Select Form !');
+            return $this->formUploadResponse(422, 'error', '#', 'Please Select Form !');
         }
 
         $extension = $request->file('agreement_form')->extension();
-        $allow_ext = ['doc', 'docx', 'pdf'];
+        $allow_ext = ['doc', 'docx', 'docs', 'pdf'];
 
         if (!in_array(strtolower($extension), $allow_ext)) {
-            return  $this->formUploadResponse(422, 'error', '#', 'Invalid File Extension, Allow Extensions (DOC, DOCS, PDF) !');
+            return $this->formUploadResponse(422, 'error', '#', 'Invalid File Extension, Allow Extensions (DOC, DOCX, PDF) !');
         }
 
         $file_path = $this->saveFile($request->file('agreement_form'));
 
         if (!$file_path) {
-            return  $this->formUploadResponse(422, 'error', '#', 'Form Not Uploaded, Please Try Again !');
+            return $this->formUploadResponse(422, 'error', '#', 'Form Not Uploaded, Please Try Again !');
         }
+
 
         return $this->formUploadResponse(200, 'success', $file_path, 'File SuccessFully Uploaded, Thank you !');
     }
@@ -103,6 +105,7 @@ class StudentSettingController extends Controller
             if (!File::isDirectory('public/student_affidavit/agreement_form')) {
                 File::makeDirectory('public/student_affidavit/agreement_form', 0777, true, true);
             }
+            removeAgreementForm();
             $new_file_name = 'Agreement_file' . '.' . $file->clientExtension();
             $file_path = 'public/student_affidavit/agreement_form/' . $new_file_name;
             $file->move(public_path('student_affidavit/agreement_form/'), $new_file_name);
@@ -117,6 +120,11 @@ class StudentSettingController extends Controller
         $user = UserAuthorzIationAgreement::where('user_id', $request->student_id)->first();
         $user->status = $request->status;
         $user->save();
+
+        SendGeneralEmail::dispatch(\App\Models\User::find($request->student_id), 'Admin_Approve_Disapprove_Agreement_Form', [
+            'time' => Carbon::now()->format('d-M-Y, g:i A'),
+            'status' => $request->status == 1 ? 'Approve' : 'Disapprove',
+        ]);
 
         if ($user) {
             return response()->json([
@@ -133,15 +141,17 @@ class StudentSettingController extends Controller
         return response()->json(["id" => $program->id, "programtitle" => $program->programtitle, "totalcost" => $program->totalcost], 200);
         //        return response()->json($program,200);
     }
+
     public function getAllProgram(Request $request)
     {
 
-        $querys = Program::all();
+        $queries = Program::orderBy('seq_no', 'asc')->get();
 
         $data = [];
         $alldata = [];
-        foreach ($querys as $query) {
+        foreach ($queries as $query) {
             $data["id"] = $query->id;
+            $data["seq_no"] = $query->seq_no;
             $data["programtitle"] = $query->programtitle;
             $data["totalcost"] = $query->totalcost;
             $data["duration"] = $query->duration;
@@ -153,7 +163,6 @@ class StudentSettingController extends Controller
             $data = [];
         }
         $query = $alldata;
-
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('image', function ($query) {
@@ -163,15 +172,12 @@ class StudentSettingController extends Controller
                 return $query['programtitle'];
             })
             ->editColumn('totalcost', function ($query) {
-
                 return $query['totalcost'];
             })
             ->editColumn('duration', function ($query) {
-
                 return $query['duration'];
             })
             ->editColumn('numberofcourses', function ($query) {
-
                 return count(json_decode($query['allcourses']));
             })
             ->addColumn('status', function ($query) {
@@ -183,7 +189,6 @@ class StudentSettingController extends Controller
                 return view('backend.partials._td_status', compact('query', 'route'));
             })
             ->addColumn('action', function ($query) {
-
                 return view('studentsetting::partials._td_action_program', compact('query'));
             })
             ->rawColumns(['programtitle'])
@@ -194,8 +199,9 @@ class StudentSettingController extends Controller
 
     {
         $courses = Course::where('status', 1)->where('type', 1)->get();
-        $faqs = HomePageFaq::orderBy('order', 'asc')->where('status', 1)->get();
-        return view('studentsetting::All_program', compact('courses', 'faqs'));
+        $faqs = HomePageFaq::orderBy('order', 'desc')->where('status', 1)->get();
+        $reviews = CourseReveiw::all();
+        return view('studentsetting::All_program', compact('courses', 'faqs', 'reviews'));
     }
 
 
@@ -203,52 +209,48 @@ class StudentSettingController extends Controller
     {
 
         $rules = [
-            'ProgramTitle' => 'required|max:15|unique:programs',
-            'subtitle' => 'required|max:20',
-            'image' => 'required',
-            'totalcost' => 'required',
-            'duration' => 'required',
+            'ProgramTitle' => 'required|max:100|unique:programs',
+            'subtitle' => 'required|max:200',
+            'image' => 'required|mimes:png,jpg,jpeg',
+//            'totalcost' => 'required',
+//            'duration' => 'required',
             'requirements' => 'required',
             'description' => 'required',
+            'outcome' => 'required',
             'allcourses' => 'required',
             'Payment_plan' => 'required'
         ];
         $this->validate($request, $rules, validationMessage($rules));
 
-
-        $extensions = ["png", "jpg", "jpeg"];
-        $result = strtolower($request->image->getClientOriginalExtension());
-        if (!in_array($result, $extensions)) {
-            Toastr::error('Invalid File Extension. Allow PNG,JPG,JPEG format', 'Failed');
-            return redirect()->back();
-        }
         try {
 
             DB::beginTransaction();
             $courses = (json_encode($request->allcourses) != null) ? json_encode($request->allcourses) : [];
-            $faqs = (json_encode($request->faqs)  != null) ? json_encode($request->allcourses) : [];
+            $faqs = (json_encode($request->faqs) != null) ? json_encode($request->faqs) : [];
 
-            $programm = new Program;
-
-            $programm->programtitle = $request->ProgramTitle;
-            $programm->subtitle = $request->subtitle;
-            $programm->totalcost = $request->totalcost;
-            $programm->duration = $request->duration;
-            $programm->requirement = $request->requirements;
-            $programm->discription = $request->description;
-            $programm->outcome = $request->outcome;
-            $programm->numberofcourses = 0;
-            $programm->allcourses = $courses;
-            $programm->faqs = $faqs;
-            $programm->payment_plan = $request->Payment_plan;
-            $programm->user_id = Auth::id();
-            $programm->status = 0;
+            $program = new Program;
+            $last_max_seq = Program::max('seq_no');
+            $program->seq_no = intval($last_max_seq) + 1;
+            $program->programtitle = $request->ProgramTitle;
+            $program->subtitle = $request->subtitle;
+            $program->review_id = $request->review;
+//            $program->totalcost = $request->totalcost;
+//            $program->duration = $request->duration;
+            $program->requirement = str_replace("'", "`", $request->requirements);
+            $program->discription = str_replace("'", "`", $request->description);
+            $program->outcome = str_replace("'", "`", $request->outcome);
+            $program->numberofcourses = 0;
+            $program->allcourses = $courses;
+            $program->faqs = $faqs;
+            $program->payment_plan = str_replace("'", "`", $request->Payment_plan);
+            $program->user_id = Auth::id();
+            $program->status = 0;
             if ($request->file('image') != "") {
                 $file = $request->file('image');
-                $programm->image  = $this->saveImage($file, 920, 526);
-                $programm->icon  = $this->saveImage($file, 296, 270);
+                $program->image = $this->saveImage($file, 920, 526);
+                $program->icon = $this->saveCroppedImage($request->hidden_file);
             }
-            $programm->save();
+            $program->save();
 
 
             DB::commit();
@@ -267,63 +269,59 @@ class StudentSettingController extends Controller
 
         $progaram = Program::where('id', $id)->first();
         $courses = Course::where('status', 1)->where('type', 1)->get();
-        $faqs = HomePageFaq::orderBy('order', 'asc')->where('status', 1)->get();
+        $faqs = HomePageFaq::orderBy('order', 'desc')->where('status', 1)->get();
+        $reviews = CourseReveiw::get();
 
-        return view('studentsetting::edit_program', compact('progaram', 'courses', 'faqs'));
+        return view('studentsetting::edit_program', compact('progaram', 'courses', 'faqs', 'reviews'));
     }
 
 
     public function updateprogram(Request $request)
     {
-        // dd($request->id);
 
         $rules = [
-            'ProgramTitle' => 'required|max:15|unique:programs,programtitle,' . $request->id,
-            'subtitle' => 'required|max:20',
-            'totalcost' => 'required',
-            'duration' => 'required',
+            'ProgramTitle' => 'required|max:30|unique:programs,programtitle,' . $request->id,
+            'subtitle' => 'required|max:30',
+//            'totalcost' => 'required',
+//            'duration' => 'required',
+            'image' => 'nullable|mimes:png,jpg,jpeg',
             'requirements' => 'required',
             'description' => 'required',
+            'outcome' => 'required',
             'allcourses' => 'required',
             'Payment_plan' => 'required'
         ];
         $this->validate($request, $rules, validationMessage($rules));
 
-        if ($request->file('image') != "") {
-            $extensions = ["png", "jpg", "jpeg"];
-            $result = strtolower($request->image->getClientOriginalExtension());
-            if (!in_array($result, $extensions)) {
-                Toastr::error('Invalid File Extension. Allow PNG,JPG,JPEG format', 'Failed');
-                return redirect()->back();
-            }
-        }
+
         try {
 
             DB::beginTransaction();
             $courses = (json_encode($request->allcourses) != null) ? json_encode($request->allcourses) : [];
-            $faqs = (json_encode($request->faqs)  != null) ? json_encode($request->allcourses) : [];
+            $faqs = (json_encode($request->faqs) != null) ? json_encode($request->faqs) : [];
 
-            $programm = Program::where('id', $request->id)->first();
-            $programm->programtitle = $request->ProgramTitle;
-            $programm->subtitle = $request->subtitle;
-            $programm->totalcost = $request->totalcost;
-            $programm->duration = $request->duration;
-            $programm->requirement = $request->requirements;
-            $programm->discription = $request->description;
-            $programm->outcome = $request->outcome;
-            $programm->numberofcourses = 0;
-            $programm->allcourses = $courses;
-            $programm->faqs = $faqs;
-            $programm->payment_plan = $request->Payment_plan;
+            $program = Program::where('id', $request->id)->first();
+            $program->programtitle = $request->ProgramTitle;
+            $program->subtitle = $request->subtitle;
+            $program->review_id = $request->review;
+//            $program->totalcost = $request->totalcost;
+//            $program->duration = $request->duration;
+            $program->requirement = str_replace("'", "`", $request->requirements);
+            $program->discription = str_replace("'", "`", $request->description);
+            $program->outcome = str_replace("'", "`", $request->outcome);
+            $program->numberofcourses = 0;
+            $program->allcourses = $courses;
+            $program->faqs = $faqs;
+            $program->payment_plan = str_replace("'", "`", $request->Payment_plan);
             if ($request->file('image') != "") {
                 $file = $request->file('image');
-                $this->deleteImage($programm->image);
-                $this->deleteImage($programm->icon);
-                $programm->image  = $this->saveImage($file, 920, 526);
-                $programm->icon  = $this->saveImage($file, 296, 250);
+                $this->deleteImage($program->image);
+                $this->deleteImage($program->icon);
+                $program->image = $this->saveImage($file, 920, 526);
+                $program->icon = $this->saveCroppedImage($request->hidden_file);
             }
 
-            $programm->save();
+            $program->save();
 
             DB::commit();
             Toastr::success('Operation successful', 'Success');
@@ -369,12 +367,11 @@ class StudentSettingController extends Controller
         // }
 
     }
+
     public function checkProgramRelation($related_plan = '', $related_enroll = '')
     {
         return (!empty($related_plan) ? 'Plans' : '') . (!empty($related_enroll) ? ' and Enrollment' : '');
     }
-
-
 
 
     public function store(Request $request)
@@ -392,8 +389,12 @@ class StudentSettingController extends Controller
         }
         $rules = [
             'name' => 'required',
-            'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:5|unique:users,phone,' . Auth::user()->lms_id,
+            'phone' => 'required|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
             'password' => 'required|min:8|confirmed',
+            'facebook' => 'nullable|url',
+            'twitter' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'youtube' => 'nullable|url',
         ];
 
         if (isModuleActive('Org')) {
@@ -550,7 +551,8 @@ class StudentSettingController extends Controller
 
             SendGeneralEmail::dispatch($user, 'New_Student_Reg', [
                 'time' => Carbon::now()->format('d-M-Y, g:i A'),
-                'name' => $user->name
+                'name' => $user->name,
+                'type' => 'student'
             ]);
 
             Toastr::success($success, 'Success');
@@ -632,8 +634,12 @@ class StudentSettingController extends Controller
 
         $rules = [
             'name' => 'required',
-            'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:1|unique:users,phone,' . $request->id,
+            'phone' => 'required|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
             'password' => 'bail|nullable|min:8|confirmed',
+            'facebook' => 'nullable|url',
+            'twitter' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'youtube' => 'nullable|url',
 
         ];
 
@@ -684,7 +690,7 @@ class StudentSettingController extends Controller
                 }
                 $user->email_verify = 1;
                 $user->gender = $request->gender;
-                $user->company = $request->company;
+                //$user->company = $request->company;
                 if ($request->password) {
                     $user->password = bcrypt($request->password);
                 }
@@ -694,6 +700,13 @@ class StudentSettingController extends Controller
                 }
                 $user->role_id = 3;
                 $user->save();
+                if ($request->password) {
+                    SendGeneralEmail::dispatch($user, 'Offline_Enrolled', [
+                        'email' => $request->email,
+                        'password' => $request->password,
+                    ]);
+                }
+
             }
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
@@ -759,9 +772,37 @@ class StudentSettingController extends Controller
         return (!empty($user_courses) ? 'Enrolled Courses' : '') . (!empty($user_program) ? ' and Programs' : '');
     }
 
+    public function check_enrolled($id){
+
+      $response = true;
+      $user_setting_exists = UserSetting::where('user_id', $id)->exists();
+      $user_application_exists = UserApplication::where('user_id',$id)->exists();
+      $user_agreement_exists = UserAuthorzIationAgreement::where('user_id',$id)->exists();
+      $user_payment_exists = CloverPayment::where('user_id',$id)->exists();
+
+      if (!$user_setting_exists) {
+          $reponse = false;
+      }
+
+      session()->put('payment_details', UserApplication::where('user_id', Auth::user()->id)->first());
+
+      if (!$user_application_exists) {
+          $reponse = false;
+      }
+
+      if (!$user_agreement_exists) {
+          $reponse = false;
+      }
+
+      if (!$user_payment_exists) {
+          $reponse = false;
+      }
+      return $response;
+    }
 
     public function getAllStudentData(Request $request)
     {
+      $type = $request->type;
         $user = Auth::user();
         $query = User::query();
 
@@ -779,6 +820,14 @@ class StudentSettingController extends Controller
         }
         if (isModuleActive('Organization') && $user->isOrganization()) {
             $query->where('organization_id', $user->id);
+        }
+
+        if($type == 'enrolled'){
+          $query->has('userSetting');
+        }
+
+        if($type == 'non-enrolled'){
+          $query->doesntHave('userSetting');
         }
 
         return Datatables::of($query)
@@ -809,6 +858,12 @@ class StudentSettingController extends Controller
             ->editColumn('country', function ($query) {
                 return $query->userCountry->name;
             })
+            ->editColumn('enrolled', function ($query) {
+                return $query->enrolled ?? '';
+            })
+            ->editColumn('reg_src', function ($query) {
+                return $query->register_source ?? '';
+            })
             ->addColumn('status', function ($query) {
                 $route = 'student.change_status';
                 return view('backend.partials._td_status', compact('query', 'route'));
@@ -834,6 +889,7 @@ class StudentSettingController extends Controller
             GettingError($th->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
     }
+
     public function studentAssignedPrograms($id)
     {
         try {
@@ -920,6 +976,7 @@ class StudentSettingController extends Controller
             })->rawColumns(['status', 'progressbar', 'image', 'notify_user', 'action', 'student_name'])
             ->make(true);
     }
+
     public function programStudentNotify($program_id, $student_id)
     {
         try {
@@ -1074,11 +1131,12 @@ class StudentSettingController extends Controller
 
                         $codes = [
                             'time' => \Illuminate\Support\Carbon::now()->format('d-M-Y, g:i A'),
-                            'course' => $program->programtitle,
+                            'title' => $program->programtitle,
                             'currency' => $user->currency->symbol ?? '$',
                             'price' => ($user->currency->conversion_rate * $itemPrice),
                             'instructor' => $program->user->name,
                             'gateway' => 'Offline',
+                            'type' => 'program'
                         ];
 
                         if (UserEmailNotificationSetup('Course_Enroll_Payment', $user)) {
@@ -1091,7 +1149,7 @@ class StudentSettingController extends Controller
                                 'Course_Enroll_Payment',
                                 $codes,
                                 trans('common.View'),
-                                //                                courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
+                            //                                courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
                             );
                         }
 
@@ -1103,7 +1161,7 @@ class StudentSettingController extends Controller
                         $codes2 = [
                             'time' => Carbon::now()->format('d-M-Y, g:i A'),
                             'course' => $program->title,
-                            'currency' => $instractor->currency->symbol ?? '$',
+                            //'currency' => $instractor->currency->symbol ?? '$',
                             'price' => ($instractor->currency->conversion_rate * $itemPrice),
                             'rev' => @$reveune,
                         ];
@@ -1118,7 +1176,7 @@ class StudentSettingController extends Controller
                                 'Enroll_notify_Instructor',
                                 $codes2,
                                 trans('common.View'),
-                                //                                courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
+                            //                                courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
                             );
                         }
 
@@ -1190,5 +1248,20 @@ class StudentSettingController extends Controller
             return view('skillandpathway::group.student-group', compact('group'));
         }
         return null;
+    }
+
+    public function changeProgramSequence()
+    {
+        $payload = json_decode(file_get_contents('php://input'), true);
+        $order = $payload['order'];
+
+        foreach ($order as $item) {
+            $id = $item['id'];
+            $course_new_seq = Program::find($id);
+            $course_new_seq->seq_no = $item['new_position'];
+            $course_new_seq->save();
+        }
+
+        return response()->json(200);
     }
 }

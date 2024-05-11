@@ -127,11 +127,17 @@ class CourseController extends Controller
 
 
         try {
-            $url1 = $this->saveImage($request->photo);
-            $url1 = !empty($url1) ? $url1 : 'public/demo/category/thumb/1.png';
+            // $url1 = $this->saveImage($request->photo);
+            // $url1 = !empty($url1) ? $url1 : 'public/demo/category/thumb/1.png';
 
-            $url2 = $this->saveImage($request->thumbnail);
-            $url2 = !empty($url2) ? $url2 : 'public/demo/category/thumb/1.png';
+            // $url2 = $this->saveImage($request->thumbnail);
+            // $url2 = !empty($url2) ? $url2 : 'public/demo/category/thumb/1.png';
+
+            $url1 = null;
+            $url1 = null;
+
+            $url2 = null;
+            $url2 = null;
 
             DB::beginTransaction();
 
@@ -222,7 +228,7 @@ class CourseController extends Controller
 
         $is_exist = Category::where('name', $request->name)->where('id', '!=', $request->id)->first();
         if ($is_exist) {
-            Toastr::error('This name has been already taken', 'Failed');
+            Toastr::error('This Name has been Already taken', 'Failed');
             return redirect()->back();
         }
 

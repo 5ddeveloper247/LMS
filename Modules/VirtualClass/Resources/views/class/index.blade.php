@@ -3,8 +3,17 @@
     <link rel="stylesheet" href="{{ asset('public/backend/css/class.css') }}" />
 @endpush
 @php
-    $table_name = 'courses';
+    $table_name = 'virtual_classes';
+
 @endphp
+<script>
+    @if (isset($class))
+        var selectedProgramId = @json($class->program_id);
+    @else
+        var selectedProgramId = '';
+
+    @endif
+</script>
 @section('table')
     {{ $table_name }}
 @stop
@@ -43,7 +52,7 @@
 
                                 @if (isset($class))
 
-                                    {{ Form::open(['class' => 'form-horizontal', 'files' => true, 'route' => ['virtual-class.update', $class->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'id' => 'question_bank']) }}
+                                    {{ Form::open(['class' => 'form-horizontal', 'files' => true, 'route' => ['virtual-class.update', $class->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'id' => 'virtual_class_form']) }}
                                 @else
                                     @if (permissionCheck('virtual-class.create'))
 
@@ -53,11 +62,12 @@
                                             'route' => 'virtual-class.store',
                                             'method' => 'POST',
                                             'enctype' => 'multipart/form-data',
-                                            'id' => 'question_bank',
+                                            'id' => 'virtual_class_form',
                                         ]) }}
 
                                     @endif
                                 @endif
+                                <input type="hidden" name="classId" id="classId" value="{{isset($class) ? $class->id : ''}}">
                                 <input type="hidden" name="url" id="url" value="{{ URL::to('/') }}">
                                 <div class="white-box student-details header-menu">
                                     <div class="add-visitor">
@@ -92,7 +102,7 @@
                                                                     class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
                                                                     name="{{ $language->code == 'en' ? 'title' : '' }}"
                                                                     {{ $errors->has('title') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($class) ? $class->title : '' }}">
+                                                                    value="{{ isset($class) ? $class->title : (old('title') != '' ? old('title') : '') }}">
                                                                 <span class="focus-border textarea"></span>
                                                             </div>
                                                         </div>
@@ -104,7 +114,7 @@
                                                                     for="">{{ __('jitsi.Description') }}
                                                                 </label>
                                                                 <textarea class="primary_input_field form-control" cols="0" rows="4"
-                                                                    placeholder="{{ __('jitsi.Description') }}" name="description[{{ $language->code }}]" id="address">{{ isset($class) ? $class->course->getTranslation('about', $language->code) : '' }}</textarea>
+                                                                    placeholder="{{ __('jitsi.Description') }}" name="{{ $language->code == 'en' ? 'description' : '' }}" id="address">{{ isset($class) ? $class->description : (old('description') != '' ? old('description') : '') }}</textarea><!--{{ isset($class) ? $class->course->getTranslation('about', $language->code) : '' }} description[{{ $language->code }}] -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -117,7 +127,7 @@
                                                 <div class="col-xl-12">
                                                     <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
-                                                            for="assign_instructor">{{ __('courses.Assign Instructor') }}
+                                                            for="assign_instructor">{{ __('courses.Assign Instructor') }} *
                                                         </label>
                                                         <select class="primary_select category_id" name="assign_instructor"
                                                             id="assign_instructor"
@@ -128,7 +138,7 @@
                                                                 {{ __('courses.Instructor') }} </option>
                                                             @foreach ($instructors as $instructor)
                                                                 <option value="{{ $instructor->id }}"
-                                                                    {{ isset($class) ? ($instructor->id == $class->course->user_id ? 'selected' : '') : '' }}>
+                                                                    {{ isset($class) ? ($instructor->id == $class->course->user_id ? 'selected' : (old('assign_instructor') == $instructor->id ? 'selected' : '')) : (old('assign_instructor') == $instructor->id ? 'selected' : '') }}>
                                                                     {{ @$instructor->name }} </option>
                                                             @endforeach
                                                         </select>
@@ -137,7 +147,7 @@
                                             </div>
                                         @endif
 
-                                        <div class="row mt-25">
+                                        <div class="row mt-25 d-none">
                                             <div class="col-xl-12">
                                                 <div class="primary_input">
                                                     <label class="primary_input_label"
@@ -162,7 +172,7 @@
                                                             <div class="col-md-12 col-sm-12">
                                                                 <label class="primary_checkbox d-flex w-100 mr-12 mt-10">
                                                                     <input type="checkbox" id="all_level_member"
-                                                                        name="all_level_member" value="1">
+                                                                        name="all_level_member" value="old('all_level_member') != '' ? old('all_level_member') : '1'">
                                                                     <span
                                                                         class="checkmark mr-2"></span>{{ __('membership.All Level Members') }}
                                                                 </label>
@@ -203,23 +213,9 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        <div class="row mt-25">
-                                            <div class="col-lg-12">
-                                                <div class="input-effect">
-                                                    <label> {{ __('virtual-class.Duration') }}
-                                                        {{ __('virtual-class.Per Class') }}
-                                                        ({{ __('virtual-class.in Minute') }}) *</label>
-                                                    <input {{ $errors->has('duration') ? ' autofocus' : '' }}
-                                                        class="primary_input_field name{{ $errors->has('duration') ? ' is-invalid' : '' }}"
-                                                        type="number" name="duration" placeholder="e.g.30min"
-                                                        value="{{ isset($class) ? $class->duration : (old('duration') != '' ? old('duration') : '') }}">
-                                                    <span class="focus-border"></span>
 
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="row mt-25">
+                                        <div class="row mt-25 d-none">
                                             <div class="col-lg-12">
                                                 <label class="primary_input_label"
                                                     for="">{{ __('quiz.Category') }}</label>
@@ -270,23 +266,79 @@
 
                                         <!--    </div>-->
                                         <!--</div>-->
+
                                         <div class="row mt-25">
                                             <div class="col-lg-12 mt-30-md">
                                                 <label class="primary_input_label"
-                                                    for="">{{ __('Courses') }}</label>
-                                                <select {{ $errors->has('sub_category') ? ' autofocus' : '' }}
-                                                    class="primary_select{{ $errors->has('sub_category') ? ' is-invalid' : '' }} select_section"
+                                                    for="">{{ __('Courses') }} *</label>
+                                                <select
+                                                    class="primary_select select_section"
                                                     id="allcourses" name="courses">
-                                                    </option>
+                                                    <option value="" >Courses *</option>
 
-                                                    @if (isset($class))
-                                                        @foreach ($course as $courses)
-                                                            <option value="{{ $courses->course_id }}" selected>
-                                                                {{ $courses->slug }}</option>
+                                                    @if (isset($courses))
+                                                        @foreach ($courses as $course)
+                                                            <option  value="{{ $course->id }}"
+                                                                {{ isset($class) && (int)$class->course_id == $course->id ? 'selected': (old('courses') == $course->id ? 'selected' : '') }}>
+                                                                {{ $course->title }}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>
 
+                                            </div>
+                                        </div>
+                                        <div class="row mt-25" id="course_type_row">
+                                            <div class="col-xl-12">
+                                                <div class="primary_input">
+                                                    <label class="primary_input_label"
+                                                        for="courseTypeId">{{ __('Course Type') }}
+                                                    </label>
+                                                    {{-- <select name="courseType[]" id="courseTypeId" class="multypol_check_select active mb-15 e1" multiple><!-- assistant_instructors[] --> --}}
+                                                    <select name="courseType[]" id="courseTypeId" class="primary_select select_section active mb-15 e1" ><!-- assistant_instructors[] -->
+
+	                                                    <?php
+	                                                    	$course_types = (isset($class->course_types) && $class->course_types) != null ? json_decode($class->course_types): [] ;
+	                                                		$program_types = (isset($class->program_types) && $class->program_types == "true" )  ? 'program' : '' ;
+														?>
+
+                                                        @if (isset($courseTypes))
+	                                                        @foreach ($courseTypes as $courseType)
+	                                                        	@if($courseType == 4)
+	                                                                	{{$typeSlug = 'Full Course'}}
+		                                                        	@elseif($courseType == 6)
+		                                                        		{{$typeSlug = 'Prep-Course(Live)'}}
+		                                                        	@elseif($courseType == 8)
+		                                                        		{{$typeSlug = 'Repeat'}}
+		                                                        	@elseif($courseType == 'program')
+		                                                        		{{$typeSlug = 'Program'}}
+		                                                        	@endif
+	                                                            <option  value="{{ $courseType }}"
+	                                                            	{{ (in_array($courseType, $course_types) || $courseType == $program_types ) ? 'selected' : '' }}>
+	                                                                	{{$typeSlug}}
+		                                                        	</option>
+	                                                        @endforeach
+	                                                    @endif
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row mt-25">
+                                            <div class="col-lg-12">
+                                                <div class="input-effect">
+                                                    <label> {{ __('virtual-class.Duration') }}
+                                                        {{ __('virtual-class.Per Class') }}
+                                                        ({{ __('virtual-class.in Minute') }}) *</label>
+                                                    <input {{ $errors->has('duration') ? ' autofocus' : '' }}
+                                                        class="primary_input_field name{{ $errors->has('duration') ? ' is-invalid' : '' }}"
+                                                        type="number" name="duration" placeholder="30"
+                                                        value="{{ isset($class) ? $class->duration : (old('duration') != '' ? old('duration') : '') }}">
+                                                    <span class="focus-border"></span>
+
+                                                </div>
                                             </div>
                                         </div>
                                         @if (showEcommerce())
@@ -295,7 +347,7 @@
                                                     <div class="checkbox_wrap d-flex align-items-center">
                                                         <label for="edit_course" class="switch_toggle">
                                                             <input type="checkbox" name="free"
-                                                                {{ isset($class) && $class->fees == 0 ? 'checked' : '' }}
+                                                                {{ isset($class) && $class->fees == 0 ? 'checked' : (old('free') != '' ? 'checked' : '') }}
                                                                 class="free_class" id="edit_course" value="0">
                                                             <i class="slider round"></i>
                                                         </label>
@@ -322,7 +374,7 @@
                                             <div class="col-xl-12">
                                                 <div class="primary_input">
                                                     <label class="primary_input_label"
-                                                        for="">{{ __('common.Image') }}</label>
+                                                        for="">{{ __('common.Image') }} <small>(size: 1170x600)</small>  </label>
                                                     <div class="primary_file_uploader">
                                                         <input class="primary-input filePlaceholder" type="text"
                                                             placeholder="{{ isset($class) && $class->image ? showPicName($class->image) : __('virtual-class.Browse Image file') }}"
@@ -332,7 +384,7 @@
                                                             <label class="primary-btn small fix-gr-bg"
                                                                 for="document_file">{{ __('common.Browse') }}</label>
                                                             <input type="file" class="d-none fileUpload"
-                                                                name="image" id="document_file">
+                                                                name="image" id="document_file" accept=".jpg, .jpeg, .png, .bmp">
                                                         </button>
                                                     </div>
                                                 </div>
@@ -402,8 +454,7 @@
                                             <div class="col-lg-12">
                                                 <label class="primary_input_label"
                                                     for="">{{ __('virtual-class.Type') }}</label>
-                                                <select
-                                                    class="primary_select type {{ $errors->has('type') ? ' is-invalid' : '' }}"
+                                                <select class="primary_select type {{ $errors->has('type') ? ' is-invalid' : '' }}"
                                                     id="type" name="type">
                                                     <option value="0"
                                                         {{ isset($class) && $class->type == 0 ? 'selected' : old('type') }}>
@@ -465,7 +516,7 @@
                                             <div class="col-xl-12 mt-25">
                                                 <div class="primary_input">
                                                     <label class="primary_input_label"
-                                                        for="">{{ __(' Class Day') }}</label>
+                                                        for="">{{ __('Class Day') }} *</label>
                                                     <div class="primary_datepicker_input">
                                                         <div class="no-gutters input-right-icon">
                                                             <div class="col">
@@ -478,25 +529,25 @@
                                                                         <option value="" selected>Choose Class Day
                                                                         </option>
                                                                         <option value="Mon"
-                                                                            {{ isset($class) ? ($class->class_day == 'Mon' ? 'selected' : '') : '' }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Mon' ? 'selected' : '') : (old('days') == 'Mon' ? 'selected' : '') }}>
                                                                             Monday</option>
                                                                         <option value="Tue"
-                                                                            {{ isset($class) ? ($class->class_day == 'Tue' ? 'selected' : '') : '' }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Tue' ? 'selected' : '') : (old('days') == 'Tue' ? 'selected' : '') }}>
                                                                             Tuesday</option>
                                                                         <option value="Wed"
-                                                                            {{ isset($class) ? ($class->class_day == 'Wed' ? 'selected' : '') : '' }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Wed' ? 'selected' : '') : (old('days') == 'Wed' ? 'selected' : '') }}>
                                                                             Wednesday</option>
                                                                         <option value="Thu"
-                                                                            {{ isset($class) ? ($class->class_day == 'Thu' ? 'selected' : '') : '' }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Thu' ? 'selected' : '') : (old('days') == 'Thu' ? 'selected' : '') }}>
                                                                             Thursday</option>
                                                                         <option
-                                                                            value="Fri"{{ isset($class) ? ($class->class_day == 'Fri' ? 'selected' : '') : '' }}>
+                                                                            value="Fri"{{ isset($class) ? ($class->class_day == 'Fri' ? 'selected' : (old('days') == 'Fri' ? 'selected' : '')) : (old('days') == 'Fri' ? 'selected' : '') }}>
                                                                             Friday</option>
                                                                         <option value="Sat"
-                                                                            {{ isset($class) ? ($class->class_day == 'Sat' ? 'selected' : '') : '' }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Sat' ? 'selected' : (old('days') == 'Sat' ? 'selected' : '')) : (old('days') == 'Sat' ? 'selected' : '') }}>
                                                                             Saturday</option>
                                                                         <option value="Sun"
-                                                                            {{ isset($class) ? ($class->class_day == 'Sun' ? 'selected' : '') : '' }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Sun' ? 'selected' : (old('days') == 'Sun' ? 'selected' : '')) : (old('days') == 'Sun' ? 'selected' : '') }}>
                                                                             Sunday</option>
                                                                     </select>
                                                                 </div>
@@ -561,8 +612,10 @@
                                             <div class="col-md-6 mb-25">
                                                 <label for="type1" class="primary_checkbox d-flex mr-12">
                                                     <input type="radio" class="common-checkbox" id="type1"
-                                                        name="host" value="Zoom"
+                                                        name="host" value="Team"
+                                                        {{-- @if (isset($class)) @if ($class->host == 'Zoom') checked @endif --}}
                                                         @if (isset($class)) @if ($class->host == 'Zoom') checked @endif
+                                                        @if (isset($class)) @if ($class->host == 'Team') checked @endif @endif
                                                     @else checked @endif>
                                                     <span
                                                         class="checkmark mr-2"></span>{{ __('virtual-class.Zoom') }}</label>
@@ -747,7 +800,8 @@
                                                                 <label class="primary-btn small fix-gr-bg"
                                                                     for="attached_file">{{ __('common.Browse') }}</label>
                                                                 <input type="file" class="d-none fileUpload"
-                                                                    name="attached_file" id="attached_file">
+                                                                    name="attached_file" id="attached_file"
+                                                                    accept=".jpeg, .png, .jpg, .doc, .docx, .pdf, .xls, .xlsx">
                                                             </button>
                                                         </div>
                                                     </div>
@@ -857,7 +911,7 @@
 
                                         <div class="row mt-25">
                                             <div class="col-lg-12 text-center">
-                                                <button type="submit" class="primary-btn fix-gr-bg"
+                                                <button type="button" class="primary-btn fix-gr-bg" onclick="formValidations(this);"
                                                     data-toggle="tooltip">
                                                     <span class="ti-check"></span>
                                                     @if (isset($class))
@@ -974,6 +1028,31 @@
             </div>
         </div>
     </div>
+    <div class="modal fade admin-query" id="courseTypeConfirm">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ __('Course Type') }} </h4>
+                    <button type="button" class="close" data-dismiss="modal"><i class="ti-close"></i></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="text-center">
+
+                            <h4 id="courseTypConfirmMessage"></h4>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-40">
+                            <button type="button" class="primary-btn tr-bg" data-dismiss="modal">{{ __('common.Cancel') }}</button>
+                            <button class="primary-btn fix-gr-bg" type="button" onclick="mergeCourseTypeExisting();">{{ __('Yes') }}</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 @endsection
 @push('scripts')
     <script src="{{ asset('/') }}/Modules/Membership/Resources/assets/js/app.js"></script>
@@ -1005,12 +1084,13 @@
     @endphp
 
     <script>
+
         let table = $('#lms_table').DataTable({
             bLengthChange: true,
             "lengthChange": true,
             "lengthMenu": [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, "All"]
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
             ],
             "bDestroy": true,
             processing: true,
@@ -1080,7 +1160,14 @@
                 },
                 {
                     data: 'host',
-                    name: 'host'
+                    name: 'host',
+                    render: function(data, type, row) {
+
+            if (type === 'display') {
+                return 'Team';
+            }
+            return data;
+        }
                 },
                 // {
                 //     data: 'scope',
@@ -1230,7 +1317,8 @@
 
                             $("#allcourses").siblings().find('ul').append(
                                 '<li class="option" data-value="' + item.id + '">' +
-                                item.slug + '</li>');
+                                item.slug + '</li>'
+                          	);
 
                         });
 
@@ -1240,8 +1328,299 @@
                 });
             });
         });
+        $(document).ready(function() {
+            checkProgramSelect();
+            $('#assign_instructor').change(function() {
+
+                $("#allcourses").siblings().find('ul').empty();
+                $("#allcourses").siblings().find('span').empty();
+
+                var id = $("#assign_instructor option:selected").val();
+
+                $.ajax({
+
+                    type: 'get',
+                    url: '{{ URL::to('virtualclass/getinstructorcourses') }}',
+                    data: {
+                        'id': id
+                    },
+
+                    success: function(data) {
+                        $.each(data, function(i, item) {
+                            var type = item.type == '8' ? '(Repeat)' : '';
+                            $('#allcourses').append($('<option>', {
+                                value: item.id,
+                                text: item.slug
+                            }));
+
+                            $("#allcourses").siblings().find('ul').append(
+                                '<li class="option" data-value="' + item.id + '">' +
+                                item.slug +' '+type+ '</li>'
+                          	);
+                        });
+                    },
+                });
+            });
+        });
+
+        // $(document).ready(function() {
+            $('#allcourses').change(function(e) {
+                e.preventDefault();
+            	$("#courseTypeId").empty();
+               	$("#courseTypeId").siblings().find('ul').empty();
+               	$("#courseTypeId").siblings().find('span').empty();
+
+                var id = $("#allcourses option:selected").val();
+
+                $.ajax({
+
+                    type: 'get',
+                    url: '{{ URL::to('virtualclass/getcoursetype') }}',
+                    data: {
+                        'id': id
+                    },
+
+                    success: function(data) {
+                        $.each(data, function(i, item) {
+
+                            var slug = '';
+              							if(item == 4){
+              								slug = 'Full Course';
+              							}else if(item == 5){
+              								slug = 'Prep-Course';
+              							}else if(item == 6){
+              								slug = 'Prep-Course Live';
+              							}else if(item == 8){
+              								slug = 'Repeat Course';
+              							}else if(item == 'program'){
+              								slug = 'Program';
+              							}else{
+              								slug = '';
+              							}
+
+                            $('#courseTypeId').append('<option value="' + item + '">' + slug + '</option>');
+
+                            $("#courseTypeId").siblings().find('ul').append(
+                                '<li data-value="'+ item +'" class="option focus">'+ slug +'</li>'
+								// '<li data-search-term="'+slug+'" class=""><label for="ms-opt-'+slug+'"><span class="checkmark"></span><input type="checkbox" title="'+slug+'" id="ms-opt-'+slug+'" value="'+item+'">'+slug+'</label></li>'
+                          	);
+                        });
+                    },
+                });
+            });
+        // });
+        $('#courseTypeId').change(function (e) {
+            e.preventDefault();
+            checkProgramSelect();
+
+
+        });
+        function checkProgramSelect(){
+            var courseType = $("#courseTypeId").val();
+            var courseId = $("#allcourses").val();
+            console.log(courseType, courseId);
+            var strToLower = courseType;
+            var programHtml = '';
+
+            $('#program_list_row').remove();
+            if(strToLower == 'program'){
+
+
+
+            $.ajax({
+
+                type: 'get',
+                url: '{{ URL::to('virtualclass/getprogram') }}',
+                data: {
+                    'id': courseId
+                },
+
+                success: function(data) {
+
+                    programHtml +=`<div class="row mt-25" id="program_list_row">
+                                    <div class="col-xl-12">
+                                        <div class="primary_input">
+                                            <label class="primary_input_label"
+                                                for="courseTypeId">{{ __('Program List') }}
+                                            </label>
+
+                                            <select name="programList" id="programList" class="primary_select select_section active mb-15 e1" >
+                                                <option>Select Program</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                                $('#course_type_row').after(programHtml);
+                                $.each(data, function(i, item) {
+                                    if(item.id == selectedProgramId){
+                                        var select = 'selected'
+                                    }else{
+                                        var select = ''
+                                    }
+
+                                    $('#programList').append('<option value="' + item.id + '" '+select+'>' + item.programtitle + '</option>');
+
+                                    $("#programList").siblings().find('ul').append(
+                                        '<li data-value="'+ item.id +'" class="option focus">'+ item.programtitle +'</li>'
+                                        );
+
+                                });
+                                $('#programList').niceSelect();
+
+
+                }
+            });
+
+            }
+        }
+
+        function mergeCourseTypeExisting(){
+
+        	$('.preloader').show();
+
+        	var form = $("#virtual_class_form");
+
+        	var id = form.find("input[name='classId']").val();
+        	var title = form.find("input[name='title']").val();
+        	var course = form.find("select[name='courses']").val();
+        	var assign_instructor = form.find("select[name='assign_instructor']").val();
+        	var time = form.find("input[name='time']").val();
+        	var days = form.find("select[name='days']").val();
+        	var duration = form.find("input[name='duration']").val();
+        	var courseType = form.find("select[name='courseType[]']").val()
+
+            $.ajax({
+                type: 'post',
+                url: '{{ URL::to('virtualclass/mergeCourseTypeExist') }}',
+                data: {
+                    'id': id,
+                    'title': title,
+                    'course': course,
+                    'assign_instructor': assign_instructor,
+                    'time': time,
+                    'days': days,
+                    'duration': duration,
+                    'courseType':  courseType
+                },
+                success: function(data) {
+
+                	if(data.done == true || data.done == 'true'){
+                		$('.preloader').hide();
+                		$("#courseTypConfirmMessage").text('');
+						$("#courseTypeConfirm").modal('hide');
+                		toastr.success(data.success, 'Success', 1000);
+
+						setTimeout(function(){
+							location.reload(true);
+						}, 1500);
+                    }
+                },
+                error: function(e){
+                  console.log(e);
+                }
+
+            })
+
+        }
+        function formValidations(button){
+    		$('.preloader').show();
+    	    var errors = [];
+
+    	    var form = $(button).closest("form");
+
+
+    	   	if (isEmpty(form.find("input[name='title']").val())) {
+    	    	errors.push('Title is required.');
+    	    }
+    	    if(form.find("input[name='title']").val() != ''){
+    	    	if (form.find("input[name='title']").val().length > 80) {
+        	    	errors.push('Title must be less then 80 characters.');
+        	    }
+        	}
+
+    	  	if (isEmpty(form.find("select[name='assign_instructor']").val())) {
+    	    	errors.push('Choose Instructor first.');
+    	    }
+    	  	if (isEmpty(form.find("select[name='courses']").val())) {
+    	    	errors.push('Choose Course first.');
+    	    }
+    	    if(form.find("select[id='courseTypeId']").find("option").length !== 0){
+    	    	if (isEmpty(form.find("select[name='courseType[]']").val())) {
+        	    	errors.push('Choose Course Type first.');
+        	    }
+        	}
+
+    	    if (isEmpty(form.find("input[name='duration']").val())) {
+    	    	errors.push('Duration is required.');
+    	    }
+    	    if (isEmpty(form.find("select[name='lang_id']").val())) {
+    	    	errors.push('Choose Language first.');
+    	    }
+    	    if (isEmpty(form.find("select[name='days']").val())) {
+    	    	errors.push('Choose Class Day first.');
+    	    }
+    	    if (isEmpty(form.find("input[name='time']").val())) {
+    	    	errors.push('Time is required.');
+    	    }
+
+    	    var id = form.find("input[name='classId']").val();
+        	var title = form.find("input[name='title']").val();
+        	var course = form.find("select[name='courses']").val();
+        	var assign_instructor = form.find("select[name='assign_instructor']").val();
+        	var time = form.find("input[name='time']").val();
+        	var days = form.find("select[name='days']").val();
+        	var duration = form.find("input[name='duration']").val();
+        	// var courseType = form.find("select[name='courseType']").val();
+        	var programList = form.find("select[name='programList']").val();
+        	var courseType = form.find("select[name='courseType[]']").val()
+
+            $.ajax({
+                type: 'post',
+                url: '{{ URL::to('virtualclass/validateClass') }}',
+                data: {
+                    'id': id,
+                    'title': title,
+                    'course': course,
+                    'assign_instructor': assign_instructor,
+                    'time': time,
+                    'days': days,
+                    'duration': duration,
+                    'courseType':  courseType,
+                    'programList':  programList
+                },
+                success: function(data) {
+
+					if(data.done == 'merge'){
+						$('.preloader').hide();
+						$("#courseTypConfirmMessage").text(data.error);
+						$("#courseTypeConfirm").modal('show');
+						return;
+					}
+					if(data.done == false || data.done == 'false' || data.done == 'exist'){
+                   		errors.push(data.error);
+                 	}
+
+                   	if (errors.length) {
+//         	       		console.log(errors);
+        	        	$('.preloader').hide();
+        	          	$('input[type="submit"]').attr('disabled', false);
+        	          	$.each(errors.reverse(), function (index, item) {
+        	        		toastr.error(item, 'Error', 1000);
+        	          	});
+        	       		return false;
+        	   		}
+        	      	form.submit();
+
+                },
+                error: function(e){
+                  console.log(e);
+                }
+            })
+    	}
     </script>
 
     <script src="{{ asset('/') }}/Modules/CourseSetting/Resources/assets/js/course.js"></script>
     <script src="{{ asset('public/backend/js/zoom.js') }}"></script>
+    <script src="{{ asset('public/backend/js/team.js') }}"></script>
 @endpush

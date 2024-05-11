@@ -104,7 +104,6 @@ class CoursePageSection extends Component
             if (!empty($subject)) {
                 $subjects = explode(',', $subject);
                 $query->whereIn('school_subject_id', $subjects);
-
             }
         }
 

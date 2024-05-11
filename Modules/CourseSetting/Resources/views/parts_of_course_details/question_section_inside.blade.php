@@ -139,8 +139,8 @@
                         data-toggle="tooltip">
                     {{__('common.Close')}}
                 </button>
-                <button type="submit" class="primary-btn fix-gr-bg questionSubmitBtn"
-                        data-toggle="tooltip">
+                <button type="button" class="primary-btn fix-gr-bg "
+                        data-toggle="tooltip" onclick="quiz_question_inside_form(this);"><!-- questionSubmitBtn -->
                     <span class="ti-check"></span>
                     {{__('common.Save')}}
                 </button>

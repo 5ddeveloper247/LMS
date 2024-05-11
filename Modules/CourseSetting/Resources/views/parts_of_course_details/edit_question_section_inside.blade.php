@@ -104,11 +104,11 @@
                     @foreach($multiple_options as $multiple_option)
 
                         @php $i++; @endphp
-                        <div class='row  mt-25'>
+                        <div class='row  mt-25' id='option_div_{{$i}}'>
                             <div class='col-lg-10'>
                                 <div class='input-effect'>
                                     <label> {{__('quiz.Option')}} {{$i}}</label>
-                                    <input class='primary_input_field name' type='text'
+                                    <input class='primary_input_field name' type='text' id='option_input_{{$i}}'
                                            name='option[]' autocomplete='off' required
                                            value="{{$multiple_option->title}}">
                                     <span class='focus-border'></span>
@@ -118,7 +118,7 @@
                                 <label class="primary_checkbox d-flex mr-12 "
                                        for="option_check_{{$i}}" {{__('quiz.Yes')}}>
                                     <input type="checkbox" @if ($multiple_option->status==1) checked
-                                           @endif id="option_check_{{$i}}"
+                                           @endif id="option_check_{{$i}}" id="option_check_{{$i}}"
                                            name="option_check_{{$i}}" value="1">
                                     <span class="checkmark"></span>
                                 </label>
@@ -139,8 +139,8 @@
                         data-toggle="tooltip">
                     {{__('common.Close')}}
                 </button>
-                <button type="submit" class="primary-btn fix-gr-bg questionSubmitBtn"
-                        data-toggle="tooltip">
+                <button type="button" class="primary-btn fix-gr-bg "
+                        data-toggle="tooltip" onclick="quiz_question_inside_form(this);"><!-- questionSubmitBtn -->
                     <span class="ti-check"></span>
                     {{__('common.Save')}}
                 </button>

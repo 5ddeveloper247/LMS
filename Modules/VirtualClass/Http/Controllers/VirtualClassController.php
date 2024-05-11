@@ -33,14 +33,17 @@ use Modules\Jitsi\Http\Controllers\JitsiMeetingController;
 use Modules\Localization\Entities\Language;
 use Modules\Membership\Repositories\Interfaces\MembershipVirtualClassRepositoryInterface;
 use Modules\Payment\Entities\Cart;
+use Modules\Payment\Entities\PaymentPlans;
 use Modules\StudentSetting\Entities\Program;
 use Modules\VirtualClass\Entities\ClassComplete;
 use Modules\VirtualClass\Entities\ClassSetting;
 use Modules\VirtualClass\Entities\VirtualClass;
+use Modules\SystemSetting\Entities\TutorSlote;
 use Modules\Zoom\Entities\ZoomMeeting;
 use Modules\Zoom\Entities\ZoomMeetingUser;
 use Modules\Zoom\Entities\ZoomSetting;
-use Modules\Zoom\Http\Controllers\MeetingController;
+use Modules\Team\Entities\TeamSetting;
+use Modules\Team\Http\Controllers\MeetingController;
 use Yajra\DataTables\Facades\DataTables;
 use Zoom;
 
@@ -57,6 +60,27 @@ class VirtualClassController extends Controller
         $courses = DB::table('courses')->where('category_id', $id)->where('type', 1)->get();
         return json_decode($courses);
     }
+    public function getinstructorcourses(Request $request)
+    {
+        $id = $request->id;
+        $courses = DB::table('courses')->where('user_id', $id)->where('type', 1)->get();
+        return json_decode($courses);
+    }
+    public function getcoursetype(Request $request)
+    {
+
+        $id = $request->id;
+        $courseTypes = DB::table('courses')->where('parent_id', $id)->whereNotIn('type', [5,8])->pluck('type')->toArray();
+        $programTypes = DB::table('programs')->whereJsonContains('allcourses', $id)->get();
+
+        if (count($programTypes) > 0) {
+            $courseTypes[] = 'program';
+        }
+        return response()->json($courseTypes);
+    }
+
+
+
 
     public function index()
     {
@@ -70,6 +94,7 @@ class VirtualClassController extends Controller
         }
         $data = [
             'languages' => Language::where('status', 1)->get(),
+            'courses' => Course::where('status', 1)->where('type', 1)->get(),
             'classes' => $classes,
             'categories' => Category::all(),
         ];
@@ -105,92 +130,383 @@ class VirtualClassController extends Controller
         return $days;
     }
 
-    public function store(Request $request)
+    public function validateClass(Request $request)
     {
+        $id = isset($request->id) ? $request->id : '';
+        $title = isset($request->title) ? $request->title : '';
+        $courseId = isset($request->course) ? $request->course : '';
+        $time = isset($request->time) ? $request->time : '';
+        $duration = isset($request->duration) ? $request->duration : '';
+        $assign_instructor = isset($request->assign_instructor) ? $request->assign_instructor : '';
+        $days = isset($request->days) ? $request->days : '';
+        $courseType = isset($request->courseType) ? $request->courseType : [];
 
-        $code = auth()->user()->language_code;
+        if ($id == '') {
+            $check_title = VirtualClass::where('title', 'LIKE', '%\"' . $request->title . '\"%')->count();
+        } else {
+            $check_title = VirtualClass::where('title', 'LIKE', '%\"' . $request->title . '\"%')->where('id', '!=', $id)->count();
+        }
 
-        $check_title = VirtualClass::where('title', 'LIKE', '%\"' . $request->title . '\"%')->count();
         if ($check_title > 0) {
-            Toastr::error(trans('Class Title Must be Unique'), trans('Error'));
-            return redirect()->back();
+
+            $arrRes['done'] = false;
+            $arrRes['error'] = 'Class Title Must be Unique';
+            return response()->json($arrRes);
+            die();
+        }
+        $fetchcourse = Course::where('id',$request->course)->first();
+        $programList = isset($request->programList) ? $request->programList : 0;
+        //if($programList !=0){
+          //$time4 = $closeTime->toTimeString();
+          switch ($request->days) {
+            case 'Mon':
+              $dayofWeek = 'Monday';
+              break;
+            case 'Tue':
+              $dayofWeek = 'Tuesday';
+              break;
+            case 'Wed':
+              $dayofWeek = 'Wednesday';
+              break;
+            case 'Thu':
+              $dayofWeek = 'Thursday';
+              break;
+            case 'Fri':
+              $dayofWeek = 'Friday';
+              break;
+            case 'Sat':
+              $dayofWeek = 'Saturday';
+              break;
+            case 'Sun':
+              $dayofWeek = 'Sunday';
+              break;
+
+            default:
+              $dayofWeek = 'Sunday';
+              break;
+          }
+        if($programList!=0){
+        //  $program = new Program();
+          $programplans = PaymentPlans::where(function ($q) {
+              $q->where(function ($r){
+                $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
+                ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
+              })
+              ->orWhere('sdate', '>', date('Y-m-d'));
+          })
+          ->where('parent_id',$programList)
+          ->where('type','program')
+          ->where('status',1)->first();
+          // $arrRes['done'] = false;
+          // $arrRes['error'] = $programplans;
+          // return response()->json($arrRes);
+          // die();
+          if(!$programplans){
+            $arrRes['done'] = false;
+            $arrRes['error'] = 'There are no current or future plans found for this program. Please check back later.';
+            return response()->json($arrRes);
+            die();
+          }else{
+            // Find the next Monday
+            $requestStartDate = $programplans->sdate;
+            // Calculate the end date (3 Mondays ahead)
+            $requestEndDate = $programplans->edate;
+          }
+        }else{
+          switch ($courseType[0]) {
+            case '4':
+              $typeSlug = 'full_course';
+              break;
+            case '6':
+              $typeSlug = 'prep_course_live';
+              break;
+            case '8':
+              $typeSlug = 'repeat';
+              break;
+
+            default:
+              $typeSlug = 'program';
+              break;
+          }
+          $courses_ids = Course::where('id',$courseId)->orWhere('parent_id',$courseId)->pluck('id')->toArray();
+          $courseplans = PaymentPlans::where(function ($q) {
+              $q->where(function ($r){
+                $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
+                ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
+              })
+              ->orWhere('sdate', '>', date('Y-m-d'));
+          })
+          ->whereIn('parent_id',$courses_ids)
+          ->where('type',$typeSlug)
+          ->where('status',1)->first();
+          // $arrRes['done'] = false;
+          // $arrRes['error'] = $courseplans->toSql().'<br>'.implode(",", $courseplans->getBindings());;
+          // return response()->json($arrRes);
+          // die();
+          if(!$courseplans){
+            $arrRes['done'] = false;
+            $arrRes['error'] = 'There are no current or future plans found for this course. Please check back later. ';
+            return response()->json($arrRes);
+            die();
+          }else{
+            // Find the next Monday
+            $requestStartDate = $courseplans->sdate;
+            // Calculate the end date (3 Mondays ahead)
+            $requestEndDate = $courseplans->edate;
+          }
         }
 
-        $rules = [
-            'title' => 'required|max:255|unique:virtual_classes',
-            'duration' => 'required',
-            'category' => 'required',
-            'courses' => 'required',
-            'lang_id' => 'required',
-            'type' => 'required',
-            'days' => 'required_if:type,==,1',
-            'host' => 'required',
-            'time' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required_if:type,==,1',
-            'is_recurring' => 'required_if:host,==,Zoom',
-            'recurring_type' => 'required_if:is_recurring,1',
-            'recurring_repect_day' => 'required_if:is_recurring,1',
-            'recurring_end_date' => 'required_if:is_recurring,1',
-            'password' => 'required_if:host,==,Zoom',
-            'attendee_password' => 'required_if:host,==,BBB',
-            'moderator_password' => 'required_if:host,==,BBB',
-            'image' => 'nullable|mimes:jpeg,bmp,png,jpg|max:1024',
-            'attached_file' => 'nullable|mimes:jpeg,png,jpg,doc,docx,pdf,xls,xlsx',
-        ];
+        $requestStartTime = Carbon::createFromFormat('h:i A', $request->time)->format('H:i:s');
+        $closeTime = Carbon::parse($requestStartTime)->addMinutes($request->duration);
+        $requestEndTime = $closeTime->format('H:i:s');
+        $class_id = $request->id ?? 0;
 
-
-        $this->validate($request, $rules, validationMessage($rules));
-
-        $cour1 = DB::table('virtual_classes')->where('course_id', $request->courses)->count();
-        $cour2 = DB::table('courses')->where('id', $request->courses)->first();
-
-        if ($cour1 >= $cour2->total_classes) {
-
-            Toastr::error('You have reached valid class limit', trans('common.Failed'));
-            return redirect()->back();
-        }
-
-        if (saasPlanCheck('meeting')) {
-            Toastr::error('You have reached valid class limit', trans('common.Failed'));
-            return redirect()->back();
-        }
-        if (demoCheck()) {
-            return redirect()->back();
-        }
-
-
-        $reqtime = Carbon::parse($request->time);
-        $closeTime = Carbon::parse($request->time)->addMinutes($request->duration);
-
-
-        $class_start_time = $reqtime;
-        $class_end_time = $closeTime;
-
-        $class_not_available = VirtualClass::with(['course' => function ($q) use ($request) {
-            $q->where('user_id', $request->assign_instructor);
-        }])
-            ->where('class_day', '=', $request->days)
-            ->where(function ($q) use ($class_start_time, $class_end_time) {
-                $q->whereBetween('time', [$class_start_time, $class_end_time])
-                    ->orWhereBetween('end_time', [$class_start_time, $class_end_time])
-                    ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
-                        $q->where('time', '<', $class_start_time)->where('end_time', '>', $class_end_time);
-                    })
-                    ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
-                        $q->where('time', '=', $class_start_time)->where('end_time', '=', $class_end_time);
-                    });
+        $checkslot = TutorSlote::where('instructor_id', $assign_instructor)->whereBetween('slot_date', [$requestStartDate,$requestEndDate])
+        ->whereRaw("UPPER(DATE_FORMAT(slot_date, '%a')) = UPPER(?)", [$request->days])
+        //->whereRaw("STR_TO_DATE(slot_date, '%a') = ?",[$request->days])
+        //->whereRaw("DAYOFWEEK(slot_date) = STR_TO_DATE(?, '%w')", [$request->days])
+            ->where(function ($query) use ($requestStartTime, $requestEndTime) {
+                $query->whereRaw("STR_TO_DATE(start_time, '%h:%i %p') <= ?", [$requestEndTime])
+                ->whereRaw("STR_TO_DATE(end_time, '%h:%i %p') >= ?", [$requestStartTime]);
+                // ->whereTime('start_time', '<=', $end_time)
+                //     ->whereTime('end_time', '>=', $start_time);
             })
             ->count();
+            if($checkslot>0){
+              $arrRes['done'] = false;
+              $arrRes['error'] = 'This instructor has a tutor slot reserved for given time. Please choose another time.';
+            //  $arrRes['error'] = $checkslot->toSql();
+              return response()->json($arrRes);
+              die();
+            }
+          $checkConflict = VirtualClass::where('user_id',$assign_instructor)
+          //->where('course_id','<>',$courseId)
+          ->where('id','<>',$class_id)
+          ->where('class_day', '=', $request->days)
+          // ->where(function ($query) use ($requestStartTime, $requestEndTime, $courseId) {
+          //   $query->where('course_id',$courseId)
+          //     ->where('')
+          // })
+          ->where(function ($query) use ($requestStartTime, $requestEndTime) {
+              $query->where('time', '<=', $requestEndTime)
+                  ->where('end_time', '>=', $requestStartTime);
+          })
+          ->where(function ($query) use ($requestStartDate, $requestEndDate) {
+              $query->where('start_date', '<=', $requestEndDate)
+                  ->where('end_date', '>=', $requestStartDate);
+          })
+          ->get();
+          //->toSql();
+          foreach ($checkConflict as $conflict) {
+            if($conflict->course_id != $courseId || $conflict->start_date != $requestStartDate || $conflict->end_date != $requestEndDate || $conflict->time != $requestStartTime || $conflict->end_time != $requestEndTime){
+              $msg = 'This Instructor is already booked on given time. Please choose another time.';
+            //  $msg = $conflict->course_id.' '.$courseId.' '.$conflict->start_date.' '.$requestStartDate.' '.$conflict->end_date.' '.$conflict->time.' '.$conflict->end_time;
+              $arrRes['done'] = false;
+              $arrRes['error'] = $msg;
+              return response()->json($arrRes);
+              die();
+            }
+          }
+          // if($checkConflict > 0){
+          //   $msg = 'This Instructor is already booked on given time. Please choose another time.';
+          //   $arrRes['done'] = false;
+          //   $arrRes['error'] = $msg;
+          //   return response()->json($arrRes);
+          //   die();
+          // }
 
-        if ($class_not_available > 0) {
-            Toastr::error('Instructor was not available on Selected Day & Time', trans('common.Failed'));
-            return redirect()->back();
+        if ($courseId != '') {
+            if ($id == '') {
+                $cour1 = DB::table('virtual_classes')->where('course_id', $courseId)->count();
+                $cour2 = DB::table('courses')->where('id', $courseId)->first();
+            } else {
+                $cour1 = DB::table('virtual_classes')->where('course_id', $courseId)->where('id', '!=', $id)->count();
+                $cour2 = DB::table('courses')->where('id', $courseId)->first();
+            }
+
+            if ($cour1 >= $cour2->total_classes) {
+                $arrRes['done'] = false;
+                $arrRes['error'] = 'You have reached valid class limit';
+                return response()->json($arrRes);
+                die();
+            }
+
+            if (saasPlanCheck('meeting')) {
+                $arrRes['done'] = false;
+                $arrRes['error'] = 'You have reached valid class limit';
+                return response()->json($arrRes);
+                die();
+            }
         }
 
+        if ($time != '' && $duration != '' && $assign_instructor != '' && $days != '') {
 
+            $reqtime = Carbon::parse($request->time);
+            $closeTime = Carbon::parse($request->time)->addMinutes($request->duration);
+
+            $class_start_time = $reqtime;
+            $class_end_time = $closeTime;
+
+            $class_not_available = VirtualClass::with(['course' => function ($q) use ($request) {
+                $q->where('user_id', $request->assign_instructor);
+            }])
+
+                ->where('class_day', '=', $request->days)
+                ->where('course_id', '=', $courseId)
+                ->where('id', '!=', $id)
+                ->where(function ($q) use ($class_start_time, $class_end_time) {
+                    $q->whereBetween('time', [$class_start_time, $class_end_time])
+                        ->orWhereBetween('end_time', [$class_start_time, $class_end_time])
+                        ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
+                            $q->where('time', '<', $class_start_time)->where('end_time', '>', $class_end_time);
+                        })
+                        ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
+                            $q->where('time', '=', $class_start_time)->where('end_time', '=', $class_end_time);
+                        });
+                })->count();
+
+
+            if ($class_not_available > 0) {
+
+                $classDetails = VirtualClass::with(['course' => function ($q) use ($request) {
+                    $q->where('user_id', $request->assign_instructor);
+                }])
+
+                    ->where('class_day', '=', $request->days)
+                    ->where('course_id', '=', $courseId)
+                    ->where('id', '!=', $id)
+                    ->where(function ($q) use ($class_start_time, $class_end_time) {
+                        $q->whereBetween('time', [$class_start_time, $class_end_time])
+                            ->orWhereBetween('end_time', [$class_start_time, $class_end_time])
+                            ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
+                                $q->where('time', '<', $class_start_time)->where('end_time', '>', $class_end_time);
+                            })
+                            ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
+                                $q->where('time', '=', $class_start_time)->where('end_time', '=', $class_end_time);
+                            });
+                    })->first();
+
+                $classCourseType = json_decode($classDetails->course_types);
+                if ($classDetails->program_types == 'true') {
+                    $classCourseType[] = 'program';
+                }
+
+
+                $difference = array_diff($courseType, $classCourseType);
+
+                if ($id == '') {
+                    if (count($difference) > 0) {
+                        $arrRes['done'] = 'merge';
+                        $arrRes['error'] = "Class is already created against this course with Class Title '" . $classDetails->title . "'. Do to wish to add Course Type in existing class!!!";
+                        return response()->json($arrRes);
+                        die();
+                    } else {
+                        $arrRes['done'] = 'exist';
+                        $arrRes['error'] = "Unable to create. Class is aready created against this course.";
+                        return response()->json($arrRes);
+                        die();
+                    }
+                } else {
+                    $arrRes['done'] = 'exist';
+                    $arrRes['error'] = "Class already exist.";
+                    return response()->json($arrRes);
+                    die();
+                }
+            }
+        }
+
+        $arrRes['done'] = true;
+        $arrRes['error'] = '';
+        return response()->json($arrRes);
+    }
+    public function mergeCourseTypeExist(Request $request)
+    {
+        $title = isset($request->title) ? $request->title : '';
+        $courseId = isset($request->course) ? $request->course : '';
+        $time = isset($request->time) ? $request->time : '';
+        $duration = isset($request->duration) ? $request->duration : '';
+        $assign_instructor = isset($request->assign_instructor) ? $request->assign_instructor : '';
+        $days = isset($request->days) ? $request->days : '';
+        $courseType = isset($request->courseType) ? $request->courseType : [];
+
+        if ($time != '' && $duration != '' && $assign_instructor != '' && $days != '') {
+
+            $reqtime = Carbon::parse($request->time);
+            $closeTime = Carbon::parse($request->time)->addMinutes($request->duration);
+
+            $class_start_time = $reqtime;
+            $class_end_time = $closeTime;
+
+            $classDetails = VirtualClass::with(['course' => function ($q) use ($request) {
+                $q->where('user_id', $request->assign_instructor);
+            }])
+
+                ->where('class_day', '=', $request->days)
+                ->where('course_id', '=', $courseId)
+                ->where(function ($q) use ($class_start_time, $class_end_time) {
+                    $q->whereBetween('time', [$class_start_time, $class_end_time])
+                        ->orWhereBetween('end_time', [$class_start_time, $class_end_time])
+                        ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
+                            $q->where('time', '<', $class_start_time)->where('end_time', '>', $class_end_time);
+                        })
+                        ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
+                            $q->where('time', '=', $class_start_time)->where('end_time', '=', $class_end_time);
+                        });
+                })->first();
+
+
+
+
+            $classCourseType = json_decode($classDetails->course_types); // existing class
+            if ($classDetails->program_types == 'true') {
+                $classCourseType[] = 'program';
+            }
+
+            $difference = array_diff($courseType, $classCourseType);
+
+
+
+            $mergedCourseType = array_merge($classCourseType, $difference);
+
+            $class = VirtualClass::find($classDetails->id);
+            $course = Course::where('class_id', $classDetails->id)->where('type', 3)->first();
+
+            $ctypes = isset($mergedCourseType) ? $mergedCourseType : [];
+            $programkeyToRemove = array_search('program', $ctypes);
+
+            if ($programkeyToRemove !== false) {
+                unset($ctypes[$programkeyToRemove]);
+                $class->program_types = 'true';
+                $course->program_types = 'true';
+            } else {
+                $class->program_types = 'false';
+                $course->program_types = 'false';
+            }
+
+            foreach ($ctypes as $value) {
+                $tempstr[] = $value;
+            }
+            $class->course_types = isset($tempstr) ? $tempstr : [];
+            $course->course_types = isset($tempstr) ? $tempstr : [];
+
+            $class->save();
+            $course->save();
+        }
+
+        $arrRes['done'] = true;
+        $arrRes['success'] = 'Successfully merge course type with existing class.';
+        return response()->json($arrRes);
+    }
+
+    public function store(Request $request)
+    {
+        //dd($request);
+
+          
+
+        $code = auth()->user()->language_code;
         try {
-
+          $fetchcourse = Course::where('id',$request->courses)->first();
             $class = new VirtualClass();
             if (isModuleActive('Membership')) {
                 if ($request->filled('is_membership')) {
@@ -219,26 +535,133 @@ class VirtualClassController extends Controller
             $time4 = $closeTime->toTimeString();
             $class->end_time = date("H:i", strtotime($time4));
             $class->duration = $request->duration;
-            $class->category_id = $request->category;
+            //             $class->category_id = $request->category;
             $class->end_time = $time4;
+            $class->user_id = $request->assign_instructor;
             $class->sub_category_id = null;
             $class->course_id = $request->courses;
             $class->type = $request->type;
             $class->host = $request->host;
             $class->lang_id = $request->lang_id;
             $class->title = $request->title;
+            $class->description = $request->description;
+            $class->program_id = $request->programList ?? null;
 
+            $ctypes = isset($request->courseType) ? $request->courseType : [];
+            switch ($request->days) {
+              case 'Mon':
+                $dayofWeek = 'Monday';
+                break;
+              case 'Tue':
+                $dayofWeek = 'Tuesday';
+                break;
+              case 'Wed':
+                $dayofWeek = 'Wednesday';
+                break;
+              case 'Thu':
+                $dayofWeek = 'Thursday';
+                break;
+              case 'Fri':
+                $dayofWeek = 'Friday';
+                break;
+              case 'Sat':
+                $dayofWeek = 'Saturday';
+                break;
+              case 'Sun':
+                $dayofWeek = 'Sunday';
+                break;
+
+              default:
+                $dayofWeek = 'Sunday';
+                break;
+            }
+            $programList = $request->programList ?? 0;
+            if($programList != 0){
+            //  $program = new Program();
+              $programplans = PaymentPlans::where(function ($q) {
+                  $q->where(function ($r){
+                    $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
+                    ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
+                  })
+                  ->orWhere('sdate', '>', date('Y-m-d'));
+              })
+              ->where('parent_id',$programList)
+              ->where('type','program')
+              ->where('status',1)->first();
+              if($programplans){
+                // Find the next Monday
+                $StartDate = $programplans->sdate;
+                // Calculate the end date (3 Mondays ahead)
+                $EndDate = $programplans->edate;
+              }
+            }else{
+              $courses_ids = Course::where('id',$request->courses)->orWhere('parent_id',$request->courses)->pluck('id')->toArray();
+              switch ($ctypes[0]) {
+                case '4':
+                  $typeSlug = 'full_course';
+                  break;
+                case '6':
+                  $typeSlug = 'prep_course_live';
+                  break;
+                case '8':
+                  $typeSlug = 'repeat';
+                  break;
+
+                default:
+                  $typeSlug = 'program';
+                  break;
+              }
+              $courseplans = PaymentPlans::where(function ($q) {
+                  $q->where(function ($r){
+                    $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
+                    ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
+                  })
+                  ->orWhere('sdate', '>', date('Y-m-d'));
+              })
+              ->whereIn('parent_id',$courses_ids)
+              ->where('type',$typeSlug)
+              ->where('status',1)->first();
+              if($courseplans){
+                // Find the next Monday
+                $StartDate = $courseplans->sdate;
+                // Calculate the end date (3 Mondays ahead)
+                $EndDate = $courseplans->edate;
+              }
+              // $courseTotalClasses = $fetchcourse->total_classes ?? 1;
+              // // Get today's date
+              // $date_today = Carbon::today();
+              // //$today = $date_today;
+              // $SDate = $date_today->copy()->next($dayofWeek);
+              // $StartDate = $SDate->format('Y-m-d');
+              // // Calculate the end date (3 Mondays ahead)
+              // $EDate = $SDate->copy()->addWeeks($courseTotalClasses);
+              // $EndDate = $EDate->format('Y-m-d');
+            }
+
+            // $programkeyToRemove = array_search('program', $ctypes);
+            //dd($date_today->format('Y-m-d'),$StartDate->format('Y-m-d'),$EndDate->format('Y-m-d'),$courseTotalClasses);
+
+            if ($ctypes != '') {
+                // unset($ctypes[$programkeyToRemove]);
+                $class->program_types = 'true';
+            } else {
+                $class->program_types = 'false';
+            }
+
+            $class->course_types = (json_encode($ctypes) != null) ? json_encode($ctypes) : [];
 
             if ($request->type == 1) {
                 $interval = $this->dateInterval($request->start_date, $request->end_date, 1);
 
-                if (!empty($request->start_date)) {
+                //if (!empty($request->start_date)) {
 
-                    $class->start_date = date('Y-m-d', strtotime($request->start_date));
-                }
-                if (!empty($request->end_date)) {
-                    $class->end_date = date('Y-m-d', strtotime($request->end_date));
-                }
+                    $class->start_date = $StartDate;
+                    //$class->start_date = date('Y-m-d', strtotime($request->start_date));
+                //}
+                //if (!empty($request->end_date)) {
+                    $class->end_date = $EndDate;
+                    //$class->end_date = date('Y-m-d', strtotime($request->end_date));
+                //}
                 if (!empty($request->days)) {
                     $class->class_day = $request->days;
                 }
@@ -258,8 +681,8 @@ class VirtualClassController extends Controller
             }
 
             $course = new Course();
-            $course->scope = $request->scope;
-            $course->class_id = $class->id;
+            $course->scope = isset($request->scope) ? $request->scope : '1';
+            //             $course->class_id = $class->id;
             $course->user_id = Auth::id();
             $course->lang_id = $request->lang_id;
             $course->title = $request->title;
@@ -274,14 +697,25 @@ class VirtualClassController extends Controller
                 $course->price = 0;
             }
 
+            $ctypes1 = isset($request->courseType) ? $request->courseType : [];
+            $programkeyToRemove1 = array_search('program', $ctypes1);
+
+            if ($programkeyToRemove1 !== false) {
+                unset($ctypes1[$programkeyToRemove1]);
+                $course->program_types = 'true';
+            } else {
+                $course->program_types = 'false';
+            }
+            $course->course_types = (json_encode($ctypes1) != null) ? json_encode($ctypes1) : [];
 
             // foreach ($request->title as $key => $title) {
             //     $course->setTranslation('title', $key, $title);
             // }
 
-            foreach ($request->description as $key => $about) {
-                $course->setTranslation('about', $key, $about);
-            }
+            //             foreach ($request->description as $key => $about) {
+            //                 $course->setTranslation('about', $key, $about);
+            //             }
+            $course->about = $request->description;
 
             if (isModuleActive('Org')) {
                 $course->required_type = $request->required_type;
@@ -304,19 +738,16 @@ class VirtualClassController extends Controller
             if (!empty($request->assign_instructor)) {
                 $course->user_id = $request->assign_instructor;
             }
-            if (!empty($request->assistant_instructors)) {
-                $assistants = $request->assistant_instructors;
-                if (($key = array_search($course->user_id, $assistants)) !== false) {
-                    unset($assistants[$key]);
-                }
-                if (!empty($assistants)) {
-                    $course->assistant_instructors = json_encode(array_values($assistants));
-                }
-            }
+            //             if (!empty($request->assistant_instructors)) {
+            //                 $assistants = $request->assistant_instructors;
+            //                 if (($key = array_search($course->user_id, $assistants)) !== false) {
+            //                     unset($assistants[$key]);
+            //                 }
+            //                 if (!empty($assistants)) {
+            //                     $course->assistant_instructors = json_encode(array_values($assistants));
+            //                 }
+            //             }
             $course->type = 3;
-
-            $course->save();
-
 
             $start_date = strtotime($class['start_date']);
             $end_date = strtotime($class['end_date']);
@@ -335,6 +766,20 @@ class VirtualClassController extends Controller
 
             $class->save();
 
+            $course->class_id = $class->id;
+
+            $course->save();
+            if (!empty($request->assign_instructor)) {
+                send_email(
+                    User::find($request->assign_instructor),
+                    'Class_Assigned_Instructor',
+                    [
+                        'time' => \Carbon\Carbon::now()->format('d-M-Y, g:i A'),
+                        'class' => $course->title
+                    ]
+                );
+            }
+
             if ($days != 0) {
                 for (
                     $i = 0;
@@ -342,9 +787,28 @@ class VirtualClassController extends Controller
                     $i++
                 ) {
                     $new_date = date('m/d/Y', strtotime($class['start_date'] . '+' . $i . ' day'));
+                    if(Carbon::parse($new_date)->is($dayofWeek)){
+                      if ($class->host == "Team") {
 
-                    //                   dd(Carbon::parse($new_date)->format('D'));
-                    if ($class->host == "Zoom") {
+                          $fileName = "";
+                          if ($request->file('attached_file') != "") {
+                              $file = $request->file('attached_file');
+                              $ignore = strtolower($file->getClientOriginalExtension());
+                              if ($ignore != 'php') {
+                                  $fileName = $request->topic . time() . "." . $file->getClientOriginalExtension();
+                                  $file->move('public/uploads/team-meeting/', $fileName);
+                                  $fileName = 'public/uploads/team-meeting/' . $fileName;
+                              }
+                          }
+
+                      //    dd("fjdaksjfkjsakfjlsakjf");
+
+                        $result= $this->createClassWithTeam($class, $new_date, $request, $fileName);
+                       
+
+                      }
+
+                      elseif ($class->host == "Zoom") {
 
                         $fileName = "";
                         if ($request->file('attached_file') != "") {
@@ -357,22 +821,24 @@ class VirtualClassController extends Controller
                             }
                         }
 
-                        return $this->createClassWithZoom($class, $new_date, $request, $fileName);
-                    } elseif ($class->host == "BBB") {
-                        if (isModuleActive('BBB')) {
-                            $result = $this->createClassWithBBB($class, $new_date, $request);
-                        } else {
-                            Toastr::error('Module not installed yet', 'Error!');
-                            return redirect()->back();
-                        }
-                    } elseif ($class->host == "Jitsi") {
+                       $this->createClassWithZoom($class, $new_date, $request, $fileName);
+                    } 
+                    elseif ($class->host == "BBB") {
+                          if (isModuleActive('BBB')) {
+                              $result = $this->createClassWithBBB($class, $new_date, $request);
+                          } else {
+                              Toastr::error('Module not installed yet', 'Error!');
+                              return redirect()->back();
+                          }
+                      } elseif ($class->host == "Jitsi") {
 
-                        if (isModuleActive('Jitsi')) {
-                            $result = $this->createClassWithJitsi($class, $new_date, $request);
-                        } else {
-                            Toastr::error('Module not installed yet', 'Error!');
-                            return redirect()->back();
-                        }
+                          if (isModuleActive('Jitsi')) {
+                              $result = $this->createClassWithJitsi($class, $new_date, $request);
+                          } else {
+                              Toastr::error('Module not installed yet', 'Error!');
+                              return redirect()->back();
+                          }
+                      }
                     }
 
                     if (isModuleActive('Membership')) {
@@ -382,7 +848,6 @@ class VirtualClassController extends Controller
                         ]));
                     }
                 }
-
                 if (!empty($request->assign_instructor)) {
                     send_email(
                         User::find($request->assign_instructor),
@@ -409,18 +874,22 @@ class VirtualClassController extends Controller
                             send_email($user, 'class_reminder', [
                                 'course' => $CLass->course->title ?? 'Delete course',
                                 'class' => $CLass->title ?? 'Delete Class',
-                                'start_date' => $CLass->start_date,
+                                'date' => $CLass->start_date,
+                                'stime' => '',
+                                'etime' => '',
+                                'link' => ''
                             ]);
                             echo "send mail to " . ($user->name ?? 'Delete user');
                         }
                     }
                 }
 
-                if ($result['type']) {
+                if ($request['type'] || $result['type']) {
 
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
                     return redirect()->back();
-                } else {
+                } 
+                else {
 
                     Toastr::error($result['message'], 'Error!');
                     return redirect()->back();
@@ -428,12 +897,25 @@ class VirtualClassController extends Controller
             }
 
             return redirect()->back();
-        } catch (Exception $e) {
+        }
+       catch (Exception $e) {
+            //Toastr::error($e->getMessage(), 'Error!');
             Toastr::error(trans('common.Something Went Wrong'), 'Error!');
             return redirect()->back();
         }
     }
 
+
+
+
+
+
+    public function getprogram(Request $request){
+
+        $program = DB::table('programs')->whereJsonContains('allcourses', $request->id)->get();
+
+        return response()->json($program);
+    }
 
     public function show($id)
     {
@@ -451,10 +933,13 @@ class VirtualClassController extends Controller
         } else {
             $classes = VirtualClass::with('category', 'subCategory', 'language')->latest()->get();
         }
+        $class = VirtualClass::with('course')->find($id);
+
         $data = [
             'languages' => Language::where('status', 1)->get(),
+            'courses' => Course::where('status', 1)->where('type', 1)->get(),
             'classes' => $classes,
-            'class' => VirtualClass::with('course')->find($id),
+            'class' => $class,
             'categories' => Category::all(),
         ];
 
@@ -463,6 +948,9 @@ class VirtualClassController extends Controller
             ->where('virtual_classes.id', $id)
             ->get();
 
+        if(count($course)==0){
+          abort(404);
+        }
 
         if (Auth::user()->role_id == 1) {
             $data['certificates'] = Certificate::where('created_by', Auth::user()->id)->latest()->get();
@@ -471,123 +959,93 @@ class VirtualClassController extends Controller
         }
 
         $data['instructors'] = User::whereIn('role_id', [1, 2])->select('name', 'id')->get();
+
+        $courseTypes = DB::table('courses')->where('parent_id', $class->course_id)->where('type', '!=', 5)->pluck('type')->toArray();
+        $programTypes = DB::table('programs')->whereJsonContains('allcourses', $class->course_id)->get();
+
+        if (count($programTypes) > 0) {
+            $courseTypes[] = 'program';
+        }
+        $data['courseTypes'] = $courseTypes;
+
         return view('virtualclass::class.index', compact('course'))->with($data);
     }
 
     public function update(Request $request, $id)
     {
 
-        //        $cour3 = DB::table('virtual_classes')->where('course_id', $request->courses)->where('type', '!=', '1')->where('id', '!=', $id)->get();
-        //
-        //        $check = 1;
-        //        foreach ($cour3 as $courses3) {
-        //            // $actualtime[]=$courses3->time;
-        //            //   $actualdate[]=$courses3->start_date;
-        //
-        //            $reqtime = Carbon::parse($request->time);
-        //            $requtime1 = $reqtime->toTimeString();
-        //
-        //            $closeTime = Carbon::parse($request->time)->addMinutes($request->duration);
-        //            $time4 = $closeTime->toTimeString();
-        //
-        //
-        //            $coursedate = date('Y-m-d', strtotime($request->date));
-        //
-        //
-        //            if ($coursedate == $courses3->start_date) {
-        //
-        //
-        //                if ((($requtime1 == $courses3->time) || ($time4 == $courses3->end_time)) || (($requtime1 > $courses3->time) && ($requtime1 < $courses3->end_time))) {
-        //
-        //                    $check = 2;
-        //                }
-        //            }
-        //        }
-        //
-        //        //check if time maches or not
-        //        if ($check == 2) {
-        //
-        //            Toastr::error(' Already Class Present On this Time Please Choose Another time', trans('common.Failed'));
-        //
-        //            return redirect()->back();
-        //        } else {
-        //            $this->updatedata($request, $id);
-        //        }
-        //    }
-        //
-        //    public function updatedata($request, $id)
-        //    {
-        // dd($request->all());
-        // if (demoCheck()) {
-        //     return redirect()->back();
-        // dd($request->all());
         $code = auth()->user()->language_code;
 
-        $check_title = VirtualClass::where('title', 'LIKE', '%\"' . $request->title . '\"%')->where('id', '!=', $id)->count();
-        if ($check_title > 0) {
-            Toastr::error(trans('Class Title Must be Unique'), trans('Error'));
-            return redirect()->back();
-        }
+        //         $check_title = VirtualClass::where('title', 'LIKE', '%\"' . $request->title . '\"%')->where('id', '!=', $id)->count();
+        //         if ($check_title > 0) {
+        //             Toastr::error(trans('Class Title Must be Unique'), trans('Error'));
+        //             return redirect()->back();
+        //         }
 
-        $cour1 = DB::table('virtual_classes')->where('course_id', $request->courses)->count();
-        $cour2 = DB::table('courses')->where('id', $request->courses)->first();
+        //         $cour1 = DB::table('virtual_classes')->where('course_id', $request->courses)->where('id', '!=', $id)->count();
+        //         $cour2 = DB::table('courses')->where('id', $request->courses)->first();
 
-        if ($cour1 >= $cour2->total_classes) {
+        //         if ($cour1 >= $cour2->total_classes) {
 
-            Toastr::error('You have reached valid class limit', trans('common.Failed'));
-            return redirect()->back();
-        }
+        //             Toastr::error('You have reached valid class limit', trans('common.Failed'));
+        //             return redirect()->back();
+        //         }
 
-        if (saasPlanCheck('meeting')) {
-            Toastr::error('You have reached valid class limit', trans('common.Failed'));
-            return redirect()->back();
-        }
-        if (demoCheck()) {
-            return redirect()->back();
-        }
-
-
-        $reqtime = Carbon::parse($request->time);
-        $closeTime = Carbon::parse($request->time)->addMinutes($request->duration);
+        //         if (saasPlanCheck('meeting')) {
+        //             Toastr::error('You have reached valid class limit', trans('common.Failed'));
+        //             return redirect()->back();
+        //         }
+        //         if (demoCheck()) {
+        //             return redirect()->back();
+        //         }
 
 
-        $class_start_time = $reqtime;
-        $class_end_time = $closeTime;
+        //         $reqtime = Carbon::parse($request->time);
+        //         $closeTime = Carbon::parse($request->time)->addMinutes($request->duration);
 
-        $class_not_available = VirtualClass::with(['course' => function ($q) use ($request) {
-            $q->where('user_id', $request->assign_instructor);
-        }])
-            ->where('class_day', '=', $request->days)
-            ->where(function ($q) use ($class_start_time, $class_end_time) {
-                $q->whereBetween('time', [$class_start_time, $class_end_time])
-                    ->orWhereBetween('end_time', [$class_start_time, $class_end_time])
-                    ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
-                        $q->where('time', '<', $class_start_time)->where('end_time', '>', $class_end_time);
-                    })
-                    ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
-                        $q->where('time', '=', $class_start_time)->where('end_time', '=', $class_end_time);
-                    });
-            })
-            ->count();
 
-        if ($class_not_available > 0) {
-            Toastr::error('Instructor was not available on Selected Day & Time', trans('common.Failed'));
-            return redirect()->back();
-        }
+        //         $class_start_time = $reqtime;
+        //         $class_end_time = $closeTime;
 
-        $rules = [
-            'title' => 'required|max:255',
-            'duration' => 'required',
-            'category' => 'required',
-            'courses' => 'required',
-            'type' => 'required',
-            'date' => 'required_if:type,==,0',
-            'start_date' => 'required_if:type,==,1',
-            'end_date' => 'required_if:type,==,1',
-            'image' => 'nullable|mimes:jpeg,bmp,png,jpg|max:1024',
-        ];
+        //         $class_not_available = VirtualClass::with(['course' => function ($q) use ($request) {
+        //             $q->where('user_id', $request->assign_instructor);
+        //         }])
+        //             ->where('class_day', '=', $request->days)
+        //             ->where('id', '!=', $id)
+        //             ->where(function ($q) use ($class_start_time, $class_end_time) {
+        //                 $q->whereBetween('time', [$class_start_time, $class_end_time])
+        //                     ->orWhereBetween('end_time', [$class_start_time, $class_end_time])
+        //                     ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
+        //                         $q->where('time', '<', $class_start_time)->where('end_time', '>', $class_end_time);
+        //                     })
+        //                     ->orWhere(function ($q) use ($class_start_time, $class_end_time) {
+        //                         $q->where('time', '=', $class_start_time)->where('end_time', '=', $class_end_time);
+        //                     });
+        //             })
+        //             ->count();
 
-        $this->validate($request, $rules, validationMessage($rules));
+        //         if ($class_not_available > 0) {
+        //             Toastr::error('Instructor was not available on Selected Day & Time', trans('common.Failed'));
+        //             return redirect()->back();
+        //         }
+        //         if (strlen($request->title) > 80) {
+        //         	Toastr::error(trans('The title may not be greater than 80 characters.'), trans('Error'));
+        //         	return redirect()->back();
+        //         }
+
+        //         $rules = [
+        //             'title' => 'required|max:80',
+        //             'duration' => 'required',
+        // //             'category' => 'required',
+        //             'courses' => 'required',
+        //             'type' => 'required',
+        //             'date' => 'required_if:type,==,0',
+        //             'start_date' => 'required_if:type,==,1',
+        //             'end_date' => 'required_if:type,==,1',
+        //             'image' => 'nullable|mimes:jpeg,bmp,png,jpg|max:1024',
+        //         ];
+
+        //         $this->validate($request, $rules, validationMessage($rules));
 
 
         try {
@@ -597,8 +1055,9 @@ class VirtualClassController extends Controller
             //     $class->setTranslation('title', $key, $title);
             // }
             $class->title = $request->title;
+            $class->description = $request->description;
             $class->duration = $request->duration;
-            $class->category_id = $request->category;
+            //             $class->category_id = $request->category;
             $class->course_id = $request->courses;
             $pre_instructor =  $class->user_id;
 
@@ -615,24 +1074,93 @@ class VirtualClassController extends Controller
             $class->type = $request->type;
 
 
-            if ($request->type == 0) {
-                if (!empty($request->date)) {
-                    $class->start_date = date('Y-m-d', strtotime($request->date));
-                    $class->end_date = date('Y-m-d', strtotime($request->date));
-                }
-            } else {
-                if (!empty($request->start_date)) {
-                    $class->start_date = date('Y-m-d', strtotime($request->start_date));
-                }
-                if (!empty($request->end_date)) {
-                    $class->end_date = date('Y-m-d', strtotime($request->end_date));
-                }
+            $ctypes = isset($request->courseType) ? $request->courseType : [];
+            $programkeyToRemove = array_search('program', $ctypes);
 
+            if ($programkeyToRemove !== false) {
+              //  unset($ctypes[$programkeyToRemove]);
+                $class->program_types = 'true';
+            } else {
+                $class->program_types = 'false';
+            }
+            $class->course_types = (json_encode($ctypes) != null) ? json_encode($ctypes) : [];
+
+            $class->program_id = $request->programList ?? null;
+            $programList = $request->programList ?? 0;
+            if($programList != 0){
+            //  $program = new Program();
+              $programplans = PaymentPlans::where(function ($q) {
+                  $q->where(function ($r){
+                    $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
+                    ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
+                  })
+                  ->orWhere('sdate', '>', date('Y-m-d'));
+              })
+              ->where('parent_id',$programList)
+              ->where('type','program')
+              ->where('status',1)->first();
+              if($programplans){
+                // Find the next Monday
+                $StartDate = $programplans->sdate;
+                // Calculate the end date (3 Mondays ahead)
+                $EndDate = $programplans->edate;
+              }
+            }else{
+              $courses_ids = Course::where('id',$request->courses)->orWhere('parent_id',$request->courses)->pluck('id')->toArray();
+              switch ($ctypes[0]) {
+                case '4':
+                  $typeSlug = 'full_course';
+                  break;
+                case '6':
+                  $typeSlug = 'prep_course_live';
+                  break;
+                case '8':
+                  $typeSlug = 'repeat';
+                  break;
+
+                default:
+                  $typeSlug = 'program';
+                  break;
+              }
+              $courseplans = PaymentPlans::where(function ($q) {
+                  $q->where(function ($r){
+                    $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
+                    ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
+                  })
+                  ->orWhere('sdate', '>', date('Y-m-d'));
+              })
+              ->whereIn('parent_id',$courses_ids)
+              ->where('type',$typeSlug)
+              ->where('status',1)->first();
+              if($courseplans){
+                // Find the next Monday
+                $StartDate = $courseplans->sdate;
+                // Calculate the end date (3 Mondays ahead)
+                $EndDate = $courseplans->edate;
+              }
+            }
+            $class->start_date = $StartDate;
+            $class->end_date = $EndDate;
+            // if ($request->type == 0) {
+            //     if (!empty($request->date)) {
+            //         $class->start_date = date('Y-m-d', strtotime($request->date));
+            //         $class->end_date = date('Y-m-d', strtotime($request->date));
+            //     }
+            // } else {
+            //     if (!empty($request->start_date)) {
+            //         $class->start_date = date('Y-m-d', strtotime($request->start_date));
+            //     }
+            //     if (!empty($request->end_date)) {
+            //         $class->end_date = date('Y-m-d', strtotime($request->end_date));
+            //     }
+            //
+            //     if (!empty($request->days)) {
+            //         $class->class_day = $request->days;
+            //     }
+            // }
                 if (!empty($request->days)) {
                     $class->class_day = $request->days;
                 }
-            }
-
             if (!empty($request->time)) {
 
                 $closeTime1 = Carbon::parse($request->time);
@@ -648,70 +1176,86 @@ class VirtualClassController extends Controller
             $class->save();
 
             $course = Course::where('class_id', $id)->where('type', 3)->first();
-            $course->scope = $request->scope;
-            if (!empty($request->assign_instructor)) {
-                $course->user_id = $request->assign_instructor;
-            }
-
-
-            if (!empty($request->assistant_instructors)) {
-                $assistants = $request->assistant_instructors;
-                if (($key = array_search($course->user_id, $assistants)) !== false) {
-                    unset($assistants[$key]);
+            if ($course) {
+                $course->scope = isset($request->scope) ? $request->scope : '1';
+                if (!empty($request->assign_instructor)) {
+                    $course->user_id = $request->assign_instructor;
                 }
-                if (!empty($assistants)) {
-                    $course->assistant_instructors = json_encode(array_values($assistants));
-                }
-            }
-            if (isModuleActive('Org')) {
-                $course->required_type = $request->required_type;
-            } else {
-                $course->required_type = 0;
-            }
-            $course->lang_id = 1;
-            // foreach ($request->title as $key => $title) {
-            //     $course->setTranslation('title', $key, $title);
-            // }
-            $course->title = $request->title;
-            foreach ($request->description as $key => $about) {
-                $course->setTranslation('about', $key, $about);
-            }
-            if (showEcommerce()) {
-                if ($request->free == '0') {
-                    $course->price = 0;
+
+                $ctypes1 = isset($request->courseType) ? $request->courseType : [];
+                $programkeyToRemove1 = array_search('program', $ctypes1);
+
+                if ($programkeyToRemove1 !== false) {
+                    unset($ctypes1[$programkeyToRemove1]);
+                    $course->program_types = 'true';
                 } else {
-                    $course->price = $request->fees;
+                    $course->program_types = 'false';
                 }
-            } else {
-                $course->price = 0;
+                $course->course_types = (json_encode($ctypes1) != null) ? json_encode($ctypes1) : [];
+
+                //             	if (!empty($request->assistant_instructors)) {
+                //             		$assistants = $request->assistant_instructors;
+                //             		if (($key = array_search($course->user_id, $assistants)) !== false) {
+                //             			unset($assistants[$key]);
+                //             		}
+                //             		if (!empty($assistants)) {
+                //             			$course->assistant_instructors = json_encode(array_values($assistants));
+                //             		}
+                //             	}
+
+                if (isModuleActive('Org')) {
+                    $course->required_type = $request->required_type;
+                } else {
+                    $course->required_type = 0;
+                }
+                $course->lang_id = 1;
+                // foreach ($request->title as $key => $title) {
+                //     $course->setTranslation('title', $key, $title);
+                // }
+                $course->title = $request->title;
+                //             	foreach ($request->description as $key => $about) {
+                //             		$course->setTranslation('about', $key, $about);
+                //             	}
+                $course->about = $request->description;
+
+                if (showEcommerce()) {
+                    if ($request->free == '0') {
+                        $course->price = 0;
+                    } else {
+                        $course->price = $request->fees;
+                    }
+                } else {
+                    $course->price = 0;
+                }
+                if (Settings('frontend_active_theme') == "edume") {
+                    $course->what_learn1 = $request->what_learn1;
+                    $course->what_learn2 = $request->what_learn2;
+                }
+
+                $course->certificate_id = $request->certificate;
+
+                $class->category_id = $request->category;
+                $class->sub_category_id = $request->sub_category;
+
+                if ($request->file('image') != "") {
+                    $course->image = $this->saveImage($request->image);
+                    $course->thumbnail = $this->saveImage($request->image, 270);
+                }
+
+                $course->save();
+
+                if (!empty($request->assign_instructor) && $pre_instructor != $request->assign_instructor) {
+                    send_email(
+                        User::find($course->user_id),
+                        'Course_Assigned_Instructor',
+                        [
+                            'time' => \Carbon\Carbon::now()->format('d-M-Y, g:i A'),
+                            'course' => $course->title
+                        ]
+                    );
+                }
             }
-            if (Settings('frontend_active_theme') == "edume") {
-                $course->what_learn1 = $request->what_learn1;
-                $course->what_learn2 = $request->what_learn2;
-            }
 
-            $course->certificate_id = $request->certificate;
-
-            $class->category_id = $request->category;
-            $class->sub_category_id = $request->sub_category;
-
-            if ($request->file('image') != "") {
-                $course->image = $this->saveImage($request->image);
-                $course->thumbnail = $this->saveImage($request->image, 270);
-            }
-
-            $course->save();
-
-            if (!empty($request->assign_instructor) && $pre_instructor != $request->assign_instructor) {
-                send_email(
-                    User::find($course->user_id),
-                    'Course_Assigned_Instructor',
-                    [
-                        'time' => \Carbon\Carbon::now()->format('d-M-Y, g:i A'),
-                        'class' => $course->title
-                    ]
-                );
-            }
 
             $start_time = $class->time;
 
@@ -727,6 +1271,33 @@ class VirtualClassController extends Controller
 
             $datediff = $end_date - $start_date;
             $totalClass = ceil($datediff / (60 * 60 * 24)) + 1;
+            switch ($request->days) {
+              case 'Mon':
+                $dayofWeek = 'Monday';
+                break;
+              case 'Tue':
+                $dayofWeek = 'Tuesday';
+                break;
+              case 'Wed':
+                $dayofWeek = 'Wednesday';
+                break;
+              case 'Thu':
+                $dayofWeek = 'Thursday';
+                break;
+              case 'Fri':
+                $dayofWeek = 'Friday';
+                break;
+              case 'Sat':
+                $dayofWeek = 'Saturday';
+                break;
+              case 'Sun':
+                $dayofWeek = 'Sunday';
+                break;
+
+              default:
+                $dayofWeek = 'Sunday';
+                break;
+            }
 
             //            $class->total_class = $totalClass;
             //            $class->save();
@@ -758,8 +1329,9 @@ class VirtualClassController extends Controller
                         $i++
                     ) {
                         $new_date = date('m/d/Y', strtotime($class['start_date'] . '+' . $i . ' day'));
-
-                        $this->createClassWithZoom($class, $new_date, $request, null);
+                        if(Carbon::parse($new_date)->is($dayofWeek)){
+                          $this->createClassWithZoom($class, $new_date, $request, null);
+                        }
                     }
                 }
             } elseif ($class->host == "BBB") {
@@ -818,7 +1390,10 @@ class VirtualClassController extends Controller
                     }
                 }
             }
-            $this->deleteClassComplete($course->id, $class->id);
+            if ($course) {
+                $this->deleteClassComplete($course->id, $class->id);
+            }
+
 
             $datediff = $end_date - $start_date;
             $totalClass = ceil($datediff / (60 * 60 * 24)) + 1;
@@ -846,14 +1421,7 @@ class VirtualClassController extends Controller
             }
 
 
-            // Toastr::success(trans('common.Operation Successful'), trans('common.Success'));
-?>
-            <script>
-                window.location.href = '/lms/virtualclass/virtual-class';
-            </script>
-<?php
-
-            return redirect()->back();
+            return redirect('/virtualclass/virtual-class');
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -1439,6 +2007,52 @@ class VirtualClassController extends Controller
         }
     }
 
+    // team code start
+    public function createClassWithTeam($class, $date, $request, $fileName)
+    {
+
+
+        if (demoCheck()) {
+            return redirect()->back();
+        }
+        $meeting = new MeetingController();
+
+
+        $data = [];
+        $data['instructor_id'] = Auth::user()->id;
+        $data['class_id'] = $class->id;
+        $data['topic'] = $class->getTranslation('title', app()->getLocale());
+        $data['date'] = $date;
+        $data['description'] = $class->course->getTranslation('about', app()->getLocale());
+        $data['password'] = $request->password;
+        $data['attached_file'] = $fileName;
+        $data['time'] = $request->time;
+        $data['duration'] = $request->duration;
+        $data['is_recurring'] = $request->is_recurring;
+        $data['recurring_type'] = $request->recurring_type;
+        $data['recurring_repect_day'] = $request->recurring_repect_day;
+        $data['recurring_end_date'] = $request->recurring_end_date;
+
+        $setting =TeamSetting::find(1);
+        
+
+        $data['approval_type'] = $setting->approval_type;
+        $data['auto_recording'] = $setting->auto_recording;
+        $data['waiting_room'] = $setting->waiting_room;
+        $data['audio'] = $setting->audio;
+        $data['mute_upon_entry'] = $setting->mute_upon_entry;
+        $data['host_video'] = $setting->host_video;
+        $data['participant_video'] = $setting->participant_video;
+        $data['join_before_host'] = $setting->join_before_host;
+
+        $result = $meeting->classStore($data);
+        
+
+        return $result;
+    }
+
+    // team code end
+
     public function createClassWithZoom($class, $date, $request, $fileName)
     {
 
@@ -1579,12 +2193,12 @@ class VirtualClassController extends Controller
                 } else {
                     $status_enable_eisable = "";
                 }
-                $checked = $query->course->status == 1 ? "checked" : "";
-                $view = '<label class="switch_toggle" for="active_checkbox' . $query->course->id . '">
-                                                    <input type="checkbox" class="' . $status_enable_eisable . '"
-                                                           id="active_checkbox' . $query->course->id . '" value="' . $query->course->id . '"
-                                                             ' . $checked . '><i class="slider round"></i></label>';
 
+                $checked = $query->status == 1 ? "checked" : "";
+                $view = '<label class="switch_toggle" for="active_checkbox' . $query->id . '">
+                         	<input type="checkbox" class="' . $status_enable_eisable . '"
+                            	id="active_checkbox' . $query->id . '" value="' . $query->id . '"
+                                ' . $checked . '><i class="slider round"></i></label>';
                 return $view;
             })
             ->editColumn('subCategory', function ($query) {

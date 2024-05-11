@@ -10,7 +10,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 offset-lg-1">
+                <div class="col-lg-9 offset-1">
                     <div class="breadcam_wrap">
                         <span>About Company</span>
                         <h3>The leading global marketplace.</h3>

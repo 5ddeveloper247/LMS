@@ -92,8 +92,11 @@ class CronController extends Controller
                     Log::info('class_reminder->send mail');
                     send_email($user, 'class_reminder', [
                         'course' => $CLass->course->title ?? 'Delete course',
-                        'class' => $CLass->title ?? 'Delete Class',
-                        'start_date' => $CLass->start_date,
+                        //'class' => $CLass->title ?? 'Delete Class',
+                        'date' => $CLass->start_date,
+                        'stime' => '',
+                        'etime' => '',
+                        'link' => ''
                     ]);
                     echo "send mail to " . ($user->name ?? 'Delete user');
 

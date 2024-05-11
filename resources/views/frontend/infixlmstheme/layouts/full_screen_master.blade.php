@@ -20,7 +20,7 @@
     <meta property="og:image" content="{{asset(Settings('logo') )}}"/>
     <meta property="og:image:type" content="image/png"/>
     <link rel="shortcut icon" type="image/x-icon" href="{{getCourseImage(Settings('favicon') )}}">
-
+    <link href="https://fonts.cdnfonts.com/css/cavolini" rel="stylesheet">
 
 
 

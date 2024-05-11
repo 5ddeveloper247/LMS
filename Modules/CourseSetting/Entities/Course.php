@@ -2,34 +2,38 @@
 
 namespace Modules\CourseSetting\Entities;
 
+use App\User;
+use Carbon\Carbon;
 use App\LessonComplete;
 use App\Models\LmsBadge;
 use App\Traits\Tenantable;
-use App\User;
-use Carbon\Carbon;
 use Cocur\Slugify\Slugify;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use Modules\Certificate\Entities\Certificate;
+use Spatie\Sluggable\HasSlug;
 use Modules\Forum\Entities\Forum;
 use Modules\Group\Entities\Group;
-use Modules\Homework\Entities\InfixHomework;
+use Spatie\Sluggable\SlugOptions;
+use Modules\Payment\Entities\Cart;
+use Modules\Quiz\Entities\QuizTest;
+use Modules\Survey\Entities\Survey;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Modules\Quiz\Entities\OnlineQuiz;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+use Modules\Payment\Entities\PaymentPlans;
 use Modules\Localization\Entities\Language;
-use Modules\OrgInstructorPolicy\Entities\OrgPolicyCourseList;
+use Modules\Homework\Entities\InfixHomework;
+use Modules\Certificate\Entities\Certificate;
+use Modules\CourseSetting\Entities\CoursePlan;
+use Modules\WhatsappSupport\Entities\Settings;
+use Modules\VirtualClass\Entities\VirtualClass;
+use Modules\VirtualClass\Entities\ClassComplete;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\OrgSubscription\Entities\OrgAttendance;
+use Modules\Subscription\Entities\SubscriptionCourseList;
+use Modules\OrgInstructorPolicy\Entities\OrgPolicyCourseList;
 use Modules\OrgSubscription\Entities\OrgSubscriptionCheckout;
 use Modules\OrgSubscription\Entities\OrgSubscriptionCourseList;
-use Modules\Payment\Entities\Cart;
-use Modules\Quiz\Entities\OnlineQuiz;
-use Modules\Quiz\Entities\QuizTest;
-use Modules\Subscription\Entities\SubscriptionCourseList;
-use Modules\Survey\Entities\Survey;
-use Modules\VirtualClass\Entities\ClassComplete;
-use Modules\VirtualClass\Entities\VirtualClass;
-use Modules\WhatsappSupport\Entities\Settings;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
-use Spatie\Translatable\HasTranslations;
 
 
 class Course extends Model
@@ -37,7 +41,7 @@ class Course extends Model
 
     use HasSlug;
     use Tenantable;
-
+    protected $dates = ['start_date', 'end_date'];
     protected $guarded = [];
 
     protected $appends = ['dateFormat', 'publishedDate', 'sumRev', 'purchasePrice', 'enrollCount'];
@@ -45,25 +49,89 @@ class Course extends Model
 
     public $translatable = ['about', 'outcomes', 'requirements', 'title'];
 
-   public function parent()
-   {
-       return $this->belongsTo(Course::class,'parent_id');
-   }
+
+    public function review()
+    {
+        return $this->belongsTo(CourseReveiw::class, 'review_id', 'id');
+    }
+
+    public function coursePlans()
+    {
+        return $this->hasMany(PaymentPlans::class, 'parent_id', 'id')->where(function ($q) {
+            $q->where('type', 'full_course')->orWhere('type', 'prep_course_live');
+        })->where('status', 1);
+    }
+    public function courseWithId()
+    {
+        return $this->hasOne(PaymentPlans::class, 'course_id', 'id');
+    }
+
+    public function currentCoursePlan()
+    {
+        return $this->coursePlans()->where(function ($q) {
+            $q->where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'));
+            $q->orWhere('sdate', '>', date('Y-m-d'));
+        });
+    }
+
+    public function currentPlan()
+    {
+        return $this->coursePlans()->where(function ($q) {
+            $q->where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'));
+        });
+    }
+
+    public function nextPlans()
+    {
+        return $this->coursePlans()->where(function ($q) {
+            $q->orWhere('sdate', '>', date('Y-m-d'));
+        });
+    }
+
+    public function course_chapters_check()
+    {
+        return $this->hasMany(CourseSale::class, 'course_id', 'id')->where('content_type', 'chapter');
+    }
+
+    public function course_lesson_check()
+    {
+        return $this->hasMany(CourseSale::class, 'course_id', 'id')->where('content_type', 'lesson');
+    }
+
+    public function course_file_check()
+    {
+        return $this->hasMany(CourseSale::class, 'course_id', 'id')->where('content_type', 'course_file');
+    }
+
+    public function course_sale_data(): HasOne
+    {
+        return $this->hasOne(CourseSaleData::class, 'course_id', 'id');
+    }
+
+    public function timetable()
+    {
+        return $this->belongsTo(TimeTable::class, 'time_table_id', 'id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Course::class, 'parent_id');
+    }
+
     public function children()
     {
-        return $this->hasMany(Course::class,'parent_id','id');
+        return $this->hasMany(Course::class, 'parent_id', 'id');
     }
+
     public function forums()
     {
         return $this->hasMany(Forum::class, 'course_id', 'id');
     }
 
-
     public function enrollUsers()
     {
         return $this->belongsToMany(User::class, 'course_enrolleds', 'course_id', 'user_id');
     }
-
 
     public function cartUsers()
     {
@@ -77,7 +145,6 @@ class Course extends Model
 
     public function quiz()
     {
-
         return $this->belongsTo(OnlineQuiz::class, 'quiz_id', 'id')
             ->withDefault([
                 'title' => ' '
@@ -86,18 +153,16 @@ class Course extends Model
 
     public function class()
     {
-
         return $this->belongsTo(VirtualClass::class, 'class_id', 'id')->withDefault();
     }
+
     public function classes()
     {
-
         return $this->hasMany(VirtualClass::class, 'course_id', 'id');
     }
 
     public function category()
     {
-
         return $this->belongsTo(Category::class, 'category_id', 'id')->withDefault([
             'name' => ' '
         ]);
@@ -105,10 +170,14 @@ class Course extends Model
 
     public function user()
     {
-
         return $this->belongsTo(User::class, 'user_id', 'id')->withDefault([
             'name' => ' '
         ]);
+    }
+
+    public function userRoleId()
+    {
+        return $this->user()->where('role_id', 9);
     }
 
     public function subCategory()
@@ -192,7 +261,7 @@ class Course extends Model
 
     public function getpurchasePriceAttribute()
     {
-        return round($this->enrolls->sum('purchase_price'), 2);
+        return round($this->enrolls->sum('purchase_price'), 1);
     }
 
     public function virtualClass()
@@ -204,10 +273,8 @@ class Course extends Model
     {
         if (Auth::check()) {
             return $this->hasMany(LessonComplete::class)->where('user_id', Auth::user()->id);
-
         } else {
             return $this->hasMany(LessonComplete::class)->whereNull('user_id');
-
         }
     }
 
@@ -215,7 +282,6 @@ class Course extends Model
     {
         if (Auth::check()) {
             return $this->hasMany(QuizTest::class)->where('user_id', Auth::user()->id);
-
         } else {
             return $this->hasMany(QuizTest::class)->whereNull('user_id');
         }
@@ -283,7 +349,6 @@ class Course extends Model
             if (Settings('gamification_reward_discount_course_point_status')) {
                 if (Auth::check() && Auth::user()->gamification_total_points >= Settings('gamification_reward_course_point')) {
                     $percentage[] = Settings('gamification_reward_discount_course_point');
-
                 }
             }
 
@@ -307,7 +372,6 @@ class Course extends Model
                     return $main_price - $discount;
                 }
             }
-
         }
         return $price;
     }
@@ -401,17 +465,23 @@ class Course extends Model
 
     public function getLoginUserTotalPercentageAttribute()
     {
+        // dd($this, $this->attributes['type']);
         $percentage = 0;
-        if (!isset($this->attributes['type'])) {
-            return 0;
-        }
+        // if (!isset($this->attributes['type'])) {
+        //     return 0;
+        // }
         if ($this->attributes['type'] == 2) {
             $countCourse = count($this->completeQuiz->where('pass', 1));
             if ($countCourse != 0) {
                 $percentage = 100;
             }
         } else {
-            $countCourse = count($this->completeLessons->where('status', 1));
+            if (is_null($this->attributes['type'])) {
+                $countCourse = count($this->completeLessons->where('status', 1)->whereNull('courseType')->whereNotNull('program_id'));
+            } else {
+                $countCourse = count($this->completeLessons->where('status', 1)->where('courseType', $this->attributes['type']));
+            }
+            // dd($countCourse);
             if ($countCourse != 0) {
                 $percentage = ceil($countCourse / count($this->lessons) * 100);
             }
@@ -419,9 +489,25 @@ class Course extends Model
                 $percentage = 100;
             }
         }
+        // if ($percentage == 100) {
+        //     $shortCodes = [
+        //     'course' => $this->attributes['title'],
+        //     'time' => \Illuminate\Support\Carbon::now()->format('d-M-Y ,H:i A'),
+        //     'percentage' => $percentage,
+        //     'type' => 'course',
+        // ];
+
+        //     $send = send_email(Auth::user(), 'Complete_Course', $shortCodes);
+        //     if ($send) {
+        //         Toastr::success('Your Course Successfully Completed', trans('common.Success'));
+        //         return redirect()->back();
+        //     } else {
+        //         Toastr::error('Something went wrong', trans('common.Failed'));
+        //         return redirect()->back();
+        //     }
+        // }
 
         return $percentage;
-
     }
 
     public function userTotalPercentage($user_id, $course_id)
@@ -527,20 +613,20 @@ class Course extends Model
                 saasPlanManagement('course', 'create');
             }
         });
-//        static::updating(function ($course) {
-//
-//            $carts = Cart::where('course_id', $course->id)->get();
-//            foreach ($carts as $cart) {
-//                if ($course->discount_price != null) {
-//                    $price = $course->discount_price;
-//                } else {
-//                    $price = $course->price;
-//                }
-//                $cart->price = $price;
-//                $cart->save();
-//            }
-//
-//        });
+        //        static::updating(function ($course) {
+        //
+        //            $carts = Cart::where('course_id', $course->id)->get();
+        //            foreach ($carts as $cart) {
+        //                if ($course->discount_price != null) {
+        //                    $price = $course->discount_price;
+        //                } else {
+        //                    $price = $course->price;
+        //                }
+        //                $cart->price = $price;
+        //                $cart->save();
+        //            }
+        //
+        //        });
         self::deleted(function ($model) {
             if ($model->type == 1) {
                 saasPlanManagement('course', 'delete');
@@ -569,7 +655,6 @@ class Course extends Model
     public function language()
     {
         return $this->belongsTo(Language::class, 'lang_id', 'id')->withDefault();
-
     }
 
     public function result()
@@ -656,7 +741,6 @@ class Course extends Model
             $percentage = 100;
         }
         return $percentage;
-
     }
 
     public function getAssistantInstructorsIdsAttribute()
@@ -708,7 +792,6 @@ class Course extends Model
                 $data['pass'] = $data['pass'] + 1;
             } else {
                 $data['fail'] = $data['fail'] + 1;
-
             }
         }
         $data['total_enroll'] = $data['not_start'] + $data['pass'] + $data['fail'];
@@ -728,24 +811,24 @@ class Course extends Model
 
     public function getCourseEnrolledCountAttribute()
     {
-        return CourseEnrolled::where('course_id',$this->parent_id)->where('course_type',$this->type)->count();
+        return CourseEnrolled::where('course_id', $this->parent_id)->where('course_type', $this->type)->count();
     }
 
-//    public function getTotalEnrolledAttribute()
-//    {
-//        $total = $this->attributes['total_enrolled'];
-//
-//        if (isModuleActive('OrgSubscription')) {
-//            $checkout = OrgSubscriptionCheckout::whereHas('plan', function ($query) {
-//                $query->whereHas('assign', function ($query) {
-//                    $query->where('course_id', $this->id);
-//                });
-//            })->count();
-//
-//            $total = $total + $checkout;
-//        }
-//        return $total;
-//    }
+    //    public function getTotalEnrolledAttribute()
+    //    {
+    //        $total = $this->attributes['total_enrolled'];
+    //
+    //        if (isModuleActive('OrgSubscription')) {
+    //            $checkout = OrgSubscriptionCheckout::whereHas('plan', function ($query) {
+    //                $query->whereHas('assign', function ($query) {
+    //                    $query->where('course_id', $this->id);
+    //                });
+    //            })->count();
+    //
+    //            $total = $total + $checkout;
+    //        }
+    //        return $total;
+    //    }
 
     public function orgCourseList()
     {
@@ -776,7 +859,6 @@ class Course extends Model
         $data['attend_rate'] = $attend_rate;
         $data['pass_rate'] = $pass_rate;
         return $data;
-
     }
 
     public function orgSubscriptionCourseList()

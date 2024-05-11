@@ -35,6 +35,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function create(array $data)
     {
+
         $user = User::create($data);
         if (isModuleActive('Appointment')) {
             $slug = Str::slug($data['name']);
@@ -46,12 +47,12 @@ class UserRepository implements UserRepositoryInterface
             $user->slug = $slug;
             $user->save();
         }
-//        $user->dob = $data['dob'] ?? null;
-//        $user->gender = $data['gender'] ?? null;
-//        $user->student_type = $data['student_type'] ?? null;
-//        $user->job_title = $data['job_title'] ?? null;
-//        $user->identification_number = $data['identification_number'] ?? null;
-//        $user->company_id = $data['company_id'] ?? null;
+        //        $user->dob = $data['dob'] ?? null;
+        //        $user->gender = $data['gender'] ?? null;
+        //        $user->student_type = $data['student_type'] ?? null;
+        //        $user->job_title = $data['job_title'] ?? null;
+        //        $user->identification_number = $data['identification_number'] ?? null;
+        //        $user->company_id = $data['company_id'] ?? null;
         if (isModuleActive('Org') && !empty(Settings('org_student_default_branch'))) {
             $user->org_chart_code = Settings('org_student_default_branch');
         }
@@ -59,9 +60,10 @@ class UserRepository implements UserRepositoryInterface
         $user->level = $data['level'];
         $user->save();
 
-        if ($user->role_id == 3) {
-            if (session()->get('cart') != null && count(session()->get('cart')) > 0) {
 
+        if ($user->role_id == 3) {
+
+            if (session()->get('cart') != null && count(session()->get('cart')) > 0) {
                 foreach (session()->get('cart') as $key => $session_cart) {
                     $checkHasCourse = Course::find($session_cart['course_id']);
                     if ($checkHasCourse) {
@@ -82,11 +84,8 @@ class UserRepository implements UserRepositoryInterface
                                 $cart->price = $price;
                                 $cart->save();
                             }
-
                         }
-
                     }
-
                 }
             }
         }
@@ -100,6 +99,7 @@ class UserRepository implements UserRepositoryInterface
         assignStaffToUser($user);
 
         if (isset($data['is_lms_signup'])) {
+
             $institute = new LmsInstitute();
             $institute->name = $data['institute_name'];
             $institute->domain = $data['domain'];
@@ -127,9 +127,10 @@ class UserRepository implements UserRepositoryInterface
                 $saas_controller = new LmsSaasController();
                 $saas_controller->lmsSetup($institute->id);
             }
-
         } else {
+
             if (session::get('referral') != null) {
+
                 $invited_by = User::where('referral', session::get('referral'))->first();
                 $user_coupon = new UserWiseCoupon();
                 $user_coupon->invite_by = $invited_by->id;
@@ -141,10 +142,11 @@ class UserRepository implements UserRepositoryInterface
             $mailchimpStatus = saasEnv('MailChimp_Status') ?? false;
             $getResponseStatus = saasEnv('GET_RESPONSE_STATUS') ?? false;
             $acelleStatus = saasEnv('ACELLE_STATUS') ?? false;
+
             if (hasTable('newsletter_settings')) {
+
                 $setting = NewsletterSetting::getData();
                 if ($data['role_id'] == 2) {
-
                     if ($setting->instructor_status == 1) {
                         $list = $setting->instructor_list_id;
                         if ($setting->instructor_service == "Mailchimp") {
@@ -156,7 +158,6 @@ class UserRepository implements UserRepositoryInterface
                                         'email_address' => $data['email'],
                                         'status' => 'subscribed',
                                     ]);
-
                                 } catch (\Exception $e) {
                                 }
                             }
@@ -170,7 +171,6 @@ class UserRepository implements UserRepositoryInterface
                                         'campaign' => array('campaignId' => $list),
                                     ));
                                 } catch (\Exception $e) {
-
                                 }
                             }
                         } elseif ($setting->instructor_service == "Acelle") {
@@ -182,7 +182,6 @@ class UserRepository implements UserRepositoryInterface
                                     $acelleController = new AcelleController();
                                     $response = $acelleController->curlPostRequest($make_action_url);
                                 } catch (\Exception $e) {
-
                                 }
                             }
                         } elseif ($setting->instructor_service == "Local") {
@@ -198,12 +197,9 @@ class UserRepository implements UserRepositoryInterface
                                     $check->save();
                                 }
                             } catch (\Exception $e) {
-
                             }
                         }
                     }
-
-
                 } elseif ($data['role_id'] == 3) {
                     if ($setting->student_status == 1) {
                         $list = $setting->student_list_id;
@@ -216,7 +212,6 @@ class UserRepository implements UserRepositoryInterface
                                         'email_address' => $data['email'],
                                         'status' => 'subscribed',
                                     ]);
-
                                 } catch (\Exception $e) {
                                 }
                             }
@@ -230,7 +225,6 @@ class UserRepository implements UserRepositoryInterface
                                         'campaign' => array('campaignId' => $list),
                                     ));
                                 } catch (\Exception $e) {
-
                                 }
                             }
                         } elseif ($setting->student_service == "Acelle") {
@@ -242,7 +236,6 @@ class UserRepository implements UserRepositoryInterface
                                     $acelleController = new AcelleController();
                                     $response = $acelleController->curlPostRequest($make_action_url);
                                 } catch (\Exception $e) {
-
                                 }
                             }
                         } elseif ($setting->student_service == "Local") {
@@ -258,29 +251,26 @@ class UserRepository implements UserRepositoryInterface
                                     $check->save();
                                 }
                             } catch (\Exception $e) {
-
                             }
                         }
                     }
-
                 }
             }
-
         }
 
 
         if (Settings('email_verification') != 1) {
+
             $user->email_verified_at = date('Y-m-d H:m:s');
             $user->save();
         } else {
             if (isModuleActive('LmsSaas') && !empty($user->institute) && $user->institute->domain != SaasDomain()) {
+
                 Storage::put(md5($user->email), $user->email);
             } else {
                 $user->sendEmailVerificationNotification();
             }
-//            $user->sendEmailVerificationNotification();
         }
-
         return $user;
     }
 
@@ -356,7 +346,6 @@ class UserRepository implements UserRepositoryInterface
         } else {
             return Staff::latest()->get();
         }
-
     }
 
     public function find($id)
@@ -441,6 +430,4 @@ class UserRepository implements UserRepositoryInterface
     {
         return User::where('role_id', $role_id)->where('is_active', 1)->get();
     }
-
-
 }

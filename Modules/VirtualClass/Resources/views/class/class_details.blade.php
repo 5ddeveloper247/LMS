@@ -2,7 +2,7 @@
 @section('mainContent')
     {!! generateBreadcrumb() !!}
 
-    @if ($class->host == 'Zoom')
+    @if ($class->host ==  'Team')
         <div id="view_details">
             <div class="col-lg-12">
                 <div class="main-title">
@@ -22,9 +22,9 @@
                                     <tr>
                                     <tr>
                                         <th>{{ __('common.SL') }}</th>
-                                        <th> {{ __('zoom.ID') }}</th>
-                                        <th> {{ __('zoom.Password') }}</th>
                                         <th> {{ __('zoom.Topic') }}</th>
+                                        <th> {{ __('zoom.ID') }}</th>
+                                        <th> {{ __('zoom.Date') }}</th>
                                         <th> {{ __('Day') }}</th>
                                         <th> {{ __('zoom.Time') }}</th>
                                         <th> {{ __('zoom.Duration') }}</th>
@@ -33,45 +33,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($class->zoomMeetings as $key => $meeting)
+                                    @foreach ($class->teamMeetings as $key => $meeting)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $meeting->meeting_id }}</td>
-                                            <td>{{ $meeting->password }}</td>
                                             <td>{{ $meeting->topic }}</td>
+                                            <td>{{ $meeting->date_of_meeting }}</td>
                                             <td>{{ $class->class_day }}</td>
                                             <td>{{ $meeting->time_of_meeting }}</td>
                                             <td>{{ MinuteFormat($meeting->meeting_duration) }}</td>
                                             <td>
                                                 <?php
-                                                $mytime = Carbon\Carbon::now();
-                                                $todaydt = $mytime->toDateTimeString();
-                                                
-                                                if ($class->type == '0') {
-                                                    if ($meeting->start_time <= Carbon\Carbon::now()->format('H:i:s') && Carbon\Carbon::now()->format('H:i:s') <= $meeting->end_time) {
-                                                        $currentstat = 'started';
-                                                    } elseif ($todaydt > $meeting->end_time) {
-                                                        $currentstat = 'closed';
-                                                    } else {
-                                                        $currentstat = 'waiting';
-                                                    }
-                                                } else {
-                                                    if ($class->class_day == $mytime->format('D')) {
-                                                        if ($class->time <= Carbon\Carbon::now()->format('H:i:s') && Carbon\Carbon::now()->format('H:i:s') <= $class->end_time) {
-                                                            $currentstat = 'started';
-                                                        } else {
-                                                            $currentstat = 'waiting';
-                                                        }
-                                                    } else {
-                                                        $currentstat = 'closed';
-                                                    }
+                                                $now = Carbon\Carbon::now()->setTimezone(Settings('active_time_zone'));
+                                                $current_date = $now->toDateString();
+                                                $current_time = $now->toTimeString();
+                                                // dd($meeting, $class, $current_date, $current_time, $now->toDateTimeString());
+                                                if(Carbon\Carbon::now()->setTimezone(Settings('active_time_zone')) < Carbon\Carbon::parse($meeting->start_time)){
+                                                  $currentstat = 'waiting';
+                                                }elseif (Carbon\Carbon::now()->setTimezone(Settings('active_time_zone')) >= Carbon\Carbon::parse($meeting->start_time) && Carbon\Carbon::now()->setTimezone(Settings('active_time_zone')) <= Carbon\Carbon::parse($meeting->end_time)) {
+                                                  $currentstat = 'started';
+                                                }elseif(Carbon\Carbon::now()->setTimezone(Settings('active_time_zone')) > Carbon\Carbon::parse($meeting->end_time)){
+                                                  $currentstat = 'closed';
                                                 }
-                                                
+
                                                 ?>
 
                                                 @if ($currentstat == 'started')
                                                     <a class="primary-btn small fix-gr-bg small border-0 text-white"
-                                                        href="{{ route('zoom.meeting.join', $meeting->meeting_id) }}"
+                                                        href="{{ route('team.meeting.join', $meeting->meeting_id) }}"
                                                         target="_blank">
                                                         @if (Auth::user()->role_id == 1 || Auth::user()->id == $meeting->instructor_id)
                                                             {{ __('zoom.Start') }}
@@ -420,3 +409,116 @@
     @include('backend.partials.delete_modal')
 
 @endsection
+@push('scripts')
+    <script>
+        let table = $('#lms_table').DataTable({
+            bLengthChange: true,
+            "bDestroy": true,
+            "lengthChange": true,
+            "lengthMenu": [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            order: [
+                [0, "desc"]
+            ],
+            language: {
+                emptyTable: "{{ __('common.No data available in the table') }}",
+                search: "<i class='ti-search'></i>",
+                searchPlaceholder: '{{ __('common.Quick Search') }}',
+                paginate: {
+                    next: "<i class='ti-arrow-right'></i>",
+                    previous: "<i class='ti-arrow-left'></i>"
+                }
+            },
+            dom: 'Blfrtip',
+            buttons: [{
+                    extend: 'copyHtml5',
+                    text: '<i class="far fa-copy"></i>',
+                    title: $("#logo_title").val(),
+                    titleAttr: '{{ __('common.Copy') }}',
+                    exportOptions: {
+                        columns: ':visible',
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="far fa-file-excel"></i>',
+                    titleAttr: '{{ __('common.Excel') }}',
+                    title: $("#logo_title").val(),
+                    margin: [10, 10, 10, 0],
+                    exportOptions: {
+                        columns: ':visible',
+                        columns: ':not(:last-child)',
+                    },
+
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: '<i class="far fa-file-alt"></i>',
+                    titleAttr: '{{ __('common.CSV') }}',
+                    exportOptions: {
+                        columns: ':visible',
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="far fa-file-pdf"></i>',
+                    title: $("#logo_title").val(),
+                    titleAttr: '{{ __('common.PDF') }}',
+                    exportOptions: {
+                        columns: ':visible',
+                        columns: ':not(:last-child)',
+                    },
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    margin: [0, 0, 0, 12],
+                    alignment: 'center',
+                    header: true,
+                    customize: function(doc) {
+                        doc.content[1].table.widths =
+                            Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    }
+
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i>',
+                    titleAttr: '{{ __('common.Print') }}',
+                    title: $("#logo_title").val(),
+                    exportOptions: {
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'colvis',
+                    text: '<i class="fa fa-columns"></i>',
+                    postfixButtons: ['colvisRestore']
+                }
+            ],
+            columnDefs: [{
+                    visible: false
+                },
+                {
+                    responsivePriority: 1,
+                    targets: 0
+                },
+                {
+                    responsivePriority: 1,
+                    targets: 2
+                },
+                {
+                    responsivePriority: 1,
+                    targets: -1
+                },
+                {
+                    responsivePriority: 2,
+                    targets: -2
+                },
+            ],
+            responsive: true,
+        });
+    </script>
+@endpush

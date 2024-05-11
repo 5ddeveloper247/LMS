@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 use Modules\CourseSetting\Entities\Course;
 use Modules\CourseSetting\Entities\CourseLevel;
 use Modules\Localization\Entities\Language;
+use Carbon\Carbon;
 
 class QuizPageSection extends Component
 {
@@ -21,8 +22,10 @@ class QuizPageSection extends Component
 
     public function render()
     {
-        $query = Course::with('enrollUsers', 'cartUsers', 'quiz', 'quiz.assign', 'user', 'reviews', 'courseLevel', 'BookmarkUsers', 'parent.chapters', 'parent.classes')->where('scope', 1);
-
+        $query = Course::with('enrollUsers','userRoleId', 'cartUsers', 'quiz', 'quiz.assign', 'user', 'reviews', 'courseLevel', 'BookmarkUsers', 'parent.chapters', 'parent.classes', 'currentCoursePlan');
+        // if(isset($this->request->tutor_courses)){
+        //   $query->has('userRoleId');
+        // }
 
         $type = $this->request->type;
         if (empty($type)) {
@@ -96,7 +99,6 @@ class QuizPageSection extends Component
             $query->whereHas('quiz', function ($q) use ($categories) {
                 $q->whereIn('category_id', $categories);
             });
-
         }
         $subCategory = $this->request->get('sub-category');
         if (!empty($subCategory)) {
@@ -104,7 +106,6 @@ class QuizPageSection extends Component
             $query->whereHas('quiz', function ($q) use ($subCategory) {
                 $q->where('sub_category_id', $subCategory);
             });
-
         }
 
         if (currentTheme() == 'tvt') {
@@ -112,11 +113,33 @@ class QuizPageSection extends Component
             if (!empty($subject)) {
                 $subjects = explode(',', $subject);
                 $query->whereIn('school_subject_id', $subjects);
-
             }
         }
+        // if(isset($this->request->tutor_courses)){
+        //   $included_types = [9];
+        // }else{
+        //   $included_types = [2,  5, 7, 8];
+        // }
 
-        $query->whereIn('type', [2, 4, 5, 6, 7])->where('price', '!=', '0.00')->where('status', 1);
+        $query->where(function ($q) {
+          if(isset($this->request->tutor_courses)){
+            $q->where('type',9)->where('price','<>','0.00');
+          }else{
+            $q->where(function ($q) {
+
+              $q->whereIn('type', [2, 4, 5, 6, 7])->where('price', '!=', '0.00');
+            //  $q->whereIn('type', [2,  5, 7, 8])->where('price', '!=', '0.00');
+              $q->orWhere(function($q){
+                $q->where('type','=',8)
+                ->where('price', '!=', '0.00')
+                ->where('start_date','<=',Carbon::now()->format('Y-m-d'))
+                ->where('end_date','>=',Carbon::now()->format('Y-m-d'));
+              });
+            })->orWhere(function ($q) {
+              $q->has('currentCoursePlan');
+            });
+          }
+        })->where('status', 1);
 
         $order = $this->request->order;
 
@@ -132,23 +155,51 @@ class QuizPageSection extends Component
                     $query->orderBy('created_at');
                 } elseif ($order == "end_date") {
                     $query->orderBy('required_type', 'desc');
+                } elseif ($order == "most_popular") {
+                    $query->orderBy('total_enrolled','desc');
                 }
             }
         } else {
             if (empty($order)) {
-                $query->orderBy('total_enrolled', 'desc');
+                $query->latest();
             } else {
                 if ($order == "price") {
                     $query->orderBy('price', 'desc');
+                } elseif ($order == "most_popular") {
+                  $query->orderBy('total_enrolled','desc');
                 } else {
                     $query->latest();
                 }
             }
         }
-
-        $courses = $query->paginate(itemsGridSize());
+      //  $max_price = $query->max('price');
+        $max_price = $query->get()->max(function ($query) {
+          if(!$query->price){
+            return $query->currentCoursePlan[0]->amount;
+          }else{
+            return $query->price;
+          }
+        });
+        if(isset($this->request->filter_search_by) && !empty($this->request->filter_search_by)){
+          $query->where('title','LIKE','%'.$this->request->filter_search_by.'%');
+        }
+        if(isset($this->request->filter_by_course_type)){
+          $query->whereIn('type',$this->request->filter_by_course_type);
+        }
+        if(isset($this->request->filter_by_price_max) && isset($this->request->filter_by_price_min)){
+          $filter_max_price = floatval($this->request->filter_by_price_max);
+          $filter_min_price = floatval($this->request->filter_by_price_min);
+          $query->whereBetween('price',[$filter_min_price,$filter_max_price])->orWhere(function($query) use ($filter_min_price,$filter_max_price){
+            $query->whereNull('price')
+            ->whereHas('currentCoursePlan',function($query) use ($filter_min_price,$filter_max_price){
+              $query->whereBetween('amount',[$filter_min_price,$filter_max_price]);
+            });
+          });
+        }
+       //dd($query->toSql(),$query->getBindings());
+        $courses = $query->paginate(8);
         $total = $courses->total();
         $levels = CourseLevel::select('id', 'title')->where('status', 1)->get();
-        return view(theme('components.quiz-page-section'), compact('levels', 'order', 'category', 'level', 'order', 'language', 'type', 'total', 'courses', 'mode'));
+        return view(theme('components.quiz-page-section'), compact('levels', 'order', 'category', 'level', 'order', 'language', 'type', 'total', 'courses', 'mode','max_price'));
     }
 }

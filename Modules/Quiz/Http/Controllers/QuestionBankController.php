@@ -214,6 +214,7 @@ class QuestionBankController extends Controller
 
     public function updateCourse(Request $request, $id)
     {
+
         if (demoCheck()) {
             return redirect()->back();
         }
@@ -265,7 +266,8 @@ class QuestionBankController extends Controller
                 $result = $online_question->save();
                 if ($result) {
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-                    return redirect()->back();
+                    //                     return redirect()->back();
+                    return redirect()->route('courseDetails', $request->course_id);
                 } else {
                     Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
                     return redirect()->back();
@@ -303,7 +305,8 @@ class QuestionBankController extends Controller
                     }
                     DB::commit();
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-                    return redirect()->back();
+                    //                     return redirect()->back();
+                    return redirect()->route('courseDetails', $request->course_id);
                 } catch (\Exception $e) {
                     DB::rollBack();
                 }
@@ -371,7 +374,7 @@ class QuestionBankController extends Controller
             if ($request->question_type != 'M') {
                 $online_question = new QuestionBank();
                 $online_question->type = $request->question_type;
-                // $online_question->q_group_id = $request->group;
+                $online_question->q_group_id = $request->group;
                 $online_question->category_id = $request->category;
                 $online_question->sub_category_id = $request->sub_category;
                 $online_question->marks = $request->marks;
@@ -397,6 +400,7 @@ class QuestionBankController extends Controller
                 try {
                     $online_question = new QuestionBank();
                     $online_question->type = $request->question_type;
+                    $online_question->q_group_id = $request->group;
                     $online_question->category_id = $request->category;
                     $online_question->sub_category_id = $request->sub_category;
                     $online_question->marks = $request->marks;
@@ -581,11 +585,8 @@ class QuestionBankController extends Controller
 
     public function getAllQuizData(Request $request)
     {
-        $user = Auth::user();
-
-
-        if ($user->role_id == 2) {
-            $queries = QuestionBank::latest()->select('question_banks.*')->where('question_banks.active_status', 1)->with('category', 'subCategory', 'questionGroup')->where('question_banks.user_id', $user->id);
+        if (in_array(Auth::user()->role_id, [2, 9])) {
+            $queries = QuestionBank::latest()->select('question_banks.*')->where('question_banks.active_status', 1)->with('category', 'subCategory', 'questionGroup')->where('question_banks.user_id', Auth::user()->id);
         } else {
             $queries = QuestionBank::latest()->select('question_banks.*')->where('question_banks.active_status', 1)->with('category', 'subCategory', 'questionGroup');
         }
@@ -603,16 +604,20 @@ class QuestionBankController extends Controller
             ->addIndexColumn()
             ->addColumn('delete_btn', function ($query) {
                 return view('quiz::partials._delete_btn', compact('query'));
-            })->editColumn('questionGroup_title', function ($query) {
+            })
+            ->editColumn('questionGroup_title', function ($query) {
                 return $query->questionGroup->title;
-            })->editColumn('category_name', function ($query) {
+            })
+            ->editColumn('category_name', function ($query) {
                 return $query->category->name;
-            })->editColumn('question', function ($query) {
+            })
+            ->editColumn('question', function ($query) {
                 return Str::limit(strip_tags($query->question), 100);
-            })->editColumn('image', function ($query) {
+            })
+            ->editColumn('image', function ($query) {
                 return view('quiz::partials._td_image', compact('query'));
-            })->editColumn('type', function ($query) {
-
+            })
+            ->editColumn('type', function ($query) {
                 if ($query->type == "M") {
                     return trans('quiz.Multiple Choice');
                 } elseif ($query->type == "S") {
@@ -622,9 +627,17 @@ class QuestionBankController extends Controller
                 } else {
                     return trans('quiz.Fill In The Blanks');
                 }
-            })->addColumn('action', function ($query) {
+            })
+            ->addColumn('action', function ($query) {
                 return view('quiz::partials._td_action', compact('query'));
-            })->rawColumns(['delete_btn', 'action', 'image', 'question'])->make(true);
+            })
+            ->rawColumns([
+                'delete_btn',
+                'action',
+                'image',
+                'question'
+            ])
+            ->make(true);
     }
 
     public function questionBulkImport()

@@ -3,6 +3,9 @@
         .theme_select:after {
             top: 25px;
         }
+        .enrollment_cancellation{
+    gap: 10px
+}
     </style>
     <div class="main_content_iner">
         <div class="container-fluid">
@@ -23,9 +26,9 @@
                                         @csrf
 
 
-                                        <div class="input-group mb-3 input-group-lg">
+                                        <div class="input-group mb-3 input-group-lg enrollment_cancellation">
 
-                                            <select class="theme_select w-50  mb_20"
+                                            <select class="theme_select w-100 mb_20"
                                                     name="course">
                                                 <option data-display="{{__('common.Select')}}  {{__('courses.Course')}}"
                                                         value="">{{__('common.Select')}} {{__('courses.Course')}}</option>
@@ -93,7 +96,8 @@
 
                                                         <td>
                                                             <a class="theme_btn_mini"
-                                                               href="{{route('addToCart',[$record->course->id])}}">
+                                                               href="#">
+                                                               {{-- href="{{route('addToCart',['id' => $record->course->id])}}"> --}}
                                                                 {{__('common.Add To Cart')}}
                                                             </a>
                                                         </td>

@@ -90,13 +90,13 @@ class FrontPageController extends Controller
             }
 
             $frontpage->name = $frontpage->title;
-            if ($this->checkUrl($request->slug)) {
-                Toastr::error(trans('common.URL Already Exist'), trans('common.Error'));
-                return redirect()->back();
+            // if ($this->checkUrl($request->slug)) {
+            //     Toastr::error(trans('common.URL Already Exist'), trans('common.Error'));
+            //     return redirect()->back();
+            //
+            // }
 
-            }
-
-            $frontpage->slug = $this->createSlug(empty($request->slug) ? $frontpage->title : $request->slug);
+            $frontpage->slug = empty($request->slug) ? $this->createSlug($frontpage->title) : $request->slug;
             $frontpage->save();
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->route('frontend.page.index');
@@ -157,13 +157,14 @@ class FrontPageController extends Controller
 
             $page->name = $page->title;
 
-            if ($this->checkUrl($request->slug)) {
-                Toastr::error(trans('common.URL Already Exist'), trans('common.Error'));
-                return redirect()->back();
-            }
+            // if ($this->checkUrl($request->slug)) {
+            //     Toastr::error(trans('common.URL Already Exist'), trans('common.Error'));
+            //     return redirect()->back();
+            // }
 
-            if ($page->is_static == 1 && !empty($request->slug)) {
-                $page->slug = $this->createSlug($request->slug);
+            if (!empty($request->slug)) {
+            //if ($page->is_static == 1 && !empty($request->slug)) {
+                $page->slug = $request->slug;
             }
 
             if ($request->banner != null) {

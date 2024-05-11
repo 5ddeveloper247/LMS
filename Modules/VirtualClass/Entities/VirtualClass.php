@@ -13,6 +13,7 @@ use Modules\CourseSetting\Entities\Course;
 use Modules\Localization\Entities\Language;
 use Illuminate\Support\Facades\Notification;
 use Modules\CourseSetting\Entities\Category;
+use Modules\Team\Entities\TeamMeeting;
 use Spatie\Translatable\HasTranslations;
 
 class VirtualClass extends Model
@@ -48,6 +49,10 @@ class VirtualClass extends Model
     {
         return $this->hasMany(ZoomMeeting::class, 'class_id')->orderBy('start_time', 'asc');
     }
+    public function teamMeetings()
+    {
+        return $this->hasMany(TeamMeeting::class, 'class_id')->orderBy('start_time', 'asc');
+    }
 
     public function bbbMeetings()
     {
@@ -69,12 +74,19 @@ class VirtualClass extends Model
         } elseif ($this->host == "Jitsi") {
             $total = count($this->jitsiMeetings);
         }
+        elseif ($this->host == "Team") {
+            $total = count($this->teamMeetings);
+        }
         return $total;
     }
 
     public function course()
     {
         return $this->hasOne(Course::class, 'class_id')->withDefault();
+    }
+    
+    public function paymentPlan(){
+        return $this->hasOne(Course::class, 'parent_id');
     }
 
     public function getSlugAttribute()

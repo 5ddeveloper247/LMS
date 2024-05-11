@@ -1,6 +1,12 @@
+@include(theme('partials._header'))
+@include(theme('partials._menu'))
 @extends(theme('auth.layouts.app'))
 @section('content')
     <style>
+        .is-invalid {
+            border: 1px solid red;
+        }
+
         input {
             background: transparent;
         }
@@ -276,9 +282,9 @@
             padding: 12px 0px;
         }
 
-        .data {
-            background: rgb(190, 190, 190);
-        }
+        /* .data {
+                                    background: rgb(190, 190, 190);
+                                } */
 
         .thumb img {
             width: 90% !important;
@@ -288,12 +294,19 @@
             text-align: center;
         }
 
+        /* .login_main_info h4 {
+                font-size: 25px;
+                line-height: 30px;
+                font-weight: 600;
+                text-align: center;
+                padding: 12px 0px;
+            } */
+
         .login_main_info h4 {
-            font-size: 25px;
-            line-height: 30px;
-            font-weight: 600;
-            text-align: center;
-            padding: 12px 0px;
+            font-size: 30px !important;
+            font-weight: 900;
+            color: var(--system_secendory_color);
+            line-height: 50px;
         }
 
         .shitch_text a {
@@ -319,30 +332,205 @@
             font-size: 12px;
             color: grey;
         }
+
+        .footerbox1 p {
+            line-height: 30px !important;
+            font-size: 17px !important;
+            color: white !important;
+            font-weight: 400 !important;
+            cursor: pointer;
+            /* transition: 1s; */
+        }
+
+        .footerbox1 p:hover {
+            line-height: 30px !important;
+            font-size: 17px !important;
+            color: #ff6700 !important;
+            text-decoration: underline !important;
+            font-weight: 400 !important;
+        }
+
+        .footerbox1 h4 {
+            font-weight: 700 !important;
+            color: white !important;
+            font-size: 24px !important;
+        }
+
+        .expore h4 {
+            font-weight: 700;
+            color: white !important;
+            font-size: 24px;
+        }
+
+        .expore p {
+            line-height: 30px !important;
+            font-size: 17px !important;
+            color: white !important;
+            cursor: pointer !important;
+            font-weight: 400 !important;
+            /* transition: 1s; */
+        }
+
+        .expore p:hover {
+            line-height: 30px !important;
+            font-size: 17px !important;
+            color: #ff6700 !important;
+            text-decoration: underline !important;
+            font-weight: 400 !important;
+        }
+
+        .icons i {
+            font-size: 22px !important;
+            /* padding: 11px !important; */
+            cursor: pointer;
+        }
+
+        .icons i:hover {
+            color: #ff6700 !important;
+
+            font-size: 22px !important;
+            /* padding: 11px !important; */
+        }
+
+        .container-sub {
+            max-width: 1140px;
+
+            margin-right: auto;
+            margin-left: auto;
+            position: relative;
+        }
+
+        .background-overlay {
+            background-image: url('public/frontend/infixlmstheme/img/images/newsletter_bg.png');
+            background-position: center center;
+            background-size: cover;
+            transition: background .3s, border-radius .3s, opacity .3s;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+        }
+
+        a {
+            color: #ff6700;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+        .thumb img {
+            max-width: 634px;
+            height: 57vh;
+            object-fit: cover;
+        }
+
+        .login_main_info h4 {
+            text-align: center
+        }
+
+        @media (width > 1650px) {
+            .login_main_info h4 {
+                font-size: 40px !important;
+                font-weight: 900;
+                color: var(--system_secendory_color);
+                line-height: 50px;
+            }
+
+            .alert-warning {
+                font-size: 23px;
+            }
+
+            .theme_btn {
+                font-size: 23px !important;
+            }
+
+            /* .login_main_info h4 {
+                    font-size: 30px;
+                    line-height: 31px;
+                    font-weight: bold;
+                    text-align: center;
+                    padding: 0px 0px 12px 0px;
+                } */
+            .expore p {
+                font-size: 22px !important;
+                line-height: 35px !important;
+            }
+
+            .expore p:hover {
+                font-size: 22px !important;
+                line-height: 35px !important;
+            }
+
+            .footerbox1 p {
+                font-size: 22px !important;
+                line-height: 35px !important;
+            }
+
+            .footerbox1 p:hover {
+                font-size: 22px !important;
+                line-height: 35px !important;
+            }
+
+            .fs-responsive {
+                font-size: 22px !important;
+                line-height: 38px !important;
+            }
+
+            .icons i {
+                font-size: 25px !important;
+            }
+
+            .icons i:hover {
+                font-size: 25px !important;
+            }
+
+            .expore h4 {
+                font-size: 30px !important;
+                line-height: 40px !important;
+            }
+
+            .footerbox1 h4 {
+                font-size: 30px !important;
+                line-height: 40px !important;
+            }
+
+            /* p {
+                                    font-size: 20px !important;
+                                } */
+        }
     </style>
-    <div class="zaamaformdata">
-        <div class="logo mx-5 pt-5">
+    <div class="zaamaformdata container">
+        {{-- <div class="logo mx-5 pt-5">
             <a href="{{ url('/') }}">
                 <img style="width: 190px" src="{{ asset(Settings('logo')) }} " alt="">
             </a>
-        </div>
+        </div> --}}
 
         <div class="login_wrapper_content">
             <form action="{{ route('register.3') }}" method="POST" id="regForm">
                 @csrf
                 <!-- widgetsform -->
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
-                <div class="mainform row m-0 p-5">
-                    <div class="col-md-8">
+                <div class="mainform row py-5">
+                    <div class="col-lg-8 order-lg-0 order-1">
                         <div id="third" class="form pt-3">
                             <div class="con">
                                 <div class="containerer program">
                                     <div class="row">
-                                        <div id="first" class="col-md-12 form mb-5">
-                                            <div class="alert alert-warning shadow" role="alert">
-                                                <strong>Note !</strong> Please Download the Authorization Form by clicking
-                                                the Download Button.
-                                            </div>
+                                        <div id="first" class="col-md-12 form">
+                                            @if (\App\Models\UserAuthorzIationAgreement::where('user_id', $user->id)->exists())
+                                                <div class="alert alert-info shadow" role="alert">
+                                                    <strong>Note !</strong> Your Authorization Form has already been
+                                                    uploaded as per request.
+                                                </div>
+                                            @else
+                                                <div class="alert alert-warning shadow" role="alert">
+                                                    <strong>Note !</strong> Please Download the Authorization Form by
+                                                    clicking
+                                                    the Download Button.
+                                                </div>
+                                            @endif
+
                                             {{-- <div class="alert alert-danger alert-dismissible fade @if (count($errors)) show @endif"
                                                 role="alert">
                                                 <strong>Required!</strong> Please fill all fields.
@@ -610,23 +798,28 @@
                                             </p>
                                         </div>
                                     </div> --}}
-                                        <div class="col-md-12 d-flex justify-content-center mt-3 gap-2">
-                                            <a href="{{ route('register.2') }}"
-                                                class="h6 btn btn-outline-secondary float-end">
+                                        <div class="col-md-12 d-flex justify-content-center mb-5 mt-3 gap-2">
+                                            <a href="{{ route('register.declaration') }}" class="theme_btn">
                                                 Back Page</a>
-
-                                            <a href="{{ asset('public/student_affidavit/agreement_form/Agreement_file.pdf') }}"
-                                                download="Agreement_file.pdf" id="redirect_to"
-                                                class="h6 btn btn-outline-secondary float-end">Download Form</a>
+                                            @if (\App\Models\UserAuthorzIationAgreement::where('user_id', $user->id)->exists())
+                                                <a href="{{ route('register.pay') }}" class="theme_btn">
+                                                    Next Page</a>
+                                            @else
+                                                <a href="{{ asset('public/student_affidavit/agreement_form/Agreement_file.pdf') }}"
+                                                    download="Agreement_file.pdf" id="redirect_to"
+                                                    class="theme_btn">Download
+                                                    Form</a>
+                                            @endif
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    <div class="col-md-4">
-                        <div class="data py-5" style="background: #fbfff2;">
+                    <div class="col-lg-4">
+                        <div class="data" style="background: #fbfff2;">
 
                             @include(theme('auth.login_wrapper_right'))
                         </div>
@@ -647,7 +840,7 @@
                         </div>
                     </div>
                     @php
-                        
+
                     @endphp
                 </div>
 
@@ -657,6 +850,8 @@
             </form>
         </div>
     </div>
+    @include(theme('partials._custom_footer'))
+    <script src="https://kit.fontawesome.com/b98cad50b5.js" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             $("#redirect_to").click(function() {

@@ -1,6 +1,6 @@
 @extends(theme('layouts.master'))
 @section('title'){{Settings('site_title')  ? Settings('site_title')  : 'Infix LMS'}} | {{$privacy_policy->page_banner_title}} @endsection
-@section('css') @endsection
+{{-- @section('css') @endsection --}}
 @section('js')
     <script src="{{asset('public/frontend/infixlmstheme/js/scrollIt.js')}}"></script>
 @endsection

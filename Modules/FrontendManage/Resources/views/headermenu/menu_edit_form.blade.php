@@ -193,7 +193,65 @@
                             </div>
                         </div>
 
+
                     @endif
+
+                    @php
+
+                            $permissions = json_decode($element->permissions);
+
+                    @endphp
+                    <div class="col-xl-12">
+                        <div class="primary_input">
+                            <label class="primary_input_label mb-25"
+                                   for="">{{ __('permissions') }}</label>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 mb-25">
+                                    <label class="primary_checkbox d-flex nowrap mr-12">
+                                        <input type="checkbox" name="permissions[]" value="1"
+                                               class="change_state"
+                                            {{in_array('1',array_values($permissions))?'checked':''}}>
+                                        <span class="checkmark mr-2"></span>{{ __('Admin') }}</label>
+                                </div>
+                                <div class="col-md-4 col-sm-4 mb-25">
+                                    <label class="primary_checkbox d-flex nowrap mr-12">
+                                        <input type="checkbox" name="permissions[]" value="2"
+                                               class="change_state"
+                                            {{in_array('2',array_values($permissions))?'checked':''}}>
+                                        <span class="checkmark mr-2"></span>
+                                        {{ __('Instructor') }}
+                                    </label>
+                                </div>
+                                <div class="col-md-4 col-sm-4 mb-25">
+                                    <label class="primary_checkbox d-flex nowrap mr-12">
+                                        <input type="checkbox" name="permissions[]" value="9"
+                                               class="change_state"
+                                            {{in_array('9',array_values($permissions)) ?'checked':''}}>
+                                        <span class="checkmark mr-2"></span>
+                                        {{ __('Individual Tutor') }}
+                                    </label>
+                                </div>
+                                <div class="col-md-4 col-sm-4 mb-25">
+                                    <label class="primary_checkbox d-flex nowrap mr-12">
+                                        <input type="checkbox" name="permissions[]" value="3"
+                                               class="change_state"
+                                            {{in_array('3',array_values($permissions)) ?'checked':''}}>
+                                        <span class="checkmark mr-2"></span>
+                                        {{ __('Student') }}
+                                    </label>
+                                </div>
+                                <div class="col-md-4 col-sm-4 mb-25">
+                                    <label class="primary_checkbox d-flex nowrap mr-12">
+                                        <input type="checkbox" name="permissions[]" value="notauth"
+                                               class="change_state"
+                                            {{in_array('notauth',array_values($permissions))?'checked':''}}>
+                                        <span class="checkmark mr-2"></span>
+                                        {{ __('Not Auth') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-12 text-center">
                         <div class="d-flex justify-content-center pt_20">
                             <button type="button"

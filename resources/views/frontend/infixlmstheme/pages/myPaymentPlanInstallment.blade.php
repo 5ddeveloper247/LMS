@@ -42,35 +42,32 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="form-row top-row card-number border border-bottom border-dark pt-2 pl-2 rounded mb-2" style="height: 40px;">
-                                                                <div id="card-number" class="field "></div>
-                                                                <div class="input-errors" id="card-number-errors" role="alert"></div>
+                                                            <div class="form-row">
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="cardHolder">Cardholder Name</label>
+                                                                    <input type="text" class="form-control" name="cardHolder" id="cardHolder" required>
+                                                                </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="cardNumber">Card Number</label>
+                                                                    <input type="text" class="form-control" name="cardNumber" id="cardNumber" required>
+                                                                </div>
                                                             </div>
-
-                                                            <div class="form-row border border-bottom border-dark pt-2 pl-2 rounded mb-2" style="height: 40px;" >
-                                                                <div id="card-date" class="field third-width"></div>
-                                                                <div class="input-errors" id="card-date-errors" role="alert"></div>
+                                                           
+                                                            <div class="form-row">
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="expiryDate">Expiry Date</label>
+                                                                    <input type="text" class="form-control" name="expiryDate" id="expiryDate" placeholder="MM/YY" required>
+                                                                </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="cvv">CVV</label>
+                                                                    <input type="text" class="form-control" name="cvv" id="cvv" required>
+                                                                </div>
                                                             </div>
-
-                                                            <div class="form-row border border-bottom border-dark pt-2 pl-2 rounded mb-2" style="height: 40px;">
-                                                                <div id="card-cvv" class="field third-width"></div>
-                                                                <div class="input-errors" id="card-cvv-errors" role="alert"></div>
-                                                            </div>
-
-                                                            <div class="form-row border border-bottom border-dark pt-2 pl-2 rounded mb-2" style="height: 40px;">
-                                                                <div id="card-postal-code" class="field third-width"></div>
-                                                                <div class="input-errors" id="card-postal-code-errors" role="alert"></div>
-                                                            </div>
-
-                                                            <div id="card-response" role="alert"></div>
-
-                                                            <div class="button-container float-right mr-4 mt-3 ">
-                                                                @if(isset($pakms->message))
-                                                                    {{ $pakms->message }}
-                                                                @else
-                                                                    <button class="btn btn-secondary h6">Pay Now</button>
-                                                                @endif
-                                                            </div>
+                                                          
+                                        
+                                                            <div id="card-response" role="alert"></div> 
+                                                            
+                                                                    <button class="small_btn4 theme_btn">Pay Now</button>
 
                                                         </form>
                                                     </div>
@@ -90,99 +87,43 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script src="https://checkout.sandbox.dev.clover.com/sdk.js"></script>
     <script>
-
-        const accesskey = document.getElementById('accesskey').value;
-
-        const clover = new Clover(accesskey);
-        const elements = clover.elements();
-
-        let styles = "";
-        const form = document.getElementById('payment-form');
-        const cardNumber = elements.create('CARD_NUMBER', styles);
-        const cardDate = elements.create('CARD_DATE', styles);
-        const cardCvv = elements.create('CARD_CVV', styles);
-        const cardPostalCode = elements.create('CARD_POSTAL_CODE', styles);
-
-        cardNumber.mount('#card-number');
-        cardDate.mount('#card-date');
-        cardCvv.mount('#card-cvv');
-        cardPostalCode.mount('#card-postal-code');
-
-        const cardResponse = document.getElementById('card-response');
-        const displayCardNumberError = document.getElementById('card-number-errors');
-        const displayCardDateError = document.getElementById('card-date-errors');
-        const displayCardCvvError = document.getElementById('card-cvv-errors');
-        const displayCardPostalCodeError = document.getElementById('card-postal-code-errors');
-
-        // Handle real-time validation errors from the card element
-        cardNumber.addEventListener('change', function(event) {
-            console.log(`cardNumber changed ${JSON.stringify(event)}`);
+      
+        $(document).ready(function() {
+       
+        $('#cardNumber').mask('0000 0000 0000 0000');
+        
+        $('#expiryDate').mask('00/0000');
+       
+        $('#cvv').mask('000');
+       
+        $('#payment-form').submit(function(e) {
+            e.preventDefault();
+       
+            var cardholderName = $('#cardHolder').val();
+            var cardNumber = $('#cardNumber').val();
+            var expirationDate = $('#expiryDate').val();
+            var cvv = $('#cvv').val();
+          
+            if (cardholderName === '' || cardNumber === '' || expirationDate === '' || cvv === '' ) {
+                alert('All fields are required');
+            } 
+            else if (cardNumber.replace(/\s/g, '').length < 16 || cvv.length < 3) {
+                        alert('Invalid card number or CVV');
+                        $('#cardNumber').addClass("bordered-1 border-danger")
+                        $('#cvv').addClass("bordered-1 border-danger")
+                     
+            }else {
+                const form=document.querySelector('#payment-form');
+                form.submit();
+             
+               
+               
+            }
         });
-
-        cardNumber.addEventListener('blur', function(event) {
-            console.log(`cardNumber blur ${JSON.stringify(event)}`);
-        });
-
-        cardDate.addEventListener('change', function(event) {
-            console.log(`cardDate changed ${JSON.stringify(event)}`);
-        });
-
-        cardDate.addEventListener('blur', function(event) {
-            console.log(`cardDate blur ${JSON.stringify(event)}`);
-        });
-
-        cardCvv.addEventListener('change', function(event) {
-            console.log(`cardCvv changed ${JSON.stringify(event)}`);
-        });
-
-        cardCvv.addEventListener('blur', function(event) {
-            console.log(`cardCvv blur ${JSON.stringify(event)}`);
-        });
-
-        cardPostalCode.addEventListener('change', function(event) {
-            console.log(`cardPostalCode changed ${JSON.stringify(event)}`);
-        });
-
-        cardPostalCode.addEventListener('blur', function(event) {
-            console.log(`cardPostalCode blur ${JSON.stringify(event)}`);
-        });
-
-
-        // Listen for form submission
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Use the iframe's tokenization method with the user-entered card details
-            clover.createToken()
-                .then(function(result) {
-                    if (result.errors) {
-                        Object.values(result.errors).forEach(function (value) {
-                            //displayError.textContent = value;
-                            alert(value);
-                        });
-                    } else {
-
-                        cloverTokenHandler(result.token);
-                    }
-                });
-        });
-
-
-        function cloverTokenHandler(token) {
-            // Insert the token ID into the form so it gets submitted to the server
-            var form = document.getElementById('payment-form');
-            var hiddenInput = document.createElement('input');
-            hiddenInput.setAttribute('type', 'hidden');
-            hiddenInput.setAttribute('name', 'cloverToken');
-            hiddenInput.setAttribute('value', token);
-            form.appendChild(hiddenInput);
-            console.log(hiddenInput);
-            form.submit();
-        }
-
-
-
+    });
     </script>
+
 @endsection

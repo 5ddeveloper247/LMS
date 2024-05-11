@@ -14,9 +14,8 @@ class QuizController extends Controller
     public function index()
     {
         try {
-            $user = Auth::user();
-            if ($user->role_id == 2) {
-                $groups = QuestionGroup::where('user_id', $user->id)->latest()->get();
+            if (Auth::user()->role_id == 2) {
+                $groups = QuestionGroup::where('user_id', Auth::user()->id)->latest()->get();
             } else {
                 $query = QuestionGroup::query();
                 if (isModuleActive('Organization') && Auth::user()->isOrganization()) {
@@ -122,7 +121,6 @@ class QuizController extends Controller
                 Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
                 return redirect()->back();
             }
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }

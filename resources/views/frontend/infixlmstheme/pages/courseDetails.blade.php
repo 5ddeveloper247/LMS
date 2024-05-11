@@ -5,28 +5,205 @@
 @section('og_image')
     {{ asset($course->image) }}
 @endsection
-@section('css')
-    <style>
-        .course__details .video_screen {
-            background-image: url('{{ getCourseImage(@$course->image) }}');
+
+<style>
+    .course__details .video_screen {
+        background-image: url('{{ getCourseImage(@$course->image) }}');
+    }
+
+    iframe {
+        position: relative !important;
+    }
+
+    .theme_according .card .card-header h5 button {
+
+        padding: 12.3px 25px 13px 30px !important;
+    }
+
+    .table-responsive {
+
+        overflow-x: clip !important;
+
+    }
+
+    .theme_color2 {
+        color: var(--system_primery_color);
+    }
+
+    .prog_blk {
+        padding-bottom: 60vh !important;
+    }
+
+    .prog_blk {
+        position: relative;
+        background: #fff;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        -webkit-box-shadow: 0 0.7rem 1.5rem -0.5rem rgba(17, 17, 17, 0.08), 0 -0.5rem 1rem -0.6rem rgba(17, 17, 17, 0.03);
+        /* box-shadow: 0 0.7rem 1.5rem -0.5rem rgba(17, 17, 17, 0.08), 0 -0.5rem 1rem -0.6rem rgba(17, 17, 17, 0.03); */
+        padding: 0;
+        padding-bottom: 100%;
+        overflow: hidden;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .prog_blk>.txt {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#111));
+        /* background: linear-gradient(transparent, #111); */
+        color: #fff;
+        padding: 4rem 1.5rem 2.5rem;
+    }
+
+    .paragraph_custom_height {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+    }
+
+    .p-clamp {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+
+    }
+    .p-clamp0{
+        height: 21vh;
+        overflow: auto;
+    }
+    
+    .course_tab{
+        height: 100%;
+    }
+    .img_round{
+        border-radius: 10px !important;
+        object-fit: cover;
+    }
+    .img_circle{
+        object-fit: none;
+    }
+ 
+    .course_image{
+        height: 100% !important;
+    }
+    @media only screen and (max-width: 1200px){
+        .program-span{
+            
+        }
+    }
+
+   @media only screen and (min-width: 1200px){
+
+    .p-clamp0 {
+    height: 8rem;
+}
+
+   }
+ 
+@media only screen and (min-width: 2560px) {
+   
+.course-span{
+    font-size: 22px !important;
+}
+.course_includes li p{
+    font-size: 22px !important;
+}
+
+}
+    /* @media (width > 1650px) {
+        .lms_tabmenu li a {
+            font-size: 18px;
+            font-weight: 600;
+            font-family: Source Sans Pro, sans-serif;
+            color: var(--system_secendory_color);
+            border-radius: 10px;
+            padding: 13px 39px;
         }
 
-        iframe {
-            position: relative !important;
+
+        h6 {
+            font-size: 1.2rem !important
         }
-    </style>
-    <link href="{{ asset('public/frontend/infixlmstheme/css/videopopup.css') }}" rel="stylesheet" />
-    <link href="{{ asset('public/frontend/infixlmstheme/css/video.popup.css') }}" rel="stylesheet" />
-    <link href="{{ asset('public/frontend/infixlmstheme/css/class_details.css') }}" rel="stylesheet" />
-@endsection
+
+        .h6 {
+            font-size: 1.4rem !important
+        }
+
+        label {
+            color: #7e7e7e;
+            cursor: pointer;
+            font-size: 23px !important;
+        }
+
+        h4 {
+            font-size: 32px !important;
+            line-height: 25px;
+        }
+
+        h5 {
+            font-size: 25px !important;
+            line-height: 25px;
+        }
+
+        .theme_btn {
+            font-size: 23px !important;
+        }
+
+        .lms_tabmenu li a {
+            font-size: 26px !important;
+        }
+    } */
+</style>
+<script src="https://kit.fontawesome.com/b98cad50b5.js" crossorigin="anonymous"></script>
+<link href="{{ asset('public/frontend/infixlmstheme/css/videopopup.css') }}" rel="stylesheet" />
+<link href="{{ asset('public/frontend/infixlmstheme/css/video.popup.css') }}" rel="stylesheet" />
+<link href="{{ asset('public/frontend/infixlmstheme/css/class_details.css') }}" rel="stylesheet" />
+
 
 
 @section('mainContent')
+    {{-- @dd($course) --}}
+    @php
+        $course_type = [
+            '4' => 'Full Course',
+            '5' => 'Prep-Course (On-Demand)',
+            '6' => 'Prep-Course (Live)',
+            '8' => 'Repeat Course',
+            '9' => 'Individual Course',
+        ];
+    @endphp
+    
 
-    <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans('frontend.Course Details')" :subTitle="$course->title" />
+    @if (array_key_exists($request->courseType, $course_type))
+        @php
+            $value = $course_type[$request->courseType];
+        @endphp
+        <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans($value . ' Details')" :subTitle="$course->title" />
+    @elseif (request()->has('program_id'))
+        <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans('Course Details')" :subTitle="$course->title" />
+    @elseif (!empty($course->time_table_id) || $course->time_table_id == 0)
+        <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans('Time Table Details')" :subTitle="$course->title" />
+    @elseif (!empty($course->parent_id))
+        <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans('Repeat Course Details')" :subTitle="$course->title" />
+    @else
+        <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans('frontend.Course Details')" :subTitle="$course->title" />
+    @endif
+    
+    @php
+    if(isset($duration)){
+        $course['duration']=$duration;
+        $course['totalseats'] = $coursePlan;   
+    }
+    @endphp
 
     <x-course-deatils-page-section :course="$course" :request="$request" :isEnrolled="$isEnrolled" />
-
 
     @if ($course->host == 'VdoCipher')
         @include(theme('partials._player_modal'))
@@ -69,7 +246,7 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         var SITEURL = "{{ courseDetailsUrl($course->id, $course->type, $course->slug) }}";
         var page = 1;
         load_more(page);
@@ -89,11 +266,11 @@
                     datatype: "html",
                     data: {
                         'type': 'comment',
-                        @if(request()->has('program_id'))
-                        'program_id': "{{ request()->program_id }}"
+                        @if (request()->has('program_id'))
+                            'program_id': "{{ request()->program_id }}"
                         @endif
-                        @if(request()->has('courseType'))
-                        'courseType': "{{ request()->courseType }}"
+                        @if (request()->has('courseType'))
+                            'courseType': "{{ request()->courseType }}"
                         @endif
                     },
                     beforeSend: function() {
@@ -138,11 +315,11 @@
                     datatype: "html",
                     data: {
                         'type': 'review',
-                        @if(request()->has('program_id'))
-                        'program_id': "{{ request()->program_id }}"
+                        @if (request()->has('program_id'))
+                            'program_id': "{{ request()->program_id }}"
                         @endif
-                        @if(request()->has('courseType'))
-                        'courseType': "{{ request()->courseType }}"
+                        @if (request()->has('courseType'))
+                            'courseType': "{{ request()->courseType }}"
                         @endif
                     },
                     beforeSend: function() {
@@ -166,5 +343,5 @@
                 });
 
         }
-    </script>
+    </script> --}}
 @endsection

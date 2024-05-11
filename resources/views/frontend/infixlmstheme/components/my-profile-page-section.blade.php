@@ -14,41 +14,64 @@
                             <p>{{ $profile->headline }}</p>
 
                             <div id="show_file">
-                                @if ($user_form->user_agreement_form == null || $user_form->status == 2)
-                                    <p class="mt-3 text-left">
-                                        @php
-                                            echo $user_form->status == 2 ? '<span class="text-danger">Your Form was Not Correct, Please Upload Correct Form Again</span>' : 'If you Already Not Downloaded Form';
-                                        @endphp
-                                    </p>
-                                    @if ($user_form->user_agreement_form == null)
-                                        <a href="{{ 'public/student_affidavit/agreement_form/Agreement_file.pdf' }}"
-                                            class="theme_btn w-100 small_btn4 mt-2 text-center" download
-                                            id="download_btn">Download</a>
+                                @if(!empty($user_form))
+                                    @if ($user_form->user_agreement_form == null || $user_form->status == 2)
+                                        <p class="mt-3 text-left">
+                                            @php
+                                                echo $user_form->status == 2 ? '<span class="text-danger">Your Form was Not Correct, Please Upload Correct Form Again</span>' : 'If you Already Not Downloaded Form';
+                                            @endphp
+                                        </p>
+                                        @if ($user_form->user_agreement_form == null)
+                                            <a href="{{ 'public/student_affidavit/agreement_form/Agreement_file.pdf' }}"
+                                               class="theme_btn w-100 small_btn4 mt-2 text-center" download
+                                               id="download_btn">Download</a>
+                                        @endif
+                                        <hr>
+                                        <form action="" enctype="multipart/form-data" method="POST"
+                                              id="upload_user_agreement_form">
+                                            @csrf
+                                            <p class="mt-3">
+                                                @php
+                                                    echo $user_form->status == null ? 'Form Not Uploaded Yet' : '';
+                                                @endphp
+                                            </p>
+
+                                            <input type="hidden" id="user_id" value="{{ $profile->id }}">
+                                            <label class="form-label">Upload Form</label>
+                                            <input type="file" name="user_agreement_form" id="form_upload"
+                                                   class="form-control primary-input">
+                                        </form>
+                                    @else
+                                        <div class="mt-4">
+                                            <p class="float-left">
+                                                {{ $user_form->status == 1 ? 'You Can Download File' : 'You will be able to Download File after Approval' }}
+                                            </p>
+                                            <a href="{{ $user_form->user_agreement_form }}"
+                                               class="theme_btn w-100 small_btn4 {{ $user_form->status != 1 ? 'anchor_disabled' : '' }} mt-3 text-center"
+                                               download id="download_btn">Download</a>
+                                        </div>
                                     @endif
+                                @else
+
+                                        <a href="{{ 'public/student_affidavit/agreement_form/Agreement_file.pdf' }}"
+                                           class="theme_btn w-100 small_btn4 mt-2 text-center" download
+                                           id="download_btn">Download</a>
+
                                     <hr>
                                     <form action="" enctype="multipart/form-data" method="POST"
-                                        id="upload_user_agreement_form">
+                                          id="upload_user_agreement_form">
                                         @csrf
                                         <p class="mt-3">
                                             @php
-                                                echo $user_form->status == null ? 'Form Not Uploaded Yet' : '';
+                                                echo $user_form == null ? 'Form Not Uploaded Yet' : '';
                                             @endphp
                                         </p>
 
                                         <input type="hidden" id="user_id" value="{{ $profile->id }}">
                                         <label class="form-label">Upload Form</label>
                                         <input type="file" name="user_agreement_form" id="form_upload"
-                                            class="form-control primary-input">
+                                               class="form-control primary-input">
                                     </form>
-                                @else
-                                    <div class="mt-4">
-                                        <p class="float-left">
-                                            {{ $user_form->status == 1 ? 'You Can Download File' : 'You will be able to Download File after Approval' }}
-                                        </p>
-                                        <a href="{{ $user_form->user_agreement_form }}"
-                                            class="theme_btn w-100 small_btn4 {{ $user_form->status != 1 ? 'anchor_disabled' : '' }} mt-3 text-center"
-                                            download id="download_btn">Download</a>
-                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -145,7 +168,7 @@
                                                 </span>
                                                 <input type="date" placeholder="{{ __('common.Date of Birth') }}"
                                                     class="primary_input4 {{ @$errors->has('dob') ? ' is-invalid' : '' }}"
-                                                    value="{{ $profile->dob != '' ? @$profile->dob : old('dob') }}"
+                                                    value="{{ $profile->dob != '' ? \Carbon\Carbon::parse($profile->dob)->format('Y-m-d') : old('dob') }}"
                                                     name="dob" {{ $errors->first('dob') ? 'autofocus' : '' }}
                                                     {{ $custom_field->required_dob ? 'required' : '' }}
                                                     {{ $custom_field->editable_dob ? '' : 'readonly' }}>
@@ -164,8 +187,9 @@
 
                                                 <select class="theme_select wide mb_20" name="gender"
                                                     {{ $errors->first('gender') ? 'autofocus' : '' }}
-                                                    {{ $custom_field->editable_gender ? '' : 'readonly' }}>
-                                                    {{ $errors->first('gender') ? 'autofocus' : '' }}>
+                                                    {{ $custom_field->editable_gender ? '' : 'readonly' }}
+                                                   >
+
                                                     <option data-display="{{ __('common.gender') }}" value="">
                                                         {{ __('common.Select') }}</option>
                                                     <option value="male"
@@ -193,8 +217,8 @@
                                                 </span>
                                                 <input type="text" placeholder="{{ __('common.company') }}"
                                                     class="primary_input4 {{ @$errors->has('company_id') ? ' is-invalid' : '' }}"
-                                                    value="{{ $profile->company_id != '' ? @$profile->company_id : old('company_id') }}"
-                                                    name="company_id"
+                                                    value="{{ $profile->company != '' ? @$profile->company : old('company') }}"
+                                                    name="company"
                                                     {{ $errors->first('company_id') ? 'autofocus' : '' }}
                                                     {{ $custom_field->required_company ? 'required' : '' }}
                                                     {{ $custom_field->editable_company ? '' : 'readonly' }}>
@@ -363,46 +387,47 @@
                                     </div>
                                     <div class="col-lg-12 mt_20 mb-3">
                                         <label class="primary_label2">{{ __('common.About') }}</label>
-                                        <textarea name="about" class="primary_textarea4 mb_20" placeholder="{{ __('student.Write Note here') }}"
+                                        <textarea name="about" class="custom_summernote mb_20" placeholder="{{ __('student.Write Note here') }}"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ __('student.Write Note here') }}'">{!! $profile->about != '' ? @$profile->about : old('about') !!}</textarea>
                                     </div>
 
-                                    <div class="col-12">
-                                        <div class="preview_upload">
-                                            <div class="preview_upload_thumb">
-                                                <img src="" alt="" id="imgPreview"
-                                                    style=" display:none;height: 100%;width: 100%;">
-                                                <span id="previewTxt">{{ __('student.Preview') }}</span>
-                                            </div>
-                                            <div class="preview_drag">
-                                                <div class="preview_drag_inner">
-                                                    <div class="img">
-                                                        <img src="{{ asset('public/frontend/infixlmstheme') }}/img/account/gallery_icon.png"
-                                                            alt="">
-                                                    </div>
-                                                    <p>{{ __('student.Drop your file here') }}</p>
-                                                    <small>{{ __('student.Recommended image size') }}
-                                                        (330x400)</small>
-                                                    <div class="chose_file">
-                                                        <input type="file" name="image" id="imgInp"
-                                                            onchange="readURL(this)">
-                                                        {{ __('student.or choose files to upload') }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                    <div class="col-12">--}}
+{{--                                        <div class="preview_upload">--}}
+{{--                                            <div class="preview_upload_thumb">--}}
+{{--                                                <img src="" alt="" id="imgPreview"--}}
+{{--                                                    style=" display:none;height: 100%;width: 100%;">--}}
+{{--                                                <span id="previewTxt">{{ __('student.Preview') }}</span>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="preview_drag">--}}
+{{--                                                <div class="preview_drag_inner">--}}
+{{--                                                    <div class="img">--}}
+{{--                                                        <img src="{{ asset('public/frontend/infixlmstheme') }}/img/account/gallery_icon.png"--}}
+{{--                                                            alt="">--}}
+{{--                                                    </div>--}}
+{{--                                                    <p>{{ __('student.Drop your file here') }}</p>--}}
+{{--                                                    <small>{{ __('student.Recommended image size') }}--}}
+{{--                                                        (330x400)</small>--}}
+{{--                                                    <div class="chose_file">--}}
+{{--                                                        <input type="file" name="image" id="imgInp"--}}
+{{--                                                            onchange="readURL(this)">--}}
+{{--                                                        {{ __('student.or choose files to upload') }}--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                                 <h3 class="font_22 f_w_700 mb_30">{{ __('student.Social Links') }}</h3>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <label
                                             class="primary_label2">{{ __('student.Add your Facebook URL') }}</label>
-                                        <div class="input-group custom_input_group mb_20">
+                                        <div class="input-group  mb_20">
                                             <div class="input-group-prepend">
 
                                                 <span class="input-group-text"> <i class="ti-facebook"></i>
-                                                    <span>www.facebook.com/</span> </span>
+{{--                                                    <span>www.facebook.com/</span> --}}
+                                                </span>
                                             </div>
                                             <input name="facebook" type="text"
                                                 value="{{ $profile->facebook != '' ? @$profile->facebook : old('facebook') }}"
@@ -415,11 +440,11 @@
                                     <div class="col-lg-12">
                                         <label
                                             class="primary_label2">{{ __('student.Add your Twitter URL') }}</label>
-                                        <div class="input-group custom_input_group mb_20">
+                                        <div class="input-group  mb_20">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text twitter_bg"> <i
                                                         class="ti-twitter-alt"></i>
-                                                    <span>www.twitter.com/</span>
+{{--                                                    <span>www.twitter.com/</span>--}}
                                                 </span>
                                             </div>
                                             <input type="text" placeholder="{{ __('student.Twitter URL') }}"
@@ -432,11 +457,11 @@
                                     <div class="col-lg-12">
                                         <label
                                             class="primary_label2">{{ __('student.Add your LinkedIn URL') }}</label>
-                                        <div class="input-group custom_input_group mb_20">
+                                        <div class="input-group  mb_20">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text linkedin_bg"> <i
                                                         class="ti-linkedin"></i>
-                                                    <span>www.linkedin.com/</span>
+{{--                                                    <span>www.linkedin.com/</span>--}}
                                                 </span>
                                             </div>
                                             <input type="text" placeholder="{{ __('student.LinkedIn profile') }}"
@@ -450,10 +475,13 @@
                                     <div class="col-lg-12">
                                         <label
                                             class="primary_label2">{{ __('student.Add your Youtube URL') }}</label>
-                                        <div class="input-group custom_input_group mb_20">
+                                        <div class="input-group
+{{--                                         custom_input_group--}}
+                                         mb_20">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text youtube_bg"> <i class="ti-youtube"></i>
-                                                    <span>www.youtube.com/</span> </span>
+{{--                                                    <span>www.youtube.com/</span> --}}
+                                                </span>
                                             </div>
                                             <input type="text" placeholder="{{ __('student.Youtube Profile') }}"
                                                 onfocus="this.placeholder = ''"
@@ -477,6 +505,72 @@
     </div>
 </div>
 <script>
+
+    // Image Cropper Start
+    $(document).ready(function() {
+    	var customFontFam = ['Arial','Helvetica','Cavolini','Jost','Impact','Tahoma','Verdana','Garamond','Georgia','monospace','fantasy','Papyrus','Poppins'];
+        // Summer Note
+        $('.custom_summernote').summernote({
+        	fontNames: customFontFam,
+            fontNamesIgnoreCheck: ['Cavolini','Jost'],
+            fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
+            codeviewFilter: true,
+            codeviewIframeFilter: true,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen']],
+            ],
+            height: 188,
+            tooltip: true
+        });
+        // 1st Cropper
+
+        // var old_file = $("#instructorImage").val();
+        //
+        // $('#Browseeeditinstructor').on('click', function() {
+        //     old_file = $("#instructorImage").val();
+        //     console.log(old_file);
+        // });
+
+        //
+        // var _URL1 = window.URL || window.webkitURL;
+        // $("#pofile_image").change(function(e) {
+        //
+        //     var file, img;
+        //     if ((file = this.files[0])) {
+        //         img = new Image();
+        //         img.onload = function() {
+        //             var image_width = this.width;
+        //             var image_height = this.height;
+        //             if (image_width == 350 && image_height == 500) {
+        //
+        //             } else {
+        //                 $('#pofile_image').val('');
+        //                 toastr.error(
+        //                     'Wrong Image Dimensions, Please Select Image of 350 X 500 !',
+        //                     'Error')
+        //             }
+        //         };
+        //         img.src = _URL1.createObjectURL(file);
+        //     }
+        // });
+        $('.image-editor-cancel-button-1').on('click', function() {
+            if ($('#image_preview-1').attr('src') != '' || $('#image_preview-1').attr('src') != null) {
+                $('#image_file-1').children().val('');
+            }
+            $('#image-editor-modal-1').trigger("reset");
+            $('#image-editor-modal-1').modal('hide');
+        });
+    });
+    // Image Cropper End
+
     $(document).ready(function() {
         $("#form_upload").change(function() {
             var fileName = $(this).val();

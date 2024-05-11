@@ -17,18 +17,24 @@ Route::get('run/cron/incoming_installment', 'CronController@incoming_installment
 Route::get('run/cron/previous_installment', 'CronController@previous_installment');
 Route::get('run/cron/classes_reminder', 'CronController@classes_reminder');
 Route::get('run/cron/quiz_reminder', 'CronController@quiz_reminder');
-//cron
-
+//test route
+Route::get('practice', function () {
+    //Illuminate\Support\Facades\Artisan::call('view:clear');
+    return view(theme('practice'));
+});
 
 Route::get('send-password-reset-link', 'Auth\ForgotPasswordController@SendPasswordResetLink')->name('SendPasswordResetLink');
 Route::get('reset-password', 'Auth\ForgotPasswordController@ResetPassword')->name('ResetPassword');
-Route::get('register', 'Auth\RegisterController@RegisterForm')->name('register');
-Route::get('register2', 'Auth\RegisterController@RegisterForm2')->name('register.2');
-Route::get('register3', 'Auth\RegisterController@RegisterForm3')->name('register.3');
-Route::get('register-pay', 'Auth\RegisterController@RegisterFormPay')->name('register.pay');
+Route::get('register', 'Auth\RegisterController@RegisterForm')->name('register')->middleware('auth');
+Route::get('register2', 'Auth\RegisterController@RegisterForm2')->name('register.2')->middleware('auth');
+Route::get('register-declaration', 'Auth\RegisterController@RegisterDeclaration')->name('register.declaration')->middleware('auth');
+Route::get('register3', 'Auth\RegisterController@RegisterForm3')->name('register.3')->middleware('auth');
+Route::get('register-pay', 'Auth\RegisterController@RegisterFormPay')->name('register.pay')->middleware('auth');
+Route::post('register-declaration', 'Auth\RegisterController@RegisterDeclarationCreate')->name('register.declarationp')->middleware('auth');
 Route::post('register2', 'Auth\RegisterController@RegisterForm2Create')->name('register.2p');
 Route::post('register3', 'Auth\RegisterController@RegisterForm3Create')->name('register.3p');
 Route::post('register-pay', 'Auth\RegisterController@RegisterFormPayCreate')->name('register.payp');
+Route::get('student-enroll', 'Auth\RegisterController@student_enroll')->name('student-enroll');
 Route::get('saas-signup', 'Auth\RegisterController@LmsRegisterForm')->name('lms_register');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
@@ -39,7 +45,8 @@ Route::get('auto-login/{key}', '\App\Http\Controllers\Auth\LoginController@autol
 // Route::get('/test', 'Frontend\FrontendHomeController@test');
 
 Route::group(['namespace' => 'Frontend'], function () {
-    Route::get('/', 'FrontendHomeController@index')->name('frontendHomePage');
+    Route::get('/', 'FrontendHomeController@index')->name('frontendHomePage')->middleware('HeaderMenuPermissions');
+    Route::get('/randomProgram', 'FrontendHomeController@getRandomProgram')->name('getRandomProgram');
 
     Route::get('/get-courses-by-category/{category_id}', 'EdumeFrontendThemeController@getCourseByCategory')->name('getCourseByCategory');
     //wetech theme controller
@@ -49,16 +56,18 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     //    Route::get('/footer/page/{slug}', 'WebsiteController@page')->name('dynamic.page');
     Route::get('/about-us', 'WebsiteController@aboutData')->name('about');
-    Route::get('/contact-us', 'WebsiteController@contact')->name('contact');
-    Route::get('/contact', 'WebsiteController@contactUs')->name('contact-us');
-    Route::get('/new-page', 'WebsiteController@newPage')->name('new-page');
+    Route::get('/contact-us', 'WebsiteController@contact')->name('contact')->middleware('HeaderMenuPermissions');;
+    Route::get('/contact', 'WebsiteController@contactUs')->name('contact-us')->middleware('HeaderMenuPermissions');;
+    Route::get('/repeat-course', 'WebsiteController@repeatCourse')->name('repeat-course');
+    Route::get('/buy-repeat-course/{id}', 'WebsiteController@buyNow')->name('buyRepeatCourse');
+
     Route::get('/application-requirements', 'WebsiteController@application_requirements')->name('application-requirements');
 
     Route::post('/contact-submit', 'WebsiteController@contactMsgSubmit')->name('contactMsgSubmit');
-    Route::get('privacy', 'WebsiteController@privacy')->name('privacy');
+    Route::get('customer-help', 'WebsiteController@customerHelp')->name('customer-help');
     Route::get('calendar-view', 'WebsiteController@calendarView')->name('calendar-view');
 
-    Route::get('instructors', 'InstructorController@instructors')->name('instructors');
+    Route::get('instructors', 'InstructorController@instructors')->name('instructors')->middleware('HeaderMenuPermissions');;
     Route::get('become-instructor', 'InstructorController@becomeInstructor')->name('becomeInstructor');
     Route::get('instructorDetails/{id}/{name}', 'InstructorController@instructorDetails')->name('instructorDetails');
 
@@ -70,20 +79,29 @@ Route::group(['namespace' => 'Frontend'], function () {
 
 
 
-    Route::get('courses', 'CourseController@courses')->name('courses');
+    Route::get('courses', 'CourseController@courses')->name('courses')->middleware('HeaderMenuPermissions');;
     Route::get('offer', 'CourseController@offer')->name('offer');
     Route::get('courses-details/{slug}', 'CourseController@courseDetails')->name('courseDetailsView');
 
     Route::get('free-course', 'CourseController@freeCourses')->name('freeCourses');
 
     Route::get('classes', 'ClassController@classes')->name('classes');
-    Route::get('class-details/{slug}', 'ClassController@classDetails')->name('classDetails');
+    Route::get('class-details/{slug}', 'ClassController@classDetails')->name('classDetails')->middleware('UserAgreementCheck');
     Route::get('class-start/{slug}/{host}/{meeting_id}', 'ClassController@classStart')->name('classStart');
 
-    Route::get('program', 'ProgramController@programs')->name('programs');
+    Route::get('programs', 'ProgramController@programs')->name('programs')->middleware('HeaderMenuPermissions');;
     Route::get('program-detail/{id}', 'ProgramController@programsDetail')->name('programs.detail');
 
-    Route::get('quizzes', 'QuizController@quizzes')->name('quizzes');
+    Route::get('teach-with-us', 'WebsiteController@teachWithUs')->name('teachWithUs')->middleware('HeaderMenuPermissions');
+    Route::get('skip-pricing', 'WebsiteController@skipPricing')->name('skipPricing');
+    Route::get('packages', 'WebsiteController@individualTutorPackages')->name('individualTutorPackages')->middleware('HeaderMenuPermissions');
+    Route::get('package-buying', 'WebsiteController@packageBuy')->name('packageBuy');
+    Route::post('package-buying-create', 'WebsiteController@packageBuyingCreate')->name('packageBuyingCreate');
+    // Route::get('program-detail/{id}', 'ProgramController@programsDetail')->name('programs.detail');
+    Route::post('tutor-withdraw', 'WebsiteController@tutorRevenue')->name('tutorRevenue');
+    Route::post('tutor-withdraw-create', 'WebsiteController@tutorRevenueWithdraw')->name('tutorRevenueWithdraw');
+
+    Route::get('prep-courses', 'QuizController@quizzes')->name('quizzes')->middleware('HeaderMenuPermissions');;
     Route::get('quiz-details/{slug}', 'QuizController@quizDetails')->name('quizDetailsView');
     Route::get('quizStart/{id}/{quiz_id}/{slug}', 'QuizController@quizStart')->name('quizStart');
     Route::post('quizSubmit', 'QuizController@quizSubmit')->name('quizSubmit');
@@ -109,10 +127,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('blog-comment-delete/{id}', 'BlogController@deleteBlogComment')->name('deleteBlogComment');
     Route::get('load-blog-data', 'BlogController@loadMoreData')->name('load-blog-data');
 
-    Route::get('/addToCart/{id}', 'WebsiteController@addToCart')->name('addToCart');
-    Route::get('/buyNow/{id}', 'WebsiteController@buyNow')->name('buyNow');
-    Route::get('/addToCart/quiz/{id}', 'WebsiteController@addToCartQuiz')->name('addToCartQuiz');
-    Route::get('/buyNow/quiz/{id}', 'WebsiteController@buyNowQuiz')->name('buyNowQuiz');
+    Route::get('/addToCart/{id}', 'WebsiteController@addToCart')->name('addToCart')->middleware('checkstudentenrolled');
+    Route::get('/buyNow/{id}', 'WebsiteController@buyNow')->name('buyNow')->middleware('checkstudentenrolled');
+    Route::get('/addToCart/quiz/{id}', 'WebsiteController@addToCartQuiz')->name('addToCartQuiz')->middleware('checkstudentenrolled');
+    Route::get('/buyNow/quiz/{id}', 'WebsiteController@buyNowQuiz')->name('buyNowQuiz')->middleware('checkstudentenrolled');
     Route::post('enrollOrCart/{id}', 'WebsiteController@enrollOrCart')->name('enrollOrCart');
     Route::get('my-cart', 'WebsiteController@myCart')->name('myCart');
     Route::get('ajaxCounterCity', 'WebsiteController@ajaxCounterCity')->name('ajaxCounterCity');
@@ -165,15 +183,18 @@ Route::group(['prefix' => 'saas', 'middleware' => ['auth']], function () {
 
 Route::group(['namespace' => 'Frontend', 'middleware' => ['student']], function () {
     Route::get('student-dashboard', 'StudentController@myDashboard')->name('studentDashboard');
-    Route::get('my-programs', 'StudentController@myCourses')->name('myCourses');
+    Route::get('my-programs', 'StudentController@myCourses')->name('myCourses')->middleware('UserAgreementCheck');
     Route::get('my-program-payment-plan/{program_id}', 'StudentController@myProgramPaymentPlan')->name('my.program.payment.plan');
     Route::get('my-payment-plan-installment/{installment_id}', 'StudentController@myPaymentPlanInstallment')->name('my.payment.plan.installment');
     Route::post('my-payment-plan-installment-payment', 'StudentController@myPaymentPlanInstallmentPayment')->name('my.payment.plan.installment.payment');
-    Route::get('my-classes', 'StudentController@myCourses')->name('myClasses');
-    Route::get('my-online-course', 'StudentController@myCourses')->name('myOnlineCourse');
-    Route::get('my-offline-course', 'StudentController@myCourses')->name('myOfflineCourse');
-    Route::get('my-quizzes', 'StudentController@myCourses')->name('myQuizzes');
-    Route::get('my-tutors', 'TutorController@myTutors')->name('myTutors');
+    Route::get('my-classes', 'StudentController@myCourses')->name('myClasses')->middleware('UserAgreementCheck');
+    Route::get('my-online-course', 'StudentController@myCourses')->name('myOnlineCourse')->middleware('UserAgreementCheck');
+    Route::get('my-offline-course', 'StudentController@myCourses')->name('myOfflineCourse')->middleware('UserAgreementCheck');
+    Route::get('my-prep-Course', 'StudentController@myCourses')->name('myQuizzes')->middleware('UserAgreementCheck');
+    Route::get('my-tutors', 'TutorController@myTutors')->name('myTutors')->middleware('UserAgreementCheck')->middleware('UserAgreementCheck');
+    Route::get('cancel-request/{id}', 'TutorController@cancelRequest')->name('cancel-request');
+
+    Route::post('tutorReview', 'TutorController@tutorReview')->name('tutorReview');
     Route::get('my-report', 'StudentController@myReports')->name('myReports');
     Route::get('my-certificate', 'StudentController@myCertificate')->name('myCertificate');
     Route::get('my-assignment', 'StudentController@myAssignment')->name('myAssignment')->middleware('RoutePermissionCheck:myAssignment');
@@ -201,7 +222,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['student']], function 
     Route::get('invoice/{id}', 'StudentController@Invoice')->name('invoice');
     Route::get('subscription-invoice/{id}', 'StudentController@subInvoice')->name('subInvoice');
     Route::get('StudentApplyCoupon', 'StudentController@StudentApplyCoupon')->name('StudentApplyCoupon');
-    Route::get('checkout', 'StudentController@CheckOut')->name('CheckOut');
+    Route::get('checkout', 'StudentController@CheckOut')->name('CheckOut')->middleware('UserAgreementCheck');
     Route::get('remove-profile-pic', 'StudentController@removeProfilePic')->name('removeProfilePic');
     Route::get('course-certificate/{id}/{slug}', 'StudentController@getCertificate')->name('getCertificate');
     Route::post('/submitReview', 'StudentController@submitReview')->name('submitReview');
@@ -271,8 +292,19 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
     Route::post('/get-user-data/{id}', 'AdminController@getUserDate')->name('getUserDate');
 
 
+    Route::get('/preRegisteredStudents', 'AdminController@preRegisteredStudents')->name('preRegisteredStudents');
+    Route::get('/getPreRegisteredStudents', 'AdminController@getPreRegisteredStudents')->name('getPreRegisteredStudents');
+
+
     Route::get('/reveune-list', 'AdminController@reveuneList')->name('reveuneList')->middleware('RoutePermissionCheck:admin.reveuneList');
     Route::get('/reveuneListInstructor', 'AdminController@reveuneListInstructor')->name('reveuneListInstructor')->middleware('RoutePermissionCheck:admin.reveuneListInstructor');
+    Route::get('/tutor-revenue', 'AdminController@tutorRevenue')->name('allTutorRevenue')->middleware('RoutePermissionCheck:admin.allTutorRevenue');
+    Route::get('/tutor-withdraw-request', 'AdminController@tutorWithdrawRequest')->name('tutorWithdrawRequest')->middleware('RoutePermissionCheck:admin.tutorWithdrawRequest');
+
+    Route::get('/tutor-withdraw-request-data', 'AdminController@tutorWithdrawRequestData')->name('tutorWithdrawRequestData')->middleware('RoutePermissionCheck:admin.tutorWithdrawRequest');
+
+    Route::post('/change-request-status', 'AdminController@changeRequestStatus')->name('change_request_status')->middleware('RoutePermissionCheck:admin.tutorWithdrawRequest');
+
     //
     Route::get('/enrol-list', 'AdminController@enrollLogs')->name('enrollLogs')->middleware('RoutePermissionCheck:admin.enrollLogs');
     Route::get('/cancel-list', 'AdminController@cancelLogs')->name('cancelLogs')->middleware('RoutePermissionCheck:admin.enrollLogs');
@@ -360,3 +392,55 @@ Route::get('vimeo/video/{vimeo_id}', 'Frontend\WebsiteController@vimeoPlayer')->
 Route::get('scorm/video/{lesson_id}/{id}', 'Frontend\WebsiteController@scormPlayer')->name('scormPlayer');
 Route::get('document/video/{lesson_id}', 'Frontend\WebsiteController@documentPlayer')->name('documentPlayer');
 Route::get('get-dynamic-data', 'Frontend\ThemeDynamicData')->name('getDynamicData');
+Route::get('isUnique', 'AjaxController@isUnique')->name('isUnique');
+// Route::post('newsletter_subs', 'WebsiteController@subscribe')->name('newsletter');
+// Route::get('/testing', function () {
+//     return view(theme('pages.free'));
+// });
+
+
+Route::get('/login1x', 'Auth\LoginController@newLoginShow')->name('newlogin');
+
+Route::get('register1x', function () {
+    return view(theme('authnew.register1'));
+});
+Route::get('register2x', function () {
+    return view(theme('authnew.register2'));
+});
+Route::get('register3x', function () {
+    return view(theme('authnew.register3'));
+});
+Route::get('register4x', function () {
+    return view(theme('authnew.register4'));
+});
+Route::get('register5x', function () {
+    return view(theme('authnew.register5'));
+});
+// Route::get('loginx',function(){
+//     return view(theme('auth.login'));
+// });
+
+
+
+// for pre registration of students
+
+Route::get('pre-registration', function () {
+    return view(theme('authnew.pre-registration'));
+});
+
+
+Route::post('preRegister', 'PreRegistrationController@preRegister')->name('preRegister');
+Route::get('preRegisteredDestroy', 'PreRegistrationController@logout')->name('preRegisteredDestroy');
+Route::get('googleredirect', 'PreRegistrationController@redirectToGoogle')->name('googleredirect');
+Route::get('login/googleauth/callback', 'PreRegistrationController@handleGoogleCallback')->name('login/googleauth/callback');
+
+
+
+Route::get('facebookredirect', 'PreRegistrationController@loginWithFacebook')->name('facebookredirect');
+Route::get('login/facebookauth/callback', 'PreRegistrationController@handleFacebookCallback')->name('login/facebookauth/callback');
+
+
+Route::get('invoice',function(){
+    return view(theme('pages.invoice'));
+
+});

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 use Modules\CourseSetting\Entities\Course;
+use Modules\VirtualClass\Entities\VirtualClass;
 use Modules\CourseSetting\Entities\CourseLevel;
 use Modules\CourseSetting\Entities\TimeTableList;
 use Modules\Payment\Entities\Cart;
@@ -16,21 +17,22 @@ use Modules\StudentSetting\Entities\BookmarkCourse;
 class CourseDeatilsPageSection extends Component
 {
     public $request, $course, $isEnrolled;
-
-    public function __construct($request, $course, $isEnrolled)
+    public function __construct( $request, $course, $isEnrolled)
     {
         $this->request = $request;
         $this->course = $course;
         $this->isEnrolled = $isEnrolled;
+       // $this->duration = $duration;
+
     }
+
 
 
     public function render()
     {
-
+        // $duration = $this->duration;
         $related = Course::where('category_id', $this->course->category_id)->with('activeReviews', 'enrollUsers', 'cartUsers', 'lessons')
             ->where('id', '!=', $this->course->id)->with('lessons')->take(2)->get();
-
 
         $userRating = userRating($this->course->user_id);
         $course_exercises = DB::table('course_exercises')
@@ -38,40 +40,40 @@ class CourseDeatilsPageSection extends Component
         $course_reviews = DB::table('course_reveiws')->select('user_id')->where('course_id', $this->course->id)->get();
         $course_enrolls = DB::table('course_enrolleds')->select('user_id')->where('course_id', $this->course->id)->get();
 
-
         $bookmarked = BookmarkCourse::where('user_id', Auth::id())->where('course_id', $this->course->id)->count();
         if ($bookmarked == 0) {
             $isBookmarked = false;
         } else {
             $isBookmarked = true;
         }
+
         $is_cart = 0;
-//        if (Auth::check()) {
-//            $cart = Cart::where('user_id', Auth::id());
-//            if ($this->request->has('courseType')) {
-//                $cart = $cart->where('course_type', $this->request->courseType);
-//            }
-//            $cart = $cart->where('course_id', $this->course->id)->first();
-//            if ($cart) {
-//                $is_cart = 1;
-//            }
-//        } else {
-//            $sessonCartList = session()->get('cart');
-//            if (!empty($sessonCartList)) {
-//                foreach ($sessonCartList as $item) {
-//                    if ($item['course_id'] == $this->course->id) {
-//                        $is_cart = 1;
-//                    }
-//                }
-//            }
-//        }
+        //        if (Auth::check()) {
+        //            $cart = Cart::where('user_id', Auth::id());
+        //            if ($this->request->has('courseType')) {
+        //                $cart = $cart->where('course_type', $this->request->courseType);
+        //            }
+        //            $cart = $cart->where('course_id', $this->course->id)->first();
+        //            if ($cart) {
+        //                $is_cart = 1;
+        //            }
+        //        } else {
+        //            $sessonCartList = session()->get('cart');
+        //            if (!empty($sessonCartList)) {
+        //                foreach ($sessonCartList as $item) {
+        //                    if ($item['course_id'] == $this->course->id) {
+        //                        $is_cart = 1;
+        //                    }
+        //                }
+        //            }
+        //        }
 
 
-//        if ($this->course->price == 0) {
-//            $isFree = true;
-//        } else {
-            $isFree = false;
-//        }
+        //        if ($this->course->price == 0) {
+        //            $isFree = true;
+        //        } else {
+        $isFree = false;
+        //        }
 
 
         $reviewer_user_ids = [];
@@ -135,14 +137,22 @@ class CourseDeatilsPageSection extends Component
         $total = count($lessons);
         $levels = CourseLevel::select('id', 'title')->where('status', 1)->get();
         $Classes = Course::whereHas('class', function ($q) {
-            $q->where('course_id', $this->course->id)->has('zoomMeetings');
-        })->where('scope', 1)->get();
+          $q->where(function($q) {
+            $q->where('course_id', $this->course->id)->where('host','Zoom')->has('zoomMeetings');
+          })
+          ->orWhere(function($q){
+            $q->where('course_id', $this->course->id)->where('host','Team')->has('teamMeetings');
 
-        $time_tables = TimeTableList::where('time_table_id',$this->course->time_table_id)->groupBy('week')->orderBy('week')->get();
+          });
+
+        })->where('scope', 1)->get();
+    
+        $time_tables = TimeTableList::where('time_table_id', $this->course->time_table_id)->groupBy('week')->orderBy('week')->get();
 
         $program_plan = PaymentPlans::where('parent_id', $this->request->program_id)->where('type', 'program')->first();
-//         dd($program_plan, $Classes, $is_cart, $levels, $related, $userRating, $lessons, $total, $isFree, $isBookmarked, $course_exercises, $reviewer_user_ids, $course_enrolled_std);
-        return view(theme('components.course-details-page-section'), compact('time_tables','program_plan', 'Classes', 'is_cart', 'levels', 'related', 'userRating', 'lessons', 'total', 'isFree', 'isBookmarked', 'course_exercises', 'reviewer_user_ids', 'course_enrolled_std'));
-// return view(theme('components.course-details-page-section'), compact('program_plan', 'Classes', 'is_cart', 'levels', 'related', 'userRating', 'lessons', 'total', 'isFree', 'isBookmarked', 'course_exercises', 'reviewer_user_ids', 'course_enrolled_std'));
+
+        $recent_courses = Course::where('status', 1)->whereIn('type', [2, 4, 5, 6, 7, 8])->where('price', '!=', '0.00')->inRandomOrder()->take(3)->get();
+
+        return view(theme('components.course-details-page-section'), get_defined_vars());
     }
 }

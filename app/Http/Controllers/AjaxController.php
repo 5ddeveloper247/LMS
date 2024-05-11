@@ -85,9 +85,12 @@ class AjaxController extends Controller
             //========= End For Chat Module ========
 
             if ($table == "courses") {
+                DB::table($table)->where('parent_id', $id)->update(['status' => $status]);
                 $course = Course::find($id);
                 $course->updated_at = now();
                 $course->save();
+
+
                 // ======= For Chat Module ========
                 if (isModuleActive('Chat')) {
                     if ($course && $course->status) {
@@ -113,12 +116,15 @@ class AjaxController extends Controller
                     }
                     if (UserBrowserNotificationSetup('Course_Publish_Successfully', $course->user)) {
 
-                        send_browser_notification($course->user, $type = 'Course_Publish_Successfully', $shortcodes = [
-                            'time' => Carbon::now()->format('d-M-Y, g:i A'),
-                            'course' => $course->title,
-                        ],
-                            trans('common.View'),//actionText
-                            courseDetailsUrl(@$course->id, @$course->type, @$course->slug),//actionUrl
+                        send_browser_notification(
+                            $course->user,
+                            $type = 'Course_Publish_Successfully',
+                            $shortcodes = [
+                                'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                                'course' => $course->title,
+                            ],
+                            trans('common.View'), //actionText
+                            courseDetailsUrl(@$course->id, @$course->type, @$course->slug), //actionUrl
                         );
                     }
                 } else {
@@ -138,16 +144,18 @@ class AjaxController extends Controller
                     }
                     if (UserBrowserNotificationSetup('Course_Unpublished', $course->user)) {
 
-                        send_browser_notification($course->user, $type = 'Course_Unpublished', $shortcodes = [
-                            'time' => Carbon::now()->format('d-M-Y, g:i A'),
-                            'course' => $course->title,
-                        ],
-                            trans('common.View'),//actionText
+                        send_browser_notification(
+                            $course->user,
+                            $type = 'Course_Unpublished',
+                            $shortcodes = [
+                                'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                                'course' => $course->title,
+                            ],
+                            trans('common.View'), //actionText
                             courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
                         );
                     }
                 }
-
             } elseif ($table == "categories") {
                 Cache::forget('categories_' . app()->getLocale() . SaasDomain());
             } elseif ($table == "country_wish_taxes") {
@@ -211,7 +219,6 @@ class AjaxController extends Controller
                     $query->where('subcategory_id', $subcategory_id);
                 }
                 $subcategories = $query->get();
-
             } else {
                 $subcategories = Course::select('id', 'title')->where('category_id', $category_id)->where('subcategory_id', $subcategory_id)->where('user_id', Auth::user()->id)->get();
             }
@@ -294,5 +301,23 @@ class AjaxController extends Controller
             }
         }
         return response()->json($price);
+    }
+
+    public function isUnique(Request $request)
+    {
+        $errors = [];
+        foreach ($request->columns as $column){
+           $query = DB::table($column[0]);
+           if(isset($column[3])){
+               $query = $query->where('id','!=', $column[3]);
+           }
+           if($query->where(function ($q) use ($column){
+               $q->where($column[1], $column[2])
+                  ->orWhere($column[1], 'LIKE', '%\"' . $column[2] . '\"%');
+           })->exists()){
+                array_push($errors,ucfirst(str_replace(['_','-','.'],' ',$column[0])).' '. ucfirst(str_replace(['_','-','.'],' ',$column[1])) .' Must be Unique');
+           }
+        }
+        return response()->json(['errors' => $errors], 200);
     }
 }

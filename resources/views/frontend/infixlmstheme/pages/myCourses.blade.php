@@ -4,17 +4,18 @@
     }
     .theme_btn6 {
     background: var(--system_primery_color);
-    border-radius: 5px;
-    font-family: Source Sans Pro,sans-serif;
-    font-size: 15px!important;
+    border-radius: 16px;
+    font-family: Source Sans Pro, sans-serif;
+    font-size: 12px !important;
     color: #fff;
-    font-weight: 600;
-    padding: 11px 8px!important;
-    border: 1px solid transparent;
+    font-weight: 700;
+    border: 2px solid transparent;
     text-transform: capitalize;
     display: inline-block;
-    line-height: 1;
-    }
+    /* line-height: 1; */
+    text-align: center;
+    padding: 0.5rem;
+}
 
 
 h4 {
@@ -24,24 +25,51 @@ h4 {
 .couse_wizged .thumb {
     position: relative;
     overflow: hidden;
+    height: 60vh !important;
+    width: 100%;
+}
+/* .couse_wizged .course_content {
+    padding-top: 5px !important;
+    padding-right: 0px !important;
+} */
+.couse_wizged{
+    border-radius: 10px;
+}
+.mYprogram_cards{
+    background-position: top !important;
+}
+.quiz_wizged{
+    border-radius: 10px;
+    width: 100%;
+}
+.quiz_wizged .course_student-thumb{
+    border-radius: 10px 10px 0px 0px;
+    height: 50vh !important;
+}
+/* @media(max-width:2000px){
+    .couse_wizged .thumb {
+    position: relative;
+    overflow: hidden;
+    height: 350px!important;
+}} */
+/* @media(max-width:1800px){
+    .couse_wizged .thumb {
+    position: relative;
+    overflow: hidden;
     height: 350px!important;
 }
-.couse_wizged .course_content {
-    padding-top: 26px;
-    padding-right: 0px!important;
+} */
 
+@media only screen and (max-width: 767px){
+    .theme_btn6 {
+    font-size: 12px !important;
+    padding: 6px 5px !important;
 }
-@media(max-width:2000px){
-    .couse_wizged .thumb {
-    position: relative;
-    overflow: hidden;
-    height: 350px!important;
 }
-@media(max-width:1800px){
-    .couse_wizged .thumb {
-    position: relative;
-    overflow: hidden;
-    height: 35`0px!important;
+@media only screen and (min-width: 1800px){
+    .theme_btn6 {
+    border-radius: 20px !important;
+    font-size: 18px !important;
 }
 }
 </style>

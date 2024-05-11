@@ -4,7 +4,7 @@
     <div class="affiliate_bradcam_area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 offset-lg-1">
+                <div class="col-lg-10 offset-1">
                     <div class="breadcam_text text-center">
                         <span>Join Our Affiliate Program</span>
                         <h3>Become a Part of Our Success

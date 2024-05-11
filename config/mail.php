@@ -17,6 +17,7 @@ return [
     */
 
 
+    // 'driver' => 'smtp',
     'driver' => saasEnv('MAIL_DRIVER', 'sendmail'),
 
     /*

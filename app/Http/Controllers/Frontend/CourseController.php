@@ -11,6 +11,7 @@ use Modules\CourseSetting\Entities\Course;
 use Modules\CourseSetting\Entities\CourseComment;
 use Modules\CourseSetting\Entities\CourseEnrolled;
 use Modules\FrontendManage\Entities\FrontPage;
+use  Modules\Payment\Entities\PaymentPlans;
 
 class CourseController extends Controller
 {
@@ -56,33 +57,72 @@ class CourseController extends Controller
 
     public function courseDetails($slug, Request $request)
     {
-
         try {
 
-            $course = Course::with('enrollUsers', 'user', 'user.courses', 'user.courses.enrollUsers', 'user.courses.lessons', 'chapters.lessons', 'enrolls', 'lessons', 'reviews', 'chapters', 'activeReviews')
+            $course = Course::with('enrollUsers', 'user', 'user.courses', 'user.courses.enrollUsers', 'user.courses.lessons', 'chapters.lessons', 'enrolls', 'lessons', 'reviews', 'chapters', 'activeReviews', 'children')
                 ->where('slug', $slug)->first();
 
+            $childIds = Course::where('parent_id', $course['id'])->get();
+
+            $idArray = [];
+            foreach ($childIds as $id) {
+                //dd($id["id"]);
+                $idArray[] = $id["id"];
+            }
+            // dd($idArray);
+
+            // $totalseats = PaymentPlans::select('*')
+            //     ->where('parent_id', $course['id'])
+            //     ->get();
+
+            $plan = PaymentPlans::where('parent_id', $course['id'])->get();
+
+            $coursePlan = PaymentPlans:: whereIn('parent_id', $idArray)->first();
+
+
+
+            // dd($courseParent[0]['sdate']);
+
+            if($coursePlan){
+              $duration =  round((strtotime($coursePlan['edate']) - strtotime($coursePlan['sdate'])) / 604800, 1);
+            }
+            //   dd($duration);
+
+            // $coursePlans = Course::with('currentCoursePlan')->whereIn('parent_id', $idArray)->get();
+
+            // dd($coursePlans);
+            // $currentCoursePlan = Course::whereIn('parent_id', $idArray)->with('currentCoursePlan')->get();
+
+            // $currentPlan = Course::whereIn('parent_id', $idArray)->with('currentPlan')->get();
+
+            // $nextPlans = Course::whereIn('parent_id', $idArray)->with('nextPlans')->get();
+
+
+
+
+            // dd($courseParent);
+            // dd('zaid');
             if (!$course) {
                 Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
                 return redirect()->back();
             }
 
-            if($request->has('program_id')){
+            if ($request->has('program_id')) {
                 $isEnrolled = CourseEnrolled::where('program_id', $request->program_id)->where('user_id', Auth::id())->count();
-                if ($isEnrolled == 0) {
+                if ($isEnrolled == 0 && \auth()->user()->role_id != 1) {
                     Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
                     return redirect()->back();
                 }
-            }else if($request->has('courseType')){
+            } else if ($request->has('courseType')) {
                 $isEnrolled = CourseEnrolled::where('course_id', $course->id)->where('course_type', $request->courseType)->where('user_id', Auth::id())->count();
-            }else{
+            } else {
                 $isEnrolled = CourseEnrolled::where('course_id', $course->id)->where('user_id', Auth::id())->count();
             }
 
-//            if (!isViewable($course)) {
-//                Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
-//                return redirect()->back();
-//            }
+            //            if (!isViewable($course)) {
+            //                Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
+            //                return redirect()->back();
+            //            }
 
 
             $data = '';
@@ -135,10 +175,15 @@ class CourseController extends Controller
             if ($course->type == 2 || $course->type == 3) {
                 return \redirect()->to(courseDetailsUrl($course->id, $course->type, $course->slug));
             } else {
-                return view(theme('pages.courseDetails'), compact('request', 'course', 'isEnrolled'));
-
+                if(isset($duration)){
+                    return view(theme('pages.courseDetails'), compact('request', 'course', 'isEnrolled', 'duration','coursePlan'));
+                }
+                else{
+                    return view(theme('pages.courseDetails'), compact('request', 'course', 'isEnrolled'));
+                }
             }
         } catch (\Exception $e) {
+            // dd($e);
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
     }

@@ -23,11 +23,11 @@ class MyDashboardPageSection extends Component
 
     public function render()
     {
-        ;
+
         $data['user'] = Auth::user();
         $enrolledByUser = CourseEnrolled::where('user_id', Auth::user()->id)->orderBy('last_view_at', 'desc');
 
-        $total_spent =  Checkout::where('user_id', Auth::user()->id)->where('status',1)->sum('purchase_price');
+        $total_spent =  Checkout::where('user_id', Auth::user()->id)->where('status',1)-> whereNotNull('response')->whereNotNull('payment_method')->sum('purchase_price');
         $total_purchase = $enrolledByUser->count() ?? 0;
 
 

@@ -1567,10 +1567,9 @@ class VirtualClassController extends Controller
                     $status_enable_eisable = "";
                 }
                 $checked = $query->course->status == 1 ? "checked" : "";
-                $view = '<label class="switch_toggle" for="active_checkbox' . $query->course->id . '">
-                                                    <input type="checkbox" class="' . $status_enable_eisable . '"
-                                                           id="active_checkbox' . $query->course->id . '" value="' . $query->course->id . '"
-                                                             ' . $checked . '><i class="slider round"></i></label>';
+                $view = '<label class="switch_toggle" for="active_checkbox' . $query->course->id . '">'; 
+                $view .= '<input type="checkbox" class="' . $status_enable_eisable . '" id="active_checkbox'.$query->course->id.'" value="'.$query->course->id.'" '.$checked.'>';
+        		$view .= '<i class="slider round A"></i></label>';
 
                 return $view;
             })

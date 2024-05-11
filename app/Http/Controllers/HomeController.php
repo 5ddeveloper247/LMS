@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\UserLogin;
 use Carbon\Carbon;
-use App\Models\User;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
+use Modules\CourseSetting\Entities\Course;
+use Modules\CourseSetting\Entities\CourseEnrolled;
+use Modules\Payment\Entities\Checkout;
+use Modules\Payment\Entities\Withdraw;
 use Modules\Setting\Entities\Badge;
 use Modules\Setting\Http\Controllers\BadgeController;
 use Modules\StudentSetting\Entities\Program;
 use Omnipay\MobilPay\Api\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Modules\Payment\Entities\Withdraw;
-use Illuminate\Support\Facades\Response;
-use Modules\CourseSetting\Entities\Course;
-use Modules\CourseSetting\Entities\CourseEnrolled;
 
 class HomeController extends Controller
 {
@@ -28,9 +29,10 @@ class HomeController extends Controller
 
     public function index()
     {
+       
         if (Auth::user()->role_id == 1) {
             return redirect()->route('dashboard');
-        } else if (Auth::user()->role_id == 2) {
+        } else if (Auth::user()->role_id == 2 || Auth::user()->role_id == 9) {
             return redirect()->route('dashboard');
         } else if (Auth::user()->role_id == 3) {
             return redirect()->route('studentDashboard');
@@ -42,7 +44,6 @@ class HomeController extends Controller
     //dashboard
     public function dashboard()
     {
-        //        dd(Auth::user()->unreadNotifications[0]->data['actionURL'] ?? '');
 
         try {
             if (Auth::user()->role_id == 3) {
@@ -303,94 +304,87 @@ class HomeController extends Controller
     {
         try {
             $user = Auth::user();
-
+            $info = [];
+            $info['today'] = 0;
+            $info['thisMonthEnroll'] = 0;
+            $info['totalEnroll'] = 0;
+            $info['student'] = 0;
+            $info['instructor'] = 0;
+            $info['totalSell'] = 0;
+            $info['allCourse'] = 0;
+            $info['adminRev'] = 0;
             if ($user->role_id == 2) {
-                //                $allCourseEnrolled = CourseEnrolled::with('user', 'course')
-                //                    ->whereHas('course', function ($query) use ($user) {
-                //                        $query->where('user_id', '=', $user->id);
-                //                    })->get();
-                $query = CourseEnrolled::where('course_id', null)->with('user')
-                    ->whereHas('program', function ($query) {
-                    });
-                $courses = Course::where('user_id', Auth::id())->where('type', 1)->pluck('id');
-                $programs = Program::query();
-                foreach ($courses as $course) {
-                    $programs =  $programs->orWhere('allcourses', 'like', '%,"' . $course . '",%');
+                $courses = Course::where('user_id', Auth::id())->pluck('id');
+                $program_ids = [];
+                if (count($courses)) {
+                    $programs = Program::query();
+                    foreach ($courses as $course) {
+                        $programs = $programs->orWhere('allcourses', 'like', '%"' . $course . '"%');
+                    }
+                    $programs = $programs->pluck('id');
+                    $program_ids = $programs->unique();
                 }
-                $programs =  $programs->pluck('id');
-                $query = $query->whereIn('program_id', $programs->unique())->groupBy('program_id')->groupBy('user_id')->pluck('user_id')->toArray();
+                $allCourseEnrolled = CourseEnrolled::whereIn('program_id', $program_ids)
+                    ->orWhereHas('course', function ($query) use ($user) {
+                        $query->where('user_id', '=', $user->id);
+                    });
 
-                $allCourseEnrolled = User::with('sender')->where('id', '!=', Auth::id())->whereIn('id', $query)->get();
-
-
-                $allCourses = Course::where('user_id', $user->id)->whereIn('type', [1, 2])->get();
-
-                $thisMonthEnroll = CourseEnrolled::where('course_id', null)
-                    ->whereHas('user', function ($q) use ($query) {
-                        $q->where('id', '!=', Auth::id())->whereIn('id', $query);
-                    })->whereYear('created_at', Carbon::now()->year)
-                    ->whereMonth('created_at', Carbon::now()->format('m'))->groupBy('program_id')->groupBy('user_id')->get();
-
-                //                $thisMonthEnroll = CourseEnrolled::whereYear('created_at', Carbon::now()->year)
-                //                    ->whereMonth('created_at', Carbon::now()->format('m'))
-                //                    ->whereHas('course', function ($query) use ($user) {
-                //                        $query->where('user_id', '=', $user->id);
-                //                    })->sum('purchase_price');
-
-                $today = CourseEnrolled::where('course_id', null)
-                    ->whereHas('user', function ($q) use ($query) {
-                        $q->where('id', '!=', Auth::id())->whereIn('id', $query);
-                    })->whereDate('created_at', Carbon::today())->groupBy('program_id')->groupBy('user_id')->get();
-                //                $today = CourseEnrolled::whereDate('created_at', Carbon::today())
-                //                    ->whereHas('course', function ($query) use ($user) {
-                //                        $query->where('user_id', '=', $user->id);
-                //                    })->sum('purchase_price');
-
-                $month = CourseEnrolled::select(
-                    DB::raw('sum(purchase_price) as totalSell'),
-                    DB::raw("DATE_FORMAT(created_at,'%m') as months")
-                )->whereHas('course', function ($query) use ($user) {
-                    $query->where('user_id', '=', $user->id);
-                })->groupBy('months')->get();
-                $rev = $allCourseEnrolled->sum('reveune');
-
-
-                $info['today'] = $today->count();
-
-                $info['thisMonthEnroll'] = $thisMonthEnroll->count();
-            } else {
-                $allCourseEnrolled = CourseEnrolled::all();
-                $allCourses = Course::where('type',1);
                 $thisMonthEnroll = CourseEnrolled::whereYear('created_at', Carbon::now()->year)
                     ->whereMonth('created_at', Carbon::now()->format('m'))
-                    ->sum('purchase_price');
-                $today = CourseEnrolled::whereDate('created_at', Carbon::today())->sum('purchase_price');
-                $month = CourseEnrolled::select(
-                    DB::raw('sum(purchase_price) as totalSell'),
-                    DB::raw("DATE_FORMAT(created_at,'%m') as months")
-                )->groupBy('months')->get();
-                $rev = $allCourseEnrolled->sum('purchase_price') - $allCourseEnrolled->sum('reveune');
+                    ->whereIn('program_id', $program_ids)
+                    ->orWhereHas('course', function ($query) use ($user) {
+                        $query->where('user_id', '=', $user->id);
+                    })->count();
+
+                $today = CourseEnrolled::whereDate('created_at', Carbon::today()->format('Y-m-d'))
+                    ->whereIn('program_id', $program_ids)
+                    ->orWhereHas('course', function ($query) use ($user) {
+                        $query->where('user_id', '=', $user->id);
+                    })->count();
 
                 $info['today'] = $today;
-                $info['today'] = number_format($info['today'], 2, '.', '');
                 $info['thisMonthEnroll'] = $thisMonthEnroll;
-                $info['thisMonthEnroll'] = number_format($info['thisMonthEnroll'], 2, '.', '');
+                $info['totalEnroll'] = $allCourseEnrolled->count();
+                $info['allCourse'] = Course::where('user_id', $user->id)->whereIn('type', [1, 2, 7, 9])->count();
+            } elseif ($user->role_id == 9) {
+
+                $allCourseEnrolled = CourseEnrolled::whereHas('course', function ($query) use ($user) {
+                    $query->where('user_id', '=', $user->id);
+                });
+
+                $thisMonthEnroll = CourseEnrolled::whereHas('course', function ($query) use ($user) {
+                    $query->where('user_id', '=', $user->id);
+                })->whereYear('created_at', Carbon::now()->year)
+                    ->whereMonth('created_at', Carbon::now()->format('m'))->count();
+
+                $today = CourseEnrolled::whereHas('course', function ($query) use ($user) {
+                    $query->where('user_id', '=', $user->id);
+                })->whereDate('created_at', Carbon::today())->count();
+
+                $info['today'] = $today;
+                $info['thisMonthEnroll'] = $thisMonthEnroll;
+                $info['totalEnroll'] = $allCourseEnrolled->count();
+                $info['allCourse'] = Course::where('user_id', $user->id)->whereIn('type', [1, 2, 7, 9])->count();
+            } else {
+                $allCourseEnrolled = CourseEnrolled::query();
+                $thisMonthEnroll = CourseEnrolled::whereYear('created_at', Carbon::now()->year)
+                    ->whereMonth('created_at', Carbon::now()->format('m'));
+                $today = Checkout::whereDate('created_at', Carbon::today());
+
+                $info['today'] = $today->count();
+                // $info['today'] = number_format($info['today'], 2, '.', '');
+                $info['thisMonthEnroll'] = $thisMonthEnroll->count();
+                // $info['thisMonthEnroll'] = number_format($info['thisMonthEnroll'], 2, '.', '');
+                $info['totalEnroll'] = $allCourseEnrolled->count();
+                $info['student'] = User::where('role_id', 3)->count();
+                $info['instructor'] = User::where('role_id', 2)->count();
+                $info['adminRev'] = Checkout::sum('reveune');
+                $info['totalSell'] = number_format($info['adminRev'], 2, '.', '');
+                $info['totalSell'] = Checkout::sum('purchase_price');
+                $info['totalSell'] = number_format($info['totalSell'], 2, '.', '');
+                $info['allCourse'] = Course::whereIn('type', [1, 2, 7, 9])->count();
             }
 
-            $info['allCourse'] = $allCourses->count();
-            $info['totalEnroll'] = $allCourseEnrolled->count();
-
-
-
-            $info['student'] = User::where('role_id', 3)->count();
-            $info['instructor'] = User::where('role_id', 2)->count();
-            $info['totalSell'] = $allCourseEnrolled->sum('purchase_price');
-            $info['totalSell'] = number_format($info['totalSell'], 2, '.', '');
-
-            $info['adminRev'] = number_format($rev, 2, '.', '');
-
-
-            $info['month'] = $month;
             return Response::json($info);
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());

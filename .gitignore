@@ -15,6 +15,6 @@ storage/*.key
 /public/database-backup
 phpcs.xml
 modules_statuses.json
+/infixlms 5.4.0
 index_backup.php
 upload.zip
-

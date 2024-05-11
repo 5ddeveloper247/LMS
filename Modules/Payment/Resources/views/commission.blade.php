@@ -11,6 +11,7 @@
                     <div class="row ">
 
                         <ul class="nav nav-tabs no-bottom-border  mt-sm-md-20 mb-30 ml-3" role="tablist">
+
                             <li class="nav-item m-1">
                                 <a class="nav-link @if(!Session::has('course') && !Session::has('instructor'))active @endif "
                                    href="#Flat"
@@ -26,11 +27,64 @@
                                    href="#Course"
                                    role="tab" data-toggle="tab">{{__('setting.Course Commission')}}</a>
                             </li>
+                            <li class="nav-item m-1">
+                                <a class="nav-link"
+                                   href="#taxes"
+                                   role="tab" data-toggle="tab">{{__('Tax Rates')}}</a>
+                            </li>
                         </ul>
                     </div>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
+                      <div class="tab-pane fade" id="taxes"
+                           role="tabpanel"
+                           aria-labelledby="General-tab">
+                           <div class="white_box_30px">
+
+                               <div class="main-title mb-25">
+                                   <h3 class="mb-0">{{ __('Tax Rate Settings') }}</h3>
+                               </div>
+                               <form
+                                   action="{{route('saveTax')}}"
+                                   method="post">
+
+                                   @csrf
+                                   <div class="row">
+                                     <div class="col-xl-6">
+                                         <div class="primary_input mb-25">
+                                             <label class="primary_input_label"
+                                                    for="percent_tax">Tax Rate on Courses in percentage</label>
+                                             <input class="primary_input_field" max="100"
+                                                    value="{{@(float)$percent_tax}}"
+                                                    name="percent_tax" placeholder="Tax Rate Percentage (%)"
+                                                    id="percent_tax" type="number">
+                                         </div>
+                                     </div>
+
+                                     <div class="col-xl-6">
+                                         <div class="primary_input mb-25">
+                                             <label class="primary_input_label"
+                                                    for="fixed_tax">Tax Rate on Courses in fixed amount</label>
+                                             <input class="primary_input_field"
+                                                    value="{{@(float)$fixed_tax}}"
+                                                    name="fixed_tax" id="fixed_tax"
+                                                    placeholder="Tax Rate Fixed Amount"
+                                                    type="number">
+                                         </div>
+                                     </div>
+                                       <div class="col-12 mb-10 pt_15">
+                                           <div class="submit_btn text-center">
+                                               <button class="primary_btn_large" data-toggle="tooltip"
+                                                       type="submit"><i
+                                                       class="ti-check"></i> {{ __('common.Update') }} {{ __('setting.Settings') }}
+                                               </button>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </form>
+                           </div>
+                      </div>
                         <div
                             class="tab-pane fade   @if(!Session::has('course') && !Session::has('instructor'))show active @endif"
                             id="Flat" role="tabpanel"
@@ -486,6 +540,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 

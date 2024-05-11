@@ -14,32 +14,42 @@
 
     <section class="admin-visitor-area up_st_admin_visitor">
         <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="box_header common_table_header">
-                        <div class="main-title d-md-flex">
-                            <h3 class="mr-30 mb_xs_15px mb_sm_20px mb-0">{{ __('student.Students List') }}</h3>
+          <div class="row pt-0">
+            <div class="col-12">
+                <div class="box_header common_table_header">
+                    <div class="main-title d-md-flex w-100">
+                        <h3 class="mr-30 mb_xs_15px mb_sm_20px mb-0">{{ __('student.Students List') }}</h3>
 
-                            <ul class="d-flex">
-                                {{--                                @if (permissionCheck('student.store')) --}}
-                                {{--                                    <li><a class="primary-btn radius_30px mr-10 fix-gr-bg" data-toggle="modal" --}}
-                                {{--                                           id="add_student_btn" --}}
-                                {{--                                           data-target="#add_student" href="#"><i --}}
-                                {{--                                                class="ti-plus"></i>{{__('student.Add Student')}}</a> --}}
-                                {{--                                    </li> --}}
-                                {{--                                @endif --}}
-                                {{--                                @if (isModuleActive('TeachOffline')) --}}
-                                {{--                                    <li><a class="primary-btn radius_30px mr-10 fix-gr-bg" --}}
-                                {{--                                           href="{{route('student_import')}}"><i --}}
-                                {{--                                                class="ti-plus"></i>{{__('student.Import Student')}}</a></li> --}}
-                                {{--                                @endif --}}
-                            </ul>
+                        <ul class="d-flex ml-auto">
+                            {{--                                @if (permissionCheck('student.store')) --}}
+                            {{--                                    <li><a class="primary-btn radius_30px mr-10 fix-gr-bg" data-toggle="modal" --}}
+                            {{--                                           id="add_student_btn" --}}
+                            {{--                                           data-target="#add_student" href="#"><i --}}
+                            {{--                                                class="ti-plus"></i>{{__('student.Add Student')}}</a> --}}
+                            {{--                                    </li> --}}
+                            {{--                                @endif --}}
+                                <li><button class="primary-btn fix-gr-bg" onclick=uploadAgreementFormModal()>Agreement
+                                    Form</button></li>
+                        </ul>
 
-                        </div>
-                        <button class="primary-btn fix-gr-bg" onclick=uploadAgreementFormModal()>Agreement
-                            Form</button>
                     </div>
+
                 </div>
+            </div>
+            <div class="col-12">
+              <ul class="nav nav-tabs no-bottom-border mt-sm-md-20 mb-10 ml-3" role="tablist">
+                  <li class="nav-item">
+                      <a class="nav-link active filter-link enrolled" href="javascript:void(0)" data-type="enrolled" onclick="populateTable('enrolled')">{{ __('Enrolled') }}</a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link filter-link non-enrolled" href="javascript:void(0)" data-type="non-enrolled" onclick="populateTable('non-enrolled')">{{ __('Non Enrolled') }}</a>
+                  </li>
+              </ul>
+            </div>
+          </div>
+            <div class="row justify-content-center">
+
                 <div class="col-lg-12 mt-40">
                     <div class="QA_section QA_section_heading_custom check_box_table">
                         <div class="QA_table">
@@ -53,11 +63,13 @@
                                             <th scope="col">{{ __('common.Name') }}</th>
                                             <th scope="col">{{ __('common.Email') }}</th>
                                             <th scope="col">{{ __('student.Phone') }}</th>
-                                            <th scope="col">{{ __('Quizs') }}</th>
+                                            <th scope="col">{{ __('Courses') }}</th>
                                             <th scope="col">{{ __('Programs') }}</th>
                                             <th scope="col">{{ __('common.gender') }}</th>
                                             <th scope="col">{{ __('common.Date of Birth') }}</th>
                                             <th scope="col">{{ __('common.Country') }}</th>
+                                            <th scope="col">{{ __('Enrolled') }}</th>
+                                            <th scope="col">{{ __('Registration Source') }}</th>
                                             <th scope="col">{{ __('common.Status') }}</th>
                                             <th scope="col">{{ __('common.Action') }}</th>
                                         </tr>
@@ -104,7 +116,7 @@
                                                 <div class="primary_input mb-35">
                                                     <label class="primary_input_label"
                                                         for="">{{ __('common.About') }}</label>
-                                                    <textarea class="lms_summernote" name="about" id="addAbout" cols="30" rows="10">{{ old('about') }}</textarea>
+                                                    <textarea class="custom_summernote" name="about" id="addAbout" cols="30" rows="10">{{ old('about') }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,9 +147,10 @@
                                             <div class="col-xl-6">
                                                 <div class="primary_input mb-25">
                                                     <label class="primary_input_label"
-                                                        for="">{{ __('common.Phone') }} </label>
+                                                        for="">{{ __('common.Phone') }} <strong
+                                                            class="text-danger">*</strong> </label>
                                                     <input class="primary_input_field" value="{{ old('phone') }}"
-                                                        name="phone" id="addPhone" placeholder="-" type="number"
+                                                        name="phone" id="addPhone" placeholder="-" type="text"
                                                         {{ $errors->first('phone') ? 'autofocus' : '' }}>
                                                 </div>
                                             </div>
@@ -167,9 +180,9 @@
                                                             value="">{{ __('common.Select') }}
                                                             {{ __('common.gender') }} </option>
 
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                        <option value="other">Other</option>
+                                                        <option value="male" {{ 'male' ==  old('gender') ? 'selected' : '' }}>Male</option>
+                                                        <option value="female" {{ 'female' ==  old('gender') ? 'selected' : '' }}>Female</option>
+                                                        <option value="other" {{ 'other' ==  old('gender') ? 'selected' : '' }}>Other</option>
 
                                                     </select>
                                                 </div>
@@ -192,10 +205,10 @@
                                                         <small>{{ __('student.Recommended size') }}
                                                             (330x400)</small></label>
                                                     <div class="primary_file_uploader">
-                                                        <input class="primary-input imgName" type="text"
+                                                        <input class="primary-input imgName" name="img_name" type="text"
                                                             id="placeholderFileOneName"
                                                             placeholder="{{ __('student.Browse Image file') }}"
-                                                            readonly="">
+                                                            readonly="" value="{{ old('img_name') }}">
                                                         <button class="" type="button">
                                                             <label class="primary-btn small fix-gr-bg"
                                                                 for="document_file">{{ __('common.Browse') }}</label>
@@ -330,7 +343,7 @@
                                             <div class="primary_input mb-35">
                                                 <label class="primary_input_label"
                                                     for="">{{ __('common.About') }}</label>
-                                                <textarea class="lms_summernote" name="about" id="studentAbout" cols="30" rows="10">{{ old('about') }}</textarea>
+                                                <textarea class="custom_summernote" name="about" id="studentAbout" cols="30" rows="10">{{ old('about') }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -361,11 +374,12 @@
                                         <div class="col-xl-6">
                                             <div class="primary_input mb-25">
                                                 <label class="primary_input_label"
-                                                    for="">{{ __('common.Phone') }} </label>
+                                                    for="">{{ __('common.Phone') }} <strong
+                                                        class="text-danger">*</strong> </label>
                                                 <input class="primary_input_field" id="studentPhone"
                                                     {{ $errors->first('phone') ? 'autofocus' : '' }}
                                                     value="{{ old('phone') }}" name="phone" placeholder="-"
-                                                    type="number">
+                                                    type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -394,16 +408,16 @@
                                                         value="">{{ __('common.Select') }}
                                                         {{ __('common.gender') }} </option>
 
-                                                    <option value="male">Male</option>
-                                                    <option value="female">Female</option>
-                                                    <option value="other">Other</option>
+                                                    <option value="male" {{ 'male' ==  old('gender') ? 'selected' : '' }}>Male</option>
+                                                    <option value="female" {{ 'female' ==  old('gender') ? 'selected' : '' }}>Female</option>
+                                                    <option value="other" {{ 'other' ==  old('gender') ? 'selected' : '' }}>Other</option>
 
                                                 </select>
                                             </div>
                                         </div>
 
 
-                                        <div class="col-xl-6">
+                                        {{-- <div class="col-xl-6">
                                             <div class="primary_input mb-25">
                                                 <label class="primary_input_label"
                                                     for="">{{ __('common.company') }} </label>
@@ -411,20 +425,20 @@
                                                     name="company" id="studentCompany" placeholder="-" type="text"
                                                     {{ $errors->first('company') ? 'autofocus' : '' }}>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-xl-6">
+                                        <div class="col-xl-12">
                                             <div class="primary_input mb-35">
                                                 <label class="primary_input_label"
                                                     for="">{{ __('common.Image') }}
                                                     <small>{{ __('student.Recommended size') }}
-                                                        (330x400)</small></label>
+                                                        (350x500)</small></label>
                                                 <div class="primary_file_uploader">
-                                                    <input class="primary-input imgName" type="text" id="studentImage"
+                                                    <input class="primary-input imgName" name="img_name" type="text" id="studentImage"
                                                         placeholder="{{ trans('student.Browse Image file') }}"
-                                                        readonly="">
+                                                        readonly=""  value="{{ old('img_name') }}">
                                                     <button class="" type="button">
-                                                        <label class="primary-btn small fix-gr-bg"
+                                                        <label class="primary-btn small fix-gr-bg" id="Browseeeditstudent"
                                                             for="document_file_edit">{{ __('common.Browse') }}</label>
                                                         <input type="file"
                                                             {{ $errors->first('image') ? 'autofocus' : '' }}
@@ -450,7 +464,7 @@
                                                     <input type="password"
                                                         {{ $errors->first('password') ? 'autofocus' : '' }}
                                                         class="form-control primary_input_field" id="password"
-                                                        name="password"
+                                                        name="password" value="{{ old('password') }}"
                                                         placeholder="{{ __('common.Minimum 8 characters') }}">
                                                 </div>
                                             </div>
@@ -548,8 +562,8 @@
                                         <button type="button" class="primary-btn tr-bg"
                                             data-dismiss="modal">{{ __('common.Cancel') }}</button>
 
-                                        <button class="primary-btn fix-gr-bg"
-                                            type="submit">{{ __('common.Delete') }}</button>
+                                        <button class="primary-btn fix-gr-bg" type="submit"><i class="ti-check"></i>
+                                            {{ __('common.Delete') }}</button>
 
                                     </div>
                                 </form>
@@ -558,6 +572,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="modal fade admin-query" id="agreement_modal">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -574,11 +589,11 @@
                                     <div class="text-center">
                                         <div class="primary_file_uploader">
                                             <input class="primary-input filePlaceholder" type="text" id=""
-                                                value="" placeholder="Browse Agreement File" readonly="">
+                                                value="" placeholder=" {{ count(getAgreementForm()) ? getAgreementForm()[0]->getRelativePathname():'Browse Agreement File' }}" readonly="">
                                             <button class="" type="button">
                                                 <label class="primary-btn small fix-gr-bg"
                                                     for="std_agreement_form">Browse</label>
-                                                <input type="file" class="d-none fileUpload" name="agreement_form"
+                                                <input accept=".doc,.docx,.docs,.pdf" type="file" class="d-none fileUpload" name="agreement_form"
                                                     id="std_agreement_form">
                                             </button>
                                         </div>
@@ -620,7 +635,68 @@
     @php
         $url = route('student.getAllStudentData');
     @endphp
+    <script>
 
+            $(document).ready(function() {
+
+            	var customFontFam = ['Arial','Helvetica','Cavolini','Jost','Impact','Tahoma','Verdana','Garamond','Georgia','monospace','fantasy','Papyrus','Poppins'];
+                // Summer Note
+                $('.custom_summernote').summernote({
+                	fontNames: customFontFam,
+                    fontNamesIgnoreCheck: ['Cavolini','Jost'],
+                    fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
+                    codeviewFilter: true,
+                    codeviewIframeFilter: true,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen']],
+                    ],
+                    height: 188,
+                    tooltip: true
+                });
+
+
+                var old_file = $("#studentImage").val();
+
+                $('#Browseeeditstudent').on('click', function() {
+                    old_file = $("#studentImage").val();
+                    console.log(old_file);
+                });
+
+                var _URL1 = window.URL || window.webkitURL;
+                $("#document_file_edit").change(function(e) {
+
+                    var file, img;
+                    if ((file = this.files[0])) {
+                        img = new Image();
+                        img.onload = function() {
+                            var image_width = this.width;
+                            var image_height = this.height;
+                            if (image_width == 350 && image_height == 500) {
+
+                            } else {
+                                $('#document_file_edit').val('');
+                                $('#studentImage').val(old_file);
+                                toastr.error(
+                                    'Wrong Image Dimensions, Please Select Image of 350 X 500 !',
+                                    'Error')
+                            }
+                        };
+                        img.src = _URL1.createObjectURL(file);
+                    }
+                });
+
+            });
+
+
+    </script>
     <script>
         // $(document).ready(function() {
         function uploadAgreementFormModal() {
@@ -653,15 +729,19 @@
                             "preventDuplicates": true,
                         }
                         if (response.status == 200) {
-                            form.trigger("reset");
+                            // form.trigger("reset");
                             add_btn.removeAttr('disabled');
                             add_btn.find('i').attr('class', '').addClass(
                                 'ti-check');
                             jQuery('#agreement_modal').modal('hide');
                             toastr[response.state](response.message);
                         } else {
+                            // form.trigger("reset");
+                            add_btn.removeAttr('disabled');
+                            add_btn.find('i').attr('class', '').addClass(
+                                'ti-check');
                             toastr[response.state](response.message);
-                            form.trigger("reset");
+
                         }
                     }
                 });
@@ -673,14 +753,17 @@
             $('#agreement_form').trigger('reset');
 
         });
-
+      populateTable('enrolled');
+      function populateTable(type){
+        $('.filter-link').removeClass('active');
+        $('.filter-link.'+type).addClass('active');
         let table = $('#lms_table').DataTable({
             bLengthChange: true,
             "bDestroy": true,
             "lengthChange": true,
             "lengthMenu": [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, "All"]
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
             ],
             processing: true,
             serverSide: true,
@@ -689,8 +772,8 @@
             ],
             "ajax": $.fn.dataTable.pipeline({
                 url: '{!! $url !!}',
-                data: function() {
-                    //pass variable
+                data: {
+                    type: type
                 },
                 pages: 5 // number of pages to cache
             }),
@@ -735,6 +818,14 @@
                 {
                     data: 'country',
                     name: 'country'
+                },
+                {
+                    data: 'enrolled',
+                    name: 'enrolled'
+                },
+                {
+                    data: 'reg_src',
+                    name: 'reg_src'
                 },
                 {
                     data: 'status',
@@ -846,7 +937,7 @@
             ],
             responsive: true,
         });
-
+      }
         // let table = $('#allData').DataTable() ;
         // table.clearPipeline();
         // table.ajax.reload();

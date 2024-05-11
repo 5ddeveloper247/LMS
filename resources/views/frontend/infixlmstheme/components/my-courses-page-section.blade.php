@@ -1,6 +1,6 @@
 <div>
     <div class="main_content_iner main_content_padding">
-        <div class="dashboard_lg_card">
+        <div class="dashboard_lg_card h-auto">
             <div class="container-fluid no-gutters">
                 <div class="my_courses_wrapper">
                     <div class="row">
@@ -10,14 +10,13 @@
                                     @if (routeIs('myClasses'))
                                         {{ __('courses.Live Class') }}
                                     @elseif(routeIs('myQuizzes'))
-                                        {{ __('My Test-Prep') }}
+                                        {{ __('My Prep-Course') }}
                                     @else
                                         {{ __('My Programs') }}
                                     @endif
                                 </h3>
                             </div>
                         </div>
-
                         @if (isset($courses))
                             @php
                                 if (routeIs('myClasses')) {
@@ -33,109 +32,60 @@
                             @endphp
                         @endif
                     </div>
-
-                    {{--                    @if (isset($courses)) --}}
-                    {{--                        <div class="row d-flex align-items-center mb-4 mb-lg-5"> --}}
-                    {{--                            <div class="col-xl-6 col-md-6"> --}}
-                    {{--                                <div class="short_select d-flex align-items-center pt-0 pb-3"> --}}
-                    {{--                                    <h5 class="mr_10 font_16 f_w_500 mb-0">{{ __('frontend.Filter By') }}:</h5> --}}
-                    {{--                                    <input type="hidden" --}}
-                    {{--                                           id="siteUrl" value="{{ route(\Request::route()->getName()) }}"> --}}
-                    {{--                                    <select class="theme_select my-course-select w-50" id="categoryFilter"> --}}
-                    {{--                                        <option value="" data-display="{{ __('frontend.All Categories') }}"> --}}
-                    {{--                                            {{ __('frontend.All Categories') }}</option> --}}
-                    {{--                                        @foreach ($categories as $category) --}}
-                    {{--                                            <option value="{{ $category->id }}" --}}
-                    {{--                                                {{ @$category_id == $category->id ? 'selected' : '' }}> --}}
-                    {{--                                                {{ $category->name }}</option> --}}
-                    {{--                                        @endforeach --}}
-                    {{--                                    </select> --}}
-                    {{--                                </div> --}}
-                    {{--                            </div> --}}
-                    {{--                            <div class=" col-xl-6 col-md-6 pb-3"> --}}
-                    {{--                                <form action="{{ route(\Request::route()->getName()) }}"> --}}
-                    {{--                                    <div class="input-group theme_search_field pt-0 pb-3 float-right w-50"> --}}
-                    {{--                                        <div class="input-group-prepend"> --}}
-                    {{--                                            <button class="btn" type="button" id="button-addon1"><i --}}
-                    {{--                                                    class="ti-search"></i> --}}
-                    {{--                                            </button> --}}
-                    {{--                                        </div> --}}
-
-                    {{--                                        <input type="text" class="form-control" name="search" --}}
-                    {{--                                               placeholder="{{ $search_text }}" value="{{ $search }}" --}}
-                    {{--                                               onfocus="this.placeholder = ''" --}}
-                    {{--                                               onblur="this.placeholder = '{{ $search_text }}'"> --}}
-
-                    {{--                                    </div> --}}
-                    {{--                                </form> --}}
-                    {{--                            </div> --}}
-                    {{--                        </div> --}}
-                    {{--                    @endif --}}
                     <div class="row">
                         @if (isset($programs))
-
                             @foreach ($programs as $SinglePrograms)
                                 @php
                                     $program = $SinglePrograms->program;
                                 @endphp
-
-                                <div class="col-xl-4 col-md-6">
-
-                                    <div class="couse_wizged">
-                                        <div class="thumb">
-                                            <div class="thumb_inner lazy"
+                                <div class="col-xl-4 col-sm-6 col-12 my-2">
+                                    <div class="couse_wizged border">
+                                        <div class="thumb" >
+                                            <div class="thumb_inner lazy h-100 mYprogram_cards"
                                                 data-src="{{ getCourseImage($program->icon) }}">
-
                                             </div>
-
                                         </div>
-                                        <div class="course_content">
-                                            <div class="d-flex justify-content-around my-2">
-                                                <a href="{{ route('programs.detail', [$program->id]) }}">
-                                                    <h4 class="noBrake" title=" {{ $program->programtitle }}">
+                                        <div class="course_content py-3 px-2">
+                                            <div class="d-flex justify-content-between my-2">
+                                                <a href="{{ route('programs.detail', [$program->id]) }}"
+                                                    style="width: 65%;">
+                                                    <h4 class="noBrake"
+                                                        title="{{ $program->programtitle }} {{ isset($SinglePrograms->plan->plan_order) ? '(Plan' . ' ' . $SinglePrograms->plan->plan_order . ')' : '' }}">
+                                                        <!-- noBrake -->
                                                         {{ $program->programtitle }}
-                                                        ({{ 'Plan' . ' ' . $SinglePrograms->plan->plan_order }})
+                                                        @if (isset($SinglePrograms->plan->plan_order))
+                                                            ({{ 'Plan' . ' ' . $SinglePrograms->plan->plan_order }})
+                                                        @endif
                                                     </h4>
                                                 </a>
 
                                                 <div class="d-flex align-items-center gap_15">
                                                     <div class="rating_cart">
-                                                        {{--                                                    <div class="rateing"> --}}
-                                                        {{--                                                        <span>5/5</span> --}}
-                                                        {{--                                                        <i class="fas fa-star"></i> --}}
-                                                        {{--                                                    </div> --}}
                                                     </div>
 
                                                     <div class="progress_percent flex-fill text-right">
-                                                        <a href="{{ route('my.program.payment.plan', [$program->id, 'plan_id' => $SinglePrograms->plan_id]) }}"
+                                                        <a href="{{ route('my.program.payment.plan', [$program->id, 'plan_id' => isset($SinglePrograms->plan_id) ? $SinglePrograms->plan_id : '']) }}"
                                                             class="link_value theme_btn small_btn4 custom_student_btn">View
                                                             Plan</a>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="course_less_students">
+                                            <div class="course_less_students d-flex justify-content-between">
                                                 <a class="float-left">
                                                     <i class="ti-agenda"></i>
-                                                    {{ round((strtotime($SinglePrograms->plan->edate) - strtotime($SinglePrograms->plan->sdate)) / 604800, 1) }}
+                                                    @if (isset($SinglePrograms->plan_id) && isset($SinglePrograms->plan->sdate))
+                                                        {{ round((strtotime($SinglePrograms->plan->edate) - strtotime($SinglePrograms->plan->sdate)) / 604800, 1) }}
+                                                    @endif
+
                                                     {{ __('Weeks') }}
                                                 </a>
                                                 <a class="float-right">
                                                     <i class="ti-user"></i>@php
-                                                        
+
                                                     @endphp
-                                                    {{ $SinglePrograms->plan->programPlanViseEnrollCount }}
+                                                    {{ isset($SinglePrograms->plan->programPlanViseEnrollCount) ? $SinglePrograms->plan->programPlanViseEnrollCount : '' }}
                                                     {{ __('student.Students') }}
                                                 </a>
-                                                {{--                                                        @if (isModuleActive('CPD')) --}}
-                                                {{--                                                            @if (count($cpds) > 0) --}}
-                                                {{--                                                                <a class="cpd cpdValue" --}}
-                                                {{--                                                                   data-course_id={{ $course->id }} data-toggle="modal" --}}
-                                                {{--                                                                   data-target="#exampleModal"> --}}
-                                                {{--                                                                    <i class="ti-bolt"></i> --}}
-                                                {{--                                                                    {{ __('cpd.CPD') }} --}}
-                                                {{--                                                                </a> --}}
-                                                {{--                                                            @endif --}}
-                                                {{--                                                        @endif --}}
                                             </div>
                                         </div>
                                     </div>
@@ -149,25 +99,24 @@
                         @endif
                         @if ($type == 3)
                             @if (isset($totalClasses))
+                              {{-- @if(count($totalClasses) == 0) There are no Classes to show. @endif --}}
                                 @foreach ($totalClasses as $Class)
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="quiz_wizged">
+                                    <div class="col-xl-4 col-sm-6 col-12 mx-1 my-2">
+                                        <div class="quiz_wizged shadow rounded p-3">
                                             <div class="thumb">
                                                 <a
                                                     href="{{ courseDetailsUrl($Class->id, $Class->type, $Class->slug) . '?program_id=' . $Class->program_id }}">
-                                                    <div class="thumb">
+                                                    <div class="thumb" >
                                                         <div class="thumb_inner lazy"
-                                                            data-src="{{ getCourseImage($Class->thumbnail) }}">
+                                                            data-src="{{ getCourseImage($Class->thumbnail) }}" style="height:200px">
 
 
                                                         </div>
                                                         <span class="live_tag">{{ __('student.Live') }}</span>
                                                     </div>
                                                 </a>
-
-
                                             </div>
-                                            <div class="course_content">
+                                            <div class="course_content py-3 px-2">
                                                 <a
                                                     href="{{ courseDetailsUrl($Class->id, $Class->type, $Class->slug) . '?program_id=' . $Class->program_id }}">
                                                     <h4 class="noBrake" title="{{ $Class->title }}">
@@ -180,52 +129,64 @@
                                                         <i class="fas fa-star"></i>
                                                     </div>
                                                 </div>
-                                                {{--                                                        <div class="course_less_students"> --}}
-                                                {{--                                                            <a> <i class="ti-agenda"></i> {{ $Class->class->total_class }} --}}
-                                                {{--                                                                {{ __('student.Classes') }}</a> --}}
-                                                {{--                                                            <a> --}}
-                                                {{--                                                                <i class="ti-user"></i> {{ $Class->total_enrolled }} --}}
-                                                {{--                                                                {{ __('student.Students') }} --}}
-                                                {{--                                                            </a> --}}
-                                                {{--                                                        </div> --}}
+                                                    <div class="course_less_students d-flex justify-content-between course-small">
+                                                        <small class="small_tag_color d-flex align-items-center gap-2">
+                                                            <i class="ti-calendar"></i>
+                                                            <span>
+                                                            Start Date:<br>
+                                                            {{ $Class->class->start_date }}
+                                                            </span>
+                                                        </small>
+                                                        <small class="small_tag_color d-flex align-items-center gap-2">
+                                                            <i class="ti-calendar"></i>
+                                                            <span>
+                                                                End Date:<br>
+                                                            {{ $Class->class->end_date }}
+                                                            </span>
+                                                        </small>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
+
                             @endif
                         @else
                             @if (isset($courses))
                                 @foreach ($courses as $SingleCourse)
                                     @php
                                         $course = $SingleCourse->course;
-                                        
+                                        if (isset($course->parent)) {
+                                            $course_title = $course->parent->title;
+                                        } else {
+                                            $course_title = $course->title;
+                                        }
                                     @endphp
-                                    <div class="col-xl-4 col-md-6">
+                                    <div class="col-xl-4 col-sm-6 col-12">
                                         @if ($course->type == 1)
-                                            <div class="quiz_wizged">
+                                            <div class="quiz_wizged border w-100">
                                                 <a
                                                     href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $SingleCourse->course_type }}">
-                                                    <div class="thumb">
+                                                    <div class="thumb course_student-thumb" >
                                                         <div class="thumb_inner lazy"
                                                             data-src="{{ getCourseImage($course->thumbnail) }}">
-
-                                                            {{--                                                            <x-price-tag :price="$course->price" --}}
-                                                            {{--                                                                         :discount="$course->discount_price"/> --}}
-
-
                                                         </div>
                                                         @if ($SingleCourse->course_type == 4)
                                                             <span class="quiz_tag">{{ __('Full Course') }}</span>
                                                         @elseif($SingleCourse->course_type == 5)
                                                             <span
-                                                                class="quiz_tag">{{ __('Test-Perp') }}<small>(on-demand)</small></span>
-                                                        @else
+                                                                class="quiz_tag">{{ __('Prep-Course') }}<small>(on-demand)</small></span>
+                                                        @elseif($SingleCourse->course_type == 6)
                                                             <span
-                                                                class="quiz_tag">{{ __('Test-Perp') }}<small>(Live)</small></span>
+                                                                class="quiz_tag">{{ __('Prep-Course') }}<small>(Live)</small></span>
+                                                        @elseif($SingleCourse->course_type == 8)
+                                                            <span class="quiz_tag">{{ __('Repeat Course') }}</span>
+                                                        @elseif ($SingleCourse->course_type == 9)
+                                                            <span class="quiz_tag">{{ __('Individual Course') }}</span>
                                                         @endif
                                                     </div>
                                                 </a>
-                                                <div class="course_content">
+                                                <div class="course_content pb-2 px-2">
                                                     <a
                                                         href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $SingleCourse->course_type }}">
                                                         <h4 class="noBrake" title="{{ $course->title }}">
@@ -238,7 +199,7 @@
                                                             <i class="fas fa-star"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="course_less_students">
+                                                    <div class="course_less_students d-flex justify-content-between">
                                                         @if ($course->type == 6)
                                                             <a> <i class="ti-agenda"></i>
                                                                 {{ count($course->parent->classes) }}
@@ -263,9 +224,6 @@
                                                         @endif
                                                         @if (isModuleActive('CPD'))
                                                             @if (count($cpds) > 0)
-                                                                {{-- <a onclick="cpd({{ $course->id }})" class="cpd">
-<i class="ti-bolt"></i> {{ __('cpd.CPD') }}
-</a> --}}
                                                                 <a class="cpd cpdvalue" data-toggle="modal"
                                                                     data-course_id={{ $course->id }}
                                                                     data-target="#exampleModal">
@@ -278,24 +236,19 @@
                                                 </div>
                                             </div>
                                         @elseif($course->type == 2)
-                                            <div class="quiz_wizged">
+                                            <div class="quiz_wizged border w-100">
                                                 <a
-                                                    href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) }}">
-                                                    <div class="thumb">
+                                                    href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $course->type }}">
+                                                    <div class="thumb course_student-thumb" >
                                                         <div class="thumb_inner lazy"
                                                             data-src="{{ getCourseImage($course->thumbnail) }}">
-
-                                                            {{--                                                            <x-price-tag :price="$course->price" --}}
-                                                            {{--                                                                         :discount="$course->discount_price"/> --}}
-
-
                                                         </div>
                                                         <span class="quiz_tag">{{ __('Big Quiz') }}</span>
                                                     </div>
                                                 </a>
-                                                <div class="course_content">
+                                                <div class="course_content pb-2 px-2">
                                                     <a
-                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) }}">
+                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $course->type }}">
                                                         <h4 class="noBrake" title="{{ $course->title }}">
                                                             {{ $course->title }}
                                                         </h4>
@@ -306,7 +259,7 @@
                                                             <i class="fas fa-star"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="course_less_students">
+                                                    <div class="course_less_students d-flex justify-content-between">
 
                                                         <a> <i class="ti-agenda"></i>{{ count($course->quiz->assign) }}
                                                             {{ __('student.Question') }}</a>
@@ -316,9 +269,6 @@
                                                         </a>
                                                         @if (isModuleActive('CPD'))
                                                             @if (count($cpds) > 0)
-                                                                {{-- <a onclick="cpd({{ $course->id }})" class="cpd">
-    <i class="ti-bolt"></i> {{ __('cpd.CPD') }}
-    </a> --}}
                                                                 <a class="cpd cpdvalue" data-toggle="modal"
                                                                     data-course_id={{ $course->id }}
                                                                     data-target="#exampleModal">
@@ -331,19 +281,13 @@
                                                 </div>
                                             </div>
                                         @elseif($course->type == 3)
-                                            <div class="quiz_wizged">
+                                            <div class="quiz_wizged border w-100">
                                                 <div class="thumb">
                                                     <a
-                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) }}">
-                                                        <div class="thumb">
+                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $course->type }}">
+                                                        <div class="thumb" >
                                                             <div class="thumb_inner lazy"
                                                                 data-src="{{ getCourseImage($course->thumbnail) }}">
-                                                                {{--                                                                <x-class-close-tag :class="$course->class"/> --}}
-
-                                                                {{--                                                                <x-price-tag :price="$course->price" --}}
-                                                                {{--                                                                             :discount="$course->discount_price"/> --}}
-
-
                                                             </div>
                                                             <span class="live_tag">{{ __('student.Live') }}</span>
                                                         </div>
@@ -351,9 +295,9 @@
 
 
                                                 </div>
-                                                <div class="course_content">
+                                                <div class="course_content pb-2 px-2">
                                                     <a
-                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) }}">
+                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $course->type }}">
                                                         <h4 class="noBrake" title="{{ $course->title }}">
                                                             {{ $course->title }}
                                                         </h4>
@@ -364,7 +308,7 @@
                                                             <i class="fas fa-star"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="course_less_students">
+                                                    <div class="course_less_students d-flex justify-content-between">
                                                         <a> <i class="ti-agenda"></i>
                                                             {{ $course->class->total_class }}
                                                             {{ __('student.Classes') }}</a>
@@ -376,29 +320,21 @@
                                                 </div>
                                             </div>
                                         @elseif($course->type == 7)
-                                            <div class="quiz_wizged">
+                                            <div class="quiz_wizged border w-100">
                                                 <div class="thumb">
                                                     <a
-                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) }}">
-                                                        <div class="thumb">
+                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $course->type }}">
+                                                        <div class="thumb" >
                                                             <div class="thumb_inner lazy"
                                                                 data-src="{{ getCourseImage($course->thumbnail) }}">
-                                                                {{--                                                                <x-class-close-tag :class="$course->class"/> --}}
-
-                                                                {{--                                                                <x-price-tag :price="$course->price" --}}
-                                                                {{--                                                                             :discount="$course->discount_price"/> --}}
-
-
                                                             </div>
                                                             <span class="live_tag">{{ __('Time Table') }}</span>
                                                         </div>
                                                     </a>
-
-
                                                 </div>
-                                                <div class="course_content">
+                                                <div class="course_content pb-2 px-2">
                                                     <a
-                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) }}">
+                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $course->type }}">
                                                         <h4 class="noBrake" title="{{ $course->title }}">
                                                             {{ $course->title }}
                                                         </h4>
@@ -409,20 +345,194 @@
                                                             <i class="fas fa-star"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="course_less_students">
-                                                        {{--                                                        <a> <i class="ti-agenda"></i> {{ $course->class->total_class }} --}}
-                                                        {{--                                                            {{ __('student.Classes') }}</a> --}}
-                                                        {{--                                                        <a> --}}
+                                                    <div class="course_less_students d-flex justify-content-between">
                                                         <i class="ti-user"></i> {{ $course->total_enrolled }}
                                                         {{ __('student.Students') }}
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
+                                        @elseif($course->type == 8)
+                                            @php
+                                                $today = \Carbon\Carbon::now()->format('Y-m-d');
+                                                $start_date = \Carbon\Carbon::parse($course->start_date)->format('Y-m-d');
+                                                $end_date = \Carbon\Carbon::parse($course->end_date)->format('Y-m-d');
+                                            @endphp
+                                            @if ($start_date <= $today && $end_date >= $today)
+                                                <div class="quiz_wizged border w-100">
+                                                    <div class="thumb">
+                                                        <a
+                                                            href="{{ route('repeat-course') . '?course_id=' . $course->id }}">
+                                                            <div class="thumb " >
+                                                                <div class="thumb_inner lazy"
+                                                                    data-src="{{ getCourseImage($course->thumbnail) }}">
+                                                                </div>
+                                                                <span
+                                                                    class="live_tag">{{ __('Repeat Course') }}</span>
+                                                            </div>
+                                                        </a>
+
+
+                                                    </div>
+                                                    <div class="course_content pb-2 px-2">
+                                                        <a
+                                                            href="{{ route('repeat-course') . '?course_id=' . $course->id }}">
+                                                            <h4 class="noBrake" title="{{ $course->title }}">
+                                                                {{ $course->title }}
+                                                            </h4>
+                                                        </a>
+                                                        <div class="rating_cart">
+                                                            <div class="rateing">
+                                                                <span>{{ $course->totalReview }}/5</span>
+                                                                <i class="fas fa-star"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="course_less_students d-flex justify-content-between">
+                                                            <a>
+                                                                <i class="ti-agenda"></i>
+                                                                {{ count($course->quiz->assign) }}
+                                                                {{ __('frontend.Question') }}</a>
+                                                            <a>
+                                                                <i class="ti-user"></i> {{ $course->total_enrolled }}
+                                                                {{ __('student.Students') }}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @elseif($course->type == 9)
+                                            <div class="quiz_wizged border w-100">
+                                                <a
+                                                    href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $course->type }}">
+                                                    <div class="thumb course_student-thumb" >
+                                                        <div class="thumb_inner lazy"
+                                                            data-src="{{ getCourseImage($course->thumbnail) }}">
+                                                        </div>
+                                                        <span class="quiz_tag">{{ __('Individual Course') }}</span>
+                                                    </div>
+                                                </a>
+                                                <div class="course_content pb-2 px-2">
+                                                    <a
+                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $course->type }}">
+                                                        <h4 class="noBrake" title="{{ $course->title }}">
+                                                            {{ $course->title }}
+                                                        </h4>
+                                                    </a>
+                                                    <div class="rating_cart">
+                                                        <div class="rateing">
+                                                            <span>{{ $course->totalReview }}/5</span>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="course_less_students d-flex justify-content-between">
+                                                        @if ($course->type == 6)
+                                                            <a> <i class="ti-agenda"></i>
+                                                                {{ count($course->parent->classes) }}
+                                                                {{ __('Classes') }}</a>
+                                                        @else
+                                                            <a>
+                                                                <i class="ti-agenda"></i>
+                                                                {{ count($course->lessons) }}
+                                                                {{ __('student.Lessons') }}
+                                                            </a>
+                                                        @endif
+                                                        @if ($course->type == 2)
+                                                            <a>
+                                                                <i class="ti-user"></i> {{ $course->total_enrolled }}
+                                                                {{ __('frontend.Students') }}
+                                                            </a>
+                                                        @else
+                                                            <a>
+                                                                <i class="ti-user"></i>
+                                                                {{ $SingleCourse->course_enrolled_count }}
+                                                                {{ __('frontend.Students') }}
+                                                            </a>
+                                                        @endif
+                                                        @if (isModuleActive('CPD'))
+                                                            @if (count($cpds) > 0)
+                                                                <a class="cpd cpdvalue" data-toggle="modal"
+                                                                    data-course_id={{ $course->id }}
+                                                                    data-target="#exampleModal">
+                                                                    <i class="ti-bolt"></i>
+                                                                    {{ __('cpd.CPD') }}
+                                                                </a>
+                                                            @endif
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @elseif($course->type == 4 || $course->type == 5 || $course->type == 6)
+                                            <div class="quiz_wizged border w-100">
+                                                <a
+                                                    href="{{ courseDetailsUrl($course->id, $course->type, $course->parent->slug) }}">
+                                                    <div class="thumb course_student-thumb" >
+                                                        <div class="thumb_inner lazy"
+                                                            data-src="{{ getCourseImage($course->thumbnail) }}">
+                                                        </div>
+                                                        <span class="quiz_tag">
+                                                            @if ($course->type == 4)
+                                                                {{ __('Full Course') }}
+                                                            @elseif ($course->type == 5)
+                                                                {{ __('Prep-Course (On-Demand)') }}
+                                                            @elseif ($course->type == 6)
+                                                                {{ __('Prep-Course (Live)') }}
+                                                            @endif
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                                <div class="course_content pb-2 px-2">
+                                                    <a
+                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->parent->slug) }}">
+                                                        <h4 class="noBrake" title="{{ $course_title }}">
+                                                            {{ $course_title }}
+                                                        </h4>
+                                                    </a>
+                                                    <div class="rating_cart">
+                                                        <div class="rateing">
+                                                            <span>{{ $course->totalReview }}/5</span>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="course_less_students d-flex justify-content-between">
+                                                        @if ($course->type == 6)
+                                                            <a> <i class="ti-agenda"></i>
+                                                                {{ count($course->parent->classes) }}
+                                                                {{ __('Classes') }}</a>
+                                                        @else
+                                                            <a>
+                                                                <i class="ti-agenda"></i>
+                                                                {{ count($course->lessons) }}
+                                                                {{ __('student.Lessons') }}
+                                                            </a>
+                                                        @endif
+                                                        @if ($course->type == 2)
+                                                            <a>
+                                                                <i class="ti-user"></i> {{ $course->total_enrolled }}
+                                                                {{ __('frontend.Students') }}
+                                                            </a>
+                                                        @else
+                                                            <a>
+                                                                <i class="ti-user"></i>
+                                                                {{ $SingleCourse->course_enrolled_count }}
+                                                                {{ __('frontend.Students') }}
+                                                            </a>
+                                                        @endif
+                                                        @if (isModuleActive('CPD'))
+                                                            @if (count($cpds) > 0)
+                                                                <a class="cpd cpdvalue" data-toggle="modal"
+                                                                    data-course_id={{ $course->id }}
+                                                                    data-target="#exampleModal">
+                                                                    <i class="ti-bolt"></i>
+                                                                    {{ __('cpd.CPD') }}
+                                                                </a>
+                                                            @endif
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
                                     </div>
                                 @endforeach
-
                                 <div class="mt-4">
                                     {{ $courses->links() }}
                                 </div>
@@ -434,7 +544,7 @@
                                     @if (routeIs('myClasses'))
                                         <p class="text-center">{{ __('student.No Class Purchased Yet') }}!</p>
                                     @elseif(routeIs('myQuizzes'))
-                                        <p class="text-center">{{ __('student.No Quiz Purchased Yet') }}!</p>
+                                        <p class="text-center">{{ __('No Course Purchased Yet') }}!</p>
                                     @else
                                         <p class="text-center">{{ __('No Program Purchased Yet') }}!</p>
                                     @endif
@@ -442,7 +552,6 @@
                                 </div>
                             </div>
                         @endif
-
                     </div>
                 </div>
             </div>
@@ -451,46 +560,6 @@
 </div>
 
 @if (isModuleActive('CPD'))
-    {{-- <div class="modal cs_modal fade admin-query" id="makeItCPd" role="dialog">
-<div class="modal-dialog modal-lg modal-dialog-centered">
-<div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title">{{ __('cpd.CPD') }}</h5>
-        <button type="button" class="close" data-bs-dismiss="modal"><i class="ti-close "></i></button>
-    </div>
-
-    <form action="{{ route('cpd.course_to_cpd') }}" method="Post">
-        <div class="modal-body">
-            @csrf
-
-            <div class="cpdClass">
-                <div class="">
-                    <label class="" for="">{{ __('cpd.Select CPD') }}
-                    </label>
-                    <select class="active" name="cpd_id">
-                        <option data-display="{{ __('cpd.Select CPD') }}" value="">
-                            {{ __('cpd.Select CPD') }} </option>
-                        @foreach ($cpds as $cpd)
-                            <option value="{{ $cpd->id }}">{{ $cpd->title }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-        </div>
-        <div class="modal-footer">
-            <div class="mt-40 d-flex justify-content-between">
-                <button type="button" class="theme_line_btn mr-2"
-                    data-bs-dismiss="modal">{{ __('common.Cancel') }}
-                </button>
-                <button class="theme_btn " type="submit">{{ __('common.Submit') }}</button>
-            </div>
-        </div>
-    </form>
-
-</div>
-</div>
-</div> --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

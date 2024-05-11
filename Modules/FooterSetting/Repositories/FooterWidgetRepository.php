@@ -45,8 +45,9 @@ class FooterWidgetRepository
 
     public function save($data)
     {
+      //dd($data['page_id']);
         $widget = $this->widget::create([
-            'slug' => $data['page'] ?? '',
+            'slug' => $data['slug'] ?? '',
             'category' => $data['category'] ?? '',
             'section' => $data['category'] ?? '',
             'page' => $data['page'] ?? '',

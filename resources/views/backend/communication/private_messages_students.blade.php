@@ -27,11 +27,12 @@
                                 <div class="serach_field_2">
                                     <div class="search_inner">
                                         <form active="#">
-                                            <div class="search_field">
+                                            <div class="search_field search_field_communicate">
                                                 <input type="text" id="search_input" onkeyup="searchReceiver()"
-                                                       placeholder="{{__('communication.Search content here')}}...">
+                                                       placeholder="{{__('communication.Search content here')}}..." class="search_input">
+                                                       <button type="submit" class="communicate_submit"><i class="ti-search"></i></button>
                                             </div>
-                                            <button type="submit"><i class="ti-search"></i></button>
+                                           
                                         </form>
                                     </div>
                                 </div>
@@ -88,7 +89,7 @@
 {{--                                                      $tooltip = "You have no permission to Send";--}}
 {{--                                                  }--}}
 {{--                                            @endphp--}}
-                                            <button class="btn_1 submitMessageBtn" type="submit" id="submitMessage"
+                                            <button class="btn_1 submitMessageBtn theme_btn" type="submit" id="submitMessage"
                                                     data-toggle="tooltip"
                                                     title="">{{__('common.Send')}}</button>
                                         </form>

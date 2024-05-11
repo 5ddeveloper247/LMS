@@ -5,20 +5,20 @@ namespace App;
 use Carbon\Carbon;
 use App\Models\LmsInstitute;
 use App\Traits\UserChatMethods;
-use Illuminate\Support\Facades\Auth;
+use App\Models\UserSetting;
 use Modules\Forum\Entities\Forum;
 use App\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Log;
 use Modules\Org\Entities\OrgBranch;
+use Illuminate\Support\Facades\Auth;
 use Modules\Org\Entities\OrgPosition;
 use Modules\Forum\Entities\ForumReply;
 use Modules\Payment\Entities\Checkout;
 use Modules\Payment\Entities\Withdraw;
 use Illuminate\Support\Facades\Session;
 use Modules\Setting\Entities\UserBadge;
-use Modules\StudentSetting\Entities\TutorReveiws;
 use Modules\UserType\Entities\UserRole;
 use Illuminate\Notifications\Notifiable;
 use Modules\Payment\Entities\Subscriber;
@@ -41,15 +41,19 @@ use App\Notifications\PasswordResetNotification;
 use Modules\CourseSetting\Entities\CourseReveiw;
 use Modules\Quiz\Entities\StudentTakeOnlineQuiz;
 use Modules\Affiliate\Entities\AffiliateWithdraw;
+use Modules\StudentSetting\Entities\TutorReveiws;
 use Modules\CourseSetting\Entities\CourseEnrolled;
+use Modules\SystemSetting\Entities\PackagePricing;
 use Modules\Affiliate\Entities\AffiliateUserWallet;
 use Modules\Certificate\Entities\CertificateRecord;
 use Modules\OfflinePayment\Entities\OfflinePayment;
 use Modules\OrgInstructorPolicy\Entities\OrgPolicy;
 use Modules\Setting\Entities\UserGamificationPoint;
+use Modules\SystemSetting\Entities\PackagePurchasing;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Organization\Entities\OrganizationEmployee;
 use Modules\Affiliate\Entities\AffiliateReferralPayment;
+use Modules\SystemSetting\Entities\TutorHiring;
 
 //class User extends Authenticatable
 class User extends Authenticatable implements MustVerifyEmail
@@ -84,6 +88,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Role::class);
     }
 
+    public function hireTutor()
+    {
+        return $this->belongsTo(TutorHiring::class, 'instructor_id', 'id');
+    }
+
+    // public function userPackagePurchasing()
+    // {
+    //     return $this->hasOne(PackagePurchasing::class);
+    // }
+
     public function currency()
     {
         return $this->belongsTo(Currency::class)->withDefault();
@@ -102,6 +116,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function subscriptions()
     {
         return $this->hasMany(Subscriber::class, 'user_id', 'id')->whereDate('valid', '>=', Carbon::now());
+    }
+
+    public function userSetting(){
+
+      return $this->hasOne(UserSetting::class, 'user_id');
     }
 
 
@@ -240,7 +259,29 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function totalEnrolled()
     {
-        $totalEnrolled = Course::where('user_id', '=', $this->id)->sum('total_enrolled');
+        $totalEnrolled = 0;
+        $user = $this;
+        if ($user->role_id == 2) {
+            $courses = Course::where('user_id', $user->id)->pluck('id');
+            $program_ids = [];
+            if (count($courses)) {
+                $programs = Program::query();
+                foreach ($courses as $course) {
+                    $programs = $programs->orWhere('allcourses', 'like', '%"' . $course . '"%');
+                }
+                $programs = $programs->pluck('id');
+                $program_ids = $programs->unique();
+            }
+            $totalEnrolled = CourseEnrolled::whereIn('program_id', $program_ids)
+                ->orWhereHas('course', function ($query) use ($user) {
+                    $query->where('user_id', '=', $user->id);
+                })->count();
+        } elseif ($this->role_id == 9) {
+
+            $totalEnrolled = CourseEnrolled::whereHas('course', function ($query) use ($user) {
+                $query->where('user_id', '=', $user->id);
+            })->count();
+        }
         return $totalEnrolled;
     }
 
@@ -259,7 +300,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function userTutorReviews()
     {
 
-        return $this->tutorReviews()->where('user_id',Auth::id());
+        return $this->tutorReviews()->where('user_id', Auth::id());
     }
     public function totalRating()
     {
@@ -276,21 +317,31 @@ class User extends Authenticatable implements MustVerifyEmail
             $totalRatings['rating'] += $Review->review_star;
         }
 
+        // if ($totalRatings['total'] != 0) {
+        //     $avg = ($totalRatings['rating'] / $totalRatings['total']);
+        // } else {
+        //     $avg = 0;
+        // }
+
+        // if ($avg != 0) {
+        //     if ($avg - floor($avg) > 0) {
+        //         $rate = number_format($avg, 1);
+        //     } else {
+        //         $rate = number_format($avg, 0);
+        //     }
+        //     $totalRatings['rating'] = $rate;
+        // }
+        // return $totalRatings;
         if ($totalRatings['total'] != 0) {
             $avg = ($totalRatings['rating'] / $totalRatings['total']);
         } else {
             $avg = 0;
         }
 
-        if ($avg != 0) {
-            if ($avg - floor($avg) > 0) {
-                $rate = number_format($avg, 1);
-            } else {
-                $rate = number_format($avg, 0);
-            }
-            $totalRatings['rating'] = $rate;
-        }
+        $rate = round($avg);
+        $totalRatings['rating'] = $rate;
         return $totalRatings;
+
     }
 
     public function sendEmailVerificationNotification()

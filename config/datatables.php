@@ -39,7 +39,7 @@ return [
      * DataTables internal index id response column name.
      */
     'index_column'   => 'DT_RowIndex',
-
+    'rowReorder' => true,
     /*
      * List of available builders for DataTables.
      * This is where you can register your custom dataTables builder.

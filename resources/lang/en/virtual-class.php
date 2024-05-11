@@ -28,7 +28,7 @@ return [
     'Setup' => 'Virtual Class Setup',
     'Update' => 'Update',
     'Big Blue Button' => 'Big Blue Button',
-    'Zoom' => 'Zoom',
+    'Zoom' => 'Teams',
     'Default Class' => 'Default Class',
     'Browse Image file' => 'Browse Image file',
     'This class is free' => 'This class is free',

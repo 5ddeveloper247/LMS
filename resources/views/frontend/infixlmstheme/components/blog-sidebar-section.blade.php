@@ -13,9 +13,9 @@
         </form>
 
         <div class="blog_sidebar_box mb_30">
-            <h4 class="font_18 f_w_700 mb_10">
+            <h2 class=" f_w_700 mb_10">
                 {{__('frontend.Blog categories')}}
-            </h4>
+            </h2>
             <div class="home6_border w-100 mb_20"></div>
             <ul class="Check_sidebar mb-0">
                 @foreach($categories as $cat)
@@ -24,7 +24,7 @@
                             <input type="checkbox" value="{{$cat->id}}"
                                    class="category" {{in_array($cat->id,explode(',',$category))?'checked':''}}>
                             <span class="checkmark mr_15"></span>
-                            <span class="label_name">{{$cat->title}}</span>
+                            <p class="label_name">{{$cat->title}}</p>
                         </label>
                     </li>
                 @endforeach
@@ -32,17 +32,17 @@
             </ul>
         </div>
         <div class="blog_sidebar_box mb_60">
-            <h4 class="font_18 f_w_700 mb_10">
+            <h2 class="f_w_700 mb_10">
                 {{__('frontend.Recent Posts')}}
-            </h4>
+            </h2>
             <div class="home6_border w-100 mb_20"></div>
             <div class="news_lists">
                 @foreach($latestPosts as $post)
                     <div class="single_newslist">
                         <a href="{{route('blogDetails',[$post->slug])}}">
-                            <h4>{{$post->title}}</h4>
+                            <h3>{{$post->title}}</h3>
                         </a>
-                        <p>{{ showDate(@$post->authored_date ) }} / {{$post->category->title}}</p>
+                        <span>{{ showDate(@$post->authored_date ) }} / {{$post->category->title}}</span>
                     </div>
                 @endforeach
 
@@ -50,9 +50,9 @@
         </div>
         @if(count($tags)!=0)
             <div class="blog_sidebar_box mb_30 p-0 border-0">
-                <h4 class="font_18 f_w_700 mb_10">
+                <h2 class="f_w_700 mb_10">
                     {{__('frontend.Keywords')}}
-                </h4>
+                </h2>
                 <div class="home6_border w-100 mb_20"></div>
                 <div class="keyword_lists d-flex align-items-center flex-wrap gap_10">
                     @foreach($tags as $tag)

@@ -5,14 +5,14 @@
 
     <section class="admin-visitor-area">
         <div class="container-fluid p-0">
-            @if(isset($editData))
+            {{-- @if(isset($editData))
                 <div class="row">
                     <div class="offset-lg-10 col-lg-2 text-right col-md-12 mb-20"><a target="_blank"
                                                                                      href="{{route('frontPage',$editData->slug)}}"
                                                                                      class="primary-btn small fix-gr-bg"> <span
                                 class="ti-eye pr-2"></span> {{__('student.Preview')}} </a></div>
                 </div>
-            @endif
+            @endif --}}
 
 
             <div class="row">
@@ -114,7 +114,7 @@
                                     @endforeach
                                 </div>
                                 <div class="row">
-                                    @if(!isset($editData) ||  (isset($editData) && $editData->is_static!=1))
+                                    {{-- @if(!isset($editData) ||  (isset($editData) && $editData->is_static!=1)) --}}
 
                                         <div class="col-lg-12 ">
                                             <div class="primary_input mb-25">
@@ -133,7 +133,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                    @endif
+                                    {{-- @endif --}}
                                     @if(!hasDynamicPage())
                                         <div class="col-xl-8  ">
                                             <div class="primary_input mb-25">

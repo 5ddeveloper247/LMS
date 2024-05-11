@@ -73,13 +73,13 @@
                                                                 <a href="javascript:void(0)"
                                                                    class="link_value theme_btn small_btn4">Paid</a>
                                                                 @else
-                                                                    @if($plan->sdate <= \Carbon\Carbon::now()->format('Y-m-d'))
+{{--                                                                    @if($plan->sdate <= \Carbon\Carbon::now()->format('Y-m-d'))--}}
                                                                         <a href="{{ route('my.payment.plan.installment',[$plan->id,'plan_id'=>$request->plan_id]) }}"
                                                                            class="link_value theme_btn small_btn4" >Pay Now</a>
-                                                                    @else
-                                                                        <a href="javascript:void(0)"
-                                                                           class="link_value theme_btn small_btn4 disabled" >Pay Now</a>
-                                                                    @endif
+{{--                                                                    @else--}}
+{{--                                                                        <a href="javascript:void(0)"--}}
+{{--                                                                           class="link_value theme_btn small_btn4 disabled" >Pay Now</a>--}}
+{{--                                                                    @endif--}}
                                                                 @endif
                                                             </td>
                                                         </tr>

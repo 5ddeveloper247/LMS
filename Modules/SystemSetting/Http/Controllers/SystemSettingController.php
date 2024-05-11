@@ -41,7 +41,7 @@ class SystemSettingController extends Controller
                 return redirect()->back();
 
             } elseif ($config->email_engine_type == 'smtp') {
-
+//dd($config, $email, 'Tester', $config->from_email, $config->from_name, 'Test Mail', 'This is a test mail');
                 send_smtp_mail($config, $email, 'Tester', $config->from_email, $config->from_name, 'Test Mail', 'This is a test mail');
                 Toastr::success('Email Sent Successfully', 'Success');
                 return redirect()->back();
@@ -191,23 +191,15 @@ class SystemSettingController extends Controller
 
     public function footerTemplateUpdate(Request $request)
     {
-        if (demoCheck()) {
-            return redirect()->back();
-        }
-        $request->validate([
+      $request->validate([
             'email_template' => "required"
         ]);
 
 
         try {
-            if (Config::get('app.app_sync')) {
-                Toastr::error('For demo version you can not change this !', 'Failed');
-                return redirect()->back();
-            } else {
                 UpdateGeneralSetting('email_template', $request->email_template);
                 Toastr::success(trans('common.Operation successful'), trans('common.Success'));
                 return redirect()->back();
-            }
 
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
@@ -305,4 +297,3 @@ class SystemSettingController extends Controller
         return back();
     }
 }
-

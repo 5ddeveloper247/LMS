@@ -56,6 +56,11 @@
 
         return translation
     }
+    $('.input-right-icon > button').on('click',function(){
+      var targetInput = $(this).closest('.input-right-icon').find('input');
+      //targetInput.trigger('click');
+      targetInput.focus();
+    });
 
 </script>
 @stack('js')

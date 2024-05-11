@@ -1,6 +1,7 @@
 <!doctype html>
 <html dir="{{ isRtl() ? 'rtl' : '' }}" class="{{ isRtl() ? 'rtl' : '' }}" lang="en" itemscope
     itemtype="{{ url('/') }}">
+
 <style>
     /* .header_area {
         padding: 17px 37px !important;
@@ -8,21 +9,25 @@
 </style>
 
 <head>
+
     {{--    @laravelPWA --}}
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="google-site-verification" content="QY_wf0UjCZDZJVLL_qS5uvK5jQzN8NzLCrIst9OL1-E" />
 
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ Settings('site_title') }}" />
     <meta property="og:description" content="{{ Settings('footer_about_description') }}" />
     <meta property="og:image" content=" @yield('og_image')" />
-
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
     <title>
         @yield('title')
     </title>
+
     @if (!empty(Settings('google_analytics')))
         Global site tag (gtag.js) - Google Analytics
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ Settings('google_analytics') }}"></script>
@@ -39,7 +44,7 @@
         </script>
     @endif
     <!--Google / Search Engine Tags -->
-    <meta itemprop="name" content="{{ Settings('site_name') }}">
+    {{-- <meta itemprop="name" content="{{ Settings('site_name') }}">
 
     <meta itemprop="image" content="{{ asset(Settings('logo')) }}">
     @if (routeIs('frontendHomePage'))
@@ -54,7 +59,7 @@
         <meta itemprop="description" content="{{ $course->meta_description }}">
         <meta property="og:description" content="{{ $course->meta_description }}">
         <meta itemprop="keywords" content="{{ $course->meta_keywords }}">
-    @endif
+    @endif --}}
     <meta itemprop="author" content="{{ Settings('site_name') }}">
 
     <!--Facebook Meta Tags -->

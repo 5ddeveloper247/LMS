@@ -3,54 +3,56 @@
 namespace App\Http\Controllers\Frontend;
 
 
-use App\Events\OneToOneConnection;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\CloverController;
-use App\Jobs\SendGeneralEmail;
-use App\Traits\ImageStore;
-use App\User;
 use App\UserLogin;
 use Carbon\Carbon;
+use App\Models\User;
 use App\TopicReport;
+use App\Traits\ImageStore;
 use App\StudentCustomField;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Jobs\SendGeneralEmail;
+use Illuminate\Http\UploadedFile;
+use App\Events\OneToOneConnection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Session;
-use Modules\Affiliate\Events\ReferralPayment;
-use Modules\Certificate\Entities\CertificateRecord;
-use Modules\CourseSetting\Entities\CourseEnrolled;
-use Modules\OfflinePayment\Entities\OfflinePayment;
 use Modules\Payment\Entities\Cart;
+use Modules\Quiz\Entities\QuizTest;
+use Modules\Survey\Entities\Survey;
 use App\Http\Controllers\Controller;
-use App\Models\UserAuthorzIationAgreement;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Modules\Coupons\Entities\Coupon;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Config;
 use Modules\Payment\Entities\Checkout;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\CloverController;
+use App\Models\UserAuthorzIationAgreement;
 use Modules\CourseSetting\Entities\Course;
+use Modules\StudentSetting\Entities\Program;
+use Modules\Affiliate\Events\ReferralPayment;
 use Modules\Certificate\Entities\Certificate;
+use App\Http\Controllers\Admin\AdminController;
 use Modules\Assignment\Entities\InfixAssignment;
 use Modules\CourseSetting\Entities\CourseReveiw;
 use Modules\CourseSetting\Entities\Notification;
-use Modules\Assignment\Entities\InfixAssignAssignment;
 use Modules\Payment\Entities\PaymentPlanDetails;
-use Modules\Payment\Entities\StudentProgramPaymentPlans;
-use Modules\Quiz\Entities\QuizTest;
-use Modules\Setting\Entities\UserGamificationPoint;
-use Modules\StudentSetting\Entities\Program;
-use Modules\StudentSetting\Entities\TutorReveiws;
-use Modules\Subscription\Entities\SubscriptionCart;
-use Modules\Subscription\Entities\SubscriptionCheckout;
-use Modules\Certificate\Http\Controllers\CertificateController;
-use Modules\Survey\Entities\Survey;
-use Modules\Survey\Http\Controllers\SurveyController;
 use Modules\VirtualClass\Entities\ClassComplete;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\File;
+use Modules\StudentSetting\Entities\TutorReveiws;
+use Modules\CourseSetting\Entities\CourseEnrolled;
+use Modules\Certificate\Entities\CertificateRecord;
+use Modules\OfflinePayment\Entities\OfflinePayment;
+use Modules\Setting\Entities\UserGamificationPoint;
+use Modules\Subscription\Entities\SubscriptionCart;
+use Modules\Survey\Http\Controllers\SurveyController;
+use Modules\Assignment\Entities\InfixAssignAssignment;
+use Modules\Subscription\Entities\SubscriptionCheckout;
+use Modules\Payment\Entities\StudentProgramPaymentPlans;
+use Modules\Certificate\Http\Controllers\CertificateController;
+use Modules\AuthorizeNetPayment\Http\Controllers\DoAuthorizeNetPaymentController;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -63,6 +65,7 @@ class StudentController extends Controller
 
     public function myDashboard()
     {
+
         try {
             return view(theme('pages.myDashboard'));
         } catch (\Exception $e) {
@@ -72,7 +75,6 @@ class StudentController extends Controller
 
     public function myCourses(Request $request)
     {
-        // dd($request);
         try {
             return view(theme('pages.myCourses'), compact('request'));
         } catch (\Exception $e) {
@@ -104,18 +106,85 @@ class StudentController extends Controller
     }
     public function myPaymentPlanInstallmentPayment(Request $request)
     {
+
+
+
+        $data = $request->only('cardHolder', 'cardNumber', 'expiryDate' , 'cvv' , 'amount');
+        $data['cardNumber'] = str_replace(' ', '', $data['cardNumber']);
+
+        $validator = Validator::make($data, [
+            'cardHolder' => 'required',
+            'cardNumber' => 'required',
+            'expiryDate' => 'required',
+            'cvv' => 'required',
+            'amount' => 'required | gt:0'
+        ]);
+
+
+
+        if ($validator->fails()) {
+        //    Toastr::error('Please fill all the required fields', 'Error');
+           Toastr::error('Please fill all the required fields', trans('common.Failed'));
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+
         try {
 
-            $clover = new CloverController();
-            if ($clover->makePayment($request, 'plan_installment_pay', $request->installment_id)) {
+            $AuthorizeObj = new DoAuthorizeNetPaymentController();
+            if ($AuthorizeObj->makePayment($request, 'plan_installment_pay', false, $request->installment_id, true)) {
                 session()->forget('user');
                 //                update status
                 $installment = StudentProgramPaymentPlans::find($request->installment_id);
                 $installment->pay_status = 'paid';
-                $installment->save();
 
-                Toastr::success('Payment done successfully', 'Success');
-                return redirect()->to(route('myCourses'));
+                if ($installment->save()) {
+                    // $prefix = ['st', 'nd', 'rd'];
+                    // foreach ($prefix as $key) {
+                    if ($installment->type == 0) {
+                        $type = 'Initial';
+                    } elseif ($installment->type == 1) {
+                        $type = $installment->type . 'st Installment';
+                    } elseif ($installment->type == 2) {
+                        $type = $installment->type . 'nd Installment';
+                    } elseif ($installment->type == 3) {
+                        $type = $installment->type . 'rd Installment';
+                    } else {
+                        $type = $installment->type . 'th Installment';
+                    }
+                    $html = '<table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                            <th>Time</th>
+                        </tr>
+                        <tr>
+                            <td>' . $type . '</td>
+                            <td>' . $installment->amount . '</td>
+                            <td>' . $installment->sdate . '</td>
+                            <td>' . $installment->edate . '</td>
+                            <td>' . ucfirst($installment->pay_status) . '</td>
+                            <td>' . \Illuminate\Support\Carbon::now()->format('d-M-Y ,H:i A') . '</td>
+                        </tr>
+                        </table>';
+                    // }
+                    $shortCodes = [
+                        'detail' => $html,
+                        'time' => \Illuminate\Support\Carbon::now()->format('d-M-Y ,H:i A'),
+                        'installment' => $type,
+                        'price' =>  $installment->amount,
+                        'payer' => Auth::user()->name,
+                        'type' => 'installment',
+                    ];
+
+                    send_email(Auth::user(), 'Student_Installment_Pay', $shortCodes);
+
+                    Toastr::success("$type Successfully Paid", 'Success');
+                    return redirect()->to(route('myCourses'));
+                }
             } else {
                 Toastr::error('Something Went Wrong', 'Error');
                 return redirect()->back();
@@ -243,6 +312,11 @@ class StudentController extends Controller
     public function uploadUserForm(Request $request)
     {
         $user = UserAuthorzIationAgreement::where('user_id', Auth::id())->first();
+        if ($user == null) {
+            $user = new UserAuthorzIationAgreement();
+            $user->user_id = Auth::id();
+            $user->save();
+        }
         $extension = $request->file('user_agreement_form')->extension();
         $allow_ext = ['doc', 'docx', 'pdf'];
 
@@ -255,6 +329,11 @@ class StudentController extends Controller
         $user->user_agreement_form = $this->saveFile($request->file('user_agreement_form'), $user->user_id);
         $user->status = 0;
         $user->save();
+        SendGeneralEmail::dispatch(User::find(Auth::id()), 'Student_Submit_Agreement_Form', [
+            'time' => Carbon::now()->format('d-M-Y, g:i A'),
+            'student' => Auth::user()->name,
+            'url' => route('student.student.view', Auth::id()),
+        ]);
         return $this->formUploadResponse(200, 'success', $user->user_agreement_form, 'File SuccessFully Uploaded, Thank you !');
     }
 
@@ -285,16 +364,17 @@ class StudentController extends Controller
     }
     public function ajaxUploadProfilePic(Request $request)
     {
+
         try {
             $user = Auth::user();
-            $fileName = "";
-            if ($request->file('file') != "") {
+            if ($request->hasFile('file')) {
                 $user->image = $this->saveImage($request->file('file'));
             }
             $user->save();
-            return $fileName;
+            $fileName = asset($user->image);
+            return $this->formUploadResponse(200, 'success', $fileName, 'Image SuccessFully Uploaded, Thank you !');
         } catch (\Throwable $th) {
-            return $th;
+            return  $this->formUploadResponse(422, 'error', '#', 'File Not Uploaded, Try Again !');
         }
     }
 
@@ -309,26 +389,35 @@ class StudentController extends Controller
             $validate_rules = [
                 'name' => 'required',
                 'email' => 'required|email',
+                'facebook' => 'nullable|url',
+                'twitter' => 'nullable|url',
+                'linkedin' => 'nullable|url',
+                'youtube' => 'nullable|url',
 
             ];
         } else {
             $validate_rules = [
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . Auth::id(),
-                'username' => 'required|unique:users,username,' . Auth::id(),
-                'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:1|unique:users,phone,' . Auth::id(),
+                'username' => 'required',
+                'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
                 'country' => 'required',
-                'company_id' => $custom_field->required_company ? 'required' : 'nullable',
+                'company' => $custom_field->required_company ? 'required' : 'nullable',
                 'student_type' => $custom_field->required_student_type ? 'required' : 'nullable',
                 'identification_number' => $custom_field->required_identification_number ? 'required' : 'nullable',
                 'job_title' => $custom_field->required_job_title ? 'required' : 'nullable',
                 'gender' => $custom_field->required_gender ? 'required' : 'nullable',
                 'dob' => $custom_field->required_dob ? 'required' : 'nullable',
+                'facebook' => 'nullable|url',
+                'twitter' => 'nullable|url',
+                'linkedin' => 'nullable|url',
+                'youtube' => 'nullable|url',
+
             ];
         }
 
         $request->validate($validate_rules, validationMessage($validate_rules));
-
+        //        dd($validate_rules,Auth::user());
 
         try {
 
@@ -344,6 +433,7 @@ class StudentController extends Controller
             } else {
                 $phone = $request->phone;
             }
+
             $user->name = $request->name;
             $user->email = $request->email;
             $user->phone = $phone;
@@ -352,6 +442,7 @@ class StudentController extends Controller
             $user->language_code = $lang[1] ?? 'en';
             $user->language_name = $lang[2] ?? 'English';
             $user->language_rtl = $lang[3] ?? '0';
+            $user->company = $request->company;
             $user->city = $request->city;
             $user->country = $request->country;
             $user->state = $request->state;
@@ -360,7 +451,7 @@ class StudentController extends Controller
             $user->student_type = $request->student_type;
             $user->identification_number = $request->identification_number;
             $user->job_title = $request->job_title;
-            $user->dob = $request->dob;
+            $user->dob = Carbon::parse($request->dob)->format('m/d/Y');
             $user->gender = $request->gender;
 
             $user->currency_id = Settings('currency_id');
@@ -371,9 +462,11 @@ class StudentController extends Controller
             $user->youtube = $request->youtube;
             $user->headline = $request->headline;
             $user->about = clean($request->about);
-            if ($request->file('image') != "") {
-                $user->image = $this->saveImage($request->file('image'));
-            }
+
+            //            if ($request->file('image') != "") {
+            //                $user->image = $this->saveImage($request->file('image'));
+            //            }
+
             $user->save();
 
             if ($request->company_name) {
@@ -618,7 +711,6 @@ class StudentController extends Controller
 
             $coupon = Coupon::where('code', $code)->whereDate('start_date', '<=', Carbon::now())
                 ->whereDate('end_date', '>=', Carbon::now())->where('status', 1)->first();
-            return $coupon;
             $couponApply = false;
             $total = $request->total;
 
@@ -1068,68 +1160,68 @@ class StudentController extends Controller
                 $tutor->save();
 
 
-//                $course_user = User::findOrFail($course->user_id);
-//                $user_courses = Course::where('user_id', $course_user->id)->get();
-//                $user_total = 0;
-//                $user_rating = 0;
-//                foreach ($user_courses as $u_course) {
-//                    $total = CourseReveiw::where('course_id', $u_course->id)->sum('star');
-//                    $count = CourseReveiw::where('course_id', $u_course->id)->where('status', 1)->count();
-//                    if ($total != 0) {
-//                        $user_total = $user_total + 1;
-//                        $average = $total / $count;
-//                        $user_rating = $user_rating + $average;
-//                    }
-//                }
-//                if ($user_total != 0) {
-//                    $user_rating = $user_rating / $user_total;
-//                }
-//                $course_user->total_rating = $user_rating;
-//                $course_user->save();
-//
-//                $total = CourseReveiw::where('course_id', $course->id)->sum('star');
-//                $count = CourseReveiw::where('course_id', $course->id)->where('status', 1)->count();
-//                $average = $total / $count;
-//                $course->reveiw = $average;
-//                $course->total_rating = $average;
-//                $course->save();
-//
-//                checkGamification('each_review', 'rating', $course_user);
-//
-//                if (UserEmailNotificationSetup('Course_Review', $course->user)) {
-//                    SendGeneralEmail::dispatch($course->user, 'Course_Review', [
-//                        'time' => Carbon::now()->format('d-M-Y, g:i A'),
-//                        'course' => $course->title,
-//                        'review' => $newReview->comment,
-//                        'star' => $newReview->star,
-//                    ]);
-//                }
-//                if (UserBrowserNotificationSetup('Course_Review', $course->user)) {
-//                    send_browser_notification(
-//                        $course->user,
-//                        'Course_Review',
-//                        [
-//                            'time' => Carbon::now()->format('d-M-Y, g:i A'),
-//                            'course' => $course->title,
-//                            'review' => $newReview->comment,
-//                            'star' => $newReview->star,
-//                        ],
-//                        trans('common.View'),
-//                        courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
-//                    );
-//                }
-//
-//                if (UserMobileNotificationSetup('Course_Review', $course->user) && !empty($course->user->device_token)) {
-//                    send_mobile_notification($course->user, 'Course_Review', [
-//                        'time' => Carbon::now()->format('d-M-Y, g:i A'),
-//                        'course' => $course->title,
-//                        'review' => $newReview->comment,
-//                        'star' => $newReview->star,
-//                    ]);
-//                }
-//                if (isModuleActive('Org')) {
-//                    addOrgRecentActivity(\auth()->id(), $course->id, 'Review');
-//                }
+                //                $course_user = User::findOrFail($course->user_id);
+                //                $user_courses = Course::where('user_id', $course_user->id)->get();
+                //                $user_total = 0;
+                //                $user_rating = 0;
+                //                foreach ($user_courses as $u_course) {
+                //                    $total = CourseReveiw::where('course_id', $u_course->id)->sum('star');
+                //                    $count = CourseReveiw::where('course_id', $u_course->id)->where('status', 1)->count();
+                //                    if ($total != 0) {
+                //                        $user_total = $user_total + 1;
+                //                        $average = $total / $count;
+                //                        $user_rating = $user_rating + $average;
+                //                    }
+                //                }
+                //                if ($user_total != 0) {
+                //                    $user_rating = $user_rating / $user_total;
+                //                }
+                //                $course_user->total_rating = $user_rating;
+                //                $course_user->save();
+                //
+                //                $total = CourseReveiw::where('course_id', $course->id)->sum('star');
+                //                $count = CourseReveiw::where('course_id', $course->id)->where('status', 1)->count();
+                //                $average = $total / $count;
+                //                $course->reveiw = $average;
+                //                $course->total_rating = $average;
+                //                $course->save();
+                //
+                //                checkGamification('each_review', 'rating', $course_user);
+                //
+                //                if (UserEmailNotificationSetup('Course_Review', $course->user)) {
+                //                    SendGeneralEmail::dispatch($course->user, 'Course_Review', [
+                //                        'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                //                        'course' => $course->title,
+                //                        'review' => $newReview->comment,
+                //                        'star' => $newReview->star,
+                //                    ]);
+                //                }
+                //                if (UserBrowserNotificationSetup('Course_Review', $course->user)) {
+                //                    send_browser_notification(
+                //                        $course->user,
+                //                        'Course_Review',
+                //                        [
+                //                            'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                //                            'course' => $course->title,
+                //                            'review' => $newReview->comment,
+                //                            'star' => $newReview->star,
+                //                        ],
+                //                        trans('common.View'),
+                //                        courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
+                //                    );
+                //                }
+                //
+                //                if (UserMobileNotificationSetup('Course_Review', $course->user) && !empty($course->user->device_token)) {
+                //                    send_mobile_notification($course->user, 'Course_Review', [
+                //                        'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                //                        'course' => $course->title,
+                //                        'review' => $newReview->comment,
+                //                        'star' => $newReview->star,
+                //                    ]);
+                //                }
+                //                if (isModuleActive('Org')) {
+                //                    addOrgRecentActivity(\auth()->id(), $course->id, 'Review');
+                //                }
                 Toastr::success(trans('student.Review Submit Successfully'), trans('common.Success'));
                 return redirect()->back();
             } else {

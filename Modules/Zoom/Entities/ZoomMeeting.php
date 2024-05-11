@@ -14,7 +14,7 @@ use Modules\VirtualClass\Entities\VirtualClass;
 
 class ZoomMeeting extends Model
 {
-use Tenantable;
+    use Tenantable;
 
     protected $table = 'zoom_meetings';
     protected $guarded = ['id'];
@@ -48,27 +48,28 @@ use Tenantable;
     public function getCurrentStatusAttribute()
     {
         $now = Carbon::now()->setTimezone(Settings('active_time_zone'));
-        $todaydt = $now->toDateTimeString();
-
+        $current = $now->toDateTimeString();
         if ($this->class->type == '0') {
-            if (($this->start_time <= Carbon::now()->format('H:i:s')) &&  (Carbon::now()->format('H:i:s') <= $this->end_time) ) {
+            if (($this->start_time <= Carbon::now()->format('H:i:s')) && (Carbon::now()->format('H:i:s') <= $this->end_time)) {
                 return 'started';
             }
 
-            if (Carbon::now()->format('H:i:s') < $this->start_time ) {
+            if (Carbon::now()->format('H:i:s') < $this->start_time) {
                 return 'waiting';
             }
             return 'closed';
         } else {
-            if($this->class->class_day == $now->format('D')){
-                if (($this->class->time <= Carbon::now()->format('H:i:s')) &&  (Carbon::now()->format('H:i:s') <= $this->class->end_time) ) {
-                    return 'started';
-                }
-                if (Carbon::now()->format('H:i:s') < $this->class->time ) {
-                    return 'waiting';
-                }
+            if ($this->start_time > $current) {
+                return 'waiting';
             }
-            return 'closed';
+
+            if ($this->start_time <= $current && $this->end_time >= $current && $this->class->class_day == $now->format('D')) {
+                return 'started';
+            }
+
+            if ($this->start_time < $current && $this->end_time < $current) {
+                return 'closed';
+            }
         }
     }
 
@@ -86,12 +87,13 @@ use Tenantable;
         }
     }
 
-    protected static function boot() {
-      parent::boot();
-        static::deleting(function($zoom_meeting) {
-            $virtualClass=VirtualClass::find($zoom_meeting->class_id);
-            $receivers=$virtualClass->course->enrollUsers;
-            $message="The scheduled class of ".$virtualClass->title." for ".showDate($zoom_meeting->date_of_meeting)." at ".$zoom_meeting->time_of_meeting." are canceled";
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($zoom_meeting) {
+            $virtualClass = VirtualClass::find($zoom_meeting->class_id);
+            $receivers = $virtualClass->course->enrollUsers;
+            $message = "The scheduled class of " . $virtualClass->title . " for " . showDate($zoom_meeting->date_of_meeting) . " at " . $zoom_meeting->time_of_meeting . " are canceled";
             foreach ($receivers as $key => $receiver) {
                 $details = [
                     'title' =>  $virtualClass->title,
@@ -103,5 +105,4 @@ use Tenantable;
             }
         });
     }
-
 }

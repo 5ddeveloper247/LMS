@@ -16,11 +16,13 @@ use Modules\CourseSetting\Entities\CourseEnrolled;
 class Checkout extends Model
 {
 
-use Tenantable;
+    use Tenantable;
 
     protected $fillable = ['status'];
 
     protected $appends = ['dateFormat'];
+
+    protected $table = 'checkouts';
 
 
     public function coupon()
@@ -35,13 +37,11 @@ use Tenantable;
     }
     public function package()
     {
-
         return $this->belongsTo(Package::class, 'package_id')->withDefault();
     }
 
     public function user()
     {
-
         return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
 
@@ -63,7 +63,6 @@ use Tenantable;
     public function bill()
     {
         return $this->belongsTo(BillingDetails::class, 'tracking', 'tracking_id')->withDefault();
-
     }
 
     public function carts()
@@ -73,6 +72,6 @@ use Tenantable;
 
     public function billing()
     {
-        return $this->belongsTo(BillingDetails::class,'billing_detail_id');
+        return $this->belongsTo(BillingDetails::class, 'billing_detail_id');
     }
 }

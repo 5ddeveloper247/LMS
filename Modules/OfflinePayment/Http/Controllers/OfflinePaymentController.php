@@ -145,6 +145,7 @@ class OfflinePaymentController extends Controller
                 SendGeneralEmail::dispatch($user, $type = 'Deduct_Payment', $shortcodes = [
                     'amount' => getPriceFormat($request->amount),
                     'time' => now()->format(Settings('active_date_format') . ' H:i:s A'),
+                //    'currency' => 'currency' => Settings('currency_code')
                 ]);
             }
             if (UserBrowserNotificationSetup('Deduct_Payment', $user)) {

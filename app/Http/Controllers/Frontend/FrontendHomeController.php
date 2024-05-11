@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
+use Modules\Blog\Entities\Blog;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Modules\Blog\Entities\Blog;
-use Modules\CourseSetting\Entities\CourseReveiw;
-use Modules\FrontendManage\Entities\FrontPage;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Request;
+use Modules\CourseSetting\Entities\Course;
+use Modules\FrontendManage\Entities\HeaderMenu;
 use Modules\StudentSetting\Entities\Program;
+use Modules\FrontendManage\Entities\FrontPage;
+use Modules\CourseSetting\Entities\CourseReveiw;
+use Modules\FrontendManage\Entities\HomePageFaq;
 
 
 class FrontendHomeController extends Controller
@@ -20,6 +25,7 @@ class FrontendHomeController extends Controller
 
     public function index()
     {
+
         try {
 
             if (!\auth()->check()) {
@@ -37,11 +43,6 @@ class FrontendHomeController extends Controller
                     return redirect()->route('frontPage', [$check->slug]);
                 }
             }
-            // if (hasDynamicPage()) {
-            //     $row = FrontPage::where('slug', '/')->first();
-            //     $details = dynamicContentAppend($row->details);
-            //     return view('aorapagebuilder::pages.show', compact('row', 'details'));
-            // } else {
             if (function_exists('SaasDomain')) {
                 $domain = SaasDomain();
             } else {
@@ -50,21 +51,75 @@ class FrontendHomeController extends Controller
             $blocks = Cache::rememberForever('homepage_block_positions' . $domain, function () {
                 return DB::table('homepage_block_positions')->select(['id', 'block_name', 'order'])->orderBy('order', 'asc')->get();
             });
-            $lastest_programs = Program::where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->latest()->limit(4)->get();
-            $lastest_blogs = Blog::where('status', 1)->with('user')->latest()->limit(4)->get();
-            $lastest_course_reveiws = CourseReveiw::where('status', 1)->with('user')->latest()->limit(4)->get();
+            $latest_programs = Program::where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->latest()->take(6)->get();
+            $latest_courses = Course::where('price', '!=', '0.00')->with('parent')->latest()->take(3)->get();
+            //dd($latest_courses);
+            $latest_blogs = Blog::where('status', 1)->with('user')->latest()->limit(4)->get();
+            $latest_course_reveiws = CourseReveiw::where('status', 1)->with('user')->latest()->limit(4)->get();
 
-            return view(theme('pages.index'), compact('blocks', 'lastest_programs', 'lastest_blogs', 'lastest_course_reveiws'));
-            // }
+            $random_program = Program::where('status', 1)
+                ->has('currentProgramPlan')
+                ->with('currentProgramPlan')
+                ->inRandomOrder()
+                ->select(['id', 'programtitle', 'totalcost', 'icon', 'subtitle', 'discription'])
+                ->first();
+            $faqs = HomePageFaq::where('status', 1)->orderBy('order','desc')->take(10)->get();
+
+            return view(theme('pages.index'), compact('random_program', 'blocks', 'latest_programs', 'latest_blogs', 'latest_course_reveiws', 'random_program', 'latest_courses','faqs'));
+
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
     }
-
-    public function test()
+    public function getRandomProgram()
     {
-        dd('kamran');
-        return view(theme('pages.new_test_page'));
-        // return view(theme('pages.test'));
+        $random_program = Program::where('status', 1)
+            ->has('currentProgramPlan')
+            ->with('currentProgramPlan')
+            ->inRandomOrder()
+            ->select(['id', 'programtitle', 'totalcost', 'icon', 'subtitle', 'discription'])
+            ->first();
+
+        // $rand_program = Course::where('status', 1)
+        // $rand_program = Program::where('status', 1)
+        //     ->inRandomOrder()
+        //     ->latest()->limit(4)->get();
+        // ->toArray();
+        // $rand_program = DB::table('programs')
+        //     // ->orderBy('created_at', 'desc')
+        //     ->inRandomOrder()
+        //     ->limit(10)
+        //     ->get()
+        //     ->toArray();
+        // dd($random_program);
+        $program_desc = strip_tags($random_program->discription);
+        return response()->json(
+            [
+                'program' =>
+
+                [
+                    'id' => $random_program->id,
+                    'programtitle' => $random_program->programtitle,
+                    'totalcost' => $random_program->currentProgramPlan[0]->amount,
+                    'icon' => $random_program->icon,
+                    'subtitle' => $random_program->subtitle,
+                    'discription' =>  strlen($program_desc) > 145 ? substr($program_desc, 0, 145) . "..." : $program_desc
+                ]
+            ],
+            200
+        );
+        // dd($random_program);
+        // return response()->json([
+        //     'id' => $random_program->id,
+        //     'programtitle' => $random_program->programtitle,
+        //     'totalcost' => $random_program->totalcost,
+        //     'icon' => $random_program->icon
+        // ]);
     }
+    // public function test()
+    // {
+    //     dd('kamran');
+    //     return view(theme('pages.new_test_page'));
+    //     // return view(theme('pages.test'));
+    // }
 }

@@ -9,7 +9,7 @@
                 @endif>
                 <div class="container">
                     <div class="row d-flex align-items-center">
-                        <div class="col-lg-9 offset-lg-1">
+                        <div class="col-lg-9 offset-1">
                             <div class="banner_text">
                                 <h3>{{@$homeContent->slider_title}}</h3>
                                 <p>{{@$homeContent->slider_text}}</p>

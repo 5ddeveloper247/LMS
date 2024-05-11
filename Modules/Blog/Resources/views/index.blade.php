@@ -234,56 +234,41 @@
     <script src="{{asset('Modules/Blog/Resources/views/assets/taginput/tagsinput.js')}}"></script>
 
     <script>
-
-        let datatable = $('.Crm_table_active_blog').DataTable({
+        let table = $('#lms_table').DataTable({
             bLengthChange: true,
             "bDestroy": true,
-
-            columns: [
-                {orderable: true},
-                {orderable: true},
-                    @if(isModuleActive('Org'))
-                {
-                    orderable: false
-                }, {
-                    orderable: false
-                },
-                    @endif
-                {
-                    orderable: true
-                },
-                {orderable: true},
-                {orderable: true},
-                {orderable: true},
-                {orderable: false},
-                {orderable: false},
-
+            "lengthChange": true,
+            "lengthMenu": [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            order: [
+                [0, "desc"]
             ],
             language: {
-                emptyTable: "{{ __("common.No data available in the table") }}",
+                emptyTable: "{{ __('common.No data available in the table') }}",
                 search: "<i class='ti-search'></i>",
-                searchPlaceholder: '{{ __("common.Quick Search") }}',
+                searchPlaceholder: '{{ __('common.Quick Search') }}',
                 paginate: {
                     next: "<i class='ti-arrow-right'></i>",
                     previous: "<i class='ti-arrow-left'></i>"
                 }
             },
             dom: 'Blfrtip',
-            buttons: [
-                {
-                    extend: 'copyHtml5',
-                    text: '<i class="far fa-copy"></i>',
-                    title: $("#logo_title").val(),
-                    titleAttr: '{{__('common.Copy')}}',
-                    exportOptions: {
-                        columns: ':visible',
-                        columns: ':not(:last-child)',
-                    }
-                },
+            buttons: [{
+                extend: 'copyHtml5',
+                text: '<i class="far fa-copy"></i>',
+                title: $("#logo_title").val(),
+                titleAttr: '{{ __('common.Copy') }}',
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                }
+            },
                 {
                     extend: 'excelHtml5',
                     text: '<i class="far fa-file-excel"></i>',
-                    titleAttr: '{{__('common.Excel')}}',
+                    titleAttr: '{{ __('common.Excel') }}',
                     title: $("#logo_title").val(),
                     margin: [10, 10, 10, 0],
                     exportOptions: {
@@ -295,7 +280,7 @@
                 {
                     extend: 'csvHtml5',
                     text: '<i class="far fa-file-alt"></i>',
-                    titleAttr: '{{__('common.CSV')}}',
+                    titleAttr: '{{ __('common.CSV') }}',
                     exportOptions: {
                         columns: ':visible',
                         columns: ':not(:last-child)',
@@ -305,7 +290,7 @@
                     extend: 'pdfHtml5',
                     text: '<i class="far fa-file-pdf"></i>',
                     title: $("#logo_title").val(),
-                    titleAttr: '{{__('common.PDF')}}',
+                    titleAttr: '{{ __('common.PDF') }}',
                     exportOptions: {
                         columns: ':visible',
                         columns: ':not(:last-child)',
@@ -324,7 +309,7 @@
                 {
                     extend: 'print',
                     text: '<i class="fa fa-print"></i>',
-                    titleAttr: '{{__('common.Print')}}',
+                    titleAttr: '{{ __('common.Print') }}',
                     title: $("#logo_title").val(),
                     exportOptions: {
                         columns: ':not(:last-child)',
@@ -338,14 +323,25 @@
             ],
             columnDefs: [{
                 visible: false
-            }, {responsivePriority: 1, targets: 1},
-                {responsivePriority: 2, targets: -2},
+            },
+                {
+                    responsivePriority: 1,
+                    targets: 0
+                },
+                {
+                    responsivePriority: 1,
+                    targets: 2
+                },
+                {
+                    responsivePriority: 1,
+                    targets: -1
+                },
+                {
+                    responsivePriority: 2,
+                    targets: -2
+                },
             ],
             responsive: true,
-            paging: true,
-            "lengthChange": true,
-            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
         });
-
     </script>
 @endpush

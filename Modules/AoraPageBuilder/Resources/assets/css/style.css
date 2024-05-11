@@ -3,9 +3,9 @@ body {
     height: 100%;
 }
 
-[data-aoraeditor="html"] {
+/* [data-aoraeditor="html"] {
     height: 100%;
-}
+} */
 
 #content-area {
     min-height: 100%;

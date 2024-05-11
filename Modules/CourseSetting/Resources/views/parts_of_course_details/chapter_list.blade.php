@@ -723,10 +723,11 @@
             console.log('inpur : ' + chapter_id);
             for (var i = 1; i <= number_of_option; i++) {
                 var appendRow = '';
-                appendRow += "<div class='row  mt-25'>";
+                appendRow += "<div class='row  mt-25' id='option_div_" + i + "'>";
                 appendRow += "<div class='col-lg-10'>";
                 appendRow += "<div class='input-effect'>"
-                appendRow += "<input class='primary_input_field name' placeholder='option " + i +
+                appendRow += "<input class='primary_input_field name' id='option_input_" + i +
+                    "' placeholder='option " + i +
                     "' type='text' name='option[]' autocomplete='off' required>";
                 appendRow += "</div>";
                 appendRow += "</div>";

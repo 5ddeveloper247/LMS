@@ -2,25 +2,27 @@
 
 namespace Modules\SystemSetting\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\User;
+use App\Jobs\SendGeneralEmail;
+use Carbon\Carbon;
 use App\Subscription;
 use App\Traits\ImageStore;
-use App\User;
-use Brian2694\Toastr\Facades\Toastr;
-use Carbon\Carbon;
-use DrewM\MailChimp\MailChimp;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
+use DrewM\MailChimp\MailChimp;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
-use Modules\Appointment\Repositories\Interfaces\AppointmentRepositoryInterface;
-use Modules\Newsletter\Entities\NewsletterSetting;
-use Modules\Newsletter\Http\Controllers\AcelleController;
-use Modules\SystemSetting\Entities\TutorSlote;
 use Yajra\DataTables\Facades\DataTables;
+use Modules\SystemSetting\Entities\TutorSlote;
+use Modules\Newsletter\Entities\NewsletterSetting;
+use Modules\SystemSetting\Entities\PackagePurchasing;
+use Modules\Newsletter\Http\Controllers\AcelleController;
+use Modules\Appointment\Repositories\Interfaces\AppointmentRepositoryInterface;
 
 
 class InstructorSettingController extends Controller
@@ -47,6 +49,7 @@ class InstructorSettingController extends Controller
             $postions = DB::table('instructor_positions')->get();
             $hears = DB::table('instructor_hears')->get();
             $become_instructors_form_data = DB::table('become_instructors_form_data')->where('user_id', $id)->first();
+            $user_data = DB::table('users')->where('id', $id)->first();
             $instructors_personal_info = DB::table('instructors_personal_info')->where('user_id', $id)->first();
             $instructors_school_info = DB::table('instructors_school_info')->where('user_id', $id)->first();
             $instructors_teaching_experience = DB::table('instructors_teaching_experience')->where('user_id', $id)->first();
@@ -56,6 +59,36 @@ class InstructorSettingController extends Controller
             Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
             return redirect()->back();
         }
+    }
+
+
+    public function getTutorAllPackages($id)
+    {
+        $query = PackagePurchasing::query();
+        $query->where('user_id', $id);
+        $query->select('package_purchasing.*');
+
+        return Datatables::of($query)
+            ->addIndexColumn()
+            ->editColumn('package_name', function ($query) {
+                if (!empty($query->latestPackageBuy) && $query->latestPackageBuy->id == $query->id) {
+                    return $query->package->title . " (Current)";
+                } else {
+                    return $query->package->title;
+                }
+            })
+            ->editColumn('price', function ($query) {
+                return $query->package->price;
+            })
+            ->editColumn('course_limit', function ($query) {
+                return $query->course_limit;
+            })
+            ->editColumn('buying_date', function ($query) {
+                $created_at = Carbon::parse($query->created_at)->format('m-d-Y');
+                return $created_at;
+            })
+            ->rawColumns(['package_name', 'price', 'status', 'course_limit'])
+            ->make(true);
     }
 
     public function updateView(Request $request)
@@ -186,9 +219,14 @@ class InstructorSettingController extends Controller
 
         $rules = [
             'name' => 'required',
-            'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:5|unique:users,phone',
+            'phone' => 'required|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
+            'gender' => 'required',
+            'facebook' => 'nullable|url',
+            'twitter' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'instagram' => 'nullable|url',
         ];
 
 
@@ -211,6 +249,7 @@ class InstructorSettingController extends Controller
             $user->username = null;
             $user->password = bcrypt($request->password);
             $user->about = $request->about;
+            $user->gender = $request->gender;
             $user->dob = getPhpDateFormat($request->dob);
 
             if (empty($request->phone)) {
@@ -237,7 +276,7 @@ class InstructorSettingController extends Controller
             }
             if ($request->file('image') != "") {
                 $file = $request->file('image');
-                $user->image = $this->saveImage($file);
+                $user->image = $this->saveCroppedImage($request->hidden_file);
             }
 
 
@@ -353,18 +392,26 @@ class InstructorSettingController extends Controller
         if (demoCheck()) {
             return redirect()->back();
         }
-        $rules = [
-            'name' => 'required',
-            'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:1|unique:users,phone,' . $request->id,
-            'email' => 'required|email|unique:users,email,' . $request->id,
-            'password' => 'bail|nullable|min:8|confirmed',
-
-        ];
-
-        $this->validate($request, $rules, validationMessage($rules));
-
 
         $user = User::findOrFail($request->id);
+
+        $rules = [
+            'name' => 'required',
+            'phone' => 'string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
+            'email' => 'required|email|unique:users,email,' . $request->id,
+            'password' => ($user->password == null ? 'required' : 'nullable') . '|bail|min:8|confirmed',
+            'gender' => 'required',
+            'facebook' => 'nullable|url',
+            'twitter' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'instagram' => 'nullable|url',
+        ];
+
+        if ($request->role_id == 9) {
+            session()->put('type', 'tutor');
+        }
+
+        $this->validate($request, $rules, validationMessage($rules));
 
         try {
             $user->name = $request->name;
@@ -374,6 +421,7 @@ class InstructorSettingController extends Controller
             $user->linkedin = $request->linkedin;
             $user->instagram = $request->instagram;
             $user->about = $request->about;
+            $user->gender = $request->gender;
             $user->dob = getPhpDateFormat($request->dob);
             if (empty($request->phone)) {
                 $user->phone = null;
@@ -386,7 +434,7 @@ class InstructorSettingController extends Controller
 
             if ($request->file('image') != "") {
                 $file = $request->file('image');
-                $user->image = $this->saveImage($file);
+                $user->image = $this->saveCroppedImage($request->hidden_file);
             }
             if (isModuleActive('Appointment')) {
                 if (!$user->slug && ($request->name != $user->name)) {
@@ -399,13 +447,23 @@ class InstructorSettingController extends Controller
                 $user->short_video_link = $request->video_link;
                 $user->available_msg = $request->available_message;
             }
-            $user->role_id = 2;
+
             $user->save();
 
+
+            if ($request->password) {
+                SendGeneralEmail::dispatch($user, 'Offline_Enrolled', [
+                    'email' => $request->email,
+                    'password' => $request->password,
+                ]);
+            }
 
             if (isModuleActive('Appointment')) {
                 $interface = App::make(AppointmentRepositoryInterface::class);
                 $storeInstructorData = $interface->instructorStoreData($request->all(), $user->id);
+            }
+            if ($user->role_id == 9) {
+                session()->put('type', 'tutor');
             }
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->back();
@@ -455,7 +513,9 @@ class InstructorSettingController extends Controller
                 return redirect()->back();
             }
 
-
+            if ($user->role_id == 9) {
+                session()->put('type', 'tutor');
+            }
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->back();
         } catch (\Exception $e) {
@@ -467,11 +527,12 @@ class InstructorSettingController extends Controller
     {
 
         Session::flash('hours_id', $request->id);
+
         $rules = [
             'id' => 'required',
-            'hours'=>'required',
+            'hours' => 'required|min:1|max:24',
             'type' => 'required',
-            'price'=>'required'
+            'price' => 'required'
         ];
 
         $this->validate($request, $rules, validationMessage($rules));
@@ -484,13 +545,21 @@ class InstructorSettingController extends Controller
             $user->tutor_price = $request->price;
             $user->save();
 
-//            save slotes
-            TutorSlote::where('instructor_id',$request->id)->delete();
-            for($i = 1; $i <= $request->hours; $i++){
-                $new_slot = new TutorSlote();
-                $new_slot->instructor_id = $request->id;
-                $new_slot->save();
-            }
+            //            save slotes
+            //TutorSlote::where('instructor_id', $request->id)->delete();
+            // change logic now slots will be date wise and enter when user set time from dashboard
+            // for ($i = 1; $i <= $request->hours; $i++) {
+            //     $new_slot = new TutorSlote();
+            //     $new_slot->instructor_id = $request->id;
+            //     $new_slot->save();
+            // }
+
+            SendGeneralEmail::dispatch($user, 'Admin_Tutor_Set_Hours', [
+                'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                'hours' => $user->total_hours,
+                'type' => $user->tutor_type,
+                'hour_price' => $user->tutor_price,
+            ]);
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->back();
@@ -544,6 +613,54 @@ class InstructorSettingController extends Controller
                 return view('systemsetting::partials._td_status', compact('query', 'route'));
             })->addColumn('action', function ($query) {
                 return view('systemsetting::partials._td_action', compact('query'));
-            })->rawColumns(['status', 'image', 'action'])->make(true);
+            })->rawColumns(['status', 'image', 'type', 'action'])->make(true);
+    }
+
+    public function getAllIndividualTutorsData(Request $request)
+    {
+        $user = Auth::user();
+        $with = [];
+        if (isModuleActive('OrgInstructorPolicy')) {
+            $with[] = 'policy';
+        }
+        $query = User::query();
+        if (isModuleActive('LmsSaas')) {
+            $query->where('lms_id', app('institute')->id);
+        } else {
+            $query->where('lms_id', 1);
+        }
+        if (isModuleActive('UserType')) {
+            $query->whereHas('userRoles', function ($q) {
+                $q->where('role_id', 9);
+            });
+        } else {
+            $query->where('role_id', 9);
+        }
+
+        if (isModuleActive('Organization') && $user->isOrganization()) {
+            $query->where('organization_id', $user->id);
+        }
+        $query->with($with);
+
+        return Datatables::of($query)
+            ->addIndexColumn()
+            ->addColumn('image', function ($query) {
+                return view('backend.partials._td_image', compact('query'));
+            })->editColumn('name', function ($query) {
+                return $query->name;
+            })->editColumn('email', function ($query) {
+                return $query->email;
+            })->addColumn('group_policy', function ($query) {
+                $policy = '';
+                if (isModuleActive('OrgInstructorPolicy')) {
+                    $policy = $query->policy->name;
+                }
+                return $policy;
+            })->addColumn('status', function ($query) {
+                $route = 'instructor.change_status';
+                return view('systemsetting::partials._td_status', compact('query', 'route'));
+            })->addColumn('action', function ($query) {
+                return view('systemsetting::partials._td_action', compact('query'));
+            })->rawColumns(['status', 'image', 'type', 'action'])->make(true);
     }
 }

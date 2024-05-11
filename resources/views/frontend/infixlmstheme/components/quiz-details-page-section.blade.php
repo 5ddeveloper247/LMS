@@ -1,89 +1,90 @@
 <div>
     <div class="quiz__details">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10">
+        <div class="container-fluid">
+            <div class="row px-md-5 px-1">
+                <div class="col-xl-12">
                     <div class="row">
                         <div class="col-12">
-                            <div class="quiz_test_wrapper mb_60">
+                            <div class="quiz_test_wrapper">
                                 <div class="quiz_test_header">
                                     @if ($course->type == 1)
-                                        {{ $course_type = 'Course' }}
+                                        <p>{{ $course_type = 'Course' }}</p>
+                                    @elseif ($course->type == 2)
+                                        <p>{{ $course_type = 'Big Quiz' }}</p>
                                     @else
-                                        {{ $course_type = 'Test-Prep' }}
+                                        <p>{{ $course_type = 'Prep-Course' }}</p>
                                     @endif
-
-                                    <h3> {{ $course->quiz->title }}</h3>
+                                    <h4 class="font-weight-bold"> {{ $course->quiz->title }}</h4>
                                 </div>
                                 <div class="quiz_test_body">
-
                                     <ul class="quiz_test_info">
-
+                                        @if (count($preResult) != 0)
+                                            <h5 class="font-weight-bold mb-5">
+                                                {{ __('student.Congratulations! You’ve completed') }}
+                                                {{ $course->quiz->title }}</h5>
+                                        @endif
                                         @php
-
                                             $duration = 0;
-
                                             $type = $course->quiz->question_time_type;
                                             if ($type == 0) {
                                                 $duration = $course->quiz->question_time * count($course->quiz->assign);
                                             } else {
                                                 $duration = $course->quiz->question_time;
                                             }
-
                                         @endphp
                                         <li>
                                             <span>{{ __('frontend.Questions') }}
-                                                <span>:</span></span>{{ count($course->quiz->assign) }}
-                                            {{ __('frontend.Question') }}.
+                                                <span>:</span></span><span>{{ count($course->quiz->assign) }}
+                                                {{ __('frontend.Question') }}.</span>
                                         </li>
                                         <li class="nowrap">
                                             <span>{{ __('frontend.Duration') }} <span>:</span></span>
                                             {{ MinuteFormat($duration) }}
                                         </li>
                                     </ul>
-                                    @if (Auth::check() && $isEnrolled)
+                                    @if (!isInstructor() && !isTutor())
+                                        @if (Auth::check() && $isEnrolled)
 
-                                        @if ($alreadyJoin == 0 || $course->quiz->multiple_attend == 1)
-                                            <a href="{{ route('quizStart', [$course->id, $course->quiz->id, $course->title]) }}"
-                                                class="theme_btn mr_15 m-auto mt-4 text-center">{{ __('Start Test-Prep') }}</a>
-                                        @endif
-
-
-                                        @if (count($preResult) != 0)
-                                            <button type="button"
-                                                class="theme_line_btn mr_15 showHistory m-auto mt-4 text-center">{{ __('frontend.View History') }}</button>
-                                        @endif
-
-                                        @if ($alreadyJoin == 1 && $certificate)
-                                            @if ($isPass == 1)
-                                                <a href="{{ $isPass == 1 ? route('getCertificate', [$course->id, $course->title]) : '#' }}"
-                                                    class="theme_line_btn mr_15 m-auto mt-4 text-center">
-                                                    {{ __('frontend.Get Certificate') }}
-                                                </a>
+                                            @if ($alreadyJoin == 0 || $course->quiz->multiple_attend == 1)
+                                                <a href="{{ route('quizStart', [$course->id, $course->quiz->id, $course->title]) . '?courseType=' . $request->courseType }}"
+                                                    class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('Start Prep-Course') }}</a>
                                             @endif
-                                        @endif
-                                    @else
-                                        @if (!onlySubscription())
-                                            @if ($isFree)
-                                                @if ($is_cart == 1)
-                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}"
-                                                        class="theme_btn height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a>
-                                                @else
-                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}"
-                                                        class="theme_btn height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a>
+
+                                            @if (count($preResult) != 0)
+                                                <button type="button"
+                                                    class="theme_line_btn mr_15 showHistory m-auto mt-4 text-center">{{ __('frontend.View History') }}</button>
+                                            @endif
+
+                                            @if ($alreadyJoin == 1 && $certificate)
+                                                @if ($isPass == 1)
+                                                    <a href="{{ $isPass == 1 ? route('getCertificate', [$course->id, $course->title]) : '#' }}"
+                                                        class="theme_line_btn mr_15 m-auto mt-4 text-center">
+                                                        {{ __('frontend.Get Certificate') }}
+                                                    </a>
                                                 @endif
-                                            @else
-                                                @if (Auth::check())
-                                                    <a href="{{ route('buyNowQuiz', [@$course->id]) }}"
-                                                        class="theme_btn mr_15 m-auto mt-4 text-center">{{ __('frontend.Buy Now') }}</a>
+                                            @endif
+                                        @else
+                                            @if (!onlySubscription())
+                                                @if ($isFree)
+                                                    {{--                                                @if ($is_cart == 1) --}}
+                                                    {{--                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}" --}}
+                                                    {{--                                                        class="theme_btn height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a> --}}
+                                                    {{--                                                @else --}}
+                                                    {{--                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}" --}}
+                                                    {{--                                                        class="theme_btn height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a> --}}
+                                                    {{--                                                @endif --}}
                                                 @else
-                                                    <a href="{{ route('buyNowQuiz', [@$course->id]) }}"
-                                                        class="theme_btn mr_15 m-auto mt-4 text-center">{{ __('frontend.Buy Now') }}</a>
+                                                    @if (Auth::check())
+                                                        <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
+                                                            class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('frontend.Buy Now') }}</a>
+                                                    @else
+                                                        <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
+                                                            class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('frontend.Buy Now') }}</a>
+                                                    @endif
                                                 @endif
                                             @endif
                                         @endif
                                     @endif
-
 
 
                                     @if (count($preResult) != 0)
@@ -125,15 +126,12 @@
                                                 <x-quiz-details-question-list :quiz="$course->quiz" />
                                             @endif
                                         </div>
-
                                     @endif
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mx-md-5">
                         <div class="col-xl-8 col-lg-8">
                             <div class="course_tabs">
                                 <ul class="w-100 nav lms_tabmenu mb_55" id="myTab" role="tablist">
@@ -211,10 +209,7 @@
                                                 <p class="mb_20">
                                                 </p>
                                             @endif
-
                                         </div>
-
-
                                     </div>
                                     <!--/ content  -->
                                 </div>
@@ -230,11 +225,8 @@
                                                 <h2>{{ $course->totalReview }}</h2>
                                                 <div class="feedmak_stars">
                                                     @php
-
                                                         $main_stars = $course->totalReview;
-
                                                         $stars = intval($course->totalReview);
-
                                                     @endphp
                                                     @for ($i = 0; $i < $stars; $i++)
                                                         <i class="fas fa-star"></i>
@@ -248,7 +240,7 @@
                                                         @endfor
                                                     @endif
                                                 </div>
-                                                <span>{{ __("$course_type Rating") }}</span>
+                                                <p>{{ __("$course_type Rating") }}</p>
                                             </div>
                                             <div class="feedbark_progressbar">
                                                 <div class="single_progrssbar">
@@ -267,7 +259,8 @@
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
                                                         </div>
-                                                        <span>{{ getPercentageRating($course->starWiseReview, 5) }}%</span>
+                                                        <span
+                                                            class="rating_font">{{ getPercentageRating($course->starWiseReview, 5) }}%</span>
                                                     </div>
                                                 </div>
                                                 <div class="single_progrssbar">
@@ -286,7 +279,8 @@
                                                             <i class="fas fa-star"></i>
                                                             <i class="far fa-star"></i>
                                                         </div>
-                                                        <span>{{ getPercentageRating($course->starWiseReview, 4) }}%</span>
+                                                        <span
+                                                            class="rating_font">{{ getPercentageRating($course->starWiseReview, 4) }}%</span>
                                                     </div>
                                                 </div>
                                                 <div class="single_progrssbar">
@@ -306,7 +300,8 @@
                                                             <i class="far fa-star"></i>
 
                                                         </div>
-                                                        <span>{{ getPercentageRating($course->starWiseReview, 3) }}%</span>
+                                                        <span
+                                                            class="rating_font">{{ getPercentageRating($course->starWiseReview, 3) }}%</span>
                                                     </div>
                                                 </div>
                                                 <div class="single_progrssbar">
@@ -325,7 +320,8 @@
                                                             <i class="far fa-star"></i>
                                                             <i class="far fa-star"></i>
                                                         </div>
-                                                        <span>{{ getPercentageRating($course->starWiseReview, 2) }}%</span>
+                                                        <span
+                                                            class="rating_font">{{ getPercentageRating($course->starWiseReview, 2) }}%</span>
                                                     </div>
                                                 </div>
                                                 <div class="single_progrssbar">
@@ -344,7 +340,8 @@
                                                             <i class="far fa-star"></i>
                                                             <i class="far fa-star"></i>
                                                         </div>
-                                                        <span>{{ getPercentageRating($course->starWiseReview, 1) }}%</span>
+                                                        <span
+                                                            class="rating_font">{{ getPercentageRating($course->starWiseReview, 1) }}%</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -368,7 +365,6 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="rating_star text-right">
-
                                                         @php
                                                             $PickId = $course->id;
                                                         @endphp
@@ -426,76 +422,73 @@
                                         </div>
 
                                         <div class="course_cutomer_reviews">
-                                            <div class="details_title">
+                                            <div class="details_title mt-2">
                                                 <h4 class="font_22 f_w_700">{{ __('frontend.Reviews') }}</h4>
-
                                             </div>
                                             <div class="customers_reviews" id="customers_reviews">
-
-
                                             </div>
                                         </div>
 
                                         {{-- <div class="author_courses">
-                                            <div class="section__title mb_80">
-                                                <h3>{{ __("$course_type you might like") }}</h3>
-                                            </div>
-                                            <div class="row">
-                                                @foreach (@$related as $r)
-                                                    <div class="col-xl-6">
-                                                        <div class="couse_wizged mb_30">
-                                                            <div class="thumb">
-                                                                <a
-                                                                    href="{{ courseDetailsUrl(@$r->id, @$r->type, @$r->slug) }}">
-                                                                    <img class="w-100"
-                                                                        src="{{ file_exists($r->thumbnail) ? asset($r->thumbnail) : asset('public/\uploads/course_sample.png') }}"
-                                                                        alt="">
+                                                <div class="section__title mb_80">
+                                                    <h3>{{ __("$course_type you might like") }}</h3>
+                                                </div>
+                                                <div class="row">
+                                                    @foreach (@$related as $r)
+                                                        <div class="col-xl-6">
+                                                            <div class="couse_wizged mb_30">
+                                                                <div class="thumb">
+                                                                    <a
+                                                                        href="{{ courseDetailsUrl(@$r->id, @$r->type, @$r->slug) }}">
+                                                                        <img class="w-100"
+                                                                            src="{{ file_exists($r->thumbnail) ? asset($r->thumbnail) : asset('public/\uploads/course_sample.png') }}"
+                                                                            alt="">
 
 
-                                                                    <x-price-tag :price="$r->price" :discount="$r->discount_price" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="course_content">
-                                                                <a
-                                                                    href="{{ courseDetailsUrl(@$r->id, @$r->type, @$r->slug) }}">
-                                                                    <h4>{{ @$r->title }}</h4>
-                                                                </a>
-                                                                <div class="rating_cart">
-                                                                    <div class="rateing">
-                                                                        <span>{{ $r->totalReview }}/5</span>
-                                                                        <i class="fas fa-star"></i>
-                                                                    </div>
-                                                                    @auth()
-                                                                        @if (!$r->isLoginUserEnrolled && !$r->isLoginUserCart)
-                                                                            <a href="#" class="cart_store"
-                                                                                data-id="{{ $r->id }}">
-                                                                                <i class="fas fa-shopping-cart"></i>
-                                                                            </a>
-                                                                        @endif
-                                                                    @endauth
-                                                                    @guest()
-                                                                        @if (!$r->isGuestUserCart)
-                                                                            <a href="#" class="cart_store"
-                                                                                data-id="{{ $r->id }}">
-                                                                                <i class="fas fa-shopping-cart"></i>
-                                                                            </a>
-                                                                        @endif
-                                                                    @endguest
+                                                                        <x-price-tag :price="$r->price" :discount="$r->discount_price" />
+                                                                    </a>
                                                                 </div>
-                                                                <div class="course_less_students">
-                                                                    <a href="#"> <i class="ti-agenda"></i>
-                                                                        {{ count($r->lessons) }}
-                                                                        {{ __('frontend.Lessons') }}</a>
-                                                                    <a href="#"> <i class="ti-user"></i>
-                                                                        {{ $r->total_enrolled }}
-                                                                        {{ __('frontend.Students') }} </a>
+                                                                <div class="course_content">
+                                                                    <a
+                                                                        href="{{ courseDetailsUrl(@$r->id, @$r->type, @$r->slug) }}">
+                                                                        <h4>{{ @$r->title }}</h4>
+                                                                    </a>
+                                                                    <div class="rating_cart">
+                                                                        <div class="rateing">
+                                                                            <span>{{ $r->totalReview }}/5</span>
+                                                                            <i class="fas fa-star"></i>
+                                                                        </div>
+                                                                        @auth()
+                                                                            @if (!$r->isLoginUserEnrolled && !$r->isLoginUserCart)
+                                                                                <a href="#" class="cart_store"
+                                                                                    data-id="{{ $r->id }}">
+                                                                                    <i class="fas fa-shopping-cart"></i>
+                                                                                </a>
+                                                                            @endif
+                                                                        @endauth
+                                                                        @guest()
+                                                                            @if (!$r->isGuestUserCart)
+                                                                                <a href="#" class="cart_store"
+                                                                                    data-id="{{ $r->id }}">
+                                                                                    <i class="fas fa-shopping-cart"></i>
+                                                                                </a>
+                                                                            @endif
+                                                                        @endguest
+                                                                    </div>
+                                                                    <div class="course_less_students">
+                                                                        <a href="#"> <i class="ti-agenda"></i>
+                                                                            {{ count($r->lessons) }}
+                                                                            {{ __('frontend.Lessons') }}</a>
+                                                                        <a href="#"> <i class="ti-user"></i>
+                                                                            {{ $r->total_enrolled }}
+                                                                            {{ __('frontend.Students') }} </a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div> --}}
+                                                    @endforeach
+                                                </div>
+                                            </div> --}}
                                     </div>
                                     <!-- content  -->
                                 </div>
@@ -506,7 +499,6 @@
 
                                     <div class="conversition_box">
                                         <div id="conversition_box"></div>
-
                                         <div class="row">
                                             @if ($isEnrolled)
                                                 <div class="col-lg-12" id="mainComment">
@@ -542,9 +534,7 @@
                                             @endif
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
 
@@ -559,70 +549,71 @@
                                         @endif
                                     </h3>
                                     <p>
-                                        @if (Auth::check() && $isBookmarked)
-                                            <i class="fas fa-heart"></i>
-                                            <a href="{{ route('bookmarkSave', [$course->id]) }}"
-                                                class="mr_10 sm_mb_10">{{ __('frontend.Already Bookmarked') }}
-                                            </a>
-                                        @elseif (Auth::check() && !$isBookmarked)
-                                            <a href="{{ route('bookmarkSave', [$course->id]) }}" class="">
-                                                <i class="far fa-heart"></i>
-                                                {{ __('frontend.Add To Bookmark') }} </a>
+                                        @if (!isTutor() && !isInstructor())
+                                            @if (Auth::check() && $isBookmarked)
+                                                <i class="fas fa-heart"></i>
+                                                <a href="{{ route('bookmarkSave', [$course->id]) }}"
+                                                    class="mr_10 sm_mb_10">{{ __('frontend.Already Bookmarked') }}
+                                                </a>
+                                            @elseif (Auth::check() && !$isBookmarked)
+                                                <a href="{{ route('bookmarkSave', [$course->id]) }}" class="">
+                                                    <i class="far fa-heart"></i>
+                                                    {{ __('frontend.Add To Bookmark') }} </a>
+                                            @endif
                                         @endif
                                 </div>
                                 @if (!onlySubscription())
                                     @if (Auth::check())
                                         @if ($isEnrolled)
                                             <a href="#"
-                                                class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Already Enrolled') }}</a>
-                                        @else
+                                                class="theme_btn d-block height_50 mb_10 text-center p-2">{{ __('common.Already Enrolled') }}</a>
+                                        @elseif(isStudent())
                                             @if ($isFree)
-                                                @if ($is_cart == 1)
-                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}"
-                                                        class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Added To Cart') }}</a>
-                                                @else
-                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}"
-                                                        class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a>
-                                                @endif
+                                                {{--                                                @if ($is_cart == 1) --}}
+                                                {{--                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}" --}}
+                                                {{--                                                        class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Added To Cart') }}</a> --}}
+                                                {{--                                                @else --}}
+                                                {{--                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}" --}}
+                                                {{--                                                        class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a> --}}
+                                                {{--                                                @endif --}}
                                             @else
                                                 @if ($is_cart == 1)
-                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}"
+                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
                                                         class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Added To Cart') }}</a>
                                                 @else
-                                                    <a href=" {{ route('addToCartQuiz', [@$course->id]) }} "
+                                                    <a href=" {{ route('addToCartQuiz', [@$course->id]) . '?courseType=' . $request->courseType }} "
                                                         class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a>
                                                     @if (Auth::check())
-                                                        <a href="{{ route('buyNowQuiz', [@$course->id]) }}"
+                                                        <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
                                                             class="theme_line_btn d-block height_50 mb_20 text-center">{{ __('common.Buy Now') }}</a>
                                                     @else
-                                                        <a href="{{ route('buyNowQuiz', [@$course->id]) }}"
+                                                        <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
                                                             class="theme_line_btn d-block height_50 mb_20 text-center">{{ __('common.Buy Now') }}</a>
                                                     @endif
-
                                                 @endif
                                             @endif
                                         @endif
                                     @else
                                         @if ($isFree)
-                                            @if ($is_cart == 1)
-                                                <a href="{{ route('addToCartQuiz', [@$course->id]) }}"
-                                                    class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Added To Cart') }}</a>
-                                            @else
-                                                <a href=" {{ route('addToCartQuiz', [@$course->id]) }} "
-                                                    class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a>
-                                            @endif
+                                            {{--                                            @if ($is_cart == 1) --}}
+                                            {{--                                                <a href="{{ route('addToCartQuiz', [@$course->id]) }}" --}}
+                                            {{--                                                    class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Added To Cart') }}</a> --}}
+                                            {{--                                            @else --}}
+                                            {{--                                                <a href=" {{ route('addToCartQuiz', [@$course->id]) }} " --}}
+                                            {{--                                                    class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a> --}}
+                                            {{--                                            @endif --}}
                                         @else
                                             @if ($is_cart == 1)
-                                                <a href="{{ route('addToCartQuiz', [@$course->id]) }}"
+                                                <a href="{{ route('addToCartQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
                                                     class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Added To Cart') }}</a>
                                             @else
-                                                <a href=" {{ route('addToCartQuiz', [@$course->id]) }} "
+                                                <a href=" {{ route('addToCartQuiz', [@$course->id]) . '?courseType=' . $request->courseType }} "
                                                     class="theme_btn d-block height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a>
                                                 @if (Auth::check())
-                                                    <a href="{{ route('buyNowQuiz', [@$course->id]) }}"
+                                                    <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
                                                         class="theme_line_btn d-block height_50 mb_20 text-center">{{ __('common.Buy Now') }}</a>
                                                 @else
-                                                    <a href="{{ route('buyNowQuiz', [@$course->id]) }}"
+                                                    <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
                                                         class="theme_line_btn d-block height_50 mb_20 text-center">{{ __('common.Buy Now') }}</a>
                                                 @endif
                                             @endif
@@ -690,7 +681,6 @@
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -877,7 +867,8 @@
                                 <option value="">Pharamacology body system diseases</option>
                                 <option value="">Fundamentals</option>
                                 <option value="">Medical surgical->
-                                    Cardiac|Endocrine|Nevero|Renal|Musculaskeleton</option>
+                                    Cardiac|Endocrine|Nevero|Renal|Musculaskeleton
+                                </option>
                                 <option value="">Materinty & Network</option>
                                 <option value="">Peniritrics -Growth & Development</option>
                                 <option value="">KGs</option>
@@ -886,7 +877,7 @@
                             </select>
                         </div>
 
-                        <a class="btn btn-success float-end my-5 mx-4 px-5">Submit</a>
+                        <a class="btn btn-success float-end mx-4 my-5 px-5">Submit</a>
                     </div>
                 </div>
             </div>

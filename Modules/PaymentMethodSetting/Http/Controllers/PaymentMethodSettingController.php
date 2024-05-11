@@ -32,6 +32,8 @@ use Modules\PaymentMethodSetting\Entities\PaymentMethod;
 use Modules\PaymentMethodSetting\Entities\PaymentGatewaySetting;
 use Modules\PaymentMethodSetting\Entities\PaymentMethodCredential;
 use Unicodeveloper\Paystack\Facades\Paystack;
+use Modules\AuthorizeNetPayment\Entities\AuthorizeNetSetting;
+use Yajra\DataTables\DataTables;
 
 class PaymentMethodSettingController extends Controller
 {
@@ -69,9 +71,47 @@ class PaymentMethodSettingController extends Controller
 
 
         $payment_methods = PaymentMethod::where('module_status', '=', 1)->get();
+        $authorize_net_credentials = AuthorizeNetSetting::latest()->get();
 
+        return view('paymentmethodsetting::index', compact('payment_methods','authorize_net_credentials'));
+    }
 
-        return view('paymentmethodsetting::index', compact('payment_methods'));
+    public function fetchAuthorizenetData() {
+      $authorize_net_credentials = AuthorizeNetSetting::latest()->get();
+      return DataTables::of($authorize_net_credentials)
+          ->addColumn('client_id', function (AuthorizeNetSetting $settings) {
+              return $settings->client_id;
+          })
+          ->addColumn('client_secret', function (AuthorizeNetSetting $settings) {
+              return $settings->client_secret;
+          })
+          ->addColumn('env', function (AuthorizeNetSetting $settings) {
+              return $settings->env;
+          })
+          // ->addColumn('', function (AuthorizeNetSetting $course) {
+          //   return $authorize_net_credentials->user->name;
+          // })
+          ->addColumn('status', function (AuthorizeNetSetting $settings) {
+              return view('paymentmethodsetting::components._authnet_status_td', ['query' => $settings]);
+          })
+          ->addColumn('action', function (AuthorizeNetSetting $settings) {
+              $html = '';
+              $html = '<div class="dropdown CRM_dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">Action</button>
+
+                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                          <a href="'.route('authorizenetpayment.edit',[$settings->id]).'" class="dropdown-item">Edit</a>
+                          <a href="'.route('authorizenetpayment.delete',[$settings->id]).'"  class="dropdown-item">Delete</a>
+                          </div>
+                      </div>';
+              return $html;
+          })
+        //  ->only(['client_id', 'client_secret', 'env', 'status'])
+          ->rawColumns(['status','action'])
+          ->addIndexColumn()
+          // ->make(true);
+          ->toJson();
     }
 
     public function update(Request $request)

@@ -42,11 +42,15 @@ return [
     */
 
     'disks' => [
+        'base64_image' => [
+            'driver' => 'local',
+            'root' => base_path('public/uploads'),
+        ],
 
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),   //change here
-//            'root' => public_path(),
+            //            'root' => public_path(),
         ],
 
         'public' => [
@@ -68,7 +72,7 @@ return [
             'driver' => 'google',
             'clientId' => saasEnv('GOOGLE_DRIVE_CLIENT_ID'),
             'clientSecret' => saasEnv('GOOGLE_DRIVE_CLIENT_SECRET'),
-//            'projectId' => saasEnv('GOOGLE_DRIVE_PROJECT_ID'),
+            //            'projectId' => saasEnv('GOOGLE_DRIVE_PROJECT_ID'),
             'redirect' => saasEnv('GOOGLE_DRIVE_REDIRECT'),
         ],
         'dropbox' => [

@@ -22,7 +22,7 @@ class CourseEnrolled extends Model
 
     use Tenantable;
 
-    protected $fillable = ['user_id', 'course_id', 'program_id', 'user_id', 'purchase_price'];
+    protected $table = 'course_enrolleds';
 
     protected $appends = ['enrolledDate'];
 
@@ -57,7 +57,7 @@ class CourseEnrolled extends Model
     }
     public function getCourseEnrolledCountAttribute()
     {
-        return CourseEnrolled::where('course_id',$this->course_id)->where('course_type',$this->course_type)->count();
+        return CourseEnrolled::where('course_id', $this->course_id)->where('course_type', $this->course_type)->count();
     }
     public function scopeEnrollStudent($query)
     {

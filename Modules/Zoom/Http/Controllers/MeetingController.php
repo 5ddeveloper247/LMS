@@ -4,6 +4,7 @@ namespace Modules\Zoom\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use DateTime;
 use Brian2694\Toastr\Facades\Toastr;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -286,13 +287,13 @@ class MeetingController extends Controller
             //            $meeting_details = Zoom::user()->find($profile['id'])->meetings()->save($meeting);
 
             //            $start_time = gmdate( 'Y-m-d\TH:i:s', strtotime(isset($data['date'])?$data['date']:date('Y-m-d H:i:s')) );
-            $password =   (isset($data['password']) ? $data['password'] : $data['attendee_password']);
+            $password = (isset($data['password']) ? $data['password'] : $data['attendee_password']);
             $post = array();
 
 
             $post['topic'] = $data['topic'];
             $post['agenda'] = $data['description'];
-            $post['type'] = '2';
+          //  $post['type'] = '2';
             $post['start_time'] = $start_date;
             $post['timezone'] = Settings('active_time_zone');
             $post['password'] = $password;
@@ -305,38 +306,133 @@ class MeetingController extends Controller
                 'enforce_login' => true,
                 'auto_recording' => "none",
             );
-
-            $postFields = json_encode($post);
-            $curl = curl_init();
-
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.zoom.us/v2/users/me/meetings",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => $postFields,
-                // CURLOPT_HTTPHEADER => array(
-                //     "Authorization: Bearer  " . env('ZOOM_TOKEN')
-                // ),
-                CURLOPT_HTTPHEADER => array(
-                    "Authorization: Bearer " . env('ZOOM_TOKEN'),
-                    "Content-Type: application/json" // Set the content type to JSON
-                ),
-            ));
+            $post['lobbyBypassSettings'] = array(
+              'scope' => 'everyone',
+              'isDialInBypassEnabled' => true
+            );
+            //$post['accessLevel'] = 'everyone';
+            // $post['participants'] = array(
+            //   'attendees' => array(
+            //     'identity' => array(
+            //       'user' => 'ubaidrahim@hotmail.com'
+            //     )
+            //   )
+            // );
+            //$post['allowedPresenters'] = 'everyone';
+            $postFields = $post;
 
 
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-            curl_close($curl);
+            $start_time = $postFields['start_time'];
+            // duration will be in minutes
 
-            $response = json_decode($response);
+            $minutesToAdd = $postFields['duration'];
+           // dd($minutesToAdd);
+            $endTime = date('Y-m-d H:i:s', strtotime($start_time . ' + ' . $minutesToAdd . ' minutes'));
+            //  dd($endTime);
+            // dd($postFields['start_time']);
+            // $curl = curl_init();
+            $tokenData = $this->refreshAccessToken();
+            if(array_key_exists("error",$tokenData)){
+              Toastr::error('Error creating Teams meeting link');
+              die();
+            }else{
+            $access_token = $tokenData['access_token'];
 
-            $meeting_id = $response->id ?? null;
+            // 	curl_setopt_array($curl, array(
+            // 	CURLOPT_URL => "https://api.zoom.us/v2/users/me/meetings",
+            // 	CURLOPT_RETURNTRANSFER => true,
+            // 	CURLOPT_ENCODING => "",
+            // 	CURLOPT_MAXREDIRS => 10,
+            // CURLOPT_TIMEOUT => 0,
+            // 	CURLOPT_FOLLOWLOCATION => true,
+            // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            // 	CURLOPT_CUSTOMREQUEST => "POST",
+            // 	CURLOPT_POSTFIELDS => $postFields,
+            // CURLOPT_HTTPHEADER => array(
+            //       "Authorization: Bearer  " . env('ZOOM_TOKEN')
+            //      ),
+            //      CURLOPT_HTTPHEADER => array(
+            //          "Authorization: Bearer " . env('ZOOM_TOKEN'),
+            //          "Content-Type: application/json" // Set the content type to JSON
+            //      ),
+            //  ));
 
+
+            // $response = curl_exec($curl);
+            // $err = curl_error($curl);
+            // curl_close($curl);
+
+            // $response = json_decode($response);
+            //dd($postFields);
+            // $curl = curl_init();
+
+            // curl_setopt_array($curl, array(
+            // CURLOPT_URL => env('Meeting_Url'),
+            // CURLOPT_RETURNTRANSFER => true,
+            // CURLOPT_ENCODING => '',
+            // CURLOPT_MAXREDIRS => 10,
+            // CURLOPT_TIMEOUT => 0,
+            // CURLOPT_FOLLOWLOCATION => true,
+            // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            // CURLOPT_CUSTOMREQUEST => 'POST',
+            // CURLOPT_POSTFIELDS =>'{
+            //     "startDateTime": "2023-01-01T18:00:00Z",
+            //     "endDateTime": "2023-01-01T19:00:00Z",
+            //     "subject": "Team Meeting"
+            //   }
+            //   ',
+            // CURLOPT_HTTPHEADER => array(
+            //     'Content-Type: application/json',
+            //     'Authorization: Bearer ' . $access_token,
+            // ),
+            // ));
+
+            // $response = curl_exec($curl);
+            // curl_close($curl);
+            //   echo('jfkdsaf');
+        //    dd($postFields['agenda']);
+
+        $jsonPostfields = json_encode($postFields);
+        $startDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $start_time)->format('Y-m-d\TH:i:s\Z');
+        // dd($startDateTime); "2023-12-19T11:48:00Z"
+        // die;
+        $endDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $endTime)->format('Y-m-d\TH:i:s\Z');
+        // echo('start:'. $startDateTime);
+        // echo('endtime'. $endDateTime);
+        // dd('jkfjlaskjfdlkajsflkajs');
+
+           $curl = curl_init();
+           $jsonData = '{"startDateTime":"'.$startDateTime.'", "endDateTime":"'.$endDateTime.'", "subject": "'.$postFields['agenda'].'","lobbyBypassSettings":{"scope":"everyone","isDialInBypassEnabled":true}}';
+
+          //dd($jsonData);
+           curl_setopt_array($curl, array(
+               CURLOPT_URL => env('Meeting_Url'),
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS => $jsonData,
+               CURLOPT_HTTPHEADER => array(
+                   'Content-Type: application/json',
+                   'Authorization: Bearer ' . $access_token,
+               ),
+           ));
+
+           $response = curl_exec($curl);
+           curl_close($curl);
+
+           $response = json_decode($response);
+
+           //dd($response, $jsonPostfields, $jsonData);
+
+
+
+            // $r=$response['joinMeetingId'];
+             //dd($response);
+            $meeting_id = $response->meetingCode ?? null;
             $system_meeting = new ZoomMeeting();
             $system_meeting->topic = $data['topic'];
             $system_meeting->instructor_id = $data['instructor_id'];
@@ -358,16 +454,15 @@ class MeetingController extends Controller
             $system_meeting->recurring_repect_day = $data['is_recurring'] == 1 ? $data['recurring_repect_day'] : null;
             $system_meeting->recurring_end_date = $data['is_recurring'] == 1 ? $data['recurring_end_date'] : null;
             $system_meeting->meeting_id = strval($meeting_id);
-            $system_meeting->password = $response->password;
-            $system_meeting->url = $response->join_url;
-            $system_meeting->start_url = $response->start_url;
+            $system_meeting->password = '';
+            $system_meeting->url = $response->joinUrl; // join Url
+          //  $system_meeting->start_url = $response->joinUrl; //meeting _url
+            $system_meeting->start_url = $response->joinWebUrl; //meeting _url
             $system_meeting->start_time = Carbon::parse($start_date)->toDateTimeString();
             $system_meeting->end_time = Carbon::parse($start_date)->addMinute($data['duration'])->toDateTimeString();
             $system_meeting->attached_file = $data['attached_file'];
             $system_meeting->created_by = Auth::user()->id;
             $system_meeting->save();
-
-
             $user = new ZoomMeetingUser();
             $user->meeting_id = $system_meeting->id;
             $user->user_id = Auth::user()->id;
@@ -382,12 +477,65 @@ class MeetingController extends Controller
                 Toastr::error('Database Error', trans('common.Failed'));
                 return redirect()->back();
             }
+          }
         } catch (Exception $e) {
 
             Toastr::error($e->getMessage(), trans('common.Failed'));
             return redirect()->back();
         }
     }
+
+
+    // Refresh access_token for Meeting Creation
+    public function refreshAccessToken()
+    {
+
+        $client_id = env('Client_Id');
+        $client_secret = env('Client_Secret');
+        $redirect_uri = env('Redirect_Uri');
+        //Access the refresh token
+        $refresh_token = env('Microsoft_Team_Token'); //refresh token url
+        $token_url = env('Token_Url');       // token auth url
+        $token_params = array(
+            'grant_type' => 'refresh_token',
+            // 'refresh_token' => $this->refresh_token,
+            'refresh_token' => $refresh_token,
+            'client_id' => $client_id,
+            'client_secret' => $client_secret,
+            'redirect_uri' => $redirect_uri,
+        );
+
+        // Use PHP's cURL functions
+        $ch = curl_init($token_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $token_params);
+        $token_response = curl_exec($ch);
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            echo 'cURL error: ' . curl_error($ch);
+            // Handle the error appropriately
+            return;
+        }
+
+        curl_close($ch);
+        // Decode the token response
+        $token_data = json_decode($token_response, true);
+        //dd($token_data);
+        // $this->storeTokens($token_data['refresh_token']);
+        return $token_data;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     private function isTimeAvailableForMeeting($request, $id)

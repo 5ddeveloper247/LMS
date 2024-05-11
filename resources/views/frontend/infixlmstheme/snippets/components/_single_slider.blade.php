@@ -5,7 +5,7 @@
                 <div class="banner_area" style="background-image: url({{asset(@$slider->image)}})">
                     <div class="container">
                         <div class="row d-flex align-items-center">
-                            <div class="col-lg-9 offset-lg-1">
+                            <div class="col-lg-9 offset-1">
                                 <div class="banner_text">
                                     <h3>{{@$slider->title}}</h3>
                                     <p>{{@$slider->sub_title}}</p>

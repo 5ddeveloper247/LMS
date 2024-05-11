@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 
 
-use App\User;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -22,7 +22,7 @@ use Modules\CourseSetting\Entities\Course;
 use Modules\CourseSetting\Entities\CourseEnrolled;
 use Modules\StudentSetting\Entities\Program;
 use Modules\SystemSetting\Entities\Message;
-
+use Carbon\Carbon;
 use Modules\CourseSetting\Entities\CourseComment;
 
 
@@ -46,24 +46,33 @@ class CommunicationController extends Controller
     public function PrivateMessage()
 
     {
-
+    	// 1=>admin, 2=>instructor, 3=>student, 9=>individual tutor
         if (Auth::user()->role_id == 1) {
 
-            $users = User::where('id', '!=', Auth::id())->whereIn('role_id', [2,3])->with('sender')->get();
+            $users = User::where('id', '!=', Auth::id())->whereIn('role_id', [2,3,9])->with('sender')->get();
 
         }else if (Auth::user()->role_id == 2){
-            $query = CourseEnrolled::where('course_id',null)->with('user')
+            $query = CourseEnrolled::with('user')
                 ->whereHas('program', function ($query) {
 
+                })->orWhereHas('course', function ($query) {
+
                 });
+
             $courses = Course::where('user_id', Auth::id())->where('type', 1)->pluck('id');
+
             $programs = Program::query();
+
             foreach ($courses as $course){
                 $programs =  $programs->orWhere('allcourses', 'like', '%,"' . $course . '",%');
             }
+
             $programs =  $programs->pluck('id');
+
             $query = $query->whereIn('program_id',$programs->unique())->groupBy('program_id')->groupBy('user_id')->pluck('user_id')->toArray();
+
             array_push($query,'1');
+
             $users = User::with('sender')->where('id', '!=', Auth::id())->whereIn('id',$query)->get();
 //                ->where(function ($query) {
 //
@@ -72,25 +81,36 @@ class CommunicationController extends Controller
 //            })->get();
 
         }else if (Auth::user()->role_id == 3){
-            $query = CourseEnrolled::where('course_id',null)->where('user_id',Auth::id())->groupBy('program_id')->groupBy('user_id')->has('program')->with('program')->get();
-            $student_ids = CourseEnrolled::where('course_id',null)->where('user_id' ,'!=',Auth::id())->groupBy('program_id')->groupBy('user_id')->pluck('user_id')->unique()->toArray();
+            $query = CourseEnrolled::where('user_id',Auth::id())->groupBy('program_id')->groupBy('course_id')->groupBy('user_id')->with('program','course')->get();
+//            $student_ids = 	CourseEnrolled::where('course_id',null)->where('user_id' ,'!=',Auth::id())->groupBy('program_id')->groupBy('user_id')->pluck('user_id')->unique()->toArray();
             $course_ids = [];
-            if(!empty($course_ids)){
-                foreach ($query as $program){
-                    if(isset($program->program) && is_array(json_decode($program->program->allcourses))){
-                        array_push($course_ids,json_decode($program->program->allcourses));
+
+            if(count($query)){
+
+            	foreach ($query as $program){
+
+                    if(isset($program->program_id) && $program->program_id != null && is_array(json_decode($program->program->allcourses))){
+                        array_push($course_ids,...json_decode($program->program->allcourses));
                     }
+
+                    if(!empty($program->course_id) && $program->course_id != null){
+                    	array_push($course_ids,$program->course->id);
+                    }
+
                 }
 
-                $course_ids = array_unique($course_ids[0]);
+                $course_ids = array_unique($course_ids);
+
                 $user_ids = Course::whereIn('id', $course_ids)->pluck('user_id')->toArray();
                 array_push($user_ids,1);
                 $user_ids = array_unique($user_ids);
             }else{
                 $user_ids = ['1'];
             }
-            $user_ids = array_merge($user_ids,$student_ids);
+
+            //$user_ids = array_merge($user_ids,$student_ids);
             $users = User::whereIn('id', $user_ids)->with('sender')->get();
+
         }else{
             Toastr::error("Permission Denied", 'Permission');
             return redirect()->back();
@@ -112,8 +132,7 @@ class CommunicationController extends Controller
 
         }
 
-
-        if(Auth::user()->role_id == 3){
+		if(Auth::user()->role_id == 3){
             return view('backend.communication.private_messages_students', compact('messages', 'users', 'singleMessage'));
         }else{
             return view('backend.communication.private_messages', compact('messages', 'users', 'singleMessage'));
@@ -166,9 +185,13 @@ class CommunicationController extends Controller
             $message->seen = 0;
 
             $message->save();
+            $shortcodes = array(
+              'sender' => Auth::user()->name,
+              'message' => $request->message,
+              'at' => Carbon::now()->format('Y-m-d H:i:s')
+            );
 
-
-
+            send_email($message->reciever,'Private_Message',$shortcodes);
 
 
             Toastr::success('Message has been send successfully', 'Success');
@@ -253,4 +276,3 @@ class CommunicationController extends Controller
 
 
 }
-

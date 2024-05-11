@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\AboutPage;
+use App\Http\Controllers\CloverController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PaymentController;
 use App\Jobs\SendGeneralEmail;
 use App\LessonComplete;
+use App\Models\WithdrawRequest;
 use App\Subscription;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -15,6 +17,8 @@ use DrewM\MailChimp\MailChimp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Modules\BundleSubscription\Entities\BundleCoursePlan;
@@ -27,8 +31,10 @@ use Modules\CourseSetting\Entities\Course;
 use Modules\CourseSetting\Entities\CourseEnrolled;
 use Modules\CourseSetting\Entities\CourseLevel;
 use Modules\CourseSetting\Entities\Lesson;
+use Modules\CourseSetting\Entities\TimeTableList;
 use Modules\FrontendManage\Entities\FrontPage;
-use Modules\FrontendManage\Entities\PrivacyPolicy;
+use Modules\FrontendManage\Entities\HomePageFaq;
+use Modules\FrontendManage\Entities\LoginPage;
 use Modules\Localization\Entities\Language;
 use Modules\MyClass\Repositories\Interfaces\AddStudentToClassRepositoryInterface;
 use Modules\Newsletter\Entities\NewsletterSetting;
@@ -40,9 +46,14 @@ use Modules\Quiz\Entities\QuizeSetup;
 use Modules\Quiz\Entities\QuizTest;
 use Modules\StudentSetting\Entities\Program;
 use Modules\Subscription\Http\Controllers\CourseSubscriptionController;
+use Modules\SystemSetting\Entities\PackagePricing;
+use Modules\SystemSetting\Entities\PackagePurchasing;
 use Modules\VirtualClass\Entities\VirtualClass;
+use Modules\CourseSetting\Entities\CourseReveiw;
 use PDF;
-
+use Modules\AuthorizeNetPayment\Http\Controllers\DoAuthorizeNetPaymentController;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 class WebsiteController extends Controller
 {
     public function __construct()
@@ -54,14 +65,15 @@ class WebsiteController extends Controller
     public function aboutData()
     {
         try {
-            if (hasDynamicPage()) {
-                $row = FrontPage::where('slug', '/about-us')->first();
-                $details = dynamicContentAppend($row->details);
-                return view('aorapagebuilder::pages.show', compact('row', 'details'));
-            } else {
-                $about = AboutPage::first();
-                return view(theme('pages.about'), compact('about'));
-            }
+            // if (hasDynamicPage()) {
+            //     $row = FrontPage::where('slug', '/about-us')->first();
+            //     $details = dynamicContentAppend($row->details);
+            //     return view('aorapagebuilder::pages.show', compact('row', 'details'));
+            // } else {
+            $about = AboutPage::first();
+            $latest_course_reveiws = CourseReveiw::where('status', 1)->with('user')->latest()->limit(4)->get();
+            return view(theme('pages.about'), compact('about','latest_course_reveiws'));
+            // }
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -273,17 +285,12 @@ class WebsiteController extends Controller
         }
     }
 
-    public function privacy()
+    public function customerHelp()
     {
         try {
-            if (hasDynamicPage()) {
-                $row = FrontPage::where('slug', '/privacy')->first();
-                $details = dynamicContentAppend($row->details);
-                return view('aorapagebuilder::pages.show', compact('row', 'details'));
-            } else {
-                $privacy_policy = PrivacyPolicy::getData();
-                return view(theme('pages.privacy'), compact('privacy_policy'));
-            }
+            $faqs = HomePageFaq::where('status', 1)->orderBy('order','desc')->get();
+            return view(theme('pages.customer_help'), get_defined_vars());
+            // }
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -292,7 +299,7 @@ class WebsiteController extends Controller
 
     public function fullScreenView(Request $request, $course_id, $lesson_id)
     {
-
+        // dd($request->all());
         try {
             $isEnrolled = true;
             if ($request->has('program_id')) {
@@ -301,15 +308,14 @@ class WebsiteController extends Controller
                     Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
                     return redirect()->back();
                 }
-            } else if ($request->has('courseType')) {
+            } elseif ($request->has('courseType')) {
                 $isEnrolled = CourseEnrolled::where('course_id', $course_id)->where('course_type', $request->courseType)->where('user_id', Auth::id())->count();
                 if ($isEnrolled == 0) {
                     Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
                     return redirect()->back();
                 }
             } else {
-                Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
-                return redirect()->back();
+                $isEnrolled = true;
             }
 
             //            updateEnrolledCourseLastView($course_id);
@@ -337,12 +343,33 @@ class WebsiteController extends Controller
             $preResult = [];
 
             $alreadyJoin = 0;
-            if (isset($request->quiz_result_id)) {
-                $quizTest = QuizTest::findOrFail($request->quiz_result_id);
+            $check_lesson = Lesson::where('id', $lesson_id)->with('online_test')->first();
+            // dd($check_lesson);
+            // dd($request->all(), $course_id, $lesson_id);
+            if (request()->has('program_id')) {
+                $attempted_quiz = $request->quiz_result_id;
+            } elseif (request()->has('courseType')) {
+                $attempted_quiz = !empty($check_lesson->online_test) ? $check_lesson->online_test->id : $request->quiz_result_id;
+                // $attempted_quiz = $request->quiz_result_id;
+            }
+            // dd($check_lesson, $check_lesson->online_test, $attempted_quiz);
+
+            if (isset($attempted_quiz)) {
+                $quizTest = QuizTest::findOrFail($attempted_quiz);
 
                 if (Auth::check()) {
                     $user = Auth::user();
-                    $all = QuizTest::with('details')->where('quiz_id', $quizTest->quiz_id)->where('course_id', $course_id)->where('user_id', $user->id)->get();
+                    $all = QuizTest::with('details')->where('quiz_id', $quizTest->quiz_id)->where('course_id', $course_id)->where('user_id', $user->id);
+                    if ($request->has('program_id')) {
+                        $all->where('program_id', $request->get('program_id'));
+                    } elseif ($request->has('courseType')) {
+                        $all->where('courseType', $request->get('courseType'));
+                    }
+                    $all = $all->get();
+                    // dd($attempted_quiz, $check_lesson->online_test->id, $request->quiz_result_id, $lesson_id, $all);
+                } elseif (isset($attempted_quiz)) {
+                    $preResult = QuizTest::with('details')->where('quiz_id', $quizTest->quiz_id)->where('course_id', $course_id)->where('user_id', $user->id)->exists();
+                    // dd($user, $preResult);
                 } else {
                     Toastr::error('You must login for continue', 'Failed');
                     return redirect()->back();
@@ -351,7 +378,7 @@ class WebsiteController extends Controller
                 if (count($all) != 0) {
                     $alreadyJoin = 1;
                 }
-
+                // dd($all, $alreadyJoin);
                 foreach ($all as $key => $i) {
                     $onlineQuiz = OnlineQuiz::find($i->quiz_id);
                     $date = showDate($i->created_at);
@@ -368,8 +395,10 @@ class WebsiteController extends Controller
                             }
                         }
                     }
-
-                    if ($request->quiz_result_id == $i->id) {
+                    if (!empty($preResult)) {
+                        return redirect()->to(route('quizResultPreview', $attempted_quiz));
+                    }
+                    if ($attempted_quiz == $i->id) {
 
                         $result['start_at'] = $i->start_at;
                         $result['end_at'] = $i->end_at;
@@ -407,12 +436,18 @@ class WebsiteController extends Controller
                     $check = Lesson::where('course_id', $i->course_id)->where('quiz_id', $i->quiz_id)->first();
                     if ($check && $i->pass == 1) {
                         $lesson = LessonComplete::where('course_id', $i->course_id)->where('lesson_id', $check->id)->where('user_id', Auth::id())->first();
+                        // dd($isEnrolled, $attempted_quiz, $quizTest, $all, $preResult, $i->id, $check, $i->pass, $lesson);
                         if (!$lesson) {
                             checkGamification('each_unit_complete', 'learning');
                             $lesson = new LessonComplete();
                             $lesson->user_id = Auth::id();
                             $lesson->course_id = $i->course_id;
                             $lesson->lesson_id = $check->id;
+                            if ($request->has('courseType')) {
+                                $lesson->courseType = $request->courseType;
+                            } elseif ($request->has('program_id')) {
+                                $lesson->program_id = $request->program_id;
+                            }
                         }
                         $lesson->status = 1;
                         $lesson->save();
@@ -421,6 +456,7 @@ class WebsiteController extends Controller
             }
 
             $course = Course::findOrFail($course_id);
+            $course->type = $request->courseType;
             $lesson = Lesson::where('id', $lesson_id)->first();
 
             if (!$lesson) {
@@ -479,8 +515,13 @@ class WebsiteController extends Controller
 
             $today = Carbon::now()->toDateString();
             $showDrip = Settings('show_drip') ?? 0;
-            $all = Lesson::where('course_id', $course->id)->with('completed')->orderBy('position', 'asc')->get();;
+            // if ($request->program_id) {
+            //     $all->where('program_id', $request->program_id);
+            // }
+            $all = Lesson::where('course_id', $course->id)->with('completed', 'programCompleted');
 
+            $all = $all->orderBy('position', 'asc')->get();;
+            // dd($all);
             $lessons = [];
             if ($course->drip == 1) {
                 if ($showDrip == 1) {
@@ -569,7 +610,16 @@ class WebsiteController extends Controller
             }
 
 
+            // $lessonPercentage = LessonComplete::where('course_id', $course_id)
+            //     ->where('lesson_id', $lesson_id)
+            //     ->where('user_id', Auth::id())->where('courseType', $request->get('courseType'))
+            //     ->first();
+            // if ($lessonPercentage) {
             $percentage = round($course->loginUserTotalPercentage);
+            // } else {
+            //     $percentage = 0;
+            // }
+
 
             $course_reviews = DB::table('course_reveiws')->select('user_id')->where('course_id', $course->id)->get();
 
@@ -642,7 +692,25 @@ class WebsiteController extends Controller
                     $lesson->host = $default->type;
                 }
             }
+            // if ($percentage == 100) {
+            //     echo $percentage . '<br>';
 
+            //     $shortCodes = [
+            //         'course' => $course->title,
+            //         'time' => Carbon::now()->format('d-M-Y ,H:i A'),
+            //         'percentage' => $percentage,
+            //         'type' => 'course',
+            //     ];
+
+            //     $send = send_email(Auth::user(), 'Complete_Course', $shortCodes);
+            //     if ($send) {
+            //         Toastr::success('Your Course Successfully Completed', trans('common.Success'));
+            //         return redirect()->back();
+            //     } else {
+            //         Toastr::error('Something went wrong', trans('common.Failed'));
+            //         return redirect()->back();
+            //     }
+            // }
             return view(theme('pages.fullscreen_video'), compact('quizPass', 'alreadyJoin', 'lesson_ids', 'result', 'preResult', 'quizSetup', 'chapters', 'reviewer_user_ids', 'percentage', 'isEnrolled', 'total', 'certificate', 'course', 'lesson', 'lessons'));
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
@@ -726,14 +794,29 @@ class WebsiteController extends Controller
                 if ($newsletterSetting->home_service == "Local") {
 
                     $check = Subscription::where('email', '=', $request->email)->first();
+                    $check_user = User::where('email', '=', $request->email)->first();
 
                     if (empty($check)) {
                         $subscribe = new Subscription();
                         $subscribe->email = $request->email;
-                        $subscribe->type = 'Homepage';
-                        $subscribe->save();
-
-                        Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+                        $subscribe->type = (empty($check_user) ? 'Guest' : 'Homepage');
+                        if ($subscribe->save()) {
+                            $shortCodes = [
+                              'newsletter' => '',
+                                'subscriber' => $request->email,
+                                'time' => Carbon::now()->format('d-M-Y ,H:i A'),
+                                'type' => 'newsletter',
+                            ];
+                            if (Auth::check()) {
+                                $user = Auth::user();
+                            } else {
+                                $user = new User();
+                                $user->email = $request->email;
+                            }
+                            // dd($user);
+                            send_email($user, 'Newsletter_Subscribe', $shortCodes);
+                            Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+                        }
                     } else {
                         Toastr::error('Already subscribe!', 'Failed');
                     }
@@ -829,30 +912,65 @@ class WebsiteController extends Controller
     public function addToCartQuiz(Request $request, $id)
     {
         try {
-
-            $course = Course::where('price', '!=', '0.00');
-            if ($request->has('courseType')) {
-                $course = $course->where('type', $request->courseType)->where('parent_id', $id)->first();
+            $course = Course::where('type', request()->get('courseType'));
+            if (request()->has('courseType') && in_array(request()->get('courseType'), [2, 7, 9])) {
+                $course = $course->where('id', $id);
             } else {
-                $course = $course->where('id', $id)->first();
+                $course = $course->where('parent_id', $id)
+                    ->with('currentCoursePlan');
+            }
+
+            $course = $course->where('status', 1)
+                ->latest()
+                ->first();
+
+            if (count($course->currentCoursePlan) && in_array(request()->get('courseType'), [4, 6])) {
+                // $course = Course::where('price', '==', '0.00')
+                //     ->orWhereNull('price')
+                //     ->where('type', $request->courseType)
+                //     ->where('parent_id', $id)
+                //     ->with('currentCoursePlan')
+                //     ->first();
+                $course = Course::where(function ($query) {
+                    $query->where('price', '0.00')
+                        ->orWhereNull('price');
+                })
+                    ->where('type', $request->courseType)
+                    ->where('parent_id', $id)
+                    ->with('currentCoursePlan')
+                    ->first();
+            } elseif (in_array(request()->get('courseType'), [2, 7, 9])) {
+                $course = Course::where('price', '!=', '0.00')
+                    ->where('id', $id)
+                    ->first();
+            } else {
+                $course = Course::where('price', '!=', '0.00')
+                    ->where('parent_id', $id)
+                    ->first();
+            }
+
+            // dd($request->all(), $id, $course);
+
+            if (!Auth::check()) {
+                Toastr::error('You Must login', 'Error');
+                session(['redirectTo' => (!empty($course->parent_id) ? route('addToCartQuiz', [$id]) . '?courseType=' . $request->courseType : route('addToCartQuiz', [$id]))]);
+                return \redirect()->route('login');
             }
 
             if (!$course) {
-                Toastr::error('Quiz not found OR You or trying to buy 0 cast product', 'Failed');
-                return redirect()->back();
+                Toastr::error('Data not Found OR You or trying to buy 0 Cost Product', 'Failed');
+                return redirect()->to((!empty($course->parent_id) ? courseDetailsUrl($course->parent_id, $course->type, $course->parent->slug) . '?courseType=' . $course->type : courseDetailsUrl($course->id, $course->type, $course->slug)));
             }
             if (isModuleActive('Org')) {
                 $type = $course->required_type;
                 if ($type == 1) {
                     Toastr::error(trans('org.Unable to add cart'), trans('common.Failed'));
-                    return redirect()->back();
+                    return redirect()->to((!empty($course->parent_id) ? courseDetailsUrl($course->parent_id, $course->type, $course->parent->slug) . '?courseType=' . $course->type : courseDetailsUrl($course->id, $course->type, $course->slug)));
                 }
             }
-
             $user = Auth::user();
 
             if (Auth::check() && ($user->role_id != 1)) {
-
                 $exist = Cart::where('user_id', $user->id);
                 if ($request->has('courseType')) {
                     $exist = $exist->where('course_type', $request->courseType);
@@ -862,19 +980,27 @@ class WebsiteController extends Controller
                     $query->whereNotNull('course_id');
                 })->first();
 
-
                 if (isset($exist)) {
-                    Toastr::error(trans('Quiz already added in your cart'), trans('common.Failed'));
+                    Toastr::error(trans('Already added in your Cart'), trans('common.Failed'));
 
-                    return redirect()->back();
+                    if ($request->has('courseType') || $request->courseType == 8) {
+                        return redirect()->back();
+                    } else {
+                        return redirect()->to((!empty($course->parent_id) ? courseDetailsUrl($course->parent_id, $course->type, $course->parent->slug) . '?courseType=' . $course->type : courseDetailsUrl($course->id, $course->type, $course->slug)));
+                    }
                 } elseif (Auth::check() && ($user->role_id == 1)) {
-                    Toastr::error(trans('frontend.You logged in as admin so can not add cart'), trans('common.Failed'));
-                    return redirect()->back();
+                    Toastr::error(trans('frontend.You Logged in as Admin so can not add to cart'), trans('common.Failed'));
+                    return redirect()->to((!empty($course->parent_id) ? courseDetailsUrl($course->parent_id, $course->type, $course->parent->slug) . '?courseType=' . $course->type : courseDetailsUrl($course->id, $course->type, $course->slug)));
                 } else {
 
+                    if (count($course->currentCoursePlan) && in_array(request()->get('courseType'), [4, 6])) {
+                        $course_price = $course->currentCoursePlan[0]->amount;
+                    } else {
+                        $course_price = $course->price;
+                    }
+
+
                     if (isset($oldCart)) {
-
-
                         $cart = new Cart();
                         $cart->user_id = $user->id;
                         $cart->instructor_id = $course->user_id;
@@ -886,7 +1012,7 @@ class WebsiteController extends Controller
                         if ($course->discount_price > 0) {
                             $cart->price = $course->discount_price;
                         } else {
-                            $cart->price = $course->price;
+                            $cart->price = $course_price;
                         }
                         $cart->save();
                     } else {
@@ -903,81 +1029,35 @@ class WebsiteController extends Controller
                             $cart->price = $course->discount_price;
                         } else {
 
-                            $cart->price = $course->price;
+                            $cart->price = $course_price;
                         }
 
                         $cart->save();
                     }
 
-                    //                    if ($cart->price == 0) {
-                    //                        $paymentController = new PaymentController();
-                    //                        $paymentController->directEnroll($cart->course_id, $cart->tracking);
-                    //                    }
-                    if ($request->has('courseType')) {
-                        if ($request->courseType == 4) {
-                            Toastr::success(trans('CNA PREP Added to your cart'), trans('common.Success'));
-                        } else {
-                            Toastr::success(trans('TEST PREP Added to your cart'), trans('common.Success'));
-                        }
+                    $courseTypeMessages = [
+                        2 => 'Big Quiz Added to Your Cart',
+                        4 => 'Full Course Added to Your Cart',
+                        5 => 'Prep-Course (On-Demand) Added to Your Cart',
+                        6 => 'Prep-Course (Live) Added to Your Cart',
+                        7 => 'Time Table Added to Your Cart',
+                        8 => 'Repeat Course Added to Your Cart',
+                        9 => 'Individual Course Added to Your Cart',
+                    ];
+
+                    $defaultMessage = 'Successfully Added to Your Cart';
+
+                    $message = $courseTypeMessages[$request->get('courseType')] ?? $defaultMessage;
+
+                    Toastr::success(trans($message), trans('common.Success'));
+
+                    if ($request->has('courseType') || $request->courseType == 8) {
+                        return redirect()->back();
                     } else {
-                        Toastr::success(trans('Big Quiz Added to your cart'), trans('common.Success'));
+                        return redirect()->to((!empty($course->parent_id) ? courseDetailsUrl($course->parent_id, $course->type, $course->parent->slug) . '?courseType=' . $course->type : courseDetailsUrl($course->id, $course->type, $course->slug)));
                     }
-                    return redirect()->back();
                 }
-            } //If user not logged in then cart added into session
-            Toastr::error('You must login', 'Error');
-            session(['redirectTo' => route('quizzes')]);
-            return \redirect()->route('login');
-            //            else {
-            //                $price = 0;
-            //
-            //
-            //                if ($course->discount_price > 0) {
-            //                    $price = $course->discount_price;
-            //                } else {
-            //                    $price = $course->price;
-            //                }
-            //
-            //
-            //                $cart = session()->get('cart');
-            //                if (!$cart) {
-            //                    $cart = [
-            //                        $id => [
-            //                            "id" => $course->id,
-            //                            "course_id" => $course->id,
-            //                            "instructor_id" => $course->user_id,
-            //                            "instructor_name" => $course->user->name,
-            //                            "title" => $course->programtitle,
-            //                            "image" => $course->image,
-            //                            "price" => $price,
-            //                        ]
-            //                    ];
-            //                    session()->put('cart', $cart);
-            //                    Toastr::success(trans('Quiz Added to your cart'), trans('common.Success'));
-            //                    return redirect()->back();
-            //                } elseif (isset($cart[$id])) {
-            //                    Toastr::error(trans('Quiz already added in your cart'), trans('common.Failed'));
-            //
-            //                    return redirect()->back();
-            //                } else {
-            //
-            //                    $cart[$id] = [
-            //
-            //                        "id" => $course->id,
-            //                        "course_id" => $course->id,
-            //                        "instructor_id" => $course->user_id,
-            //                        "instructor_name" => $course->user->name,
-            //                        "title" => $course->programtitle,
-            //                        "image" => $course->image,
-            //                        "price" => $price,
-            //                    ];
-            //
-            //                    session()->put('cart', $cart);
-            //
-            //                    Toastr::success(trans('Quiz Added to your cart'), trans('common.Success'));
-            //                    return redirect()->back();
-            //                }
-            //            }
+            }
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -987,38 +1067,89 @@ class WebsiteController extends Controller
     {
 
         try {
+            $course = Course::where('type', request()->get('courseType'));
+            if (request()->has('courseType') && in_array(request()->get('courseType'), [2, 7, 9])) {
+                $course = $course->where('id', $id);
+            } else {
+                $course = $course->where('parent_id', $id)
+                    ->with('currentCoursePlan');
+            }
+
+            $course = $course->where('status', 1)
+                ->latest()
+                ->first();
+
+            if (count($course->currentCoursePlan) && in_array(request()->get('courseType'), [4, 6])) {
+                // $course = Course::where('price', '==', '0.00')
+                //     ->where('type', $request->courseType)
+                //     ->where('parent_id', $id)
+                //     ->with('currentCoursePlan')
+                //     ->first();
+                $course = Course::where(function ($query) {
+                    $query->where('price', '0.00')
+                        ->orWhereNull('price');
+                })
+                    ->where('type', $request->courseType)
+                    ->where('parent_id', $id)
+                    ->with('currentCoursePlan')
+                    ->first();
+            } elseif (in_array(request()->get('courseType'), [2, 7, 9])) {
+                $course = Course::where('price', '!=', '0.00')
+                    ->where('id', $id)
+                    ->first();
+            } else {
+                $course = Course::where('price', '!=', '0.00')
+                    ->where('parent_id', $id)
+                    ->first();
+            }
+
+            // $course = Course::query();
+            // if (!request()->has('courseType')) {
+            //     $course = $course->where('id', $id);
+            // } elseif (request()->has('courseType') && request()->get('courseType') == 9) {
+            //     $course = $course->where('id', $id);
+            // } else {
+            //     $course = $course->where('parent_id', $id)
+            //         ->with('currentCoursePlan');
+            // }
+            // $course = $course->where('status', 1)
+            //     ->latest()
+            //     ->first();
+
+            // if (count($course->currentCoursePlan) && in_array(request()->get('courseType'), [4, 6])) {
+            //     $course = Course::where('price', '==', '0.00')
+            //         ->where('type', $request->courseType)
+            //         ->where('parent_id', $id)
+            //         ->with('currentCoursePlan')
+            //         ->first();
+            // } elseif (request()->get('courseType') == 9) {
+            //     $course = Course::where('price', '!=', '0.00')
+            //         ->where('id', $id)
+            //         ->first();
+            // } elseif (!request()->has('courseType')) {
+            //     $course = Course::where('price', '!=', '0.00')
+            //         ->where('id', $id)
+            //         ->first();
+            // } else {
+            //     $course = Course::where('price', '!=', '0.00')
+            //         ->where('parent_id', $id)
+            //         ->first();
+            // }
+
+
             if (!Auth::check()) {
                 Toastr::error('You must login', 'Error');
-                session(['redirectTo' => route('quizzes')]);
+                session(['redirectTo' => (!empty($course->parent_id) ? route('buyNowQuiz', [$id]) . '?courseType=' . $request->courseType : route('addToCartQuiz', [$id]))]);
                 return \redirect()->route('login');
-            }
-            $course = Course::where('price', '!=', '0.00');
-            if ($request->has('courseType')) {
-                $course = $course->where('type', $request->courseType)->where('parent_id', $id)->first();
-            } else {
-                $course = $course->where('id', $id)->first();
             }
 
             if (!$course) {
-                Toastr::error('Quiz not found OR You or trying to buy 0 cast product', 'Failed');
+                Toastr::error('Data Not Found !', 'Failed');
                 return redirect()->back();
             }
 
-            //            if ($program->isLoginUserEnrolled) {
-            //                Toastr::error(trans('Program already enrolled'), 'Failed');
-            //                return redirect()->back();
-            //            }
-            //            if (isModuleActive('Org')) {
-            //                $type = $program->required_type;
-            //                if ($type == 1) {
-            //                    Toastr::error(trans('org.Unable to add cart'), trans('common.Failed'));
-            //                    return redirect()->back();
-            //                }
-            //            }
-
             $user = Auth::user();
             if (Auth::check() && ($user->role_id != 1)) {
-
 
                 $exist = Cart::where('user_id', $user->id);
                 if ($request->has('courseType')) {
@@ -1030,17 +1161,21 @@ class WebsiteController extends Controller
                 })->first();
 
                 if (isset($exist)) {
-                    Toastr::error(trans('Quiz already added in your cart'), trans('common.Failed'));
-
+                    Toastr::error(trans('Prep-Course Already Added in Your Cart'), trans('common.Failed'));
                     return redirect()->route('CheckOut');
                 } elseif (Auth::check() && ($user->role_id == 1)) {
                     Toastr::error(trans('frontend.You logged in as admin so can not add cart'), trans('common.Failed'));
                     return redirect()->back();
                 } else {
 
+                    if (count($course->currentCoursePlan) && in_array(request()->get('courseType'), [4, 6])) {
+                        $course_price = $course->currentCoursePlan[0]->amount;
+                    } else {
+                        $course_price = $course->price;
+                    }
 
                     if (isset($oldCart)) {
-                        echo 'old';
+                        // echo 'old';
                         $cart = new Cart();
                         $cart->user_id = $user->id;
                         $cart->instructor_id = $course->user_id;
@@ -1052,7 +1187,7 @@ class WebsiteController extends Controller
                         if ($course->discount_price < 0) {
                             $cart->price = $course->discount_price;
                         } else {
-                            $cart->price = $course->price;
+                            $cart->price = $course_price;
                         }
 
                         $cart->save();
@@ -1069,81 +1204,31 @@ class WebsiteController extends Controller
                         if ($course->discount_price < 0) {
                             $cart->price = $course->discount_price;
                         } else {
-                            $cart->price = $course->price;
+                            $cart->price = $course_price;
                         }
 
                         $cart->save();
                     }
-                    //                    if ($cart->price == 0) {
-                    //                        $paymentController = new PaymentController();
-                    //                        $paymentController->directEnroll($cart->program_id, $cart->tracking);
-                    //                    }
 
-                    if ($request->has('courseType')) {
-                        if ($request->courseType == 4) {
-                            Toastr::success(trans('CNA PREP Added to your cart'), trans('common.Success'));
-                        } else {
-                            Toastr::success(trans('TEST PREP Added to your cart'), trans('common.Success'));
-                        }
-                    } else {
-                        Toastr::success(trans('Big Quiz Added to your cart'), trans('common.Success'));
-                    }
+                    $courseTypeMessages = [
+                        2 => 'Big Quiz Added to Your Cart',
+                        4 => 'Full Course Added to Your Cart',
+                        5 => 'Prep-Course (On-Demand) Added to Your Cart',
+                        6 => 'Prep-Course (Live) Added to Your Cart',
+                        7 => 'Time Table Added to Your Cart',
+                        8 => 'Repeat Course Added to Your Cart',
+                        9 => 'Individual Course Added to Your Cart',
+                    ];
+
+                    $defaultMessage = 'Successfully Added to Your Cart';
+
+                    $message = $courseTypeMessages[$request->get('courseType')] ?? $defaultMessage;
+
+                    Toastr::success(trans($message), trans('common.Success'));
+
                     return redirect()->route('CheckOut')->with('back', courseDetailsUrl(@$course->id, @$course->type, @$course->slug));
                 }
-            } //If user not logged in then cart added into session
-
-            //            else {
-            //                $price = 0;
-            //                if (!$course) {
-            //                    Toastr::error('Quiz not found', 'Failed');
-            //                    return redirect()->back();
-            //                }
-            //
-            //                if ($course->discount_price > 0) {
-            //                    $price = $course->discount_price;
-            //                } else {
-            //                    $price = $course->price;
-            //                }
-            //
-            //
-            //                $cart = session()->get('cart');
-            //                if (!$cart) {
-            //                    $cart = [
-            //                        $id => [
-            //                            "id" => $course->id,
-            //                            "course_id" => $course->id,
-            //                            "instructor_id" => $course->user_id,
-            //                            "instructor_name" => $course->user->name,
-            //                            "title" => $course->programtitle,
-            //                            "image" => $course->image,
-            //                            "price" => $price,
-            //                        ]
-            //                    ];
-            //                    session()->put('cart', $cart);
-            //                    Toastr::success(trans('Quiz Added to your cart'), trans('common.Success'));
-            //                    return redirect()->route('CheckOut');
-            //                } elseif (isset($cart[$id])) {
-            //                    Toastr::error(trans('frontend.Course already added in your cart'), trans('common.Failed'));
-            //                    return redirect()->route('CheckOut');
-            //                } else {
-            //
-            //                    $cart[$id] = [
-            //
-            //                        "id" => $course->id,
-            //                        "course_id" => $course->id,
-            //                        "instructor_id" => $course->user_id,
-            //                        "instructor_name" => $course->user->name,
-            //                        "title" => $course->title,
-            //                        "image" => $course->image,
-            //                        "price" => $price,
-            //                    ];
-            //
-            //                    session()->put('cart', $cart);
-            //
-            //                    Toastr::success(trans('frontend.Course Added to your cart'), trans('common.Success'));
-            //                    return redirect()->route('CheckOut');
-            //                }
-            //            }
+            }
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -1156,15 +1241,23 @@ class WebsiteController extends Controller
             $program = Program::where('id', $id)->with(['currentProgramPlan.initialProgramPalnDetail', 'programPlans' => function ($q) use ($request) {
                 $q->where('id', $request->plan_id)->with('initialProgramPalnDetail');
             }])->first();
+
+
+            if (!Auth::check()) {
+                Toastr::error('You must login', 'Error');
+                session(['redirectTo' => route('addToCart', ['id' => $id, 'plan_id' => $request->plan_id])]);
+                return \redirect()->route('login');
+            }
+
             if (!$program) {
                 Toastr::error('Program not found', 'Failed');
-                return redirect()->back();
+                return redirect()->to(route('programs.detail', $id));
             }
             if (isModuleActive('Org')) {
                 $type = $program->required_type;
                 if ($type == 1) {
                     Toastr::error(trans('org.Unable to add cart'), trans('common.Failed'));
-                    return redirect()->back();
+                    return redirect()->to(route('programs.detail', $id));
                 }
             }
 
@@ -1181,10 +1274,10 @@ class WebsiteController extends Controller
                 if (isset($exist)) {
                     Toastr::error(trans('Program already added in your cart'), trans('common.Failed'));
 
-                    return redirect()->back();
+                    return redirect()->to(route('programs.detail', $id));
                 } elseif (Auth::check() && ($user->role_id == 1)) {
                     Toastr::error(trans('frontend.You logged in as admin so can not add cart'), trans('common.Failed'));
-                    return redirect()->back();
+                    return redirect()->to(route('programs.detail', $id));
                 } else {
 
                     if (isset($oldCart)) {
@@ -1233,12 +1326,11 @@ class WebsiteController extends Controller
                     //                    }
 
                     Toastr::success(trans('Program Added to your cart'), trans('common.Success'));
-                    return redirect()->back();
+                    return redirect()->to(route('programs.detail', $id));
                 }
-            } //If user not logged in then cart added into session
-            Toastr::error('You must login', 'Error');
-            session(['redirectTo' => route('programs.detail', $id)]);
-            return \redirect()->route('login');
+            }
+            //If user not logged in then cart added into session
+
             //            else {
             //                $price = 0;
             //
@@ -1304,14 +1396,30 @@ class WebsiteController extends Controller
     {
 
         try {
-            if (!Auth::check()) {
-                Toastr::error('You must login', 'Error');
-                session(['redirectTo' => route('programs.detail', $id)]);
-                return \redirect()->route('login');
-            }
+
+
             $program = Program::where('id', $id)->with(['currentProgramPlan.initialProgramPalnDetail', 'programPlans' => function ($q) use ($request) {
                 $q->where('id', $request->plan_id);
             }])->first();
+          //dd( $program);
+          if (Session::has('pre-registered-user')) {
+            if (!Auth::check()) {
+                // Toastr::error('You must register first', 'Error');
+                Session::put('redirectTo', route('buyNow', ['id' => $id, 'plan_id' => $request->plan_id]));
+                return redirect()->route('register');
+
+            }
+        }
+          else{
+
+
+            if (!Auth::check()) {
+                Toastr::error('You must login', 'Error');
+                session(['redirectTo' => route('buyNow', ['id' => $id, 'plan_id' => $request->plan_id])]);
+                return \redirect()->route('login');
+            }
+        }
+
             if (!$program) {
                 Toastr::error('Program not found', 'Failed');
                 return redirect()->back();
@@ -1375,6 +1483,7 @@ class WebsiteController extends Controller
                         $cart->program_id = $id;
                         $cart->plan_id = $request->plan_id;
                         $cart->tracking = getTrx();
+
                         if ($program->discount_price < 0) {
                             $cart->price = $program->discount_price;
                         } else {
@@ -1394,7 +1503,7 @@ class WebsiteController extends Controller
 
                     Toastr::success(trans('Program Added to your cart'), trans('common.Success'));
                     return redirect()->route('CheckOut')->with('back', route('programs.detail', $program->id));
-                    //                    return redirect()->route('CheckOut')->with('back', courseDetailsUrl(@$course->id, @$course->type, @$course->slug));
+                    // return redirect()->route('CheckOut')->with('back', courseDetailsUrl(@$course->id, @$course->type, @$course->slug));
                 }
             } //If user not logged in then cart added into session
 
@@ -1780,15 +1889,65 @@ class WebsiteController extends Controller
         }
     }
 
-    public function newPage()
+    public function repeatCourse(Request $request)
     {
-        return view(theme('pages.new_page'));
+
+        $course = Course::where('id', $request->course_id)->with(['course_sale_data', 'parent'])
+            ->first(
+                [
+                    'id',
+                    'parent_id',
+                    'start_date',
+                    'end_date',
+                    'image',
+                    'type',
+                    'time_table_id'
+                ]
+            );
+        // $timetables = TimeTable::where('status', 1)->latest()->get();
+        $time_tables = TimeTableList::where('time_table_id', $course->time_table_id)->groupBy('week')->orderBy('week')->get();
+
+        $Classes = Course::whereHas('class', function ($q) use ($course) {
+            $q->where('course_id', $course->parent_id)->has('zoomMeetings');
+        })->where('scope', 1)->get();
+
+
+        $isEnrolled = CourseEnrolled::where('course_id', $course->parent->id)->where('course_type', 8)->where('user_id', Auth::id())->count();
+        return view(theme('pages.repeat-course'), compact('course', 'isEnrolled', 'time_tables', 'Classes'));
     }
-    
+
     public function application_requirements()
     {
-    return view(theme('pages.application_requirements'));
+        return view(theme('pages.application_requirements'));
     }
+
+
+    public function teachWithUs()
+    {
+
+        $courses = Course::where('status', 1)->has('userRoleId')->with(['userRoleId', 'chapters', 'enrolls'])->take(4)->orderBy('feature','desc')->get();
+        $postions = DB::table('instructor_positions')->get();
+        $hears = DB::table('instructor_hears')->get();
+        $packages = PackagePricing::where('status', '1')->get() ;
+        $about = AboutPage::first();
+        $current_package = PackagePurchasing::where('user_id', Auth::id())->latest()->first();
+        $exist = PackagePurchasing::where('user_id', Auth::id())->count();
+
+        return view(theme('pages.teach-with-us'), get_defined_vars());
+    }
+
+    public function skipPricing()
+    {
+        Toastr::success('Thank you for submitting your application. You will receive your login credentials shortly via email', 'Success');
+        return redirect()->to(route('teachWithUs'));
+    }
+
+    public function individualTutorPackages()
+    {
+        $packages = PackagePricing::where('status', '1')->get();
+        return view(theme('pages.packages'), get_defined_vars());
+    }
+
 
     public function contactMsgSubmit(Request $request)
     {
@@ -1833,9 +1992,7 @@ class WebsiteController extends Controller
 
 
         $admin = User::where('role_id', 1)->first();
-
-
-        $send = SendGeneralEmail::dispatch($admin, 'CONTACT_MESSAGE', [
+        $shortCodes = [
             'name' => $name,
             'email' => $email,
             'message' => $message,
@@ -1844,8 +2001,8 @@ class WebsiteController extends Controller
             'zip' => $zip,
             'program' => $program,
             'year' => $year
-        ]);
-
+        ];
+        $send = send_email($admin, 'CONTACT_MESSAGE', $shortCodes);
 
         if ($send) {
             Toastr::success('Successfully Sent Message', trans('common.Success'));
@@ -1872,7 +2029,6 @@ class WebsiteController extends Controller
 
             if (hasDynamicPage()) {
                 $details = dynamicContentAppend($row->details);
-                // dd($details);
                 return view('aorapagebuilder::pages.show', compact('row', 'details'));
             } else {
                 return view(theme('pages.page'), compact('page'));
@@ -1886,6 +2042,29 @@ class WebsiteController extends Controller
     public function search(Request $request)
     {
         try {
+
+            if ($request->ajax()) {
+                $search = $request->name;
+                $query = Program::orderBy('seq_no', 'asc')
+                    ->where('status', 1)
+                    ->has('currentProgramPlan')
+                    ->with('currentProgramPlan')
+                    ->where('programtitle', 'LIKE', "%{$search}%")
+                    ->get();
+
+                $search_output = '';
+                if (count($query) > 0) {
+                    $search_output = '<ul id="search_listing" class="list-group" style="display:block;position:relative; z-index:1">';
+                    foreach ($query as $item) {
+                        $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->programtitle . '\')">' . $item->programtitle . '</li>';
+                    }
+                    $search_output .= '</ul>';
+                } else {
+                    $search_output .= '<li id="search_listing" class="list-group-item">Course Not Found</li>';
+                }
+                return response()->json($search_output);
+            }
+
             $id = 0;
             return view(theme('pages.search'), compact('request', 'id'));
         } catch (\Exception $e) {
@@ -2057,7 +2236,7 @@ class WebsiteController extends Controller
         $carts = [];
         if (Auth::check()) {
 
-            $items = Cart::where('user_id', Auth::id())->with(['course', 'course.user', 'program', 'program.user'])->when(isModuleActive('Invoice'), function ($query) {
+            $items = Cart::where('user_id', Auth::id())->with(['course', 'course.parent', 'course.user', 'course.children', 'program', 'program.user'])->when(isModuleActive('Invoice'), function ($query) {
                 $query->whereNull('type');
             })->get();
 
@@ -2081,14 +2260,30 @@ class WebsiteController extends Controller
                             $carts[$key]['price'] = getPriceFormat($cart->price);
                         }
                     }
-                    $check = Course::find($cart['course_id']);
+                    $check = Course::where('id', $cart['course_id'])->with('children')->first();
                     if ($check) {
+                        if (isset($cart->course->parent)) {
+                            $course_title = $cart->course->parent->title;
+                        } else {
+                            $course_title = $cart->course->title;
+                        }
                         $carts[$key]['id'] = $cart['id'];
                         $carts[$key]['course_id'] = $cart['course_id'];
                         $carts[$key]['instructor_id'] = $cart['instructor_id'];
-                        $carts[$key]['title'] = $cart->course->title;
+                        $carts[$key]['title'] = $course_title;
                         $carts[$key]['instructor_name'] = $cart->course->user->name;
-                        $carts[$key]['image'] = getCourseImage($cart->course->thumbnail);
+                        if ($cart->course_type == 4) {
+                            $child_image = $check->children()->where('type', $cart->course_type)->first();
+                            $carts[$key]['image'] = getCourseImage($child_image->thumbnail);
+                        } elseif ($cart->course_type == 5) {
+                            $child_image = $check->children()->where('type', $cart->course_type)->first();
+                            $carts[$key]['image'] = getCourseImage($child_image->thumbnail);
+                        } elseif ($cart->course_type == 6) {
+                            $child_image = $check->children()->where('type', $cart->course_type)->first();
+                            $carts[$key]['image'] = getCourseImage($child_image->thumbnail);
+                        } else {
+                            $carts[$key]['image'] = getCourseImage($cart->course->thumbnail);
+                        }
 
                         if ($cart->course->discount_price > 0) {
 
@@ -2141,20 +2336,27 @@ class WebsiteController extends Controller
             }
         }
 
-
         return response()->json($carts);
     }
 
 
     public function lessonComplete(Request $request)
     {
-
-
         try {
             $newLessonComplete = false;
-            $lesson = LessonComplete::where('course_id', $request->course_id)->where('lesson_id', $request->lesson_id)->where('user_id', Auth::id())->first();
+            $lesson = LessonComplete::where('course_id', $request->course_id)
+                ->where('lesson_id', $request->lesson_id)
+                ->where('user_id', Auth::id());
+
+            if ($request->program_id) {
+                $lesson->where('program_id', $request->program_id);
+            }
+
+            $lesson = $lesson->first();
+
             $certificateBtn = 0;
             if (!$lesson) {
+                // If $lesson is empty, create a new lesson with $request->courseType
                 $check = Lesson::find($request->lesson_id);
                 if ($check) {
                     checkGamification('each_unit_complete', '');
@@ -2164,14 +2366,32 @@ class WebsiteController extends Controller
                 $lesson->user_id = Auth::id();
                 $lesson->course_id = $request->course_id;
                 $lesson->lesson_id = $request->lesson_id;
+                $lesson->courseType = $request->courseType; // Set courseType
+                if ($request->program_id) {
+                    $lesson->program_id = $request->program_id;
+                }
+            } elseif (is_null($lesson->courseType)) {
+                $lesson->courseType = $request->courseType;
+            } elseif ($lesson->courseType != $request->courseType) {
+                $check = Lesson::find($request->lesson_id);
+                if ($check) {
+                    checkGamification('each_unit_complete', '');
+                }
+                $newLessonComplete = true;
+                $lesson = new LessonComplete();
+                $lesson->user_id = Auth::id();
+                $lesson->course_id = $request->course_id;
+                $lesson->lesson_id = $request->lesson_id;
+                $lesson->courseType = $request->courseType; // Set courseType
             }
             $lesson->status = $request->status;
             if ($request->status == 1)
                 $success = trans('frontend.Lesson Marked as Complete');
             else
                 $success = trans('frontend.Lesson Marked as Incomplete');
-            $lesson->save();
 
+            // dd($request->all(), $lesson);
+            $lesson->save();
             $course = Course::find($request->course_id);
             if ($course) {
                 $percentage = round($course->loginUserTotalPercentage);
@@ -2184,8 +2404,10 @@ class WebsiteController extends Controller
 
                     if (UserEmailNotificationSetup('Complete_Course', Auth::user())) {
                         SendGeneralEmail::dispatch(Auth::user(), 'Complete_Course', [
-                            'time' => Carbon::now()->format('d-M-Y, g:i A'),
-                            'course' => $course->title
+                            'course' => $course->title,
+                            'time' => Carbon::now()->format('d-M-Y ,H:i A'),
+                            'percentage' => $percentage,
+                            'type' => 'course',
                         ]);
                     }
                     if (UserBrowserNotificationSetup('Complete_Course', Auth::user())) {
@@ -2197,7 +2419,7 @@ class WebsiteController extends Controller
                                 'course' => $course->title
                             ],
                             trans('common.View'),
-                            courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
+                            courseDetailsUrl(@$course->id, @$course->type, @$course->slug)
                         );
                     }
 
@@ -2237,10 +2459,32 @@ class WebsiteController extends Controller
 
             $enrolled = CourseEnrolled::where('course_id', $request->course_id)->where('user_id', $user->id)->first();
 
+            if ($request->has('program_id')) {
+                $isEnrolled = CourseEnrolled::where('program_id', $request->program_id)->where('user_id', Auth::id())->count();
+                if ($isEnrolled == 0) {
+                    Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
+                    return redirect()->back();
+                }
+            }
+            if ($request->has('courseType')) {
+                $isEnrolled = CourseEnrolled::where('course_id', $request->course_id)->where('course_type', $request->courseType)->where('user_id', Auth::id())->count();
+                if ($isEnrolled == 0) {
+                    Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
+                    return redirect()->back();
+                }
+            }
+
+
             $lesson = LessonComplete::query()
                 ->where('course_id', $request->course_id)
-                ->where('lesson_id', $request->lesson_id)
-                ->where('user_id', $user->id)
+                ->where('lesson_id', $request->lesson_id);
+            if ($request->has('program_id')) {
+                $lesson = $lesson->where('program_id', $request->get('program_id'));
+            }
+            if ($request->has('courseType')) {
+                $lesson = $lesson->where('courseType', $request->get('courseType'));
+            }
+            $lesson = $lesson->where('user_id', $user->id)
                 ->first();
             if (!$lesson) {
                 $check = Lesson::find($request->lesson_id);
@@ -2254,13 +2498,26 @@ class WebsiteController extends Controller
             $lesson->user_id = $user->id;
             $lesson->course_id = $request->course_id;
             $lesson->lesson_id = $request->lesson_id;
+            if ($request->has('program_id')) {
+                $lesson->program_id = $request->program_id;
+            }
+            if ($request->has('courseType')) {
+                $lesson->courseType = $request->get('courseType');
+            }
             $lesson->enroll_id = @$enrolled->id;
             $lesson->status = 1;
             $lesson->save();
 
             $course = Course::withCount('lessons')->find($request->course_id);
             if ($course) {
-                $completeLessons = LessonComplete::where('user_id', $user->id)->where('course_id', $course->id)->where('status', 1)->count();
+                $completeLessons = LessonComplete::where('user_id', $user->id)->where('course_id', $course->id);
+                if ($request->has('program_id')) {
+                    $completeLessons = $completeLessons->where('program_id', $request->get('program_id'));
+                }
+                if ($request->has('courseType')) {
+                    $completeLessons = $completeLessons->where('courseType', $request->get('courseType'));
+                }
+                $completeLessons = $completeLessons->where('status', 1)->count();
                 $totalLessons = $course->lessons;
 
                 if ($completeLessons != 0) {
@@ -2278,20 +2535,51 @@ class WebsiteController extends Controller
                         checkGamification('each_course_complete', 'learning');
                     }
 
-                    if ($enrolled->pathway_id != null) {
-                        StudentSkillController::studentCreateSkill(2, $course->id, $user, $enrolled);
+                    //                    if ($enrolled->pathway_id != null) {
+                    //                        StudentSkillController::studentCreateSkill(2, $course->id, $user, $enrolled);
+                    //                    } else {
+                    //                        StudentSkillController::studentCreateSkill(1, $course->id, $user, $enrolled);
+                    //                    }
+                    //
+                    //                    $this->getCertificateRecord($course->id);
+
+                    $shortCodes = [
+                        'course' => $course->title,
+                        'time' => Carbon::now()->format('d-M-Y ,H:i A'),
+                        'percentage' => $percentage,
+                        'type' => 'course',
+                    ];
+
+                    $send = send_email(Auth::user(), 'Complete_Course', $shortCodes);
+                    if ($send) {
+                        Toastr::success('Your Course Successfully Completed', trans('common.Success'));
+                        return redirect()->back();
                     } else {
-                        StudentSkillController::studentCreateSkill(1, $course->id, $user, $enrolled);
+                        Toastr::error('Something went wrong', trans('common.Failed'));
+                        return redirect()->back();
                     }
-
-                    $this->getCertificateRecord($course->id);
-
-
                     if (UserEmailNotificationSetup('Complete_Course', $user)) {
-                        SendGeneralEmail::dispatch($user, 'Complete_Course', [
-                            'time' => Carbon::now()->format('d-M-Y, g:i A'),
-                            'course' => $course->title
-                        ]);
+                        // SendGeneralEmail::dispatch($user, 'Complete_Course', [
+                        //     'course' => $course->title,
+                        //     'time' => Carbon::now()->format('d-M-Y ,H:i A'),
+                        //     'percentage' => $percentage,
+                        //     'type' => 'course',
+                        // ]);
+                        $shortCodes = [
+                            'course' => $course->title,
+                            'time' => Carbon::now()->format('d-M-Y ,H:i A'),
+                            'percentage' => $percentage,
+                            'type' => 'course',
+                        ];
+
+                        $send = send_email(Auth::user(), 'Complete_Course', $shortCodes);
+                        if ($send) {
+                            Toastr::success('Your Course Successfully Completed', trans('common.Success'));
+                            return redirect()->back();
+                        } else {
+                            Toastr::error('Something went wrong', trans('common.Failed'));
+                            return redirect()->back();
+                        }
                     }
                     if (UserBrowserNotificationSetup('Complete_Course', $user)) {
                         send_browser_notification(
@@ -2302,7 +2590,7 @@ class WebsiteController extends Controller
                                 'course' => $course->title
                             ],
                             trans('common.View'),
-                            courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
+                            courseDetailsUrl(@$course->id, @$course->type, @$course->slug)
                         );
                     }
 
@@ -2515,11 +2803,13 @@ class WebsiteController extends Controller
 
     public function continueCourse(Request $request, $slug)
     {
-
         try {
             $lesson_id = null;
             $user = Auth::user();
-            $course = Course::where('slug', $slug)->first();
+            $course = Course::where('slug', $slug)->with('children')->first();
+            // $course = Course::where('slug', $slug)->whereHas('children', function ($q) use ($request) {
+            //     $q->where('type', $request->courseType);
+            // })->first();
             if ($request->has('program_id')) {
                 $isEnrolled = CourseEnrolled::where('program_id', $request->program_id)->where('user_id', Auth::id())->count();
                 if ($isEnrolled == 0) {
@@ -2549,8 +2839,12 @@ class WebsiteController extends Controller
             }
 
             //            if (!$isEnrolled || $enrollForCpd == true || $enrollForClass == true) {
-
-            $lesson = LessonComplete::where('course_id', $course->id)->where('user_id', $user->id)->has('lesson')->orderBy('updated_at', 'desc')->first();
+            $lesson = LessonComplete::where('course_id', $course->id)
+                ->where('user_id', $user->id)
+                ->where('courseType', $request->courseType)
+                ->has('lesson')
+                ->orderBy('updated_at', 'desc')
+                ->first();
             if (empty($lesson)) {
                 $chapter = Chapter::where('course_id', $course->id)->whereHas('lessons')->orderBy('position', 'asc')->first();
                 if (empty($chapter)) {
@@ -2577,7 +2871,9 @@ class WebsiteController extends Controller
                 $lesson_id = !empty($next_lesson) ? $next_lesson : $lesson->lesson_id;
             }
 
+
             if (!empty($lesson_id)) {
+
                 if ($request->has('program_id')) {
                     return \redirect()->to(url('fullscreen-view/' . $course->id . '/' . $lesson_id) . '?program_id=' . $request->program_id);
                 } else if ($request->has('courseType')) {
@@ -2642,5 +2938,159 @@ class WebsiteController extends Controller
     {
         $lesson = Lesson::with('course')->find($lesson_id);
         return view('document_player', compact('lesson'));
+    }
+
+    public function packageBuy(Request $request)
+    {
+        $package = PackagePricing::where('id', Crypt::decrypt($request->id))->first();
+        $user_id = Cookie::get('user_id');
+        $clover = new CloverController();
+        $pakms = $clover->getPakmsKey();
+        try {
+            if (isset($user_id)) {
+                $tutor = User::findOrFail($user_id);
+            } else {
+                $tutor = Auth::user();
+            }
+            $page = LoginPage::getData();
+            return view(theme('pages.package_buy'), compact('page', 'tutor', 'pakms', 'package'));
+        } catch (\Exception $e) {
+            GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
+        }
+    }
+
+    public function packageBuyingCreate(Request $request)
+    {
+        try {
+                 $AuthorizeObj = new DoAuthorizeNetPaymentController();
+               //$result=$clover->makePayment($request, $request->type, false, null, true);
+              // if (true) {
+             // dd($clover->makePayment($request, $request->type, false, null, true));
+             if ($AuthorizeObj->makePayment($request, $request->type, false, null, true)) {
+               // if ($clover->makePayment($request, $request->type, false, null, true)) {
+                session()->forget('user');
+               // dd($request->user_id);
+                $PackagePricing = PackagePricing::where('id', $request->package_id)->first();
+                $package_purchasing = new PackagePurchasing();
+                $package_purchasing->user_id = $request->user_id;
+                $package_purchasing->package_id = $request->package_id;
+                $package_purchasing->course_limit = $PackagePricing->allowed_courses;
+                $package_purchasing->status = 1;
+                $package_purchasing->save();
+                //dd(PackagePurchasing::where('user_id', $request->user_id)->count());
+                if (PackagePurchasing::where('user_id', $request->user_id)->count()) {
+                    $last_package_id = PackagePurchasing::where('user_id', $request->user_id)->latest()->value('package_id');
+                    SendGeneralEmail::dispatch(\App\Models\User::find($request->user_id), 'Tutor_Package_Upgrade', [
+                        'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                        'title' => $PackagePricing->title,
+                        'price' => $PackagePricing->price,
+                        'allowed_courses' => $PackagePricing->allowed_courses,
+                        'option_1' => $PackagePricing->option_1,
+                        'option_2' => $PackagePricing->option_2,
+                        'option_3' => $PackagePricing->option_3,
+                        'option_4' => $PackagePricing->option_4,
+                        'option_5' => $PackagePricing->option_5,
+                        'previous_package' => PackagePricing::where('id', $last_package_id)->value('title')
+                    ]);
+                     // dd("fjkjkjfldakfdfjdjkjfdkasjdfklsajfkajdf");
+                    Toastr::success('Payment Successfully Done ! Thank you for Upgrading your Package. You will receive Confirmation shortly via email', 'Success');
+                   // return redirect()->to(route('dashboard')); //existing previous
+                    return redirect()->to(route('teachWithUs')); //new for checking
+                } else {
+                    SendGeneralEmail::dispatch(\App\Models\User::find($request->user_id), 'Tutor_Package_Buy', [
+                        'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                        'title' => $PackagePricing->title,
+                        'price' => $PackagePricing->price,
+                        'allowed_courses' => $PackagePricing->allowed_courses,
+                        'option_1' => $PackagePricing->option_1,
+                        'option_2' => $PackagePricing->option_2,
+                        'option_3' => $PackagePricing->option_3,
+                        'option_4' => $PackagePricing->option_4,
+                        'option_5' => $PackagePricing->option_5,
+
+                    ]);
+                    Toastr::success('Payment Successfully Done ! Thank you for submitting your application. You will receive your login credentials shortly via email', 'Success');
+                    return redirect()->to(route('teachWithUs'));
+                }
+            } else {
+                Toastr::error('Something Went Wrong', 'Error');
+                return redirect()->back();
+            }
+        } catch (\Exception $e){
+            Toastr::error('Something Went Wrong', 'Error');
+            return redirect()->back();
+        }
+    }
+
+
+
+
+    public function tutorRevenue(Request $request)
+    {
+        try {
+            $tutor = User::findOrFail(Crypt::decrypt($request->tutor_id));
+            $amount = $request->amount;
+
+            return view(theme('pages.withdraw_amount'), get_defined_vars());
+        } catch (\Exception $e) {
+            Toastr::error('Something Went Wrong', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    public function tutorRevenueWithdraw(Request $request)
+    {
+        // dd($request);
+        // $validator = Validator::make($request->all(), [
+        //     'bank_name' => 'required',
+        //     'branch_code' => 'required',
+        //     'account_number' => 'required',
+        //     'account_holder' => 'required',
+        //     'account_type' => 'required'
+        // ]);
+
+        $data = $request->only('account_number', 'bank_name', 'branch_code' , 'account_holder' , 'account_type');
+        $data['account_number'] = str_replace(' ', '', $data['account_number']);
+        $validator = Validator::make($data, [
+            'bank_name' => 'required',
+            'branch_code' => 'required',
+            'account_number' => 'required | numeric',
+            'account_holder' => 'required',
+            'account_type' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            Toastr::error('Please fill all the required fields', 'Error');
+            return redirect()->back();
+        }
+        try {
+            $exist = WithdrawRequest::where('tutor_id', Crypt::decrypt($request->tutor_id))->first();
+            if (!$exist == null && $exist->status == 0) {
+                Toastr::error('Your Previous Request is Pending, Please wait for Approval, Thank you', 'Error');
+                return redirect()->to(route('dashboard'));
+            } else {
+                $withdraw_request = new WithdrawRequest();
+                $withdraw_request->tutor_id = Crypt::decrypt($request->tutor_id);
+                $withdraw_request->amount = Crypt::decrypt($request->amount);
+                $withdraw_request->bank_name = $request->bank_name;
+                $withdraw_request->branch_code = $request->branch_code;
+                $withdraw_request->account_number = $request->account_number;
+                $withdraw_request->account_holder = $request->account_holder;
+                $withdraw_request->account_type = $request->account_type;
+                $withdraw_request->request_date = now();
+                $withdraw_request->save();
+                if ($withdraw_request) {
+                    Toastr::success("Withdraw Request Successfully Sent to Admin, You will be notified via Email, Thank you!", "Success");
+                    return redirect()->to(route('dashboard'));
+                } else {
+                    Toastr::error('Something Went Wrong', 'Error');
+                    return redirect()->back();
+                }
+            }
+        } catch (\Exception $e) {
+            Toastr::error('Something Went Wrong', 'Error');
+            return redirect()->back();
+        }
     }
 }

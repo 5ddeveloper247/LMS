@@ -10,6 +10,8 @@ use Modules\Quiz\Entities\OnlineQuiz;
 use Illuminate\Database\Eloquent\Model;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 use Modules\Assignment\Entities\InfixAssignment;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\Quiz\Entities\QuizTest;
 
 class Lesson extends Model
 {
@@ -35,6 +37,12 @@ class Lesson extends Model
         return $this->hasMany(OnlineQuiz::class, 'id', 'quiz_id');
     }
 
+    public function online_test()
+    {
+
+        return $this->belongsTo(QuizTest::class, 'quiz_id', 'quiz_id')->where('pass', '1')->where('user_id', Auth::id());
+    }
+
     public function assignment()
     {
 
@@ -53,13 +61,20 @@ class Lesson extends Model
         if (Auth::check()) {
             $id = Auth::user()->id;
         }
-        return $this->hasOne(LessonComplete::class, 'lesson_id', 'id')->where('user_id', $id);
+        return $this->hasMany(LessonComplete::class, 'lesson_id', 'id')->where('user_id', $id);
+    }
+    public function programCompleted()
+    {
+        $id = 0;
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+        }
+        return $this->hasMany(LessonComplete::class, 'lesson_id', 'id')->where('user_id', $id)->whereNotNull('program_id');
     }
 
     public function lessonQuiz()
     {
         return $this->belongsTo(OnlineQuiz::class, 'quiz_id')->withDefault();
-
     }
 
     protected static function boot()
@@ -97,5 +112,15 @@ class Lesson extends Model
     public function orgMaterial()
     {
         return $this->belongsTo(OrgMaterial::class)->withDefault();
+    }
+
+    /**
+     * Get all of the course_sale for the Lesson
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function course_check(): HasMany
+    {
+        return $this->hasMany(CourseSale::class, 'content_id', 'id')->where('content_type', 'lesson');
     }
 }

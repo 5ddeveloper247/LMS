@@ -118,7 +118,8 @@ class VerificationController extends Controller
         if (Auth::check()) {
             send_email(Auth::user(), 'New_Student_Reg', [
                 'time' => Carbon::now()->format('d-M-Y, g:i A'),
-                'name' => Auth::user()->name
+                'name' => Auth::user()->name,
+                'type' => 'student'
             ]);
         }
 

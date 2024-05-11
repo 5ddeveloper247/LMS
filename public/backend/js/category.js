@@ -50,7 +50,7 @@ if ($('#table_id, .table-data').length) {
     $('#table_id, .table-data').DataTable({
         bLengthChange: true,
         "lengthChange": true,
-        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
         "bDestroy": true,
         language: {
             search: "<i class='ti-search'></i>",
@@ -136,3 +136,49 @@ if ($('#table_id, .table-data').length) {
         ]
     });
 }
+
+//var order = [];
+//
+//$('#lms_table tbody').sortable({
+//    update: function(event, ui) {
+//        // Get the sorted row IDs
+//
+//        var page_length = parseInt($('.dataTable_select>.list>li.selected').data('value'));
+//        var current_page = parseInt($('.paginate_button.current').text());
+//
+//        var postion_for = (current_page * page_length) - page_length;
+//
+//        $('#lms_table tbody tr').each(function(index, element) {
+////            var rowData = table.row(index).data();
+//
+//            var new_position = postion_for + (index + 1);
+//            order.push({
+//                id: $(this).attr('data-category-id'),
+//                new_position: new_position,
+//            });
+//            $(this).children().first().text(new_position);
+//
+//        });
+//        
+//        $.ajax({
+//            // type: "POST",
+//            method: 'POST',
+//            url: course_seq_url,
+//            dataType: 'json',
+//            contentType: 'application/json',
+//            data: JSON.stringify({
+//                order: order
+//            }),
+//            dataType: "json",
+//            processData: false,
+//            contentType: false,
+//            success: function(response) {
+//            	
+//                if (response == 200) {
+//                    toastr.success('Order Successfully Changed !', 'Success');
+//                }
+//                order = [];
+//            }
+//        });
+//    },
+//});

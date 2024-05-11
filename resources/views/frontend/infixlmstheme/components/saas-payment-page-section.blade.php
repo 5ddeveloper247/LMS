@@ -17,9 +17,7 @@
             <div class="select_payment_method">
                 <div class="input_box_tittle">
                     <h4>@lang('frontendmanage.Payment Method')</h4>
-
                 </div>
-
                 <div class="privaci_polecy_area section-padding checkout_area ">
                     <div class="">
                         <div class="row">
@@ -39,7 +37,6 @@
                                                         <form
                                                             action="{{route('saasSubmit')}}"
                                                             method="post">
-
                                                             <input type="hidden"
                                                                    name="id"
                                                                    value="">
@@ -73,8 +70,6 @@
                                                                 type="hidden"
                                                                 id="amount"
                                                                 name="amount">
-
-
                                                         </form>
                                                     @elseif($gateway->method=="MercadoPago")
 
@@ -90,8 +85,6 @@
                                                                      alt="">
                                                             </a>
                                                         </div>
-
-
                                                         <div class="modal fade " id="MakePaymentFromCreditMercadoPago"
                                                              tabindex="-1"
                                                              role="dialog" aria-labelledby="exampleModalLabel"
@@ -102,8 +95,6 @@
                                                                         <h5 class="modal-title"
                                                                             id="">MercadoPago</h5>
                                                                     </div>
-
-
                                                                     <div class="modal-body">
                                                                         <div class="row">
                                                                             @php
@@ -115,14 +106,10 @@
                                                                                 @include('mercadopago::partials._checkout',compact('total_amount','route','payment_type'))
                                                                             </div>
                                                                         </div>
-
-
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     @elseif($gateway->method=="Wallet")
 
                                                         <form
@@ -395,25 +382,19 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
         <div class="order_wrapper">
             <h3 class="font_22 f_w_700 mb_30">{{__('frontend.Your order')}}</h3>
             <div class="ordered_products">
-
                 <div class="single_ordered_product">
                     <div class="product_name d-flex align-items-center">
-
                         <span>Plan Title</span>
                     </div>
                     <span class="order_prise f_w_500 font_16">
                            {{@$cart->plan->name}}
                             </span>
                 </div>
-
                 <div class="single_ordered_product">
                     <div class="product_name d-flex align-items-center">
                         <span>Plan Validity</span>
@@ -422,19 +403,13 @@
                            {{@$cart->plan->days}} Days
                             </span>
                 </div>
-
             </div>
             <div class="ordered_products_lists">
-
-
                 <div class="single_lists">
                     <span class="total_text">{{__('frontend.Payable Amount')}} </span>
                     <span class="totalBalance"> {{getPriceFormat($cart->plan->price)}}</span>
-
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>

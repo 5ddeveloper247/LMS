@@ -4,8 +4,9 @@
 @endsection
 @section('mainContent')
 
-    <x-payment-page-section />
-
+<x-payment-page-section />
+   
+  
 @endsection
 @section('js')
 @endsection

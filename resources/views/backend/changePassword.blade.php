@@ -131,9 +131,32 @@
                                     <div class="col-md-12">
                                         <div class="primary_input mb-25">
                                             <label class="primary_input_label"
-                                                   for="phone">{{__('common.Phone')}} </label>
+                                                   for="phone">{{__('common.Phone')}} <strong
+                                                    class="text-danger">*</strong> </label>
                                             <input class="primary_input_field" name="phone" value="{{@$user->phone }}"
                                                    id="phone" placeholder="-" type="text">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12 mb-25">
+                                        <div class="primary_input">
+                                            <label class="primary_input_label"
+                                                   for="">{{ __('common.gender') }}
+                                                <strong class="text-danger">*</strong>
+                                            </label>
+                                            <select class="primary_select"
+                                                    name="gender" id="Gender">
+                                                <option
+                                                    data-display="{{ __('common.Select') }} {{ __('common.gender') }}"
+                                                    value="" selected>{{ __('common.Select') }}
+                                                    {{ __('common.gender') }} </option>
+
+                                                <option value="male"  {{ 'male' == @$user->gender ? 'selected' : '' }}>Male</option>
+                                                <option value="female"  {{ 'female' == @$user->gender ? 'selected' : '' }}>Female</option>
+                                                <option value="other"  {{ 'other' == @$user->gender ? 'selected' : '' }}>Other</option>
+
+                                            </select>
                                         </div>
                                     </div>
 
@@ -141,6 +164,8 @@
                                         <label class="primary_input_label"
                                                for="country">{{__('common.Country')}} </label>
                                         <select class="primary_select" name="country" id="country">
+                                            <option value=""
+                                                    selected>{{__('common.Select')}} {{__('common.Country')}}</option>
                                             @foreach ($countries as $country)
                                                 <option value="{{@$country->id}}"
                                                         @if (@$user->country==$country->id) selected @endif>{{@$country->name}}</option>
@@ -258,7 +283,7 @@
                                                    for="shortDetails">{{__('common.Short Description')}} </label>
                                             <input class="primary_input_field" name="short_details"
                                                    id="shortDetails" value="{{@$user->short_details}}" placeholder="-"
-                                                   type="text">
+                                                   type="text" maxlength="255">
                                         </div>
                                     </div>
 
@@ -278,10 +303,10 @@
                                     <div class="col-12">
                                         <div class="primary_input mb-35">
                                             <label class="primary_input_label"
-                                                   for="">{{__('common.Browse')}}  {{__('common.Avatar')}} </label>
+                                                   for="">{{__('common.Browse')}}  {{__('common.Avatar')}} <small>{{ __('student.Recommended size') }} (350x500)</small> </label>
                                             <div class="primary_file_uploader">
                                                 <input class="primary-input" type="text" id="placeholderFileOneName"
-                                                       placeholder="{{showPicName($user->image)}}" readonly="">
+                                                       placeholder="{{ showPicName($user->image) != 'admin.jpg' ?showPicName($user->image) :  __('student.Browse Image file')  }}" readonly="">
                                                 <button class="primary_btn_2" type="button">
                                                     <label class="primary_btn_2"
                                                            for="document_file_1">{{__('common.Browse')}} </label>
@@ -420,7 +445,46 @@
 @endsection
 
 @push('scripts')
+    <script>
+        // Image Cropper Start
 
+            $(document).ready(function() {
+
+                var old_file = $("#instructorImage").val();
+
+                $('#Browseeeditinstructor').on('click', function() {
+                    old_file = $("#instructorImage").val();
+                    console.log(old_file);
+                });
+
+
+                var _URL1 = window.URL || window.webkitURL;
+                $("#document_file_1").change(function(e) {
+                    var file, img;
+                    if ((file = this.files[0])) {
+                        img = new Image();
+                        img.onload = function() {
+                            var image_width = this.width;
+                            var image_height = this.height;
+                            if (image_width == 350 && image_height == 500) {
+
+                            } else {
+                                $('#document_file_1').val('');
+                                $('#placeholderFileOneName').val(old_file);
+                                toastr.error(
+                                    'Wrong Image Dimensions, Please Select Image of 350 X 500 !',
+                                    'Error')
+                            }
+                        };
+                        img.src = _URL1.createObjectURL(file);
+                    }
+                });
+
+            });
+
+
+        // Image Cropper End
+    </script>
     <script>
         $('.cityList').select2({
             ajax: {

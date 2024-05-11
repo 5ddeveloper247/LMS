@@ -136,11 +136,12 @@ class StudentImportController extends Controller
 
                         applyDefaultRoleToUser($new_student);
 
-                        SendGeneralEmail::dispatch($new_student, 'Offline_Enrolled', ['email' => $new_student->email,]);
+                        SendGeneralEmail::dispatch($new_student, 'Offline_Enrolled', ['email' => $new_student->email,'password' => '12345678']);
 
                         SendGeneralEmail::dispatch($new_student, 'New_Student_Reg', [
                             'time' => Carbon::now()->format('d-M-Y, g:i A'),
-                            'name' => $new_student->name
+                            'name' => $new_student->name,
+                            'student' => 'student'
                         ]);
                     } else {
                         $new_student = $check_user;

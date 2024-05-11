@@ -2,61 +2,67 @@
 
 use App\Http\Controllers\Frontend\ThemeDynamicData;
 use App\Jobs\PushNotificationJob;
+use App\Notifications\GeneralNotification;
 use App\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use IvoPetkov\HTML5DOMDocument;
+use Modules\Appearance\Entities\Theme;
 use Modules\Blog\Entities\UserBlog;
+use Modules\CourseSetting\Entities\Category;
 use Modules\CourseSetting\Entities\Course;
 use Modules\CourseSetting\Entities\CourseEnrolled;
 use Modules\FooterSetting\Entities\FooterSetting;
+use Modules\FrontendManage\Entities\CourseSetting;
 use Modules\FrontendManage\Entities\FrontPage;
+use Modules\FrontendManage\Entities\HomeContent;
 use Modules\HumanResource\Entities\Attendance;
+use Modules\Membership\Entities\MembershipUpgradeLevel;
+use Modules\NotificationSetup\Entities\RoleEmailTemplate;
+use Modules\NotificationSetup\Entities\UserNotificationSetup;
 use Modules\OrgSubscription\Entities\OrgCourseSubscription;
 use Modules\OrgSubscription\Entities\OrgSubscriptionCheckout;
 use Modules\Payment\Entities\Cart;
+use Modules\Payment\Entities\PaymentPlans;
 use Modules\RolePermission\Entities\Permission;
 use Modules\RolePermission\Entities\Role;
 use Modules\Setting\Entities\Badge;
 use Modules\Setting\Entities\ErrorLog;
+use Modules\Setting\Entities\IpBlock;
 use Modules\Setting\Entities\UserBadge;
 use Modules\Setting\Entities\UserGamificationPoint;
 use Modules\Setting\Entities\UserLevelHistory;
 use Modules\Setting\Model\Currency;
-use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Route;
-use Modules\Setting\Entities\IpBlock;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Schema;
-use Modules\Appearance\Entities\Theme;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
 use Modules\Setting\Model\GeneralSetting;
-use App\Notifications\GeneralNotification;
-use Illuminate\Support\Facades\Notification;
-use Modules\CourseSetting\Entities\Category;
-use Modules\FrontendManage\Entities\HomeContent;
+use Modules\StudentSetting\Entities\BookmarkCourse;
+use Modules\StudentSetting\Entities\Program;
+use Modules\Subscription\Entities\SubscriptionCheckout;
 use Modules\SystemSetting\Entities\EmailSetting;
 use Modules\SystemSetting\Entities\EmailTemplate;
-use Modules\FrontendManage\Entities\CourseSetting;
-use Modules\Membership\Entities\MembershipUpgradeLevel;
-use Modules\StudentSetting\Entities\BookmarkCourse;
-use Modules\Subscription\Entities\SubscriptionCheckout;
-use Modules\NotificationSetup\Entities\RoleEmailTemplate;
-use Modules\NotificationSetup\Entities\UserNotificationSetup;
+use App\Models\UserSetting;
+use App\Models\CloverPayment;
+use App\Models\UserApplication;
+use App\Models\UserAuthorzIationAgreement;
+
 
 if (!function_exists('send_smtp_mail')) {
     function send_smtp_mail($config, $receiver_email, $receiver_name, $sender_email, $sender_name, $subject, $message)
     {
+        // dd($config, $receiver_email, $receiver_name, $sender_email, $sender_name, $subject, $message);
         $mail_val = [
             'send_to_name' => $receiver_name,
             'send_to' => $receiver_email,
@@ -64,14 +70,12 @@ if (!function_exists('send_smtp_mail')) {
             'email_from_name' => $config->from_name,
             'subject' => $subject,
         ];
-
         Mail::send('partials.email', ['body' => $message], function ($send) use ($mail_val) {
             $send->from($mail_val['email_from'], $mail_val['email_from_name']);
             $send->replyto($mail_val['email_from'], $mail_val['email_from_name']);
             $send->to($mail_val['send_to'])->subject($mail_val['subject']);
         });
     }
-
 }
 
 if (!function_exists('sendMailBySendGrid')) {
@@ -82,7 +86,8 @@ if (!function_exists('sendMailBySendGrid')) {
         $email->setSubject($subject);
         $email->addTo($receiver_email, $receiver_email);
         $email->addContent(
-            "text/html", (string)view('partials.email', ['body' => $message])
+            "text/html",
+            (string)view('partials.email', ['body' => $message])
         );
         $sendgrid = new \SendGrid($config->api_key);
         try {
@@ -98,6 +103,23 @@ if (!function_exists('sendMailBySendGrid')) {
     }
 }
 
+if(!function_exists('check_enrolled')){
+  function check_enrolled(){
+    $response = true;
+    $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+    $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
+    $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
+    $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+    if(!$user_setting_exists ||
+        !$user_application_exists ||
+        !$user_agreement_exists ||
+        !$user_payment_exists){
+          $response = false;
+        }
+
+    return $response;
+  }
+}
 
 if (!function_exists('shortcode_replacer')) {
 
@@ -118,27 +140,31 @@ if (!function_exists('send_email')) {
 
     function send_email($user, $type, $shortcodes = [])
     {
+        // dd($user, $type, $shortcodes);
         try {
             $query = EmailTemplate::query();
             if (!showEcommerce()) {
                 $query->where('ecommerce', 0);
             }
             $email_template = $query->where('act', $type)->first();
-
             if ($email_template && $email_template->status == 1) {
 
                 $message = $email_template->email_body;
 
+                $message = shortcode_replacer('{{footer}}', Settings('email_template'), $message);
                 foreach ($shortcodes as $code => $value) {
                     $message = shortcode_replacer('{{' . $code . '}}', $value, $message);
                 }
 
-                $message = shortcode_replacer('{{footer}}', Settings('email_template'), $message);
 
                 $config = EmailSetting::where('active_status', 1)->first();
 
                 if ($type == "CONTACT_MESSAGE") {
-                    $to_email = Settings('email');
+                    if ($user->role_id == 1) {
+                        $to_email = $user->email;
+                    } else {
+                        $to_email = Settings('email');
+                    }
                 } else {
                     $to_email = $user->email;
                 }
@@ -157,8 +183,6 @@ if (!function_exists('send_email')) {
             Log::error($e->getMessage());
             return false;
         }
-
-
     }
 }
 
@@ -268,7 +292,6 @@ if (!function_exists('fileUpload')) {
         $file->move($destination, $fileName);
         $fileName = $destination . $fileName;
         return $fileName;
-
     }
 }
 
@@ -289,14 +312,12 @@ if (!function_exists('fileUpdate')) {
             if ($databaseFile && file_exists($databaseFile)) {
 
                 unlink($databaseFile);
-
             }
         } elseif (!$file and $databaseFile) {
             $fileName = $databaseFile;
         }
 
         return $fileName;
-
     }
 }
 if (!function_exists('showPicName')) {
@@ -323,7 +344,6 @@ if (!function_exists('getSetting')) {
     {
         try {
             return app('getSetting');
-
         } catch (Exception $exception) {
             return false;
         }
@@ -350,8 +370,6 @@ if (!function_exists('youtubeVideo')) {
         } else {
             return $video_url;
         }
-
-
     }
 }
 
@@ -404,7 +422,6 @@ function send_php_mail($receiver_email, $receiver_name, $sender_email, $subject,
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
     return mail($receiver_email, $subject, $message, $headers);
-
 }
 
 
@@ -446,7 +463,6 @@ if (!function_exists('permissionCheck')) {
                     } else {
                         $roles = app('permission_list');
                         $role = $roles->where('id', auth()->user()->role_id)->first();
-
                     }
                     if ($role != null && $role->permissions->contains('route', $route_name)) {
                         return TRUE;
@@ -462,7 +478,6 @@ if (!function_exists('permissionCheck')) {
                         return FALSE;
                     }
                 }
-
             }
         }
         return FALSE;
@@ -525,7 +540,6 @@ if (!function_exists('getConversations')) {
             $output = '<p class="NoMessageFound">' . $message . '!</p>';
         }
         return $output;
-
     }
 }
 
@@ -539,7 +553,6 @@ if (!function_exists('checkModuleEnable')) {
         } else {
             return false;
         }
-
     }
 }
 
@@ -1492,7 +1505,15 @@ if (!function_exists('socialIconList')) {
         return $str;
     }
 }
-
+if (!function_exists('trucateLargeNumber')) {
+  function trucateLargeNumber($n)
+  {
+    if ($n < 1000 && $n > -1000) return $n;
+    $suffix = ['','k','M','G','T','P','E','Z','Y'];
+    $power = floor(log($n, 1000));
+    return round($n/(1000**$power),1,PHP_ROUND_HALF_EVEN).$suffix[$power];
+  }
+}
 
 if (!function_exists('getProfileImage')) {
     function getProfileImage($path)
@@ -1511,7 +1532,7 @@ if (!function_exists('getCourseImage')) {
         if (File::exists($path)) {
             return asset($path);
         } else {
-            return asset('public/assets/course/no_image.png');
+            return asset('public/assets/course/image-375x500.png');
         }
     }
 }
@@ -1582,7 +1603,6 @@ if (!function_exists('isAdmin')) {
         } else {
             return false;
         }
-
     }
 }
 
@@ -1591,6 +1611,21 @@ if (!function_exists('isInstructor')) {
     {
         if (Auth::check()) {
             if (Auth::user()->role_id == 2) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+}
+
+if (!function_exists('isTutor')) {
+    function isTutor()
+    {
+        if (Auth::check()) {
+            if (Auth::user()->role_id == 9) {
                 return true;
             } else {
                 return false;
@@ -1676,7 +1711,6 @@ if (!function_exists('putEnvConfigration')) {
         if (is_bool($keyPosition)) {
 
             $str .= $envKey . '="' . $envValue . '"';
-
         } else {
             $endOfLinePosition = strpos($str, "\n", $keyPosition);
             $oldLine = substr($str, $keyPosition, $endOfLinePosition - $keyPosition);
@@ -1690,7 +1724,6 @@ if (!function_exists('putEnvConfigration')) {
         } else {
             return true;
         }
-
     }
 }
 
@@ -1704,6 +1737,8 @@ if (!function_exists('courseDetailsUrl')) {
             $details = 'quiz-details';
         } elseif ($type == 3) {
             $details = 'class-details';
+        } elseif ($type == 8) {
+            $details = 'repeat-course';
         } else {
             $details = 'courses-details';
         }
@@ -1725,7 +1760,6 @@ if (!function_exists('UserEmailNotificationSetup')) {
                 } else {
                     return false;
                 }
-
             } else {
                 return true;
             }
@@ -1749,7 +1783,6 @@ if (!function_exists('UserBrowserNotificationSetup')) {
                 } else {
                     return false;
                 }
-
             } else {
                 return true;
             }
@@ -1774,7 +1807,6 @@ if (!function_exists('UserMobileNotificationSetup')) {
                 } else {
                     return false;
                 }
-
             } else {
                 return true;
             }
@@ -1811,7 +1843,6 @@ if (!function_exists('send_browser_notification')) {
             ];
             Notification::send($user, new GeneralNotification($details));
         }
-
     }
 }
 
@@ -1837,7 +1868,6 @@ if (!function_exists('send_mobile_notification')) {
 
             PushNotificationJob::dispatch($email_template->subj, $message, $user->device_token);
         }
-
     }
 }
 
@@ -1903,16 +1933,12 @@ if (!function_exists('getPriceFormat')) {
 
             if ($type == 1) {
                 $result = $symbol . $price;
-
             } elseif ($type == 2) {
                 $result = $symbol . ' ' . $price;
-
             } elseif ($type == 3) {
                 $result = $price . $symbol;
-
             } elseif ($type == 4) {
                 $result = $price . ' ' . $symbol;
-
             } else {
                 $result = $price;
             }
@@ -1964,7 +1990,6 @@ if (!function_exists('theme')) {
         } else {
             return 'frontend.infixlmstheme' . '.' . $fileName;
         }
-
     }
 }
 
@@ -1979,7 +2004,6 @@ if (!function_exists('themeAsset')) {
         }
         $path = 'public/frontend/' . $theme . '/' . $fileName;
         return asset($path);
-
     }
 }
 
@@ -1987,7 +2011,6 @@ if (!function_exists('backendComponent')) {
     function backendComponent($fileName)
     {
         return 'backend.components.' . $fileName;
-
     }
 }
 
@@ -2002,9 +2025,11 @@ if (!function_exists('topbarSetting')) {
 if (!function_exists('courseSetting')) {
     function courseSetting()
     {
+       // dd(CourseSetting::getData());
         return CourseSetting::getData();
     }
 }
+
 if (!function_exists('itemsGridSize')) {
     function itemsGridSize()
     {
@@ -2104,14 +2129,13 @@ if (!function_exists('isModuleActive')) {
             }
 
 
-//            }
+            //            }
             return false;
         } catch (\Throwable $th) {
 
 
             return false;
         }
-
     }
 }
 
@@ -2122,19 +2146,19 @@ if (!function_exists('getPercentageRating')) {
         if ($review_data['total'] > 0) {
             $data['total'] = $review_data['total'] ?? 0;
             switch ($value) {
-                case 1 :
+                case 1:
                     $per = $review_data['1'];
                     break;
-                case 2 :
+                case 2:
                     $per = $review_data['2'];
                     break;
-                case 3 :
+                case 3:
                     $per = $review_data['3'];
                     break;
-                case 4 :
+                case 4:
                     $per = $review_data['4'];
                     break;
-                case 5 :
+                case 5:
                     $per = $review_data['5'];
                     break;
                 default:
@@ -2238,7 +2262,6 @@ function convertCurrency($from_currency, $to_currency, $amount)
             if ($key == $to) {
                 $to_ = $value;
             }
-
         }
         if ($to_ > 0) {
             $total = ($to_ / $from_) * $amount;
@@ -2276,7 +2299,6 @@ if (!function_exists('getDomainName')) {
         $url_domain = preg_replace("(^http?://)", "", $url_domain);
         $url_domain = str_replace("/", "", $url_domain);
         return $url_domain;
-
     }
 }
 
@@ -2289,7 +2311,6 @@ if (!function_exists('getMenuLink')) {
                 if (substr($menu->link, 0, 1) == '/') {
                     if ($menu->link == "/") {
                         return url($menu->link) . '/';
-
                     }
                     return url($menu->link);
                 }
@@ -2302,37 +2323,31 @@ if (!function_exists('getMenuLink')) {
                 $page = FrontPage::find($element_id);
                 if ($page) {
                     $url = url($page->slug);
-//                    $url = \route('frontPage', [$page->slug]);
+                    //                    $url = \route('frontPage', [$page->slug]);
                 }
             } elseif ($type == "Static Page") {
                 $page = FrontPage::find($element_id);
                 if ($page) {
                     $url = url($page->slug);
-
                 }
             } elseif ($type == "Category") {
                 $url = route('courses') . "?category=" . $element_id;
-
             } elseif ($type == "Sub Category") {
                 $url = route('courses') . "?category=" . $element_id;
-
             } elseif ($type == "Course") {
                 $course = Course::find($element_id);
                 if ($course) {
                     $url = route('courseDetailsView', [$course->id, $course->slug]);
-
                 }
             } elseif ($type == "Quiz") {
                 $course = Course::find($element_id);
                 if ($course) {
                     $url = route('classDetails', [$course->id, $course->slug]);
-
                 }
             } elseif ($type == "Class") {
                 $course = Course::find($element_id);
                 if ($course) {
                     $url = route('courseDetailsView', [$course->id, $course->slug]);
-
                 }
             } elseif ($type == "Custom Link") {
                 $url = '';
@@ -2341,7 +2356,6 @@ if (!function_exists('getMenuLink')) {
 
 
         return $url;
-
     }
 }
 
@@ -2370,7 +2384,6 @@ if (!function_exists('isSubscribe')) {
         }
 
         return false;
-
     }
 }
 
@@ -2394,15 +2407,12 @@ if (!function_exists('userCurrentPlan')) {
                     }
                     return $plan;
                 }
-
-
             }
         } else {
             return null;
         }
 
         return null;
-
     }
 }
 if (!function_exists('hasTable')) {
@@ -2413,7 +2423,6 @@ if (!function_exists('hasTable')) {
         } else {
             return false;
         }
-
     }
 }
 
@@ -2431,7 +2440,6 @@ if (!function_exists('reviewCanDelete')) {
         } else {
             return false;
         }
-
     }
 }
 if (!function_exists('commentCanDelete')) {
@@ -2447,7 +2455,6 @@ if (!function_exists('commentCanDelete')) {
         } else {
             return false;
         }
-
     }
 }
 if (!function_exists('blogCommentCanDelete')) {
@@ -2488,7 +2495,6 @@ if (!function_exists('hasTax')) {
             } else {
                 return false;
             }
-
         }
         return false;
     }
@@ -2516,6 +2522,20 @@ if (!function_exists('countryWishTaxRate')) {
         return $vat;
     }
 }
+
+if (!function_exists('applyProductTax')) {
+    function applyProductTax($price)
+    {
+      $percent_tax = Settings('percent_tax');
+      $fixed_tax = Settings('fixed_tax');
+
+      $percentAmount = ($percent_tax / 100) * $price;
+      $fixedAmount = $fixed_tax;
+      $totalPrice = $price + $percentAmount + $fixedAmount;
+      return $totalPrice;
+    }
+}
+
 if (!function_exists('applyTax')) {
     function applyTax($price)
     {
@@ -2529,9 +2549,9 @@ if (!function_exists('applyTax')) {
         $totalPrice = $price + $vatToPay;
 
         return $totalPrice;
-
     }
 }
+
 if (!function_exists('taxAmount')) {
     function taxAmount($price)
     {
@@ -2543,7 +2563,6 @@ if (!function_exists('taxAmount')) {
         }
         $vatToPay = ($price / 100) * $vat;
         return $vatToPay;
-
     }
 }
 
@@ -2551,7 +2570,6 @@ if (!function_exists('getPriceAsNumber')) {
     function getPriceAsNumber($price)
     {
         return str_replace(',', '', $price);
-
     }
 }
 
@@ -2564,8 +2582,6 @@ if (!function_exists('currentTheme')) {
         } else {
             return 'infixlmstheme';
         }
-
-
     }
 }
 
@@ -2613,7 +2629,7 @@ if (!function_exists('validationMessage')) {
                     $attr = explode('.', $attribute);
                     $key = $attr[0] ?? '';
                 }
-                $message [$attribute . '.' . $string[0]] = __('validation.' . $key . '.' . $string[0]);
+                $message[$attribute . '.' . $string[0]] = __('validation.' . $key . '.' . $string[0]);
             }
         }
 
@@ -2627,8 +2643,6 @@ if (!function_exists('escapHtmlChar')) {
         $find = ['"', "'"];
         $replace = ['&quot;', '&apos;'];
         return str_replace($find, $replace, htmlspecialchars($str));
-
-
     }
 }
 if (!function_exists('doubleQuotes2singleQuotes')) {
@@ -2637,8 +2651,6 @@ if (!function_exists('doubleQuotes2singleQuotes')) {
         $find = ['"'];
         $replace = ["'"];
         return str_replace($find, $replace, htmlspecialchars($str));
-
-
     }
 }
 
@@ -2667,7 +2679,6 @@ if (!function_exists('checkParent')) {
             $string = $string . '>';
         }
         return $string;
-
     }
 }
 
@@ -2693,7 +2704,6 @@ if (!function_exists('GettingError')) {
         } else {
             abort('500', trans('frontend.Something went wrong, Please check error log'));
         }
-
     }
 }
 
@@ -2712,8 +2722,6 @@ if (!function_exists('isViewable')) {
             }
         }
         return $isViewable;
-
-
     }
 }
 
@@ -2771,7 +2779,6 @@ if (!function_exists('GenerateGeneralSetting')) {
                 $strJsonFileContents = null;
             } else {
                 $strJsonFileContents = file_get_contents($path);
-
             }
             $file_data = json_decode($strJsonFileContents, true);
             $setting_array[$domain] = $settings;
@@ -2782,7 +2789,6 @@ if (!function_exists('GenerateGeneralSetting')) {
             }
             $merged_array = json_encode($merged_array, JSON_PRETTY_PRINT);
             file_put_contents($path, $merged_array);
-
         }
     }
 }
@@ -2870,10 +2876,8 @@ if (!function_exists('getHomeContents')) {
             $row = $all->where('key', $value)->first();
             $result = $row ? $row->getTranslation('value', $lang) : '';
         } catch (\Exception $e) {
-
         }
         return $result;
-
     }
 }
 
@@ -2898,7 +2902,6 @@ if (!function_exists('isBundleValid')) {
                     return true;
                 }
             }
-
         }
 
         return false;
@@ -2927,10 +2930,7 @@ if (!function_exists('orgSubscriptionCourseValidity')) {
                             return false;
                         }
                     }
-
                 }
-
-
             }
         }
 
@@ -2956,19 +2956,16 @@ if (!function_exists('orgSubscriptionCourseSequence')) {
                             }
                         }
                     }
-
                 } else {
                     $end_date = Carbon::parse($cko->start_date)->addDays($cko->days);
                     if ($cko->plan->sequence == 1 && $end_date->format('Y-m-d') > date('Y-m-d')) {
                         foreach ($cko->plan->assign as $course) {
-//                            $access_courses[] = $course->course_id;
+                            //                            $access_courses[] = $course->course_id;
                             if ($course->course_id == $courseId) {
                                 $plan_id = $course->plan_id;
                             }
-
                         }
                     }
-
                 }
             }
             if ($plan_id) {
@@ -2981,7 +2978,6 @@ if (!function_exists('orgSubscriptionCourseSequence')) {
                         }
                     }
                 }
-
             } else {
                 return true;
             }
@@ -3192,9 +3188,7 @@ if (!function_exists('updateModuleParentRoute')) {
             Cache::forget('RoleList_' . SaasDomain());
             Cache::forget('PolicyPermissionList_' . SaasDomain());
             Cache::forget('PolicyRoleList_' . SaasDomain());
-
         }
-
     }
 }
 
@@ -3244,7 +3238,7 @@ if (!function_exists('paymentGateWayCredentialsEmptyCheck')) {
             } else {
                 $result = false;
             }
-        }elseif ($method == 'Clover') {
+        } elseif ($method == 'Clover') {
             if (!empty(getPaymentEnv('CLOVER_CLIENT_ID')) && !empty(getPaymentEnv('CLOVER_CLIENT_SECRET')) && !empty(getPaymentEnv('CLOVER_CODE')) && !empty(getPaymentEnv('CLOVER_MERCHANT_ID')) && !empty(getPaymentEnv('CLOVER_EMPLOYEE_ID'))) {
                 $result = true;
             } else {
@@ -3302,7 +3296,6 @@ if (!function_exists('affiliateConfig')) {
                 if (Cache::has('affiliate_config_' . SaasDomain())) {
                     $affiliate_configs = Cache::get('affiliate_config_' . SaasDomain());
                     return $affiliate_configs[$key];
-
                 } else {
                     Cache::forget('affiliate_config_' . SaasDomain());
                     $datas = [];
@@ -3318,7 +3311,6 @@ if (!function_exists('affiliateConfig')) {
             } else {
                 return false;
             }
-
         } catch (Exception $exception) {
             return false;
         }
@@ -3337,7 +3329,6 @@ if (!function_exists('isAffiliateUser')) {
                 }
             }
             return false;
-
         } catch (Exception $exception) {
             return false;
         }
@@ -3360,7 +3351,6 @@ if (!function_exists('hasAffiliateAccess')) {
             }
 
             return false;
-
         } catch (Exception $exception) {
             return false;
         }
@@ -3378,16 +3368,12 @@ if (!function_exists('showPrice')) {
 
             if ($type == 1) {
                 $result = $symbol . $price;
-
             } elseif ($type == 2) {
                 $result = $symbol . ' ' . $price;
-
             } elseif ($type == 3) {
                 $result = $price . $symbol;
-
             } elseif ($type == 4) {
                 $result = $price . ' ' . $symbol;
-
             } else {
                 $result = $price;
             }
@@ -3456,7 +3442,6 @@ if (!function_exists('orgGetStartEndDate')) {
                 if (!empty($end)) {
                     $days['end'] = Carbon::parse($end)->format('d/m/y h:i A');
                 }
-
             }
         } else {
             $days['start'] = Carbon::parse($course->created_at)->format('d/m/y h:i A');
@@ -3492,7 +3477,6 @@ if (!function_exists('getPercentage')) {
             } else {
                 return 0;
             }
-
         } catch (\Exception $e) {
             return 0;
         }
@@ -3556,8 +3540,10 @@ if (!function_exists('footerSettings')) {
 if (!function_exists('convertToSlug')) {
     function convertToSlug($str, $delimiter = '-')
     {
-        $unwanted_array = ['ś' => 's', 'ą' => 'a', 'ć' => 'c', 'ç' => 'c', 'ę' => 'e', 'ł' => 'l', 'ń' => 'n', 'ó' => 'o', 'ź' => 'z', 'ż' => 'z',
-            'Ś' => 's', 'Ą' => 'a', 'Ć' => 'c', 'Ç' => 'c', 'Ę' => 'e', 'Ł' => 'l', 'Ń' => 'n', 'Ó' => 'o', 'Ź' => 'z', 'Ż' => 'z'];
+        $unwanted_array = [
+            'ś' => 's', 'ą' => 'a', 'ć' => 'c', 'ç' => 'c', 'ę' => 'e', 'ł' => 'l', 'ń' => 'n', 'ó' => 'o', 'ź' => 'z', 'ż' => 'z',
+            'Ś' => 's', 'Ą' => 'a', 'Ć' => 'c', 'Ç' => 'c', 'Ę' => 'e', 'Ł' => 'l', 'Ń' => 'n', 'Ó' => 'o', 'Ź' => 'z', 'Ż' => 'z'
+        ];
         $str = strtr($str, $unwanted_array);
 
         $slug = strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))))), $delimiter));
@@ -3624,7 +3610,6 @@ if (!function_exists('getActiveJsDateFormat')) {
 
         return $jsFormat;
     }
-
 }
 if (!function_exists('getActivePhpDateFormat')) {
     function getActivePhpDateFormat(): string
@@ -3696,7 +3681,6 @@ if (!function_exists('MarkAsBlogRead')) {
                 'blog_id' => $blog_id,
             ]);
         }
-
     }
 }
 if (!function_exists('upgradeLevelPayment')) {
@@ -3708,8 +3692,6 @@ if (!function_exists('upgradeLevelPayment')) {
             return true;
         }
         return false;
-
-
     }
 }
 if (!function_exists('spn_active_link')) {
@@ -3782,7 +3764,7 @@ if (!function_exists('dynamicContentAppend')) {
                     $request = [];
                     $param = [];
                     foreach ($parent_data as $key => $data) {
-//                        $param[] = $key;
+                        //                        $param[] = $key;
                         $param[$key] = $data;
                     }
 
@@ -3826,7 +3808,6 @@ if (!function_exists('generateBreadcrumb')) {
         } catch (\Exception $e) {
             return '';
         }
-
     }
 }
 if (!function_exists('dbDateFormat')) {
@@ -3913,8 +3894,6 @@ if (!function_exists('checkGamification')) {
                     ];
                     Notification::send($user, new GeneralNotification($details));
                 }
-
-
             }
 
             $totalGamificationPoint = UserGamificationPoint::where('badge_type', $badge_type)->count();
@@ -3941,8 +3920,6 @@ if (!function_exists('checkGamification')) {
             }
 
             checkUserLevel($user);
-
-
         }
         return false;
     }
@@ -3970,7 +3947,6 @@ if (!function_exists('checkUserLevel')) {
                     $user->save();
                     createUserLevelHistory($user->id, 'course', $point);
                 }
-
             }
             if (Settings('gamification_level_entry_badge_status')) {
                 $point = (int)Settings('gamification_level_entry_badge_point');
@@ -3981,20 +3957,18 @@ if (!function_exists('checkUserLevel')) {
                     $user->save();
                     createUserLevelHistory($user->id, 'course', $point);
                 }
-//                if (!empty($total_badges)) {
-//                    $avg = (int)number_format($total_badges / $point) + 1;
-//                    $alreadyHave = $user->userLevelHistories->where('type', 'badge')->count();
-//                    $level_up = $avg - $alreadyHave;
-//                    if ($level_up > 0) {
-//                        $user->user_level = $user->user_level + $level_up;
-//                        $user->save();
-//                        createUserLevelHistory($user->id, 'badge', $point);
-//                    }
-//                }
+                //                if (!empty($total_badges)) {
+                //                    $avg = (int)number_format($total_badges / $point) + 1;
+                //                    $alreadyHave = $user->userLevelHistories->where('type', 'badge')->count();
+                //                    $level_up = $avg - $alreadyHave;
+                //                    if ($level_up > 0) {
+                //                        $user->user_level = $user->user_level + $level_up;
+                //                        $user->save();
+                //                        createUserLevelHistory($user->id, 'badge', $point);
+                //                    }
+                //                }
             }
-
         }
-
     }
 }
 
@@ -4011,8 +3985,6 @@ if (!function_exists('createUserLevelHistory')) {
             ]);
             Toastr::success(trans('common.A new level has been unlocked'), trans('common.Congratulations'));
         }
-
-
     }
 }
 
@@ -4024,7 +3996,6 @@ if (!function_exists('organizationSettings')) {
                 if (Cache::has('organization_settings')) {
                     $settings = Cache::get('organization_settings');
                     return $settings[$name];
-
                 } else {
                     Cache::forget('organization_settings');
                     $datas = [];
@@ -4040,7 +4011,6 @@ if (!function_exists('organizationSettings')) {
             } else {
                 return false;
             }
-
         } catch (Exception $exception) {
             return false;
         }
@@ -4063,7 +4033,6 @@ if (!function_exists('availableRolesForBadges')) {
                 $availableRoles = implode(', ', $roles);
             }
             return $availableRoles;
-
         } catch (\Exception $exception) {
             return false;
         }
@@ -4108,8 +4077,6 @@ if (!function_exists('checkGamificationReg')) {
                 }
             }
         }
-
-
     }
 }
 
@@ -4128,5 +4095,132 @@ if (!function_exists('pluralize')) {
             default:
                 return $singular . 's';
         }
+    }
+}
+
+
+if (!function_exists('getProgramListCourseCount')) {
+    function getProgramListCourseCount()
+    {
+        $totalCounts = [];
+        $counts = Program::orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->pluck('allcourses');
+        foreach ($counts as $count) {
+            $totalCounts = array_merge($totalCounts, json_decode($count));
+        }
+        return \Modules\CourseSetting\Entities\Course::whereIn('id', array_unique($totalCounts))->count();
+    }
+}
+
+if (!function_exists('getProgramListClassCount')) {
+    function getProgramListClassCount()
+    {
+        $totalCounts = [];
+        $counts = Program::orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->pluck('allcourses');
+        foreach ($counts as $count) {
+            $totalCounts = array_merge($totalCounts, json_decode($count));
+        }
+        return \Modules\VirtualClass\Entities\VirtualClass::whereIn('course_id', array_unique($totalCounts))->count();
+    }
+}
+if (!function_exists('getAgreementForm')) {
+    function getAgreementForm()
+    {
+        $path = public_path('student_affidavit/agreement_form');
+        $files = File::allFiles($path);
+        return $files;
+    }
+}
+if (!function_exists('removeAgreementForm')) {
+    function removeAgreementForm()
+    {
+        $path = public_path('student_affidavit/agreement_form');
+        foreach (getAgreementForm() as $file) {
+            unlink($path . '/' . $file->getRelativePathname());
+        }
+    }
+}
+
+if (!function_exists('headerMenuPermissions')) {
+    function headerMenuPermissions($permissions)
+    {
+        if (
+            (auth()->check() && in_array(auth()->user()->role_id, array_values($permissions))
+            )
+            ||
+            (!auth()->check() && in_array('notauth', array_values($permissions))
+            )
+        ) {
+            return true;
+        }
+        return false;
+    }
+}
+if (!function_exists('getRoutePath')) {
+    function getRoutePath($routePath)
+    {
+        if ($routePath != '/') {
+            return '/' . $routePath;
+        }
+        return $routePath;
+    }
+}
+
+if (!function_exists('monthDateYear')) {
+    function monthDateYear($value)
+    {
+        if (!empty($value)) {
+            $formated_date = Carbon::parse($value)->format('m/d/Y');
+            return $formated_date;
+        }
+        return $value;
+    }
+}
+if (!function_exists('programFilterMaxPrice')) {
+    function programFilterMaxPrice()
+    {
+        $max = PaymentPlans::where('type', 'program')
+            ->where(function ($q) {
+                $q->where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'));
+                $q->orWhere('sdate', '>', date('Y-m-d'));
+            })
+            ->where('status', 1)->max('amount');
+        return $max;
+    }
+}
+if (!function_exists('programFilterMaxWeeks')) {
+    function programFilterMaxWeeks()
+    {
+        $maxWeeksRecord = PaymentPlans::select(
+            '*',
+            DB::raw('CEIL(DATEDIFF(LEAST(edate, NOW()), GREATEST(sdate, NOW())) / 7) AS total_weeks')
+        )
+            ->where('type', 'program')
+            ->where('status', 1)
+            ->orderByDesc('total_weeks')
+            ->first();
+
+        return round((strtotime($maxWeeksRecord->edate) - strtotime($maxWeeksRecord->sdate)) / 604800, 1);
+    }
+}
+
+if (!function_exists('userNotificationSetup')) {
+    function userNotificationSetup($user)
+    {
+        $userNotificationSetup = new UserNotificationSetup();
+        $userNotificationSetup->user_id = $user->id;
+        $userNotificationSetup->save();
+
+        return $userNotificationSetup;
+    }
+}
+
+if (!function_exists('isLessonComplete')) {
+    function isLessonComplete($lesson_id, $program_id, $courseType)
+    {
+        //          return  \App\LessonComplete::where('lesson_id',$lesson_id)
+        //                ->where('program_id',$program_id)
+        //                ->where('courseType',$courseType)
+        //                ->where('user_id',Auth::id())
+        //                ->exists();
     }
 }

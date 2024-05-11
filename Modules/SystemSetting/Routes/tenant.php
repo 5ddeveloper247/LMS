@@ -35,9 +35,27 @@ Route::group(['prefix' => 'admin/systemsetting', 'middleware' => ['auth', 'admin
     Route::get('/socialMessages', 'SocialLinkController@toastrMessages');
     Route::get('/pageMessages', 'PageController@toastrMessages');
 
+    // Package Pricing Routes
+    Route::get('/allPackages', 'PackageController@index')->name('allPackages');
+    Route::get('/getAllPackagePricing', 'PackageController@getAllPackagePricing')->name('getAllPackagePricing');
+    Route::get('/addPackage', 'PackageController@create')->name('addPackage');
+    Route::post('/savePackage', 'PackageController@store')->name('savePackage');
+    Route::get('/editPackage/{id}', 'PackageController@edit')->name('editPackage');
+    Route::post('/updatePackage', 'PackageController@update')->name('updatePackage');
+    Route::get('/deletePackage/{id}', 'PackageController@destroy')->name('deletePackage');
+    Route::get('/soldPackages', 'PackageController@soldOutPackages')->name('soldPackages');
+    Route::get('/getAllsoldPackages', 'PackageController@getAllsoldPackages')->name('getAllsoldPackages');
+    Route::get('/my-packages', 'PackageController@myAllPackages')->name('myPackages');
+    Route::get('/my-packages-data', 'PackageController@myAllPackagesData')->name('myPackagesData');
+    Route::get('/upgrade-package', 'PackageController@upgradePackage')->name('upgradePackage');
+    Route::get('/status/{id}', 'PackageController@status')->name('PackagePricing.change_status');
+
+    Route::get('/deletePackagePurchasing/{id}', 'PackageController@destroyPackagePurchasing')->name('destroyPackagePurchasing');
+    Route::get('/getTutorAllPackages/{id}', 'InstructorSettingController@getTutorAllPackages')->name('getTutorAllPackages');
+
     //Language Setting
 
-//    Route::get('/getAllLanguage', 'SystemSettingController@getAllLanguage');
+    //    Route::get('/getAllLanguage', 'SystemSettingController@getAllLanguage');
     Route::get('/languageStatus/{id}', 'SystemSettingController@languageStatus');
     Route::post('/language_add', 'SystemSettingController@language_add');
     Route::get('/language_edit/{id}', 'SystemSettingController@language_edit');
@@ -53,8 +71,10 @@ Route::group(['prefix' => 'admin/systemsetting', 'middleware' => ['auth', 'admin
     Route::post('/saveTranslate/{lang}', 'SystemSettingController@saveTranslate');
     Route::post('/socialCreditional', 'SystemSettingController@socialCreditional');
 
-//Instructor Manage
+    //Instructor Manage
     Route::get('/all/instructor-data', 'InstructorSettingController@getAllInstructorData')->name('getAllInstructorData')->middleware('RoutePermissionCheck:allInstructor');
+
+    Route::get('/all/individual-tutors', 'InstructorSettingController@getAllIndividualTutorsData')->name('getAllIndividualTutorsData');
 
     Route::get('/allInstructor', 'InstructorSettingController@index')->name('allInstructor')->middleware('RoutePermissionCheck:allInstructor');
     Route::post('/store', 'InstructorSettingController@store')->name('instructor.store')->middleware('RoutePermissionCheck:instructor.store');
@@ -67,11 +87,15 @@ Route::group(['prefix' => 'admin/systemsetting', 'middleware' => ['auth', 'admin
     Route::get('/view/{id}', 'InstructorSettingController@view')->name('instructor.view');
     Route::post('update/view/', 'InstructorSettingController@updateView')->name('instructor.update.view');
 
-//    turing
+    //    turing
     Route::get('/hired/tutors', 'TutorsSettingController@hiredTutors')->name('hired.tutors')->middleware('RoutePermissionCheck:hired.tutors');
     Route::get('/tutor/slots', 'TutorsSettingController@tutorSlots')->name('tutor.slots');
     Route::post('/set/slot/time', 'TutorsSettingController@setSlotTime')->name('set.slot.time');
     Route::get('/get/all/slots', 'TutorsSettingController@getAllSlots')->name('get.all.slots');
+    Route::post('setTutorSlotsWrtDate', 'TutorsSettingController@setTutorSlotsWrtDate')->name('setTutorSlotsWrtDate');
+    Route::post('validationTutorSlotTime', 'TutorsSettingController@validationTutorSlotTime')->name('validationTutorSlotTime');
+    
+    
     //Email Setting
     Route::get('/editEmailSetting', 'SystemSettingController@editEmailSetting');
     Route::post('/updateEmailSetting', 'SystemSettingController@updateEmailSetting')->name('updateEmailSetting');
@@ -183,7 +207,6 @@ Route::group(['prefix' => 'admin/systemsetting', 'middleware' => ['auth', 'admin
         Route::get('/staff/csv-upload-page', 'StaffController@csv_upload')->name('staffs.csv_upload');
         Route::post('/staff/csv-upload-store', 'StaffController@csv_upload_store')->name('staffs.csv_upload_store');
     });
-
 });
 
 Route::get('/become_instructor/getSetting', 'BecomeInstructorSettingController@getSetting');
@@ -226,3 +249,4 @@ Route::group(['prefix' => 'counter/'], function () {
     Route::post('/saveCounter', 'PageController@saveCounter');
     Route::post('/updateCounter', 'PageController@updateCounter');
 });
+Route::get('cancelBookedSlot/{id}', 'TutorsSettingController@cancelBookedSlot')->name('cancelBookedSlot');

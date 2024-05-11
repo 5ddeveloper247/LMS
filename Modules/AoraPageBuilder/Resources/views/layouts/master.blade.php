@@ -541,35 +541,35 @@
             color: rgb(248, 0, 0);
         }
 
-        .footerbox1 p {
+        /* .footerbox1 p {
             line-height: 30px !important;
             font-size: 17px !important;
             color: white;
             cursor: pointer;
             transition: 1s;
-        }
+        } */
 
-        .footerbox1 p:hover {
+        /* .footerbox1 p:hover {
             line-height: 30px !important;
             font-size: 17px !important;
             color: rgb(255, 0, 0);
             text-decoration: underline;
-        }
+        } */
 
-        .expore p {
+        /* .expore p {
             line-height: 30px !important;
             font-size: 17px !important;
             color: white;
             cursor: pointer !important;
             transition: 1s;
-        }
+        } */
 
-        .expore p:hover {
+        /* .expore p:hover {
             line-height: 30px !important;
             font-size: 17px !important;
             color: rgb(255, 0, 0);
             text-decoration: underline;
-        }
+        } */
 
         .icons i {
             font-size: 12px;
@@ -850,9 +850,9 @@
             border-radius: 4px;
         }
 
-        .footercolor {
+        /* .footercolor {
             background: #252525;
-        }
+        } */
 
         .cont1doimgdo {
             background: url("{{ asset('public/frontend/infixlmstheme/img/images/courses-4.jpg') }}");

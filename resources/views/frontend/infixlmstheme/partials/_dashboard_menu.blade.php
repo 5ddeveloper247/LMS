@@ -125,7 +125,7 @@
             </div>
         </form>
     </div>
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center ml-auto">
         <div class="notification_wrapper" id="main-nav-for-chat">
             <ul>
 
@@ -240,6 +240,9 @@
             <div class="profile_info_iner collaps_part_content">
                 <a href="{{ url('/') }}">{{ __('frontendmanage.Home') }}</a>
                 <a href="{{ route('myProfile') }}">{{ __('frontendmanage.My Profile') }}</a>
+                @if(\Illuminate\Support\Facades\Auth::user()->role_id == 3 && !check_enrolled())
+                  <a href="{{ route('student-enroll') }}">{{ __('Enroll Now') }}</a>
+                @endif
                 <a href="{{ route('myAccount') }}">{{ __('frontend.Account Settings') }}</a>
                 @if (isModuleActive('Affiliate') && $user->affiliate_request != 1)
                     <a

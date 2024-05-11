@@ -45,7 +45,7 @@
                         <div class="col-lg-12">
                             <label class="primary_input_label mt-3" for=""> {{ __('courses.Chapter') }}
                                 <span>*</span></label>
-                            <select class="primary_select" name="chapterId">
+                            <select class="primary_select" name="chapterId" required>
                                 <option data-display="{{ __('common.Select') }} {{ __('courses.Chapter') }}"
                                     value="">{{ __('common.Select') }} {{ __('courses.Chapter') }} </option>
                                 @foreach ($chapters as $chapter)
@@ -89,7 +89,7 @@
                     <div class="input-effect mt-2 pt-1" id="existing_quiz">
                         <label class="primary_input_label mt-1" for=""> {{ __('quiz.Quiz') }}
                             <span>*</span></label>
-                        <select class="primary_select" name="quiz">
+                        <select class="primary_select" name="quiz" required>
                             <option data-display="{{ __('common.Select') }} {{ __('quiz.Quiz') }}" value="">
                                 {{ __('common.Select') }} {{ __('quiz.Quiz') }} </option>
                             @foreach ($quizzes as $quiz)
@@ -211,7 +211,7 @@
                         <div class="" id="">
                             <label class="primary_input_label" for="">{{ __('courses.Privacy') }}
                                 <span>*</span></label>
-                            <select class="primary_select" name="lock">
+                            <select class="primary_select" name="lock" required>
                                 <option data-display="{{ __('common.Select') }} {{ __('courses.Privacy') }} "
                                     value="">{{ __('common.Select') }} {{ __('courses.Privacy') }} </option>
 
@@ -236,7 +236,7 @@
 
         <div class="row mt-40">
             <div class="col-lg-12 text-center">
-                <button type="submit" class="primary-btn fix-gr-bg" data-toggle="tooltip">
+                <button type="button" class="primary-btn fix-gr-bg" onclick="quiz_add_form(this);" data-toggle="tooltip">
                     <span class="ti-check"></span>
                     {{ __('common.Save') }}
                 </button>
@@ -245,3 +245,146 @@
     </div>
 </div>
 {{ Form::close() }}
+
+<script>
+	function quiz_add_form(button){
+		$('.preloader').show();
+	    var errors = [];
+	    
+	    var form = $(button).closest("form");
+	
+	    
+		if (isEmpty(form.find("select[name='chapterId']").val())) {
+	    	errors.push('Choose Chapter first.');
+	   	}
+	            
+	   	var type = form.find("input[name='type']:checked").val();
+	
+	  	if(type == '1'){		// for existing
+	    	if (isEmpty(form.find("select[name='quiz']").val())) {
+	         	errors.push('Choose Quiz first.');
+	       	}
+	     	if (isEmpty(form.find("select[name='lock']").val())) {
+	        	errors.push('Choose Privacy first.');
+	      	}
+	  	}
+	
+	  	if(type == '2'){		// for New
+			if (isEmpty(form.find("input[name='title[en]']").val())) {
+	       		errors.push('Quiz Title is required.');
+	  		}
+			if (isEmpty(form.find("input[name='instruction[en]']").val())) {
+	         	errors.push('Instruction is required.');
+	      	}	
+			if (isEmpty(form.find("input[name='percentage']").val())) {
+	        	errors.push('Percentage is required.');
+	      	}			
+	   	}
+	
+	  	setTimeout(function() {
+	     	if (errors.length) {
+	       		console.log(errors);
+	        	$('.preloader').hide();
+	          	$('input[type="submit"]').attr('disabled', false);
+	          	$.each(errors.reverse(), function (index, item) {
+	        		toastr.error(item, 'Error', 1000);
+	          	});
+	       		return false;
+	   		}
+	      	form.submit();
+	   	}, 3000);
+	}
+	function quiz_inside_form(button){
+		$('.preloader').show();
+	    var errors = [];
+	    
+	    var form = $(button).closest("form");
+	
+	    var type = form.find("input[name='type']:checked").val();
+	
+	  	if(type == '1'){		// for existing
+	    	if (isEmpty(form.find("select[name='quiz']").val())) {
+	         	errors.push('Choose Quiz first.');
+	       	}
+	     	if (isEmpty(form.find("select[name='lock']").val())) {
+	        	errors.push('Choose Privacy first.');
+	      	}
+	  	}
+	
+	  	if(type == '2'){		// for New
+			if (isEmpty(form.find("input[name='title[en]']").val())) {
+	       		errors.push('Quiz Title is required.');
+	  		}
+			if (isEmpty(form.find("input[name='instruction[en]']").val())) {
+	         	errors.push('Instruction is required.');
+	      	}	
+			if (isEmpty(form.find("input[name='percentage']").val())) {
+	        	errors.push('Percentage is required.');
+	      	}			
+	   	}
+	
+	  	setTimeout(function() {
+	     	if (errors.length) {
+	       		console.log(errors);
+	        	$('.preloader').hide();
+	          	$('input[type="submit"]').attr('disabled', false);
+	          	$.each(errors.reverse(), function (index, item) {
+	        		toastr.error(item, 'Error', 1000);
+	          	});
+	       		return false;
+	   		}
+	      	form.submit();
+	   	}, 3000);
+	}
+
+	function quiz_question_inside_form(button){
+		$('.preloader').show();
+	    var errors = [];
+	    
+	    var form = $(button).closest("form");
+	
+	   	if (isEmpty(form.find("textarea[name='question']").val())) {
+	    	errors.push('Question is required.');
+	    }
+	  	if (isEmpty(form.find("input[name='marks']").val())) {
+	    	errors.push('Marks is required.');
+	    }
+	  	if (isEmpty(form.find("input[name='number_of_option']").val())) {
+	    	errors.push('Number of Options is required.');
+	    }
+
+	  	if(form.find("input[name='number_of_option']").val() != ''){
+	  		var optionEmpty = '';
+		  	var optionAns = '1';
+			$('div[id*=option_div_]').each(function(){
+				if($(this).find("[id*=option_input_]").val()==''){
+					optionEmpty = '1'; 
+				}
+
+				if($(this).find("[id*=check_]").is(":checked")==true){
+					optionAns = ''; 
+				}
+			});
+			if(optionEmpty == '1'){
+				errors.push('All Options is required.');
+			}
+			if(optionAns == '1'){
+				errors.push('Choose atleast one correct option.');
+			}
+		}
+	  	
+	  	setTimeout(function() {
+	     	if (errors.length) {
+	       		console.log(errors);
+	        	$('.preloader').hide();
+	          	$('input[type="submit"]').attr('disabled', false);
+	          	$.each(errors.reverse(), function (index, item) {
+	        		toastr.error(item, 'Error', 1000);
+	          	});
+	       		return false;
+	   		}
+	      	form.submit();
+	   	}, 3000);
+	}
+	
+</script>

@@ -1,28 +1,30 @@
-<div class="lms_blog_details_area">
+{{-- <div class="lms_blog_details_area"> --}}
 
     <div class="container">
 
-        <div class="row justify-content-center">
-
-            <div class="col-xl-7 col-lg-7">
+        <div class="row mb-5 px-md-5 row px-1">
+            {{-- <div class="col-md-12 py-0 py-md-2 px-0 px-md-3">
+                <h2 class="font-weight-bold ">Blog Detail</h2>
+            </div> --}}
+            <div class="col-xl-12 col-lg-12 py-0 py-md-2 px-0 px-md-3">
 
                 <div class="blog_details_inner">
 
                     <div class="blog_details_banner">
 
-                        <img class="w-100" src="{{ getBlogImage($blog->image) }}" alt="">
-
+                        <img class="w-100 blog-detail-img" style="" src="{{ getBlogImage($blog->image) }}" alt="">
+                        <h2 class="font-weight-bold set-title">{{ $blog->title }}</h2>
                     </div>
 
 
 
-                    <div class="blog_post_date d-flex align-items-center">
+                    <div class="blog_post_date d-flex align-items-center mt-2">
                         <p>{{ $blog->user->name }}
 
                             . {{ showDate(@$blog->authored_date) }}, {{ @$blog->authored_time }}</p>
                     </div>
 
-                    <h3>{{ $blog->title }}</h3>
+                    
 
                     <p class="mb_25">
 
@@ -40,7 +42,7 @@
 
                 </div>
 
-                @if (Settings('hide_blog_comment') != 1)
+                {{-- @if (Settings('hide_blog_comment') != 1)
 
                     <div class="blog_reviews">
 
@@ -174,7 +176,7 @@
                                             <div class="col-12">
 
                                                 <button type="submit"
-                                                    class="theme_btn small_btn2 w-100 text-uppercase mb_25 text-center text-center">
+                                                    class="theme_btn  w-100 text-uppercase mb_25 text-center text-center">
 
                                                     {{ __('frontend.Reply') }}
 
@@ -310,7 +312,7 @@
                                 <div class="col-12">
 
                                     <button type="submit"
-                                        class="theme_btn small_btn2 w-100 text-uppercase text-center text-center">
+                                        class="theme_btn  text-uppercase text-center text-center float-right">
 
                                         {{ __('frontend.Post comment') }}
 
@@ -324,15 +326,15 @@
 
                     </div>
 
-                @endif
+                @endif --}}
 
             </div>
 
-            <div class="col-xl-3 col-lg-3">
+            {{-- <div class="col-xl-4 col-lg-4">
 
                 <x-blog-sidebar-section :tag="$blog->tags" />
 
-            </div>
+            </div> --}}
 
         </div>
 
@@ -340,4 +342,7 @@
 
     @include(theme('partials._delete_model'))
 
-</div>
+{{-- </div> --}}
+
+
+

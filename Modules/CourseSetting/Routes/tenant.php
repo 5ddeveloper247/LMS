@@ -14,7 +14,10 @@ Route::group(['prefix' => 'admin/timetable', 'middleware' => ['auth', 'admin']],
     Route::get('/time-table', 'TimeTableController@index')->name('TimeTable')->middleware('RoutePermissionCheck:TimeTable');
     Route::get('/view/time-table/{id}', 'TimeTableController@show')->name('view.TimeTable')->middleware('RoutePermissionCheck:TimeTable');
     Route::post('/add/time-table', 'TimeTableController@store')->name('Add.TimeTable')->middleware('RoutePermissionCheck:TimeTable');
+    Route::post('/edit/time-table', 'TimeTableController@update')->name('Update.TimeTable')->middleware('RoutePermissionCheck:TimeTable');
     Route::post('/save/time-table', 'TimeTableController@saveList')->name('Add.list.TimeTable')->middleware('RoutePermissionCheck:TimeTable');
+    Route::post('/save/time-table-individual', 'TimeTableController@saveListIndividual')->name('Add.list.IndividualTimeTable')->middleware('RoutePermissionCheck:TimeTable');
+
     Route::get('/delete/time-table/{id}', 'TimeTableController@delete')->name('Delete.TimeTable')->middleware('RoutePermissionCheck:TimeTable');
     Route::get('/getAllTimeTable', 'TimeTableController@getAllTimeTable')->name('getAllTimeTable')->middleware('RoutePermissionCheck:TimeTable');
 });
@@ -78,6 +81,7 @@ Route::group(['prefix' => 'admin/course', 'middleware' => ['auth', 'admin']], fu
 
     //Manage course
     Route::get('/all/courses', 'CourseSettingController@getAllCourse')->name('getAllCourse')->middleware('RoutePermissionCheck:getAllCourse');
+  //  Route::get('/reviews/{id}', 'CourseSettingController@getCourseReviews')->name('getCourseReviews')->middleware('RoutePermissionCheck:getAllCourse');
 
     Route::get('/new/course', 'CourseSettingController@addNewCourse')->name('course.store')->middleware('RoutePermissionCheck:course.store');
     //    Route::get('/edit/course/{id}', 'CourseSettingController@editCourse')->name('addNewCourse')->middleware('RoutePermissionCheck:addNewCourse');
@@ -93,6 +97,19 @@ Route::group(['prefix' => 'admin/course', 'middleware' => ['auth', 'admin']], fu
     Route::get('/publishCourse/{id}', 'CourseSettingController@publishCourse')->name('publishCourse');
     Route::post('/courseStatus', 'CourseSettingController@courseStatus')->name('AdminCourseStatus')->middleware('RoutePermissionCheck:course.status_update');
 
+    // Course Plan
+    Route::get('/all/course-plans', 'CoursePlanController@index')->name('getAllCoursePlan');
+    Route::get('/all/course-plans-data', 'CoursePlanController@coursePlansData')->name('getAllCoursePlanData');
+    Route::get('/course-plan/create', 'CoursePlanController@create')->name('createCoursePlan');
+    Route::get('/get-child-courses', 'CoursePlanController@getChildCourses')->name('getChildCourses');
+    Route::post('/course-plan/store', 'CoursePlanController@store')->name('storeCoursePlan');
+    Route::get('/course-plan/edit/{id}', 'CoursePlanController@edit')->name('editCoursePlan');
+    Route::post('/course-plan/update', 'CoursePlanController@update')->name('updateCoursePlan');
+    Route::get('/course-plan/delete/{id}', 'CoursePlanController@destroy')->name('deleteCoursePlan');
+    Route::get('/status/{id}', 'CoursePlanController@planStatus')->name('course_plan.change_status');
+
+
+
 
     Route::get('/getEnroll/{id}', 'CourseSettingController@getEnroll')->name('getEnroll');
     Route::post('/rejectEnroll', 'CourseSettingController@rejectEnroll')->name('rejectEnroll');
@@ -104,9 +121,13 @@ Route::group(['prefix' => 'admin/course', 'middleware' => ['auth', 'admin']], fu
     Route::get('/courseSort/{value}', 'CourseSettingController@courseSort')->name('courseSort');
     Route::get('/courseSortByInstructor/{value}', 'CourseSettingController@courseSortByInstructor')->name('courseSortByInstructor');
     Route::get('/course-delete/{id}', 'CourseSettingController@courseDelete')->name('course.delete');
-    Route::get('/addToSale/{id}', 'CourseSettingController@addToSale')->name('course.addToSale');
-    Route::get('/course-viewSaleList', 'CourseSettingController@viewSaleList')->name('course.viewSaleList');
+    Route::get('/repeat-course/{id}', 'CourseSettingController@addToSale')->name('course.addToSale');
+    Route::post('/saveAddToSale', 'CourseSettingController@saveAddToSale')->name('course.saveAddToSale');
+    Route::get('/viewSaleList', 'CourseSettingController@viewSaleList')->name('course.viewSaleList');
     Route::get('/course-viewSaleListData', 'CourseSettingController@viewSaleListData')->name('viewSaleListData');
+    Route::get('/tutor/courses', 'CourseSettingController@tutorCourseList')->name('course.tutorCourseList');
+    Route::get('/tutor-course-data', 'CourseSettingController@getTutorCourseData')->name('getTutorCourseData');
+    Route::get('/delete-repeat-course/{id}', 'CourseSettingController@deleteRepeatCourse')->name('deleteRepeatCourse');
 
 
     Route::get('chapter', 'ChapterController@index')->name('chapterPage');
@@ -159,4 +180,7 @@ Route::group(['prefix' => 'admin/course', 'middleware' => ['auth', 'admin']], fu
     Route::get('/school-subject/{id}', 'SchoolSubjectController@edit')->name('schoolSubject.edit')->middleware('RoutePermissionCheck:schoolSubject.edit');
     Route::patch('/school-subject/{id}', 'SchoolSubjectController@update')->name('schoolSubject.update')->middleware('RoutePermissionCheck:schoolSubject.edit');
     Route::get('/school-subject-delete/{id}', 'SchoolSubjectController@destroy')->name('schoolSubject.destroy')->middleware('RoutePermissionCheck:schoolSubject.destroy');
+
+    Route::post('/change_course_seq', 'CourseSettingController@changeCourseSequence')->name('changeCourseSeq');
+    Route::post('/change_course_category_seq', 'CourseSettingController@changeCourseCategorySequence')->name('changeCourseCategorySeq');
 });

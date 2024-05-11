@@ -1,6 +1,8 @@
 @extends('backend.master')
+
 @push('styles')
     <link rel="stylesheet" href="{{ asset('public/backend/css/student_list.css') }}" />
+    <link href="https://cdn.datatables.net/rowreorder/1.3.3/css/rowReorder.dataTables.min.css" rel="stylesheet">
 @endpush
 @php
     $table_name = 'programs';
@@ -21,7 +23,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 mb-4">
-                    <a href="{{ route('add_new') }}" class="primary-btn fix-gr-bg" role="button">Add New</a>
+                    <a href="{{ route('add_new') }}" class="primary-btn fix-gr-bg float-right" role="button">Add New</a>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -36,25 +38,22 @@
                                             <th scope="col">{{ __('common.SL') }}</th>
                                             <th scope="col">{{ __('common.Image') }}</th>
                                             <th scope="col">{{ __('common.Title') }}</th>
-                                            <th scope="col" class="d-none">{{ __('TotalCost') }}</th>
+                                            <th scope="col" class="d-none">{{ __('Total Cost') }}</th>
                                             <th scope="col" class="d-none">{{ __('Duration') }}</th>
-                                            <th scope="col">{{ __('TotalCourses') }}</th>
+                                            <th scope="col">{{ __('Total Courses') }}</th>
                                             <th scope="col">{{ __('common.Status') }}</th>
                                             <th scope="col">{{ __('common.Action') }}</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    {{-- <tbody>
 
-                                    </tbody>
+                                    </tbody> --}}
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
     </section>
     <div class="modal fade admin-query" id="confirm_delete">
@@ -83,6 +82,8 @@
     </div>
 @endsection
 @push('scripts')
+    <script type="text/javascript" src="https://cdn.datatables.net/rowreorder/1.3.3/js/dataTables.rowReorder.js"></script>
+
     <script>
         function confirm_modal(delete_url) {
             jQuery('#confirm_delete').modal('show', {
@@ -97,14 +98,17 @@
             "bDestroy": true,
             "lengthChange": true,
             "lengthMenu": [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, "All"]
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
             ],
             processing: true,
             serverSide: true,
-            order: [
-                [0, "desc"]
-            ],
+            createdRow: function(row, data, dataIndex) {
+                $(row).attr('data-seq_no', (data.seq_no));
+                $(row).attr('data-course_id', (data.id));
+                // console.log(row);
+            },
+            order: [],
             "ajax": $.fn.dataTable.pipeline({
                 url: '{!! route('getallprogram') !!}',
                 data: function() {
@@ -243,6 +247,48 @@
             responsive: true,
         });
 
+        var order = [];
+        var program_seq_url = '{{ route('changeProgramSeq') }}';
+        $('#lms_table tbody').sortable({
+            update: function(event, ui) {
+                // Get the sorted row IDs
+
+                var page_length = parseInt($('.dataTable_select>.list>li.selected').data('value'));
+                var current_page = parseInt($('.paginate_button.current').text());
+
+                var postion_for = (current_page * page_length) - page_length;
+
+                $('#lms_table tbody tr').each(function(index, element) {
+                    var rowData = table.row(index).data();
+
+                    var new_position = postion_for + (index + 1);
+                    order.push({
+                        id: $(this).attr('data-course_id'),
+                        new_position: new_position,
+                    });
+                    $(this).children().first().text(new_position);
+
+                });
+                $.ajax({
+                    // type: "POST",
+                    method: 'POST',
+                    url: program_seq_url,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        order: order
+                    }),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response == 200) {
+                            toastr.success('Order Successfully Changed !', 'Success');
+                        }
+                    }
+                });
+            },
+        });
         // let table = $('#allData').DataTable() ;
         // table.clearPipeline();
         // table.ajax.reload();

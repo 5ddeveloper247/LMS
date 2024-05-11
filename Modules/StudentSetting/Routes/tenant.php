@@ -14,6 +14,7 @@ Route::group(['prefix' => 'admin/student', 'middleware' => ['auth', 'admin']], f
         Route::get('/{id}', 'StudentViewController@index')->name('student.student.view');
         Route::post('detail', 'StudentViewController@StudentDetail')->name('student.student.detail');
         Route::post('application', 'StudentViewController@StudentApplication')->name('student.student.application');
+        Route::post('declaration', 'StudentViewController@StudentDeclaration')->name('student.student.declaration');
         Route::post('authentication/agreement', 'StudentViewController@StudentAuthenticationAgreement')->name('student.student.authentication.agreement');
     });
 
@@ -45,7 +46,8 @@ Route::group(['prefix' => 'admin/student', 'middleware' => ['auth', 'admin']], f
     Route::get('student-import', 'StudentImportController@index')->name('student_import')->middleware('RoutePermissionCheck:student_import');
     Route::post('student-import', 'StudentImportController@store')->name('student_import_save')->middleware('RoutePermissionCheck:student_import');
 
-    Route::get('regular_student-import', 'StudentImportController@regular')->name('regular_student_import')->middleware('RoutePermissionCheck:regular_student_import');
+    Route::get('programs', 'StudentImportController@regular')->name('regular_student_import')->middleware('RoutePermissionCheck:regular_student_import');
+    // Route::get('regular_student-import', 'StudentImportController@regular')->name('regular_student_import')->middleware('RoutePermissionCheck:regular_student_import');
     Route::post('regular_student-import', 'StudentImportController@regularStore')->name('regular_student_import_save')->middleware('RoutePermissionCheck:regular_student_import');
     Route::get('regular_student-excel-download', 'StudentImportController@regularStudentexport')->name('regular_student_excel_download')->middleware('RoutePermissionCheck:regular_student_import');
     Route::get('skillgroup/{id}', 'StudentSettingController@Skill_group')->name('student.skillgroup');
@@ -86,4 +88,5 @@ Route::group(['prefix' => 'admin/program', 'middleware' => ['auth', 'admin']], f
             Route::get('/delete_payment_plan_detail/{id}', 'ProgramPaymentPlanController@delete_payment_plan_detail')->name('plan.delete_payment_plan_detail');
         });
     });
+    Route::post('/change_program_seq', 'StudentSettingController@changeProgramSequence')->name('changeProgramSeq');
 });

@@ -125,7 +125,6 @@ class AppServiceProvider extends ServiceProvider
                                         'status' => 0
                                     ]);
                                 }
-
                             }
 
                             session()->put('user_status_seedable', 'false');
@@ -143,7 +142,6 @@ class AppServiceProvider extends ServiceProvider
                             });
                         }
                     });
-
                 }
             }
 
@@ -190,7 +188,6 @@ class AppServiceProvider extends ServiceProvider
                 theme('layouts.dashboard_master'),
                 theme('components.home-page-course-section')
             ], function ($view) use ($domain) {
-
                 $data['categories'] = Cache::rememberForever('categories_' . app()->getLocale() . $domain, function () {
                     return Category::select('id', 'name', 'title', 'description', 'image', 'thumbnail', 'parent_id')
                         ->where('status', 1)
@@ -212,18 +209,18 @@ class AppServiceProvider extends ServiceProvider
                             ->where('lms_id', SaasInstitute()->id)
                             ->get();
                     }
-
                 });
                 $data['menus'] = Cache::rememberForever('menus_' . app()->getLocale() . $domain, function () {
                     try {
                         return HeaderMenu::orderBy('position', 'asc')
-                            ->select('id', 'type', 'element_id', 'title', 'link', 'parent_id', 'position', 'show', 'is_newtab', 'mega_menu', 'mega_menu_column')
+                            ->select('id', 'type', 'element_id', 'title', 'link', 'parent_id', 'position', 'show', 'is_newtab', 'mega_menu', 'mega_menu_column', 'permissions')
                             ->with('childs')
                             ->get();
                     } catch (\Exception $e) {
                         return collect();
                     }
                 });
+
                 $view->with($data);
             });
             View::composer([
@@ -241,26 +238,24 @@ class AppServiceProvider extends ServiceProvider
                 'frontend.infixlmstheme.partials._sidebar',
                 'backend.partials.sidebar'
             ], function ($view) {
-//                $data = [];
-//                if (Schema::hasTable('badges')) {
-//                    $data['reg_badges'] = Badge::select('title', 'image', 'point')->where('type', 'registration')->where(function ($query) {
-//                        $totalDay = 0;
-//                        if (Auth::check()) {
-//                            $created = new Carbon(Auth::user()->created_at);
-//                            $now = Carbon::now();
-//                            $totalDay = $now->diffInDays($created);
-//                        }
-//                        $query->where('point', '<=', $totalDay);
-//                    })->orderBy('point', 'asc')->get();
-//                }
-//                $view->with($data);
+                //                $data = [];
+                //                if (Schema::hasTable('badges')) {
+                //                    $data['reg_badges'] = Badge::select('title', 'image', 'point')->where('type', 'registration')->where(function ($query) {
+                //                        $totalDay = 0;
+                //                        if (Auth::check()) {
+                //                            $created = new Carbon(Auth::user()->created_at);
+                //                            $now = Carbon::now();
+                //                            $totalDay = $now->diffInDays($created);
+                //                        }
+                //                        $query->where('point', '<=', $totalDay);
+                //                    })->orderBy('point', 'asc')->get();
+                //                }
+                //                $view->with($data);
             });
         } catch (\Exception $e) {
             Log::info($e->getMessage());
         }
         $this->bootGoogleDriveSocialite();
-
-
     }
 
     private function bootGoogleDriveSocialite()

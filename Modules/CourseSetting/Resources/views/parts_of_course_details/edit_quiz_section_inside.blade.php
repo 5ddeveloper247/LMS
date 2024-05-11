@@ -29,6 +29,7 @@
 <div class="section-white-box">
 <div class="add-visitor">
     <input type="hidden" name="chapterId" value="{{@$chapter->id}}">
+    <input type="hidden" name="lesson_id" value="{{@$editLesson->id}}">
     <input type="hidden" name="quiz_id" value="{{@$editLesson->lessonQuiz->id}}">
     <div class="row">
         <div class="col-lg-12">
@@ -75,11 +76,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="input-effect">
-                            <label class="primary_input_label mt-1" for=""> {{__('quiz.Quiz Title')}} <span>*</span></label>
+                            <label class="primary_input_label mt-1" for=""> {{__('quiz.Quiz Title')}} <span>*</span><small>(Max: 25 characters)</small></label>
                             <input {{ $errors->has('title') ? ' autofocus' : '' }}
                                    class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
                                    type="text" name="title" autocomplete="off"
-                                   value="{{isset($online_exam)? $online_exam->title: old('title')}}">
+                                   value="{{isset($online_exam)? $online_exam->title: old('title')}}" maxlength="25">
                             <input type="hidden" name="id"
                                    value="{{isset($online_exam)? $online_exam->id: ''}}">
                             <span class="focus-border"></span>
@@ -138,8 +139,7 @@
 
     <div class="row mt-40">
         <div class="col-lg-12 text-center">
-            <button type="submit" class="primary-btn fix-gr-bg"
-                    data-toggle="tooltip">
+            <button type="button" class="primary-btn fix-gr-bg" data-toggle="tooltip" onclick="quiz_inside_form(this);">
                 <span class="ti-check"></span>
                 {{__('common.Save')}}
             </button>

@@ -1,28 +1,71 @@
+<style>
+    /* .service_cta_row {
+    padding: 45px 70px 30px 70px;
+} */
+.center-content-about{
+    display: flex;
+    align-items: center;
+}
+
+    @media only screen and (min-width:1800px) {
+        p {
+            font-size: 20px;
+        }
+
+        h5 {
+            font-size: 25px;
+        }
+        .service_cta_row{
+            padding: 0px 35px !important;
+        }
+    }
+</style>
+
 <div>
-    <div class="service_cta_area">
-        <div class="container">
-            <div class="border_top_1px"></div>
-            <div class="row justify-content-center">
-                <div class="col-xl-10">
-                    <div class="row">
-                        <div class="offset-3 col-lg-6 ">
-
-                            <div class="single_cta_service mb_30">
-                                <div class="thumb">
-                                    <img src="{{asset(@$frontendContent->become_instructor_logo)}}" alt="">
-                                </div>
-                                <div class="cta_service_info">
-                                    <h4>  {{@$frontendContent->become_instructor_title}}</h4>
-                                    <p>  {{@$frontendContent->become_instructor_sub_title}}
-                                    </p>
-                                    <a href="{{route('becomeInstructor')}}"
-                                       class="theme_btn small_btn">{{__('frontend.Start Teaching')}}</a>
-                                </div>
-                            </div>
-
-
+    <div class="service_cta_area p-lg-5">
+        <div class="container center-content-about">
+            {{-- <div class="border_top_1px"></div> --}}
+            <div class="service_cta_row row px-lg-3" id="service_cta_row">
+                <div class="col-lg-4 ">
+                    <div class="single_cta_service single_cta1">
+                        <div class="thumb">
+                            <img src="{{ asset(@$frontendContent->become_instructor_logo) }}" alt="">
                         </div>
+                        <div class="cta_service_info">
+                            <h5 class="mb-4 font-weight-bold text-white">
+                                {{ @$frontendContent->become_instructor_title }}</h5>
+                            <p class="mb-4 text-white"> {{ @$frontendContent->become_instructor_sub_title }}
+                            </p>
+                            <a href="{{ url('/instructors') }}"
+                                class="theme_btn small_btn p-2">{{ __('frontend.Start Teaching') }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-3 mt-lg-0">
+                    <div class="single_cta_service single_cta2">
+                        <div class="thumb">
+                            <img src="{{ asset(@$frontendContent->become_instructor_logo) }}" alt="">
+                        </div>
+                        <div class="cta_service_info">
+                            <h5 class="mb-4 font-weight-bold text-dark"> Become Tutor | Mentor </h5>
+                            <p class="mb-4"> {{ @$frontendContent->become_instructor_sub_title }}
+                            </p>
+                            <a href="{{ route('register') }}" class="theme_btn small_btn p-2">Share Knowledge</a>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-lg-4  mt-3 mt-lg-0">
+                    <div class="single_cta_service single_cta3">
+                        <div class="thumb">
+                            <img src="{{ asset(@$frontendContent->become_instructor_logo) }}" alt="">
+                        </div>
+                        <div class="cta_service_info">
+                            <h5 class="mb-4 font-weight-bold text-white"> Transform A Life Now</h5>
+                            <p class="mb-4 text-white"> {{ @$frontendContent->become_instructor_sub_title }}
+                            </p>
+                            <a href="{{ route('register') }}" class="theme_btn small_btn p-2">Start New Career </a>
+                        </div>
                     </div>
                 </div>
             </div>

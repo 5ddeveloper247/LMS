@@ -12,7 +12,7 @@
                     </div>
                     <h3>@yield('message')</h3>
                     <p>@yield('details')</p>
-                    <a href="{{url('/')}}" class="theme_btn ">
+                    <a href="{{url('/')}}" class="theme_btn p-2">
                         {{__('frontend.Back To Homepage')}}</a>
                 </div>
             </div>

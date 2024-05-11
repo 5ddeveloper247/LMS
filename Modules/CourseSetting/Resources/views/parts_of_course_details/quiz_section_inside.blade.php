@@ -67,7 +67,7 @@
                     <div class="input-effect mt-2 pt-1" id="existing_quiz{{@$key}}">
                         <label class="primary_input_label mt-1"
                                for=""> {{__('quiz.Quiz')}} <span>*</span></label>
-                        <select class="primary_select" name="quiz">
+                        <select class="primary_select" name="quiz" required>
                             <option
                                 data-display="{{__('common.Select')}} {{__('quiz.Quiz')}}"
                                 value="">{{__('common.Select')}} {{__('quiz.Quiz')}} </option>
@@ -128,7 +128,7 @@
                                                     <span>*</span></label>
                                                 <input {{ $errors->has('title') ? ' autofocus' : '' }}
                                                        class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
-                                                       type="text" name="title[{{$language->code}}]" autocomplete="off"
+                                                       type="text" name="title[{{$language->code}}]" autocomplete="off" required
                                                        value="{{isset($online_exam)? $online_exam->getTranslation('title',$language->code): ''}}">
                                                 <input type="hidden" name="id"
                                                        value="{{isset($online_exam)? $online_exam->id: ''}}">
@@ -213,8 +213,7 @@
 
         <div class="row mt-40">
             <div class="col-lg-12 text-center">
-                <button type="submit" class="primary-btn fix-gr-bg"
-                        data-toggle="tooltip">
+                <button type="submit" class="primary-btn fix-gr-bg" data-toggle="tooltip" onclick="quiz_inside_form(this);">
                     <span class="ti-check"></span>
                     {{__('common.Save')}}
                 </button>

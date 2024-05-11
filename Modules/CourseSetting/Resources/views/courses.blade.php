@@ -1,6 +1,8 @@
 @extends('backend.master')
 
-
+@section('css')
+    <link href="https://cdn.datatables.net/rowreorder/1.3.3/css/rowReorder.dataTables.min.css" rel="stylesheet">
+@endsection
 @php
     $table_name = 'courses';
     if (\Route::current()->getName() == 'getAllCourse') {
@@ -33,159 +35,220 @@
     {!! generateBreadcrumb() !!}
     <section class="admin-visitor-area up_st_admin_visitor">
         <div class="container-fluid p-0">
-
             <div class="row justify-content-center mt-50">
-                <div class="col-lg-12">
-                    <div class="white_box mb_30">
-                        <div class="white_box_tittle list_header">
-                            <h4>{{ __('courses.Advanced Filter') }} </h4>
-                        </div>
-                        <form action="{{ route('courseSortBy') }}" method="POST">
-                            @csrf
-                            <div class="row">
-
-                                <div class="col-lg-3 mt-30">
-
-                                    <label class="primary_input_label" for="category">{{ __('courses.Category') }}</label>
-                                    <select class="primary_select" name="category" id="category">
-                                        <option data-display="{{ __('common.Select') }} {{ __('courses.Category') }}"
-                                            value="">{{ __('common.Select') }} {{ __('courses.Category') }}</option>
-                                        @foreach ($categories as $category)
-                                            @if ($category->parent_id == 0)
-                                                @include('backend.categories._single_select_option', [
-                                                    'category' => $category,
-                                                    'level' => 1,
-                                                ])
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-lg-3 mt-30">
-
-                                    <label class="primary_input_label" for="type">{{ __('courses.Type') }}</label>
-                                    <select class="primary_select" name="type" id="type">
-                                        <option data-display="{{ __('common.Select') }} {{ __('courses.Type') }}"
-                                            value="">{{ __('common.Select') }} {{ __('courses.Type') }}</option>
-                                        <option value="1"
-                                            {{ isset($category_type) ? ($category_type == 1 ? 'selected' : '') : '' }}>
-                                            {{ __('courses.Course') }}</option>
-                                        <option value="2"
-                                            {{ isset($category_type) ? ($category_type == 2 ? 'selected' : '') : '' }}>
-                                            {{ __('quiz.Quiz') }}</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-lg-3 mt-30">
-
-                                    <label class="primary_input_label"
-                                        for="instructor">{{ __('courses.Instructor') }}</label>
-                                    <select class="primary_select" name="instructor" id="instructor">
-                                        <option data-display="{{ __('common.Select') }} {{ __('courses.Instructor') }}"
-                                            value="">{{ __('common.Select') }} {{ __('courses.Instructor') }}
-                                        </option>
-                                        @foreach ($instructors as $instructor)
-                                            <option value="{{ $instructor->id }}"
-                                                {{ isset($category_instructor) ? ($category_instructor == $instructor->id ? 'selected' : '') : '' }}>
-                                                {{ @$instructor->name }} </option>
-                                        @endforeach
-                                    </select>
-
-                                </div>
-                                <div class="col-lg-3 mt-30 d-none">
-                                    <label class="primary_input_label"
-                                        for="course">{{ __('courses.Statistics') }}</label>
-                                    <select class="primary_select" name="course" id="course">
-                                        <option data-display="{{ __('common.Select') }} {{ __('courses.Statistics') }}"
-                                            value="">{{ __('common.Select') }} {{ __('courses.Statistics') }}
-                                        </option>
-                                        <option value="statistics">{{ __('courses.Statistics') }}</option>
-                                        <option value="topSell">Top Sells</option>
-                                        <option value="mostReview">Most Review</option>
-                                        <option value="mostComment">Most Comment</option>
-                                        <option value="topReview">Top Review</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-lg-3 mt-30">
-
-                                    <label class="primary_input_label" for="status">{{ __('common.Status') }}</label>
-                                    <select class="primary_select" name="search_status" id="status">
-                                        <option data-display="{{ __('common.Select') }} {{ __('common.Status') }}"
-                                            value="">{{ __('common.Select') }} {{ __('common.Status') }}</option>
-                                        <option value="1"
-                                            {{ isset($category_status) ? ($category_status == '1' ? 'selected' : '') : '' }}>
-                                            {{ __('courses.Active') }} </option>
-                                        <option value="0"
-                                            {{ isset($category_status) ? ($category_status != '1' ? 'selected' : '') : '' }}>
-                                            {{ __('courses.Pending') }} </option>
-                                    </select>
-
-                                </div>
-                                @if (isModuleActive('Org'))
-                                    <div class="col-lg-3 mt-30">
-                                        <label class="primary_input_label"
-                                            for="search_required_type">{{ __('courses.Required Type') }}</label>
-                                        <select class="primary_select" name="search_required_type"
-                                            id="search_required_type">
-                                            <option
-                                                data-display="{{ __('common.Select') }} {{ __('courses.Required Type') }}"
-                                                value="">{{ __('common.Select') }} {{ __('courses.Required Type') }}
-                                            </option>
-                                            <option value="1"
-                                                {{ isset($search_required_type) ? ($search_required_type == '1' ? 'selected' : '') : '' }}>
-                                                {{ __('courses.Compulsory') }} </option>
-                                            <option value="0"
-                                                {{ isset($search_required_type) ? ($search_required_type == '0' ? 'selected' : '') : '' }}>
-                                                {{ __('courses.Open') }}</option>
-                                        </select>
-
-                                    </div>
-
-                                    <div class="col-lg-3 mt-30">
-
-                                        <label class="primary_input_label"
-                                            for="status">{{ __('courses.Delivery Mode') }}</label>
-                                        <select class="primary_select" name="search_delivery_mode" id="status">
-                                            <option
-                                                data-display="{{ __('common.Select') }} {{ __('courses.Delivery Mode') }}"
-                                                value="">{{ __('common.Select') }} {{ __('courses.Delivery Mode') }}
-                                            </option>
-                                            <option value="1"
-                                                {{ isset($search_delivery_mode) ? ($search_delivery_mode == '1' ? 'selected' : '') : '' }}>
-                                                {{ __('courses.Online') }} </option>
-                                            <option value="3"
-                                                {{ isset($search_delivery_mode) ? ($search_delivery_mode == '3' ? 'selected' : '') : '' }}>
-                                                {{ __('courses.Offline') }}</option>
-                                        </select>
-
-                                    </div>
-                                @endif
-                                <div class="col-12 mt-20">
-                                    <div class="search_course_btn text-right">
-                                        <button type="submit"
-                                            class="primary-btn radius_30px fix-gr-bg mr-10">{{ __('courses.Filter') }}
-                                        </button>
-                                    </div>
-                                </div>
+                @if (isAdmin() || isInstructor())
+                    <div class="col-lg-12">
+                        <div class="white_box mb_30">
+                            <div class="white_box_tittle list_header">
+                                <h4>{{ __('courses.Advanced Filter') }} </h4>
                             </div>
-                        </form>
+                            <form action="{{ route('courseSortBy') }}" method="POST" id="course_filter_form">
+                                @csrf
+                                <div class="row">
+
+                                    <div class="col-lg-3 mt-30">
+
+                                        <label class="primary_input_label"
+                                            for="category">{{ __('courses.Category') }}</label>
+                                        <select class="primary_select" name="category" id="category">
+                                            <option data-display="{{ __('common.Select') }} {{ __('courses.Category') }}"
+                                                value="">{{ __('common.Select') }} {{ __('courses.Category') }}
+                                            </option>
+                                            @foreach ($categories as $category)
+                                                @if ($category->parent_id == 0)
+                                                    @include('backend.categories._single_select_option', [
+                                                        'category' => $category,
+                                                        'level' => 1,
+                                                    ])
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 mt-30">
+
+                                        <label class="primary_input_label" for="type">{{ __('courses.Type') }}</label>
+                                        <select class="primary_select" name="type" id="type">
+                                            <option data-display="{{ __('common.Select') }} {{ __('courses.Type') }}"
+                                                value="">{{ __('common.Select') }} {{ __('courses.Type') }}</option>
+                                            <option value="1"
+                                                {{ isset($category_type) ? ($category_type == 1 ? 'selected' : '') : '' }}>
+                                                {{ __('courses.Course') }}</option>
+                                            <option value="2"
+                                                {{ isset($category_type) ? ($category_type == 2 ? 'selected' : '') : '' }}>
+                                                {{ __('Big Quiz') }}</option>
+                                            <option value="7"
+                                                {{ isset($category_type) ? ($category_type == 7 ? 'selected' : '') : '' }}>
+                                                {{ __('Time Table') }}</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="col-lg-3 mt-30">
+
+                                        <label class="primary_input_label"
+                                            for="instructor">{{ __('courses.Instructor') }}</label>
+                                        <select class="primary_select" name="instructor" id="instructor">
+                                            <option
+                                                data-display="{{ __('common.Select') }} {{ __('courses.Instructor') }}"
+                                                value="">{{ __('common.Select') }} {{ __('courses.Instructor') }}
+                                            </option>
+                                            @foreach ($instructors as $instructor)
+                                                <option value="{{ $instructor->id }}"
+                                                    {{ isset($category_instructor) ? ($category_instructor == $instructor->id ? 'selected' : '') : '' }}>
+                                                    {{ @$instructor->name }} </option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                    {{--                                <div class="col-lg-3 mt-30 d-none"> --}}
+                                    {{--                                    <label class="primary_input_label" --}}
+                                    {{--                                        for="course">{{ __('courses.Statistics') }}</label> --}}
+                                    {{--                                    <select class="primary_select" name="course" id="course"> --}}
+                                    {{--                                        <option data-display="{{ __('common.Select') }} {{ __('courses.Statistics') }}" --}}
+                                    {{--                                            value="">{{ __('common.Select') }} {{ __('courses.Statistics') }} --}}
+                                    {{--                                        </option> --}}
+                                    {{--                                        <option value="statistics">{{ __('courses.Statistics') }}</option> --}}
+                                    {{--                                        <option value="topSell">Top Sells</option> --}}
+                                    {{--                                        <option value="mostReview">Most Review</option> --}}
+                                    {{--                                        <option value="mostComment">Most Comment</option> --}}
+                                    {{--                                        <option value="topReview">Top Review</option> --}}
+                                    {{--                                    </select> --}}
+
+                                    {{--                                </div> --}}
+                                    <div class="col-lg-3 mt-30">
+
+                                        <label class="primary_input_label" for="status">{{ __('common.Status') }}</label>
+                                        <select class="primary_select" name="search_status" id="status">
+                                            <option data-display="{{ __('common.Select') }} {{ __('common.Status') }}"
+                                                value="">{{ __('common.Select') }} {{ __('common.Status') }}
+                                            </option>
+                                            <option value="1"
+                                                {{ isset($category_status) ? ($category_status == '1' ? 'selected' : '') : '' }}>
+                                                {{ __('courses.Active') }} </option>
+                                            <option value="0"
+                                                {{ isset($category_status) ? ($category_status == '0' ? 'selected' : '') : '' }}>
+                                                {{ __('courses.Pending') }} </option>
+                                        </select>
+
+                                    </div>
+                                    @if (isModuleActive('Org'))
+                                        <div class="col-lg-3 mt-30">
+                                            <label class="primary_input_label"
+                                                for="search_required_type">{{ __('courses.Required Type') }}</label>
+                                            <select class="primary_select" name="search_required_type"
+                                                id="search_required_type">
+                                                <option
+                                                    data-display="{{ __('common.Select') }} {{ __('courses.Required Type') }}"
+                                                    value="">{{ __('common.Select') }}
+                                                    {{ __('courses.Required Type') }}
+                                                </option>
+                                                <option value="1"
+                                                    {{ isset($search_required_type) ? ($search_required_type == '1' ? 'selected' : '') : '' }}>
+                                                    {{ __('courses.Compulsory') }} </option>
+                                                <option value="0"
+                                                    {{ isset($search_required_type) ? ($search_required_type == '0' ? 'selected' : '') : '' }}>
+                                                    {{ __('courses.Open') }}</option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="col-lg-3 mt-30">
+
+                                            <label class="primary_input_label"
+                                                for="status">{{ __('courses.Delivery Mode') }}</label>
+                                            <select class="primary_select" name="search_delivery_mode" id="status">
+                                                <option
+                                                    data-display="{{ __('common.Select') }} {{ __('courses.Delivery Mode') }}"
+                                                    value="">{{ __('common.Select') }}
+                                                    {{ __('courses.Delivery Mode') }}
+                                                </option>
+                                                <option value="1"
+                                                    {{ isset($search_delivery_mode) ? ($search_delivery_mode == '1' ? 'selected' : '') : '' }}>
+                                                    {{ __('courses.Online') }} </option>
+                                                <option value="3"
+                                                    {{ isset($search_delivery_mode) ? ($search_delivery_mode == '3' ? 'selected' : '') : '' }}>
+                                                    {{ __('courses.Offline') }}</option>
+                                            </select>
+
+                                        </div>
+                                    @endif
+                                    <div class="col-12 mt-20">
+                                        <div class="search_course_btn text-right">
+                                            <button id="reset_filter_form"
+                                                class="primary-btn radius_30px fix-gr-bg mr-10">{{ __('Reset') }}
+                                            </button>
+                                            <button type="submit"
+                                                class="primary-btn radius_30px fix-gr-bg mr-10">{{ __('courses.Filter') }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                @endif
                 <div class="col-12">
                     <div class="box_header common_table_header">
                         <div class="main-title d-md-flex">
-                            <h3 class="mr-30 mb_xs_15px mb_sm_20px mb-0">{{ $title ?? '' }} {{ __('courses.Course') }}
-                                /{{ __('Test-Prep') }} {{ __('courses.List') }}</h3>
+                            <h3 class="mr-30 mb_xs_15px mb_sm_20px mb-0">
+                                @if (isAdmin() || isInstructor())
+                                    {{ $title ?? '' }} {{ __('courses.Course') }}
+                                    /{{ __('Prep-Course') }} {{ __('courses.List') }}
+                                @else
+                                    {{ $title ?? '' }} {{ __('courses.Course') }}
+                                @endif
+                            </h3>
                             @if (permissionCheck('course.store'))
                                 <ul class="d-flex">
-                                    <li>
+                                    @if (isAdmin() || isInstructor())
+                                        <li>
+                                            <a class="primary-btn radius_30px fix-gr-bg mr-10"
+                                                href="{{ route('course.store') }}">
+                                                <i class="ti-plus"></i>{{ __('common.Add') }} {{ __('courses.Course') }}
+                                                /{{ __('Prep-Course') }}</a>
+                                        </li>
 
-
-                                        <a class="primary-btn radius_30px fix-gr-bg mr-10"
-                                            href="{{ route('course.store') }}">
-                                            <i class="ti-plus"></i>{{ __('common.Add') }} {{ __('courses.Course') }}
-                                            /{{ __('Test-Prep') }}</a>
-                                    </li>
+                                        <li>
+                                            <a class="primary-btn radius_30px fix-gr-bg mr-10"
+                                                href="{{ route('course.viewSaleList') }}">{{ 'Repeat Course' }}</a>
+                                        </li>
+                                        @if(isAdmin())
+                                        <li>
+                                            <a class="primary-btn radius_30px fix-gr-bg mr-10"
+                                                href="{{ route('course.tutorCourseList') }}">{{ 'Tutor Courses' }}</a>
+                                        </li>
+                                        @endif
+                                    @elseif(isTutor() && $allowed_courses != 0)
+                                        @php
+                                            $remaining_course = $allowed_courses - $my_courses;
+                                        @endphp
+                                        @if ($remaining_course >= 1)
+                                            <li>
+                                                <a class="primary-btn radius_30px fix-gr-bg mr-10"
+                                                    href="{{ route('course.store') }}">
+                                                    <i class="ti-plus"></i>{{ __('common.Add') }}
+                                                    {{ __('courses.Course') }}</a>
+                                            </li>
+                                            <li>
+                                                <p class="font-weight-bold">You have {{ $remaining_course }}
+                                                    Remaining Courses in Your Current Package</p>
+                                            </li>
+                                        @elseif ($remaining_course == 0)
+                                            <li>
+                                                <p class="d-flex font-weight-bold">Your Package Limit Completed, In order to
+                                                    Add New
+                                                    Course, Please <a class="fix-gr-bg primary-btn radius_30px mx-2"
+                                                        href="{{ route('teachWithUs') }}#package_prices">{{ __('Upgrade') }} </a> Your
+                                                    Package</p>
+                                            </li>
+                                        @endif
+                                    @else
+                                        <li>
+                                            <p class="d-flex font-weight-bold">In order to Add New
+                                                Course, Please <a class="fix-gr-bg primary-btn radius_30px mx-2"
+                                                    href="{{ route('teachWithUs') }}#package_prices">{{ __('Buy Package') }}</a>
+                                            </p>
+                                        </li>
+                                    @endif
                                 </ul>
                             @endif
                         </div>
@@ -206,14 +269,19 @@
                                             @if (isModuleActive('Org'))
                                                 <th scope="col"> {{ __('courses.Required Type') }}</th>
                                             @endif
-                                            <th scope="col">{{ __('courses.Course') }}
-                                                /{{ __('Test-Prep') }} {{ __('coupons.Title') }}</th>
+                                            <th scope="col">{{ __('courses.Course') }}/{{ __('Prep-Course') }}
+                                                {{ __('coupons.Title') }}</th>
                                             {{-- <th scope="col">{{__('courses.Delivery')}}</th> --}}
+                                            @if (!isTutor())
                                             <th scope="col">{{ __('quiz.Category') }}</th>
-                                            @if (!isModuleActive('Org'))
-                                                <th scope="col">{{ __('Test-Prep') }}</th>
+                                            <th scope="col">{{ __('Prep-Course Type ') }}</th>
                                             @endif
+                                            @if (!isModuleActive('Org'))
+                                                <th scope="col">{{ __('quiz.Quiz') }}</th>
+                                            @endif
+                                            @if (isAdmin())
                                             <th scope="col">{{ __('courses.Instructor') }}</th>
+                                            @endif
                                             <th scope="col">{{ __('courses.Lesson') }}</th>
                                             {{-- <th scope="col">{{__('courses.Enrolled')}}</th> --}}
                                             @if (showEcommerce())
@@ -224,9 +292,9 @@
                                             <th scope="col">{{ __('common.Action') }}</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    {{-- <tbody>
 
-                                    </tbody>
+                                    </tbody> --}}
                                 </table>
 
                             </div>
@@ -692,27 +760,60 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('/') }}/Modules/CourseSetting/Resources/assets/js/course.js"></script>
-
+    {{-- <script src="https://cdn.datatables.net/rowreorder/1.3.3/js/dataTables.rowReorder.min.js"></script> --}}
+    <script type="text/javascript" src="https://cdn.datatables.net/rowreorder/1.3.3/js/dataTables.rowReorder.js"></script>
 
 
     <script>
+
+        $(document).ready(function() {
+            // check if user entered correct month and year
+            $('#reset_filter_form').on('click', function(e) {
+                e.preventDefault();
+                $('#course_filter_form').find('.nice-select>.list').each(function() {
+                    $(this).find('li').first().trigger('click').trigger('click');
+                });
+
+                window.location.href = '{{route('getAllCourse')}}';
+            });
+
+        });
+
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        // $(document).ready(function() {
+
+        // });
+        var recordsTotal;
         let table = $('.classList').DataTable({
             bLengthChange: true,
             "lengthChange": true,
-            "lengthMenu": [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, "All"]
-            ],
             "bDestroy": true,
             processing: true,
             serverSide: true,
-            order: [
-                [0, "desc"]
+            createdRow: function(row, data, dataIndex) {
+                $(row).attr('data-seq_no', (data.seq_no));
+                $(row).attr('data-course_id', (data.id));
+                // console.log(row);
+            },
+            "lengthMenu": [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
             ],
+
+            order: [],
             "ajax": $.fn.dataTable.pipeline({
                 url: '{!! $url !!}',
-                pages: 5 // number of pages to cache
+                // pages: 5 // number of pages to cache
             }),
+            "fnInitComplete": function (oSettings, json) {
+                recordsTotal = json.recordsTotal;
+
+            },
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'id'
@@ -731,19 +832,29 @@
                     name: 'title'
                 },
                 // {data: 'mode_of_delivery', name: 'mode_of_delivery'},
+                @if (!isTutor())
                 {
                     data: 'category',
                     name: 'category.name'
                 },
+                {
+                    data: 'test_prep_type',
+                    name: 'test_prep_type',
+                    searchable: false
+                },
+                @endif
                 @if (!isModuleActive('Org'))
                     {
                         data: 'quiz',
                         name: 'quiz.title'
                     },
-                @endif {
+                @endif
+                @if (isAdmin())
+                {
                     data: 'user',
                     name: 'user.name'
                 },
+                @endif
 
                 {
                     data: 'lessons',
@@ -858,55 +969,295 @@
                     responsivePriority: 2,
                     targets: -2
                 },
+                {
+                    "orderable": false,
+                    "targets": [0, -1]
+                }
             ],
             responsive: true,
         });
 
-        $('#lms_table_info').append('<span id="add_here"> new-dynamic-text</span>');
+        var order = [];
+        var course_seq_url = '{{ route('changeCourseSeq') }}';
+        $('#lms_table tbody').sortable({
+            update: function(event, ui) {
+                // Get the sorted row IDs
 
-        $(document).ready(function() {
-            let form = $('#add_to_sale_link');
-            $('#add_to_sale_btn').on('click', function() {
-                let start_date = form.find('#start_date');
-                let end_date = form.find('#end_date');
-                let price = form.find('#price');
-                let status = form.find('#status');
+                var page_length = parseInt($('.dataTable_select>.list>li.selected').data('value'));
+                var current_page = parseInt($('.paginate_button.current').text());
+                //
+                var postion_for_text = (current_page * page_length) - page_length; //asc
+                var postion_for = recordsTotal - (postion_for_text); // dsec
 
-                // if (start_date >= end_date) {
-                //     toastr.error('Start Date Sjould Not Greater than End Date !', '', {
-                //         timeOut: 3000
-                //     });
-                //     return false;
-                // }
-                if (start_date.val() == '' || start_date.val() == undefined) {
-                    toastr.error('Please Select Start Date !', '', {
-                        timeOut: 3000
+
+                $('#lms_table tbody tr').each(function(index, element) {
+                    var rowData = table.row(index).data();
+
+                    order.push({
+                        id: $(this).attr('data-course_id'),
+                        new_position: postion_for,
                     });
-                    return false;
-                }
+                    $(this).children().first().text(postion_for_text+=1);
+                    $(this).data('seq_no', postion_for);
 
-                if (end_date.val() == '' || end_date.val() == undefined) {
-                    toastr.error('Please Select End Date !', '', {
-                        timeOut: 3000
-                    });
-                    return false;
-                }
+                    postion_for = postion_for - 1;
 
-                if (price.val() == '' || price.val() == undefined) {
-                    toastr.error('Please Enter Price !', '', {
-                        timeOut: 3000
-                    });
-                    return false;
-                }
 
-                if (status.val() == '' || status.val() == undefined) {
-                    toastr.error('Please Select Status !', '', {
-                        timeOut: 3000
-                    });
-                    return false;
-                }
+                });
+                // console.log(postion_for,order,page_length,current_page);
 
-            });
+                $.ajax({
+                    // type: "POST",
+                    method: 'POST',
+                    url: course_seq_url,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        order: order
+                    }),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response == 200) {
+                            toastr.success('Order Successfully Changed !', 'Success');
+                            order = [];
+                        }
+                    }
+                });
+            },
         });
+        // table.on('row-reorder', function(e, details, changes) {
+        //     console.log('Old Order:', details.oldData);
+        //     console.log('New Order:', details.data);
+        // });
+
+        // table.on('row-reorder', function(e, diff, edit) {
+        //     var order = [];
+        //     // Get the updated order of rows
+        //     table.rows().data().map(function(row) {
+        //         order.push({
+        //             id: row.id,
+        //             order: row.DT_RowIndex
+        //         });
+        //     });
+        //     console.log(order);
+        //     // table.ajax.reload();
+        // })
+        // var index_seq_no = '';
+        // // var tbody = $('.classList').find('tbody');
+        // $('.classList').on('click', '.paginate_button', function() {
+        //     let selected_row = $(this).text();
+        //     // index_seq_no = parseInt($($($('.classList').find('tbody>tr')[rowData.DT_RowIndex])
+        //     //     .find('td')[0]).text());
+        //     console.log(selected_row);
+
+        // });
+        // console.log(rowData);
+        // $('.classList>tbody>tr').each(function(index, element) {
+        //     console.log(index, element);
+        //     //     // order.push({
+        //     //     //     id: $(this).attr('data-id'),
+        //     //     //     position_new: postion_for + (index + 1),
+        //     //     //     position: $(this).attr('data-seq')
+        //     //     //     // position:index+1
+        //     //     // });
+        // // });
+        // table.on('row-reorder', function(e, details, changes) {
+        //     var order = [];
+        //     var up = false;
+        //     $.each(details, function(index, value) {
+        //         var rowData = table.row(value.node).data();
+        //         var check = parseInt($($($('.classList').find('tbody>tr')[rowData.DT_RowIndex]).find(
+        //             'td')[0]).text());
+        //         order.push({
+        //             id: rowData.id,
+        //             seq_no: rowData.DT_RowIndex,
+        //             table_seq: check,
+        //             new_order: value.newPosition + 1,
+        //             old_order: value.oldPosition,
+        //         });
+        //         // console.log(rowData.DT_RowIndex);
+        //     });
+
+        //     var lastMovedRow = order[order.length - 1];
+        //     var newOrder = lastMovedRow.new_order;
+        //     var oldOrder = lastMovedRow.old_order;
+        //     var orderDiff = newOrder - oldOrder;
+        //     if (orderDiff != order.length) {
+        //         order = [];
+        //         $.each(details, function(index, value) {
+        //             var rowData = table.row(value.node).data();
+        //             // console.log(rowData);
+        //             order.push({
+        //                 id: rowData.id,
+        //                 seq_no: rowData.seq_no,
+        //                 new_order: value.newPosition - 1,
+        //                 old_order: value.oldPosition,
+        //             });
+        //         });
+
+        //         // console.log('Dragging up:');
+        //         lastMovedRow = order[0];
+        //         newOrder = lastMovedRow.new_order;
+        //         oldOrder = lastMovedRow.old_order;
+        //         orderDiff = newOrder - oldOrder;
+        //         up = true;
+        //     }
+        //     console.log(up);
+        //     var targetRow = $('.classList tbody').children()[oldOrder];
+        //     setTimeout(() => {
+        //         if (up == false) {
+        //             // Dragging down
+        //             console.log('down');
+        //             $(targetRow).insertAfter($($('.classList tbody').children()[newOrder]));
+
+        //         } else if (up == true) {
+        //             // Dragging up
+        //             console.log('up');
+        //             $(targetRow).insertBefore($($('.classList tbody').children()[newOrder]));
+        //         }
+        //         $(targetRow).remove();
+        //     }, 1000);
+        //     console.log(order);
+
+        //     return false;
+
+        //     // var minMovedRow = order.reduce(function(prev, current) {
+        //     //     return prev.old_order < current.old_order ? prev : current;
+        //     // });
+
+        //     // var newOrder = minMovedRow.new_order;
+        //     // var oldOrder = minMovedRow.old_order;
+        //     // var orderDiff = newOrder - oldOrder;
+        //     // console.log(newOrder, oldOrder, orderDiff);
+        //     $.ajax({
+        //         method: 'POST',
+        //         dataType: 'json',
+        //         contentType: 'application/json',
+        //         data: JSON.stringify({
+        //             order: order,
+        //             up: up
+        //         }),
+        //         success: function(response) {
+        //             if (response.status == 200) {
+
+        //                 // console.log(response.seq_no);
+        //                 // if (orderDiff > 0) {
+        //                 //     // Dragging down
+        //                 //     console.log('su:Dragging down:');
+        //                 //     $($('.classList').find('tbody').children()[oldOrder]).insertAfter($($(
+        //                 //         '.classList').find('tbody').children()[newOrder]));
+        //                 // } else if (orderDiff < 0) {
+        //                 //     // Dragging up
+        //                 //     console.log('su:Dragging up:');
+        //                 //     $($('.classList').find('tbody').children()[oldOrder]).insertBefore($($(
+        //                 //         '.classList').find('tbody').children()[newOrder]));
+        //                 // }
+
+        //                 var targetRow = $('.classList tbody').children()[oldOrder];
+
+        //                 // if (orderDiff > 0) {
+        //                 //     // Dragging down
+        //                 //     console.log('down');
+        //                 //     $(targetRow).insertAfter($($('.classList tbody').children()[newOrder - 1]));
+        //                 // } else if (orderDiff < 0) {
+        //                 //     // Dragging up
+        //                 //     console.log('up');
+
+        //                 //     $(targetRow).insertBefore($($('.classList tbody').children()[newOrder]));
+        //                 // }
+        //                 if (up == false) {
+        //                     // Dragging down
+        //                     console.log('down');
+        //                     $(targetRow).insertAfter($($('.classList tbody').children()[newOrder - 1]));
+        //                 } else if (up == true) {
+        //                     // Dragging up
+        //                     console.log('up');
+        //                     $(targetRow).insertBefore($($('.classList tbody').children()[newOrder +
+        //                         1]));
+        //                 }
+        //                 console.log('time');
+        //             }
+        //         }
+        //     });
+        // });
+
+        // $(document).ready(function() {
+        //     // var datatable = parseInt($('.dataTables_paginate').find('.paginate_button.current').text());
+        //     // console.log(datatable);
+        //     $(document).on('click', '.paginate_button', function() {
+        //         datatable = parseInt($('.dataTables_paginate').find('.paginate_button.current').text());
+        //         console.log(datatable);
+        //     });
+        // });
+        // table.on('row-reorder', function(e, details, changes) {
+        //     // Prepare the data for updating the order on the server
+        //     var order = [];
+        //     var rowData, id, new_order, old_order = '';
+        //     $.each(details, function(index, value) {
+        //         rowData = table.row(value.node).data();
+
+        //         order.push({
+        //             id: rowData.id,
+        //             new_order: value.newPosition + 1,
+        //             old_order: value.oldPosition,
+        //         });
+
+        //         // console.log(value.newPosition + 1, value.oldPosition);
+
+        //     });
+        //     new_order = order[order.length - 1].new_order;
+        //     old_order = order[order.length - 1].old_order;
+        //     var order_diff = new_order - old_order;
+        //     console.log(order_diff, new_order, old_order);
+
+
+        //     // console.log(rowData.id, index, value);
+        //     // console.log(rowData);
+        //     // var simplifiedData = order.map(function(item) {
+        //     //     return {
+        //     //         id: item.id,
+        //     //         order: parseInt(item.order)
+        //     //     };
+        //     // });return [item.id, item.order];
+        //     // var simplifiedData = JSON.stringify(order);
+        //     // console.log(simplifiedData);
+        //     // var data = JSON.stringify({
+        //     //     seq: order
+        //     //     // id: $(this).data('id'),
+        //     //     // status: $(this).prop('checked') == true ? 1 : 0,
+        //     // });
+
+        // });
+        // table.on('row-reorder', function(e, details, changes) {
+        //     // Prepare the data for updating the order on the server
+        //     var order = [];
+
+        //     $.each(changes, function(index, value) {
+        //         // Check if the 'id' value is stored in a different property or nested within another object
+        //         // Adjust the code accordingly based on your table structure and data
+        //         var id = value.nodes().dataset.id;
+        //         console.log(id);
+        //         // order.push({
+        //         //     id: id,
+        //         //     order: value.newPosition + 1
+        //         // });
+        //     });
+
+        //     // console.log(order);
+        // });
+        // table.on('row-reorder.dt', function(e, details, edit) {
+        //     for (var i = 0; i < details.length; i++) {
+        //         console.log(
+        //             'Node', details[i].node,
+        //             'moved from', details[i].oldPosition,
+        //             'to', details[i].newPosition
+        //         );
+        //     }
+        // });
+        // table.rowReordering();
+
+        $('#lms_table_info').append('<span id="add_here"> new-dynamic-text</span>');
     </script>
 @endpush

@@ -18,11 +18,11 @@
                                 </h3>
                             </div>
                             @if(isset($online_exam))
-                                {{ Form::open(['class' => 'form-horizontal', 'files' => true, 'route' => array('online-exam-update',$online_exam->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data']) }}
+                                {{ Form::open(['class' => 'form-horizontal', 'files' => true, 'route' => array('online-exam-update',$online_exam->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'id' => 'onlineQuiz_form']) }}
                             @else
                                 @if (permissionCheck('set-quiz.store'))
                                     {{ Form::open(['class' => 'form-horizontal', 'files' => true, 'route' => 'online-exam',
-                                    'method' => 'POST', 'enctype' => 'multipart/form-data']) }}
+                                    'method' => 'POST', 'enctype' => 'multipart/form-data', 'id' => 'onlineQuiz_form']) }}
                                 @endif
                             @endif
                             <input type="hidden" name="url" id="url" value="{{URL::to('/')}}">
@@ -59,8 +59,8 @@
                                                             <input {{ $errors->has('title') ? ' autofocus' : '' }}
                                                                    class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
                                                                    type="text" name="title[{{$language->code}}]"
-                                                                   autocomplete="off"
-                                                                   value="{{isset($online_exam)? $online_exam->getTranslation('title',$language->code): ''}}">
+                                                                   autocomplete="off" id="quiz_title"
+                                                                   value="{{isset($online_exam)? $online_exam->getTranslation('title',$language->code): ''}}" maxlength="80">
                                                             <input type="hidden" name="id"
                                                                    value="{{isset($online_exam)? $online_exam->id: ''}}">
                                                             <span class="focus-border"></span>
@@ -77,6 +77,7 @@
                                                         <div class="input-effect">
                                                             <label>{{__('quiz.Instruction')}} <span>*</span></label>
                                                             <textarea
+                                                                id="instruction"
                                                                 {{ $errors->has('instruction') ? ' autofocus' : '' }}
                                                                 class="primary_input_field name{{ $errors->has('instruction') ? ' is-invalid' : '' }}"
                                                                 cols="0" rows="4"
@@ -177,7 +178,9 @@
                                         <div class="col-lg-12">
                                             <div class="input-effect">
                                                 <label>{{__('quiz.Minimum Percentage')}} *</label>
-                                                <input {{ $errors->has('title') ? ' percentage' : '' }}
+                                                <input
+                                                    id="percentage"
+                                                    {{ $errors->has('title') ? ' percentage' : '' }}
                                                        class="primary_input_field name{{ $errors->has('percentage') ? ' is-invalid' : '' }}"
                                                        type="number" name="percentage" autocomplete="off"
                                                        value="{{isset($online_exam)? $online_exam->percentage: old('percentage')}}">
@@ -291,16 +294,22 @@
                                 $losing_type=$online_exam->losing_type;
                                 $show_ans_sheet=$online_exam->show_ans_sheet;
                                         }else{
-                            $type=$quiz_setup->set_per_question_time == 1 ? 0 : 1;
-                            $question_time=$quiz_setup->set_per_question_time == 1 ? $quiz_setup->time_per_question : $quiz_setup->time_total_question;
-                            $question_review=$quiz_setup->question_review;
-                            $show_result_each_submit=$quiz_setup->show_result_each_submit;
-                            $random_question=$quiz_setup->random_question;
-                            $multiple_attend=$quiz_setup->multiple_attend;
-                            $show_ans_with_explanation=$quiz_setup->show_ans_with_explanation;
-                            $losing_focus_acceptance_number=$quiz_setup->losing_focus_acceptance_number;
-                              $losing_type=$quiz_setup->losing_type;
-                              $show_ans_sheet=$quiz_setup->show_ans_sheet;
+                            if(isset($quiz_setup->set_per_question_time)){
+
+                                $type=(isset($quiz_setup->set_per_question_time) && $quiz_setup->set_per_question_time == 1) ? 0 : 1;
+                                $question_time=(isset($quiz_setup->set_per_question_time) && $quiz_setup->set_per_question_time == 1) ? $quiz_setup->time_per_question : $quiz_setup->time_total_question;
+                            }else{
+                                $type = 1;
+                                $question_time = 10;    
+                            }
+                            $question_review=$quiz_setup->question_review ?? '';
+                            $show_result_each_submit=$quiz_setup->show_result_each_submit ?? '';
+                            $random_question=$quiz_setup->random_question ?? '';
+                            $multiple_attend=$quiz_setup->multiple_attend ?? '';
+                            $show_ans_with_explanation=$quiz_setup->show_ans_with_explanation ?? '';
+                            $losing_focus_acceptance_number=$quiz_setup->losing_focus_acceptance_number ?? '';
+                              $losing_type=$quiz_setup->losing_type ?? '';
+                              $show_ans_sheet=$quiz_setup->show_ans_sheet ?? '';
                                         }
                                     @endphp
 
@@ -329,6 +338,7 @@
                                                 <label>{{__('quiz.Time')}} ({{__('quiz.In Min')}})
                                                     <span>*</span></label>
                                                 <input
+                                                    id="question_time"
                                                     class="primary_input_field name{{ $errors->has('question_time') ? ' is-invalid' : '' }}"
                                                     type="number" name="question_time" autocomplete="off"
                                                     min="0"
@@ -695,5 +705,185 @@
     </div>
 @endsection
 @push('scripts')
+
+
+    <script>
+        let table = $('#lms_table').DataTable({
+            bLengthChange: true,
+            "bDestroy": true,
+            "lengthChange": true,
+            "lengthMenu": [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            order: [
+                [0, "desc"]
+            ],
+            language: {
+                emptyTable: "{{ __('common.No data available in the table') }}",
+                search: "<i class='ti-search'></i>",
+                searchPlaceholder: '{{ __('common.Quick Search') }}',
+                paginate: {
+                    next: "<i class='ti-arrow-right'></i>",
+                    previous: "<i class='ti-arrow-left'></i>"
+                }
+            },
+            dom: 'Blfrtip',
+            buttons: [{
+                extend: 'copyHtml5',
+                text: '<i class="far fa-copy"></i>',
+                title: $("#logo_title").val(),
+                titleAttr: '{{ __('common.Copy') }}',
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                }
+            },
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="far fa-file-excel"></i>',
+                    titleAttr: '{{ __('common.Excel') }}',
+                    title: $("#logo_title").val(),
+                    margin: [10, 10, 10, 0],
+                    exportOptions: {
+                        columns: ':visible',
+                        columns: ':not(:last-child)',
+                    },
+
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: '<i class="far fa-file-alt"></i>',
+                    titleAttr: '{{ __('common.CSV') }}',
+                    exportOptions: {
+                        columns: ':visible',
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="far fa-file-pdf"></i>',
+                    title: $("#logo_title").val(),
+                    titleAttr: '{{ __('common.PDF') }}',
+                    exportOptions: {
+                        columns: ':visible',
+                        columns: ':not(:last-child)',
+                    },
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    margin: [0, 0, 0, 12],
+                    alignment: 'center',
+                    header: true,
+                    customize: function (doc) {
+                        doc.content[1].table.widths =
+                            Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    }
+
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i>',
+                    titleAttr: '{{ __('common.Print') }}',
+                    title: $("#logo_title").val(),
+                    exportOptions: {
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'colvis',
+                    text: '<i class="fa fa-columns"></i>',
+                    postfixButtons: ['colvisRestore']
+                }
+            ],
+            columnDefs: [{
+                visible: false
+            },
+                {
+                    responsivePriority: 1,
+                    targets: 0
+                },
+                {
+                    responsivePriority: 1,
+                    targets: 2
+                },
+                {
+                    responsivePriority: 1,
+                    targets: -1
+                },
+                {
+                    responsivePriority: 2,
+                    targets: -2
+                },
+            ],
+            responsive: true,
+        });
+    </script>
+    <script>
+    	$(document).on('click', '.deleteOnlineExam', function(event) {
+    	  	var quizId = $(this).attr('data-id');
+    	  	$("#online_exam_id").val(quizId);
+		});
+    </script>
+    <script>
+    $(document).ready(function() {
+        var form = $('#onlineQuiz_form');
+        $(form).submit(function(event) {
+
+
+              $('.preloader').show();
+              var errors = [];
+
+              let quizTitle = form.find("input[name='title[en]']").val();
+
+              if(quizTitle.length > 80) {
+                  errors.push('Title length must be less then 80 characters');
+              }
+
+              if (isEmpty(quizTitle)) {
+                  errors.push('Title is required');
+              }
+
+              let instruction =  form.find("textarea[name='instruction[en]']").val();
+              if (isEmpty(instruction)) {
+                  errors.push('Instruction is required');
+              }
+
+              if (isEmpty(form.find('#category_id').val())) {
+                  errors.push('Category is required');
+              }
+              if (isEmpty(form.find('#percentage').val())) {
+                  errors.push('Percentage is required');
+              }
+              if (parseInt(form.find("input[name='set_random_question']").val()) == 1) {
+                  if (isEmpty(form.find('#random_question_number').val())) {
+                      errors.push('Number Of Question is required');
+                  }
+              }
+              if (parseInt(form.find("input[name='change_default_settings']").val()) == 1) {
+                  if (isEmpty(form.find('#question_time').val())) {
+                      errors.push('Question time is required');
+                  }
+                  if (isEmpty(form.find('#losingType').val())) {
+                      errors.push('losing Type is required');
+                  }
+              }
+
+              if(errors.length){
+                  console.log(errors);
+                  setTimeout(function (){
+                      $('.preloader').hide();
+                      $('input[type="submit"]').attr('disabled', false);
+                      $.each(errors.reverse(), function(index, item) {
+                          toastr.error(item, 'Error', 1000);
+                      });
+                  },3000)
+                  return false;
+              }
+          });
+
+    	});
+
+
+    </script>
     <script src="{{asset('/')}}/Modules/Quiz/Resources/assets/js/quiz.js{{assetVersion()}}"></script>
 @endpush

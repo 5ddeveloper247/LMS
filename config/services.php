@@ -52,9 +52,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => saasEnv('GOOGLE_CLIENT_ID'),
-        'client_secret' => saasEnv('GOOGLE_CLIENT_SECRET'),
-        'redirect' => saasEnv('APP_URL') . '/oauth/google/callback',
+        'client_id' => "173105837103-ko7fllkl5783u073su3morlnn54iftce.apps.googleusercontent.com",
+        'client_secret' =>"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",
+        'redirect' => "https://mchnursing.com/lms/login/oauth/google/callback",
     ],
 
     'google-drive' => [

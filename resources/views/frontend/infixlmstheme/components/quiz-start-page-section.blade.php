@@ -32,8 +32,6 @@
                                         <div class="quiz_header_left text-center">
                                             <h3>{{ __('frontend.Sorry! You already attempted this quiz') }}</h3>
                                         </div>
-
-
                                     </div>
                                 @else
                                     <div class="quiz_test_header d-flex justify-content-between align-items-center">
@@ -81,6 +79,7 @@
                                             value="{{ __('quiz.Correct Answer') }}">
                                         <input type="hidden" name="show_ans_failed"
                                             value="{{ __('quiz.Wrong Answer') }}">
+                                        <input type="hidden" name="courseType" value="{{ request()->courseType }}">
                                         @csrf
 
                                         <div class="quiz_test_body d-none">
@@ -92,6 +91,7 @@
                                                                 $count = 1;
                                                             @endphp
                                                             @if (isset($questions))
+                                                                {{-- @dd($questions) --}}
                                                                 @foreach ($questions as $key => $assign)
                                                                     @php
                                                                         $options = [];
@@ -172,6 +172,7 @@
                                                                                     data-question_id="{{ $assign->questionBank->id }}"
                                                                                     data-assign_id="{{ $assign->id }}"
                                                                                     data-question_type="{{ $assign->questionBank->type }}"
+                                                                                    data-courseType="{{ request()->courseType }}"
                                                                                     id="next">{{ __('common.Confirm') }}</span>
                                                                                 <span
                                                                                     class="font_1 font_16 f_w_600 theme_text3 submit_q_btn skip"
@@ -187,8 +188,6 @@
                                                                                 </button>
                                                                             @endif
                                                                         </div>
-
-
                                                                         <!-- content::end  -->
                                                                     </div>
                                                                     @php
@@ -200,11 +199,9 @@
                                                     </div>
 
                                                     <div class="col-xl-6">
-
                                                         @php
                                                             $count2 = 1;
                                                         @endphp
-
                                                         <div class="question_list_header">
                                                             <div class="question_list_top">
                                                                 <p>{{ __('quiz.Question') }} <span
@@ -229,7 +226,6 @@
                                                                 @endforeach
                                                             @endif
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -243,6 +239,4 @@
             </div>
         </div>
     </div>
-
-
 </div>

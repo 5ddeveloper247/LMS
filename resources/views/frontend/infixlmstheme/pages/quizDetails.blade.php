@@ -1,36 +1,102 @@
 @extends(theme('layouts.master'))
-@section('title'){{Settings('site_title')  ? Settings('site_title')  : 'Infix LMS'}} |  {{$course->title}} @endsection
-
-@section('css')
-    <style>
-        iframe {
-            position: relative !important;
-        }
-    </style>
-    <link rel="stylesheet" href="{{asset('public/frontend/infixlmstheme/css/class_details.css')}}"/>
-    <link rel="stylesheet" href="{{asset('public/frontend/infixlmstheme/css/quiz_details.css')}}"/>
+@section('title')
+    {{ Settings('site_title') ? Settings('site_title') : 'Infix LMS' }} | {{ $course->title }}
 @endsection
 
-@section('og_image'){{asset($course->image)}}@endsection
+
+<style>
+    iframe {
+        position: relative !important;
+    }
+
+    .quiz__details {
+        padding: 15px 0 !important;
+    }
+
+    .breadcam_wrap {
+        max-width: unset !important;
+    }
+
+    .table-responsive {
+        overflow-x: clip !important
+    }
+
+    .theme_color2 {
+        color: var(--system_primery_color);
+    }
+
+    @media (width > 1650px) {
+        .rating_font {
+            font-size: 19px !important
+        }
+
+        .quiz_test_wrapper .quiz_test_body .quiz_test_info li {
+            grid-template-columns: 110px auto !important;
+
+        }
+
+        .quiz_test_wrapper .quiz_test_body .quiz_test_info li span {
+            font-size: 22px !important;
+        }
+
+        .breadcrumb_area .breadcam_wrap h3 {
+            font-size: 100px !important;
+            font-weight: 900;
+            line-height: 76px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 22px !important
+        }
+
+        h4 {
+            font-size: 32px !important;
+            line-height: 25px;
+        }
+
+        h5 {
+            font-size: 25px !important;
+            line-height: 25px;
+        }
+
+        h6 {
+            font-size: 1.4rem !important;
+        }
+
+        .theme_btn,
+        .theme_line_btn,
+        #Overview-tab,
+        #Reviews-tab {
+            font-size: 23px !important;
+        }
+
+
+    }
+</style>
+<link rel="stylesheet" href="{{ asset('public/frontend/infixlmstheme/css/class_details.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/infixlmstheme/css/quiz_details.css') }}" />
+
+@section('og_image')
+    {{ asset($course->image) }}
+@endsection
 @section('mainContent')
+    @if ($course->type == 2)
+        <x-breadcrumb :banner="$frontendContent->quiz_page_banner" :title="trans('Big Quiz Details')" :subTitle="$course->title" />
+    @else
+        <x-breadcrumb :banner="$frontendContent->quiz_page_banner" :title="trans('frontend.Quiz Details')" :subTitle="$course->title" />
+    @endif
 
-
-    <x-breadcrumb :banner="$frontendContent->quiz_page_banner"
-                  :title="trans('frontend.Quiz Details')"
-                  :subTitle="$course->title"/>
-
-    <x-quiz-details-page-section :course="$course" :request="$request" :isEnrolled="$isEnrolled"/>
-
+    <x-quiz-details-page-section :course="$course" :request="$request" :isEnrolled="$isEnrolled" />
+    @include(theme('partials._custom_footer'))
 @endsection
 
 @section('js')
     <script src="{{ asset('public/frontend/infixlmstheme') }}/js/html2pdf.bundle.js"></script>
     <script src="{{ asset('public/frontend/infixlmstheme/js/quiz_details.js') }}"></script>
-    <script src="{{asset('public/frontend/infixlmstheme/js/class_details.js')}}"></script>
+    <script src="{{ asset('public/frontend/infixlmstheme/js/class_details.js') }}"></script>
     <script>
-
-
-        $("#formSubmitBtn").on("click", function (e) {
+        $("#formSubmitBtn").on("click", function(e) {
             e.preventDefault();
 
             var form = $('#deleteCommentForm');
@@ -40,7 +106,7 @@
                 type: "POST",
                 url: url,
                 data: form.serialize(),
-                success: function (data) {
+                success: function(data) {
 
                 }
             });
@@ -60,97 +126,5 @@
     </script>
 
 
-    <script>
-
-        var SITEURL = "{{courseDetailsUrl($course->id,$course->type,$course->slug)}}";
-        var page = 1;
-        load_more(page);
-        $(window).scroll(function () { //detect page scroll
-            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 400) {
-                page++;
-                load_more(page);
-            }
-
-
-        });
-
-        function load_more(page) {
-            $.ajax({
-                url: SITEURL + "?page=" + page,
-                type: "get",
-                datatype: "html",
-                data: {
-                    'type': 'comment',
-                    @if(request()->has('program_id'))
-                    'program_id': "{{ request()->program_id }}"
-                    @endif
-                },
-                beforeSend: function () {
-                    $('.ajax-loading').show();
-                }
-            })
-                .done(function (data) {
-                    if (data.length == 0) {
-
-                        //notify user if nothing to load
-                        $('.ajax-loading').html("");
-                        return;
-                    }
-                    $('.ajax-loading').hide(); //hide loading animation once data is received
-                    $("#conversition_box").append(data); //append data into #results element
-
-
-                })
-                .fail(function (jqXHR, ajaxOptions, thrownError) {
-                    console.log('No response from server');
-                });
-
-        }
-
-
-        load_more_review(page);
-
-
-        $(window).scroll(function () { //detect page scroll
-            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 400) {
-                page++;
-                load_more_review(page);
-            }
-
-
-        });
-
-        function load_more_review(page) {
-            $.ajax({
-                url: SITEURL + "?page=" + page,
-                type: "get",
-                datatype: "html",
-                data: {
-                    'type': 'review',
-                    @if(request()->has('program_id'))
-                    'program_id': "{{ request()->program_id }}"
-                    @endif
-                },
-                beforeSend: function () {
-                    $('.ajax-loading').show();
-                }
-            })
-                .done(function (data) {
-                    if (data.length == 0) {
-
-                        //notify user if nothing to load
-                        $('.ajax-loading').html("");
-                        return;
-                    }
-                    $('.ajax-loading').hide(); //hide loading animation once data is received
-                    $("#customers_reviews").append(data); //append data into #results element
-
-
-                })
-                .fail(function (jqXHR, ajaxOptions, thrownError) {
-                    console.log('No response from server');
-                });
-
-        }
-    </script>
+      
 @endsection

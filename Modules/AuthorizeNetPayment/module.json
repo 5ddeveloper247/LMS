@@ -1,0 +1,13 @@
+{
+    "name": "AuthorizeNetPayment",
+    "alias": "authorizenetpayment",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\AuthorizeNetPayment\\Providers\\AuthorizeNetPaymentServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

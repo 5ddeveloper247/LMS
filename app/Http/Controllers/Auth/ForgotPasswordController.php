@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Modules\FrontendManage\Entities\LoginPage;
 
 class ForgotPasswordController extends Controller
@@ -38,5 +41,30 @@ class ForgotPasswordController extends Controller
     {
         $page = LoginPage::getData();
         return view(theme('auth.passwords.reset'), compact('page'));
+    }
+
+    /**
+     * Get the response for a failed password reset link.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        if ($request->wantsJson()) {
+            throw ValidationException::withMessages([
+                'email' => [trans($response)],
+            ]);
+        }
+
+        Toastr::error('User Not Existed, Please Register First !', 'Error');
+        return redirect()->to(route('register'));
+
+//        return back()
+//            ->withInput($request->only('email'))
+//            ->withErrors(['email' => trans($response)]);
     }
 }

@@ -12,7 +12,7 @@ class HomePageFaqController extends Controller
     public function index()
     {
         try {
-            $faqs = HomePageFaq::orderBy('order', 'asc')->get();
+            $faqs = HomePageFaq::orderBy('order', 'desc')->get();
             return view('frontendmanage::faq.index', compact('faqs'));
 
         } catch (\Exception $e) {
@@ -23,7 +23,7 @@ class HomePageFaqController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request) 
     {
         if (demoCheck()) {
             return redirect()->back();
@@ -46,6 +46,7 @@ class HomePageFaqController extends Controller
             }
 
             foreach ($request->answer as $key => $answer) {
+            	$answer = str_replace("'", "`", $answer);
                 $faq->setTranslation('answer', $key, $answer);
             }
             $faq->order = $total + 1;
@@ -86,9 +87,10 @@ class HomePageFaqController extends Controller
             }
 
             foreach ($request->answer as $key => $answer) {
+            	$answer = str_replace("'", "`", $answer);
                 $faq->setTranslation('answer', $key, $answer);
             }
-            $faq->order = $request->order;
+
             $faq->save();
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
@@ -123,21 +125,23 @@ class HomePageFaqController extends Controller
         }
     }
 
-    public function changeFaqPosition(Request $request)
+    public function changeFaqPosition()
     {
-        if (demoCheck()) {
-            return false;
-        }
-        $ids = $request->get('ids');
-        if (count($ids) != 0) {
-            foreach ($ids as $key => $id) {
-                $chapter = HomePageFaq::find($id);
-                if ($chapter) {
-                    $chapter->order = $key + 1;
-                    $chapter->save();
-                }
+
+        $payload = json_decode(file_get_contents('php://input'), true);
+        $order = $payload['order'];
+
+        foreach ($order as $item) {
+            $id = $item['id'];
+            $chapter = HomePageFaq::find($id);
+            if ($chapter) {
+                $chapter->order = $item['new_position'];
+                $chapter->save();
             }
+
         }
-        return true;
+
+        return response()->json(200);
+
     }
 }

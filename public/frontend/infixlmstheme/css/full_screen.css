@@ -42,15 +42,19 @@
 }
 
 .course_fullview_wrapper {
-    height: 500px;
+    /* height: 500px; */
+    height: -webkit-fill-available;
+    position: fixed;
 }
 
 .course_fullview_wrapper .course__play_warp {
-    top: 53px;
+    /* top: 53px; */
+    top: 50%;
+    transform: translateY(-32%);
 }
 
 .course_fullview_wrapper {
-    min-height: calc(100vh - 53px);
+    /* min-height: calc(100vh - 53px); */
 }
 
 .progress {
@@ -1653,4 +1657,24 @@ Due to the split circle of progress-left and progress right, we must use the ani
     width: 45px;
     left: -5vw;
     top: 91.5vh;
+}
+@media screen and (min-width: 1024px) and (max-width: 1279px){
+    .course_fullview_wrapper .course__play_warp {
+        transform: translateY(-40%) !important;
+    }
+}
+@media only screen and (min-width: 1300px){
+    .course_fullview_wrapper .course__play_warp {
+        transform: translateY(-40%) !important;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .course_fullview_wrapper .course__play_warp {
+        transform: translateY(-36%) !important;
+    }
+}
+@media screen and (min-width: 1600px) {
+    .course_fullview_wrapper .course__play_warp {
+        transform: translateY(-40%) !important;
+    }
 }

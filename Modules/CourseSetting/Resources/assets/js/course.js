@@ -328,11 +328,11 @@ function changeType(el) {
     var validity = document.getElementById('show_validity');
     var course = document.getElementById('show_course');
     if (el.value == 1) {
-        validity.style.display = 'block';
-        course.style.display = 'none';
+//        validity.style.display = 'block';
+//        course.style.display = 'none';
     } else {
-        validity.style.display = 'none';
-        course.style.display = 'block';
+//        validity.style.display = 'none';
+//        course.style.display = 'block';
     }
 }
 

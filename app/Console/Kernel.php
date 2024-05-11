@@ -6,6 +6,8 @@ use App\Console\Commands\BackupDatabaseCommand;
 use App\Console\Commands\BackupFileCommand;
 use App\Console\Commands\InstructorPayout;
 use Illuminate\Console\Scheduling\Schedule;
+use App\Jobs\InstallmentReminder;
+use App\Jobs\ClassReminder;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -43,6 +45,8 @@ class Kernel extends ConsoleKernel
 //            $schedule->command('alert:orgSubscription')->dailyAt('00:00');
         }
 
+        $schedule->job(new InstallmentReminder)->dailyAt('00:00');
+        $schedule->job(new ClassReminder)->dailyAt('00:00');
     }
 
     /**

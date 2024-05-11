@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Modules\SystemSetting\Entities\Testimonial;
+use Modules\CourseSetting\Entities\CourseReveiw;
 
 class AboutPageTestimonial extends Component
 {
@@ -26,6 +27,7 @@ class AboutPageTestimonial extends Component
                 ->where('status', '=', 1)
                 ->get();
         });
-        return view(theme('components.about-page-testimonial'), compact('testimonials'));
+        $latest_course_reveiws = CourseReveiw::where('status', 1)->with('user')->latest()->limit(8)->get();
+        return view(theme('components.about-page-testimonial'), compact('testimonials','latest_course_reveiws'));
     }
 }

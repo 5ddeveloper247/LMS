@@ -108,7 +108,7 @@ return [
     'Taken' => 'Taken',
     'Pass Rate' => 'Pass Rate',
     'Fail Rate' => 'Fail Rate',
-    'Quizzes' => 'Quizzes',
+    'Prep-Course' => 'Prep-Course',
     'Explanation' => 'Explanation',
     'Same Page Show Question & Explanation' => 'Same Page Show Question & Explanation',
     'Check' => 'Check',

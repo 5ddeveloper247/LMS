@@ -19,8 +19,7 @@ class MyCoursesPageSection extends Component
 
     public function __construct(
         $request
-    )
-    {
+    ) {
         $this->request = $request;
     }
 
@@ -48,6 +47,9 @@ class MyCoursesPageSection extends Component
             if ($type == 1) {
                 $with[] = 'course.completeLessons';
                 $with[] = 'course.lessons';
+            } elseif ($type == 9) {
+                $with[] = 'course.completeLessons';
+                $with[] = 'course.lessons';
             } elseif ($type == 2) {
                 $with[] = 'course.quiz';
                 $with[] = 'course.quiz.assign';
@@ -70,9 +72,9 @@ class MyCoursesPageSection extends Component
                     $courses = $courses->whereNotNull('program_id')->whereNull('course_id')->with($with)->get();
                 } else {
                     $courses = $courses->whereHas('course', function ($query) use ($category_id, $type) {
-                        if($type == 2){
-                            $query->whereIn('type', [$type,1,7]);
-                        }else{
+                        if ($type == 2) {
+                            $query->whereIn('type', [$type, 1, 7, 9]);
+                        } else {
                             $query->where('type', '=', $type);
                         }
 
@@ -81,7 +83,6 @@ class MyCoursesPageSection extends Component
                     })->with($with)->paginate($per_page);;
                 }
 
-
             } else {
                 $category_id = '';
                 $courses = CourseEnrolled::where('user_id', Auth::user()->id);
@@ -89,9 +90,9 @@ class MyCoursesPageSection extends Component
                     $courses = $courses->whereNotNull('program_id')->whereNull('course_id')->with($with)->get();
                 } else {
                     $courses = $courses->whereHas('course', function ($query) use ($category_id, $type) {
-                        if($type == 2){
-                            $query->whereIn('type', [$type,1,7]);
-                        }else{
+                        if ($type == 2) {
+                            $query->whereIn('type', [$type, 1, 7, 9]);
+                        } else {
                             $query->where('type', '=', $type);
                         }
                         $query->where('status', '=', 1);
@@ -105,48 +106,51 @@ class MyCoursesPageSection extends Component
                 $courses = CourseEnrolled::where('user_id', Auth::user()->id);
                 if ($type == 3) {
                     $courses = $courses->whereNotNull('program_id')->whereNull('course_id')->with($with)->get();
+
                 } else {
                     $courses = $courses->whereHas('course', function ($query) use ($search, $type) {
-                        if($type == 2){
-                            $query->whereIn('type', [$type,1]);
-                        }else{
+                        if ($type == 2) {
+                            $query->whereIn('type', [$type, 1, 9]);
+                        } else {
                             $query->where('type', '=', $type);
                         }
                         $query->where('title', 'LIKE', '%' . $search . '%');
                         $query->where('status', '=', 1);
                     })->latest()->with($with)->paginate($per_page);
+
                 }
-
-
             } else {
                 $search = '';
             }
 
             $totalClasses = [];
-            if($type == 3){
+            if ($type == 3) {
                 foreach ($courses->unique('program_id') as $course) {
                     $program = $course->program->currentProgramPlan[0] ?? null;
                     foreach ($course->program->allCoursesData as $cours) {
-                        $classes = Course::whereHas('class',function ($q) use($cours){
-                            $q->where('course_id',$cours->id)->has('zoomMeetings');
+                        $classes = Course::whereHas('class', function ($q) use ($cours) {
+                            //$q->where('course_id', $cours->id)->has('zoomMeetings');
+                            $q->where(function($q) use ($cours) {
+                              $q->where('course_id', $cours->id)->where('host','Zoom')->has('zoomMeetings');
+                            })
+                            ->orWhere(function($q) use ($cours){
+                              $q->where('course_id', $cours->id)->where('host','Team')->has('teamMeetings');
+
+                            });
                         })->with('class')->where('scope', 1)->get();
 
                         if (count($classes)) {
-
                             foreach ($classes as $class) {
-
                                 $class->program_id = $course->program->id;
-                                $date = strtotime('next '.strtolower(date('l', strtotime($class->class->start_date))));
+                                $date = strtotime('next ' . strtolower(date('l', strtotime($class->class->start_date))));
 
 
-                                if(isset($program) && ($program->cdate <= Carbon::now()->format('Y-m-d') && $program->edate >= Carbon::now()->format('Y-m-d'))){
-                                    if($class->class->type == '0' && date('Y-m-d',strtotime($class->class->start_date)) >= Carbon::now()->format('Y-m-d')){
+                                if (isset($program) && ($program->cdate <= Carbon::now()->format('Y-m-d') && $program->edate >= Carbon::now()->format('Y-m-d'))) {
+                                    if ($class->class->type == '0' && date('Y-m-d', strtotime($class->class->start_date)) >= Carbon::now()->format('Y-m-d')) {
                                         $totalClasses[] = $class;
-
                                     }
-                                    if($class->class->type == '1' && date('Y-m-d', $date) >= Carbon::now()->format('Y-m-d')){
+                                    if ($class->class->type == '1' && date('Y-m-d', $date) >= Carbon::now()->format('Y-m-d')) {
                                         $totalClasses[] = $class;
-
                                     }
                                 }
                             }
@@ -166,7 +170,7 @@ class MyCoursesPageSection extends Component
                 $data['cpds'] = $interface->studentCpd(auth()->user()->id);
             }
         }
-
+        //dd($courses);
         return view(theme('components.my-courses-page-section'), get_defined_vars());
     }
 }

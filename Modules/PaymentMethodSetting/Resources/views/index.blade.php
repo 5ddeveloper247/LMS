@@ -1,5 +1,12 @@
 @extends('backend.master')
 
+@section('css')
+    <link href="https://cdn.datatables.net/rowreorder/1.3.3/css/rowReorder.dataTables.min.css" rel="stylesheet">
+@endsection
+@php
+  $url = route('paymentmethodsetting.authnet_data');
+  $table = 'AuthorizeNet_Settings';
+@endphp
 @section('mainContent')
 
     {!! generateBreadcrumb() !!}
@@ -844,165 +851,6 @@
 
 
                                                     </div>
-                                                @elseif($payment_method->method=='Clover')
-                                                    <div class="row mb-25">
-                                                        <div class="col-md-12">
-                                                            <div class="row">
-                                                                <div class="col-lg-4 mb-25">
-                                                                    <div class="input-effect">
-                                                                        <input
-                                                                            class="primary-input form-control"
-                                                                            type="text" name="clover_client_id"
-                                                                            id="clover_client_id"
-                                                                            required
-                                                                            autocomplete="off"
-                                                                            value="{{getPaymentEnv('CLOVER_CLIENT_ID')? getPaymentEnv('CLOVER_CLIENT_ID') : ''}}">
-                                                                        <label>{{__('setting.Client ID')}}
-                                                                            <span></span>
-                                                                        </label>
-                                                                        <span class="focus-border"></span>
-                                                                        <span
-                                                                            class="modal_input_validation red_alert"></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-4 mb-25">
-                                                                    <div class="input-effect">
-                                                                        <input
-                                                                            required
-                                                                            class="primary-input form-control{{ $errors->has('client_secret') ? ' is-invalid' : '' }}"
-                                                                            type="text" name="clover_client_secret"
-                                                                            id="clover_client_secret"
-                                                                            autocomplete="off"
-                                                                            value="{{getPaymentEnv('CLOVER_CLIENT_SECRET')? getPaymentEnv('CLOVER_CLIENT_SECRET') : ''}}">
-                                                                        <label>{{__('setting.Client Secret')}}
-                                                                            <span></span> </label>
-                                                                        <span class="focus-border"></span>
-                                                                        <span
-                                                                            class="modal_input_validation red_alert"></span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-2 mb-25">
-                                                                    <div class="input-effect">
-                                                                        <div class="">
-                                                                            <div class="text-left float-left">
-                                                                                <label
-                                                                                    class="primary_checkbox d-flex mr-12"
-                                                                                    for="mode_check_{{$payment_method->id}}">
-                                                                                    <input type="radio"
-                                                                                           name="clover_mode"
-                                                                                           @if(getPaymentEnv('IS_CLOVER_LOCALHOST')=='true')
-                                                                                           checked
-                                                                                           @endif
-
-                                                                                           id="mode_check_{{$payment_method->id}}"
-                                                                                           value="1"
-                                                                                           class="common-radio relationButton read-only-input">
-
-                                                                                    <span
-                                                                                        class="checkmark mr-2"></span> {{__('common.Sandbox')}}
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-2 mb-25">
-                                                                    <div class="input-effect">
-                                                                        <div class="">
-                                                                            <div class="text-left float-left">
-
-                                                                                <label class="primary_checkbox d-flex mr-12
-"
-                                                                                       for="live_mode_check_{{$payment_method->id}}">
-                                                                                    <input type="radio"
-                                                                                           name="clover_mode"
-                                                                                           id="live_mode_check_{{$payment_method->id}}"
-                                                                                           @if(getPaymentEnv('IS_CLOVER_LOCALHOST')!='true')
-                                                                                           checked
-                                                                                           @endif
-                                                                                           value="2"
-                                                                                           class="common-radio relationButton read-only-input">
-                                                                                    <span
-                                                                                        class="checkmark mr-2"></span> {{__('common.Live')}}
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-4 mb-25">
-                                                                    <div class="input-effect">
-                                                                        <input
-                                                                            class="primary-input form-control"
-                                                                            type="text" name="clover_code"
-                                                                            id="clover_code"
-                                                                            required
-                                                                            autocomplete="off"
-                                                                            value="{{getPaymentEnv('CLOVER_CODE')? getPaymentEnv('CLOVER_CODE') : ''}}">
-                                                                        <label>{{__('Clover Code')}}
-                                                                            <span></span>
-                                                                        </label>
-                                                                        <span class="focus-border"></span>
-                                                                        <span
-                                                                            class="modal_input_validation red_alert"></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-4 mb-25">
-                                                                    <div class="input-effect">
-                                                                        <input
-                                                                            required
-                                                                            class="primary-input form-control{{ $errors->has('clover_access_token') ? ' is-invalid' : '' }}"
-                                                                            type="text" name="clover_access_token"
-                                                                            id="clover_access_token"
-                                                                            autocomplete="off"
-                                                                            value="{{getPaymentEnv('CLOVER_ACCESS_TOKEN')? getPaymentEnv('CLOVER_ACCESS_TOKEN') : ''}}">
-                                                                        <label>{{__('Access Token')}}
-                                                                            <span></span> </label>
-                                                                        <span class="focus-border"></span>
-                                                                        <span
-                                                                            class="modal_input_validation red_alert"></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-4 mb-25">
-                                                                    <div class="input-effect">
-                                                                        <input
-                                                                            required
-                                                                            class="primary-input form-control{{ $errors->has('merchant_id') ? ' is-invalid' : '' }}"
-                                                                            type="text" name="clover_merchant_id"
-                                                                            id="clover_merchant_id"
-                                                                            autocomplete="off"
-                                                                            value="{{getPaymentEnv('CLOVER_MERCHANT_ID')? getPaymentEnv('CLOVER_MERCHANT_ID') : ''}}">
-                                                                        <label>{{__('Merchant ID')}}
-                                                                            <span></span> </label>
-                                                                        <span class="focus-border"></span>
-                                                                        <span
-                                                                            class="modal_input_validation red_alert"></span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-4 mb-25">
-                                                                    <div class="input-effect">
-                                                                        <input
-                                                                            required
-                                                                            class="primary-input form-control{{ $errors->has('employee_id') ? ' is-invalid' : '' }}"
-                                                                            type="text" name="clover_employee_id"
-                                                                            id="clover_employee_id"
-                                                                            autocomplete="off"
-                                                                            value="{{getPaymentEnv('CLOVER_EMPLOYEE_ID')? getPaymentEnv('CLOVER_EMPLOYEE_ID') : ''}}">
-                                                                        <label>{{__('Employee ID')}}
-                                                                            <span></span> </label>
-                                                                        <span class="focus-border"></span>
-                                                                        <span
-                                                                            class="modal_input_validation red_alert"></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-
-                                                    </div>
                                                 @elseif($payment_method->method=='Stripe')
 
                                                     <div class="row mb-25">
@@ -1702,6 +1550,38 @@
 
                                                         </div>
                                                     </div>
+                                                  @elseif($payment_method->method=='AuthorizeNet')
+                                                    <div class="main-title d-flex justify-content-between mb-3">
+                                                        <h3 class="mb-20">AuthorizeNet Credentials
+
+                                                        </h3>
+                                                        <ul>
+                                                            <li><a class="primary-btn radius_30px mr-10 fix-gr-bg "
+                                                                   href="{{route('authorizenetpayment.create')}}"><i
+                                                                        class="ti-plus"></i>Add Credentials</a></li>
+                                                        </ul>
+
+                                                    </div>
+                                                  <div class="QA_section QA_section_heading_custom check_box_table">
+                                                    <div class="QA_table">
+                                                      <table id="lms_table" class="classList table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col"> {{ __('common.SL') }}</th>
+                                                                <th scope="col">Client ID</th>
+                                                                <th scope="col">Client Secret</th>
+                                                                <th scope="col">Environment</th>
+                                                                <th scope="col">{{ __('common.Status') }}</th>
+                                                                <th scope="col">{{ __('common.Action') }}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        {{-- <tbody>
+
+                                                        </tbody> --}}
+                                                    </table>
+                                                  </div>
+                                                </div>
+                                                <hr />
                                                 @endif
 
                                                 @if($payment_method->method!="Bank Payment" && $payment_method->method!="Offline Payment" && $payment_method->method!="Wallet")
@@ -1766,4 +1646,193 @@
 @endsection
 @push('scripts')
     <script src="{{asset('public/backend/js/gateway.js')}}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/rowreorder/1.3.3/js/dataTables.rowReorder.js"></script>
+    <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var recordsTotal;
+    let table = $('.classList').DataTable({
+        bLengthChange: true,
+        "lengthChange": true,
+        "bDestroy": true,
+        processing: true,
+        serverSide: true,
+        createdRow: function(row, data, dataIndex) {
+            $(row).attr('data-seq_no', (data.seq_no));
+            $(row).attr('data-course_id', (data.id));
+            // console.log(row);
+        },
+        "lengthMenu": [
+            [5,10],
+            [5,10]
+        ],
+
+        order: [],
+        "ajax": $.fn.dataTable.pipeline({
+            url: '{!! $url !!}',
+            // pages: 5 // number of pages to cache
+        }),
+        "fnInitComplete": function (oSettings, json) {
+            recordsTotal = json.recordsTotal;
+
+        },
+        columns: [{
+                data: 'DT_RowIndex',
+                name: 'id'
+            },
+            {
+                data: 'client_id',
+                name: 'client_id'
+            },
+
+            {
+                data: 'client_secret',
+                name: 'client_secret'
+            },
+            {
+                data: 'env',
+                name: 'env'
+            },
+            // {data: 'scope', name: 'scope'},
+            {
+                data: 'status',
+                name: 'search_status',
+            },
+            {
+                data: 'action',
+                name: 'action',
+                orderable: false
+            },
+
+        ],
+        language: {
+            emptyTable: "{{ __('common.No data available in the table') }}",
+            search: "<i class='ti-search'></i>",
+            searchPlaceholder: '{{ __('common.Quick Search') }}',
+            paginate: {
+                next: "<i class='ti-arrow-right'></i>",
+                previous: "<i class='ti-arrow-left'></i>"
+            }
+        },
+        dom: 'Blfrtip',
+        buttons: [{
+                extend: 'copyHtml5',
+                text: '<i class="far fa-copy"></i>',
+                title: $("#logo_title").val(),
+                titleAttr: '{{ __('common.Copy') }}',
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                text: '<i class="far fa-file-excel"></i>',
+                titleAttr: '{{ __('common.Excel') }}',
+                title: $("#logo_title").val(),
+                margin: [10, 10, 10, 0],
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                },
+
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i class="far fa-file-alt"></i>',
+                titleAttr: '{{ __('common.CSV') }}',
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="far fa-file-pdf"></i>',
+                title: $("#logo_title").val(),
+                titleAttr: '{{ __('common.PDF') }}',
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                },
+                orientation: 'landscape',
+                pageSize: 'A4',
+                margin: [0, 0, 0, 12],
+                alignment: 'center',
+                header: true,
+                customize: function(doc) {
+                    doc.content[1].table.widths =
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                }
+
+            },
+            {
+                extend: 'print',
+                text: '<i class="fa fa-print"></i>',
+                titleAttr: '{{ __('common.Print') }}',
+                title: $("#logo_title").val(),
+                exportOptions: {
+                    columns: ':not(:last-child)',
+                }
+            },
+            {
+                extend: 'colvis',
+                text: '<i class="fa fa-columns"></i>',
+                postfixButtons: ['colvisRestore']
+            }
+        ],
+        columnDefs: [{
+                visible: false
+            },
+            {
+                responsivePriority: 1,
+                targets: 0
+            },
+            {
+                responsivePriority: 2,
+                targets: 2
+            },
+            {
+                responsivePriority: 2,
+                targets: -2
+            },
+            {
+                "orderable": false,
+                "targets": [0, -1]
+            }
+        ],
+        responsive: true,
+    });
+
+
+    function changeauthnetstat(){
+      var id = $('input[name="authnet-radio"]').val();
+      console.log(id);
+      $.ajax({
+        url: '{{ route('authorizenetpayment.updateStatus') }}',
+        method: 'post',
+        data: {
+          id: id
+        },
+        success: function(response){
+          if(response.done){
+            // var table = $('.classList').DataTable();
+            // table.ajax.reload();
+            toastr.success(response.success, 'Success');
+          }
+        },
+        error: function(e){
+          console.log(e);
+        }
+      });
+    }
+    // $('.authnet_enable_disable').on('change',function(){
+    //   var id = $('input[name="authnet-radio"]').val();
+    //   console.log(id);
+    // });
+
+    </script>
 @endpush

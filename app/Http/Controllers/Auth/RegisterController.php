@@ -2,23 +2,29 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\CloverController;
-use App\Http\Controllers\Controller;
-use App\Models\UserApplication;
-use App\Models\UserAuthorzIationAgreement;
-use App\Models\UserSetting;
-use App\Repositories\UserRepositoryInterface;
-use App\StudentCustomField;
-use App\Traits\ImageStore;
-use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\User;
+use App\Models\CloverPayment;
+use App\Traits\ImageStore;
+use App\Models\UserSetting;
+use App\StudentCustomField;
 use Illuminate\Http\Request;
+use App\Jobs\SendGeneralEmail;
+use App\Models\UserApplication;
+use App\Models\UserDeclaration;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\CloverController;
+use App\Models\UserAuthorzIationAgreement;
+use App\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Modules\FrontendManage\Entities\LoginPage;
-
+use Modules\AuthorizeNetPayment\Http\Controllers\DoAuthorizeNetPaymentController;
 
 class RegisterController extends Controller
 {
@@ -53,7 +59,7 @@ class RegisterController extends Controller
     public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->userRepository = $userRepository;
-        $this->middleware('guest');
+        // $this->middleware('guest');
     }
 
     /**
@@ -64,10 +70,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+        // if (!Session::has('first_reg_form')) {
+        //     // Add the unique rule if the session is not set
+        //     $rules['email'][] = Rule::unique('users');
+        // }
         if (saasEnv('nocaptcha_for_reg')) {
             $rules = [
                 'name' => ['required', 'string', 'max:255'],
-                'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:1|unique:users',
+                'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|unique:users',
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'g-recaptcha-response' => 'required|captcha'
@@ -75,8 +86,8 @@ class RegisterController extends Controller
         } else {
             $rules = [
                 'name' => ['required', 'string', 'max:255'],
-                'phone' => 'required|nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:1|unique:users',
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'phone' => 'required|nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
+                'email' => 'required|string|email|max:255',
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'f_name' => 'required',
                 'l_name' => 'required',
@@ -84,38 +95,41 @@ class RegisterController extends Controller
                 'SS' => 'required',
                 'city' => 'required',
                 'state' => 'required',
-                'Zip' => 'required',
+                'zip' => 'required',
                 'mailing_address' => 'required',
-                'program_review' => 'required',
-                'student_signature' => 'required',
-                'student_signature_date' => 'required',
+                // 'student_signature' => 'required',
+                // 'student_signature_date' => 'required',
 
             ];
+            // if (!Session::has('first_reg_form')) {
+            //     $rules['email'] = Rule::unique('users');
+            //     $rules['phone'] = Rule::unique('users');
+            // }
         }
 
         if (isset($data['is_lms_signup'])) {
             $rules = [
                 'name' => ['required', 'string', 'max:255'],
-                'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:1|unique:users',
+                'phone' => 'required|nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'institute_name' => ['required', 'string', 'max:255'],
                 'domain' => ['required', 'string', 'max:20', 'unique:lms_institutes'],
             ];
         }
-        if (isset($data['type']) && $data['type'] == "Instructor") {
+        if (isset($data['type']) && ($data['type'] == "Instructor" || $data['type'] == "Tutor")) {
             $rules = [
                 'instructor_position_id' => 'required',
                 'instructor_hear_id' => 'required',
-                //                'start_date' => 'required',
+                'role_id' => 'required',
                 'first_name' => 'required',
                 //                'middle_name' => 'required',
                 'last_name' => 'required',
                 'gender' => 'required',
-                'date_of_birth' => 'required',
-                'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:1|unique:users',
+                'dob' => 'required',
+                'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'cell' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|string',
+                'cell' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|string|min:11|max:14',
                 //                'work' => 'required',
                 'address' => 'required',
                 'high_school' => 'required',
@@ -125,18 +139,20 @@ class RegisterController extends Controller
                 'college' => 'required',
                 'college_email' => 'required',
                 'college_graduate' => 'required',
-                'trade_school' => 'required',
+                // 'trade_school' => 'required',
                 'trade_degree' => 'required',
                 'trade_years_attended' => 'required',
                 'trade_year_graduate' => 'required',
-                //                'current_position' => 'required',
-                //                'Teach_phone' => 'required',
-                //                'employee_name' => 'required',
-                //                'date_employer' => 'required',
-                //                'supervisor_name' => 'required',
+                'current_position' => 'required',
+                'Teach_phone' => 'required',
+                'employee_name' => 'required',
+                'date_employer_start' => 'required|date',
+                'date_employer_end' => 'nullable|required_if:currently_employed,false|date',
+                'currently_employed' => 'nullable|boolean',
+                'supervisor_name' => 'required',
                 'upload_resume' => 'required',
-                'cover' => 'required',
-                //                'employer_address' => 'required',
+                'cover_letter' => 'required',
+                'employer_address' => 'required',
 
             ];
         }
@@ -160,9 +176,11 @@ class RegisterController extends Controller
     {
 
         $status = 1;
-        if (isset($data['type']) && $data['type'] == "Instructor") {
+        $id = $data['id'] ?? null;
+
+        if (isset($data['type']) && ($data['type'] == "Instructor" || $data['type'] == "Tutor")) {
             $status = 0;
-            $role = 2;
+            $role = $data['role_id'];
         } else {
             $role = 3;
         }
@@ -178,12 +196,13 @@ class RegisterController extends Controller
             $password = Hash::make($data['password']);
         }
 
-        return $this->userRepository->create([
-            'name' => $data['name'],
-            'phone' => $data['phone'],
-            'email' => $data['email'],
-            'role_id' => $role,
-            'dob' => $data['dob'] ?? null,
+        $data = [
+            'name' => $data['name'] ?? null,
+            'phone' => $data['phone'] ?? null,
+            'email' => $data['email'] ?? null,
+            'zip' => $data['zip'] ?? null,
+            'role_id' => $role ?? null,
+            'dob' => Carbon::parse($data['dob'])->format('m/d/Y') ?? null,
             'gender' => $data['gender'] ?? null,
             'student_type' => $data['student_type'] ?? null,
             'job_title' => $data['job_title'] ?? null,
@@ -196,19 +215,60 @@ class RegisterController extends Controller
             'language_rtl' => Settings('language_rtl') ?? '0',
             'country' => Settings('country_id'),
             'username' => null,
+            'address' => $data['mailing_address'] ?? null,
             'status' => $status,
+            'register_source' => null,
+            'enrolled' => null,
             'is_lms_signup' => $data['is_lms_signup'] ?? null,
             'institute_name' => $data['institute_name'] ?? null,
             'domain' => str_replace(' ', '', $data['domain'] ?? null),
-            'referral' => generateUniqueId(),
             'level' => $data['level'] ?? '',
-        ]);
+        ];
+
+        //email check
+        if (!empty($id)) {
+            if (User::where('id', '!=', $id)->where('email', $data['email'])->exists()) {
+                return (object)['error' => 'Email Allready Exists'];
+            }
+
+            $user = User::where('id', (int)$id)->first();
+
+            $user->name = $data['name'];
+            $user->phone = $data['phone'];
+            $user->email = $data['email'];
+            $user->zip = $data['zip'];
+            $user->dob = $data['dob'] ?? null;
+            $user->gender = $data['gender'] ?? null;
+            $user->enrolled = 'Yes';
+            $user->save();
+            return $user;
+        } else if (User::where('email', $data['email'])->exists()) {
+            return (object)['error' => 'Email Allready Exists'];
+        } else {
+            $data['referral'] = generateUniqueId();
+
+            return $this->userRepository->create($data);
+        }
     }
 
     public function seveUserSetting(Request $request)
     {
+        // if ($request->session()->exists('first_form_data')) {
+        //     $request->session()->forget('first_form_data');
+        // } else {
+        //     $request->session()->regenerate();
+        // }
+        // $request->session()->put('first_form_data', $request->all());
+        // Session::put('first_form_data', $request->all());
 
-        $program_review = json_encode($request->program_review);
+         if($request->hasFile('signature-img')){
+          $file = $request->file('signature-img');
+          $filename = $request->fname.'_'.$request->l_name.'_'.$request->user_id.'.'.$file->clientExtension();
+          $file_path = 'public/register1-signatures/' . $filename;
+          $file->move(public_path('register1-signatures'), $filename);
+         }
+        // $program_review = json_encode($request->program_review);
+        $program_review = json_encode([]);
         $userSetting = UserSetting::where('user_id', $request->user_id);
         if (!$userSetting->count()) {
             $userSetting = new UserSetting;
@@ -220,7 +280,8 @@ class RegisterController extends Controller
         $userSetting->SS = $request->SS;
         $userSetting->mailing_address = $request->mailing_address;
         $userSetting->program_review = $program_review;
-        $userSetting->student_signature = $request->student_signature;
+        $userSetting->student_signature = $file_path;
+        // $userSetting->student_signature = $request->student_signature;
         $userSetting->student_signature_date = $request->student_signature_date;
         $userSetting->city = $request->city;
         $userSetting->state = $request->state;
@@ -235,7 +296,13 @@ class RegisterController extends Controller
         abort_if(saasPlanCheck('student'), 404);
         $page = LoginPage::getData();
         $custom_field = StudentCustomField::getData();
-        return view(theme('auth.register'), compact('page', 'custom_field'));
+        $user = session()->has('user') ? session()->get('user') : '';
+        $userSetting = session()->has('userSetting') ? session()->get('userSetting') : '';
+        $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+        $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
+        $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
+        $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+        return view(theme('authnew.register1'), get_defined_vars());
     }
 
     public function RegisterForm2()
@@ -245,10 +312,27 @@ class RegisterController extends Controller
         if (!session()->has('user')) {
             return redirect()->to(route('register'));
         }
+        // if ($id != null && $id == 'back2') {
+
+        //     $user = session()->get('user');
+        //     $userSetting = session()->get('userSetting');
+        //     $page = LoginPage::getData();
+        //     $payment_details = session()->get('payment_details');
+
+        //     return view(theme('auth.register2'), get_defined_vars());
+        // }
         $user = session()->get('user');
         $userSetting = session()->get('userSetting');
+        $payment_details = session()->has('payment_details') ? session()->get('payment_details') : '';
         $page = LoginPage::getData();
-        return view(theme('auth.register2'), compact('page', 'user', 'userSetting'));
+
+        $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+        $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
+        $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
+        $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+
+        return view(theme('authnew.register2'), get_defined_vars());
+        // return view(theme('authnew.register2'), compact('page', 'user', 'userSetting', 'payment_details'));
     }
 
     public function RegisterForm3()
@@ -261,28 +345,55 @@ class RegisterController extends Controller
         }
         $user = session()->get('user');
         $userSetting = session()->get('userSetting');
-        $payment_detials = session()->get('payment_detials');
+        $payment_details = session()->get('payment_details');
         $page = LoginPage::getData();
 
-        return view(theme('auth.register3'), compact('page', 'user', 'userSetting', 'payment_detials'));
+        $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+        $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
+        $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
+        $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+
+        return view(theme('authnew.register4'), get_defined_vars());
+        // return view(theme('authnew.register4'), compact('page', 'user', 'userSetting', 'payment_details'));
+    }
+
+    public function RegisterDeclaration(){
+      abort_if(!Settings('student_reg'), 404);
+      abort_if(saasPlanCheck('student'), 404);
+      if (!session()->has('user')) {
+          return redirect()->to(route('register'));
+      }
+      $user = session()->get('user');
+      $userSetting = session()->get('userSetting');
+      $userDeclaration = session()->has('enrollment_declaration') ? session()->get('enrollment_declaration') : '';
+      $page = LoginPage::getData();
+      $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+      $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
+      $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
+      $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+
+      return view(theme('authnew.register3'), get_defined_vars());
+      // return view(theme('authnew.register3'), compact('user','page','userSetting','userDeclaration'));
     }
 
     public function RegisterFormPay()
     {
-
+        // dd("fkasdjfkj");
         abort_if(!Settings('student_reg'), 404);
         abort_if(saasPlanCheck('student'), 404);
-        if (!session()->has('user')) {
-            return redirect()->to(route('register'));
-        }
-        $clover = new CloverController();
-        $pakms = $clover->getPakmsKey();
+        // if (!session()->has('user')) {
+        //     return redirect()->to(route('register'));
+        // }
+        // dd("1");
 
         try {
+
             $user = session()->get('user');
             $page = LoginPage::getData();
-            return view(theme('auth.register-pay'), compact('page', 'user', 'pakms'));
+            // dd(get_defined_vars());
+            return view(theme('authnew.register5'), get_defined_vars());
         } catch (\Exception $e) {
+          //  dd("c");
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
     }
@@ -305,14 +416,15 @@ class RegisterController extends Controller
 
     public function RegisterForm2Create(Request $request)
     {
+        // dd($request);
 
         $rules = [
             'term_one_text' => 'required',
-            'invoice_date_one' => 'required',
-            'invoice_date_two' => 'required',
+            //            'invoice_date_one' => 'required',
+            'declaration_date' => 'required|date|after_or_equal:today',
             'term_two_text' => 'required',
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
             'address' => 'required',
             'fax' => 'required',
             'city' => 'required',
@@ -324,17 +436,25 @@ class RegisterController extends Controller
             'exp_date' => 'required',
             'card_appears_name' => 'required',
             'digit_on_back' => 'required',
-            'dollar_amount' => 'required',
-            'stgnature' => 'required',
-            'paid_bill_date' => 'required',
-            'paid_bill' => 'required',
-            'student_signature' => 'required',
-            'student_signature_date' => 'required',
+            'dollar_amount' => 'required|numeric|min:100',
+
+            // 'stgnature' => 'required',
+            // 'paid_bill_date' => 'required|date',
+            // 'paid_bill' => 'required',
+            // 'student_signature' => 'required',
+            'student_signature_date' => 'required|date',
             'user_id' => 'required'
         ];
 
         $this->validate($request, $rules, validationMessage($rules));
         $userApplication = UserApplication::where('user_id', $request->user_id);
+        $file_path = '';
+        if($request->hasFile('signature-img')){
+         $file = $request->file('signature-img');
+         $filename = $request->name.'_'.$request->user_id.'.'.$file->clientExtension();
+         $file_path = 'public/register2-signatures/' . $filename;
+         $file->move(public_path('register2-signatures'), $filename);
+        }
 
         if (!$userApplication->count()) {
             $userApplication = new UserApplication;
@@ -343,9 +463,11 @@ class RegisterController extends Controller
         }
 
         $userApplication->term_one_text = $request->term_one_text;
-        $userApplication->invoice_date_one = $request->invoice_date_one;
-        $userApplication->invoice_date_two = $request->invoice_date_two;
+        $userApplication->term1_father_name = $request->term1_father_name;
+        //        $userApplication->invoice_date_one = $request->invoice_date_one;
+        $userApplication->declaration_date = $request->declaration_date;
         $userApplication->term_two_text = $request->term_two_text;
+        $userApplication->term2_father_name = $request->term2_father_name;
         $userApplication->name = $request->name;
         $userApplication->phone = $request->phone;
         $userApplication->address = $request->address;
@@ -359,23 +481,53 @@ class RegisterController extends Controller
         $userApplication->exp_date = $request->exp_date;
         $userApplication->card_appears_name = $request->card_appears_name;
         $userApplication->digit_on_back = $request->digit_on_back;
-        $userApplication->dollar_amount = $request->f_name;
+        $userApplication->dollar_amount = $request->dollar_amount;
         $userApplication->stgnature = $request->stgnature;
         $userApplication->paid_bill_date = $request->paid_bill_date;
         $userApplication->paid_bill = $request->paid_bill;
-        $userApplication->student_signature = $request->student_signature;
+        $userApplication->student_signature = $file_path;
         $userApplication->student_signature_date = $request->student_signature_date;
         $userApplication->user_id = $request->user_id;
         $userApplication->save();
+        session()->put('payment_details', $userApplication);
+        return redirect()->to(route('register.declaration'));
+    }
 
-        session()->put('payment_detials', $userApplication);
-        return redirect()->to(route('register.3'));
+    public function RegisterDeclarationCreate(Request $request){
+        // dd($request);
+      $rules = [
+        'declare_date' => 'required|date|after_or_equal:today',
+        'student_name' => 'required',
+        // 'student_signature' => 'required'
+      ];
+      $this->validate($request, $rules, validationMessage($rules));
+
+      if($request->hasFile('signature-img')){
+       $file = $request->file('signature-img');
+       $filename = $request->student_name.'_'.$request->user_id.'.'.$file->clientExtension();
+       $file_path = 'public/register3-signatures/' . $filename;
+       $file->move(public_path('register3-signatures'), $filename);
+      }
+      $userDeclaration = UserDeclaration::where('user_id', $request->user_id);
+
+      if (!$userDeclaration->count()) {
+          $userDeclaration = new UserDeclaration;
+      } else {
+          $userDeclaration = $userDeclaration->first();
+      }
+      $userDeclaration->declare_date = $request->input('declare_date');
+      $userDeclaration->student_name = $request->input('student_name');
+      $userDeclaration->student_signature = $file_path;
+      $userDeclaration->user_id = $request->user_id;
+      $userDeclaration->save();
+      session()->put('enrollment_declaration', $request->input());
+      return redirect()->to(route('register.3'));
     }
 
     public function RegisterForm3Create(Request $request)
     {
-        // dd($request->all());
 
+        // dd($request);
         // $rules = [
         //     'applican_name' => 'required',
         //     'authorized_representative' => 'required',
@@ -422,34 +574,60 @@ class RegisterController extends Controller
         $AuthorzIationAgreement->save();
 
         return redirect()->to(route('register.pay'));
+
     }
 
     public function RegisterFormPayCreate(Request $request)
     {
+// dd($request);
+
         try {
+            $authorize = new DoAuthorizeNetPaymentController();
+            $paymentResponse = $authorize->makePayment($request, 'student_register', true, null, true); //previous code has the last parameter true
 
-            $clover = new CloverController();
 
-            if ($clover->makePayment($request, 'student_register')) {
+
+             // dd($paymentResponse->paid);
+            // dd($paymentResponse->paid, $clover->makePayment($request, 'student_register', true, null, true));
+            if ($paymentResponse["paid"]) {
+
+                // SendGeneralEmail::dispatch(User::find($request->user_id),  'New_Student_Reg', [
+                //     'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                // ]);
+                $update = User::where('id',$request->user_id)->update(['enrolled' => 'Yes']);
+                SendGeneralEmail::dispatch(User::find($request->user_id), 'New_Student_Reg', [
+                    'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                    'name' => $request->first_name . ' ' . $request->last_name,
+                    'type' => 'student',
+                ]);
+                // dd("s");
                 session()->forget('user');
-                Toastr::success('Payment Successfully Done', 'Success');
+                Toastr::success('Thanks for your enrollment, now you can proceed with buying progams and courses', 'Success');
+                // Toastr::success('Payment Successfully Done', 'Success');
                 return redirect()->to(route('login'));
-            } else {
-                Toastr::error('Something Went Wrong', 'Error');
+            }
+            else {
+
+                Toastr::error('Payment Not Done, Please Try Again Later !', 'Error');
                 return redirect()->back();
             }
-        } catch (\Exception $e) {
-
+        }
+        catch (\Exception $e) {
+        //    dd($e);
+           // Toastr::error($e);
             Toastr::error('Something Went Wrong', 'Error');
             return redirect()->back();
         }
     }
 
+
+
+
     //    save instructors info
-    public function saveInstructorsInfo(Request $request, $file)
+    public function saveInstructorsInfo(Request $request, $resume_file, $coverletter_file)
     {
 
-        $exception = DB::transaction(function () use ($request, $file) {
+        $exception = DB::transaction(function () use ($request, $resume_file, $coverletter_file) {
             //            become_instructors_form_data
             DB::table('become_instructors_form_data')->insert([
                 'user_id' => $request->user_id,
@@ -460,14 +638,14 @@ class RegisterController extends Controller
 
             ]);
 
-            //            instructors_personal_info
+            // instructors_personal_info
             DB::table('instructors_personal_info')->insert([
                 'user_id' => $request->user_id,
                 'first_name' => $request->first_name,
                 'middle_name' => $request->middle_name,
                 'last_name' => $request->last_name,
                 'gender' => $request->gender,
-                'date_of_birth' => $request->date_of_birth,
+                'date_of_birth' => $request->dob,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'cell' => $request->cell,
@@ -499,57 +677,126 @@ class RegisterController extends Controller
                 'current_position' => $request->current_position,
                 'phone' => $request->Teach_phone,
                 'employee_name' => $request->employee_name,
-                'date_employer' => $request->date_employer,
+                'date_employer_start' =>  $request->date_employer_start,
+                'date_employer_end' =>  $request->date_employer_end,
                 'supervisor_name' => $request->supervisor_name,
-                'upload_resume' => $file,
-                'cover' => $request->cover,
+                'upload_resume' => $resume_file,
+                'cover' => $coverletter_file,
                 'address' => $request->employer_address,
                 'created_at' => Carbon::now(),
             ]);
         });
-        return is_null($exception) ? true : false;
+        if (is_null($exception)) {
+            SendGeneralEmail::dispatch(User::find($request->user_id), 'New_Student_Reg', [
+                'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                'name' => $request->first_name . ' ' . $request->last_name,
+                'type' => 'instructor',
+            ]);
+            return true;
+        } else {
+            return false;
+        }
+
+        // return is_null($exception) ? true : false;
     }
 
+    public function student_enroll(){
+      $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+      $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
+      $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
+      $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+      session()->put('user', Auth::user());
+      session()->put('userSetting', UserSetting::where('user_id', Auth::user()->id)->first());
+
+      if (!$user_setting_exists) {
+          Toastr::error('Please Complete Your Registration Process !', 'Error');
+          return redirect()->to(route('register'));
+      }
+
+      session()->put('payment_details', UserApplication::where('user_id', Auth::user()->id)->first());
+
+      if (!$user_application_exists) {
+          Toastr::error('Please Complete Your Registration Process !', 'Error');
+          return redirect()->to(route('register.2'));
+      }
+
+      if (!$user_agreement_exists) {
+          Toastr::error('Please Download Authorization Agreement !', 'Error');
+          return redirect()->to(route('register.3'));
+      }
+
+      if (!$user_payment_exists) {
+          Toastr::error('Please Make Your Payment First !', 'Error');
+          return redirect()->to(route('register.pay'));
+      }
+    }
 
     public function register(Request $request)
     {
-
+        // dd($request);
         if (isModuleActive('LmsSaasMD')) {
             ini_set('max_execution_time', 10000);
         }
         //for student
+
         if (isset($request->f_name) && isset($request->l_name)) {
             $name = $request->f_name . ' ' . $request->l_name;
             $request->request->add(['name' => $name]);
         }
-        //for instructors
-        if (isset($request->first_name) && isset($request->last_name)) {
-            $name = $request->first_name . ' ' . $request->last_name;
-            $request->request->add(['name' => $name]);
+
+        //for instructors and tutor
+        if (isset($request->type) && ($request->type == "Instructor" || $request->type == "Tutor")) {
+            if (isset($request->first_name) && isset($request->last_name)) {
+                $name = $request->first_name . ' ' . $request->last_name;
+                $request->request->add(['name' => $name]);
+            }
+            if ($request->has('currently_employed')) {
+                $request->request->add(['currently_employed' => true]);
+                $request->request->add(['date_employer_end' => null]);
+            } else {
+                $request->request->add(['currently_employed' => false]);
+            }
         }
+
         //for validate and create user
         $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
 
+        if (isset($user->error)) {
+            Toastr::error($user->error, 'Error');
+            return redirect()->back();
+        }
         // for student
         $request->request->add(['user_id' => $user->id]);
         if (isset($request->is_user_setting)) {
+
             $userSetting = $this->seveUserSetting($request);
+
             session()->put(['userSetting' => $userSetting]);
         }
 
         //for instructors
-        if (isset($request->type) && $request->type == "Instructor") {
+        if (isset($request->type) && ($request->type == "Instructor" || $request->type == "Tutor")) {
             //            save instructors info
-            $file = $this->saveFile($request->file('upload_resume'));
-            if ($this->saveInstructorsInfo($request, $file)) {
-                Toastr::success('Data Successfully submit', 'Success');
+            $resume_file = $this->saveFile($request->file('upload_resume'));
+            $coverletter_file = $this->saveFile($request->file('cover_letter'));
+            if ($this->saveInstructorsInfo($request, $resume_file, $coverletter_file)) {
+                if ($request->type == "Tutor") {
+                    Cookie::queue(Cookie::make('user_id', $user->id, 60));
+                    if (!empty($request->package_id)) {
+                        return redirect()->to(route('packageBuy', ['id' => $request->package_id]));
+                    } else {
+                        return redirect()->to(route('individualTutorPackages'));
+                    }
+                }
+                Toastr::success('Data Successfully submitted. You will be able to login after admin sets up your password.', 'Success');
                 return redirect()->back();
             }
 
-            unlink(asset($file));
-            Toastr::success('Some Sever Error', 'Error');
+            unlink(asset($resume_file));
+            unlink(asset($coverletter_file));
+            Toastr::error('Some Sever Error', 'Error');
             return redirect()->back();
         }
 

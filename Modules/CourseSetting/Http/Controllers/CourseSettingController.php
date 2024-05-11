@@ -23,23 +23,27 @@ use Modules\Quiz\Entities\QuestionGroup;
 use Modules\Quiz\Entities\QuestionLevel;
 use Modules\CourseSetting\Entities\Course;
 use Modules\CourseSetting\Entities\Lesson;
+use Modules\Payment\Entities\PaymentPlans;
 use Modules\CourseSetting\Entities\Chapter;
 use Modules\Localization\Entities\Language;
 use Modules\CourseSetting\Entities\Category;
 use Modules\Certificate\Entities\Certificate;
 use Modules\CourseSetting\Entities\TimeTable;
+use Modules\CourseSetting\Entities\CourseSale;
 use Modules\CourseSetting\Entities\CourseLevel;
-use Modules\CourseSetting\Entities\TestPrepSale;
 use Modules\CourseSetting\Entities\SchoolSubject;
 use Modules\CourseSetting\Entities\CourseEnrolled;
 use Modules\CourseSetting\Entities\CourseExercise;
+use Modules\CourseSetting\Entities\CourseSaleData;
 use Modules\Quiz\Entities\OnlineExamQuestionAssign;
 use Modules\BundleSubscription\Entities\BundleCourse;
+use Modules\SystemSetting\Entities\PackagePurchasing;
 use Modules\Newsletter\Http\Controllers\AcelleController;
 use Modules\OrgInstructorPolicy\Entities\OrgPolicyCategory;
 use Modules\Newsletter\Http\Controllers\MailchimpController;
 use Modules\Newsletter\Http\Controllers\GetResponseController;
 use Modules\Membership\Repositories\Interfaces\MembershipCourseRepositoryInterface;
+use Modules\CourseSetting\Entities\CourseReveiw;
 
 
 class CourseSettingController extends Controller
@@ -121,49 +125,56 @@ class CourseSettingController extends Controller
     public function getAllCourse()
     {
         try {
-            $user = Auth::user();
+              $user = Auth::user();
 
-            $video_list = [];
-            $vdocipher_list = [];
+              $video_list = [];
+              $vdocipher_list = [];
 
-            $courses = [];
-            $query = Category::orderBy('position_order', 'ASC');
-            if (isModuleActive('OrgInstructorPolicy') && \auth()->user()->role_id != 1) {
-                $assign = OrgPolicyCategory::where('policy_id', \auth()->user()->policy_id)->pluck('category_id')->toArray();
-                $query->whereIn('id', $assign);
-            }
-            $categories = $query->with('parent')->get();
-            if ($user->role_id == 2) {
-                $quizzes = OnlineQuiz::where('created_by', $user->id)->latest()->get();
-            } else {
-                $quizzes = OnlineQuiz::latest()->get();
-            }
+              $courses = [];
+              $query = Category::orderBy('position_order', 'ASC');
+              if (isModuleActive('OrgInstructorPolicy') && \auth()->user()->role_id != 1) {
+                  $assign = OrgPolicyCategory::where('policy_id', \auth()->user()->policy_id)->pluck('category_id')->toArray();
+                  $query->whereIn('id', $assign);
+              }
+              $categories = $query->with('parent')->get();
+              if ($user->role_id == 2) {
+                  $quizzes = OnlineQuiz::where('status', 1)->where('created_by', $user->id)->latest()->get();
+              } else {
+                  $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
+              }
 
-            $instructor_query = User::select('name', 'id');
-            if (isModuleActive('UserType')) {
-                $instructor_query->whereHas('userRoles', function ($q) {
-                    $q->whereIn('role_id', [1, 2]);
-                });
-            } else {
-                $instructor_query->whereIn('role_id', [1, 2]);
-            }
-            $instructors = $instructor_query->get();
-            $languages = Language::select('id', 'native', 'code')
-                ->where('status', '=', 1)
-                ->get();
-            $levels = CourseLevel::where('status', 1)->get();
-            $title = trans('courses.All');
+              $instructor_query = User::select('name', 'id');
+              if (isModuleActive('UserType')) {
+                  $instructor_query->whereHas('userRoles', function ($q) {
+                      $q->whereIn('role_id', [1, 2]);
+                  });
+              } else {
+                  $instructor_query->whereIn('role_id', [1, 2]);
+              }
+              $instructors = $instructor_query->get();
+              $languages = Language::select('id', 'native', 'code')
+                  ->where('status', '=', 1)
+                  ->get();
+              $levels = CourseLevel::where('status', 1)->get();
+              $title = trans('courses.All');
 
-            $sub_lists = $this->getSubscriptionList();
+              $sub_lists = $this->getSubscriptionList();
 
-            return view('coursesetting::courses', compact('sub_lists', 'levels', 'video_list', 'vdocipher_list', 'title', 'quizzes', 'courses', 'categories', 'languages', 'instructors'));
-        } catch (Exception $e) {
-            GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
-        }
+              if (Auth::user()->role_id == 9) {
+                  $my_courses = Course::where('user_id', Auth::id())->count();
+                  $package_purchasing = PackagePurchasing::where('user_id', Auth::id())->latest()->first();
+                  $allowed_courses = isset($package_purchasing) ? intval($package_purchasing->course_limit) : $package_purchasing;
+              }
+
+              return view('coursesetting::courses', get_defined_vars());
+          } catch (Exception $e) {
+              GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
+          }
     }
 
     public function courseSortBy(Request $request)
     {
+
         if (demoCheck()) {
             return redirect()->back();
         }
@@ -190,9 +201,9 @@ class CourseSettingController extends Controller
             $instructors = $instructor_query->get();
 
             if ($user->role_id == 2) {
-                $quizzes = OnlineQuiz::where('created_by', $user->id)->latest()->get();
+                $quizzes = OnlineQuiz::where('status', 1)->where('created_by', $user->id)->latest()->get();
             } else {
-                $quizzes = OnlineQuiz::latest()->get();
+                $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
             }
             $languages = Language::select('id', 'native', 'code')
                 ->where('status', '=', 1)
@@ -278,44 +289,32 @@ class CourseSettingController extends Controller
 
     public function saveCourse(Request $request)
     {
-
         Session::flash('type', 'store');
 
         if (demoCheck()) {
             return redirect()->back();
         }
-
+        //dd($request);
         $code = auth()->user()->language_code;
-
-        $check_title = Course::where('title', 'LIKE', '%\"' . $request->title . '\"%')->count();
-        if ($check_title > 0) {
-            Toastr::error(trans('Course Title Must be Unique'), trans('Error'));
-            return redirect()->back();
-        }
-
         $rules = [
-            'title' => 'required|max:255',
             'type' => 'required',
-            'language' => 'required',
+            'language' => 'nullable',
             'duration' => 'nullable',
+            'full_course_main_image' => 'required_if:cna_prep_type_check,==,1',
 
-            //            'cna_prep_type' => 'required_if:type,==,2',
-            //            'test_prep_type' => 'required_if:type,==,2',
-            //            'test_prep_graded_type' => 'required_if:type,==,2',
-            'cna_prep_price' => 'required_if:cna_prep_type,==,1',
             'test_prep_price' => 'required_if:test_prep_type,==,1',
-            'test_prep_graded_price' => 'required_if:test_prep_graded_type,==,1',
-            'image' => 'nullable|mimes:jpeg,bmp,png,jpg|max:1024',
+            'demand_course_main_image' => 'required_if:test_prep_type,==,1',
 
-
+            // 'test_prep_graded_price' => 'required_if:test_prep_graded_type,==,1',
+            'live_course_main_image' => 'required_if:test_prep_graded_type,==,1',
+            // 'image' => 'nullable|mimes:jpeg,bmp,png,jpg|max:4096',
+            // 'hidden_file' => 'nullable|mimes:jpeg,bmp,png,jpg|max:4096',
+            //         	'parent_course_thumbnail_image' => 'required|mimes:jpeg,bmp,png,jpg|max:4096',
         ];
-
         $this->validate($request, $rules, validationMessage($rules));
-
-
         if ($request->type == 1) {
             $rules = [
-                'level' => 'required',
+                'level' => 'nullable',
                 'category' => 'required',
                 'total_courses' => 'required',
                 // 'host' => 'required',
@@ -352,9 +351,9 @@ class CourseSettingController extends Controller
         try {
 
             $course = new Course();
-            if ($request->file('image') != "") {
-                $course->image = $this->saveImage($request->image);
-                $course->thumbnail = $this->saveImage($request->image, 270);
+            if ($request->file('parent_course_image') != "") {
+                $course->thumbnail = $this->saveCroppedImage($request->parent_course_thumbnail_image);
+                $course->image = $this->saveImage($request->parent_course_image);
             }
 
             if (isModuleActive('Membership')) {
@@ -377,25 +376,34 @@ class CourseSettingController extends Controller
                 $course->category_id = null;
                 $course->total_classes = null;
                 $course->subcategory_id = null;
+            } elseif ($request->type == 9) {
+                $course->quiz_id = null;
+                $course->type = $request->type;
+                $course->category_id = null;
+                $course->total_classes = null;
             }
 
 
             $course->lang_id = $request->language;
             $course->scope = $request->scope;
             $course->title = $request->title;
+            $course->review_id = $request->review;
             //            foreach ($request->title as $key => $title) {
             //                $course->setTranslation('title', $key, $title);
             //            }
 
             foreach ($request->about as $key => $about) {
+                $about = str_replace("'", "`", $about);
                 $course->setTranslation('about', $key, $about);
             }
 
             foreach ($request->requirements as $key => $requirements) {
+                $requirements = str_replace("'", "`", $requirements);
                 $course->setTranslation('requirements', $key, $requirements);
             }
 
             foreach ($request->outcomes as $key => $outcomes) {
+                $outcomes = str_replace("'", "`", $outcomes);
                 $course->setTranslation('outcomes', $key, $outcomes);
             }
 
@@ -414,12 +422,18 @@ class CourseSettingController extends Controller
                     $course->discount_price = null;
                 } else {
                     $course->price = $request->price;
+                    // $course->price = ($request->type == 9) ? applyProductTax($request->price) : $request->price;
                 }
             } else {
-                $course->price = 0;
-                $course->discount_price = null;
+                if ($request->price == 9) {
+                    $course->price =$request->price;
+                    // $course->price = applyProductTax($request->price);
+                    $course->discount_price = null;
+                } else {
+                    $course->price = 0;
+                    $course->discount_price = null;
+                }
             }
-
             if (isModuleActive('Org')) {
                 $course->required_type = $request->required_type;
             } else {
@@ -442,9 +456,9 @@ class CourseSettingController extends Controller
             $course->host = $request->host;
             $course->subscription_list = $request->subscription_list;
 
-            if (!empty($request->assign_instructor)) {
-                $course->user_id = $request->assign_instructor;
-            }
+            //if (!empty($request->assign_instructor)) {
+                $course->user_id = $request->assign_instructor ?? 0;
+           // }
 
             if ($request->get('host') == "Vimeo") {
                 if (config('vimeo.connections.main.upload_type') == "Direct") {
@@ -467,9 +481,9 @@ class CourseSettingController extends Controller
             }
 
 
-            if (!empty($request->assign_instructor)) {
-                $course->user_id = $request->assign_instructor;
-            }
+            // if (!empty($request->assign_instructor)) {
+                $course->user_id = $request->assign_instructor ?? 0;
+            // }
 
 
             if (!empty($request->assistant_instructors)) {
@@ -497,90 +511,98 @@ class CourseSettingController extends Controller
                 $course->time_table_id = $request->timetable;
             }
             $child_course = $course;
+            $last_max_seq = Course::whereIn('type', [1, 2, 7, 9])->max('seq_no');
+            $course->seq_no = intval($last_max_seq) + 1;
+
             $course->save();
 
-            $child_course->type = 4;
-            if ($request->has('cna_prep_type') && $request->cna_prep_type == 1) {
-                $child_course->price = $request->cna_prep_price;
-            } else {
-                $child_course->price = '';
-            }
+            if ($request->type != 9) {
 
-            $child_course->parent_id = $course->id;
-            $art = $child_course->getAttributes();
-            if (array_key_exists('id', $art)) {
-                unset($art['id']);
-            }
-            if (array_key_exists('updated_at', $art)) {
-                unset($art['updated_at']);
-            }
-            if (array_key_exists('created_at', $art)) {
-                unset($art['created_at']);
-            }
-            Course::create($art);
+                $child_course->type = 4;
+                if ($request->has('cna_prep_type') && $request->cna_prep_type == 1) {
+                    $child_course->price = '';
+                    $child_course->thumbnail = $this->saveCroppedImage($request->full_course_thumbnail_image);
+                    $child_course->image = $this->saveImage($request->full_course_main_image);
 
+                    $child_course->parent_id = $course->id;
+                    $art = $child_course->getAttributes();
+                    if (array_key_exists('id', $art)) {
+                        unset($art['id']);
+                    }
+                    if (array_key_exists('updated_at', $art)) {
+                        unset($art['updated_at']);
+                    }
+                    if (array_key_exists('created_at', $art)) {
+                        unset($art['created_at']);
+                    }
+                    Course::create($art);
+                }
 
+                $child_course->type = 5;
+                if ($request->has('test_prep_type') && $request->test_prep_type == 1) {
+                    $child_course->price = $request->test_prep_price;
+                    $child_course->thumbnail = $this->saveCroppedImage($request->demand_course_thumbnail_image);
+                    $child_course->image = $this->saveImage($request->demand_course_main_image);
 
-            $child_course->type = 5;
-            if ($request->has('test_prep_type') && $request->test_prep_type == 1) {
-                $child_course->price = $request->test_prep_price;
-            } else {
-                $child_course->price = '';
-            }
-            $child_course->parent_id = $course->id;
-            $art = $child_course->getAttributes();
-            if (array_key_exists('id', $art)) {
-                unset($art['id']);
-            }
-            if (array_key_exists('updated_at', $art)) {
-                unset($art['updated_at']);
-            }
-            if (array_key_exists('created_at', $art)) {
-                unset($art['created_at']);
-            }
-            Course::create($art);
+                    $child_course->parent_id = $course->id;
+                    $art = $child_course->getAttributes();
+                    if (array_key_exists('id', $art)) {
+                        unset($art['id']);
+                    }
+                    if (array_key_exists('updated_at', $art)) {
+                        unset($art['updated_at']);
+                    }
+                    if (array_key_exists('created_at', $art)) {
+                        unset($art['created_at']);
+                    }
+                    Course::create($art);
+                }
 
+                $child_course->type = 6;
+                if ($request->has('test_prep_graded_type') && $request->test_prep_graded_type == 1) {
+                    $child_course->price = '';
+                    $child_course->thumbnail = $this->saveCroppedImage($request->live_course_thumbnail_image);
+                    $child_course->image = $this->saveImage($request->live_course_main_image);
 
+                    $child_course->parent_id = $course->id;
+                    $art = $child_course->getAttributes();
+                    if (array_key_exists('id', $art)) {
+                        unset($art['id']);
+                    }
+                    if (array_key_exists('updated_at', $art)) {
+                        unset($art['updated_at']);
+                    }
+                    if (array_key_exists('created_at', $art)) {
+                        unset($art['created_at']);
+                    }
+                    Course::create($art);
+                }
 
-            $child_course->type = 6;
-            if ($request->has('test_prep_graded_type') && $request->test_prep_graded_type == 1) {
-                $child_course->price = $request->test_prep_graded_price;
-            } else {
-                $child_course->price = '';
-            }
-            $child_course->parent_id = $course->id;
-            $art = $child_course->getAttributes();
-            if (array_key_exists('id', $art)) {
-                unset($art['id']);
-            }
-            if (array_key_exists('updated_at', $art)) {
-                unset($art['updated_at']);
-            }
-            if (array_key_exists('created_at', $art)) {
-                unset($art['created_at']);
-            }
-            Course::create($art);
+                checkGamification('each_course', 'courses');
+                if (isModuleActive('Membership')) {
+                    $membershipInterface = App::make(MembershipCourseRepositoryInterface::class);
+                }
 
-
-            checkGamification('each_course', 'courses');
-            if (isModuleActive('Membership')) {
-                $membershipInterface = App::make(MembershipCourseRepositoryInterface::class);
-                // $membershipInterface->storeCourseMember($request->merge([
-                //     'course_id'=>$course->id,
-                // ]));
+                if (!empty($request->assign_instructor)) {
+                    send_email(
+                        User::find($request->assign_instructor),
+                        'Course_Assigned_Instructor',
+                        [
+                            'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                            'course' => $course->title
+                        ]
+                    );
+                }
+            } elseif (isTutor()) {
+                $shortCodes = [
+                    'time' => \Illuminate\Support\Carbon::now()->format('d-M-Y ,H:i A'),
+                    'title' => $course->title,
+                    'price' => applyProductTax($request->price),
+                    'instructor' => Auth::user()->name,
+                    'type' => 'course',
+                ];
+                send_email(Auth::user(), 'New_Course_Added', $shortCodes);
             }
-
-            if (!empty($request->assign_instructor)) {
-                send_email(
-                    User::find($request->assign_instructor),
-                    'Course_Assigned_Instructor',
-                    [
-                        'time' => Carbon::now()->format('d-M-Y, g:i A'),
-                        'course' => $course->title
-                    ]
-                );
-            }
-
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->to(route('getAllCourse'));
         } catch (Exception $e) {
@@ -590,7 +612,6 @@ class CourseSettingController extends Controller
 
     public function AdminUpdateCourse(Request $request)
     {
-
         Session::flash('type', 'update');
         Session::flash('id', $request->id);
 
@@ -610,23 +631,52 @@ class CourseSettingController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'type' => 'required',
-            'language' => 'required',
+            'language' => 'nullable',
+            'about.en' => [
+                'required',
+                //                function ($attribute, $value, $fail) {
+                //                    if ($value === '<p><br></p>' || empty($value)) {
+                //                        $fail('The ' . $attribute . ' is required.');
+                //                    }
+                //                },
+            ],
+            'outcomes.en' => [
+                'required',
+                //                function ($attribute, $value, $fail) {
+                //                    if ($value === '<p><br></p>' || empty($value)) {
+                //                        $fail('The ' . $attribute . ' is required.');
+                //                    }
+                //                },
+            ],
+            'requirements.en' => [
+                'required',
+                //                function ($attribute, $value, $fail) {
+                //                    if ($value === '<p><br></p>' || empty($value)) {
+                //                        $fail('The ' . $attribute . ' is required.');
+                //                    }
+                //                },
+            ],
             //            'cna_prep_type' => 'required_if:type,==,2',
             //            'test_prep_type' => 'required_if:type,==,2',
             //            'test_prep_graded_type' => 'required_if:type,==,2',
-            'cna_prep_price' => 'required_if:cna_prep_type,==,1',
+            // 'cna_prep_price' => 'required_if:cna_prep_type,==,1',
+            // 'full_course_main_image' => 'required_if:test_prep_graded_type,==,1',
+
             'test_prep_price' => 'required_if:test_prep_type,==,1',
-            'test_prep_graded_price' => 'required_if:test_prep_graded_type,==,1',
-            'image' => 'nullable|mimes:jpeg,bmp,png,jpg|max:1024',
+            // 'demand_course_main_image' => 'required_if:test_prep_graded_type,==,1',
+
+            // 'test_prep_graded_price' => 'required_if:test_prep_graded_type,==,1',
+            // 'live_course_main_image' => 'required_if:test_prep_graded_type,==,1',
+            // 'image' => 'nullable|mimes:jpeg,bmp,png,jpg|max:4096',
+            // 'hidden_file' => 'nullable|mimes:jpeg,bmp,png,jpg|max:4096',
 
         ];
         $this->validate($request, $rules, validationMessage($rules));
 
-
         if ($request->type == 1) {
             $rules = [
                 'duration' => 'nullable',
-                'level' => 'required',
+                'level' => 'nullable',
                 'category' => 'required',
             ];
             $this->validate($request, $rules, validationMessage($rules));
@@ -654,38 +704,40 @@ class CourseSettingController extends Controller
 
 
         try {
-
             $course = Course::find($request->id);
             $pre_instructor = $course->user_id;
             $course->scope = $request->scope;
-            if ($request->file('image') != "") {
-                $course->image = $this->saveImage($request->image);
-                $course->thumbnail = $this->saveImage($request->image, 270);
+            if ($request->file('parent_course_image') != "") {
+                $course->thumbnail = $this->saveCroppedImage($request->parent_course_thumbnail_image);
+                $course->image = $this->saveImage($request->parent_course_image);
             }
 
 
             //            $course->user_id = Auth::id();
 
-            if (!empty($request->assign_instructor)) {
-                $course->user_id = $request->assign_instructor;
-            }
+            //if (!empty($request->assign_instructor)) {
+                $course->user_id = $request->assign_instructor ?? 0;
+            //}
             $course->drip = $request->drip;
             $course->complete_order = $request->complete_order;
             $course->lang_id = $request->language;
             $course->title = $request->title;
+            $course->review_id = $request->review;
             //            foreach ($request->title as $key => $title) {
             //                $course->setTranslation('title', $key, $title);
             //            }
 
             foreach ($request->about as $key => $about) {
+                $about = str_replace("'", "`", $about);
                 $course->setTranslation('about', $key, $about);
             }
 
             foreach ($request->requirements as $key => $requirements) {
+                $requirements = str_replace("'", "`", $requirements);
                 $course->setTranslation('requirements', $key, $requirements);
             }
-
             foreach ($request->outcomes as $key => $outcomes) {
+                $outcomes = str_replace("'", "`", $outcomes);
                 $course->setTranslation('outcomes', $key, $outcomes);
             }
             $course->duration = $request->duration;
@@ -701,11 +753,16 @@ class CourseSettingController extends Controller
                     $course->price = 0;
                     $course->discount_price = null;
                 } else {
-                    $course->price = $request->price;
+                    $course->price = ($course->price == $request->price) ? $request->price : applyProductTax($request->price);
                 }
             } else {
-                $course->price = 0;
-                $course->discount_price = null;
+                if ($request->price == 9) {
+                    $course->price = ($course->price == $request->price) ? $request->price : applyProductTax($request->price);
+                    $course->discount_price = null;
+                } else {
+                    $course->price = 0;
+                    $course->discount_price = null;
+                }
             }
 
 
@@ -762,6 +819,11 @@ class CourseSettingController extends Controller
                 $course->category_id = null;
                 $course->total_classes = null;
                 $course->subcategory_id = null;
+            } elseif ($request->type == 9) {
+                $course->quiz_id = null;
+                $course->type = $request->type;
+                $course->category_id = null;
+                $course->total_classes = null;
             }
 
             if (Settings('frontend_active_theme') == "edume") {
@@ -780,34 +842,149 @@ class CourseSettingController extends Controller
             if ($request->type == 7) {
                 $course->time_table_id = $request->timetable;
             }
+            $child_course = $course;
             $course->save();
 
+            if ($request->type != 9) {
 
-            $child_course = Course::where('type', 4)->where('parent_id', $request->id)->first();
-            if ($request->has('cna_prep_type') && $request->cna_prep_type == 1) {
-                $child_course->price = $request->cna_prep_price;
-            } else {
-                $child_course->price = null;
+                $child_course1 = Course::where('type', 4)->where('parent_id', $request->id)->first();
+
+                if (empty($child_course1)) {
+
+                    $child_course->parent_id = $course->id;
+                    $child_course->type = 4;
+                    $child_course->price = null;
+
+                    if ($request->has('cna_prep_type') && $request->cna_prep_type == 1) {
+
+                        if ($request->file('full_course_main_image') != "") {
+
+                            $child_course->thumbnail = $this->saveCroppedImage($request->full_course_thumbnail_image);
+                            $child_course->image = $this->saveImage($request->full_course_main_image);
+                        }
+
+                        $art = $child_course->getAttributes();
+                        if (array_key_exists('id', $art)) {
+                            unset($art['id']);
+                        }
+                        if (array_key_exists('updated_at', $art)) {
+                            unset($art['updated_at']);
+                        }
+                        if (array_key_exists('created_at', $art)) {
+                            unset($art['created_at']);
+                        }
+
+                        Course::create($art);
+                    }
+                } else {
+                    if ($request->has('cna_prep_type') && $request->cna_prep_type == 1) {
+
+                        if ($request->file('full_course_main_image') != "") {
+                            $child_course1->thumbnail = $this->saveCroppedImage($request->full_course_thumbnail_image);
+                            $child_course1->image = $this->saveImage($request->full_course_main_image);
+                        }
+                        $child_course1->price = null;
+
+                        $child_course1->save();
+                    } else {
+
+                        if (isset($child_course1->id)) {
+                            $child_course1->delete();
+                        }
+                    }
+                }
+
+
+                $child_course2 = Course::where('type', 5)->where('parent_id', $request->id)->first();
+                if (empty($child_course2)) {
+
+                    $child_course->parent_id = $course->id;
+                    $child_course->type = 5;
+
+                    if ($request->has('test_prep_type') && $request->test_prep_type == 1) {
+
+                        $child_course->price = $request->test_prep_price;
+
+                        if ($request->file('demand_course_main_image') != "") {
+                            $child_course->thumbnail = $this->saveCroppedImage($request->demand_course_thumbnail_image);
+                            $child_course->image = $this->saveImage($request->demand_course_main_image);
+                        }
+
+                        $art = $child_course->getAttributes();
+                        if (array_key_exists('id', $art)) {
+                            unset($art['id']);
+                        }
+                        if (array_key_exists('updated_at', $art)) {
+                            unset($art['updated_at']);
+                        }
+                        if (array_key_exists('created_at', $art)) {
+                            unset($art['created_at']);
+                        }
+
+                        Course::create($art);
+                    }
+                } else {
+
+                    if ($request->has('test_prep_type') && $request->test_prep_type == 1) {
+
+                        $child_course2->price = $request->test_prep_price;
+
+                        if ($request->file('demand_course_main_image') != "") {
+                            $child_course2->thumbnail = $this->saveCroppedImage($request->demand_course_thumbnail_image);
+                            $child_course2->image = $this->saveImage($request->demand_course_main_image);
+                        }
+
+                        $child_course2->save();
+                    } else {
+
+                        if (isset($child_course2->id)) {
+                            $child_course2->delete();
+                        }
+                    }
+                }
+
+
+
+                $child_course3 = Course::where('type', 6)->where('parent_id', $request->id)->first();
+                if (empty($child_course3)) {
+
+                    $child_course->parent_id = $course->id;
+                    $child_course->type = 6;
+                    $child_course->price = null;
+
+                    if ($request->has('test_prep_graded_type') && $request->test_prep_graded_type == 1) {
+                        if ($request->file('live_course_main_image') != "") {
+                            $child_course->thumbnail = $this->saveCroppedImage($request->live_course_thumbnail_image);
+                            $child_course->image = $this->saveImage($request->live_course_main_image);
+                        }
+
+                        $art = $child_course->getAttributes();
+                        if (array_key_exists('id', $art)) {
+                            unset($art['id']);
+                        }
+                        if (array_key_exists('updated_at', $art)) {
+                            unset($art['updated_at']);
+                        }
+                        if (array_key_exists('created_at', $art)) {
+                            unset($art['created_at']);
+                        }
+                        Course::create($art);
+                    }
+                } else {
+                    if ($request->has('test_prep_graded_type') && $request->test_prep_graded_type == 1) {
+                        if ($request->file('live_course_main_image') != "") {
+                            $child_course3->thumbnail = $this->saveCroppedImage($request->live_course_thumbnail_image);
+                            $child_course3->image = $this->saveImage($request->live_course_main_image);
+                        }
+                        $child_course3->price = null;
+                        $child_course3->save();
+                    } else {
+                        if (isset($child_course3->id)) {
+                            $child_course3->delete();
+                        }
+                    }
+                }
             }
-            $child_course->save();
-
-
-            $child_course = Course::where('type', 5)->where('parent_id', $request->id)->first();
-            if ($request->has('test_prep_type') && $request->test_prep_type == 1) {
-                $child_course->price = $request->test_prep_price;
-            } else {
-                $child_course->price = null;
-            }
-            $child_course->save();
-
-
-            $child_course = Course::where('type', 6)->where('parent_id', $request->id)->first();
-            if ($request->has('test_prep_graded_type') && $request->test_prep_graded_type == 1) {
-                $child_course->price = $request->test_prep_graded_price;
-            } else {
-                $child_course->price = null;
-            }
-            $child_course->save();
 
 
             if (!empty($request->assign_instructor) && $pre_instructor != $request->assign_instructor) {
@@ -884,20 +1061,44 @@ class CourseSettingController extends Controller
             if ($course->type == 1) {
 
                 if ($user->role_id == 2) {
-                    $quizzes = OnlineQuiz::where('category_id', $course->category_id)->where('created_by', $user->id)->latest()->get();
+                    $quizzes = OnlineQuiz::where('status', 1)->where('created_by', $user->id)->latest()->get();
                 } else {
-                    $quizzes = OnlineQuiz::where('category_id', $course->category_id)->latest()->get();
+                    $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
                 }
             } else {
                 if ($user->role_id == 2) {
 
-                    $quizzes = OnlineQuiz::where('created_by', $user->id)->where('active_status', 1)->get();
+                    $quizzes = OnlineQuiz::where('status', 1)->where('created_by', $user->id)->where('status', 1)->latest()->get();
                 } else {
-                    $quizzes = OnlineQuiz::where('active_status', 1)->get();
+                    $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
                 }
             }
 
             $chapters = Chapter::where('course_id', $id)->orderBy('position', 'asc')->with('lessons')->get();
+
+            // $course = Course::findOrFail($id);
+            // if ($course->type == 1) {
+
+            //     if (in_array(Auth::user()->role_id, [2, 9])) {
+            //         $quizzes = OnlineQuiz::where('status', 1)->where('created_by', Auth::user()->id)->latest()->get();
+            //     } else {
+            //         $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
+            //     }
+            // } else {
+            //     if (in_array(Auth::user()->role_id, [2, 9])) {
+
+            //         $quizzes = OnlineQuiz::where('status', 1)->where('created_by', Auth::user()->id)->where('status', 1)->latest()->get();
+            //     } else {
+            //         $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
+            //     }
+            // }
+
+            // $chapters = Chapter::where('course_id', $id);
+            // if (isTutor()) {
+            //     $chapters = $chapters->where('user_id', Auth::id());
+            // }
+            // $chapters = $chapters->orderBy('position', 'asc')->with('lessons')->get();
+
 
 
             $query = Category::orderBy('position_order', 'ASC');
@@ -920,6 +1121,7 @@ class CourseSettingController extends Controller
                 ->get();
             $course_exercises = CourseExercise::where('course_id', $id)->get();
 
+
             $video_list = [];
             $vdocipher_list = [];
             $levels = CourseLevel::where('status', 1)->get();
@@ -929,7 +1131,11 @@ class CourseSettingController extends Controller
                 $certificates = Certificate::where('created_by', Auth::user()->id)->latest()->get();
             }
 
-            return view('coursesetting::course_details', compact('data', 'bank', 'vdocipher_list', 'levels', 'video_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates'));
+            $timetables = TimeTable::where('status', 1)->latest()->get();
+            $course_reviews = CourseReveiw::where('course_id',$id)->latest()->get();
+            $reviews = CourseReveiw::where('course_id',$id)->latest()->get();
+
+            return view('coursesetting::course_details', compact('data', 'bank', 'vdocipher_list', 'levels', 'video_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates', 'reviews', 'timetables','course_reviews'));
         } catch (\Exception $e) {
             Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
             return redirect()->back();
@@ -947,15 +1153,15 @@ class CourseSettingController extends Controller
             $course = Course::findOrFail($id);
             if ($course->type == 1) {
                 if ($user->role_id == 2) {
-                    $quizzes = OnlineQuiz::where('category_id', $course->category_id)->where('created_by', $user->id)->latest()->get();
+                    $quizzes = OnlineQuiz::where('created_by', $user->id)->latest()->get();
                 } else {
-                    $quizzes = OnlineQuiz::where('category_id', $course->category_id)->latest()->get();
+                    $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
                 }
             } else {
                 if ($user->role_id == 2) {
-                    $quizzes = OnlineQuiz::where('created_by', $user->id)->where('active_status', 1)->get();
+                    $quizzes = OnlineQuiz::where('created_by', $user->id)->where('status', 1)->latest()->get();
                 } else {
-                    $quizzes = OnlineQuiz::where('active_status', 1)->get();
+                    $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
                 }
             }
 
@@ -1002,8 +1208,11 @@ class CourseSettingController extends Controller
                     $data['isDefault'] = true;
                 }
             }
+            $timetables = TimeTable::where('status', 1)->latest()->get();
+            $course_reviews = CourseReveiw::where('course_id',$id)->latest()->get();
+            $reviews = CourseReveiw::where('course_id',$id)->latest()->get();
 
-            return view('coursesetting::course_details', $data, compact('data', 'editLesson', 'levels', 'video_list', 'vdocipher_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates'));
+            return view('coursesetting::course_details', $data, compact('data', 'editLesson', 'levels', 'video_list', 'vdocipher_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates', 'timetables', 'reviews','course_reviews'));
         } catch (\Exception $e) {
             Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
             return redirect()->back();
@@ -1019,11 +1228,10 @@ class CourseSettingController extends Controller
             $user = Auth::user();
             $course = Course::findOrFail($id);
             if ($course->type == 1) {
-
                 if ($user->role_id == 2) {
-                    $quizzes = OnlineQuiz::where('category_id', $course->category_id)->where('created_by', $user->id)->latest()->get();
+                    $quizzes = OnlineQuiz::where('created_by', $user->id)->latest()->get();
                 } else {
-                    $quizzes = OnlineQuiz::where('category_id', $course->category_id)->latest()->get();
+                    $quizzes = OnlineQuiz::latest()->get();
                 }
             } else {
                 if ($user->role_id == 2) {
@@ -1065,8 +1273,11 @@ class CourseSettingController extends Controller
                 $certificates = Certificate::where('created_by', Auth::user()->id)->latest()->get();
             }
             $editChapter = Chapter::where('id', $chapter_id)->first();
+            $timetables = TimeTable::where('status', 1)->latest()->get();
+            $course_reviews = CourseReveiw::where('course_id',$id)->latest()->get();
+            $reviews = CourseReveiw::where('course_id',$id)->latest()->get();
 
-            return view('coursesetting::course_details', compact('data', 'editChapter', 'levels', 'video_list', 'vdocipher_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates'));
+            return view('coursesetting::course_details', compact('data', 'editChapter', 'levels', 'video_list', 'vdocipher_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates', 'timetables', 'reviews','course_reviews'));
         } catch (\Exception $e) {
             Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
             return redirect()->back();
@@ -1082,19 +1293,20 @@ class CourseSettingController extends Controller
 
         if ($course->type == 1) {
 
-            if ($user->role_id == 2) {
-                $quizzes = OnlineQuiz::where('status', 1)->where('category_id', $course->category_id)->where('created_by', $user->id)->latest()->get();
+            if ($user->role_id == 2 || $user->role_id == 9) {
+                $quizzes = OnlineQuiz::where('status', 1)->where('created_by', $user->id)->latest()->get();
             } else {
-                $quizzes = OnlineQuiz::where('status', 1)->where('category_id', $course->category_id)->latest()->get();
+                $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
             }
         } else {
-            if ($user->role_id == 2) {
+            if ($user->role_id == 2 || $user->role_id == 9) {
 
                 $quizzes = OnlineQuiz::where('status', 1)->where('created_by', $user->id)->get();
             } else {
-                $quizzes = OnlineQuiz::where('status', 1)->get();
+                $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
             }
         }
+
         $timetables = TimeTable::where('status', 1)->latest()->get();
 
         $chapters = Chapter::where('course_id', $id)->orderBy('position', 'asc')->with('lessons')->get();
@@ -1133,8 +1345,10 @@ class CourseSettingController extends Controller
         if (currentTheme() == 'tvt') {
             $subjects = SchoolSubject::where('status', 1)->orderBy('order', 'asc')->get();
         }
-
-        return view('coursesetting::course_details', compact('timetables', 'subjects', 'data', 'vdocipher_list', 'levels', 'video_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates'));
+        $course_reviews = CourseReveiw::where('course_id',$id)->latest()->get();
+        $reviews = CourseReveiw::where('course_id',$id)->latest()->get();
+        // dd($course, $languages);
+        return view('coursesetting::course_details', compact('timetables', 'subjects', 'data', 'vdocipher_list', 'levels', 'video_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates', 'reviews','course_reviews'));
     }
 
     public function setCourseDripContent(Request $request)
@@ -1236,6 +1450,7 @@ class CourseSettingController extends Controller
         $related_class = $course->class()->count();
         $related_chapter = $course->chapters()->count();
 
+
         if (
             $related_lessons > 0 ||
             $related_enrolled_users > 0 ||
@@ -1290,15 +1505,6 @@ class CourseSettingController extends Controller
         }
 
 
-        // dd(
-        //     $related_lessons,
-        //     $related_enrolled_users,
-        //     $related_quiz,
-        //     $related_class,
-        //     $related_chapter,
-        // );
-
-
         // $chapters = Chapter::where('course_id', $course->id)->get();
         // // $chapters->lessons()
         // foreach ($chapters as $chapter) {
@@ -1343,11 +1549,65 @@ class CourseSettingController extends Controller
             (!empty($related_chapter) ? ' and Chapter' : '');
     }
 
+    public function tutorCourseList(Request $request)
+    {
+        $course_sale = Course::where('type', 9)->orderBy('created_at', 'desc')->get();
+        return view('coursesetting::tutor_courses', compact('course_sale','request'));
+    }
+
+    public function getTutorCourseData(Request $request){
+    if($request->has('tutor_id')){
+
+        $query = Course::where('type', 9)->where('user_id',$request->tutor_id)->orderBy('seq_no', 'desc')->get();
+    }else{
+      $query = Course::where('type', 9)->orderBy('seq_no', 'desc')->get();
+    }
+      return DataTables::of($query)
+          ->addColumn('title', function (Course $course) {
+              return $course->title;
+          })
+          ->addColumn('price', function (Course $course) {
+              return $course->price;
+          })
+          ->addColumn('lessons', function (Course $course) {
+              return $course->lessons->count();
+          })
+          ->addColumn('user', function (Course $course) {
+            return $course->user->name;
+          })
+          ->addColumn('status', function (Course $course) {
+              return view('coursesetting::components._course_status_td', ['query' => $course]);
+          })
+          ->addColumn('action', function (Course $course) {
+              $html = '';
+              $html = '<div class="dropdown CRM_dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">Action</button>
+
+                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                          <a href="'.route('courseDetails',[$course->id]).'" class="dropdown-item">Edit</a>
+                          <a href="javascript:void(0);"  class="dropdown-item" onclick="confirm_modal(\''.route('Delete.TimeTable', [$course->id]).'\')">Delete</a>
+                          </div>
+                      </div>';
+              return $html;
+          })
+          //             ->only(['title', 'start_date', 'end_date', 'price', 'action'])
+          ->rawColumns(['action'])
+          ->addIndexColumn()
+          // ->make(true);
+          ->toJson();
+      return view('coursesetting::repeat_course_list', compact('course_sale_list'));
+    }
 
     public function getAllCourseData(Request $request)
     {
+      if(isTutor()){
+        $whereIn = [1,2,7,9];
+      }else{
+        $whereIn = [1, 2, 7];
+      }
+        $query = Course::whereIn('type', $whereIn)->orderBy('seq_no', 'desc')->with('category', 'quiz', 'user', 'children');
 
-        $query = Course::whereIn('type', [1, 2, 7])->with('category', 'quiz', 'user');
         if ($request->course_status != "") {
             if ($request->course_status == 1) {
                 $query->where('courses.status', 1);
@@ -1374,9 +1634,13 @@ class CourseSettingController extends Controller
             $query->where('mode_of_delivery', $request->mode_of_delivery);
         }
 
+
         if (isInstructor()) {
             $query->where('user_id', '=', Auth::id());
             $query->orWhere('assistant_instructors', 'like', '%"{' . Auth::id() . '}"%');
+        }
+        if (isTutor()) {
+            $query->where('user_id', '=', Auth::id());
         }
         if (isModuleActive('OrgInstructorPolicy') && \auth()->user()->role_id != 1) {
             $assigns = Auth::user()->policy->course_assigns;
@@ -1422,8 +1686,10 @@ class CourseSettingController extends Controller
                     return trans('courses.Course');
                 } elseif ($query->type == 7) {
                     return trans('Time Table');
+                } elseif ($query->type == 9) {
+                    return trans('Tutor Course');
                 } else {
-                    return trans('quiz.Quiz');
+                    return trans('Big Quiz');
                 }
             })->addColumn('status', function ($query) {
                 return view('coursesetting::components._course_status_td', ['query' => $query]);
@@ -1431,11 +1697,29 @@ class CourseSettingController extends Controller
                 return $query->lessons->count();
             })
             ->editColumn('category', function ($query) {
-                if ($query->category) {
+                if ($query->category && !isTutor()) {
                     return $query->category->name;
                 } else {
                     return '';
                 }
+            })
+            ->editColumn('test_prep_type', function ($query) {
+                $test_prep_type = '';
+                if ($query->type == 1 && !isTutor()) {
+                    foreach ($query->children as $child) {
+                        if ($query->has('children') && $child->type == 4) {
+                            $test_prep_type .= '<i class="fa fa-arrow-right"></i> Full Course';
+                        }
+                        if ($query->has('children') && $child->type == 5) {
+                            $test_prep_type .= '<br><i class="fa fa-arrow-right"></i>  Prep-Course(on-demand)';
+                        }
+                        if ($query->has('children') && $child->type == 6) {
+                            $test_prep_type .= '<br><i class="fa fa-arrow-right"></i>  Prep-Course(live)';
+                        }
+                    }
+                }
+
+                return $test_prep_type;
             })
             ->editColumn('quiz', function ($query) {
                 if ($query->quiz) {
@@ -1444,7 +1728,7 @@ class CourseSettingController extends Controller
                     return '';
                 }
             })->editColumn('user', function ($query) {
-                if ($query->user) {
+                if ($query->user && isAdmin()) {
                     return $query->user->name;
                 } else {
                     return '';
@@ -1463,28 +1747,30 @@ class CourseSettingController extends Controller
                 return view('coursesetting::components._course_price_td', ['query' => $query]);
             })->addColumn('action', function ($query) {
                 return view('coursesetting::components._course_action_td', ['query' => $query]);
-            })->rawColumns(['status', 'price', 'action', 'enrolled_users'])
+            })->rawColumns(['status', 'price', 'action', 'enrolled_users', 'test_prep_type'])
             ->make(true);
     }
 
     public function addNewCourse()
     {
-        if (saasPlanCheck('course')) {
+
+        if (saasPlanCheck('course')){
             Toastr::error('You have reached valid course limit', trans('common.Failed'));
             return redirect()->back();
         }
-        $user = Auth::user();
 
+        $user = Auth::user();
         $video_list = [];
         $vdocipher_list = [];
-
-
         $query = Category::orderBy('position_order', 'ASC');
+
+       // dd(isModuleActive('OrgInstructorPolicy') && \auth()->user()->role_id != 1);
         if (isModuleActive('OrgInstructorPolicy') && \auth()->user()->role_id != 1) {
             $assign = OrgPolicyCategory::where('policy_id', \auth()->user()->policy_id)->pluck('category_id')->toArray();
             $query->whereIn('id', $assign);
         }
         $categories = $query->with('parent')->get();
+      //  dd($categories);
         if ($user->role_id == 2) {
             $quizzes = OnlineQuiz::where('status', 1)->where('created_by', $user->id)->latest()->get();
         } else {
@@ -1501,21 +1787,90 @@ class CourseSettingController extends Controller
             $instructor_query->whereIn('role_id', [1, 2]);
         }
         $instructors = $instructor_query->get();
-
         $languages = Language::select('id', 'native', 'code')
             ->where('status', '=', 1)
             ->get();
         $levels = CourseLevel::where('status', 1)->get();
         $title = trans('courses.All');
 
-        $sub_lists = $this->getSubscriptionList();
-
+       $sub_lists = $this->getSubscriptionList();
         $subjects = [];
         if (currentTheme() == 'tvt') {
             $subjects = SchoolSubject::where('status', 1)->orderBy('order', 'asc')->get();
         }
-        return view('coursesetting::add_course', compact('timetables', 'subjects', 'sub_lists', 'levels', 'video_list', 'vdocipher_list', 'title', 'quizzes', 'categories', 'languages', 'instructors', 'vdocipher_list'));
+
+        $reviews = CourseReveiw::get();
+        // dd($reviews);
+
+        return view('coursesetting::add_course', compact('timetables', 'subjects', 'sub_lists', 'levels', 'video_list', 'vdocipher_list', 'title', 'quizzes', 'categories', 'languages', 'instructors', 'vdocipher_list', 'reviews'));
     }
+
+
+
+     // public function addNewCourse()
+    // {
+
+
+    //     if (saasPlanCheck('course')) {
+    //         Toastr::error('You have reached valid course limit', trans('common.Failed'));
+    //         return redirect()->back();
+    //     }
+    //     $user = Auth::user();
+
+    //     $video_list = [];
+    //     $vdocipher_list = [];
+
+
+    //     $query = Category::orderBy('position_order', 'ASC');
+    //     //dd(isModuleActive('OrgInstructorPolicy') && \auth()->user()->role_id != 1);
+    //     if (isModuleActive('OrgInstructorPolicy') && \auth()->user()->role_id != 1) {
+    //         $assign = OrgPolicyCategory::where('policy_id', \auth()->user()->policy_id)->pluck('category_id')->toArray();
+    //         $query->whereIn('id', $assign);
+    //     }
+    //     $categories = $query->with('parent')->get();
+    //     if ($user->role_id == 2) {
+    //         $quizzes = OnlineQuiz::where('status', 1)->where('created_by', $user->id)->latest()->get();
+    //     } else {
+    //         $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
+    //     }
+    //     $timetables = TimeTable::where('status', 1)->latest()->get();
+
+    //     $instructor_query = User::select('name', 'id');
+    //     if (isModuleActive('UserType')) {
+    //         $instructor_query->whereHas('userRoles', function ($q) {
+    //             $q->whereIn('role_id', [1, 2]);
+    //         });
+    //     } else {
+    //         $instructor_query->whereIn('role_id', [1, 2]);
+    //     }
+    //     $instructors = $instructor_query->get();
+
+    //     $languages = Language::select('id', 'native', 'code')
+    //         ->where('status', '=', 1)
+    //         ->get();
+    //     $levels = CourseLevel::where('status', 1)->get();
+    //     $title = trans('courses.All');
+
+    //     $sub_lists = $this->getSubscriptionList();
+
+    //     $subjects = [];
+    //     if (currentTheme() == 'tvt') {
+    //         $subjects = SchoolSubject::where('status', 1)->orderBy('order', 'asc')->get();
+    //     }
+
+    //     $reviews = CourseReveiw::get();
+
+    //     return view('coursesetting::add_course', compact('timetables', 'subjects', 'sub_lists', 'levels', 'video_list', 'vdocipher_list', 'title', 'quizzes', 'categories', 'languages', 'instructors', 'vdocipher_list', 'reviews'));
+    // }
+
+
+
+
+
+
+
+
+
 
     public function changeLessonChapter(Request $request)
     {
@@ -1626,69 +1981,343 @@ class CourseSettingController extends Controller
 
     public function addToSale($id)
     {
-        // dd('success');
-        $course = Course::where('id', $id)->with('children')->get();
-        // dd($course);
-        return view('coursesetting::repeat_course', compact('course'));
-        // $request->validate([
-        //     'start_date' => 'required',
-        //     'end_date' => 'required',
-        //     'price' => 'required',
-        //     'status' => 'required',
-        // ]);
-        // if ($request->start_date > $request->end_date) {
-        //     Toastr::error('Start Date Should Not Greater then End Date !', 'Error');
+        $course = Course::where('parent_id', $id)->where('type', 8)->with('course_sale_data')->first();
+
+        $parent = Course::where('id', $id);
+        if ($course == null) {
+            $parent = $parent->with(['chapters.lessons' => function ($q) {
+                $q->select(['id', 'name', 'chapter_id', 'quiz_id']);
+            }, 'files', 'chapters.lessons.quiz']);
+        } else {
+            $parent = $parent->with(['chapters.course_check' => function ($q) use ($course) {
+                $q->where('course_id', $course->id);
+            }, 'chapters.lessons.course_check' => function ($q) use ($course) {
+                $q->where('course_id', $course->id);
+            }, 'chapters.lessons' => function ($q) {
+                $q->select(['id', 'name', 'chapter_id', 'quiz_id']);
+            }, 'files.course_check' => function ($q) use ($course) {
+                $q->where('course_id', $course->id);
+            }]);
+        }
+        $parent = $parent->first();
+        $timetables = TimeTable::where('status', 1)->latest()->get();
+
+        return view('coursesetting::repeat_course', compact('parent', 'course', 'timetables'));
+    }
+
+    public function saveAddToSale(Request $request)
+    {
+        $today = Carbon::now()->format('m/d/Y');
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        if ($start_date > $end_date) {
+            Toastr::error('Start Date Should Not Greater then End Date !', 'Error');
+            return redirect()->back();
+        }
+
+        if ($today > $start_date) {
+            Toastr::error('Start Date Should Not Less then Today !', 'Error');
+            return redirect()->back();
+        }
+
+        // $date_exist = Course::where(function ($check) use ($start_date, $end_date) {
+        //     $check->whereBetween('start_date', [$start_date, $end_date])
+        //         ->orWhereBetween('end_date', [$start_date, $end_date])
+        //         ->orWhere('start_date', $end_date)
+        //         ->orWhere('end_date', $start_date)
+        //         ->orWhere(function ($check) use ($start_date, $end_date) {
+        //             $check->where('start_date', '<=', $start_date)
+        //                 ->where('end_date', '>=', $end_date);
+        //         });
+        // })->exists();
+
+        // if ($date_exist == true) {
+        //     Toastr::error('The selected Dates have another Course on Sale, Please Change Dates !', 'Error');
         //     return redirect()->back();
         // }
-        // $add_to_sale = new TestPrepSale();
-        // $add_to_sale->test_prep_id = $request->test_prep_id;
-        // $add_to_sale->start_date = $request->start_date;
-        // $add_to_sale->end_date = $request->end_date;
-        // $add_to_sale->price = $request->price;
-        // $add_to_sale->status = $request->status;
 
-        // $add_to_sale->save();
+        $request->validate(
+            [
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'price' => 'required',
+                'timetable' => 'required',
 
-        // Toastr::success('Test Prep Successfully Added To Sale !', 'Success');
-        // return redirect()->to(route('course.viewSaleList'));
+                'card_1_heading' => 'nullable|max:60',
+                'card_1_subheading' => 'nullable|max:60',
+                'card_1_text' => 'nullable|max:400',
+
+                'card_2_heading' => 'nullable|max:60',
+                'card_2_subheading' => 'nullable|max:60',
+                'card_2_text' => 'nullable|max:400',
+
+                'card_3_heading' => 'nullable|max:60',
+                'card_3_subheading' => 'nullable|max:60',
+                'card_3_text' => 'nullable|max:400',
+
+                'card_4_heading' => 'nullable|max:60',
+                'card_4_subheading' => 'nullable|max:60',
+                'card_4_text' => 'nullable|max:400',
+
+                'slider_1_heading' => 'nullable|max:60',
+                'slider_1_image' => 'nullable|mimes:jpeg,bmp,png,jpg',
+                'slider_1_text' => 'nullable|max:400',
+
+                'slider_2_heading' => 'nullable|max:60',
+                'slider_2_image' => 'nullable|mimes:jpeg,bmp,png,jpg',
+                'slider_2_text' => 'nullable|max:400',
+
+                'slider_3_heading' => 'nullable|max:60',
+                'slider_3_image' => 'nullable|mimes:jpeg,bmp,png,jpg',
+                'slider_3_text' => 'nullable|max:400',
+
+                'description' => 'required|max:500'
+            ],
+            [
+                'start_date.required' => 'Please Select Start Date !',
+                'end_date.required' => 'Please Select End Date !',
+                'price.required' => 'Please Enter Price !',
+                'description.required' => 'Please Enter Course Description !',
+            ]
+        );
+
+        if (!empty($request->course_id)) {
+            $course = Course::find($request->course_id);
+            $course->price = $request->price;
+            $course->start_date = $request->start_date;
+            $course->end_date = $request->end_date;
+            $course->end_date = $request->end_date;
+            $course->time_table_id = $request->timetable;
+            if ($request->hasFile('parent_course_image')) {
+                $course->thumbnail = $this->saveCroppedImage($request->parent_course_thumbnail_image);
+                $course->image = $this->saveImage($request->parent_course_image);
+            }
+            $course->update();
+        } else {
+
+            $parent_course = Course::find($request->parent_id);
+            $parent_course->type = 8;
+            $parent_course->price = $request->price;
+            $parent_course->parent_id = $request->parent_id;
+            $parent_course->start_date = $request->start_date;
+            $parent_course->end_date = $request->end_date;
+            $parent_course->time_table_id = $request->timetable;
+            $last_max_seq = Course::where('type', 8)->max('seq_no');
+            $parent_course->seq_no = intval($last_max_seq) + 1;
+            if ($request->hasFile('parent_course_image')) {
+                $parent_course->thumbnail = $this->saveCroppedImage($request->parent_course_thumbnail_image);
+                $parent_course->image = $this->saveImage($request->parent_course_image);
+            }
+
+            $course = $parent_course->getAttributes();
+            if (array_key_exists('id', $course)) {
+                unset($course['id']);
+            }
+            if (array_key_exists('updated_at', $course)) {
+                unset($course['updated_at']);
+            }
+            if (array_key_exists('created_at', $course)) {
+                unset($course['created_at']);
+            }
+
+            $course = Course::create($course);
+        }
+
+        CourseSale::where('course_id', $course->id)->delete();
+
+        if (isset($request->chapter_ids) && count($request->chapter_ids)) {
+            foreach ($request->chapter_ids as $chapter_id) {
+                $course_check = new CourseSale();
+                $course_check->course_id = $course->id;
+                $course_check->content_type = 'chapter';
+                $course_check->content_id = $chapter_id;
+                $course_check->save();
+            }
+        }
+
+        if (isset($request->chapter_ids) && count($request->lesson_ids)) {
+            foreach ($request->lesson_ids as $lesson_id) {
+                $course_check = new CourseSale();
+                $course_check->course_id = $course->id;
+                $course_check->content_type = 'lesson';
+                $course_check->content_id = $lesson_id;
+                $course_check->save();
+            }
+        }
+
+        if (isset($request->chapter_ids) && count($request->course_file_ids)) {
+            foreach ($request->course_file_ids as $course_file_id) {
+                $course_check = new CourseSale();
+                $course_check->course_id = $course->id;
+                $course_check->content_type = 'course_file';
+                $course_check->content_id = $course_file_id;
+                $course_check->save();
+            }
+        }
+        $course_sale_data = CourseSaleData::where('course_id', $course->id)->first();
+        if (empty($course_sale_data)) {
+            $course_sale_data = new CourseSaleData();
+        }
+
+        $course_sale_data->card_1_heading = $request->card_1_heading;
+        $course_sale_data->card_1_subheading = $request->card_1_subheading;
+        $course_sale_data->card_1_text = $request->card_1_text;
+
+        $course_sale_data->card_2_heading = $request->card_2_heading;
+        $course_sale_data->card_2_subheading = $request->card_2_subheading;
+        $course_sale_data->card_2_text = $request->card_2_text;
+
+        $course_sale_data->card_3_heading = $request->card_3_heading;
+        $course_sale_data->card_3_subheading = $request->card_3_subheading;
+        $course_sale_data->card_3_text = $request->card_3_text;
+
+        $course_sale_data->card_4_heading = $request->card_4_heading;
+        $course_sale_data->card_4_subheading = $request->card_4_subheading;
+        $course_sale_data->card_4_text = $request->card_4_text;
+
+        $course_sale_data->slider_1_heading = $request->slider_1_heading;
+        if ($request->has('slider_1_image')) {
+            $course_sale_data->slider_1_image = $this->saveImage($request->slider_1_image);
+        }
+        $course_sale_data->slider_1_text = $request->slider_1_text;
+
+        $course_sale_data->slider_2_heading = $request->slider_2_heading;
+        if ($request->has('slider_2_image')) {
+            $course_sale_data->slider_2_image = $this->saveImage($request->slider_2_image);
+        }
+        $course_sale_data->slider_2_text = $request->slider_2_text;
+
+        $course_sale_data->slider_3_heading = $request->slider_3_heading;
+        if ($request->has('slider_3_image')) {
+            $course_sale_data->slider_3_image = $this->saveImage($request->slider_3_image);
+        }
+        $course_sale_data->slider_3_text = $request->slider_3_text;
+
+        $course_sale_data->description = $request->description;
+
+        $course_sale_data->course_id = $course->id;
+
+        $course_sale_data->save();
+
+        Toastr::success('Course Successfully Added To Sale !', 'Success');
+        return redirect()->route('course.viewSaleList');
     }
 
     public function viewSaleList()
     {
-        $test_prep_sale = TestPrepSale::orderBy('created_at', 'desc')->get();
-
-        return view('coursesetting::test_prep_sale_list', compact('test_prep_sale'));
+        $course_sale = Course::where('type', 8)->orderBy('created_at', 'desc')->get();
+        return view('coursesetting::repeat_course_list', compact('course_sale'));
     }
 
     public function viewSaleListData()
     {
-        $query = TestPrepSale::orderBy('created_at', 'desc')->get();
+        $query = Course::where('type', 8)->orderBy('seq_no', 'desc')->get();
         return DataTables::of($query)
-            ->addColumn('test_prep_id', function (TestPrepSale $testPrepSale) {
-                return $testPrepSale->test_prep_id;
+            ->addColumn('title', function (Course $course_sale) {
+                return $course_sale->parent->title;
             })
-            ->addColumn('start_date', function (TestPrepSale $testPrepSale) {
-                return $testPrepSale->start_date;
+            ->addColumn('start_date', function (Course $course_sale) {
+                return $course_sale->start_date->format('Y-m-d');
             })
-            ->addColumn('end_date', function (TestPrepSale $testPrepSale) {
-                return $testPrepSale->end_date;
+            ->addColumn('end_date', function (Course $course_sale) {
+                return $course_sale->end_date->format('Y-m-d');
             })
-            ->addColumn('price', function (TestPrepSale $testPrepSale) {
-                return $testPrepSale->price;
+            ->addColumn('price', function (Course $course_sale) {
+                return $course_sale->price;
             })
-            ->addColumn('status', function (TestPrepSale $testPrepSale) {
-                return $testPrepSale->status;
+            // ->addColumn('created_at', function (Course $course_sale) {
+            //     return $course_sale->created_at->format('d-M-y, g:i A');
+            // })
+            // ->addColumn('updated_at', function (Course $course_sale) {
+            //     return $course_sale->updated_at->format('d-M-y, g:i A');
+            // })
+            ->addColumn('action', function ($course_sale) {
+                $html = '';
+                $html = '<div class="dropdown CRM_dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Action</button>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                            <a href=\'' . route('course.addToSale', [$course_sale->parent_id]) . '\' class="dropdown-item">Edit</a>
+                            <a href="javascript:void(0);"  class="dropdown-item" onclick="confirm_modal(\'' . route('deleteRepeatCourse', [$course_sale->id]) . '\')">Delete</a>
+                            </div>
+                        </div>';
+                return $html;
             })
-            ->addColumn('created_at', function (TestPrepSale $testPrepSale) {
-                return $testPrepSale->created_at->format('d-M-y, g:i A');
-            })
-            ->addColumn('updated_at', function (TestPrepSale $testPrepSale) {
-                return $testPrepSale->updated_at->format('d-M-y, g:i A');
-            })
-            ->only(['test_prep_id', 'start_date', 'end_date', 'price', 'status', 'created_at', 'updated_at'])
-            // ->rawColumns(['logo', 'parent_category', 'actions'])
+            //             ->only(['title', 'start_date', 'end_date', 'price', 'action'])
+            ->rawColumns(['action'])
             ->addIndexColumn()
-            ->make(true);
-        return view('coursesetting::test_prep_sale_list', compact('test_prep_sale_list'));
+            // ->make(true);
+            ->toJson();
+        return view('coursesetting::repeat_course_list', compact('course_sale_list'));
+    }
+
+    public function deleteRepeatCourse($id)
+    {
+        // Retrieve the repeat course with its related data
+        $repeat_course = Course::where('id', $id)->with([
+            'course_sale_data',
+            'course_chapters_check',
+            'course_lesson_check',
+            'course_file_check'
+        ])->first();
+
+        // Check if the repeat course exists
+        if ($repeat_course) {
+
+            // Delete the associated course sale data and unlink the slider images
+            if ($repeat_course->course_sale_data !== null) {
+                unlink($repeat_course->course_sale_data->slider_1_image);
+                unlink($repeat_course->course_sale_data->slider_2_image);
+                unlink($repeat_course->course_sale_data->slider_3_image);
+                $repeat_course->course_sale_data->delete();
+            }
+
+            // Delete the associated course chapters
+            $repeat_course->course_chapters_check()->delete();
+            $repeat_course->course_lesson_check()->delete();
+            $repeat_course->course_file_check()->delete();
+
+            // Delete the repeat course
+            $repeat_course->delete();
+
+            Toastr::success('Repeat Course Successfully Deleted!', 'Success');
+        } else {
+            Toastr::warning('Course not found!', 'Warning');
+        }
+
+        return redirect()->back();
+    }
+
+
+    public function changeCourseSequence()
+    {
+        $payload = json_decode(file_get_contents('php://input'), true);
+        $order = $payload['order'];
+
+        foreach ($order as $item) {
+            $id = $item['id'];
+            $course_new_seq = Course::find($id);
+            $course_new_seq->seq_no = $item['new_position'];
+            $course_new_seq->save();
+
+            Course::where('parent_id', $id)->update(['seq_no' => $item['new_position']]);
+        }
+
+        return response()->json(200);
+    }
+
+    public function changeCourseCategorySequence()
+    {
+        $payload = json_decode(file_get_contents('php://input'), true);
+        $order = $payload['order'];
+
+        foreach ($order as $item) {
+            $id = $item['id'];
+
+            Category::where('id', $id)->update(['seq_no' => $item['new_position']]);
+        }
+
+        return response()->json(200);
     }
 }

@@ -16,4 +16,10 @@ Route::group(['prefix' => 'virtualclass', 'middleware' => ['auth', 'admin']], fu
     Route::post('bbb-virtual-class-create/{id}', 'VirtualClassController@bbbMeetingStore')->name('virtual-class.bbbMeetingStore')->middleware('RoutePermissionCheck:virtual-class.create');
     Route::post('jitsi-virtual-class-create/{id}', 'VirtualClassController@jitsiMeetingStore')->name('virtual-class.jitsiMeetingStore')->middleware('RoutePermissionCheck:virtual-class.create');
      Route::get('getcourses', 'VirtualClassController@getcourses');
+     Route::get('getprogram', 'VirtualClassController@getprogram');
+     Route::get('getinstructorcourses', 'VirtualClassController@getinstructorcourses');
+     Route::get('getcoursetype', 'VirtualClassController@getcoursetype');
+     
+     Route::post('validateClass', 'VirtualClassController@validateClass');
+     Route::post('mergeCourseTypeExist', 'VirtualClassController@mergeCourseTypeExist');
 });

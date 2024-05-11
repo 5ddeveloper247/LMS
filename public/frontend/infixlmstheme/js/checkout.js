@@ -27,7 +27,7 @@ $(document).ready(function () {
                 dataType: "json",
                 url: base_url + '/StudentApplyCoupon',
                 success: function (data) {
-
+                    console.log(data);
                     if (data.error) {
                         // $('#totalBalance').html("23");
                         $('.totalBalance').html(sign + "" + data.total);

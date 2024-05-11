@@ -32,13 +32,13 @@
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <input type="hidden" name="selectTab" id="selectTab">
-                                    <div role="tabpanel" class="tab-pane fade " id="indivitual_email_sms">
+                                    <div role="tabpanel" class="tab-pane fade  show active" id="indivitual_email_sms">
                                         @include('setting::page_components.smtp_mail_setup')
 
 
                                     </div>
                                     <!-- End Individual Tab -->
-                                    <div role="tabpanel" class="tab-pane fade show active" id="file_list">
+                                    <div role="tabpanel" class="tab-pane fade" id="file_list">
 
                                         @include('setting::page_components.send_grid_mail_setup')
 

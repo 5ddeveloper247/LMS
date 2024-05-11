@@ -5,9 +5,9 @@
     <section class="section_padding tutor_feature">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 offset-lg-1 col-md-12">
+                <div class="col-lg-10 offset-1 col-md-12">
                     <div class="row">
-                        <div class="col-lg-10 offset-lg-1 col-md-12">
+                        <div class="col-lg-10 offset-1 col-md-12">
                             <div class="section__title text-center">
                                 <h3 class='m-0'>Speak Naturally with Professional Online Tutors from World-wide</h3>
                             </div>

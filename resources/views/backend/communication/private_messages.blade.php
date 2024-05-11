@@ -28,6 +28,7 @@
                                 </div>
                                 <ul id="receiver_list">
                                     @foreach ($users as $user)
+                                        
                                         <li class="@if(@$user->sender->seen=='0') unseen @endif">
                                             <a href="#" id="user{{$user->id}}" class="user_list"
                                                onClick="getMessage({{$user->id}})">

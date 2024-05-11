@@ -209,7 +209,7 @@
         $('.quizReportTable').DataTable({
             bLengthChange: true,
             "lengthChange": true,
-            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
             "bDestroy": true,
             processing: true,
             serverSide: true,

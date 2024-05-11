@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Jobs\SendGeneralEmail;
 use App\User;
-use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Jobs\SendGeneralEmail;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Models\WithdrawRequest;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Modules\Payment\Entities\Checkout;
+use Modules\Payment\Entities\Withdraw;
+use Illuminate\Database\Eloquent\Model;
 use Modules\CourseSetting\Entities\Course;
+use Modules\StudentSetting\Entities\Program;
+use Modules\Payment\Entities\InstructorPayout;
 use Modules\CourseSetting\Entities\CourseCanceled;
 use Modules\CourseSetting\Entities\CourseEnrolled;
-use Modules\Payment\Entities\InstructorPayout;
 use Modules\Payment\Entities\InstructorTotalPayout;
-use Modules\Payment\Entities\Withdraw;
-use Modules\StudentSetting\Entities\Program;
-use Modules\Subscription\Entities\SubscriptionCheckout;
 use Modules\Subscription\Entities\SubscriptionCourse;
-use Yajra\DataTables\DataTables;
+use Modules\Subscription\Entities\SubscriptionCheckout;
+use App\Models\PreRegistration;
 
 class AdminController extends Controller
 {
@@ -32,31 +35,31 @@ class AdminController extends Controller
         $start = !empty($request->start_date) ? date('Y-m-d', strtotime($request->start_date)) : '';
         $end = !empty($request->end_date) ? date('Y-m-d', strtotime($request->end_date)) : '';
 
-        try {
-            $enrolls = [];
+        //        try {
+        $enrolls = [];
 
-            if (Auth::user()->role_id == 2) {
-                $courses = Course::where('user_id', Auth::id())->where('type', 1)->pluck('id');
-                $programs = Program::query();
-                foreach ($courses as $course) {
-                    $programs =  $programs->orWhere('allcourses', 'like', '%,"' . $course . '",%');
-                }
-                $programs =  $programs->get();
-            } else {
-                $programs = Program::all();
+        if (Auth::user()->role_id == 2) {
+            $courses = Course::where('user_id', Auth::id())->where('type', 1)->get();
+            $programs = Program::query();
+            foreach ($courses as $course) {
+                $programs =  $programs->orWhere('allcourses', 'like', '%"' . $course . '"%');
             }
+            $programs =  $programs->get();
+        } elseif (Auth::user()->role_id == 9) {
+            $courses = Course::where('user_id', Auth::id())->get();
+            $programs = [];
+        } else {
+            $programs = Program::all();
             $courses = Course::all();
-            $query = User::where('role_id', 3);
-            if (isModuleActive('Organization') && Auth::user()->isOrganization()) {
-                $query->where('organization_id', Auth::id());
-            }
-            $students = $query->get();
-
-            return view('backend.student.enroll_student', compact('programId', 'courseId', 'start', 'end', 'enrolls', 'programs', 'students', 'courses'));
-        } catch (\Exception $e) {
-            Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
-            return redirect()->back();
         }
+
+        $query = User::where('role_id', 3);
+        if (isModuleActive('Organization') && Auth::user()->isOrganization()) {
+            $query->where('organization_id', Auth::id());
+        }
+        $students = $query->get();
+
+        return view('backend.student.enroll_student', get_defined_vars());
     }
 
     public function cancelLogs(Request $request)
@@ -90,6 +93,7 @@ class AdminController extends Controller
     public function enrollFilter(Request $request)
     {
 
+
         $programId = $request->get('program', '');
         $courseId = $request->get('course', '');
         $start = !empty($request->start_date) ? date('Y-m-d', strtotime($request->start_date)) : '';
@@ -101,17 +105,21 @@ class AdminController extends Controller
 
         try {
             $enrolls = [];
+
             if (Auth::user()->role_id == 2) {
-                $courses = Course::where('user_id', Auth::id())->where('type', 1)->pluck('id');
+                $courses = Course::where('user_id', Auth::id())->where('type', 1)->get();
                 $programs = Program::query();
                 foreach ($courses as $course) {
-                    $programs =  $programs->orWhere('allcourses', 'like', '%,"' . $course . '",%');
+                    $programs =  $programs->orWhere('allcourses', 'like', '%"' . $course . '"%');
                 }
                 $programs =  $programs->get();
+            } elseif (Auth::user()->role_id == 9) {
+                $courses = Course::where('user_id', Auth::id())->get();
+                $programs = [];
             } else {
                 $programs = Program::all();
+                $courses = Course::all();
             }
-            $courses = Course::where('type', 2)->get();
             $query = User::where('role_id', 3);
             if (isModuleActive('Organization') && Auth::user()->isOrganization()) {
                 $query->where('organization_id', Auth::id());
@@ -128,7 +136,11 @@ class AdminController extends Controller
     public function reveuneList()
     {
         try {
-            $courses = Course::with('enrolls', 'user')->withCount('enrolls')->get();
+            $courses = Course::with('enrolls', 'user', 'currentCoursePlan')
+                ->withCount('enrolls')
+                ->has('enrolls') // This ensures that the course has at least one enrollment
+                ->get();
+
             return view('payment::admin_revenue', compact('courses'));
         } catch (\Exception $e) {
             return response()->json(['error' => trans("lang.Oops, Something Went Wrong")]);
@@ -163,7 +175,7 @@ class AdminController extends Controller
             $enrolls = $query->whereHas('course.user', function ($query) {
                 $query->where('id', '!=', 1);
             })->latest()->get();
-
+            // dd($enrolls);
 
             $query2 = DB::table('subscription_courses')
                 ->select('subscription_courses.*')
@@ -193,6 +205,167 @@ class AdminController extends Controller
             }
             $instructors = User::where('role_id', 2)->get();
             return view('payment::instructor_revenue_report', compact('search_instructor', 'search_month', 'search_year', 'instructors', 'enrolls', 'subscriptions'));
+        } catch (\Exception $e) {
+            return response()->json(['error' => trans("lang.Oops, Something Went Wrong")]);
+        }
+    }
+
+
+    public function tutorRevenue(Request $request)
+    {
+        try {
+            $search_instructor = $request->get('instructor', '');
+            $search_month = $request->get('month', '');
+            $search_year = empty($request->year) ? date('Y') : $request->year;
+            $query = CourseEnrolled::with('course', 'user', 'course.user');
+
+            if (!empty($search_month)) {
+                $from = date($search_year . '-' . $search_month . '-1');
+                $to = date($search_year . '-' . $search_month . '-31');
+                $query->whereBetween('created_at', [$from, $to]);
+            }
+
+            if (Auth::user()->role_id == 2) {
+                $query->whereHas('course', function ($q) {
+                    $q->where('user_id', Auth::user()->id);
+                });
+            }
+            if (!empty($request->instructor)) {
+                $query->whereHas('course', function ($q) {
+                    $q->where('user_id', \request('instructor'));
+                });
+            }
+
+            $enrolls = $query->whereHas('course.user', function ($query) {
+                $query->where('role_id', 9);
+            })->orderBy('created_at')->latest()->get();
+
+            $total_tutor_revenue = User::where('id', Auth::id())->sum('balance');
+
+            $query2 = DB::table('subscription_courses')
+                ->select('subscription_courses.*')
+                ->selectRaw("SUM(reveune) as total_price");
+            if (Auth::user()->role_id == 2) {
+                $query2->where('user_id', '=', Auth::user()->id);
+            }
+
+
+            if (isModuleActive('Subscription')) {
+                $subscriptionsData = $query2->groupBy('checkout_id')
+                    ->latest()->get();;
+                $subscriptions = [];
+                foreach ($subscriptionsData as $key => $data) {
+                    $subscriptions[$key]['checkout_id'] = $data->checkout_id;
+                    $subscriptions[$key]['date'] = $data->date;
+                    $subscriptions[$key]['price'] = $data->total_price;
+                    $user = User::where('id', $data->instructor_id)->first();
+                    $subscriptions[$key]['instructor'] = $user->name ?? '';
+
+                    $plan = SubscriptionCheckout::where('id', $data->checkout_id)->first();
+
+                    $subscriptions[$key]['plan'] = $plan->plan->title ?? '';
+                }
+            } else {
+                $subscriptions = [];
+            }
+            $instructors = User::whereIn('role_id', [9])->get();
+            return view('payment::tutor_revenue_report', get_defined_vars());
+        } catch (\Exception $e) {
+            return response()->json(['error' => trans("lang.Oops, Something Went Wrong")]);
+        }
+    }
+
+    public function tutorWithdrawRequest(Request $request)
+    {
+        // $withdraw_requests = WithdrawRequest::findOrFail(1);
+        // $withdraw_requests->status =  0;
+        // $withdraw_requests->save();
+
+        try {
+            $withdraw_requests = WithdrawRequest::with('userRequest')->get();
+            return view('payment::tutor_withdraw_requests', get_defined_vars());
+        } catch (\Exception $e) {
+            return response()->json(['error' => trans("lang.Oops, Something Went Wrong")]);
+        }
+    }
+
+
+    public function tutorWithdrawRequestData()
+    {
+        $query = WithdrawRequest::with('userRequest');
+        if (isTutor()) {
+            $query->where('tutor_id', Auth::id());
+        }
+        $query->select('withdraw_requests.*');
+        return Datatables::of($query)
+            ->addIndexColumn()
+            ->editColumn('tutor_name', function ($query) {
+                $user_name = !empty($query->userRequest) ? $query->userRequest->name : 'Deleted Tutor';
+                if (isAdmin()) {
+                    return $user_name;
+                }
+            })
+            ->editColumn('amount', function ($query) {
+                return $query->amount;
+            })
+            ->editColumn('bank_name', function ($query) {
+                return $query->bank_name;
+            })
+            ->editColumn('branch_code', function ($query) {
+                return $query->branch_code;
+            })
+            ->editColumn('account_number', function ($query) {
+                return $query->account_number;
+            })
+            ->editColumn('account_holder', function ($query) {
+                return $query->account_holder;
+            })
+            ->editColumn('account_type', function ($query) {
+                return $query->account_type;
+            })
+            ->editColumn('request_date', function ($query) {
+                return Carbon::parse($query->request_date)->format('d M y');
+            })
+            ->editColumn('transection_id', function ($query) {
+                return $query->transection_id;
+            })
+            ->addColumn('status', function ($query) {
+                return view('payment::partials._td_status', ['query' => $query]);
+            })
+            ->addColumn('action', function ($query) {
+                if (isAdmin()) {
+                    return view('payment::partials._td_action', ['query' => $query]);
+                }
+            })
+            ->rawColumns(['status', 'action'])
+            ->make(true);
+    }
+
+
+    public function changeRequestStatus(Request $request)
+    {
+        try {
+            $withdraw_requests = WithdrawRequest::findOrFail($request->request_id);
+            // Remove Below Comments when real implimentation
+            if ($request->status == 2) {
+                $tutor_revenue = User::findOrFail($withdraw_requests->tutor_id);
+                $tutor_revenue->balance = $tutor_revenue->balance - $request->amount;
+                $tutor_revenue->save();
+                $withdraw_requests->transection_id =  $request->transection_id;
+
+                $checkout = new Checkout();
+                $checkout->tracking =  $request->transection_id;
+                $checkout->user_id = $withdraw_requests->tutor_id;
+                $checkout->price = $request->amount;
+                $checkout->payment_method = 'Manual';
+                $checkout->type = 'cash_out';
+                $checkout->checkout_type = 'Out';
+                $checkout->save();
+            }
+            $withdraw_requests->status =  $request->status;
+            $withdraw_requests->save();
+            Toastr::success('Operation Successful', trans('common.Success'));
+            return redirect()->back();
         } catch (\Exception $e) {
             return response()->json(['error' => trans("lang.Oops, Something Went Wrong")]);
         }
@@ -351,7 +524,7 @@ class AdminController extends Controller
         }
     }
 
-    public function courseCanceled($user_id, $course_id, $price, $status,$course_type)
+    public function courseCanceled($user_id, $course_id, $price, $status, $course_type)
     {
         $user = Auth::user();
         $cancle = new CourseCanceled();
@@ -385,7 +558,6 @@ class AdminController extends Controller
         } else {
             $deleteEnroll = $enroll = CourseEnrolled::with('course', 'user')->findOrFail($id);
         }
-
         $student = $enroll->user;
 
         if (isset($request->refund)) {
@@ -401,16 +573,18 @@ class AdminController extends Controller
             if (!empty($enroll->program_id)) {
                 $this->programCanceled($enroll->user_id, $enroll->program_id, $enroll->purchase_price, $status);
             } else {
-                $this->courseCanceled($enroll->user_id, $enroll->course_id, $enroll->purchase_price, $status,$enroll->course_type);
+                $this->courseCanceled($enroll->user_id, $enroll->course_id, $enroll->purchase_price, $status, $enroll->course_type);
             }
         }
+        if(!empty($enroll->program_id)){
+          $deletePlan = StudentProgramPaymentPlans::where('program_id', $enroll->$program_id)->where('user_id', $enroll->user_id)->where('plan_id', $enroll->plan_id)->delete();
+        }
         $deleteEnroll->delete();
-
         if (UserEmailNotificationSetup($act, $enroll->user)) {
             if ($enroll->user) {
                 SendGeneralEmail::dispatch($enroll->user, $act, [
                     'course' => $enroll->course->title,
-                    'time' => now(),
+                    'time' => Carbon::now()->format('Y-m-d H:i:s'),
                     'reason' => ''
                 ]);
             }
@@ -422,7 +596,7 @@ class AdminController extends Controller
                 $type = $act,
                 $shortcodes = [
                     'course' => $enroll->course->title,
-                    'time' => now(),
+                    'time' => Carbon::now()->format('Y-m-d H:i:s'),
                     'reason' => ''
                 ],
                 trans('common.View'), //actionText
@@ -434,7 +608,7 @@ class AdminController extends Controller
         if (UserMobileNotificationSetup($act, $enroll->user) && !empty($enroll->user->device_token)) {
             send_mobile_notification($enroll->user, $act, [
                 'course' => $enroll->course->title,
-                'time' => now(),
+                'time' => Carbon::now()->format('Y-m-d H:i:s'),
                 'reason' => ''
             ]);
         }
@@ -444,7 +618,7 @@ class AdminController extends Controller
             if ($enroll->course->user) {
                 SendGeneralEmail::dispatch($enroll->course->user, $act, [
                     'course' => $enroll->course->title,
-                    'time' => now(),
+                    'time' => Carbon::now()->format('Y-m-d H:i:s'),
                     'reason' => ''
                 ]);
             }
@@ -456,7 +630,7 @@ class AdminController extends Controller
                 $type = $act,
                 $shortcodes = [
                     'course' => $enroll->course->title,
-                    'time' => now(),
+                    'time' => Carbon::now()->format('Y-m-d H:i:s'),
                     'reason' => ''
                 ],
                 trans('common.View'), //actionText
@@ -468,7 +642,7 @@ class AdminController extends Controller
         if (UserMobileNotificationSetup($act, $enroll->course->user) && !empty($enroll->course->user->device_token)) {
             send_mobile_notification($enroll->course->user, $act, [
                 'course' => $enroll->course->title,
-                'time' => now(),
+                'time' => Carbon::now()->format('Y-m-d H:i:s'),
                 'reason' => ''
             ]);
         }
@@ -492,10 +666,11 @@ class AdminController extends Controller
                 $courses = Course::where('user_id', Auth::id())->where('type', 1)->pluck('id');
                 $programs = Program::query();
                 foreach ($courses as $course) {
-                    $programs =  $programs->orWhere('allcourses', 'like', '%,"' . $course . '",%');
+                    $programs =  $programs->orWhere('allcourses', 'like', '%"' . $course . '"%');
                 }
                 $programs =  $programs->pluck('id');
-                $query = $query->whereIn('program_id', $programs->unique())->groupBy('program_id')->groupBy('user_id');
+                $query = $query->whereIn('program_id', $programs->unique());
+                //                    ->groupBy('program_id')->groupBy('user_id');
             }
         } else {
             $query = CourseEnrolled::where('course_id', null)->with('user');
@@ -506,7 +681,7 @@ class AdminController extends Controller
         $data = [];
         foreach ($query->get() as $quer) {
             $program = Program::find($quer->program_id);
-            $quer->programtitle = $program->programtitle;
+            $quer->programtitle = !empty($program) ? $program->programtitle : "Deleted Program";
             $data[] = $quer;
         }
         $query = $data;
@@ -542,7 +717,7 @@ class AdminController extends Controller
     public function getEnrollLogsQuiz(Request $request)
     {
         $user = Auth::user();
-        if ($user->role_id == 2) {
+        if ($user->role_id == 2 || $user->role_id == 9) {
             $query = CourseEnrolled::where('program_id', null)->with('user', 'course')
                 ->whereHas('course', function ($query) use ($user) {
                     $query->where('user_id', '=', $user->id);
@@ -560,7 +735,7 @@ class AdminController extends Controller
         if (!empty($request->end_date)) {
             $query->whereDate('created_at', '<=', $request->end_date);
         }
-
+        // dd($query);
 
         return Datatables::of($query)
             ->addIndexColumn()
@@ -580,19 +755,29 @@ class AdminController extends Controller
             })
             ->editColumn('type', function ($query) {
                 $type = $query->course->type;
-                if($type == 1 && empty($query->course_type)){
+                if ($type == 1 && empty($query->course_type)) {
                     $type = 'Course';
                 }
-                if($type == 2 && empty($query->course_type)){
+                if ($type == 2 && empty($query->course_type)) {
                     $type = 'Big Quiz';
                 }
-                if($type == 1 && $query->course_type == 4){
-                    $type = 'CNA Prep';
-                }if($type == 1 && $query->course_type == 5){
-                    $type = 'Test-prep<small>(On-Demand)</small>';
+                if ($type == 7 && empty($query->course_type)) {
+                    $type = 'Time Table';
                 }
-                if($type == 1 && $query->course_type == 6 ){
-                    $type = 'Test-prep<small>(Graded)</small>';
+                if ($type == 8 && empty($query->course_type)) {
+                    $type = 'Repeat Course';
+                }
+                if ($type == 1 && $query->course_type == 4) {
+                    $type = 'Full Course';
+                }
+                if ($type == 1 && $query->course_type == 5) {
+                    $type = 'Prep-Courses<small>(On-Demand)</small>';
+                }
+                if ($type == 1 && $query->course_type == 6) {
+                    $type = 'Prep-Courses<small>(Graded)</small>';
+                }
+                if ($type == 9 && !empty($query->course_type)) {
+                    $type = 'Individual Course';
                 }
                 return $type;
             })
@@ -602,7 +787,7 @@ class AdminController extends Controller
             ->addColumn('action', function ($query) {
                 return view('backend.student._td_enroll_log', compact('query'));
             })
-            ->rawColumns(['image', 'action','type'])->make(true);
+            ->rawColumns(['image', 'action', 'type'])->make(true);
     }
 
     public function getCancelLogsData(Request $request)
@@ -647,19 +832,26 @@ class AdminController extends Controller
             })
             ->editColumn('type', function ($query) {
                 $type = $query->course->type;
-                if($type == 1 && empty($query->course_type)){
+                if ($type == 1 && empty($query->course_type)) {
                     $type = 'Course';
                 }
-                if($type == 2 && empty($query->course_type)){
+                if ($type == 2 && empty($query->course_type)) {
                     $type = 'Big Quiz';
                 }
-                if($type == 1 && $query->course_type == 4){
-                    $type = 'CNA Prep';
-                }if($type == 1 && $query->course_type == 5){
-                    $type = 'Test-prep<small>(On-Demand)</small>';
+                if ($type == 7 && empty($query->course_type)) {
+                    $type = 'Time Table';
                 }
-                if($type == 1 && $query->course_type == 6 ){
-                    $type = 'Test-prep<small>(Graded)</small>';
+                if ($type == 8 && empty($query->course_type)) {
+                    $type = 'Repeat Course';
+                }
+                if ($type == 1 && $query->course_type == 4) {
+                    $type = 'CNA Prep';
+                }
+                if ($type == 1 && $query->course_type == 5) {
+                    $type = 'Prep-Courses<small>(On-Demand)</small>';
+                }
+                if ($type == 1 && $query->course_type == 6) {
+                    $type = 'Prep-Courses<small>(Graded)</small>';
                 }
                 return $type;
             })
@@ -673,7 +865,7 @@ class AdminController extends Controller
             ->addColumn('action', function ($query) {
                 return view('backend.student._td_cancel_error_log', compact('query'));
             })
-            ->rawColumns(['image', 'action','type'])->make(true);
+            ->rawColumns(['image', 'action', 'type'])->make(true);
     }
 
     public function getCancelProgramLogsData(Request $request)
@@ -692,7 +884,7 @@ class AdminController extends Controller
         $data = [];
         foreach ($query->get() as $quer) {
             $program = Program::find($quer->program_id);
-            $quer->programtitle = $program->programtitle;
+            $quer->programtitle = !empty($program) ? $program->programtitle : "Deleted Program";
             $data[] = $quer;
         }
         $query = $data;
@@ -780,6 +972,62 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $user->dob = getJsDateFormat($user->dob);
+        $user->assetimage = asset($user->image);
+        if ($user->image == 'public/demo/user/admin.jpg') {
+            $user->image = null;
+        }
+        $user->image = showPicName($user->image);
         return $user;
     }
+
+    public function preRegisteredStudents()
+{
+    $url = 'admin/preRegisteredStudents';
+    return view('backend.student.PreRregisteredStudents', compact('url'));
+}
+
+
+
+public function getPreRegisteredStudents()
+{
+
+    $preStudents = PreRegistration::get();
+
+
+    return Datatables::of($preStudents)
+    ->addIndexColumn()
+    ->editColumn('pre-registration.name', function ($preStudents) {
+        return $preStudents->name;
+    })
+    ->editColumn('pre-registration.email', function ($preStudents) {
+        return $preStudents->email;
+    })
+    ->editColumn('pre-registration.language', function ($preStudents) {
+        return $preStudents->language;
+    })
+    ->editColumn('pre-registration.country', function ($preStudents) {
+        return $preStudents->country;
+    })
+    ->editColumn('pre-registration.state', function ($preStudents) {
+        return $preStudents->state;
+    })
+
+    ->editColumn('created_at', function ($preStudents) {
+        return $preStudents->created_at->format('d-m-y');
+    })
+    ->make(true);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
 }

@@ -70,7 +70,7 @@
                         </div>
                         <input type="hidden" name="type" value="Instructor">
 
-                        <button type="submit" class="theme_btn small_btn2" id="submitBtn">
+                        <button type="submit" class="theme_btn small_btn2 p-2" id="submitBtn">
                             {{__('common.Register')}}
                         </button>
                     </form>

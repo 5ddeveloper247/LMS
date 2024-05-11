@@ -1,222 +1,393 @@
+<style>
+    .breadcam_wrap {
+        max-width: unset !important;
+    }
+
+    .rounded-card {
+        border-radius: 25px !important;
+    }
+
+    .rounded-card-header {
+        border-radius: 25px !important;
+    }
+
+    .rounded-card-img {
+        border-top-left-radius: 25px !important;
+        border-top-right-radius: 25px !important;
+    }
+
+    .section-margin-y {
+        margin: 60px auto !important;
+    }
+
+    .paragraph_custom_height {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+    }
+
+    /* @media (width > 1650px) {
+        .breadcrumb_area .breadcam_wrap h3 {
+            font-size: 100px !important;
+            font-weight: 900;
+            line-height: 76px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 28px !important;
+            line-height: 1.2 !important;
+        }
+
+        h4 {
+            font-size: 31px !important;
+            line-height: 25px;
+        }
+
+        span {
+            font-size: 1.4rem !important;
+            line-height: 25px !important;
+
+        }
+
+        small {
+            font-size: 1.4rem !important;
+            line-height: 25px !important;
+        }
+
+        h5 {
+            font-size: 28px !important;
+            line-height: 1.5 !important;
+        }
+
+        .theme_btn {
+            font-size: 28px !important;
+        }
+
+    } */
+    .nav-sub-links {
+        border: 1px solid #D7D7D7 !important;
+        border-radius: 20px !important;
+    }
+
+    .nav-sub-links.active {
+        background-color: var(--system_primery_color) !important;
+        color: #fff !important;
+        border: 1px solid var(--process--text-color) !important;
+    }
+
+    .nav-sub-links:hover {
+        color: #fff !important;
+        background-color: var(--system_primery_color) !important;
+        border: 1px solid var(--process--text-color) !important;
+    }
+</style>
+
 <div>
-    <div class="courses_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-xl-3">
-                    <x-class-page-section-sidebar :level="$level" :type="$type" :categories="$categories"
-                                                  :category="$category" :languages="$languages" :language="$language"
-                                                  :mode="$mode"/>
-                </div>
-                <div class="col-lg-8 col-xl-9">
+    <div class="container">
+        <h2 class="px-md-5 px-2 pt-5">Please Choose Type</h2>
+        <div class="d-flex align-items-center px-md-5 px-2">
+            <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 mb-2 tab-padding" id="pills-tab" role="tablist">
+                <li id="filter-type" class="nav-item px-1" role="presentation">
+                    <button class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center active" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
+                        Type
+                    </button>
+                </li>
+                <li id="filter-name" class="nav-item px-1" role="presentation">
+                    <button class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                        Name
+                    </button>
+                </li>
+                <li id="filter-prep-course-type" class="nav-item px-1" role="presentation">
+                    <button class="nav-sub-links create-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                        Prep-Courses Type
+                    </button>
+                </li>
+                <li id="filter-prize" class="nav-item px-1" role="presentation">
+                    <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                        Prize
+                    </button>
+                </li>
+                <li id="filter-duration" class="nav-item px-1" role="presentation">
+                    <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                        Duration
+                    </button>
+                </li>
+            </ul>
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="box_header d-flex flex-wrap align-items-center justify-content-between">
+        </div>
+        <!-- filter type  -->
+        <div id="filter-type-content">
+            <div class="d-flex align-items-center px-md-5 px-2">
+                <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 mb-2 tab-padding" id="pills-tab" role="tablist">
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center active" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
+                            Type 1
+                        </button>
+                    </li>
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                            Type 2
+                        </button>
+                    </li>
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links create-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                            Type 3
+                        </button>
+                    </li>
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                            Type 4
+                        </button>
+                    </li>
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                            Type 5
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- filter title  -->
+        <div id="filter-name-content" style="display: none">
+            <div class="d-flex flex-column align-items-start px-md-5 px-2">
+                <label for="program_title">Program Title</label>
+                <input type="text" name="program_title" class="form-control form-control-sm" id="program_title" value="{{ request()->has('filter') ? request()->input('program_title','') : '' }}" placeholder="Enter Program Name">
+                <div id="program_list" class="position-absolute"></div>
+            </div>
+        </div>
+                <!-- filter prep course type  -->
 
-                                <h5 class="font_16 f_w_500 ">
-                                    @if(isset($search) && !empty($search))
-
-                                        {{__('courses.Search result for')}} "{{$search}}
-                                        "<br style="line-break: auto">
-                                        @if($courses->count()==0)
-
-                                        @else
-                                            <span
-                                                class="subtitle">{{$total}} {{__('coupons.Topics are available')}}</span>
-                                        @endif
-                                    @endif
-                                </h5>
-
-                                <div class="box_header_right mb_30">
-                                    <div class="short_select d-flex align-items-center">
-                                        <h5 class="mr_10 font_16 f_w_500 mb-0">{{__('frontend.Order By')}}:</h5>
-                                        <select class="small_select" id="order">
-                                            <option data-display="None">{{__('frontend.None')}}</option>
-                                            <option
-                                                value="price" {{$order=="price"?'selected':''}}>{{__('frontend.Price')}}</option>
-                                            <option
-                                                value="date" {{$order=="date"?'selected':''}}>{{__('frontend.Date')}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @if(isset($courses))
-                            @foreach ($courses as $course)
-                                <div class="col-lg-6 col-xl-4">
-
-                                    @if($course->type==1)
-                                        <div class="couse_wizged">
-                                            <div class="thumb">
-                                                <div class="thumb_inner lazy"
-                                                     data-src="{{ getCourseImage($course->thumbnail) }}">
-
-                                                    <x-price-tag :price="$course->price"
-                                                                 :discount="$course->discount_price"/>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="course_content">
-                                                <a href="{{courseDetailsUrl($course->id,$course->type,$course->slug)}}">
-                                                    <h4 class="noBrake" title="{{$course->title}}">
-                                                        {{$course->title}}
-                                                    </h4>
-                                                </a>
-                                                <div class="rating_cart">
-                                                    <div class="rateing">
-                                                        <span>{{$course->totalReview}}/5</span>
-                                                        <i class="fas fa-star"></i>
-                                                    </div>
-                                                    @auth()
-                                                        @if(!$course->isLoginUserEnrolled && !$course->isLoginUserCart)
-                                                            <a href="#" class="cart_store"
-                                                               data-id="{{$course->id}}">
-                                                                <i class="fas fa-shopping-cart"></i>
-                                                            </a>
-                                                        @endif
-                                                    @endauth
-                                                </div>
-                                                <div class="course_less_students">
-                                                    <a>
-                                                        <i class="ti-agenda"></i> {{count($course->lessons)}} {{__('student.Lessons')}}
-                                                    </a>
-                                                    <a>
-                                                        <i class="ti-user"></i> {{$course->total_enrolled}} {{__('student.Students')}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @elseif($course->type==2)
-                                        <div class="quiz_wizged">
-                                            <a href="{{courseDetailsUrl($course->id,$course->type,$course->slug)}}">
-                                                <div class="thumb">
-                                                    <div class="thumb_inner lazy"
-                                                         data-src="{{ getCourseImage($course->thumbnail) }}">
-
-                                                        <x-price-tag :price="$course->price"
-                                                                     :discount="$course->discount_price"/>
-
-
-                                                    </div>
-                                                    <span class="quiz_tag">{{__('quiz.Quiz')}}</span>
-                                                </div>
-                                            </a>
-                                            <div class="course_content">
-                                                <a href="{{courseDetailsUrl($course->id,$course->type,$course->slug)}}">
-                                                    <h4 class="noBrake"
-                                                        title="{{$course->title}}"> {{$course->title}}</h4>
-                                                </a>
-                                                <div class="rating_cart">
-                                                    <div class="rateing">
-                                                        <span>{{$course->totalReview}}/5</span>
-                                                        <i class="fas fa-star"></i>
-                                                    </div>
-                                                    @auth()
-                                                        @if(!$course->isLoginUserEnrolled && !$course->isLoginUserCart)
-                                                            <a href="#" class="cart_store"
-                                                               data-id="{{$course->id}}">
-                                                                <i class="fas fa-shopping-cart"></i>
-                                                            </a>
-                                                        @endif
-                                                    @endauth
-                                                </div>
-                                                <div class="course_less_students">
-
-                                                    <a>
-                                                        <i class="ti-agenda"></i> {{count($course->quiz->assign)}}
-                                                        {{__('student.Question')}}</a>
-                                                    <a>
-                                                        <i class="ti-user"></i> {{$course->total_enrolled}} {{__('student.Students')}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    @elseif($course->type==3)
-                                        <div class="quiz_wizged">
-                                            <div class="thumb">
-                                                <a href="{{courseDetailsUrl($course->id,$course->type,$course->slug)}}">
-                                                    <div class="thumb">
-                                                        <div class="thumb_inner lazy"
-                                                             data-src="{{ getCourseImage($course->thumbnail) }}">
-
-                                                            <x-price-tag :price="$course->price"
-                                                                         :discount="$course->discount_price"/>
-
-
-                                                        </div>
-                                                        <span class="live_tag">{{__('student.Live')}}</span>
-                                                    </div>
-                                                </a>
-
-
-                                            </div>
-                                            <div class="course_content">
-                                                <a href="{{courseDetailsUrl($course->id,$course->type,$course->slug)}}">
-                                                    <h4 class="noBrake"
-                                                        title="{{$course->title}}"> {{$course->title}}</h4>
-                                                </a>
-                                                <div class="rating_cart">
-                                                    <div class="rateing">
-                                                        <span>{{$course->totalReview}}/5</span>
-                                                        <i class="fas fa-star"></i>
-                                                    </div>
-                                                    @auth()
-                                                        @if(!$course->isLoginUserEnrolled && !$course->isLoginUserCart)
-                                                            <a href="#" class="cart_store"
-                                                               data-id="{{$course->id}}">
-                                                                <i class="fas fa-shopping-cart"></i>
-                                                            </a>
-                                                        @endif
-                                                    @endauth
-                                                </div>
-                                                <div class="course_less_students">
-                                                    <a> <i
-                                                            class="ti-agenda"></i> {{$course->class->total_class}}
-                                                        {{__('student.Classes')}}</a>
-                                                    <a>
-                                                        <i class="ti-user"></i> {{$course->total_enrolled}} {{__('student.Students')}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
-                            @endforeach
-                        @endif
-                        @if(count($courses)==0)
-
-                            <div class="col-lg-12">
-                                <div
-                                    class="Nocouse_wizged text-center d-flex align-items-center justify-content-center">
-                                    <h1>
-                                        <div class="thumb">
-                                            <img style="width: 50px"
-                                                 src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png"
-                                                 alt="">
-                                            @if(!isset($search))
-                                                {{__('frontend.No Course Found')}}
-                                            @else
-                                                {{__('frontend.No results found for')}} {{$search}}
-                                            @endif
-                                        </div>
-
-                                    </h1>
-                                </div>
-                            </div>
-
-                        @endif
+        <div id="filter-prep-course-type-content" style="display: none;">
+            <div class="d-flex flex-column align-items-start px-md-5 px-2">
+            <div class="col-md-12 mt-3">
+                        <h6>Course Type</h6>
                     </div>
-                    <div class="mt-4">
-                        {{ $courses->appends(Request::all())->links() }}
+                    <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 mb-2 tab-padding" id="pills-tab" role="tablist">
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center active" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
+                            Big Quiz
+                        </button>
+                    </li>
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                            Full Course
+                        </button>
+                    </li>
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links create-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                            Prep-Course(On-Demand)
+                        </button>
+                    </li>
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                        Prep-Course(Live)
+                        </button>
+                    </li>
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                            Time Table
+                        </button>
+                    </li>
+                    <li class="nav-item px-1" role="presentation">
+                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                            Repeat Course
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+                <!-- filter prize  -->
+
+        <div id="filter-prize-content" style="display: none;">
+            <div class="d-flex flex-column align-content-start px-md-5 px-2">
+                <div class="col-12 mt-3">
+                    <small class="alert alert-info p-0">Min price must be less then max price</small>
+                    <label for="program_price">Price (0 to {{programFilterMaxPrice()}})</label>
+                    <div class="d-flex flex-column">
+                        <h6 class="mb-0">Min</h6>
+                        <div class="align-items-center d-flex flex-row-reverse gap-2">
+                            <p id="price_range_min" class="font-weight-bold">{{ request()->has('filter') ? request()->input('program_price_min',0) : 0 }}</p>
+                            <input type="range" min="0" max="{{ programFilterMaxPrice() }}" step="1" name="program_price_min" class="form-control accent-color p-0" oninput="price_range_min.innerText = this.value" id="program_price_min" value="{{ request()->has('filter') ? request()->input('program_price_min',0) : 0 }}">
+                        </div>
+                        <h6 class="mb-0">Max</h6>
+                        <div class="align-items-center d-flex flex-row-reverse gap-2">
+                            <p id="price_range_max" class="font-weight-bold">{{ request()->has('filter') ? request()->input('program_price_max',0) : 0 }}</p>
+                            <input type="range" min="0" max="{{ programFilterMaxPrice() }}" step="1" name="program_price_max" class="form-control accent-color p-0" oninput="price_range_max.innerText = this.value" id="program_price_max" value="{{ request()->has('filter') ? request()->input('program_price_max',0) : 0 }}">
+                        </div>
+                        <p class="text-center mb-0 mt-4">
+                            <a href="{{ route('programs') }}" class="theme_btn small_btn2 p-2">Clear</a>
+                            <button type="submit" class="theme_btn small_btn2 p-2">Submit</button>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+                <!-- filter duration  -->
+
+        <div id="filter-duration-content" style="display: none;">filter-duration</div>
+
+
+
+    </div>
+    <div class="courses_area ">
+        <div class="container">
+            <div class="row px-1 px-md-5">
+                <div class="col-12">
+                    <h5 class="text-center">
+                        @if (isset($search) && !empty($search))
+                        {{ __('courses.Search result for') }}
+                        <span class="font-weight-bold">"{{ $search }}"</span>{{ ' out of ' . $total_programs . ' Program(s)' }}<br style="line-break: auto">
+                        @if ($all_programs->count() == 0)
+                        <span class="subtitle">
+                            {{ __('0 Program(s) available') }}</span>
+                        @else
+                        <span class="subtitle">{{ $total ?? 0 }}
+                            {{ __('Program(s) available') }}</span>
+                        @endif
+                        @endif
+                    </h5>
+                </div>
+                @if (isset($all_programs))
+                @foreach ($all_programs as $program)
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 d-flex my-3">
+                    <div class="card rounded-card shadow">
+                        <div class="card-header rounded-card-header p-0">
+                            <a href="{{ route('programs.detail', [$program->id]) }}"><img src="{{ getCourseImage($program->icon) }}" class="img-fluid img-cover w-100 rounded-card-img"></a>
+                        </div>
+                        <div class="card-body d-flex flex-column p-3">
+                            <h5 class="font-weight-bold m-0">
+                                <a href="{{ route('programs.detail', [$program->id]) }}">
+
+                                    {{ $program->programtitle }}
+
+                                </a>
+                            </h5>
+                            <h6 class="mt-auto mb-0">
+                                @if (Str::length($program->subtitle) > 25)
+                                {{ Str::limit($program->subtitle, 25, '...') }}
+                                @else
+                                {{ $program->subtitle }}
+                                @endif
+                            </h6>
+                            <p class="paragraph_custom_height ml-auto ">
+                                @php
+                                $description = str_replace('&nbsp;', ' ', htmlspecialchars_decode(strip_tags($program->discription)));
+                                @endphp
+                                @if (Str::length($description) > 119)
+                                {{ Str::limit($description, 119, '...') }}
+                                @else
+                                {{ $description }}
+                                @endif
+                            </p>
+                            <div class="row justify-content-between px-3 pt-3">
+                                <div class="col-auto p-0">
+                                    <small>
+                                        <i class="fa fa-book-open"></i>
+                                        {{ count(json_decode($program->allcourses)) }} Courses
+                                    </small>
+                                </div>
+                                <div class="col-auto p-0">
+                                    <small>
+                                        <i class="fas fa-clock"></i>
+                                        {{ round((strtotime($program->currentProgramPlan[0]->edate) - strtotime($program->currentProgramPlan[0]->sdate)) / 604800, 1) }}
+                                        Weeks
+                                    </small>
+                                </div>
+                                <div class="font-weight-bold col-auto p-0">
+                                    <small class="font-weight-bold">
+                                        ${{ $program->currentProgramPlan[0]->amount }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+                @if (count($all_programs) == 0)
+                <div class="col-lg-12">
+                    <div class="Nocouse_wizged d-flex align-items-center justify-content-center text-center">
+                        <h1>
+                            <div class="thumb">
+                                <img style="width: 50px" src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png" alt="">
+                                @if (!isset($search))
+                                {{ __('frontend.No Course Found') }}
+                                @else
+                                {{ __('frontend.No results found for') }} {{ $search }}
+                                @endif
+                            </div>
+                        </h1>
+                    </div>
+                </div>
+                @endif
+                <div class="col-md-12 mb-5 mt-5 pb-3">
+                    @if (count($all_programs) != 0)
+                    {{ $all_programs->appends(Request::all())->links() }}
+                    @endif
+                </div>
+                {{-- <div class="col-lg-4 col-xl-3"> --}}
+                {{-- <x-class-page-section-sidebar :level="$level" :type="$type" :categories="$categories"
+                        :category="$category" :languages="$languages" :language="$language" :mode="$mode" /> --}}
+                {{-- <x-class-page-section-sidebar :level="$level" :type="$type" :categories="$categories"
+                                                  :category="$category" :languages="$languages" :language="$language"
+                                                  :mode="$mode"/> --}}
+                {{-- </div> --}}
+
+            </div>
+        </div>
     </div>
 
-    <input type="hidden" class="class_route" name="class_route" value="{{url()->current()}}">
+    <input type="hidden" class="class_route" name="class_route" value="{{ url()->current() }}">
 
-    <input type="hidden" class="search" value="{{isset($search)?$search:''}}">
+    <input type="hidden" class="search" value="{{ isset($search) ? $search : '' }}">
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const buttons = document.querySelectorAll('.nav-sub-links');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        });
+    });
+    $(document).on('click', '#filter-type', function() {
+        $('#filter-type-content').show();
+        $('#filter-name-content').hide();
+        $('#filter-prep-course-type-content').hide();
+        $('#filter-prize-content').hide();
+        $('#filter-duration-content').hide();
+    });
+    $(document).on('click', '#filter-name', function() {
+        $('#filter-type-content').hide();
+        $('#filter-name-content').show();
+        $('#filter-prep-course-type-content').hide();
+        $('#filter-prize-content').hide();
+        $('#filter-duration-content').hide();
+    });
+    $(document).on('click', '#filter-prep-course-type', function() {
+        $('#filter-type-content').hide();
+        $('#filter-name-content').hide();
+        $('#filter-prep-course-type-content').show();
+        $('#filter-prize-content').hide();
+        $('#filter-duration-content').hide();
+    });
+    $(document).on('click', '#filter-prize', function() {
+        $('#filter-type-content').hide();
+        $('#filter-name-content').hide();
+        $('#filter-prep-course-type-content').hide();
+        $('#filter-prize-content').show();
+        $('#filter-duration-content').hide();
+    });
+    $(document).on('click', '#filter-duration', function() {
+        $('#filter-type-content').hide();
+        $('#filter-name-content').hide();
+        $('#filter-prep-course-type-content').hide();
+        $('#filter-prize-content').hide();
+        $('#filter-duration-content').show();
+    });
+</script>
+@include(theme('partials._custom_footer'))

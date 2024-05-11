@@ -26,14 +26,14 @@ class BlogController extends Controller
     public function allBlog()
     {
         try {
-            if (hasDynamicPage()) {
+            // if (hasDynamicPage()) {
 
-                $row = FrontPage::where('slug', '/blog')->first();
-                $details = dynamicContentAppend($row->details);
-                return view('aorapagebuilder::pages.show', compact('row', 'details'));
-            } else {
+            //     $row = FrontPage::where('slug', '/blog')->first();
+            //     $details = dynamicContentAppend($row->details);
+            //     return view('aorapagebuilder::pages.show', compact('row', 'details'));
+            // } else {
                 return view(theme('pages.blogs'));
-            }
+            // }
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -115,7 +115,9 @@ class BlogController extends Controller
                 $blog->save();
                 MarkAsBlogRead($blog->id);
             }
-            return view(theme('pages.blogDetails'), compact('blog'));
+            $next = Blog::where('id','>',$blog->id)->orderBy('id','ASC')->first();
+            $previous = Blog::where('id','<',$blog->id)->orderBy('id','DESC')->first();
+            return view(theme('pages.blogDetails'), compact('blog','next','previous'));
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }

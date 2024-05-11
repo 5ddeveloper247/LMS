@@ -16,6 +16,7 @@ use Modules\FrontendManage\Entities\FrontPage;
 use Modules\Jitsi\Entities\JitsiMeeting;
 use Modules\VirtualClass\Entities\ClassComplete;
 use Modules\Zoom\Entities\ZoomMeeting;
+use Modules\Team\Entities\TeamMeeting;
 
 class ClassController extends Controller
 {
@@ -63,6 +64,8 @@ class ClassController extends Controller
             }
 
             $course = Course::with('user', 'enrolls', 'reviews', 'comments', 'virtualClass', 'activeReviews', 'enrollUsers')->where('slug', $slug)->first();
+
+            // dd($course);
             if (!$course) {
                 Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
                 return redirect()->back();
@@ -177,7 +180,14 @@ class ClassController extends Controller
                 if ($meeting) {
                     return redirect(route('zoom.meeting.join', $meeting->meeting_id));
                 }
-            } elseif ($host == "BBB") {
+            }
+            elseif ($host == "Team") {
+                $meeting = TeamMeeting::find($meeting_id);
+                if ($meeting) {
+                    return redirect(route('team.meeting.join', $meeting->meeting_id));
+                }
+            }
+            elseif ($host == "BBB") {
                 $meeting = BbbMeeting::find($meeting_id);
                 if ($meeting) {
                     return redirect(url('bbb/meeting-start-attendee/' . $course->id . '/' . $meeting->meeting_id));

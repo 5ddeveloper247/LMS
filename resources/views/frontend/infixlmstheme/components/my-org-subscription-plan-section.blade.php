@@ -40,7 +40,7 @@
                                 @php
                                     $plan=$plan->plan;
                                 @endphp
-                                <div class="col-xl-4 col-md-6">
+                                <div class="col-xl-4 col-sm-6 col-12">
 
                                     <div class="couse_wizged single_pricing_plan  row_padding d-flex flex-column">
 

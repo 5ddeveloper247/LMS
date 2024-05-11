@@ -3,31 +3,31 @@
 namespace Modules\Quiz\Http\Controllers;
 
 use App\Exports\OnlineQuizReport;
+use App\Http\Controllers\Controller;
 use App\Jobs\SendGeneralEmail;
-use App\User;
 use App\TableList;
+use App\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Modules\CourseSetting\Entities\Category;
+use Modules\CourseSetting\Entities\Chapter;
+use Modules\CourseSetting\Entities\Course;
 use Modules\CourseSetting\Entities\CourseEnrolled;
+use Modules\CourseSetting\Entities\Lesson;
 use Modules\Org\Entities\OrgBranch;
 use Modules\Org\Entities\OrgPosition;
-use Modules\Quiz\Entities\QuizTest;
-use App\Http\Controllers\Controller;
-use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Support\Facades\Auth;
-use Modules\CourseSetting\Entities\Category;
-use Modules\CourseSetting\Entities\Course;
 use Modules\Quiz\Entities\OnlineExamQuestionAssign;
 use Modules\Quiz\Entities\OnlineQuiz;
-use Modules\Quiz\Entities\QuizeSetup;
-use Modules\Quiz\Entities\QuizMarking;
 use Modules\Quiz\Entities\QuestionBank;
 use Modules\Quiz\Entities\QuestionGroup;
-use Modules\CourseSetting\Entities\Lesson;
+use Modules\Quiz\Entities\QuizeSetup;
+use Modules\Quiz\Entities\QuizMarking;
+use Modules\Quiz\Entities\QuizTest;
 use Modules\Quiz\Entities\QuizTestDetails;
-use Modules\CourseSetting\Entities\Chapter;
 use Modules\Quiz\Entities\StudentTakeOnlineQuiz;
 use Modules\StudentSetting\Entities\Program;
 use Yajra\DataTables\Facades\DataTables;
@@ -38,17 +38,16 @@ class OnlineQuizController extends Controller
     {
 
         try {
-            $user = Auth::user();
             $query = OnlineQuiz::with('subCategory', 'category')->latest();
-            if ($user->role_id == 2) {
+            if (in_array(Auth::user()->role_id, [2, 9])) {
                 $quiz_ids = [];
                 if (isModuleActive('OrgInstructorPolicy')) {
-                    $ids = $user->policy->course_assigns->pluck('course_id')->toArray();
+                    $ids = Auth::user()->policy->course_assigns->pluck('course_id')->toArray();
                     $course_quiz_ids = Course::select('quiz_id')->whereNotNull('quiz_id')->whereIn('id', $ids)->get()->pluck('quiz_id')->toArray();
                     $lesson_quiz_ids = Lesson::select('quiz_id')->whereNotNull('quiz_id')->whereIn('id', $ids)->get()->pluck('quiz_id')->toArray();
                     $quiz_ids = array_merge($course_quiz_ids, $lesson_quiz_ids);
                 }
-                $query->where('created_by', $user->id)->orWhereIn('id', $quiz_ids);
+                $query->where('created_by', Auth::user()->id)->orWhereIn('id', $quiz_ids);
             } else {
                 if (isModuleActive('Organization') && Auth::user()->isOrganization()) {
                     $query->whereHas('user', function ($q) {
@@ -89,7 +88,7 @@ class OnlineQuizController extends Controller
                 'instruction' => 'required'
             ];
             $this->validate($request, $rules, validationMessage($rules));
-            // return OnlineQuiz::get();
+
             try {
                 DB::beginTransaction();
                 $sub = $request->sub_category;
@@ -121,7 +120,7 @@ class OnlineQuizController extends Controller
                 $online_exam->show_result_each_submit = $setup->show_result_each_submit == 1 ? 1 : 0;
                 $online_exam->multiple_attend = $setup->multiple_attend == 1 ? 1 : 0;
                 $online_exam->show_ans_with_explanation = $setup->show_ans_with_explanation == 1 ? 1 : 0;
-                $online_exam->start_date = $request->start_date;
+                //                $online_exam->start_date = $request->start_date;
 
                 $online_exam->save();
 
@@ -131,6 +130,7 @@ class OnlineQuizController extends Controller
                 } else {
                     $course = Course::where('id', $request->course_id)->first();
                 }
+
                 $chapter = Chapter::find($request->chapterId);
 
                 if (isset($course) && isset($chapter)) {
@@ -152,12 +152,12 @@ class OnlineQuizController extends Controller
                     ];
                     $act = 'Course_Quiz_Added';
 
-                    $query = CourseEnrolled::where('course_id', null)->with('user')
-                        ->whereHas('program', function ($query) {
-                        });
-                    $programs = Program::Where('allcourses', 'like', '%,"' . $request->course_id . '",%')->pluck('id');
-                    $query = $query->whereIn('program_id', $programs->unique())->groupBy('program_id')->groupBy('user_id')->pluck('user_id')->toArray();
-                    $users = User::where('id', '!=', Auth::id())->whereIn('id', $query)->get();
+
+                    $programs = Program::Where('allcourses', 'like', '%"' . $request->course_id . '"%')->pluck('id');
+                    $query = CourseEnrolled::whereIn('program_id', $programs->unique())
+                        ->orWhereHas('course', function ($query) {
+                        })->pluck('user_id');
+                    $users = User::where('id', '!=', Auth::id())->whereIn('id', $query->unique())->get();
 
                     if (isset($users) && !empty($users)) {
                         foreach ($users as $user) {
@@ -181,30 +181,30 @@ class OnlineQuizController extends Controller
                         }
                     }
 
-                    //                    $courseUser = $course->user;
-                    //                    if (UserEmailNotificationSetup($act, $courseUser)) {
-                    //                        SendGeneralEmail::dispatch($courseUser, $act, $codes);
-                    //                    }
-                    //                    if (UserBrowserNotificationSetup($act, $courseUser)) {
-                    //
-                    //                        send_browser_notification(
-                    //                            $courseUser,
-                    //                            $act,
-                    //                            $codes,
-                    //                            trans('common.View'),
-                    //                            courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
-                    //                        );
-                    //                    }
-                    //                    if (UserMobileNotificationSetup($act, $courseUser) && !empty($courseUser->device_token)) {
-                    //                        send_mobile_notification($courseUser, $act, $codes);
-                    //                    }
+                    $courseUser = $course->user;
+                    if (UserEmailNotificationSetup($act, $courseUser)) {
+                        SendGeneralEmail::dispatch($courseUser, $act, $codes);
+                    }
+                    if (UserBrowserNotificationSetup($act, $courseUser)) {
+
+                        send_browser_notification(
+                            $courseUser,
+                            $act,
+                            $codes,
+                            trans('common.View'),
+                            courseDetailsUrl(@$course->id, @$course->type, @$course->slug),
+                        );
+                    }
+                    if (UserMobileNotificationSetup($act, $courseUser) && !empty($courseUser->device_token)) {
+                        send_mobile_notification($courseUser, $act, $codes);
+                    }
 
                     DB::commit();
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-                    return redirect()->back();
+                    return redirect()->route('courseDetails', $request->course_id);
                 } else {
                     Toastr::error('Invalid Access !', 'Failed');
-                    return redirect()->back();
+                    return redirect()->route('courseDetails', $request->course_id);
                 }
             } catch (\Exception $e) {
                 Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
@@ -245,8 +245,16 @@ class OnlineQuizController extends Controller
                         'chapter' => $chapter->name,
                         'quiz' => $quiz->title,
                     ];
-                    if (isset($course->enrollUsers) && !empty($course->enrollUsers)) {
-                        foreach ($course->enrollUsers as $user) {
+
+
+                    $programs = Program::Where('allcourses', 'like', '%"' . $request->course_id . '"%')->pluck('id');
+                    $query = CourseEnrolled::whereIn('program_id', $programs->unique())
+                        ->orWhereHas('course', function ($query) {
+                        })->pluck('user_id');
+                    $users = User::where('id', '!=', Auth::id())->whereIn('id', $query->unique())->get();
+
+                    if (isset($users) && !empty($users)) {
+                        foreach ($users as $user) {
                             if (UserEmailNotificationSetup($act, $user)) {
                                 SendGeneralEmail::dispatch($user, $act, $codes);
                             }
@@ -284,11 +292,11 @@ class OnlineQuizController extends Controller
                         send_mobile_notification($courseUser, $act, $codes);
                     }
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-                    return redirect()->back();
+                    return redirect()->route('courseDetails', $request->course_id);
                 }
 
                 Toastr::error('Invalid Access !', 'Failed');
-                return redirect()->back();
+                return redirect()->route('courseDetails', $request->course_id);
             } catch (\Exception $e) {
                 Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
                 return redirect()->back();
@@ -312,6 +320,7 @@ class OnlineQuizController extends Controller
 
         DB::beginTransaction();
         try {
+
             $sub = $request->sub_category;
             if (empty($sub)) {
                 $sub = null;
@@ -538,6 +547,14 @@ class OnlineQuizController extends Controller
             $online_exam->percentage = $request->percentage;
 
 
+            // $online_exam->random_question = $request->random_question == 1 ? 1 : 0;
+            // $online_exam->question_time_type = $request->type == 1 ? 1 : 0;
+            // $online_exam->question_time = $request->question_time;
+            // $online_exam->question_review = $request->question_review == 1 ? 1 : 0;
+            // $online_exam->show_result_each_submit = $request->show_result_each_submit == 1 ? 1 : 0;
+            // $online_exam->multiple_attend = $request->multiple_attend == 1 ? 1 : 0;
+            // $online_exam->show_ans_with_explanation = $request->show_ans_with_explanation == 1 ? 1 : 0;
+
             $online_exam->random_question = $request->random_question == 1 ? 1 : 0;
             $online_exam->question_time_type = $request->type == 1 ? 1 : 0;
             $online_exam->question_time = $request->question_time;
@@ -559,7 +576,6 @@ class OnlineQuizController extends Controller
                 $show_ans_sheet = $request->show_ans_sheet;
             }
             $online_exam->show_ans_sheet = $show_ans_sheet;
-
 
             $result = $online_exam->save();
             if ($result) {
@@ -636,7 +652,7 @@ class OnlineQuizController extends Controller
                     $query->where('sub_category_id', $online_exam->sub_category_id);
                 }
 
-                if ($user->role_id == 2) {
+                if (in_array(Auth::user()->role_id, [2, 9])) {
                     $query->where('user_id', $user->id);
                 }
 
@@ -647,7 +663,7 @@ class OnlineQuizController extends Controller
                 if ($online_exam->sub_category_id != null) {
                     $query->where('sub_category_id', $online_exam->sub_category_id);
                 }
-                if ($user->role_id == 2) {
+                if (in_array(Auth::user()->role_id, [2, 9])) {
                     $query->where('user_id', $user->id);
                 }
                 $question_banks = $query->where('q_group_id', $request->get('group'))
@@ -655,7 +671,7 @@ class OnlineQuizController extends Controller
                     ->get();
             }
 
-            if ($user->role_id == 2) {
+            if (in_array(Auth::user()->role_id, [2, 9])) {
                 $groups = QuestionGroup::where('user_id', $user->id)->where('active_status', 1)->latest()->get();
             } else {
                 $groups = QuestionGroup::where('active_status', 1)->latest()->get();
@@ -665,7 +681,6 @@ class OnlineQuizController extends Controller
             foreach ($assigned_questions as $assigned_question) {
                 $already_assigned[] = $assigned_question->question_bank_id;
             }
-
 
 
             return view('quiz::manage_quiz', compact('searchGroup', 'groups', 'online_exam', 'question_banks', 'already_assigned'));
@@ -900,14 +915,13 @@ class OnlineQuizController extends Controller
                 //
                 //
                 //                $query->whereIn('user_id', $ids);
-            } elseif (Auth::user()->role_id == 2) {
+            } elseif (in_array(Auth::user()->role_id, [2, 9])) {
                 $query->whereHas('course', function ($q) {
                     $q->where('user_id', Auth::id());
                 });
             }
 
             $allReports = $query->latest()->get();
-
 
             $reports = [];
             foreach ($allReports as $key => $report) {
@@ -940,7 +954,6 @@ class OnlineQuizController extends Controller
                 $data['positions'] = OrgPosition::orderBy('order', 'asc')->get();
                 $data['branches'] = OrgBranch::where('parent_id', 0)->orderBy('order', 'asc')->get();
             }
-
             return view('quiz::online_exam_report', $data, compact('course_search', 'subcategory_search', 'category_search', 'categories', 'reports'));
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
@@ -1181,6 +1194,10 @@ class OnlineQuizController extends Controller
     {
         $query = QuizTest::with(['course', 'quiz', 'user']);
 
+        if (in_array(Auth::user()->role_id, [2, 9])) {
+            $query = $query->where('course_instructor_id', Auth::id());
+        }
+
         if (\request('student_status')) {
             $query->whereHas('user', function ($q) {
                 return $q->where('status', \request('student_status'));
@@ -1242,6 +1259,7 @@ class OnlineQuizController extends Controller
 
     public function quizResultData()
     {
+        // dd($this->query());
         $query = $this->query();
         return Datatables::of($query)
             ->addIndexColumn()
@@ -1276,7 +1294,7 @@ class OnlineQuizController extends Controller
                 $totalCorrect = $query->details->where('status', 1)->sum('mark');
                 $totalMark = $query->quiz->totalMarks();
 
-                return $totalCorrect . '/' . $totalMark;
+                return ($totalCorrect . '/' . $totalMark) ?? 0;
             })->editColumn('duration', function ($query) {
                 if ($query->duration == 0) {
                     return 0;
@@ -1294,7 +1312,7 @@ class OnlineQuizController extends Controller
                 $totalCorrect = $query->details->where('status', 1)->sum('mark');
                 $totalMark = $query->quiz->totalMarks();
 
-                if ($totalCorrect == 0) {
+                if ($totalCorrect == 0 || $totalMark == 0) {
                     $result = 0;
                 } else {
                     $result = number_format(($totalCorrect / $totalMark) * 100, 1);

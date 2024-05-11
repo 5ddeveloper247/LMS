@@ -13,6 +13,7 @@ use Modules\Blog\Entities\BlogCategory;
 
 class BlogPageSection extends Component
 {
+
     public function render()
     {
         $query = Blog::where('status', 1)->with('user');
@@ -36,6 +37,10 @@ class BlogPageSection extends Component
                 }
             }
 
+        }
+
+        if(request('tag') && request('tag') != ''){
+          $query->where('tags','LIKE','%'.request('tag').'%');
         }
 
         if (isModuleActive('Org')) {

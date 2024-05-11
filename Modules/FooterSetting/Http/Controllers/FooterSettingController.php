@@ -77,7 +77,7 @@ class FooterSettingController extends Controller
                 $request->merge(['is_static' => 0]);
                 $request->merge(['description' => '']);
             }
-
+          //  dd($request,$page);
             $this->widgetService->save($request->except('_token'));
 
 

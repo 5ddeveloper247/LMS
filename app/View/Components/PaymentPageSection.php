@@ -85,7 +85,7 @@ class PaymentPageSection extends Component
             Toastr::error('Billing Details ', 'Failed');
             return redirect()->route('CheckOut');
         }
-        $data['carts'] = Cart::where('user_id', Auth::id())->with(['course','course.user','program', 'program.user'])->get();
+        $data['carts'] = Cart::where('user_id', Auth::id())->with(['course', 'course.user', 'course.children', 'program', 'program.user'])->get();
         return $data;
     }
 

@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\PaymentController;
-use App\Models\CloverPayment;
 use Browser;
-use App\User;
 use App\UserLogin;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\UserSetting;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\CloverPayment;
+use App\Jobs\SendGeneralEmail;
+use App\Models\UserApplication;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Support\Facades\DB;
 use Modules\Payment\Entities\Cart;
 use Illuminate\Auth\Events\Lockout;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
@@ -23,13 +24,16 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
+use App\Models\UserAuthorzIationAgreement;
 use Modules\CourseSetting\Entities\Course;
 use Stevebauman\Location\Facades\Location;
+use App\Http\Controllers\PaymentController;
 use Modules\Coupons\Entities\UserWiseCoupon;
 use Modules\MyClass\Entities\ClassAttendance;
 use Illuminate\Validation\ValidationException;
 use Modules\FrontendManage\Entities\LoginPage;
 use Modules\CourseSetting\Entities\CourseEnrolled;
+use App\Models\PreRegistration;
 
 class LoginController extends Controller
 {
@@ -39,7 +43,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->redirectTo = url()->previous();
-
     }
 
     /*
@@ -62,6 +65,12 @@ class LoginController extends Controller
      *
      * @return string
      */
+
+
+    public function newLoginShow(Request $request)
+    {
+        return view(theme('authnew.login'));
+    }
 
 
     public function redirectToProvider($driver)
@@ -163,11 +172,12 @@ class LoginController extends Controller
     }
 
 
-//    --------------------end social lite
+    //    --------------------end social lite
 
 
     public function redirectPath()
     {
+
         if (Auth::user()->role_id == 3) {
             $path = route('studentDashboard');
 
@@ -180,10 +190,8 @@ class LoginController extends Controller
                     return url('/');
                 }
             }
-
         } else {
             $path = route('dashboard');
-
         }
         if (method_exists($this, 'redirectTo')) {
             return $this->redirectTo();
@@ -308,7 +316,6 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-
         $token = request('token');
         if ($token && Storage::exists($token)) {
             $content = Storage::get($token);
@@ -325,10 +332,9 @@ class LoginController extends Controller
                 }
             }
         }
+
         $page = LoginPage::getData();
-        return view(theme('auth.login'), compact('page'));
-
-
+        return view(theme('authnew.login'), compact('page'));
     }
 
     /**
@@ -341,8 +347,32 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-
         $this->validateLogin($request);
+
+        // Start
+        // By Kamran, on 4 july 2023
+        $userData = User::where('email', $request->email)->select('id', 'role_id')->first();
+        $PreuserData = PreRegistration::where('email', $request->email)->select('*')->first();
+      //   if(!$userData){
+      //   if($PreuserData && Hash::check($request->password, $PreuserData->password)){
+      //       session(['pre-registered-user' => [
+      //           'name' => $PreuserData->name,
+      //           'email' => $PreuserData->email,
+      //
+      //       ]]);
+      //
+      //
+      //       Toastr::success('Login successfull', 'Success');
+      //       return redirect('/');
+      //   }
+      //
+      //   else {
+      //       Toastr::error('Please Register First or check your password !', 'Error');
+      //       return redirect()->back();
+      //   }
+      // }
+
+        // End
 
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -375,18 +405,19 @@ class LoginController extends Controller
                 Storage::put($token, $request->email . '|' . $request->password);
                 $url = 'http://' . $domain . config('app.short_url') . '/login?token=' . $token;
                 return redirect()->to($url);
-
             }
 
             if (Auth::user()->role_id == 3) {
 
-                $is_pay =  CloverPayment::where('user_id',Auth::user()->id)->where('type','student_register')->count();
-                if(!$is_pay){
-                    session()->put('user',Auth::user());
-                    Auth::logout();
-                    Toastr::error('Please Add Payment First.', 'Error');
-                    return redirect()->to(route('register.pay'));
-                }
+
+
+                // $is_pay =  CloverPayment::where('user_id', Auth::user()->id)->where('type', 'student_register')->count();
+                // if (!$is_pay) {
+                //     session()->put('user', Auth::user());
+                //     Auth::logout();
+                //     Toastr::error('Please Add Payment First.', 'Error');
+                //     return redirect()->to(route('register.pay'));
+                // }
 
                 //device  limit
                 $user = Auth::user();
@@ -445,15 +476,44 @@ class LoginController extends Controller
                                         $paymentController->directEnroll($cart->course_id, $cart->tracking);
                                     }
                                 }
-
                             }
-
                         }
-
                     }
                 }
             }
+            if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3 || Auth::user()->role_id == 9) {
+                $act = 'New_Student_Login';
+                $codes = [
+                    'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                    'name' => Auth::user()->name,
+                    'type' => '',
 
+                ];
+                $url = '';
+                if (Auth::user()->role_id == 2) {
+                    $codes['type'] = 'instructor';
+                    $url = route('allInstructor');
+                }
+                if (Auth::user()->role_id == 3) {
+                    $codes['type'] = 'student';
+                    $url = route('student.student_list');
+                }
+                if (Auth::user()->role_id == 9) {
+                    $codes['type'] = 'tutor';
+                    $url = route('allInstructor');
+                }
+
+                // dd(User::find(Auth::id()), $act, $codes);
+                send_email(User::find(Auth::id()), $act, $codes);
+                //                SendGeneralEmail::dispatch(User::find(1), $act, $codes);
+                //            send_browser_notification(
+                //                User::find(1),
+                //                $act,
+                //                $codes,
+                //                trans('common.View'),
+                //                $url,
+                //            );
+            }
 
             session(['role_id' => Auth::user()->role_id]);
             if (isModuleActive('Chat')) {
@@ -530,7 +590,7 @@ class LoginController extends Controller
         }
         $this->validate($request, $rules, validationMessage($rules));
 
-//        $request->validate($rules);
+        //        $request->validate($rules);
     }
 
     /**
@@ -560,7 +620,7 @@ class LoginController extends Controller
             $fieldType => $request->email,
             'password' => $request->password
         ];
-//        return $request->only($this->username(), 'password');
+        //        return $request->only($this->username(), 'password');
     }
 
     /**
@@ -580,6 +640,7 @@ class LoginController extends Controller
 
         checkGamification('each_login', 'activity');
         checkGamificationReg();
+
 
         return $this->authenticated($request, $this->guard()->user())
             ?: redirect()->to($goto);
@@ -625,7 +686,6 @@ class LoginController extends Controller
     public function username()
     {
         return 'email';
-
     }
 
     /**
@@ -697,7 +757,6 @@ class LoginController extends Controller
             } elseif ($key == 'teacher') {
                 $user = User::where('role_id', 2)->first();
                 $url = route('dashboard');
-
             } else {
                 $user = User::where('role_id', 3)->first();
                 $url = route('studentDashboard');

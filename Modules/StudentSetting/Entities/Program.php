@@ -3,10 +3,12 @@
 
 namespace Modules\StudentSetting\Entities;
 
-use App\User;
 use App\LessonComplete;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Modules\CourseSetting\Entities\Course;
+use Modules\CourseSetting\Entities\CourseReveiw;
 use Modules\CourseSetting\Entities\Lesson;
 use Modules\Payment\Entities\PaymentPlans;
 
@@ -14,7 +16,7 @@ class Program extends Model
 {
 
     protected $table = 'programs';
-    protected $fillable = ['programtitle', 'subtitle', 'totalcost', 'discount_price', 'duration', 'requirement', 'discription','outcome','numberofcourses','allcourses','faqs','payment_plan','total_enrolled','user_id','image','icon','status','lms_id'];
+    protected $fillable = ['programtitle', 'subtitle', 'totalcost', 'discount_price', 'duration', 'requirement', 'discription', 'outcome', 'numberofcourses', 'allcourses', 'faqs', 'payment_plan', 'total_enrolled', 'user_id', 'image', 'icon', 'status', 'review_id', 'lms_id'];
     protected $appends = ['user'];
 
     public function user()
@@ -23,23 +25,89 @@ class Program extends Model
             'name' => ' '
         ]);
     }
+
+    public function review()
+    {
+        return $this->belongsTo(CourseReveiw::class, 'review_id', 'id');
+    }
+
     public function programPlans()
     {
-        return $this->hasMany(PaymentPlans::class,'parent_id','id')->where('type','program')->where('status',1);
+        return $this->hasMany(PaymentPlans::class, 'parent_id', 'id')->where('type', 'program')->where('status', 1);
     }
+
     public function currentProgramPlan()
     {
-        return $this->programPlans()->where(function ($q){
-                $q->where('sdate','<', date('Y-m-d'))->where('edate','>', date('Y-m-d'));
+        return $this->programPlans()->where(function ($q) {
+            $q->where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'))
+                ->orWhere('sdate', '>', date('Y-m-d'));
         });
     }
+
+    public function currentRequestPriceFilter()
+    {
+//        $subQuery = DB::table('payment_plans')
+//            ->select('id')
+//            ->where('type', 'program')
+////            ->where('parent_id', $this->id)
+//            ->where('status', 1)
+//            ->where(function ($q) {
+//                $q->where(function ($q) {
+//                    $q->where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'));
+//                });
+//                $q->orWhere('sdate', '>', date('Y-m-d'));
+//            })->get()[0]->id;
+//            ->first('id')->id;
+//            ->limit(1);
+
+        return $this->currentProgramPlan()
+          ->whereBetween('amount', [
+                request()->input('program_price_min', 0),
+                request()->input('program_price_max', 0)
+            ]);
+
+    }
+    public function currentRequestDurationFilter()
+    {
+        return $this->currentProgramPlan()
+            ->whereBetween(
+                DB::raw('CEIL(DATEDIFF(LEAST(edate, ?), GREATEST(sdate, ?)) / 7)'),
+                [
+                    request()->input('program_duration_min', 0),
+                    request()->input('program_duration_max', 0)
+                ]
+            );
+    }
+
+
+
+    public function currentPlan()
+    {
+        return $this->programPlans()->where(function ($q) {
+            $q->where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'));
+        });
+    }
+
+    public function nextPlans()
+    {
+        return $this->programPlans()->where(function ($q) {
+            $q->orWhere('sdate', '>', date('Y-m-d'));
+        });
+    }
+
     public function enrollUsers()
     {
         return $this->belongsToMany(User::class, 'course_enrolleds', 'program_id', 'user_id')->wherePivot('plan_id', $this->currentProgramPlan[0]->id);
     }
+
+    public function totalEnrolledStudent()
+    {
+        return $this->belongsToMany(User::class, 'course_enrolleds', 'program_id', 'user_id');
+    }
+
     public function getAllCoursesDataAttribute()
     {
-        return Course::whereIn('id',json_decode($this->allcourses))->where('scope', 1)->get();
+        return Course::whereIn('id', json_decode($this->allcourses))->where('scope', 1)->get();
     }
 
     public function getIsLoginUserEnrolledAttribute()
@@ -48,16 +116,16 @@ class Program extends Model
         if (\auth()->user()->role_id == 1) {
             return true;
         }
-//        if (isModuleActive('MyClass') && auth()->user()->role_id == 2) {
-//            if ($this->hasEnrollForClass()) {
-//                return true;
-//            }
-//        }
-//        if (isModuleActive('CPD') && auth()->user()->role_id == 2) {
-//            if ($this->hasEnrollForCPd()) {
-//                return true;
-//            }
-//        }
+        //        if (isModuleActive('MyClass') && auth()->user()->role_id == 2) {
+        //            if ($this->hasEnrollForClass()) {
+        //                return true;
+        //            }
+        //        }
+        //        if (isModuleActive('CPD') && auth()->user()->role_id == 2) {
+        //            if ($this->hasEnrollForCPd()) {
+        //                return true;
+        //            }
+        //        }
         if (\auth()->user()->role_id == 2) {
             if ($this->user_id == \auth()->user()->id) {
                 return true;
@@ -93,5 +161,4 @@ class Program extends Model
         }
         return $percentage;
     }
-
 }

@@ -16,6 +16,9 @@
                     <img src="{{ getProfileImage(\Illuminate\Support\Facades\Auth::user()->image) }}" alt="">
                 </div>
                 <h4>{{ \Illuminate\Support\Facades\Auth::user()->name }}</h4>
+                @if(\Illuminate\Support\Facades\Auth::user()->role_id == 3 && !check_enrolled())
+                  <a href="{{ route('student-enroll') }}" class="theme_btn small_btn4 p-2 mt-2 text-center">Enroll Now</a>
+                @endif
                 <div class="sidebar-badge">
 
                     {{--                    @foreach (\Illuminate\Support\Facades\Auth::user()->userLatestBadges as $badge) --}}
@@ -32,7 +35,7 @@
                         <a href="{{ route('studentDashboard') }}"
                             class="d-flex align-items-center {{ routeIs('studentDashboard') ? 'active' : '' }}">
                             <div class="menu_icon">
-                                <svg class="{{ routeIs('studentDashboard') ? 'text-white' : '' }}"
+                                <svg
                                     class="{{ routeIs('studentDashboard') ? 'text-white' : '' }}" width="20"
                                     height="19" viewBox="0 0 20 19" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -93,9 +96,8 @@
                                         stroke="currentColor" stroke-width="1.71429" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
-
                             </div>
-                            <span>{{ __('My Test-Prep') }}</span>
+                            <span>{{ __('My Prep-Course') }}</span>
                         </a>
                     </li>
                 @endif
@@ -350,22 +352,23 @@
                     </li>
                 @endif
 
-                {{--                <li> --}}
-                {{--                    <a href="{{route('myNotificationSetup')}}" --}}
-                {{--                       class=" d-flex align-items-center  {{ routeIs('myNotificationSetup')  ? 'active' : '' }}"> --}}
-                {{--                        <div class="menu_icon"> --}}
-                {{--                            <svg class="{{ routeIs('myNotificationSetup') ? 'text-white' : '' }}" width="20" height="20" viewBox="0 0 20 20" fill="none" --}}
-                {{--                                 xmlns="http://www.w3.org/2000/svg"> --}}
-                {{--                                <path --}}
-                {{--                                    d="M7.86245 17.8594C8.22654 18.5382 8.94296 19 9.7672 19C10.5914 19 11.3079 18.5382 11.672 17.8594M5.82508 2.63289C6.8706 1.58737 8.28863 1 9.76723 1C11.2458 1 12.6638 1.58737 13.7094 2.63289C14.7549 3.67841 15.3423 5.09644 15.3423 6.57503C15.3423 7.44501 15.4858 8.2625 15.7018 9.09865C15.7623 9.28794 15.829 9.46656 15.9007 9.63506C16.2348 10.421 17.1546 10.6891 17.8411 11.1973C18.8656 11.9557 18.6675 13.5786 17.8153 14.2087C17.8153 14.2087 16.4394 15.3999 9.76723 15.3999C3.09498 15.3999 1.7191 14.2087 1.7191 14.2087C0.86694 13.5786 0.668864 11.9557 1.69338 11.1973C2.37975 10.6891 3.29962 10.421 3.6338 9.63513C3.96689 8.85178 4.19219 7.84969 4.19219 6.57503C4.19219 5.09644 4.77957 3.67841 5.82508 2.63289Z" --}}
-                {{--                                    stroke="currentColor" stroke-width="1.71429" stroke-linecap="round" --}}
-                {{--                                    stroke-linejoin="round"/> --}}
-                {{--                            </svg> --}}
+                    <li>
+                        <a href="{{route('myNotificationSetup')}}"
+                           class=" d-flex align-items-center  {{ routeIs('myNotificationSetup')  ? 'active' : '' }}">
+                            <div class="menu_icon">
+                                <svg class="{{ routeIs('myNotificationSetup') ? 'text-white' : '' }}" width="20"
+                                     height="20" viewBox="0 0 20 20" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M7.86245 17.8594C8.22654 18.5382 8.94296 19 9.7672 19C10.5914 19 11.3079 18.5382 11.672 17.8594M5.82508 2.63289C6.8706 1.58737 8.28863 1 9.76723 1C11.2458 1 12.6638 1.58737 13.7094 2.63289C14.7549 3.67841 15.3423 5.09644 15.3423 6.57503C15.3423 7.44501 15.4858 8.2625 15.7018 9.09865C15.7623 9.28794 15.829 9.46656 15.9007 9.63506C16.2348 10.421 17.1546 10.6891 17.8411 11.1973C18.8656 11.9557 18.6675 13.5786 17.8153 14.2087C17.8153 14.2087 16.4394 15.3999 9.76723 15.3999C3.09498 15.3999 1.7191 14.2087 1.7191 14.2087C0.86694 13.5786 0.668864 11.9557 1.69338 11.1973C2.37975 10.6891 3.29962 10.421 3.6338 9.63513C3.96689 8.85178 4.19219 7.84969 4.19219 6.57503C4.19219 5.09644 4.77957 3.67841 5.82508 2.63289Z"
+                                        stroke="currentColor" stroke-width="1.71429" stroke-linecap="round"
+                                        stroke-linejoin="round"/>
+                                </svg>
 
-                {{--                        </div> --}}
-                {{--                        <span>{{ __('setting.Notification Setup') }}</span> --}}
-                {{--                    </a> --}}
-                {{--                </li> --}}
+                            </div>
+                            <span>{{ __('setting.Notification Setup') }}</span>
+                        </a>
+                    </li>
                 @if (isModuleActive('BundleSubscription'))
                 @endif
                 @if (permissionCheck('myCertificate'))

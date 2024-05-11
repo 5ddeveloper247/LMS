@@ -47,20 +47,19 @@ class QuizController extends Controller
 
     public function quizDetails($slug, Request $request)
     {
-
         try {
 
-//            if (Auth::check()) {
-//                $isEnrolled = CourseEnrolled::where('program_id',$request->program_id)->where('user_id',Auth::id())->count();
-//                if($isEnrolled == 0) {
-//                    Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
-//                    return redirect()->back();
-//                }
-//
-//            } else {
-//                Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
-//                return redirect()->back();
-//            }
+            //            if (Auth::check()) {
+            //                $isEnrolled = CourseEnrolled::where('program_id',$request->program_id)->where('user_id',Auth::id())->count();
+            //                if($isEnrolled == 0) {
+            //                    Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
+            //                    return redirect()->back();
+            //                }
+            //
+            //            } else {
+            //                Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
+            //                return redirect()->back();
+            //            }
 
             $course = Course::select(
                 'courses.id',
@@ -90,15 +89,15 @@ class QuizController extends Controller
                 'courses.discount_price',
                 'users.name as userName'
             )->leftJoin('users', 'courses.user_id', 'users.id')
-                ->where('courses.slug', $slug)->first();
+                ->where('courses.slug', $slug)->where('type', $request->courseType)->first();
 
-            if($request->has('program_id')){
+            if ($request->has('program_id')) {
                 $isEnrolled = CourseEnrolled::where('program_id', $request->program_id)->where('user_id', Auth::id())->count();
                 if ($isEnrolled == 0) {
                     Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
                     return redirect()->back();
                 }
-            }else {
+            } else {
                 $isEnrolled = CourseEnrolled::where('course_id', $course->id)->where('user_id', Auth::id())->count();
             }
 
@@ -262,8 +261,13 @@ class QuizController extends Controller
             Toastr::success('Successfully submitted', 'Success');
             if ($request->from == "course") {
                 checkGamification('each_test_complete', 'NaN');
-                $previousUrl = app('url')->previous();
-                return redirect()->to($previousUrl . '&' . http_build_query(['quiz_result_id' => $quiz_test->id]));
+                $previousUrl = explode('?', app('url')->previous());
+                $previouspath = $previousUrl[0];
+                $previousquery = isset($previousUrl[1]) ? $previousUrl[1] : '';
+                parse_str($previousquery, $params);
+                unset($params['quiz_result_id']);
+                $params['quiz_result_id'] = $quiz_test->id;
+                return redirect()->to($previouspath . '?' . http_build_query($params));
             } else {
                 checkGamification('each_test_complete', 'test');
                 return redirect()->route('getQuizResult', $quiz_test->id);
@@ -315,6 +319,7 @@ class QuizController extends Controller
     public function quizTestStart(Request $request)
     {
         try {
+            $course_instructor_id = Course::where('id', $request->get('courseId'))->value('user_id');
             $userId = Auth::id();
             $courseId = $request->get('courseId');
             $quizId = $request->get('quizId');
@@ -327,7 +332,7 @@ class QuizController extends Controller
             $quiz->start_at = now();
             $quiz->end_at = null;
             $quiz->duration = 0.00;
-
+            $quiz->course_instructor_id = !empty($course_instructor_id) ? $course_instructor_id : '';
             $quiz->save();
 
             $return['result'] = true;
@@ -360,12 +365,18 @@ class QuizController extends Controller
             }
             $quizTest->end_at = $end_at;
             $quizTest->duration = number_format(abs(strtotime($start_at) - strtotime($end_at)) / 60, 2) ?? 0.00;
+            if (request()->has('program_id')) {
+                $quizTest->program_id = $request->get('program_id');
+            } else {
+                $quizTest->courseType = $request->get('courseType');
+            }
             $quizTest->save();
 
             if (empty($answer)) {
                 return false;
             }
             $check_details = QuizTestDetails::where('quiz_test_id', $quiz_test_id)->where('qus_id', $qus)->first();
+
             if ($check_details) {
                 $quizDetails = $check_details;
             } else {
@@ -376,6 +387,7 @@ class QuizController extends Controller
                 $quizDetails->mark = $assign->questionBank->marks;
                 $quizDetails->save();
             }
+            // dd($request->all(), $quizTest, $quizDetails, $quiz_test_id);
 
             if ($type == "M") {
 

@@ -36,7 +36,7 @@
                         <div class="QA_table ">
                             <!-- table-responsive -->
                             <div class="">
-                                <table id="lms_table" class="table Crm_table_active3 ">
+                                <table id="faq_table" class="table Crm_table_active3 ">
                                     <thead>
                                     <tr>
                                         <th>#</th>
@@ -48,7 +48,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($faqs as $key => $faq)
-                                        <tr data-item="{{$faq->id}}">
+                                        <tr data-item="{{$faq->id}}" data-seq_no="{{$faq->order}}">
                                             <td>
                                                 <i class="ti-menu"></i>
                                             </td>
@@ -116,7 +116,7 @@
 
                             <div class="modal-body student-details header-menu">
                                 <form action="{{route('frontend.faq.store')}}" method="POST"
-                                      enctype="multipart/form-data">
+                                      enctype="multipart/form-data" id="faqs_add_form">
                                     @csrf
 
 
@@ -144,12 +144,13 @@
                                                     <div class="col-xl-12">
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
-                                                                   for="">{{__('frontend.Question')}} <strong
+                                                                   for="">{{__('frontend.Question')}} <small>(max:255)</small> <strong
                                                                     class="text-danger">*</strong></label>
                                                             <input class="primary_input_field"
                                                                    name="question[{{$language->code}}]"
                                                                    placeholder="-"
                                                                    type="text" id="addQuestion"
+                                                                   maxlength="255"
                                                                    value="{{ old('question.'.$language->code) }}" {{$errors->first('question') ? 'autofocus' : ''}}>
                                                         </div>
                                                     </div>
@@ -162,7 +163,7 @@
                                                             <label class="primary_input_label"
                                                                    for="">{{__('frontend.Answer')}} <strong
                                                                     class="text-danger">*</strong></label>
-                                                            <textarea class="lms_summernote"
+                                                            <textarea class="custom_summernote"
                                                                       name="answer[{{$language->code}}]"
                                                                       id="addAnswer" cols="30"
                                                                       rows="10">{{ old('answer.'.$language->code) }}</textarea>
@@ -200,7 +201,7 @@
 
                             <div class="modal-body student-details header-menu">
                                 <form action="{{route('frontend.faq.update')}}" method="POST"
-                                      enctype="multipart/form-data">
+                                      enctype="multipart/form-data" id="faqs_update_form">
                                     @csrf
                                     <input type="hidden" name="id" value="{{old('id')}}" id="faqId">
 
@@ -228,11 +229,12 @@
                                                     <div class="col-xl-12">
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
-                                                                   for="">{{__('frontend.Question')}} <strong
+                                                                   for="">{{__('frontend.Question')}} <small>(max:255)</small> <strong
                                                                     class="text-danger">*</strong></label>
                                                             <input class="primary_input_field"
                                                                    name="question[{{$language->code}}]" placeholder="-"
                                                                    type="text" id="editQuestion{{$language->code}}"
+                                                                   maxlength="255"
                                                                    value="{{ old('question.'.$language->code) }}" {{$errors->first('question') ? 'autofocus' : ''}}>
                                                         </div>
                                                     </div>
@@ -243,7 +245,7 @@
                                                             <label class="primary_input_label"
                                                                    for="">{{__('frontend.Answer')}} <strong
                                                                     class="text-danger">*</strong></label>
-                                                            <textarea class="lms_summernote"
+                                                            <textarea class="custom_summernote"
                                                                       name="answer[{{$language->code}}]"
                                                                       id="editAnswer{{$language->code}}" cols="30"
 
@@ -254,24 +256,10 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xl-12">
-                                            <div class="primary_input mb-25">
-                                                <label class="primary_input_label"
-                                                       for="">{{__('frontend.Order')}} </label>
-                                                <input class="primary_input_field" name="order" placeholder="-"
-
-                                                       type="text" id="editOrder"
-                                                       value="{{ old('order') }}" {{$errors->first('order') ? 'autofocus' : ''}}>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
                                     <div class="col-lg-12 text-center pt_15">
                                         <div class="d-flex justify-content-center">
                                             <button class="primary-btn semi_large2  fix-gr-bg"
-                                                    id="save_button_parent" type="submit"><i
+                                                    id="update_button_parent" type="submit"><i
                                                     class="ti-check"></i> {{__('frontend.Update FAQ')}}
                                             </button>
                                         </div>
@@ -320,6 +308,94 @@
 
 @endsection
 @push('scripts')
+    <script>
+        $(document).ready(function() {
+
+        	var customFontFam = ['Arial','Helvetica','Cavolini','Jost','Impact','Tahoma','Verdana','Garamond','Georgia','monospace','fantasy','Papyrus','Poppins'];
+            // Summer Note
+            $('.custom_summernote').summernote({
+            	fontNames: customFontFam,
+                fontNamesIgnoreCheck: ['Cavolini','Jost'],
+                fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
+                codeviewFilter: true,
+                codeviewIframeFilter: true,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen']],
+                ],
+                height: 188,
+                tooltip: true
+            });
+
+
+
+
+            // order
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var recordsTotal = '{{ count($faqs) }}'
+            var order = [];
+            var course_seq_url = '{{ route('frontend.changeHomePageFaqPosition') }}';
+            $('#faq_table tbody').sortable({
+                cursor: "move",
+                update: function (event, ui) {
+                    // Get the sorted row IDs
+
+                    var page_length = parseInt($('.dataTable_select>.list>li.selected').data('value'));
+                    var current_page = parseInt($('.paginate_button.current').text());
+                    //
+                    var postion_for_text = (current_page * page_length) - page_length; //asc
+                    var postion_for = recordsTotal - (postion_for_text); // dsec
+
+
+                    $('#faq_table tbody tr').each(function (index, element) {
+                        var rowData = table.row(index).data();
+
+                        order.push({
+                            id: $(this).attr('data-item'),
+                            new_position: postion_for,
+                        });
+
+                        $(this).data('seq_no', postion_for);
+
+                        postion_for = postion_for - 1;
+
+                    });
+                    console.log(order);
+
+                    $.ajax({
+                        // type: "POST",
+                        method: 'POST',
+                        url: course_seq_url,
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            order: order
+                        }),
+                        dataType: "json",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response == 200) {
+                                toastr.success('Order Successfully Changed !', 'Success');
+                                order = [];
+                            }
+                        }
+                    });
+                },
+            });
+        });
+    </script>
     @include('frontendmanage::faq.script')
 @endpush
 

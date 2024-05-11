@@ -172,7 +172,7 @@ if ($('#table_id, .table-data').length) {
     let datatable = $('#table_id, .table-data').DataTable({
         bLengthChange: true,
         "lengthChange": true,
-        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
         "bDestroy": true,
         language: {
             search: "<i class='ti-search'></i>", searchPlaceholder: 'Quick Search', paginate: {
