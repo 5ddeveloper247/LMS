@@ -376,12 +376,12 @@
                                                     <label class="primary_input_label"
                                                         for="">{{ __('common.Image') }} <small>(size: 1170x600)</small>  </label>
                                                     <div class="primary_file_uploader">
-                                                        <input class="primary-input filePlaceholder" type="text"
+                                                        <input class="primary-input filePlaceholder placeholder_txt" type="text"
                                                             placeholder="{{ isset($class) && $class->image ? showPicName($class->image) : __('virtual-class.Browse Image file') }}"
                                                             readonly=""
                                                             {{ $errors->has('image') ? ' autofocus' : '' }}>
                                                         <button class="" type="button">
-                                                            <label class="primary-btn small fix-gr-bg"
+                                                            <label class="primary-btn small fix-gr-bg placeholder_txt"
                                                                 for="document_file">{{ __('common.Browse') }}</label>
                                                             <input type="file" class="d-none fileUpload"
                                                                 name="image" id="document_file" accept=".jpg, .jpeg, .png, .bmp">
@@ -792,7 +792,7 @@
                                                             for="">{{ __('zoom.Attached File') }}
                                                         </label>
                                                         <div class="primary_file_uploader">
-                                                            <input class="primary-input filePlaceholder" type="text"
+                                                            <input class="primary-input filePlaceholder placeholder_txt" type="text"
                                                                 placeholder="{{ isset($editdata->attached_file) && @$editdata->attached_file != '' ? getFilePath3(@$editdata->attached_file) : trans('zoom.Attached File') }}"
                                                                 readonly=""
                                                                 {{ $errors->has('attached_file') ? ' autofocus' : '' }}>

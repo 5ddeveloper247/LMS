@@ -18,7 +18,7 @@
 
     </div>
 
-    <div class="recent-post-card p-4 mr-lg-5">
+    <div class="recent-post-card p-4 mr-xl-5 mr-lg-4 mr-3">
 
       @if(count($blogs) > 0)
 
@@ -28,7 +28,7 @@
 
             <img src="{{ getBlogImage($blog->image) }}"
 
-                width="80" class="rounded-3" alt="" style="height: 80px; border-radius:10px">
+                width="80" class="rounded-3" alt="" style="height: 80px; border-radius:10px; max-width: 80px;">
 
             <div class="text-start px-2">
 

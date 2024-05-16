@@ -40,7 +40,7 @@
                                             <div class="primary_input">
                                                 <div class="primary_file_uploader">
                                                     <input
-                                                        class="primary-input filePlaceholder" type="text" id=""
+                                                        class="primary-input filePlaceholder placeholder_txt" type="text" id=""
                                                         name="getresponse_api" value="{{saasEnv('GET_RESPONSE_API')}}"
                                                         placeholder="{{__('newsletter.Your GetResponse API key')}}">
 

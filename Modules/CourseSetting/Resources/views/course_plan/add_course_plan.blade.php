@@ -155,7 +155,7 @@
                     <div class="col-lg-3">
                         <label class="primary_input_label" for="no_of_students">{{ __('No. of students') }}</label>
                         <input class="primary_input_field" name="no_of_students" placeholder="-" type="number"
-                            id="no_of_students" value="0">
+                            id="no_of_students" value="0" required>
                     </div>
                     <div class="col-xl-3">
                         <div class="primary_input mb-15">
@@ -170,7 +170,7 @@
                                                 id="plan_start_date"
                                                 {{ $errors->first('plan_start_date') ? 'autofocus' : '' }} type="text"
                                                 name="plan_start_date" value="{{ old('plan_start_date') }}"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </div>
                                     </div>
                                     <button class="" type="button">
@@ -192,7 +192,7 @@
                                                 class="primary_input_field primary-input date form-control"
                                                 id="plan_end_date" {{ $errors->first('plan_end_date') ? 'autofocus' : '' }}
                                                 type="text" name="plan_end_date" value="{{ old('plan_end_date') }}"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </div>
                                     </div>
                                     <button class="" type="button">
@@ -215,7 +215,7 @@
                                                 id="class_start_date"
                                                 {{ $errors->first('class_start_date') ? 'autofocus' : '' }} type="text"
                                                 name="class_start_date" value="{{ old('class_start_date') }}"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </div>
                                     </div>
                                     <button class="" type="button">

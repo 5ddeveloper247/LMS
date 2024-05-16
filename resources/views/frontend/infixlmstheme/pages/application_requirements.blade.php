@@ -9,75 +9,91 @@
 <link rel="stylesheet" href="{{ asset('public/assets/owl.carousel.min.css') }}" />
 <script src="https://kit.fontawesome.com/b98cad50b5.js" crossorigin="anonymous"></script>
 {{-- for aos-animation --}}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <style>
-  /* slider timeline */
-  .fw-medium{
+    /* slider timeline */
+    .fw-medium {
         font-weight: 500;
     }
-    .carrot-orange-clr{
+
+    .carrot-orange-clr {
         color: #ff6700;
     }
-  
-    .bg{
+
+    .bg {
         background-color: #FAE6FA;
     }
-    .brdr-btm-of-txt{
+
+    .brdr-btm-of-txt {
         border-bottom: 1px solid #f5e9d4;
     }
-    .padding-top-of-first-part{
+
+    .padding-top-of-first-part {
         padding-top: 80px;
     }
+
     .side-bar-for-process-section {
-    height: auto;
-    min-width: 10px;
-    background-color: #F7B0BB;
-    position: relative;
-    border-radius: 10px 10px 0 0;
-}
-    .dot-point-side-bar-of-process-section{
+        height: auto;
+        min-width: 10px;
+        background-color: #F7B0BB;
+        position: relative;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .dot-point-side-bar-of-process-section {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        display: flex; align-items: center;
+        display: flex;
+        align-items: center;
         justify-content: center;
         border-radius: 50%;
         min-width: 30px;
         height: 30px;
         background-color: pink;
     }
-   .top-of-2{
-    top: 84px;
-   }
-   .top-1{
-    top: -1px;
-   }
-   .margin-left-minus-10{
-    margin-left: -10px;
-   }
-    .inner-end-point-of-bar{
+
+    .top-of-2 {
+        top: 84px;
+    }
+
+    .top-1 {
+        top: -1px;
+    }
+
+    .margin-left-minus-10 {
+        margin-left: -10px;
+    }
+
+    .inner-end-point-of-bar {
         height: 18px;
         width: 18px;
         border-radius: 50%;
         background-color: #ff6700;
     }
-    .inner-white-point-of-bar{
+
+    .inner-white-point-of-bar {
         height: 18px;
         width: 18px;
         border-radius: 50%;
         background-color: white;
     }
-    .padding-btm-last-part{
+
+    .padding-btm-last-part {
         padding-bottom: 30px;
     }
-    .mr_our_process{
-    margin-right:50px;
- }
- .ml_our_process{
-    margin-left: 50px;
- }
+
+    .mr_our_process {
+        margin-right: 90px;
+    }
+
+    .ml_our_process {
+        margin-left: 90px;
+    }
+
     /* slider timeline-end */
     .footer .row p {
         font-weight: normal !important;
@@ -93,7 +109,9 @@
         padding: 25px;
         margin-left: 0%;
     }
-
+    .small_btn2{
+        white-space: nowrap;
+    }
 
     /*
         .expore h4 {
@@ -496,9 +514,11 @@
     .custom_border {
         border-radius: 1rem;
     }
-    .custom-heading{
-       font-size: 60px;
+
+    .custom-heading {
+        font-size: 60px;
     }
+
     .breadcam_wrap {
         max-width: unset !important;
     }
@@ -506,8 +526,6 @@
     .owl-stage-outer {
         height: 33rem;
     }
-
-
 
     @media (max-width: 768px) {
         .custom_h1 {
@@ -531,6 +549,7 @@
         .custom_P {
             font-size: 1.2rem;
         }
+
         .custom_fs_a {
             font-size: 20px !important;
             right: 0px;
@@ -545,37 +564,59 @@
             font-size: 35px !important;
         }
     }
-   
-    #loom-companion-mv3 #shadow-host-companion{
-      padding:0 !important;
+
+    #loom-companion-mv3 #shadow-host-companion {
+        padding: 0 !important;
     }
-    @media only screen and (min-width: 1650px){
-        .our-process-section-container{
-            display: flex !important;
-        justify-content: center !important;
+
+    @media only screen and (min-width: 1650px) {
+        .mr_our_process {
+            margin-right: 0px !important;
         }
-        .our-process-section-wrapper{
-        width: 96% !important;
-      }
+
+        .ml_our_process {
+            margin-left: 0px !important;
+        }
+
+        .our-process-section-container {
+            display: flex !important;
+            justify-content: center !important;
+        }
+
+        .our-process-section-wrapper {
+            width: 96% !important;
+        }
     }
-    @media only screen and (min-width: 1800px){
-      .our-process-section-container{
-        display: flex;
-        justify-content: center;
-      }
-      .our-process-section-wrapper{
-        width: 90%;
-      }
-      p{
-        font-size: 20px !important;
-      }
-      h5{
-        font-size: 25px !important;
-      }
-      .owl-stage-outer{
-        height: 75vh;
-      }
+
+    @media only screen and (min-width: 1800px) {
+        .cont1domgdo_para{
+            padding: 0px 30px !important;
+        }
+        .our_require_section{
+    padding: 0px 45px !important;
+}
+        .our-process-section-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .our-process-section-wrapper {
+            width: 90%;
+        }
+
+        p {
+            font-size: 20px !important;
+        }
+
+        h5 {
+            font-size: 25px !important;
+        }
+
+        .owl-stage-outer {
+            height: 75vh;
+        }
     }
+
     /* media queries for slider for 67% */
     /* @media (width > 1650px) {
 
@@ -636,12 +677,12 @@
                         src="{{ asset('public/assets/page-title-apply.jpg') }}">
                 </div>
                 <div class="col-lg-9 offset-1">
-                  <div class="breadcam_wrap">
+                    <div class="breadcam_wrap">
                         <h2 class="text-white custom-heading">Apply Your Program and Courses Today</h2>
-                    <div class="contact_btn mt-5">
-                        <a href="{{ route('register') }}" class="theme_btn small_btn2 p-2">Apply Now </a>
+                        <div class="contact_btn mt-5">
+                            <a href="{{ route('register') }}" class="theme_btn small_btn2 p-2">Apply Now </a>
+                        </div>
                     </div>
-                  </div>
                 </div>
             </div>
         </div>
@@ -649,9 +690,9 @@
     </div>
 
     <section id="apply" class="p-5">
-        <div class="container">
-            <div class="row justify-content-center text-center px-md-5">
-                <div class="col-md-12">
+        <div class="container-fluid">
+            <div class="row justify-content-center text-center px-xl-4 px-md-3 ">
+                <div class="col-md-12 our_require_section">
                     <h2 class="heading mb-3 font-weight-bold">Apply Requirements</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis voluptate libero,
                         recusandae quam voluptates quae laudantium perferendis distinctio temporibus ipsum, id
@@ -671,84 +712,178 @@
         <div class="our-process-section-wrapper px-3 py-5">
             <div class="w-100 d-flex justify-content-start">
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
-                 <div class="padding-top-of-first-part ml_our_process">
-                     <h2 class="carrot-orange-clr text-end ">Step 01</h2>
-                     <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
-                     <div class="d-flex align-items-center gap-3 pb-3">
-                         <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit, sed quia consequuntur magni res.</p>
-                         <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24"><path fill="none" stroke="#ff6700" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9"/></svg>
-                     </div>
-                 </div>
-                 <div class="side-bar-for-process-section">
-                    <div class="dot-point-side-bar-of-process-section top-0">
-                        <div class="inner-end-point-of-bar"></div>
+                    <div class="padding-top-of-first-part ml_our_process">
+                        <h2 class="carrot-orange-clr text-end ">Step 01</h2>
+                        <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
+                        <div class="d-flex align-items-center gap-3 pb-3">
+                            <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
+                                fugit, sed quia consequuntur magni res.</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
+                                <path fill="none" stroke="#ff6700" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
+                            </svg>
+                        </div>
                     </div>
-                    <div class="dot-point-side-bar-of-process-section top-of-2">
-                        <div class="inner-white-point-of-bar"></div>
+                    <div class="side-bar-for-process-section">
+                        <div class="dot-point-side-bar-of-process-section top-0">
+                            <div class="inner-end-point-of-bar"></div>
+                        </div>
+                        <div class="dot-point-side-bar-of-process-section top-of-2">
+                            <div class="inner-white-point-of-bar"></div>
+                        </div>
                     </div>
-                 </div>
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left" data-aos-duration="1000">
-                 <div class="d-flex flex-column align-items-start mr_our_process">
-                     <h2 class="carrot-orange-clr">Step 02</h2>
-                     <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
-                     <div class="d-flex align-items-center gap-3 pb-3">
-                         <svg xmlns="http://www.w3.org/2000/svg" fill="#ff6700" width="50px" height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><g>	<path d="M47.1,2H2.9C1.3,2,0,3.3,0,4.9V35C0,36.7,1.3,38,2.9,38h16.6l-0.8,4.2h-3.4c-1,0-1.9,0.8-1.9,1.9v2.1c0,1,0.8,1.9,1.9,1.9  h19.6c1,0,1.9-0.8,1.9-1.9V44c0-1-0.8-1.9-1.9-1.9h-3.4L30.5,38h16.6c1.6,0,2.9-1.3,2.9-2.9V4.9C50,3.3,48.7,2,47.1,2z M2.9,3.7  h44.2c0.7,0,1.3,0.6,1.3,1.3v26.3H1.7V4.9C1.7,4.2,2.2,3.7,2.9,3.7z M35,44v2.1c0,0.1-0.1,0.2-0.2,0.2H15.2c-0.1,0-0.2-0.1-0.2-0.2  V44c0-0.1,0.1-0.2,0.2-0.2h19.6C34.9,43.8,35,43.9,35,44z M29.7,42.1h-9.3l0.8-4.2h7.6L29.7,42.1z M47.1,36.3H2.9  c-0.7,0-1.3-0.6-1.3-1.3v-2.1h46.7V35C48.3,35.7,47.8,36.3,47.1,36.3z"></path>	<path d="M8.3,26.3h10.4c1.3,2,3.6,3.3,6.2,3.3s4.9-1.3,6.2-3.3h10.4c0.5,0,0.8-0.4,0.8-0.8V6.2c0-0.5-0.4-0.8-0.8-0.8H27.5  c-1,0-1.9,0.4-2.5,1.1c-0.6-0.7-1.5-1.1-2.5-1.1H8.3c-0.5,0-0.8,0.4-0.8,0.8v19.2C7.5,25.9,7.9,26.3,8.3,26.3z M25,27.9  c-3.2,0-5.8-2.6-5.8-5.9s2.6-5.9,5.8-5.9s5.8,2.6,5.8,5.9S28.2,27.9,25,27.9z M27.5,7h13.3v17.6h-8.8c0.3-0.8,0.4-1.6,0.4-2.5  c0-3.9-2.9-7.1-6.7-7.5V8.7C25.8,7.8,26.6,7,27.5,7z M9.2,7h13.3c0.9,0,1.7,0.8,1.7,1.7v5.9c-3.7,0.4-6.7,3.6-6.7,7.5  c0,0.9,0.2,1.7,0.4,2.5H9.2V7z"></path>	<path d="M30,9.5h8.3c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8H30c-0.5,0-0.8,0.4-0.8,0.8S29.5,9.5,30,9.5z"></path>	<path d="M28.3,12h10c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-10c-0.5,0-0.8,0.4-0.8,0.8S27.9,12,28.3,12z"></path>	<path d="M28.3,14.5h10c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-10c-0.5,0-0.8,0.4-0.8,0.8S27.9,14.5,28.3,14.5z"></path>	<path d="M38.3,15.4h-5.8c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h5.8c0.5,0,0.8-0.4,0.8-0.8S38.8,15.4,38.3,15.4z"></path>	<path d="M38.3,17.9h-4.2c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h4.2c0.5,0,0.8-0.4,0.8-0.8S38.8,17.9,38.3,17.9z"></path>	<path d="M38.3,20.4h-4.2c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h4.2c0.5,0,0.8-0.4,0.8-0.8S38.8,20.4,38.3,20.4z"></path>	<path d="M11.7,9.5H20c0.5,0,0.8-0.4,0.8-0.8S20.5,7.9,20,7.9h-8.3c-0.5,0-0.8,0.4-0.8,0.8S11.2,9.5,11.7,9.5z"></path>	<path d="M11.7,12h10c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-10c-0.5,0-0.8,0.4-0.8,0.8S11.2,12,11.7,12z"></path>	<path d="M11.7,14.5h10c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-10c-0.5,0-0.8,0.4-0.8,0.8S11.2,14.5,11.7,14.5z"></path>	<path d="M11.7,17.1h5.8c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-5.8c-0.5,0-0.8,0.4-0.8,0.8S11.2,17.1,11.7,17.1z"></path>	<path d="M15.8,17.9h-4.2c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h4.2c0.5,0,0.8-0.4,0.8-0.8S16.3,17.9,15.8,17.9z"></path>	<path d="M15.8,20.4h-4.2c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h4.2c0.5,0,0.8-0.4,0.8-0.8S16.3,20.4,15.8,20.4z"></path>	<path d="M28.7,21.3L22.9,18c-0.3-0.1-0.6-0.1-0.8,0c-0.3,0.1-0.4,0.4-0.4,0.7v6.7c0,0.3,0.2,0.6,0.4,0.7c0.1,0.1,0.3,0.1,0.4,0.1  c0.1,0,0.3,0,0.4-0.1l5.8-3.3c0.3-0.1,0.4-0.4,0.4-0.7S29,21.5,28.7,21.3z M23.3,24v-3.8l3.3,1.9L23.3,24z"></path>	<path d="M30,33.8H20c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8h10c0.5,0,0.8-0.4,0.8-0.8C30.8,34.2,30.5,33.8,30,33.8z"></path>	<path d="M39.2,33.8h-5c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8h5c0.5,0,0.8-0.4,0.8-0.8C40,34.2,39.6,33.8,39.2,33.8z"></path>	<path d="M15.8,33.8h-5c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8h5c0.5,0,0.8-0.4,0.8-0.8C16.7,34.2,16.3,33.8,15.8,33.8z"></path></g></svg>
-                         <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit, sed quia consequuntur magni res.</p>
-                     </div>
-                 </div>
-                 <div class="side-bar-for-process-section margin-left-minus-10">
-                    <div class="dot-point-side-bar-of-process-section top-1">
-                        <div class="inner-white-point-of-bar"></div>
+                <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
+                    data-aos-duration="1000">
+                    <div class="d-flex flex-column align-items-start mr_our_process">
+                        <h2 class="carrot-orange-clr">Step 02</h2>
+                        <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
+                        <div class="d-flex align-items-center gap-3 pb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ff6700" width="50px" height="50px" x="0px"
+                                y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                <g>
+                                    <path
+                                        d="M47.1,2H2.9C1.3,2,0,3.3,0,4.9V35C0,36.7,1.3,38,2.9,38h16.6l-0.8,4.2h-3.4c-1,0-1.9,0.8-1.9,1.9v2.1c0,1,0.8,1.9,1.9,1.9  h19.6c1,0,1.9-0.8,1.9-1.9V44c0-1-0.8-1.9-1.9-1.9h-3.4L30.5,38h16.6c1.6,0,2.9-1.3,2.9-2.9V4.9C50,3.3,48.7,2,47.1,2z M2.9,3.7  h44.2c0.7,0,1.3,0.6,1.3,1.3v26.3H1.7V4.9C1.7,4.2,2.2,3.7,2.9,3.7z M35,44v2.1c0,0.1-0.1,0.2-0.2,0.2H15.2c-0.1,0-0.2-0.1-0.2-0.2  V44c0-0.1,0.1-0.2,0.2-0.2h19.6C34.9,43.8,35,43.9,35,44z M29.7,42.1h-9.3l0.8-4.2h7.6L29.7,42.1z M47.1,36.3H2.9  c-0.7,0-1.3-0.6-1.3-1.3v-2.1h46.7V35C48.3,35.7,47.8,36.3,47.1,36.3z">
+                                    </path>
+                                    <path
+                                        d="M8.3,26.3h10.4c1.3,2,3.6,3.3,6.2,3.3s4.9-1.3,6.2-3.3h10.4c0.5,0,0.8-0.4,0.8-0.8V6.2c0-0.5-0.4-0.8-0.8-0.8H27.5  c-1,0-1.9,0.4-2.5,1.1c-0.6-0.7-1.5-1.1-2.5-1.1H8.3c-0.5,0-0.8,0.4-0.8,0.8v19.2C7.5,25.9,7.9,26.3,8.3,26.3z M25,27.9  c-3.2,0-5.8-2.6-5.8-5.9s2.6-5.9,5.8-5.9s5.8,2.6,5.8,5.9S28.2,27.9,25,27.9z M27.5,7h13.3v17.6h-8.8c0.3-0.8,0.4-1.6,0.4-2.5  c0-3.9-2.9-7.1-6.7-7.5V8.7C25.8,7.8,26.6,7,27.5,7z M9.2,7h13.3c0.9,0,1.7,0.8,1.7,1.7v5.9c-3.7,0.4-6.7,3.6-6.7,7.5  c0,0.9,0.2,1.7,0.4,2.5H9.2V7z">
+                                    </path>
+                                    <path
+                                        d="M30,9.5h8.3c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8H30c-0.5,0-0.8,0.4-0.8,0.8S29.5,9.5,30,9.5z">
+                                    </path>
+                                    <path
+                                        d="M28.3,12h10c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-10c-0.5,0-0.8,0.4-0.8,0.8S27.9,12,28.3,12z">
+                                    </path>
+                                    <path
+                                        d="M28.3,14.5h10c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-10c-0.5,0-0.8,0.4-0.8,0.8S27.9,14.5,28.3,14.5z">
+                                    </path>
+                                    <path
+                                        d="M38.3,15.4h-5.8c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h5.8c0.5,0,0.8-0.4,0.8-0.8S38.8,15.4,38.3,15.4z">
+                                    </path>
+                                    <path
+                                        d="M38.3,17.9h-4.2c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h4.2c0.5,0,0.8-0.4,0.8-0.8S38.8,17.9,38.3,17.9z">
+                                    </path>
+                                    <path
+                                        d="M38.3,20.4h-4.2c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h4.2c0.5,0,0.8-0.4,0.8-0.8S38.8,20.4,38.3,20.4z">
+                                    </path>
+                                    <path
+                                        d="M11.7,9.5H20c0.5,0,0.8-0.4,0.8-0.8S20.5,7.9,20,7.9h-8.3c-0.5,0-0.8,0.4-0.8,0.8S11.2,9.5,11.7,9.5z">
+                                    </path>
+                                    <path
+                                        d="M11.7,12h10c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-10c-0.5,0-0.8,0.4-0.8,0.8S11.2,12,11.7,12z">
+                                    </path>
+                                    <path
+                                        d="M11.7,14.5h10c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-10c-0.5,0-0.8,0.4-0.8,0.8S11.2,14.5,11.7,14.5z">
+                                    </path>
+                                    <path
+                                        d="M11.7,17.1h5.8c0.5,0,0.8-0.4,0.8-0.8s-0.4-0.8-0.8-0.8h-5.8c-0.5,0-0.8,0.4-0.8,0.8S11.2,17.1,11.7,17.1z">
+                                    </path>
+                                    <path
+                                        d="M15.8,17.9h-4.2c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h4.2c0.5,0,0.8-0.4,0.8-0.8S16.3,17.9,15.8,17.9z">
+                                    </path>
+                                    <path
+                                        d="M15.8,20.4h-4.2c-0.5,0-0.8,0.4-0.8,0.8s0.4,0.8,0.8,0.8h4.2c0.5,0,0.8-0.4,0.8-0.8S16.3,20.4,15.8,20.4z">
+                                    </path>
+                                    <path
+                                        d="M28.7,21.3L22.9,18c-0.3-0.1-0.6-0.1-0.8,0c-0.3,0.1-0.4,0.4-0.4,0.7v6.7c0,0.3,0.2,0.6,0.4,0.7c0.1,0.1,0.3,0.1,0.4,0.1  c0.1,0,0.3,0,0.4-0.1l5.8-3.3c0.3-0.1,0.4-0.4,0.4-0.7S29,21.5,28.7,21.3z M23.3,24v-3.8l3.3,1.9L23.3,24z">
+                                    </path>
+                                    <path
+                                        d="M30,33.8H20c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8h10c0.5,0,0.8-0.4,0.8-0.8C30.8,34.2,30.5,33.8,30,33.8z">
+                                    </path>
+                                    <path
+                                        d="M39.2,33.8h-5c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8h5c0.5,0,0.8-0.4,0.8-0.8C40,34.2,39.6,33.8,39.2,33.8z">
+                                    </path>
+                                    <path
+                                        d="M15.8,33.8h-5c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8h5c0.5,0,0.8-0.4,0.8-0.8C16.7,34.2,16.3,33.8,15.8,33.8z">
+                                    </path>
+                                </g>
+                            </svg>
+                            <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
+                                sed quia consequuntur magni res.</p>
+                        </div>
                     </div>
-                   
-                 </div>
+                    <div class="side-bar-for-process-section margin-left-minus-10">
+                        <div class="dot-point-side-bar-of-process-section top-1">
+                            <div class="inner-white-point-of-bar"></div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div class="">
-                <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000" >
-                 <div class="d-flex flex-column align-items-end ml_our_process">
-                     <h2 class="carrot-orange-clr">Step 03</h2>
-                     <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
-                     <div class="d-flex align-items-center gap-3 pb-3">
-                         <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit, sed quia consequuntur magni res.</p>
-                         <svg xmlns="http://www.w3.org/2000/svg" fill="#ff6700" width="50px" height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><g>	<path d="M21.5,0c-1.9,0-3.5,1.2-4.2,2.8h-5c-0.6,0-1.2,0.5-1.2,1.1v1.7H6.5C4.6,5.7,3,7.2,3,9.1v37.5C3,48.5,4.6,50,6.5,50h25.5  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H6.5c-0.7,0-1.2-0.5-1.2-1.1V9.1C5.3,8.4,5.8,8,6.5,8h4.6v1.7H8.2  c0,0-0.1,0-0.1,0c-0.6,0.1-1.1,0.5-1,1.1v34.1c0,0.6,0.5,1.1,1.2,1.1h26.6c0.6,0,1.2-0.5,1.2-1.1V38c0.2,0,0.4,0,0.6,0  c0.4,0,0.8,0,1.2-0.1v8.6c0,0.6-0.5,1.1-1.2,1.1c-0.6,0-1.2,0.5-1.2,1.1c0,0.6,0.5,1.1,1.1,1.2c0,0,0,0,0,0c1.9,0,3.5-1.5,3.5-3.4  v-9.1c0.1,0,0.3-0.1,0.4-0.1l4.4,7c0.3,0.5,1.1,0.7,1.6,0.4c0.5-0.3,0.7-1,0.4-1.6l0,0l-4.3-6.9c2.7-1.8,4.5-4.9,4.5-8.4  c0-4.4-2.9-8.2-6.9-9.6V9.1c0-1.9-1.6-3.4-3.5-3.4h-4.6V4c0-0.6-0.5-1.1-1.2-1.1h-5C25,1.2,23.4,0,21.5,0z M21.5,2.3  c1.2,0,2.1,0.8,2.3,1.9c0.1,0.5,0.6,0.9,1.1,0.9h4.7v4.5H13.4V5.1h4.7c0.6,0,1-0.4,1.1-0.9C19.4,3.1,20.4,2.3,21.5,2.3z M31.9,8  h4.6c0.7,0,1.2,0.5,1.2,1.1v8.6c-0.4,0-0.8-0.1-1.2-0.1c-0.2,0-0.4,0-0.6,0v-6.9c0-0.6-0.5-1.1-1.2-1.1h-2.9V8z M9.4,11.9h24.3V18  c-4.3,1.2-7.5,5.2-7.5,9.8s3.2,8.6,7.5,9.8v6.1H9.4V11.9z M12.7,17.6c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8C12.8,17.6,12.8,17.6,12.7,17.6z M36.6,19.9c4.5,0,8.1,3.5,8.1,8  s-3.6,8-8.1,8s-8.1-3.5-8.1-8S32.1,19.9,36.6,19.9z M12.7,23.3c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1c0,0,0,0,0,0h9.3  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,23.3,12.8,23.3,12.7,23.3z M12.7,29c-0.6,0-1.1,0.6-1.1,1.2  c0,0.6,0.6,1.1,1.2,1.1h9.3c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,29,12.8,29,12.7,29z M12.7,34.7  c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8  C12.8,34.7,12.8,34.7,12.7,34.7z"></path></g></svg>
-                     </div>
-                 </div>
-                 <div class="side-bar-for-process-section">
-                    <div class="dot-point-side-bar-of-process-section top-1">
-                        <div class="inner-white-point-of-bar"></div>
+                <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="d-flex flex-column align-items-end ml_our_process">
+                        <h2 class="carrot-orange-clr">Step 03</h2>
+                        <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
+                        <div class="d-flex align-items-center gap-3 pb-3">
+                            <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
+                                fugit, sed quia consequuntur magni res.</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ff6700" width="50px" height="50px" x="0px"
+                                y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                <g>
+                                    <path
+                                        d="M21.5,0c-1.9,0-3.5,1.2-4.2,2.8h-5c-0.6,0-1.2,0.5-1.2,1.1v1.7H6.5C4.6,5.7,3,7.2,3,9.1v37.5C3,48.5,4.6,50,6.5,50h25.5  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H6.5c-0.7,0-1.2-0.5-1.2-1.1V9.1C5.3,8.4,5.8,8,6.5,8h4.6v1.7H8.2  c0,0-0.1,0-0.1,0c-0.6,0.1-1.1,0.5-1,1.1v34.1c0,0.6,0.5,1.1,1.2,1.1h26.6c0.6,0,1.2-0.5,1.2-1.1V38c0.2,0,0.4,0,0.6,0  c0.4,0,0.8,0,1.2-0.1v8.6c0,0.6-0.5,1.1-1.2,1.1c-0.6,0-1.2,0.5-1.2,1.1c0,0.6,0.5,1.1,1.1,1.2c0,0,0,0,0,0c1.9,0,3.5-1.5,3.5-3.4  v-9.1c0.1,0,0.3-0.1,0.4-0.1l4.4,7c0.3,0.5,1.1,0.7,1.6,0.4c0.5-0.3,0.7-1,0.4-1.6l0,0l-4.3-6.9c2.7-1.8,4.5-4.9,4.5-8.4  c0-4.4-2.9-8.2-6.9-9.6V9.1c0-1.9-1.6-3.4-3.5-3.4h-4.6V4c0-0.6-0.5-1.1-1.2-1.1h-5C25,1.2,23.4,0,21.5,0z M21.5,2.3  c1.2,0,2.1,0.8,2.3,1.9c0.1,0.5,0.6,0.9,1.1,0.9h4.7v4.5H13.4V5.1h4.7c0.6,0,1-0.4,1.1-0.9C19.4,3.1,20.4,2.3,21.5,2.3z M31.9,8  h4.6c0.7,0,1.2,0.5,1.2,1.1v8.6c-0.4,0-0.8-0.1-1.2-0.1c-0.2,0-0.4,0-0.6,0v-6.9c0-0.6-0.5-1.1-1.2-1.1h-2.9V8z M9.4,11.9h24.3V18  c-4.3,1.2-7.5,5.2-7.5,9.8s3.2,8.6,7.5,9.8v6.1H9.4V11.9z M12.7,17.6c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8C12.8,17.6,12.8,17.6,12.7,17.6z M36.6,19.9c4.5,0,8.1,3.5,8.1,8  s-3.6,8-8.1,8s-8.1-3.5-8.1-8S32.1,19.9,36.6,19.9z M12.7,23.3c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1c0,0,0,0,0,0h9.3  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,23.3,12.8,23.3,12.7,23.3z M12.7,29c-0.6,0-1.1,0.6-1.1,1.2  c0,0.6,0.6,1.1,1.2,1.1h9.3c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,29,12.8,29,12.7,29z M12.7,34.7  c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8  C12.8,34.7,12.8,34.7,12.7,34.7z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
                     </div>
-                   
-                 </div>
+                    <div class="side-bar-for-process-section">
+                        <div class="dot-point-side-bar-of-process-section top-1">
+                            <div class="inner-white-point-of-bar"></div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left" data-aos-duration="1000">
-                 <div class="d-flex flex-column padding-btm-last-part mr_our_process">
-                     <h2 class="carrot-orange-clr">Step 04</h2>
-                     <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5>
-                     <div class="d-flex align-items-center gap-3 pb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="#ff6700" x="0px" y="0px" viewBox="0 0 50 48" style="enable-background:new 0 0 50 48;" xml:space="preserve"><g>	<path d="M37.7,0.2c-0.3-0.3-0.8-0.3-1.1,0c0,0,0,0,0,0L20,16.9h2.2l14.9-15l2.4,2.4L27,16.9h2.2L40.7,5.4l7.5,7.5l-4,4h2.2l3.4-3.4  c0.3-0.3,0.3-0.8,0-1.1c0,0,0,0,0,0L37.7,0.2z"></path>	<path d="M48.7,18.8c-0.1-0.2-0.4-0.3-0.6-0.3H13.7c-0.4,0-0.8,0.4-0.8,0.8c0,0.1,0,0.1,0,0.2l4.6,18.9c0.1,0.4,0.4,0.6,0.8,0.6  h25.1c0.4,0,0.7-0.2,0.8-0.6l4.6-18.9C48.9,19.2,48.8,19,48.7,18.8z M22.7,25.6h16.4c0.4,0,0.8,0.4,0.8,0.8s-0.3,0.8-0.8,0.8H22.7  c-0.4,0-0.8-0.4-0.8-0.8S22.2,25.6,22.7,25.6z M41.2,31.1H20.5c-0.4,0-0.8-0.4-0.8-0.8c0-0.4,0.3-0.8,0.8-0.8h20.7  c0.4,0,0.8,0.4,0.8,0.8C42,30.7,41.7,31.1,41.2,31.1z"></path>	<path d="M41.9,41.3c0-0.4-0.3-0.8-0.8-0.8H16.2L9.3,13C8.7,10.5,6.1,9,3.6,9.6C1.5,10.1,0,12,0,14.2V15c0,0.4,0.3,0.8,0.8,0.8  s0.8-0.4,0.8-0.8v-0.8C1.6,12.4,3,11,4.7,11c1.5,0,2.7,1,3.1,2.4l7,28.1c0.1,0.3,0.4,0.6,0.7,0.6h25.5  C41.5,42.1,41.9,41.7,41.9,41.3L41.9,41.3z"></path>	<path d="M20.3,48c1.3,0,2.3-1.1,2.3-2.4c0-1.3-1-2.4-2.3-2.4S18,44.3,18,45.6C18,46.9,19,48,20.3,48z M20.3,44.9  c0.4,0,0.8,0.4,0.8,0.8s-0.3,0.8-0.8,0.8s-0.8-0.4-0.8-0.8S19.9,44.9,20.3,44.9z"></path>	<path d="M35.9,43.3c-1.3,0-2.3,1.1-2.3,2.4c0,1.3,1,2.4,2.3,2.4s2.3-1.1,2.3-2.4C38.3,44.3,37.2,43.3,35.9,43.3z M35.9,46.4  c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8s0.8,0.4,0.8,0.8S36.4,46.4,35.9,46.4z"></path></g></svg>
-                         <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit, sed quia consequuntur magni res.</p>
-                     </div>
-                 </div>
-                 <div class="side-bar-for-process-section margin-left-minus-10">
-                    <div class="dot-point-side-bar-of-process-section top-1">
-                        <div class="inner-white-point-of-bar"></div>
+                <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
+                    data-aos-duration="1000">
+                    <div class="d-flex flex-column padding-btm-last-part mr_our_process">
+                        <h2 class="carrot-orange-clr">Step 04</h2>
+                        <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5>
+                        <div class="d-flex align-items-center gap-3 pb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="#ff6700" x="0px"
+                                y="0px" viewBox="0 0 50 48" style="enable-background:new 0 0 50 48;"
+                                xml:space="preserve">
+                                <g>
+                                    <path
+                                        d="M37.7,0.2c-0.3-0.3-0.8-0.3-1.1,0c0,0,0,0,0,0L20,16.9h2.2l14.9-15l2.4,2.4L27,16.9h2.2L40.7,5.4l7.5,7.5l-4,4h2.2l3.4-3.4  c0.3-0.3,0.3-0.8,0-1.1c0,0,0,0,0,0L37.7,0.2z">
+                                    </path>
+                                    <path
+                                        d="M48.7,18.8c-0.1-0.2-0.4-0.3-0.6-0.3H13.7c-0.4,0-0.8,0.4-0.8,0.8c0,0.1,0,0.1,0,0.2l4.6,18.9c0.1,0.4,0.4,0.6,0.8,0.6  h25.1c0.4,0,0.7-0.2,0.8-0.6l4.6-18.9C48.9,19.2,48.8,19,48.7,18.8z M22.7,25.6h16.4c0.4,0,0.8,0.4,0.8,0.8s-0.3,0.8-0.8,0.8H22.7  c-0.4,0-0.8-0.4-0.8-0.8S22.2,25.6,22.7,25.6z M41.2,31.1H20.5c-0.4,0-0.8-0.4-0.8-0.8c0-0.4,0.3-0.8,0.8-0.8h20.7  c0.4,0,0.8,0.4,0.8,0.8C42,30.7,41.7,31.1,41.2,31.1z">
+                                    </path>
+                                    <path
+                                        d="M41.9,41.3c0-0.4-0.3-0.8-0.8-0.8H16.2L9.3,13C8.7,10.5,6.1,9,3.6,9.6C1.5,10.1,0,12,0,14.2V15c0,0.4,0.3,0.8,0.8,0.8  s0.8-0.4,0.8-0.8v-0.8C1.6,12.4,3,11,4.7,11c1.5,0,2.7,1,3.1,2.4l7,28.1c0.1,0.3,0.4,0.6,0.7,0.6h25.5  C41.5,42.1,41.9,41.7,41.9,41.3L41.9,41.3z">
+                                    </path>
+                                    <path
+                                        d="M20.3,48c1.3,0,2.3-1.1,2.3-2.4c0-1.3-1-2.4-2.3-2.4S18,44.3,18,45.6C18,46.9,19,48,20.3,48z M20.3,44.9  c0.4,0,0.8,0.4,0.8,0.8s-0.3,0.8-0.8,0.8s-0.8-0.4-0.8-0.8S19.9,44.9,20.3,44.9z">
+                                    </path>
+                                    <path
+                                        d="M35.9,43.3c-1.3,0-2.3,1.1-2.3,2.4c0,1.3,1,2.4,2.3,2.4s2.3-1.1,2.3-2.4C38.3,44.3,37.2,43.3,35.9,43.3z M35.9,46.4  c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8s0.8,0.4,0.8,0.8S36.4,46.4,35.9,46.4z">
+                                    </path>
+                                </g>
+                            </svg>
+                            <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
+                                sed quia consequuntur magni res.</p>
+                        </div>
                     </div>
-                    <div class="dot-point-side-bar-of-process-section bottom-0">
-                        <div class="inner-end-point-of-bar"></div>
+                    <div class="side-bar-for-process-section margin-left-minus-10">
+                        <div class="dot-point-side-bar-of-process-section top-1">
+                            <div class="inner-white-point-of-bar"></div>
+                        </div>
+                        <div class="dot-point-side-bar-of-process-section bottom-0">
+                            <div class="inner-end-point-of-bar"></div>
+                        </div>
+
                     </div>
-                   
-                 </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     {{-- <section id="choose">
         <div class="container text-center">
             <h2 class="heading font-weight-bold">Application Timeline</h2>
@@ -845,7 +980,7 @@
         <div class="col-md-12 col-12 cont1doimgdo p-0">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-0 back-color">
-                    <div class="pt-4  mx-5">
+                    <div class="pt-4 mx-5 cont1domgdo_para">
                         <h5 class="slider_heading_h1 font-weight-bold pt-5 px-0 px-lg-5 px-md-3 px-sm-5 text-white">
                             zulqarnain-test-1
                         </h5>
@@ -864,7 +999,7 @@
         <div class="col-md-12 col-12 cont1doimgdo p-0">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-0 back-color">
-                    <div class="pt-4 mx-5">
+                    <div class="pt-4 mx-5 cont1domgdo_para">
                         <h5 class="slider_heading_h1 font-weight-bold pt-5 px-0 px-lg-5 px-md-3 px-sm-5 text-white">
                             zulqarnain-test-2
                         </h5>
@@ -884,7 +1019,7 @@
         <div class="col-md-12 col-12 cont1doimgdo p-0">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-0 back-color">
-                    <div class="pt-4 mx-5">
+                    <div class="pt-4 mx-5 cont1domgdo_para">
                         <h5 class="slider_heading_h1 font-weight-bold pt-5 px-0 px-lg-5 px-md-3 px-sm-5 text-white">
                             zulqarnain-test-3
                         </h5>
@@ -968,7 +1103,7 @@
             <div class="custom_fs_a d-flex justify-content-between align-items-center">
                 <h2 class="text-center font-weight-bold avail-ser">Focused Learning - Goals Realized</h2>
                 <div class="contact_btn text-center">
-                    <a href="{{ route('register') }}"class="theme_btn p-2">Apply Now </a>
+                    <a href="{{ route('register') }}"class="theme_btn small_btn2 p-2">Apply Now </a>
                 </div>
             </div>
         </div>
@@ -1179,10 +1314,11 @@
         }
         //]]>
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-   
         AOS.init();
-      </script>
+    </script>
 @endsection

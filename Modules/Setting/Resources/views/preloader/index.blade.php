@@ -206,7 +206,7 @@
                                                                                     </label>
                                                                                     <div class="primary_file_uploader">
                                                                                         <input
-                                                                                            class="primary-input  filePlaceholder  "
+                                                                                            class="primary-input  filePlaceholder placeholder_txt"
                                                                                             type="text" id=""
                                                                                             name="preloader_image"
                                                                                             placeholder="Browse file"

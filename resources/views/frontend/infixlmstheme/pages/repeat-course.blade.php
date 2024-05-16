@@ -124,12 +124,12 @@
     }
 
     .slider_heading_h2 {
-        font-weight: bold;
-        font-size: 30px !important;
+        font-weight: 700;
+        /* font-size: 30px !important; */
     }
 
     .slider_paragraph {
-        font-size: 18px !important;
+        /* font-size: 18px !important; */
     }
     .slider_paragraph1{
         height: 73px;
@@ -262,8 +262,8 @@
     }
 
     .slider_text_heading {
-        font-size: 40px;
-        font-weight: 900;
+        /* font-size: 40px; */
+        font-weight: 700;
         line-height: 76px;
         color: white;
     }
@@ -277,8 +277,8 @@
     }
 
     .slider_para {
-        font-size: 17px;
-        line-height: 24px;
+        /* font-size: 17px; */
+        /* line-height: 24px; */
         color: white
     }
 
@@ -345,12 +345,12 @@
             font-size: 30px;
         }
     }
-    @media (max-width: 1650px) {
-        .slider-image {
-            height: 465px;
-        }
-        .cont1doimgdo {
-        /* height: 465px; */
+    @media (min-width: 1560px) {
+        .slider_paragraph1{
+        height: auto !important;
+    }
+    .slider-image{
+        height: auto !important;
     }
     }
 
@@ -535,12 +535,12 @@
                         class="slider-image" />
                         <div class="slider-overlay"></div>
                     <div class="slider-text">
-                        <h2 class="slider_text_heading" style="line-height: 48px;">
+                        <h2 class="slider_text_heading" >
                             {{ $course->course_sale_data->slider_1_heading ?? '' }}
                         </h2>
-                        <h5 class="slider_para">
+                        <p class="slider_para">
                             {{ $course->course_sale_data->slider_1_text ?? '' }}
-                        </h5>
+                        </p>
                     </div>
                 </div>
                 <div class="slides">
@@ -548,12 +548,12 @@
                         class="slider-image" />
                         <div class="slider-overlay"></div>
                     <div class="slider-text">
-                        <h2 class="slider_text_heading" style="line-height: 48px;">
+                        <h2 class="slider_text_heading">
                             {{ $course->course_sale_data->slider_2_heading ?? '' }}
                         </h2>
-                        <h5 class="slider_para">
+                        <p class="slider_para">
                             {{ $course->course_sale_data->slider_2_text ?? '' }}
-                        </h5>
+                        </p>
                     </div>
                 </div>
                 <div class="slides">
@@ -564,9 +564,9 @@
                         <h2 class="slider_text_heading" style="line-height: 48px;">
                             {{ $course->course_sale_data->slider_3_heading ?? '' }}
                         </h2>
-                        <h5 class="slider_para">
+                        <p class="slider_para">
                             {{ $course->course_sale_data->slider_3_text ?? '' }}
-                        </h5>
+                        </p>
                     </div>
                 </div>
                 <div id="dot" class="d-none"><span class="dot"></span><span class="dot"></span><span
@@ -642,8 +642,8 @@
         </section>
         <section class="carousel_section mt-3">
             <div class="row py-5">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12 cont1doimgdo px-md-4 py-5">
-                    <div class="mx-5 ">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 cont1doimgdo px-md-4 py-xl-5 py-md-4 py-3">
+                    <div class="mx-3 mx-xl-5">
                         <h2 class="px-lg-5 px-md-3 px-sm-5 slider_heading_h2 px-0 text-white">
                             {{ $course->parent->title ?? '' }}
                         </h2>
@@ -670,7 +670,7 @@
                             {{ $course->course_sale_data->description }}
                         </p>
                     </div>
-                    <div class="col-md-12 mx-lg-5 mx-0 mt-4 px-5">
+                    <div class="col-md-12 mx-xl-5 mx-3 mt-4 px-5">
                         @if ($isEnrolled > 0 || isAdmin())
                             <a href="javascript:void(0)" class="theme_btn small_btn2 p-2">{{ __('Enrolled') }}</a>
                         @elseif(isStudent() || !auth()->check())

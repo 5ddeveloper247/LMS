@@ -267,7 +267,7 @@
 }
 
 i.ti-search {
-    color: #fff !important
+    color: var(--system_primery_color) !important;
 }
 
 .messages_chat {

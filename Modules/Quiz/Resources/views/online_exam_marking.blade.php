@@ -65,7 +65,7 @@
                                                             <div class="row">
                                                                 <div class="col-lg-8">
                                                                     @if ($question['type'] == 'M')
-                                                                        <ul>
+                                                                        <ul class="mb-3">
                                                                             @if (!empty($question['option']))
                                                                                 @foreach ($question['option'] as $option)
                                                                                     @if ($option['right'])

@@ -81,11 +81,9 @@
 </style>
 
 
-
-
 <div class="custom-padding px-md-5 mb-5">
     <div class="container center-content-about px-0">
-        <div class="row px-md-5 px-3 row-padding">
+        <div class="row px-xl-5 px-lg-4 px-3 row-padding">
             <div class="pl-0 slider d-flex flex-column align-items-end text-end paddingy" data-aos="fade-left"
             data-aos-duration="1000" style="padding-right: 70px;">
                 <h2 class="font-weight-bold">Step 1</h2>
@@ -99,7 +97,7 @@
                 <div class="image"><img src="{{ asset('/public/uploads/images/footerimg/image1.jpg') }}" class="w-100 h-100" style="object-fit: cover;"></div>
             </div>
         </div>
-        <div class="row px-md-5 px-3 row-padding">
+        <div class="row px-xl-5 px-lg-4 px-3 row-padding">
             <div class="pl-0 slider d-flex flex-column align-items-end text-end paddingy" data-aos="fade-right"
             data-aos-duration="1000" style="padding-right: 70px;">
                 <h2 class="font-weight-bold">Step 3</h2>

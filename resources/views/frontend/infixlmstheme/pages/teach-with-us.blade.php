@@ -1084,7 +1084,7 @@
                                     <div class="thumb rounded-card-img">
                                         <img src="{{ getCourseImage($course->thumbnail) }}" alt=""
                                             class="img-fluid w-100 h-100 custom-img" style="min-height: 50vh;">
-                                        <x-price-tag :price="applyProductTax($course->price)" :discount="$course->discount_price" />
+                                        <x-price-tag :price="$course->price" :discount="$course->discount_price" />
                                         <span class="quiz_tag">{{ __('Course') }}</span>
                                     </div>
                                 </a>
@@ -1254,7 +1254,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="close-modal theme_btn small_btn4 px-3 py-2 closeModal"
+                    <button type="button" class="close-modal theme_btn small_btn4 px-3 py-2 closeModal" data-bs-dismiss="modal"
+                    {{-- <button type="button" class="close-modal theme_btn small_btn4 px-3 py-2 closeModal" --}}
                         aria-label="Close">
                         <i class="fa fa-times"></i>
                     </button>
@@ -1549,7 +1550,7 @@
                                         style="height:150px;" required>{{ old('employer_address') }}</textarea>
                                 </div>
                                 <div class="col-md-auto ml-auto mt-3">
-                                    <button type="button" class="close-modal btn btn-secondary closeModal">Close</button>
+                                    <button type="button" class="close-modal btn btn-secondary closeModal" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn small_btn4 theme_btn">Submit</button>
                                 </div>
                             </div>
@@ -1632,7 +1633,10 @@
 
         if (window.location.hash) {
             let hash = window.location.hash;
-            $(hash).modal('show');
+            if($(hash).hasClass('modal')){
+
+                $(hash).modal('show');
+            }
         }
 
         function modalFormControl() {
@@ -1646,13 +1650,13 @@
             form.trigger("reset");
 
 
-            $('.modal-backdrop').removeClass('show');
-            $('.modal-backdrop').removeClass('fade');
-            $('.modal-backdrop').removeClass('modal-backdrop');
-            form.parents('.modal').removeClass('show');
-            form.parents('.modal').removeClass('fade');
-            form.parents('.modal').attr('style', '');
-            form.parents('.modal').modal('hide');
+            // $('.modal-backdrop').removeClass('show');
+            // $('.modal-backdrop').removeClass('fade');
+            // $('.modal-backdrop').removeClass('modal-backdrop');
+            // form.parents('.modal').removeClass('show');
+            // form.parents('.modal').removeClass('fade');
+            // form.parents('.modal').attr('style', '');
+            //form.parents('.modal').modal('hide');
             form.find('#package_id').val('');
 
 
@@ -1665,34 +1669,36 @@
     @endif
     {{-- for-modal --}}
     <script>
-        var openModalButtons = document.getElementsByClassName('openModal');
-        for (var i = 0; i < openModalButtons.length; i++) {
-            openModalButtons[i].addEventListener('click', function() {
-                var instructors = document.getElementsByClassName('sellWithUs-2');
-                for (var j = 0; j < instructors.length; j++) {
-                    instructors[j].style.display = 'block';
-                }
-                document.body.classList.add('modal-open');
-                document.documentElement.style.overflow = 'hidden';
-                document.body.style.overflow = 'hidden';
-                document.getElementById('modalContent').addEventListener('scroll', function(event) {
-                    event.stopPropagation();
-                });
-            });
-        }
-
-        var closeModalButtons = document.getElementsByClassName('closeModal');
-        for (var k = 0; k < closeModalButtons.length; k++) {
-            closeModalButtons[k].addEventListener('click', function() {
-                var instructors = document.getElementsByClassName('sellWithUs-2');
-                for (var l = 0; l < instructors.length; l++) {
-                    instructors[l].style.display = 'none';
-                }
-                document.body.classList.remove('modal-open');
-                document.documentElement.style.overflow = '';
-                document.body.style.overflow = '';
-            });
-        }
+        // var openModalButtons = document.getElementsByClassName('openModal');
+        // for (var i = 0; i < openModalButtons.length; i++) {
+        //     openModalButtons[i].addEventListener('click', function() {
+        //         var instructors = document.getElementsByClassName('sellWithUs-2');
+        //         for (var j = 0; j < instructors.length; j++) {
+        //             instructors[j].style.display = 'block';
+        //         }
+        //         document.body.classList.add('modal-open');
+        //         document.documentElement.style.overflow = 'hidden';
+        //         document.body.style.overflow = 'hidden';
+        //         document.getElementById('modalContent').addEventListener('scroll', function(event) {
+        //             event.stopPropagation();
+        //         });
+        //     });
+        // }
+        $('.closeModal').on('click',function(){
+            $(this).closest('.modal').modal('hide');
+        });
+        // var closeModalButtons = document.getElementsByClassName('closeModal');
+        // for (var k = 0; k < closeModalButtons.length; k++) {
+        //     closeModalButtons[k].addEventListener('click', function() {
+        //         var instructors = document.getElementsByClassName('sellWithUs-2');
+        //         for (var l = 0; l < instructors.length; l++) {
+        //             instructors[l].style.display = 'none';
+        //         }
+        //         document.body.classList.remove('modal-open');
+        //         document.documentElement.style.overflow = '';
+        //         document.body.style.overflow = '';
+        //     });
+        // }
     </script>
     <!-- Optional JavaScript; select of the two! -->
 

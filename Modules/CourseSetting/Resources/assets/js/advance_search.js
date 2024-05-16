@@ -145,7 +145,6 @@ $(document).ready(function () {
                         $("#edit_subCategoryDiv" + course_id + " ul").find("li").not(":first").remove();
                     }
                 });
-                console.log(a);
             },
             error: function (data) {
                 console.log("Error:", data);

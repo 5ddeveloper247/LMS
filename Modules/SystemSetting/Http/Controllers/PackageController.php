@@ -135,15 +135,15 @@ class PackageController extends Controller
         // dd($request->all());
         $request->validate(
             [
-                'title' => 'required|max:30',
+                'title' => 'required|max:50',
                 'price' => 'required',
                 'allowed_courses' => 'required',
-                'option_1' => 'required|max:30',
-                'option_2' => 'required|max:30',
-                'option_3' => 'required|max:30',
-                'option_4' => 'required|max:30',
-                'option_5' => 'required|max:30',
-                'description' => 'required|max:100',
+                'option_1' => 'required|max:100',
+                'option_2' => 'required|max:100',
+                'option_3' => 'required|max:100',
+                'option_4' => 'required|max:100',
+                'option_5' => 'required|max:100',
+                'description' => 'required|max:200',
                 'package_term' => 'required'
             ],
             [
@@ -155,7 +155,7 @@ class PackageController extends Controller
                 'option_3.required' => 'Please Enter Option 3 Option !',
                 'option_4.required' => 'Please Enter Option 4 Option !',
                 'option_5.required' => 'Please Enter Option 5 Option !',
-                'description.max' => 'Description Should Not Exceed by 100 Characters !',
+                'description.max' => 'Description Should Not Exceed by 200 Characters !',
                 'description.required' => 'Please Enter Course Description !',
             ]
         );
@@ -170,11 +170,24 @@ class PackageController extends Controller
         $package_pricing->option_4 = $request->option_4;
         $package_pricing->option_5 = $request->option_5;
         $package_pricing->description = $request->description;
-        $package_pricing->package_term = $request->package_term;
+        $package_pricing->package_term = 'mo';
         $package_pricing->save();
 
         Toastr::success(trans('common.Operation successful'), trans('common.Success'));
         return redirect()->to(route('allPackages'));
+    }
+
+    public function changeSeq(Request $request){
+        $payload = json_decode(file_get_contents('php://input'), true);
+        $order = $payload['order'];
+
+        foreach ($order as $item) {
+            $id = $item['id'];
+
+            PackagePricing::where('id', $id)->update(['seq_no' => $item['new_position']]);
+        }
+
+        return response()->json(200);
     }
 
     public function edit($id)
@@ -247,7 +260,7 @@ class PackageController extends Controller
 
     public function getAllsoldPackages()
     {
-        $query = PackagePurchasing::with('package');
+        $query = PackagePurchasing::has('package')->with('package');
         if (isTutor()) {
             $query->where('user_id', Auth::id());
         }
@@ -269,13 +282,13 @@ class PackageController extends Controller
             })
             ->editColumn('package_name', function ($query) {
                 if (!empty($query->latestPackageBuy) && $query->latestPackageBuy->id == $query->id) {
-                    return $query->package->title . " (Current)";
+                    return ($query->package) ? $query->package->title . " (Current)" : '<span class="text-danger">Package not found</span>' ;
                 } else {
-                    return $query->package->title;
+                    return ($query->package) ? $query->package->title : '<span class="text-danger">Package not found</span>';
                 }
             })
             ->editColumn('price', function ($query) {
-                return $query->package->price;
+                return $query->package->price ?? 0;
             })
             ->editColumn('course_limit', function ($query) {
                 return $query->course_limit;
@@ -331,7 +344,7 @@ class PackageController extends Controller
             $query->where('user_id', Auth::id());
         }
         $query->select('package_purchasing.*');
-
+        $query->orderBy('package_purchasing.seq_no','desc');
         return Datatables::of($query)
             ->addIndexColumn()
             ->editColumn('package_name', function ($query) {

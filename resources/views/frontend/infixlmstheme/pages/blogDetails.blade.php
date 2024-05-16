@@ -41,15 +41,15 @@
         }
 
         /* .search h5 {
-            font-size: 20px;
-        } */
+                font-size: 20px;
+            } */
 
         .search-input-field {
             background-color: #fff;
-    box-shadow: 0px 0px 55px 0px #00000026;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    padding: 30px 30px 30px 30px;
+            box-shadow: 0px 0px 55px 0px #00000026;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            padding: 30px 30px 30px 30px;
         }
 
         input {
@@ -65,12 +65,12 @@
         }
 
         /* .aurthor h5 {
-            font-size: 18px;
-        } */
+                font-size: 18px;
+            } */
 
         /* .recent-post h5 {
-            font-size: 18px;
-        } */
+                font-size: 18px;
+            } */
 
         .recent-post-card {
             background-color: #fff;
@@ -96,8 +96,8 @@
         }
 
         /* .categories h5 {
-            font-size: 18px;
-        } */
+                font-size: 18px;
+            } */
 
         .categories-card {
             background-color: #fff;
@@ -153,7 +153,7 @@
         }
 
         .submit-btn {
-            background-color:  var(--system_primery_color);
+            background-color: var(--system_primery_color);
             color: #fff;
             padding: 0.3rem 1rem;
             border: none;
@@ -205,14 +205,24 @@
             clear: both;
             display: table;
         }
-        @media only screen and (min-width: 1800px){
-            p{
+
+        .custom-paragraph {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 6;
+            overflow: hidden;
+            min-height: 78px;
+        }
+
+        @media only screen and (min-width: 1800px) {
+            p {
                 font-size: 20px;
             }
-             h5{
+
+            h5 {
                 font-size: 25px;
             }
-      
+
 
         }
     </style>
@@ -220,8 +230,9 @@
     <div class="container">
         <div class="row py-5 g-0">
             <div class="col-12 col-md-8 pr-0">
-                <div class="card rounded-3 pt-5 pb-4 px-5 ml-lg-5" style="border-radius: 15px;">
-                    <img src="{{ getBlogImage($blog->image) }}" class="img-fluid rounded-3" alt="" style="height: 78vh !important; border-radius:15px">
+                <div class="card rounded-3 pt-5 pb-4 px-5 ml-xl-5 mr-lg-4 mr-3" style="border-radius: 15px;">
+                    <img src="{{ getBlogImage($blog->image) }}" class="img-fluid rounded-3" alt=""
+                        style="height: 78vh !important; border-radius:15px">
 
                     <div class="d-flex align-items-center py-3 gap-2">
                         <span class="text-dark">{{ $blog->user->name }}</span>
@@ -242,14 +253,14 @@
 
                         {!! $blog->description !!}
                         @php
-                          $tagsArr = explode(',',$blog->tags)
+                            $tagsArr = explode(',', $blog->tags);
                         @endphp
                         <div class="d-flex justify-content-between align-items-center py-2">
 
                             <ul class="tags d-flex">
                                 Tags.
-                                @foreach($tagsArr as $tag)
-                                <li class="tag">{{ trim($tag) }}</li>
+                                @foreach ($tagsArr as $tag)
+                                    <li class="tag">{{ trim($tag) }}</li>
                                 @endforeach
                             </ul>
                             {{-- <div class=" p-3">
@@ -324,40 +335,41 @@
                             </div>
                         </div> --}}
                         <div class="row">
-                          @if($previous)
-                            <div class="col-md-6">
-                                <a class="font-weight-normal" href="{{route('blogDetails',[$previous->slug])}}"><i class='fas fa-angle-left'></i><span
-                                        class="text-capitalize blog-prev">previous post</span>
-                                </a>
-                                <div class="d-flex py-4 " href="#" style="cursor: pointer">
-                                    <img src="{{ getBlogImage($previous->image) }}"
-                                        width="70" alt="">
-                                    <div class="d-flex flex-column ml-3">
-                                        <h5>
-                                            {{ $previous->title }}
-                                        </h5>
-                                        <small>{{ showDate(@$previous->authored_date) }}</small>
+                            @if ($previous)
+                                <div class="col-md-6">
+                                    <a class="font-weight-normal" href="{{ route('blogDetails', [$previous->slug]) }}"><i
+                                            class='fas fa-angle-left'></i><span class="text-capitalize blog-prev">previous
+                                            post</span>
+                                    </a>
+                                    <div class="d-flex py-4 " href="#" style="cursor: pointer">
+                                        <img src="{{ getBlogImage($previous->image) }}" width="70" alt="">
+                                        <div class="d-flex flex-column ml-3">
+                                            <h5>
+                                                {{ $previous->title }}
+                                            </h5>
+                                            <small>{{ showDate(@$previous->authored_date) }}</small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                          @endif
-                          @if($next)
-                            <div class="col-md-6 ml-auto">
-                                <a href="{{route('blogDetails',[$next->slug])}}" class="d-flex justify-content-end align-items-center font-weight-normal"><span
-                                        class="text-capitalize blog-prev">next post</span><i class='fas fa-angle-right'></i>
-                                </a>
-                                <div class="d-flex justify-content-end pt-4" style="cursor: pointer">
-                                    <div class="d-flex flex-column mr-3">
-                                        <h5 class="font-weight-bold">
-                                            {{ $next->title }}
-                                        </h5>
-                                        <small>{{ showDate(@$next->authored_date) }}</small>
+                            @endif
+                            @if ($next)
+                                <div class="col-md-6 ml-auto">
+                                    <a href="{{ route('blogDetails', [$next->slug]) }}"
+                                        class="d-flex justify-content-end align-items-center font-weight-normal"><span
+                                            class="text-capitalize blog-prev">next post</span><i
+                                            class='fas fa-angle-right'></i>
+                                    </a>
+                                    <div class="d-flex justify-content-end pt-4" style="cursor: pointer">
+                                        <div class="d-flex flex-column mr-3">
+                                            <h5 class="font-weight-bold">
+                                                {{ $next->title }}
+                                            </h5>
+                                            <small>{{ showDate(@$next->authored_date) }}</small>
+                                        </div>
+                                        <img src="{{ getBlogImage($next->image) }}" width="70" alt="">
                                     </div>
-                                    <img src="{{ getBlogImage($next->image) }}"
-                                        width="70" alt="">
                                 </div>
-                            </div>
-                          @endif
+                            @endif
                         </div>
                         <hr style="color: #0000004b;">
                         {{-- <h5>
@@ -377,8 +389,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4 pr-4">
-                <div class="search mr-lg-5">
+            <div class="col-12 col-md-4 pr-0 pr-lg-4">
+                <div class="search mr-xl-5 mr-lg-4 mr-3">
                     <div class="d-flex align-items-center gap-2">
                         <svg class="mb-2" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                             viewBox="0 0 16 16">
@@ -394,7 +406,7 @@
                     </form>
                 </div>
 
-                <div class="aurthor pt-4 mr-lg-5">
+                <div class="aurthor pt-4 mr-xl-5 mr-lg-4 mr-3">
                     <div class="d-flex align-items-center gap-2">
                         <svg class="mb-2" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                             viewBox="0 0 16 16">
@@ -406,30 +418,33 @@
                     </div>
 
                     <div class="aurthor-card text-center p-4">
-                        <img src="{{ asset($blog->user->photo) }}" width="172" height ="172" class="rounded-circle" alt="">
+                        <img src="{{ asset($blog->user->photo) }}" width="172" height ="172" class="rounded-circle"
+                            alt="">
                         <div class="aurthor-info">
                             <h4>{{ $blog->user->name }}</h4>
-                            <p class="text-start pt-3 custom-paragraoh">
+                            <p class="text-start pt-3 custom-paragraph">
                                 {{ $blog->user->about }}
                             </p>
                         </div>
                         <div class="social-links">
-                            @if($blog->user->facebook != null && $blog->user->facebook != '')
-                            <a href="{{ $blog->user->facebook }}" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                                    <path fill="black"
-                                        d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95" />
-                                </svg>
-                            </a>
+                            @if ($blog->user->facebook != null && $blog->user->facebook != '')
+                                <a href="{{ $blog->user->facebook }}" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em"
+                                        viewBox="0 0 24 24">
+                                        <path fill="black"
+                                            d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95" />
+                                    </svg>
+                                </a>
                             @endif
-                            @if($blog->user->twitter != null && $blog->user->twitter != '')
-                            <a href="{{ $blog->user->twitter }}" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.7em" height="1.7em" viewBox="0 0 14 14">
-                                    <path fill="black"
-                                        d="M7 0c3.87 0 7 3.13 7 7s-3.13 7-7 7s-7-3.13-7-7s3.13-7 7-7M5.72 10.69c3.1 0 4.8-2.57 4.8-4.8v-.22c.33-.24.62-.54.84-.88c-.3.13-.63.22-.97.27c.35-.21.62-.54.74-.93c-.33.19-.69.33-1.07.41c-.31-.33-.75-.53-1.23-.53c-.93 0-1.69.76-1.69 1.69c0 .13.01.26.05.38c-1.4-.07-2.65-.74-3.48-1.76c-.14.25-.23.54-.23.85c0 .58.3 1.1.75 1.4c-.28 0-.54-.08-.76-.21v.02c0 .82.58 1.5 1.35 1.66c-.14.04-.29.06-.44.06c-.11 0-.21-.01-.32-.03c.21.67.84 1.16 1.57 1.17c-.58.45-1.31.72-2.1.72c-.14 0-.27 0-.4-.02c.74.48 1.63.76 2.58.76"
-                                        class="cls-1" />
-                                </svg>
-                            </a>
+                            @if ($blog->user->twitter != null && $blog->user->twitter != '')
+                                <a href="{{ $blog->user->twitter }}" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.7em" height="1.7em"
+                                        viewBox="0 0 14 14">
+                                        <path fill="black"
+                                            d="M7 0c3.87 0 7 3.13 7 7s-3.13 7-7 7s-7-3.13-7-7s3.13-7 7-7M5.72 10.69c3.1 0 4.8-2.57 4.8-4.8v-.22c.33-.24.62-.54.84-.88c-.3.13-.63.22-.97.27c.35-.21.62-.54.74-.93c-.33.19-.69.33-1.07.41c-.31-.33-.75-.53-1.23-.53c-.93 0-1.69.76-1.69 1.69c0 .13.01.26.05.38c-1.4-.07-2.65-.74-3.48-1.76c-.14.25-.23.54-.23.85c0 .58.3 1.1.75 1.4c-.28 0-.54-.08-.76-.21v.02c0 .82.58 1.5 1.35 1.66c-.14.04-.29.06-.44.06c-.11 0-.21-.01-.32-.03c.21.67.84 1.16 1.57 1.17c-.58.45-1.31.72-2.1.72c-.14 0-.27 0-.4-.02c.74.48 1.63.76 2.58.76"
+                                            class="cls-1" />
+                                    </svg>
+                                </a>
                             @endif
                         </div>
                     </div>

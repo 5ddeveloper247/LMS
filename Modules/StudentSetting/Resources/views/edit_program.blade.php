@@ -83,7 +83,7 @@
                                     <div class="col-xl-4">
                                         <div class="primary_input mb-35">
                                             <div class="primary_file_uploader" id="image_file-1">
-                                                <input class="primary-input filePlaceholder" type="text" id="input-1"
+                                                <input class="primary-input filePlaceholder placeholder_txt" type="text" id="input-1"
                                                        {{ $errors->has('image') ? 'autofocus' : '' }}
                                                        placeholder="{{ __('courses.Browse Image file') }}" readonly="">
                                                 <button onclick="destroyCropper1()" class="" type="button">

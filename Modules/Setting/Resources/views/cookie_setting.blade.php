@@ -51,7 +51,7 @@
                                                                 </label>
                                                                 <div class="primary_file_uploader">
                                                                     <input
-                                                                        class="primary-input  filePlaceholder   "
+                                                                        class="primary-input  filePlaceholder placeholder_txt"
                                                                         type="text" id=""
                                                                         placeholder="Browse file"
                                                                         readonly="">

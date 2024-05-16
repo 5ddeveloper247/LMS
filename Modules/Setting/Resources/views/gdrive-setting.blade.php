@@ -82,7 +82,7 @@
 
 
                                         <div class="row mt-40">
-                                            <div class="col-lg-12 text-center">
+                                            <div class="col-lg-12 text-center" style="margin: 0px 5px;">
                                                 <button type="submit" class="primary-btn fix-gr-bg"
                                                         data-toggle="tooltip">
                                                     <span class="ti-check"></span>

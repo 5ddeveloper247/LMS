@@ -331,7 +331,7 @@
 
                     <!-- main_menu_start  -->
                     <div
-                        class="col-md-7 col-2 col-sm-1 d-flex justify-content-end main_menu d-none category_box_iner pl-0 py-0">
+                        class="col-md-7 col-2 col-sm-1 d-flex justify-content-end main_menu d-none category_box_iner px-0 pl-lg-0 pr-lg-3 py-0">
                         <nav class="navbar navbar-expand-md pl-0 mb-0">
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"

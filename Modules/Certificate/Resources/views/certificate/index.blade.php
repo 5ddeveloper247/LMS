@@ -11,7 +11,7 @@
                 @if(!isset($certificates))
                     <div class="row">
                         <div class="offset-lg-10 col-lg-2 text-right col-md-12">
-                            <a href="{{route('certificate.index')}}" class="primary-btn small fix-gr-bg">
+                            <a href="{{route('certificate.index')}}" class="primary-btn small fix-gr-bg" style="padding: 0.5rem !important">
                                 {{__('certificate.Certificate')}}
                                 {{__('certificate.List')}}
                             </a>

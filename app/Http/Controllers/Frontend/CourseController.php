@@ -62,7 +62,8 @@ class CourseController extends Controller
             $course = Course::with('enrollUsers', 'user', 'user.courses', 'user.courses.enrollUsers', 'user.courses.lessons', 'chapters.lessons', 'enrolls', 'lessons', 'reviews', 'chapters', 'activeReviews', 'children')
                 ->where('slug', $slug)->first();
 
-            $childIds = Course::where('parent_id', $course['id'])->get();
+            $reqCourseType = $request->get('courseType') ?? 0;
+            $childIds = Course::where('parent_id', $course['id'])->where('type',$reqCourseType)->get();
 
             $idArray = [];
             foreach ($childIds as $id) {
@@ -76,9 +77,24 @@ class CourseController extends Controller
             //     ->get();
 
             $plan = PaymentPlans::where('parent_id', $course['id'])->get();
+            $coursePlan = PaymentPlans:: whereIn('parent_id', $idArray)->where(function ($q) {
+                $q->where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'));
+            })->first();
+            // if($request->has('courseType') && in_array($request->get('courseType'),[4,6])){
+            //     switch ($request->get('coursetype')) {
+            //         case 6:
+            //             $courseplanType = 'prep_course_live';
+            //             break;
+                    
+            //         default:
+            //             $courseplanType = 'full_course';
+            //             break;
+            //     }
 
-            $coursePlan = PaymentPlans:: whereIn('parent_id', $idArray)->first();
+            //     $coursePlan = $course->currentCoursePlan->first();
+            // }
 
+           // dd($coursePlan);
 
 
             // dd($courseParent[0]['sdate']);

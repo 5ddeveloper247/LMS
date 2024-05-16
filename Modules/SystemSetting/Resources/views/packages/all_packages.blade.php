@@ -93,7 +93,7 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('/') }}/Modules/CourseSetting/Resources/assets/js/course.js"></script>
-
+    <script type="text/javascript" src="https://cdn.datatables.net/rowreorder/1.3.3/js/dataTables.rowReorder.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -116,7 +116,7 @@
         // $(document).ready(function() {
 
         // });
-
+        var recordsTotal;
         let table = $('.classList').DataTable({
             bLengthChange: true,
             "lengthChange": true,
@@ -138,6 +138,10 @@
                 url: '{!! $url !!}',
                 // pages: 5 // number of pages to cache
             }),
+            "fnInitComplete": function (oSettings, json) {
+                recordsTotal = json.recordsTotal;
+
+            },
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'id'
@@ -287,6 +291,56 @@
             responsive: true,
         });
 
+        var order = [];
+        var course_seq_url = '{{ route('changePackageSeq') }}';
+        $('#lms_table tbody').sortable({
+            update: function(event, ui) {
+                // Get the sorted row IDs
+
+                var page_length = parseInt($('.dataTable_select>.list>li.selected').data('value'));
+                var current_page = parseInt($('.paginate_button.current').text());
+                //
+                var postion_for_text = (current_page * page_length) - page_length; //asc
+                var postion_for = recordsTotal - (postion_for_text); // dsec
+
+
+                $('#lms_table tbody tr').each(function(index, element) {
+                    var rowData = table.row(index).data();
+
+                    order.push({
+                        id: $(this).attr('data-course_id'),
+                        new_position: postion_for,
+                    });
+                    $(this).children().first().text(postion_for_text+=1);
+                    $(this).data('seq_no', postion_for);
+
+                    postion_for = postion_for - 1;
+
+
+                });
+                // console.log(postion_for,order,page_length,current_page);
+
+                $.ajax({
+                    // type: "POST",
+                    method: 'POST',
+                    url: course_seq_url,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        order: order
+                    }),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response == 200) {
+                            toastr.success('Order Successfully Changed !', 'Success');
+                            order = [];
+                        }
+                    }
+                });
+            },
+        });
 
         $('#lms_table_info').append('<span id="add_here"> new-dynamic-text</span>');
     </script>

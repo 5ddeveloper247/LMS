@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html dir="{{ isRtl() ? 'rtl' : '' }}" class="{{ isRtl() ? 'rtl' : '' }}" lang="en" itemscope
     itemtype="{{ url('/') }}">
 
@@ -68,8 +68,8 @@
 
     <meta property="og:image" content="{{ asset(Settings('logo')) }}" />
     <meta property="og:image:type" content="image/png" />
-    <link rel="manifest" href="site.webmanifest">
-    <!--<link rel="shortcut icon" type="image/x-icon" href="{{ asset(Settings('favicon')) }}">-->
+    {{-- <link rel="manifest" href="{{asset(site.webmanifest)}}"> --}}
+    {{-- <!--<link rel="shortcut icon" type="image/x-icon" href="{{ asset(Settings('favicon')) }}">--> --}}
     <!-- Place favicon.ico in the root directory -->
 
 

@@ -30,8 +30,7 @@
 
                             <tbody>
                                 @foreach ($courses as $course)
-                                    {{-- @dd($course->reveune, $course->purchasePrice, $course->sumRev) --}}
-                                    {{ $course->purchasePrice }}
+                                   
                                     <tr>
                                         <td scope="row">
                                             {{ @$course->title }}

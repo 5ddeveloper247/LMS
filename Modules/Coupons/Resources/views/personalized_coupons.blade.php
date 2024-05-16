@@ -307,7 +307,7 @@
                         <div class="QA_table ">
                             <!-- table-responsive -->
                             <div class="">
-                                <table id="lms_table" class="table table-data">
+                                <table id="lms_table" class="table table-data table-responsive">
                                     <thead>
                                     <tr>
                                         <th scope="col"><span class="m-3">{{ __('common.SL') }}</span></th>

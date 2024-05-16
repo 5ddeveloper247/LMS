@@ -166,6 +166,7 @@
             display: inline-block;
             /* line-height: 1; */
             padding: 0.5rem 1.5rem;
+            white-space: nowrap;
         }
 
         .btn_login:hover {
@@ -277,8 +278,8 @@ canvas {
             }
 
             .btn_login {
-                width: 92px;
-                height: 38px;
+                /* width: 92px; */
+                /* height: 38px; */
                 font-size: 12px;
                 text-align: center;
             }
@@ -330,7 +331,7 @@ canvas {
     </style>
 
     <div class="container px-xl-5">
-        <div class="row mt-5 mb-4 ">
+        <div class="row my-4 my-lg-5 px-xl-5">
             <!-- Left side - Registration Form -->
             <div class="col-md-8 mb-5 mb-md-0">
                 <h3 class="text-uppercase text-center text_reg">We are merakii </h3>
@@ -634,7 +635,7 @@ canvas {
                         <div class="form-group col-md-12">
                             
                             <input type="file" id="canvasFileInput" name="signature-img" required style="display:none">
-                            <label for="canvasFileInput" class="btn btn_login rounded w-100">Upload Signature</label>
+                            <label for="canvasFileInput" class="btn btn_login w-100 mt-2">Upload Signature</label>
                         </div>
                     </div>
 

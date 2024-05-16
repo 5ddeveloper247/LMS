@@ -61,7 +61,7 @@
                                                             <line x1="12" y1="2" x2="12" y2="22"></line>
                                                         </svg>
                                                     </div>
-                                                    {{$menu->name}}
+                                                  <div class="dd-handle-name">  {{$menu->name}}</div>
                                                 </div>
                                                 <div class="edit_icon">
                                                    <span class="edit-btn">
@@ -113,7 +113,7 @@
                                                                         <line x1="12" y1="2" x2="12" y2="22"></line>
                                                                     </svg>
                                                                 </div>
-                                                                {{$submenu->name}}
+                                                               <div class="dd-handle-name"> {{$submenu->name}}</div>
                                                             </div>
                                                             <div class="edit_icon">
                                                          <span class="edit-btn">

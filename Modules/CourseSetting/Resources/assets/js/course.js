@@ -15,7 +15,7 @@ $(document).ready(function () {
             dataType: "json",
             url: url + "/" + "admin/course/ajaxGetCourseSubCategory",
             success: function (data) {
-                // console.log(data);
+                 console.log(data);
                 var a = "";
                 // $.loading.onAjax({img:'loading.gif'});
                 $.each(data, function (i, item) {

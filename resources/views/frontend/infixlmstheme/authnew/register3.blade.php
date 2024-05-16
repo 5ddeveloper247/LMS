@@ -305,7 +305,7 @@ canvas {
 
 
     <div class="container px-xl-5">
-        <div class="row py-5">
+        <div class="row my-4 my-lg-5 px-xl-5">
             <!-- Left side - Registration Form -->
             <div class="col-md-8">
                 <h3 class="text-uppercase text-center text_reg">We are merakii </h3>
@@ -419,6 +419,14 @@ canvas {
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <small class="mb-0 font-weight-bold">Please sign up the document and click 'Save' or Upload your signature.</small>
+                        <span>Selected file: <small id="sign_filename" class="bg-dark px-2 text-white">No file chosen</small></span>
+                    </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
                             <div class="signature">
                                 <div id='root'></div>
                                 <div class="" style="position: absolute; bottom: 0; padding: 5px;">
@@ -436,12 +444,9 @@ canvas {
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <div class="d-flex justify-content-between">
-                                <small class="mb-0 font-weight-bold">Please sign up the document and click 'Save' or Upload your signature.</small>
-                                <span>Selected file: <small id="sign_filename" class="bg-dark px-2 text-white">No file chosen</small></span>
-                            </div>
+                          
                             <input type="file" id="canvasFileInput" name="signature-img" required style="display:none">
-                            <label for="canvasFileInput" class="btn btn_login rounded w-100">Upload Signature</label>
+                            <label for="canvasFileInput" class="btn btn_login w-100 mt-2">Upload Signature</label>
 
                         </div>
                     </div>

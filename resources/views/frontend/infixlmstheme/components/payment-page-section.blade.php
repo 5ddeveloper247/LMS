@@ -16,7 +16,7 @@
 
     <input type="hidden" name="id" id="accesskey" value="{{ $pakms ?? null }}">
     <div class="checkout_wrapper payment_area" id="mainFormData">
-        <div class="billing_details_wrapper">
+        <div class="billing_details_wrapper p-4 p-lg-5">
             <div class="container gray-bg">
                 <div class="biling-header d-flex justify-content-between align-items-center">
                     <h5 class="f_w_700">{{ __('frontendmanage.Billing Address') }}</h5>
@@ -225,7 +225,8 @@
             </div>
         </div>
 
-        <div class="order_wrapper">
+       <div class="order_wrapper my-4 my-lg-5 mr-4 mr-lg-5">
+        <div class="p-lg-4 p-2" style=" background: #fafafa;">
             <h5 class="f_w_700">{{ __('frontend.Your order') }}</h5>
             <div class="ordered_products">
                 @php
@@ -346,6 +347,7 @@
                 @endif
             </div>
         </div>
+       </div>
     </div>
 </div>
 
@@ -522,3 +524,4 @@
         });
     });
 </script>
+@include(theme('partials._custom_footer'))

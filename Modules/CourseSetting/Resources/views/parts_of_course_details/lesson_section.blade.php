@@ -53,13 +53,13 @@
                         <div class="col-lg-12">
                             <div class="input-effect mt-2 pt-1">
                                 <label>{{ __('courses.Lesson') }} {{ __('common.Name') }}
-                                    <span>*</span><small>(Max: 25 characters)</small></label>
+                                    <span>*</span><small>(Max: 150 characters)</small></label>
                                 <input
                                     class="primary_input_field name{{ $errors->has('chapter_name') ? ' is-invalid' : '' }}"
                                     type="text" name="name" id="addLesson_name"
                                     placeholder="{{ __('courses.Lesson') }} {{ __('common.Name') }}"
                                     autocomplete="off" value="{{ isset($editLesson) ? $editLesson->name : '' }}"
-                                    maxlength="25" required>
+                                    maxlength="150" required>
                                 <input type="hidden" name="lesson_id"
                                        value="{{ isset($editLesson) ? $editLesson->id : '' }}">
                                 <span class="focus-border"></span>
@@ -123,14 +123,6 @@
                                             <option value="Self" @if (@$editLesson->host == 'Self') Selected @endif
                                             @if (empty(@$editLesson) == 'Self') selected @endif>
                                                 Self
-                                            </option>
-                                        @endif
-
-                                        @if (isTutor() || isAdmin() || isInstructor())
-                                            <option value="VdoCipher" @if (@$editLesson->host == 'VdoCipher') Selected
-                                                    @endif
-                                                    @if (empty(@$editLesson) && @$editLesson->host == 'VdoCipher') selected @endif>
-                                                VdoCipher
                                             </option>
                                         @endif
 

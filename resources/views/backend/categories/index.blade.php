@@ -26,7 +26,7 @@
                             </h3>
                             @if (isset($edit))
                                 @if (permissionCheck('course.category.store'))
-                                    <a href="{{ route('course.category') }}" class="primary-btn small fix-gr-bg ml-4"
+                                    <a href="{{ route('course.category') }}" class="primary-btn small fix-gr-bg ml-4 d-flex align-items-center"
                                         style="line-height: 25px;" title="{{ __('courses.Add New') }}">+</a>
                                 @endif
                             @endif

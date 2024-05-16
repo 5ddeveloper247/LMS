@@ -34,7 +34,7 @@
                                             </ul>
                                         </div>
                                         <div class="col-lg-4">
-                                            @if ($quiz_setup->set_per_question_time==1)
+                                            @if (@$quiz_setup->set_per_question_time==1)
                                                 <div class="form-group" id="per_question_time">
                                                     <label
                                                         for="set_time_per_question">{{trans('quiz.Per Question Time Count (Minute)')}}</label>
@@ -95,7 +95,7 @@
                                             </ul>
                                         </div>
                                         @php
-                                            if($quiz_setup->question_review!=1){
+                                            if(@$quiz_setup->question_review!=1){
                                                     $show_result_each='';
                                             }else{
                                                 $show_result_each='style=display:none';
@@ -222,11 +222,11 @@
                                                                 for="#">
 
                                                         <span id="losingPerQusCount"
-                                                              style="display: {{$quiz_setup->losing_type!=1?'block':'none'}}">
+                                                              style="display: {{@$quiz_setup->losing_type!=1?'block':'none'}}">
                                                                {{trans('quiz.Per Question time count')}}
                                                         </span>
                                                                 <span id="losingTotalQusCount"
-                                                                      style="display: {{$quiz_setup->losing_type==1?'block':'none'}}">
+                                                                      style="display: {{@$quiz_setup->losing_type==1?'block':'none'}}">
                                                                {{trans('quiz.Total Quiz time count')}}
                                                         </span>
 

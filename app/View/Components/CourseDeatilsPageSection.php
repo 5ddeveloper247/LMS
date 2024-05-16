@@ -35,6 +35,7 @@ class CourseDeatilsPageSection extends Component
             ->where('id', '!=', $this->course->id)->with('lessons')->take(2)->get();
 
         $userRating = userRating($this->course->user_id);
+        $courseRating = courseRating($this->course->id);
         $course_exercises = DB::table('course_exercises')
             ->select('file', 'fileName', 'lock')->where('course_id', $this->course->id)->get();
         $course_reviews = DB::table('course_reveiws')->select('user_id')->where('course_id', $this->course->id)->get();
@@ -136,7 +137,7 @@ class CourseDeatilsPageSection extends Component
 
         $total = count($lessons);
         $levels = CourseLevel::select('id', 'title')->where('status', 1)->get();
-        $Classes = Course::whereHas('class', function ($q) {
+        $Classes = Course::with('class')->whereHas('class', function ($q) {
           $q->where(function($q) {
             $q->where('course_id', $this->course->id)->where('host','Zoom')->has('zoomMeetings');
           })
@@ -146,12 +147,13 @@ class CourseDeatilsPageSection extends Component
           });
 
         })->where('scope', 1)->get();
-    
+        $courseCategoryId = $this->course->category_id ?? 0;
         $time_tables = TimeTableList::where('time_table_id', $this->course->time_table_id)->groupBy('week')->orderBy('week')->get();
 
         $program_plan = PaymentPlans::where('parent_id', $this->request->program_id)->where('type', 'program')->first();
 
-        $recent_courses = Course::where('status', 1)->whereIn('type', [2, 4, 5, 6, 7, 8])->where('price', '!=', '0.00')->inRandomOrder()->take(3)->get();
+        $recent_courses = Course::where('status', 1)->whereIn('type', [2, 4, 5, 6, 7, 8])->where('price', '!=', '0.00')
+        ->orderByRaw("FIELD(category_id, ".$courseCategoryId.") DESC")->inRandomOrder()->take(3)->get();
 
         return view(theme('components.course-details-page-section'), get_defined_vars());
     }

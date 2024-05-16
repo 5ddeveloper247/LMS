@@ -1153,7 +1153,8 @@ button:focus {
 
 @media (max-width:1280px) and (min-width:992px) {
     .radio-btn-flex {
-        flex-direction: column
+        flex-direction: column;
+        gap: 20px;
     }
 
     .radio-btn-flex .mr-30 {
@@ -1817,7 +1818,7 @@ button:focus {
     cursor: pointer;
     text-transform: uppercase;
     border: 0;
-    border-radius: 5px;
+    border-radius: 16px;
     position: relative;
     overflow: hidden;
     transition: all .4s ease 0s
@@ -1889,7 +1890,8 @@ button:focus {
     color: #fff;
     background-size: 200% auto;
     transition: all .4s ease 0s;
-    border-radius: 20px;
+    border-radius: 16px;
+    white-space: nowrap;
 }
 
 .primary-btn.fix-gr-bg:hover {
@@ -5408,8 +5410,8 @@ div.dt-buttons {
 }
 
 .padding_40 {
-    padding-left: 40px !important;
-    padding-right: 40px !important
+    padding-left: 35px !important;
+    padding-right: 35px !important
 }
 
 .certificate hr {
@@ -6715,6 +6717,9 @@ th:focus {
         margin-right: 0;
         display: block
     }
+    .primary_file_uploader input::placeholder{
+        width: 100% !important;
+            }
 }
 
 @media only screen and (min-width:1200px) and (max-width:1439px) {
@@ -7047,6 +7052,7 @@ th:focus {
     #main-content {
         padding: 30px
     }
+   
 }
 
 @media (max-width:991px) {
@@ -7268,6 +7274,9 @@ input::placeholder {
         height: 150px;
         width: 80%
     }
+    .primary_file_uploader input::placeholder{
+        width: 100% !important;
+            }
 }
 
 @media only screen and (min-width:992px) and (max-width:1440px) {
@@ -7277,11 +7286,14 @@ input::placeholder {
     }
 }
 
-@media only screen and (min-width:1440px) and (max-width:1900px) {
+@media only screen and (min-width:1440px) and (max-width:1950px) {
     .white-box.single-summery:hover:before {
         border-radius: 10px;
         background-size: 90% 100%
     }
+        .primary_file_uploader input::placeholder{
+    width: 100% !important;
+        }
 }
 
 @media only screen and (min-width:992px) and (max-width:1440px) {
@@ -7676,7 +7688,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     font-weight: 500;
     border: 1px solid #7c32ff;
     border-radius: 32px;
-    padding: 2px 40px 5px 23px;
+    padding: 2px 30px 5px 23px;
     text-transform: uppercase;
     overflow: hidden;
     transition: .3s;
@@ -7685,7 +7697,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 
 @media only screen and (min-width:992px) and (max-width:1400px) {
     .CRM_dropdown.dropdown .dropdown-toggle {
-        padding: 2px 30px 5px 23px
+        padding: 2px 30px 5px 23px;
     }
 }
 
@@ -8105,7 +8117,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    cursor: pointer
+    cursor: pointer;
+    object-fit: cover;
 }
 
 @media (max-width:991px) {
@@ -11400,7 +11413,7 @@ table.dataTable thead .sorting_desc:after {
     border: 1px solid #eceef4;
     font-size: 14px;
     color: #415094;
-    padding-left: 20px;
+    padding-left: 15px;
     height: 46px;
     border-radius: 30px;
     width: 100%;
@@ -11561,7 +11574,7 @@ table.dataTable thead .sorting_desc:after {
     line-height: 44px;
     font-size: 13px;
     color: #415094;
-    padding: 0 25px 0 20px;
+    padding: 0 15px;
     font-weight: 300;
     border-radius: 30px
 }
@@ -11673,9 +11686,10 @@ table.dataTable thead .sorting_desc:after {
     right: 7px;
     padding: 0;
     background: transparent;
-    z-index: 99
+    z-index: 99;
+    display: flex;
+    align-items: center;
 }
-
 .primary_file_uploader button label {
     margin-bottom: 0
 }
@@ -11684,7 +11698,7 @@ table.dataTable thead .sorting_desc:after {
     border: 1px solid #eceef4 !important;
     font-size: 14px;
     color: #415094;
-    padding-left: 20px;
+    padding-left: 13px;
     height: 46px;
     border-radius: 30px;
     width: 100%;
@@ -11695,11 +11709,16 @@ table.dataTable thead .sorting_desc:after {
 .primary_file_uploader input::-moz-placeholder {
     color: #415094
 }
-
-.primary_file_uploader input::placeholder {
-    color: #415094
+.placeholder_txt::placeholder{
+    width: 100% !important;
 }
-
+.primary_file_uploader input::placeholder {
+    color: #415094;
+    width: 70px;
+}
+.primary_file_uploader input:placeholder-shown{
+    text-overflow: ellipsis;
+}
 .primary_file_uploader input:focus {
     border: 1px solid #eceef4 !important
 }
@@ -12343,7 +12362,8 @@ table.dataTable thead .sorting_desc:after {
     position: relative;
     overflow: hidden;
     font-size: 12px;
-    margin-bottom: 13px
+    margin-bottom: 13px;
+    white-space: nowrap;
 }
 
 .General_system_wrap_area .single_system_wrap .single_system_wrap_inner .update_logo_btn button input {
@@ -12476,7 +12496,7 @@ table.dataTable thead .sorting_desc:after {
 }
 
 .primary_checkbox {
-    display: inline-block;
+    display: block;
     position: relative;
     width: 18px;
     height: 18px;
@@ -15659,9 +15679,12 @@ table.dataTable tbody tr {
     line-height: 46px;
     padding-left: 58px;
     cursor: -webkit-grab;
-    cursor: grab
+    cursor: grab;
 }
-
+.dd-item:hover .dd-handle-name {
+    width: 55px;
+    text-overflow: ellipsis;
+}
 .dd-handle,
 .dd-handle .menu_icon {
     height: 46px;
@@ -15689,12 +15712,13 @@ table.dataTable tbody tr {
     font-size: 16px;
     color: #707db7;
     font-weight: 400;
-    padding-right: 20px;
+    padding-right: 10px;
     height: 46px;
     line-height: 46px;
     position: absolute;
     right: 0;
-    top: 0
+    top: 0;
+    /* background-color: #6c6a6a38; */
 }
 
 .dd-item>button {
@@ -16219,16 +16243,16 @@ table.dataTable tbody tr {
     top: 38%
 }
 
-.CRM_dropdown.dropdown .dropdown-toggle {
+/* .CRM_dropdown.dropdown .dropdown-toggle {
     padding: 2px 23px 5px
-}
+} */
 
 .propertiesname {
     text-transform: uppercase;
     font-weight: 700
 }
 
-.primary-btn small fix-gr-bg {
+.primary-btn small .fix-gr-bg {
     display: inline-block;
     padding: 7px 25px;
     text-transform: uppercase;
@@ -16238,7 +16262,7 @@ table.dataTable tbody tr {
     border-radius: 30px !important;
     white-space: nowrap;
     color: #fff;
-    background: linear-gradient(90deg, #7c32ff, #a235ec 70%, #c738d8)
+    background: linear-gradient(90deg, #7c32ff, #a235ec 70%, #c738d8);
 }
 
 .field-icon {
@@ -16779,7 +16803,7 @@ button.filepond--file-action-button.filepond--action-revert-item-processing {
     padding-left: 20px;
     margin-right: 15px;
     position: relative;
-    top: -10px;
+    /* top: -10px; */
     border-radius: 5px;
     border: 0 !important
 }
@@ -17676,3 +17700,8 @@ div.dt-buttons {
 .dashboard_badge_carousel .owl-nav div {
     transform: translateY(70%)
 }
+/* @media only screen and (min-width: 1800px){
+    .primary-btn.fix-gr-bg{
+        border-radius: 20px !important;
+    }
+} */

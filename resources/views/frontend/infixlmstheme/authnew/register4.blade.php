@@ -149,7 +149,7 @@
     </style>
 
     <div class="container px-xl-5">
-        <div class="row py-5">
+        <div class="row my-4 my-lg-5 px-xl-5">
             <!-- Left side - Registration Form -->
             <div class="col-md-12 ">
                 <h3 class="text-uppercase text-center text_reg">We are merakii </h3>

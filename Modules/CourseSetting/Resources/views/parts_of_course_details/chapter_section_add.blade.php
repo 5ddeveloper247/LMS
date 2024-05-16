@@ -22,7 +22,7 @@
 
                                 <label>{{__('quiz.Chapter')}} {{__('common.Name')}}
 
-                                    <span>*</span><small>(Max: 25 characters)</small></label>
+                                    <span>*</span><small>(Max: 150 characters)</small></label>
 
                                 <input
 
@@ -32,7 +32,7 @@
 
                                     autocomplete="off"
 
-                                    value="" maxlength="25" required>
+                                    value="" maxlength="150" required>
 
                                 <span class="focus-border"></span>
 

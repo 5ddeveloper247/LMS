@@ -159,10 +159,13 @@
                                                     value="{{ $chapter->id }}">
                                                 <span class="checkmark custom_checkmark mr-2"></span>
                                             </label>
-                                            <button class="btn p-0 text-white" type="button" data-toggle="collapse"
+                                            <span class="p-0 text-white">
+                                                {{ $chapter->name }} ({{ count($chapter->lessons).' Lessons' }})
+                                            </span>
+                                            <button class="btn p-0 text-white ml-auto" type="button" data-toggle="collapse"
                                                 data-target="#collapse-{{ $chapter->id }}" aria-expanded="true"
-                                                aria-controls="collapse-{{ $chapter->id }}">
-                                                {{ $chapter->name }}
+                                                aria-controls="collapse-{{ $chapter->id }}" title="Select Lessons">
+                                                <i class="ti-plus"></i>
                                             </button>
                                         </h5>
                                     </div>
@@ -172,7 +175,7 @@
                                         <div class="card-body row">
                                             @forelse ($chapter->lessons as $lesson)
                                                 @if (!count($lesson->quiz))
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <label class="primary_checkbox d-flex nowrap mr-12">
                                                             <input type="checkbox" id="lesson_id" class="lessons"
                                                                 name="lesson_ids[]"
@@ -184,7 +187,7 @@
                                                 @else
                                                     @foreach ($lesson->quiz as $quiz)
                                                         {{-- @if ($lesson->quiz_id == $quiz->id) --}}
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <label class="primary_checkbox d-flex nowrap mr-12">
                                                                 <input type="checkbox" id="lesson_id" class="lessons"
                                                                     name="lesson_ids[]" {{-- @if ($lesson->course_check->count()) checked @endif --}}
@@ -260,7 +263,7 @@
                             <input class="primary-input primary_input_field date form-control"
                                 {{ $errors->first('start_date') ? 'autofocus' : '' }}
                                 value="{{ $start_date ?? old('start_date') }}" name="start_date" placeholder="-"
-                                type="text" id="start_date">
+                                type="text" id="start_date" required>
                         </div>
                     </div>
 
@@ -279,7 +282,7 @@
                             <input class="primary-input primary_input_field date form-control"
                                 {{ $errors->first('end_date') ? 'autofocus' : '' }}
                                 value="{{ $end_date ?? old('end_date') }}" name="end_date" placeholder="-" type="text"
-                                id="end_date">
+                                id="end_date" required>
                         </div>
                     </div>
 
@@ -289,7 +292,7 @@
                                     class="text-danger">($)</strong></label>
                             <input type="number" name="price" id="price"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ $course->price ?? old('price') }}">
+                                value="{{ $course->price ?? old('price') }}" required>
                         </div>
                     </div>
 
@@ -297,7 +300,7 @@
                         <label class="primary_input_label" for="">Timetable <strong
                                 class="text-danger">*</strong></label>
                         <select class="primary_select" name="timetable" id="timetable_id"
-                            {{ $errors->has('timetable') ? 'autofocus' : '' }}>
+                            {{ $errors->has('timetable') ? 'autofocus' : '' }} required>
                             <option data-display="{{ __('common.Select') }} {{ __('Time Table') }} *" value="">
                                 {{ __('common.Select') }} {{ __('Time Table') }} </option>
                             @foreach ($timetables as $timetable)
@@ -325,7 +328,7 @@
                                     Characters)</small></label>
                             <input type="text" name="card_1_heading" id="card_1_heading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_1_heading : old('card_1_heading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_1_heading : old('card_1_heading') }}" required>
                         </div>
                     </div>
 
@@ -335,7 +338,7 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="card_1_subheading" id="card_1_subheading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_1_subheading : old('card_1_subheading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_1_subheading : old('card_1_subheading') }}" required>
                         </div>
                     </div>
 
@@ -345,7 +348,7 @@
                                     (400 Characters)</small></label>
                             <input type="text" name="card_1_text" id="card_1_text" maxlength="400"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_1_text : old('card_1_text') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_1_text : old('card_1_text') }}" required>
                         </div>
                     </div>
 
@@ -355,7 +358,7 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="card_2_heading" id="card_2_heading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_2_heading : old('card_2_heading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_2_heading : old('card_2_heading') }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -364,7 +367,7 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="card_2_subheading" id="card_2_subheading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_2_subheading : old('card_2_subheading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_2_subheading : old('card_2_subheading') }}" required>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -373,7 +376,7 @@
                                     (400 Characters)</small></label>
                             <input type="text" name="card_2_text" id="card_2_text" maxlength="400"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_2_text : old('card_2_text') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_2_text : old('card_2_text') }}" required>
                         </div>
                     </div>
 
@@ -383,7 +386,7 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="card_3_heading" id="card_3_heading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_3_heading : old('card_3_heading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_3_heading : old('card_3_heading') }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -392,7 +395,7 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="card_3_subheading" id="card_3_subheading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_3_subheading : old('card_3_subheading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_3_subheading : old('card_3_subheading') }}" required>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -401,7 +404,7 @@
                                     (400 Characters)</small></label>
                             <input type="text" name="card_3_text" id="card_3_text" maxlength="400"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_3_text : old('card_3_text') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_3_text : old('card_3_text') }}" required>
                         </div>
                     </div>
 
@@ -411,7 +414,7 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="card_4_heading" id="card_4_heading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_4_heading : old('card_4_heading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_4_heading : old('card_4_heading') }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -420,7 +423,7 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="card_4_subheading" id="card_4_subheading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_4_subheading : old('card_4_subheading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_4_subheading : old('card_4_subheading') }}" required>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -429,7 +432,7 @@
                                     (400 Characters)</small></label>
                             <input type="text" name="card_4_text" id="card_4_text" maxlength="400"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_4_text : old('card_4_subheading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->card_4_text : old('card_4_subheading') }}" required>
                         </div>
                     </div>
 
@@ -440,16 +443,16 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="slider_1_heading" id="slider_1_heading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_1_heading : old('slider_1_heading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_1_heading : old('slider_1_heading') }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="primary_input mb-25">
-                            <label class="primary_input_label" for=""><small>Slider 1 Image</small></label>
+                            <label class="primary_input_label" for=""><small>Slider 1 Image (Recommended Dimensions: 1600 X 600)</small></label>
                             <div class="primary_file_uploader">
                                 <input class="primary-input filePlaceholder" type="text" id="slider_1_image"
                                     placeholder="Browse Image file" readonly=""
-                                    value="{{ isset($course->course_sale_data) ? showPicName(@$course->course_sale_data->slider_1_image) : '' }}">
+                                    value="{{ isset($course->course_sale_data) ? showPicName(@$course->course_sale_data->slider_1_image) : '' }}" required>
                                 <button class="" type="button">
                                     <label class="primary-btn small fix-gr-bg" for="document_file_thumb_1">Browse</label>
                                     <input type="file" class="d-none fileUpload" name="slider_1_image"
@@ -464,7 +467,7 @@
                                     (400 Characters)</small></label>
                             <input type="text" name="slider_1_text" id="slider_1_text" maxlength="400"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_1_text : old('slider_1_text') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_1_text : old('slider_1_text') }}" required>
                         </div>
                     </div>
 
@@ -474,17 +477,17 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="slider_2_heading" id="slider_2_heading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_2_heading : old('slider_2_heading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_2_heading : old('slider_2_heading') }}" required>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="primary_input mb-25">
-                            <label class="primary_input_label" for="">Slider 2 Image</label>
+                            <label class="primary_input_label" for="">Slider 2 Image (Recommended Dimensions: 1600 X 600)</label>
                             <div class="primary_file_uploader">
                                 <input class="primary-input filePlaceholder" type="text" id="slider_2_image"
                                     placeholder="Browse Image file" readonly=""
-                                    value="{{ isset($course->course_sale_data) ? showPicName(@$course->course_sale_data->slider_2_image) : '' }}">
+                                    value="{{ isset($course->course_sale_data) ? showPicName(@$course->course_sale_data->slider_2_image) : '' }}" required>
                                 <button class="" type="button">
                                     <label class="primary-btn small fix-gr-bg" for="document_file_thumb_2">Browse</label>
                                     <input type="file" class="d-none fileUpload" name="slider_2_image"
@@ -500,7 +503,7 @@
                                     (400 Characters)</small></label>
                             <input type="text" name="slider_2_text" id="slider_2_text" maxlength="400"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_2_text : old('slider_2_text') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_2_text : old('slider_2_text') }}" required>
                         </div>
                     </div>
 
@@ -510,16 +513,16 @@
                                     (60 Characters)</small></label>
                             <input type="text" name="slider_3_heading" id="slider_3_heading" maxlength="60"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_3_heading : old('slider_3_heading') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_3_heading : old('slider_3_heading') }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="primary_input mb-25">
-                            <label class="primary_input_label" for="">Slider 3 Image</label>
+                            <label class="primary_input_label" for="">Slider 3 Image (Recommended Dimensions: 1600 X 600)</label>
                             <div class="primary_file_uploader">
                                 <input class="primary-input filePlaceholder" type="text" id="slider_3_image"
                                     placeholder="Browse Image file" readonly=""
-                                    value="{{ isset($course->course_sale_data) ? showPicName(@$course->course_sale_data->slider_3_image) : '' }}">
+                                    value="{{ isset($course->course_sale_data) ? showPicName(@$course->course_sale_data->slider_3_image) : '' }}" required>
                                 <button class="" type="button">
                                     <label class="primary-btn small fix-gr-bg" for="document_file_thumb_3">Browse</label>
                                     <input type="file" class="d-none fileUpload" name="slider_3_image"
@@ -534,7 +537,7 @@
                                     (400 Characters)</small></label>
                             <input type="text" name="slider_3_text" id="slider_3_text" maxlength="400"
                                 class="primary-input primary_input_field form-control custom_input_field"
-                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_3_text : old('slider_3_text') }}">
+                                value="{{ isset($course->course_sale_data) ? $course->course_sale_data->slider_3_text : old('slider_3_text') }}" required>
                         </div>
                     </div>
 
@@ -570,7 +573,7 @@
                         <div class="primary_input mb-35">
                             <label class="primary_input_label" for="description">Course Description</label>
                             <textarea class="primary_input_field" name="description" id="description" cols="30" rows="15"
-                                maxlength="500" style="height: 200px">{{ isset($course->course_sale_data) ? $course->course_sale_data->description : old('description') }}</textarea>
+                                maxlength="500" style="height: 200px" required>{{ isset($course->course_sale_data) ? $course->course_sale_data->description : old('description') }}</textarea>
                         </div>
                     </div>
 

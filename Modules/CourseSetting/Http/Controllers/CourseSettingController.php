@@ -301,7 +301,7 @@ class CourseSettingController extends Controller
             'language' => 'nullable',
             'duration' => 'nullable',
             'full_course_main_image' => 'required_if:cna_prep_type_check,==,1',
-
+            //'assign_instructor' => 'required_unless:type,7',
             'test_prep_price' => 'required_if:test_prep_type,==,1',
             'demand_course_main_image' => 'required_if:test_prep_type,==,1',
 
@@ -456,9 +456,9 @@ class CourseSettingController extends Controller
             $course->host = $request->host;
             $course->subscription_list = $request->subscription_list;
 
-            //if (!empty($request->assign_instructor)) {
+            if (!empty($request->assign_instructor)) {
                 $course->user_id = $request->assign_instructor ?? 0;
-           // }
+           }
 
             if ($request->get('host') == "Vimeo") {
                 if (config('vimeo.connections.main.upload_type') == "Direct") {
@@ -481,9 +481,9 @@ class CourseSettingController extends Controller
             }
 
 
-            // if (!empty($request->assign_instructor)) {
+            if (!empty($request->assign_instructor)) {
                 $course->user_id = $request->assign_instructor ?? 0;
-            // }
+            }
 
 
             if (!empty($request->assistant_instructors)) {
@@ -597,7 +597,7 @@ class CourseSettingController extends Controller
                 $shortCodes = [
                     'time' => \Illuminate\Support\Carbon::now()->format('d-M-Y ,H:i A'),
                     'title' => $course->title,
-                    'price' => applyProductTax($request->price),
+                    'price' => $request->price,
                     'instructor' => Auth::user()->name,
                     'type' => 'course',
                 ];
@@ -661,7 +661,7 @@ class CourseSettingController extends Controller
             //            'test_prep_graded_type' => 'required_if:type,==,2',
             // 'cna_prep_price' => 'required_if:cna_prep_type,==,1',
             // 'full_course_main_image' => 'required_if:test_prep_graded_type,==,1',
-
+            //'assign_instructor' => 'required_unless:type,7',
             'test_prep_price' => 'required_if:test_prep_type,==,1',
             // 'demand_course_main_image' => 'required_if:test_prep_graded_type,==,1',
 
@@ -715,9 +715,9 @@ class CourseSettingController extends Controller
 
             //            $course->user_id = Auth::id();
 
-            //if (!empty($request->assign_instructor)) {
+            if (!empty($request->assign_instructor)) {
                 $course->user_id = $request->assign_instructor ?? 0;
-            //}
+            }
             $course->drip = $request->drip;
             $course->complete_order = $request->complete_order;
             $course->lang_id = $request->language;
@@ -753,11 +753,11 @@ class CourseSettingController extends Controller
                     $course->price = 0;
                     $course->discount_price = null;
                 } else {
-                    $course->price = ($course->price == $request->price) ? $request->price : applyProductTax($request->price);
+                    $course->price = ($course->price == $request->price) ? $request->price : $request->price;
                 }
             } else {
                 if ($request->price == 9) {
-                    $course->price = ($course->price == $request->price) ? $request->price : applyProductTax($request->price);
+                    $course->price = ($course->price == $request->price) ? $request->price : $request->price;
                     $course->discount_price = null;
                 } else {
                     $course->price = 0;
@@ -999,7 +999,7 @@ class CourseSettingController extends Controller
             }
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-            return redirect()->back();
+            return redirect()->route('getAllCourse');
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -1131,10 +1131,9 @@ class CourseSettingController extends Controller
                 $certificates = Certificate::where('created_by', Auth::user()->id)->latest()->get();
             }
 
-            $timetables = TimeTable::where('status', 1)->latest()->get();
+            $timetables = TimeTable::where('status', 1)->where('type','Individual')->latest()->get();
             $course_reviews = CourseReveiw::where('course_id',$id)->latest()->get();
             $reviews = CourseReveiw::where('course_id',$id)->latest()->get();
-
             return view('coursesetting::course_details', compact('data', 'bank', 'vdocipher_list', 'levels', 'video_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates', 'reviews', 'timetables','course_reviews'));
         } catch (\Exception $e) {
             Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
@@ -1208,7 +1207,7 @@ class CourseSettingController extends Controller
                     $data['isDefault'] = true;
                 }
             }
-            $timetables = TimeTable::where('status', 1)->latest()->get();
+            $timetables = TimeTable::where('status', 1)->where('type','Individual')->latest()->get();
             $course_reviews = CourseReveiw::where('course_id',$id)->latest()->get();
             $reviews = CourseReveiw::where('course_id',$id)->latest()->get();
 
@@ -1273,7 +1272,7 @@ class CourseSettingController extends Controller
                 $certificates = Certificate::where('created_by', Auth::user()->id)->latest()->get();
             }
             $editChapter = Chapter::where('id', $chapter_id)->first();
-            $timetables = TimeTable::where('status', 1)->latest()->get();
+            $timetables = TimeTable::where('status', 1)->where('type','Individual')->latest()->get();
             $course_reviews = CourseReveiw::where('course_id',$id)->latest()->get();
             $reviews = CourseReveiw::where('course_id',$id)->latest()->get();
 
@@ -1307,7 +1306,7 @@ class CourseSettingController extends Controller
             }
         }
 
-        $timetables = TimeTable::where('status', 1)->latest()->get();
+        $timetables = TimeTable::where('status', 1)->where('type','Individual')->latest()->get();
 
         $chapters = Chapter::where('course_id', $id)->orderBy('position', 'asc')->with('lessons')->get();
 
@@ -1346,7 +1345,8 @@ class CourseSettingController extends Controller
             $subjects = SchoolSubject::where('status', 1)->orderBy('order', 'asc')->get();
         }
         $course_reviews = CourseReveiw::where('course_id',$id)->latest()->get();
-        $reviews = CourseReveiw::where('course_id',$id)->latest()->get();
+        $reviews = CourseReveiw::get();
+        // $reviews = CourseReveiw::where('course_id',$id)->latest()->get();
         // dd($course, $languages);
         return view('coursesetting::course_details', compact('timetables', 'subjects', 'data', 'vdocipher_list', 'levels', 'video_list', 'course', 'chapters', 'categories', 'instructors', 'languages', 'course_exercises', 'quizzes', 'certificates', 'reviews','course_reviews'));
     }
@@ -1606,7 +1606,7 @@ class CourseSettingController extends Controller
       }else{
         $whereIn = [1, 2, 7];
       }
-        $query = Course::whereIn('type', $whereIn)->orderBy('seq_no', 'desc')->with('category', 'quiz', 'user', 'children');
+        $query = Course::whereIn('type', $whereIn)->orderBy('seq_no', 'desc')->with('category', 'quiz', 'user', 'parent');
 
         if ($request->course_status != "") {
             if ($request->course_status == 1) {
@@ -1776,7 +1776,7 @@ class CourseSettingController extends Controller
         } else {
             $quizzes = OnlineQuiz::where('status', 1)->latest()->get();
         }
-        $timetables = TimeTable::where('status', 1)->latest()->get();
+        $timetables = TimeTable::where('status', 1)->where('type','Individual')->latest()->get();
 
         $instructor_query = User::select('name', 'id');
         if (isModuleActive('UserType')) {
@@ -2000,7 +2000,7 @@ class CourseSettingController extends Controller
             }]);
         }
         $parent = $parent->first();
-        $timetables = TimeTable::where('status', 1)->latest()->get();
+        $timetables = TimeTable::where('status', 1)->where('type','Repeat')->latest()->get();
 
         return view('coursesetting::repeat_course', compact('parent', 'course', 'timetables'));
     }

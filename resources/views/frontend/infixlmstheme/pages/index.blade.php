@@ -1742,7 +1742,7 @@
             margin: 0 -53px 1.5rem 50px;
         }
         .text-video-overlay h2{
-            font-size: 1.6rem !important;
+            font-size: 1.5rem !important;
         }
     }
 

@@ -75,6 +75,7 @@
     .course-small{
     display: flex;
     justify-content: space-between;
+    gap: 5px;
     }
     @media (max-width: 1600px) {
         .bs-canvas {

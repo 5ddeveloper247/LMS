@@ -122,7 +122,7 @@
                 </div>
                 <!-- Start Student Details -->
                 <div class="col-lg-9 staff-details">
-                    <ul class="nav nav-tabs tabs_scroll_nav" role="tablist">
+                    <ul class="nav nav-tabs tabs_scroll_nav mb-3" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" href="#studentProfile" role="tab"
                                data-toggle="tab">{{ __('common.Profile') }}</a>
@@ -149,7 +149,7 @@
                             </li>
                         @endif
 
-                        <li class="nav-item edit-button">
+                        <li class="nav-item edit-button d-flex justify-content-end align-items-end">
                             <a href="{{ route('staffs.edit', $staffDetails->id) }}"
                                class="primary-btn small fix-gr-bg">{{ __('common.Edit') }}
                             </a>
@@ -389,7 +389,7 @@
                                                             <label class="primary_input_label"
                                                                    for="">{{ __('common.Document') }}</label>
                                                             <div class="primary_file_uploader">
-                                                                <input class="primary-input" type="text"
+                                                                <input class="primary-input placeholder_txt" type="text"
                                                                        id="placeholderFileOneName"
                                                                        placeholder="Browse file" readonly="">
                                                                 <button class="" type="button">

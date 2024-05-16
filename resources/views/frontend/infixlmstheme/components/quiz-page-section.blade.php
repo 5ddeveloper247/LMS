@@ -190,7 +190,7 @@
                                                       }
                                                     @endphp
                                                     @if($course->type == 9)
-                                                    <x-price-tag :price="applyProductTax($price)" :discount="$course->discount_price" />
+                                                    <x-price-tag :price="$price" :discount="$course->discount_price" />
                                                     @else
                                                     <x-price-tag :price="$price" :discount="$course->discount_price" />
                                                     @endif

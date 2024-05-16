@@ -18,7 +18,7 @@
 
     </div>
 
-    <div class="popular-tag-links d-flex flex-wrap gap-2 p-4 mr-lg-5">
+    <div class="popular-tag-links d-flex flex-wrap gap-2 p-4 mr-xl-5 mr-lg-4 mr-3">
 
       @foreach ($tagsArray as $tag)
 

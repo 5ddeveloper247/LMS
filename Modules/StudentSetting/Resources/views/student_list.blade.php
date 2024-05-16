@@ -588,7 +588,7 @@
 
                                     <div class="text-center">
                                         <div class="primary_file_uploader">
-                                            <input class="primary-input filePlaceholder" type="text" id=""
+                                            <input class="primary-input filePlaceholder placeholder_txt" type="text" id=""
                                                 value="" placeholder=" {{ count(getAgreementForm()) ? getAgreementForm()[0]->getRelativePathname():'Browse Agreement File' }}" readonly="">
                                             <button class="" type="button">
                                                 <label class="primary-btn small fix-gr-bg"

@@ -6,7 +6,9 @@
     display: flex;
     align-items: center;
 }
-
+.small_btn{
+    white-space: nowrap;
+}
     @media only screen and (min-width:1800px) {
         p {
             font-size: 20px;
@@ -23,9 +25,9 @@
 
 <div>
     <div class="service_cta_area p-lg-5">
-        <div class="container center-content-about">
+        <div class="container center-content-about mb-3">
             {{-- <div class="border_top_1px"></div> --}}
-            <div class="service_cta_row row px-lg-3" id="service_cta_row">
+            <div class="service_cta_row row px-xl-3" id="service_cta_row">
                 <div class="col-lg-4 ">
                     <div class="single_cta_service single_cta1">
                         <div class="thumb">
@@ -37,7 +39,7 @@
                             <p class="mb-4 text-white"> {{ @$frontendContent->become_instructor_sub_title }}
                             </p>
                             <a href="{{ url('/instructors') }}"
-                                class="theme_btn small_btn p-2">{{ __('frontend.Start Teaching') }}</a>
+                                class="theme_btn small_btn">{{ __('frontend.Start Teaching') }}</a>
                         </div>
                     </div>
                 </div>

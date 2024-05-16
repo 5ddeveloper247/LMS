@@ -60,7 +60,7 @@
                                                                    class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
                                                                    type="text" name="title[{{$language->code}}]"
                                                                    autocomplete="off" id="quiz_title"
-                                                                   value="{{isset($online_exam)? $online_exam->getTranslation('title',$language->code): ''}}" maxlength="80">
+                                                                   value="{{isset($online_exam)? $online_exam->getTranslation('title',$language->code): ''}}" maxlength="80" required>
                                                             <input type="hidden" name="id"
                                                                    value="{{isset($online_exam)? $online_exam->id: ''}}">
                                                             <span class="focus-border"></span>
@@ -81,7 +81,7 @@
                                                                 {{ $errors->has('instruction') ? ' autofocus' : '' }}
                                                                 class="primary_input_field name{{ $errors->has('instruction') ? ' is-invalid' : '' }}"
                                                                 cols="0" rows="4"
-                                                                name="instruction[{{$language->code}}]">{{isset($online_exam)? $online_exam->getTranslation('instruction',$language->code): ''}}</textarea>
+                                                                name="instruction[{{$language->code}}]" required>{{isset($online_exam)? $online_exam->getTranslation('instruction',$language->code): ''}}</textarea>
                                                             <span class="focus-border textarea"></span>
                                                             @if($errors->has('instruction'))
                                                                 <span
@@ -100,7 +100,7 @@
                                                    for="category_id">{{__('quiz.Category')}}</label>
                                             <select {{ $errors->has('class') ? ' autofocus' : '' }}
                                                     class="primary_select {{ $errors->has('class') ? ' is-invalid' : '' }}"
-                                                    id="category_id" name="category">
+                                                    id="category_id" name="category" required>
                                                 <option data-display="{{__('quiz.Category')}} *"
                                                         value="">{{__('quiz.Category')}} *
                                                 </option>
@@ -183,7 +183,7 @@
                                                     {{ $errors->has('title') ? ' percentage' : '' }}
                                                        class="primary_input_field name{{ $errors->has('percentage') ? ' is-invalid' : '' }}"
                                                        type="number" name="percentage" autocomplete="off"
-                                                       value="{{isset($online_exam)? $online_exam->percentage: old('percentage')}}">
+                                                       value="{{isset($online_exam)? $online_exam->percentage: old('percentage')}}" required>
                                                 {{--                                                <input type="hidden" name="id"--}}
                                                 {{--                                                       value="{{isset($group)? $group->id: ''}}">--}}
                                                 <span class="focus-border"></span>

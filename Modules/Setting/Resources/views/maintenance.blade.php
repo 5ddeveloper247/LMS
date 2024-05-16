@@ -58,7 +58,7 @@
                                                     </label>
                                                     <div class="primary_file_uploader">
                                                         <input
-                                                            class="primary-input  filePlaceholder {{ @$errors->has('course_page_banner') ? ' is-invalid' : '' }}"
+                                                            class="primary-input  filePlaceholder placeholder_txt {{ @$errors->has('course_page_banner') ? ' is-invalid' : '' }}"
                                                             type="text" id=""
                                                             placeholder="Browse file"
                                                             readonly="" {{ $errors->has('course_page_banner') ? ' autofocus' : '' }}>

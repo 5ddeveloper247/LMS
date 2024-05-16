@@ -1,5 +1,5 @@
 <div class="modal cs_modal fade admin-query" id="submitConfirmModal" role="dialog">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered" style="z-index:100">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Submit Test-Prep') }}</h5>

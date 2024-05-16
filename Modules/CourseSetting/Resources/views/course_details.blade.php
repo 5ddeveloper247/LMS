@@ -550,6 +550,15 @@
                                                                 </div>
 
                                                                 <script>
+                                                                    $('input[name="type"]').on('change',function(){
+                                                                        var val = $(this).val();
+                                                                        if(val == 7){
+                                                                            $('.instructorBox').addClass('d-none').removeClass('d-block');
+                                                                        }else{
+                                                                            $('.instructorBox').removeClass('d-none');
+
+                                                                        }
+                                                                    });
                                                                     function addcol() {
                                                                         if ($('.type2').is(':checked')) {
                                                                             $('.change_state').prop('checked', false);
@@ -817,11 +826,11 @@
                                                                     <label class="primary_input_label mt-1"
                                                                         for="">{{ __('Title') }}
                                                                         <small>(Max size
-                                                                            30 Characters)</small> *</label>
+                                                                            100 Characters)</small> *</label>
                                                                     </label>
                                                                     <input class="primary_input_field" name="title"
                                                                         id="addTitle" value="{{ $course->title }}"
-                                                                        placeholder="-" type="text" maxlength="30">
+                                                                        placeholder="-" type="text" maxlength="100">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -829,7 +838,7 @@
 
 
                                                     <div
-                                                        class="col-xl-12 courseBox {{ $d_none }} {{ $course->type == 7 ? 'd-none' : '' }}">
+                                                        class="col-xl-12 instructorBox courseBox {{ $course->type == 7 ? 'd-none' : '' }}">
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
                                                                 for="assistant_instructors">{{ __('Total Classes') }} *
@@ -927,7 +936,7 @@
                                                     </div>
 
                                                     @if (\Illuminate\Support\Facades\Auth::user()->role_id != 2 && \Illuminate\Support\Facades\Auth::user()->role_id != 9)
-                                                        <div class="col-xl-6">{{-- $d_none --}} {{-- $course->type == 7 ? 'd-none' : '' --}}
+                                                        <div class="col-xl-6 instructorBox {{$course->type == 7 ? 'd-none' : ''}}">{{-- $d_none --}} 
                                                             <div class="primary_input mb-25">
                                                                 <label class="primary_input_label"
                                                                     for="assign_instructor">{{ __('courses.Assign Instructor') }}
@@ -1107,9 +1116,10 @@
                                                         @endif
 
                                                         <div class="col-xl-6 courseBox mb-25 {{ $d_none }}">
-                                                            <select class="primary_select edit_category_id"
+                                                            <select class="primary_select"
                                                                 data-course_id="{{ @$course->id }}" name="category"
-                                                                id="addCategoryId">
+                                                                id="category_id">
+                                                                {{-- id="addCategoryId"> --}}
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('quiz.Category') }}"
                                                                     value="">{{ __('common.Select') }}
@@ -1132,22 +1142,18 @@
                                                         </div>
 
                                                         <div class="col-xl-6 courseBox mb-25 {{ $d_none }}"
-                                                            id="edit_subCategoryDiv{{ @$course->id }}">
+                                                            id="subCategoryDiv">
                                                             <select class="primary_select" name="sub_category"
-                                                                id="edit_subcategory_id">
+                                                                id="subcategory_id">
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('courses.Sub Category') }}"
                                                                     value="">{{ __('common.Select') }}
                                                                     {{ __('courses.Sub Category') }}
                                                                 </option>
-                                                                <option value="{{ @$course->subcategory_id }}" selected>
-                                                                    {{ @$course->subCategory->name }}</option>
                                                                 @if (isset($course->category->subcategories))
                                                                     @foreach ($course->category->subcategories as $sub)
-                                                                        @if ($course->subcategory_id != $sub->id)
-                                                                            <option value="{{ @$sub->id }}">
+                                                                            <option value="{{ @$sub->id }}" @if($course->subcategory_id == $sub->id) selected @endif>
                                                                                 {{ @$sub->name }}</option>
-                                                                        @endif
                                                                     @endforeach
                                                                 @endif
                                                             </select>
@@ -1192,7 +1198,7 @@
                                                                     value="{{ @$course->price }}" type="text">
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-6 quizBox mb-25" style=" display: none">
+                                                        <div class="col-xl-6 quizBox mb-25 d-none">
                                                             <select class="primary_select" name="quiz" id="quiz_id">
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('Quiz') }}"
@@ -1208,7 +1214,7 @@
 
                                                         {{-- @dd($data, $editLesson, $levels, $video_list, $vdocipher_list, $course, $chapters, $categories, $instructors, $languages, $course_exercises, $quizzes, $certificates) --}}
                                                         <div
-                                                            class="col-xl-6 timetableBox mt-30 {{ $course->type == 7 ? '' : 'd-none' }}">
+                                                            class="col-xl-6 timetableBox mb-25 {{ $course->type == 7 ? '' : 'd-none' }}">
                                                             <select class="primary_select" name="timetable"
                                                                 id="timetableId"
                                                                 {{ $errors->has('timetable') ? 'autofocus' : '' }}>
@@ -3549,11 +3555,11 @@
 
                 }
 
-                if (isAdmin == '1') {
-                    if (isEmpty($('#assign_instructor').val())) {
-                        errors.push("Instructor is required");
-                    }
-                }
+                // if (isAdmin == '1') {
+                //     if (isEmpty($('#assign_instructor').val())) {
+                //         errors.push("Instructor is required");
+                //     }
+                // }
 
 
                 if (isEmptySummernote('#addAbout-en')) {

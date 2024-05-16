@@ -142,7 +142,7 @@
                                                 <label class="primary_input_label" for="">{{ __('quiz.Image') }}
                                                     ({{ __('common.Optional') }})</label>
                                                 <div class="primary_file_uploader">
-                                                    <input class="primary-input filePlaceholder" type="text"
+                                                    <input class="primary-input filePlaceholder placeholder_txt" type="text"
                                                         id="" value="{{ showPicName(@$bank->image) }}"
                                                         {{ $errors->has('image') ? 'autofocus' : '' }}
                                                         placeholder="{{ __('courses.Browse Image file') }}" readonly="">

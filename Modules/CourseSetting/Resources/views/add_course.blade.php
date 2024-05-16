@@ -118,7 +118,7 @@
     <section class="admin-visitor-area up_st_admin_visitor">
         <div class="white_box mb_30 student-details header-menu">
             <div class="white_box_tittle list_header">
-                <h4>{{ __('common.Add New') }} {{ __('quiz.Topic') }} </h4>
+                <h4>{{ __('common.Add New') }} {{ __('Prep Course') }} </h4>
 
             </div> 
             <div class="col-lg-12">
@@ -351,7 +351,7 @@
                                                 100 Characters)</small> *</label>
                                         <input class="primary_input_field" name="title" placeholder="-" id="addTitle"
                                             type="text" {{ $errors->has('title') ? 'autofocus' : '' }} value=""
-                                            maxlength="100">
+                                            maxlength="100" required>
                                     </div>
                                 </div>
                             </div>
@@ -442,7 +442,6 @@
                                     </select>
                                 </div>
                             </div>
-
                         @endif
                         <div class="col-xl-6">
                             <div class="primary_input mb-25">
@@ -584,7 +583,7 @@
                                     type="number" accept="/^1[1-9]{9}$/" value="{{ old('price') }}">
                             </div>
                         </div>
-                        <div class="col-xl-6 courseBox mb_30 {{ $d_none }}">
+                        <div class="col-xl-6 courseBox mb_30">
                             <select class="primary_select category_id" name="category" id="category_id"
                                 {{ $errors->has('category') ? 'autofocus' : '' }}>
                                 <option data-display="{{ __('common.Select') }} {{ __('quiz.Category') }} *"
@@ -599,7 +598,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-xl-6 courseBox mb_30 {{ $d_none }}" id="subCategoryDiv">
+                        <div class="col-xl-6 courseBox mb_30" id="subCategoryDiv">
                             <select class="primary_select" name="sub_category" id="subcategory_id"
                                 {{ $errors->has('sub_category') ? 'autofocus' : '' }}>
                                 <option data-display="{{ __('common.Select') }} {{ __('courses.Sub Category') }}  "
@@ -952,7 +951,7 @@
                                 <div class="primary_file_uploader" id="image_file-1">
                                     <input class="primary-input filePlaceholder" type="text" id="input-1"
                                         {{ $errors->has('image') ? 'autofocus' : '' }}
-                                        placeholder="{{ __('courses.Browse Image file') }}" readonly="">
+                                        placeholder="{{ __('courses.Browse Image file') }}" readonly="" required>
                                     <button onclick="destroyCropper1()" class="" type="button">
                                         <label class="primary-btn small fix-gr-bg" id="avatar"
                                             for="document_file_thumb-1">{{ __('common.Browse') }}</label>
@@ -1415,6 +1414,9 @@
 
         // Image Cropper End
         function course_add_form() {
+            var form = document.getElementById('course_form');
+            if (form.checkValidity()) {
+                
             $('.preloader').show();
             var isAdmin = '{{ isAdmin() }}';
             var errors = [];
@@ -1507,7 +1509,9 @@
 
                 $('#course_form').submit();
             });
-
+        }else{
+            form.reportValidity();
+        }
 
         }
 

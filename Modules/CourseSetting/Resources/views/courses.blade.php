@@ -229,12 +229,12 @@
                                                     {{ __('courses.Course') }}</a>
                                             </li>
                                             <li>
-                                                <p class="font-weight-bold">You have {{ $remaining_course }}
+                                                <p class="font-weight-bold d-md-flex align-items-center">You have {{ $remaining_course }}
                                                     Remaining Courses in Your Current Package</p>
                                             </li>
                                         @elseif ($remaining_course == 0)
                                             <li>
-                                                <p class="d-flex font-weight-bold">Your Package Limit Completed, In order to
+                                                <p class="d-flex font-weight-bold align-items-center">Your Package Limit Completed, In order to
                                                     Add New
                                                     Course, Please <a class="fix-gr-bg primary-btn radius_30px mx-2"
                                                         href="{{ route('teachWithUs') }}#package_prices">{{ __('Upgrade') }} </a> Your
@@ -243,7 +243,7 @@
                                         @endif
                                     @else
                                         <li>
-                                            <p class="d-flex font-weight-bold">In order to Add New
+                                            <p class="d-flex font-weight-bold align-items-center">In order to Add New
                                                 Course, Please <a class="fix-gr-bg primary-btn radius_30px mx-2"
                                                     href="{{ route('teachWithUs') }}#package_prices">{{ __('Buy Package') }}</a>
                                             </p>

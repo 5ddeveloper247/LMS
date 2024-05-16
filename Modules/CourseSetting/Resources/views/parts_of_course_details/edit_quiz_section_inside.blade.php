@@ -76,11 +76,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="input-effect">
-                            <label class="primary_input_label mt-1" for=""> {{__('quiz.Quiz Title')}} <span>*</span><small>(Max: 25 characters)</small></label>
+                            <label class="primary_input_label mt-1" for=""> {{__('quiz.Quiz Title')}} <span>*</span><small>(Max: 100 characters)</small></label>
                             <input {{ $errors->has('title') ? ' autofocus' : '' }}
                                    class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
-                                   type="text" name="title" autocomplete="off"
-                                   value="{{isset($online_exam)? $online_exam->title: old('title')}}" maxlength="25">
+                                   type="text" name="title[en]" autocomplete="off"
+                                   value="{{isset($online_exam)? $online_exam->title: old('title')}}" maxlength="100">
                             <input type="hidden" name="id"
                                    value="{{isset($online_exam)? $online_exam->id: ''}}">
                             <span class="focus-border"></span>
@@ -118,7 +118,7 @@
                             <textarea {{ $errors->has('instruction') ? ' autofocus' : '' }}
                                       class="primary_input_field name{{ $errors->has('instruction') ? ' is-invalid' : '' }}"
                                       cols="0" rows="4"
-                                      name="instruction">{{isset($online_exam)? $online_exam->instruction: old('instruction')}}</textarea>
+                                      name="instruction[en]">{{isset($online_exam)? $online_exam->instruction: old('instruction')}}</textarea>
                             <span class="focus-border textarea"></span>
                             @if($errors->has('instruction'))
                                 <span

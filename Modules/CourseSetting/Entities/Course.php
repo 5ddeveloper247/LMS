@@ -128,6 +128,10 @@ class Course extends Model
         return $this->hasMany(Forum::class, 'course_id', 'id');
     }
 
+    public function programs(){
+        return Program::where('allcourses','like','%'.$this->id.'%');
+    }
+
     public function enrollUsers()
     {
         return $this->belongsToMany(User::class, 'course_enrolleds', 'course_id', 'user_id');

@@ -171,7 +171,7 @@
             </div>
             <!-- </div> -->
             <div class="QA_section QA_section_heading_custom check_box_table mt-30">
-                <div class="QA_table table-responsive">
+                <div class="QA_table">
 
                     <table id="lms_table" class="Crm_table_active3 table">
                         <thead>

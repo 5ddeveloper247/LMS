@@ -82,10 +82,10 @@ class OnlineQuizController extends Controller
 
         if ($request->type == 2) {
             $rules = [
-                'title' => 'required',
+                'title.*' => 'required',
                 'category' => 'required',
                 'percentage' => 'required',
-                'instruction' => 'required'
+                'instruction.*' => 'required'
             ];
             $this->validate($request, $rules, validationMessage($rules));
 
@@ -311,10 +311,10 @@ class OnlineQuizController extends Controller
             return redirect()->back();
         }
         $rules = [
-            'title' => 'required',
+            'title.*' => 'required',
             'category' => 'required',
             'percentage' => 'required',
-            'instruction' => 'required'
+            'instruction.*' => 'required'
         ];
         $this->validate($request, $rules, validationMessage($rules));
 
@@ -398,6 +398,10 @@ class OnlineQuizController extends Controller
 
             if ($request->change_default_settings == 0) {
                 $setup = QuizeSetup::getData();
+                if(!$setup){
+                    Toastr::error("There are no default settings found. Please choose Change Default Settings to choose Quiz Settings or go to Quiz Setup to set default settings.", trans('common.Failed'));
+                return redirect()->back();
+                }
                 $online_exam->random_question = $setup->random_question == 1 ? 1 : 0;
                 $online_exam->question_time_type = $setup->set_per_question_time == 1 ? 0 : 1;
                 $online_exam->question_time = $setup->set_per_question_time == 1 ? $setup->time_per_question : $setup->time_total_question;

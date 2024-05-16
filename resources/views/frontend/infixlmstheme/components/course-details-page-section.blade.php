@@ -33,8 +33,8 @@
                                 <div class="rating_star d-flex align-items-center">
                                     <div class="stars course-span d-flex">
                                         @php
-                                            $main_stars = @$userRating['rating'];
-                                            $stars = intval($userRating['rating']);
+                                            $main_stars = @$courseRating['rating'];
+                                            $stars = intval($courseRating['rating']);
                                         @endphp
                                         @for ($i = 0; $i < $stars; $i++)
                                             <i class="fas fa-star"></i>
@@ -48,8 +48,8 @@
                                             @endfor
                                         @endif
                                     </div>
-                                    <p class="course-span px-3">{{ @$userRating['rating'] }}
-                                        ({{ @$userRating['total'] }} {{ __('frontend.Rating') }})</p>
+                                    <p class="course-span px-3">{{ @$courseRating['rating'] }}
+                                        ({{ @$courseRating['total'] }} {{ __('frontend.Rating') }})</p>
                                 </div>
                             </div>
                         </div>
@@ -104,6 +104,8 @@
                                     {{ round($course->duration) . ' Weeks' }}
                                 @endif
                             </span>
+                            @if($course->type != '7')
+                            @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
                             <br class="mt-2">
                             <span class="program-span"><i class="fas fa-user"></i>&nbsp;&nbsp; Enrolled |
                                 {{ $course->total_enrolled }}
@@ -124,8 +126,25 @@
                                 @endif
 
                             </span>
+                            <br class= "mt-2">
+                            @else
                             <br class="mt-2">
-
+                            <span class="program-span"><i class="fas fa-bars-staggered"></i>&nbsp;&nbsp; Chapters |
+                                {{ count($course->chapters) }}
+                                
+                            </span>
+                            <br class="mt-2">
+                            <span class="program-span"><i class="fas fa-bars-staggered"></i>&nbsp;&nbsp; Lessons |
+                                {{ count($course->lessons) }}
+                                
+                            </span>
+                            <br class="mt-2">
+                            <span class="program-span"><i class="fas fa-bars-staggered"></i>&nbsp;&nbsp; Quiz |
+                                {{ count($course->lessons->where('is_quiz',1)) }}
+                                
+                            </span>
+                            @endif
+                            @endif
                         </div>
                         {{-- new card_1 ends --}}
                     </div>
@@ -897,14 +916,21 @@
                                     </h5>
                                 </div>
                                 <div class="row">
-                                    @foreach (@$course->user->courses->whereIn('type', [2, 4, 5, 6, 7, 8])->where('price', '!=', '0.00')->take(2) as $c)
+                                    @foreach (@$course->user->courses->whereIn('type', [2, 4, 5, 6, 7, 8])->where('price', '!=', '0.00')->where('id','<>',$course_plan->id)->take(2) as $c)
+                                    @php
+                                        if(count($c->currentCoursePlan)){
+                                            $price = $c->currentCoursePlan[0]->amount;
+                                        }else{
+                                            $price = $c->price;
+                                        }
+                                    @endphp
                                         <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4">
                                             <div class="card quiz_wizged rounded-card shadow">
                                                 <div class="rounded-card-img thumb">
-                                                    <a href="{{ courseDetailsUrl(@$c->id, @$c->type, @$c->slug) }}">
+                                                    <a href="{{ route('courseDetailsView',['slug' => $c->parent->slug, 'courseType' => $c->type]) }}">
                                                         <img src="{{ getCourseImage($c->thumbnail) }}"
                                                             alt="" class="img-fluid w-100 img_circle">
-                                                        <x-price-tag :price="$c->price" :discount="$c->discount_price" />
+                                                        <x-price-tag :price="$price" :discount="$c->discount_price" />
                                                         <span class="quiz_tag">{{ $c->type }}</span>
                                                         @switch($c->type)
                                                             @case(2)
@@ -943,7 +969,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="card-body course_content">
-                                                    <a href="{{ courseDetailsUrl(@$c->id, @$c->type, @$c->slug) }}">
+                                                    <a href="{{ route('courseDetailsView',['slug' => $c->parent->slug, 'courseType' => $c->type]) }}">
                                                         <h5 class="nobrake">{{ @$c->parent->title }}</h5>
                                                     </a>
                                                     <div
@@ -971,7 +997,7 @@
                                                     </div>
                                                     <div class="course_less_students d-flex justify-content-between ">
                                                         <a href="#"> <i class="ti-agenda course-span"></i>
-                                                            {{ count($c->lessons) }}
+                                                            {{ count($c->parent->lessons) }}
                                                             {{ __('frontend.Lessons') }}</a>
                                                         <a href="#"> <i class="ti-user"></i>
                                                             {{ $c->total_enrolled }}
@@ -1254,6 +1280,8 @@
                 {{-- new card_2 starts  --}}
                 {{-- this one needs to be fixed  --}}
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12 p-sm-0 p-2">
+                     @if($course->type != '7')
+                     @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
                     <div class="custom_section_color rounded_section p-2 img_round " style="background-color: #eee; ">
                         <h5 class="font-weight-bold custom_heading_1">Start Your Application:</h5>
                         <p class="my-1 program-span"><i class="fa fa-calendar-days"></i>&nbsp;&nbsp; Current Cohort
@@ -1288,6 +1316,8 @@
 
 
                     </div>
+                    @endif
+                    @endif    
                     {{-- new card_2 ends  --}}
 
 
@@ -1329,7 +1359,7 @@
                                     @endif
                                 @endif
                             @endif
-
+                            @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
                             <p class="font_14 f_w_500 mb_30 text-center"></p>
                             <h5 class="f_w_700 mb_10 course-span">{{ __('frontend.This course includes') }}:</h5>
                             <ul class="course_includes">
@@ -1359,9 +1389,13 @@
 @endforeach-->
                                 <!--    </p></li>-->
                                 <li><i class="ti-agenda"></i>
+                                    <p>{{ __('Classes') }}: {{ @$course->total_classes }}
+                                        {{ __('classes') }}</p>
+                                </li>
+                                {{-- <li><i class="ti-agenda"></i>
                                     <p>{{ __('frontend.Lectures') }} {{ count($course->lessons) }}
                                         {{ __('frontend.lessons') }}</p>
-                                </li>
+                                </li> --}}
                                 {{--                                    <li><i class="ti-user"></i> --}}
                                 {{--                                        <p>{{__('frontend.EnrolledEnrolled')}} {{$course->total_enrolled}} {{__('frontend.students')}}</p> --}}
                                 {{--                                    </li> --}}
@@ -1372,6 +1406,7 @@
                                 {{--                                    <li><i class="ti-blackboard"></i> --}}
                                 {{--                                        <p>120 days access </p></li> --}}
                             </ul>
+                            @endif
                         </div>
 
                         @if ($course->review_id != '0' && !empty($course->review()))

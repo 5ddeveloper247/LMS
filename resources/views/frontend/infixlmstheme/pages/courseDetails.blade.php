@@ -175,23 +175,16 @@
             '4' => 'Full Course',
             '5' => 'Prep-Course (On-Demand)',
             '6' => 'Prep-Course (Live)',
+            '7' => 'Time Table',
             '8' => 'Repeat Course',
             '9' => 'Individual Course',
         ];
     @endphp
-    
-
     @if (array_key_exists($request->courseType, $course_type))
         @php
             $value = $course_type[$request->courseType];
         @endphp
         <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans($value . ' Details')" :subTitle="$course->title" />
-    @elseif (request()->has('program_id'))
-        <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans('Course Details')" :subTitle="$course->title" />
-    @elseif (!empty($course->time_table_id) || $course->time_table_id == 0)
-        <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans('Time Table Details')" :subTitle="$course->title" />
-    @elseif (!empty($course->parent_id))
-        <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans('Repeat Course Details')" :subTitle="$course->title" />
     @else
         <x-breadcrumb :banner="$frontendContent->course_page_banner" :title="trans('frontend.Course Details')" :subTitle="$course->title" />
     @endif

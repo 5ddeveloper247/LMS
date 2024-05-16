@@ -126,6 +126,9 @@ class CourseInvitationController extends Controller
 
         $course = Course::find($course_id);
         $query = $course->enrollUsers;
+        // $query = $course->program->totalEnrolledStudent;
+        // $query = $courseenrolls->merge($programenrolls)->sortBy('created_at');
+
 
         return Datatables::of($query)
             ->addIndexColumn()

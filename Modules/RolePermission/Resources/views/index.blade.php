@@ -113,7 +113,7 @@
                                                             @if(@$role->type == 'User Defined')
                                                                 <div class="dropdown CRM_dropdown d-inline">
                                                                     <button
-                                                                        class="btn btn-secondary dropdown-toggle mt-1"
+                                                                        class="btn btn-secondary dropdown-toggle"
                                                                         type="button" id="dropdownMenu2"
                                                                         data-toggle="dropdown" aria-haspopup="true"
                                                                         aria-expanded="false">

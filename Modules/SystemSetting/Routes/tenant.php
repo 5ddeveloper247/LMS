@@ -49,9 +49,10 @@ Route::group(['prefix' => 'admin/systemsetting', 'middleware' => ['auth', 'admin
     Route::get('/my-packages-data', 'PackageController@myAllPackagesData')->name('myPackagesData');
     Route::get('/upgrade-package', 'PackageController@upgradePackage')->name('upgradePackage');
     Route::get('/status/{id}', 'PackageController@status')->name('PackagePricing.change_status');
-
+    
     Route::get('/deletePackagePurchasing/{id}', 'PackageController@destroyPackagePurchasing')->name('destroyPackagePurchasing');
     Route::get('/getTutorAllPackages/{id}', 'InstructorSettingController@getTutorAllPackages')->name('getTutorAllPackages');
+    Route::post('/packages/change-seq', 'PackageController@changeSeq')->name('changePackageSeq');
 
     //Language Setting
 

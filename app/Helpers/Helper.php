@@ -2212,6 +2212,45 @@ if (!function_exists('userRating')) {
     }
 }
 
+if (!function_exists('courseRating')) {
+    function courseRating($course_id)
+    {
+        $getparent = DB::table('courses')->where('id',$course_id)->value('parent_id');
+        if($getparent != null){
+            $course_id == $getparent;
+        }
+        $totalRatings['rating'] = 0;
+        $ReviewList = \Modules\CourseSetting\Entities\CourseReveiw::where('course_id', $course_id)
+            ->get();
+        // $ReviewList = DB::table('courses')
+        //     ->join('course_reveiws', 'course_reveiws.course_id', 'courses.id')
+        //     ->select('courses.id', 'course_reveiws.id as review_id', 'course_reveiws.star as review_star')
+        //     ->where('courses.user_id', $user_id)
+        //     ->get();
+        $totalRatings['total'] = count($ReviewList);
+
+        foreach ($ReviewList as $Review) {
+            $totalRatings['rating'] += $Review->star;
+        }
+
+        if ($totalRatings['total'] != 0) {
+            $avg = ($totalRatings['rating'] / $totalRatings['total']);
+        } else {
+            $avg = 0;
+        }
+
+        if ($avg != 0) {
+            if ($avg - floor($avg) > 0) {
+                $rate = number_format($avg, 1);
+            } else {
+                $rate = number_format($avg, 0);
+            }
+            $totalRatings['rating'] = $rate;
+        }
+        return $totalRatings;
+    }
+}
+
 
 if (!function_exists('getPriceWithConversion')) {
     function getPriceWithConversion($price)

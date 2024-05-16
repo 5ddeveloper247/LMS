@@ -1,8 +1,8 @@
-<div class="row pt-5 pb-3 g-0 mt-2">
+<div class="row pt-5 pb-4 g-0 mt-2">
             <div class="col-12 col-md-8 pr-0">
               @if (count($blogs)>0)
                   @foreach ($blogs as $blog)
-                    <div class="card rounded-3 ml-lg-5 mb-4" style="border-radius: 15px;">
+                    <div class="card rounded-3 ml-xl-5 mb-4 ml-md-4" style="border-radius: 15px;">
                         <img src="{{ getBlogImage($blog->thumbnail) }}"
                             class="img-fluid custom-img" alt="" style="height:78vh !important" >
 
@@ -50,7 +50,7 @@
                 @endif
             </div>
             <div class="col-12 col-md-4 pr-4">
-                <div class="search mr-lg-5">
+                <div class="search mr-xl-5 mr-lg-4 mr-3">
                     <div class="d-flex align-items-center gap-2">
                         <svg class="mb-2" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                             viewBox="0 0 16 16">

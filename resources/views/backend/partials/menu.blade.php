@@ -104,7 +104,7 @@
 
                                 </div>
                                 <div class="nofity_footer">
-                                    <div class="submit_button pt_20 text-center">
+                                    <div class="submit_button pt_20 text-center d-flex justify-content-center" style="gap: 10px">
                                         <a href="{{ route('MyNotification') }}"
                                             class="primary-btn radius_30px text_white fix-gr-bg">{{ __('common.See More') }}</a>
                                         <a href="{{ route('NotificationMakeAllRead') }}" id="mark_all_as_read"

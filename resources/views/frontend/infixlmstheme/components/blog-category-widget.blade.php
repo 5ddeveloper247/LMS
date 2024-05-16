@@ -1,4 +1,4 @@
-<div class="categories pt-4 mr-lg-5">
+<div class="categories pt-4 mr-xl-5 mr-lg-4 mr-3">
     <div class="d-flex align-items-center gap-2">
         <svg class="mb-2" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
             viewBox="0 0 16 16">

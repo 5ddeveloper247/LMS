@@ -298,7 +298,7 @@
 
     <div class="container px-xl-5">
         <input type="hidden" name="id" id="accesskey" value="{{ $pakms ?? null }}">
-        <div class="row py-2">
+        <div class="row my-4 my-lg-5 px-xl-5">
             <!-- Left side - Registration Form -->
             <div class="col-md-8 mt-4">
                 <h3 class="text-uppercase text-center text_reg">We are merakii </h3>

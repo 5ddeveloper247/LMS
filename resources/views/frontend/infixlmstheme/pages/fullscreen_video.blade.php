@@ -1812,15 +1812,15 @@
         }
         var app_debug = $('.app_debug').val();
         if (!app_debug) {
-            $(document).bind("contextmenu", function(e) {
-                e.preventDefault();
-            });
+            // $(document).bind("contextmenu", function(e) {
+            //     e.preventDefault();
+            // });
 
-            $(document).keydown(function(e) {
-                if (e.which === 123) {
-                    return false;
-                }
-            });
+            // $(document).keydown(function(e) {
+            //     if (e.which === 123) {
+            //         return false;
+            //     }
+            // });
 
 
             document.onkeydown = function(e) {
@@ -1828,9 +1828,9 @@
                     return false;
                 }
 
-                if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                    return false;
-                }
+                // if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                //     return false;
+                // }
 
 
                 if (e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)) {
