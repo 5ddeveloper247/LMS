@@ -93,7 +93,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-12 courseBox mb-25">
+                                        <div class="col-xl-6 courseBox mb-25">
                                             <label class="primary_input_label" for=""> {{ __('quiz.Category') }}
                                                 <strong class="text-danger">*</strong>
                                             </label>
@@ -107,6 +107,21 @@
                                                     <option value="{{ $category->id }}">{{ @$category->title }} </option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="col-xl-6 mb-25">
+                                            <div class="d-flex flex-column">
+                                                <label class="primary_input_label">Featured</label>
+                                                <div class>
+                                                    <label class="primary_checkbox d-flex mr-12">
+                                                        <input type="radio" id="featured_yes" name="featured" value="1">
+                                                        <span class="checkmark mr-2"></span>Yes
+                                                    </label>
+                                                    <label class="primary_checkbox d-flex mr-12">
+                                                        <input type="radio" id="featured_no" name="featured" value="0">
+                                                        <span class="checkmark mr-2"></span>No
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-xl-12 courseBox mb-25" id="subCategoryDiv">
 

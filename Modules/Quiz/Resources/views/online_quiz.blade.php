@@ -60,14 +60,14 @@
                                                                    class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
                                                                    type="text" name="title[{{$language->code}}]"
                                                                    autocomplete="off" id="quiz_title"
-                                                                   value="{{isset($online_exam)? $online_exam->getTranslation('title',$language->code): ''}}" maxlength="80" required>
+                                                                   value="{{isset($online_exam)? $online_exam->getTranslation('title',$language->code): ''}}" maxlength="80" @if($language== 'en') required @endif>
                                                             <input type="hidden" name="id"
                                                                    value="{{isset($online_exam)? $online_exam->id: ''}}">
                                                             <span class="focus-border"></span>
                                                             @if ($errors->has('title'))
                                                                 <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('title') }}</strong>
-                                            </span>
+                                                                    <strong>{{ $errors->first('title') }}</strong>
+                                                                </span>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -81,7 +81,7 @@
                                                                 {{ $errors->has('instruction') ? ' autofocus' : '' }}
                                                                 class="primary_input_field name{{ $errors->has('instruction') ? ' is-invalid' : '' }}"
                                                                 cols="0" rows="4"
-                                                                name="instruction[{{$language->code}}]" required>{{isset($online_exam)? $online_exam->getTranslation('instruction',$language->code): ''}}</textarea>
+                                                                name="instruction[{{$language->code}}]" @if($language== 'en') required @endif>{{isset($online_exam)? $online_exam->getTranslation('instruction',$language->code): ''}}</textarea>
                                                             <span class="focus-border textarea"></span>
                                                             @if($errors->has('instruction'))
                                                                 <span

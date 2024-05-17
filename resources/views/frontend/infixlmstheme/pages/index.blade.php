@@ -5270,26 +5270,27 @@
                                 </div>
                             </div>
                             {{-- new section --}}
-
+                            @if(count($featured_blogs) > 0)
                             <div class="col-md-11 col-lg-7">
                                 <div class="rts-event-section">
                                     <h4 class="rts-section-title mb--25">Blogs and News</h4>
                                     <div class="events-content">
                                         <ul class="list-unstyled rts-counter">
+                                            @foreach($featured_blogs as $thisblog)
                                             <li class="single-event">
                                                 <div class="single-event-counter">
                                                     <div class="count-number rt-clip-text"></div>
                                                 </div>
                                                 <div class="single-event-content">
-                                                    <h5 class="event-title">Diversity, Equity, and Inclusion</h5>
+                                                    <h5 class="event-title">{{ $thisblog->title }}</h5>
                                                     <div class="single-event-content-meta">
                                                         <div class="event-date">
                                                             <span><i class="fa fa-calendar"></i></span>
-                                                            <span>November 28, 2023</span>
+                                                            <span>{{ Carbon\Carbon::parse($thisblog->authored_date)->format('d M, y') }}</span>
                                                         </div>
                                                         <div class="event-time">
                                                             <span><i class="fa fa-clock"></i></span>
-                                                            <span>10:30 am</span>
+                                                            <span>{{ Carbon\Carbon::parse($thisblog->created_at)->format('h:i a') }}</span>
                                                         </div>
                                                         {{-- <div class="event-place">
                                 <span><i class="fa fa-location-dot"></i></span>
@@ -5298,57 +5299,24 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="single-event">
-                                                <div class="single-event-counter">
-                                                    <div class="count-number rt-clip-text"></div>
-                                                </div>
-                                                <div class="single-event-content">
-                                                    <h5 class="event-title">Talking Money With Kids and Teens</h5>
-                                                    <div class="single-event-content-meta">
-                                                        <div class="event-date">
-                                                            <span><i class="fa fa-calendar"></i></span>
-                                                            <span>November 28, 2023</span>
-                                                        </div>
-                                                        <div class="event-time">
-                                                            <span><i class="fa fa-clock"></i></span>
-                                                            <span>10:30 am</span>
-                                                        </div>
-                                                        {{-- <div class="event-place">
-                                <span><i class="fa fa-location-dot"></i></span>
-                                <span>Yarra Park, UK</span>
-                            </div> --}}
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="single-event">
-                                                <div class="single-event-counter">
-                                                    <div class="count-number rt-clip-text"></div>
-                                                </div>
-                                                <div class="single-event-content">
-                                                    <h5 class="event-title">Planning for College After Affirmative Action
-                                                    </h5>
-                                                    <div class="single-event-content-meta">
-                                                        <div class="event-date">
-                                                            <span><i class="fa fa-calendar"></i></span>
-                                                            <span>November 28, 2023</span>
-                                                        </div>
-                                                        <div class="event-time">
-                                                            <span><i class="fa fa-clock"></i></span>
-                                                            <span>10:30 am</span>
-                                                        </div>
-                                                        {{-- <div class="event-place">
-                                <span><i class="fa fa-location-dot"></i></span>
-                                <span>Yarra Park, UK</span>
-                            </div> --}}
-                                                    </div>
-                                                </div>
-                                            </li>
-
+                                            @endforeach
+                                            
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-11 col-lg-5">
+                            @endif
+                            <div class="col-md-11 @if(count($featured_blogs) > 0) col-lg-5 @else col-lg-12 @endif">
+                                @php
+                                    $tags = Modules\Blog\Entities\Blog::where('status', 1)->pluck('tags')->toArray(); // Assuming 'tags' is the column name
+
+                                    $tagsArray = [];
+
+                                    foreach ($tags as $tagString) {
+                                        $tagsArray = array_merge($tagsArray, explode(',', trim($tagString)));
+                                    }
+                                    $tagsArray = array_unique($tagsArray);    
+                                @endphp
                                 <div class="news-events-tabs-section">
                                     <div class="rts-section rt-between pb--25 rts-border-bottom-2">
                                         <h4 class="rts-section-title">Events</h4>
@@ -5359,268 +5327,40 @@
 
                                         <ul class="nav nav-tabs pb--30">
                                             <li class="nav-item active" role="presentation">
-                                                <a class="nav-link active" data-toggle="pill"
-                                                    href="#home">Latest</a>
+                                                <a class="nav-link active"
+                                                    href="#">Latest</a>
                                             </li>
+                                            @foreach ($tagsArray as $tag)
+
                                             <li class="nav-item" role="presentation">
-                                                <a class="nav-link" class="nav-link" data-toggle="pill"
-                                                    href="#Exam">Exam</a>
+                                                <a class="nav-link" class="nav-link"
+                                                href="#"> {{$tag}} </a>
                                             </li>
-                                            <li class="nav-item" role="presentation">
+                                            @endforeach
+                                            {{-- <li class="nav-item" role="presentation">
                                                 <a class="nav-link" data-toggle="pill" href="#Admission">Admission</a>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                         <div class="tab-content">
                                             <div id="home" class="tab-pane active">
                                                 <ul class="list-unstyled notice-content-box">
+                                                    @foreach ($latest_blogs as $latest_blog)
                                                     <li class="single-notice">
                                                         <div class="single-notice-item">
                                                             <div class="notice-date">
-                                                                20
+                                                                {{ Carbon\Carbon::parse($latest_blog->authored_date)->format('d') }}
                                                                 <span>Jan</span>
                                                             </div>
                                                             <div class="notice-content">
                                                                 <p>
-                                                                    <a href="notice-details.html">
-                                                                        Notice Regarding Upcoming Campus Event: Spring Fling
-                                                                        Carnival.
+                                                                    <a href="{{ route('blogDetails', [$latest_blog->slug]) }}">
+                                                                        {{ $latest_blog->title }}
                                                                     </a>
                                                                 </p>
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                22
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Important Notice: Changes to Examination Schedule
-                                                                        for Fall Semester 2024.
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                24
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Notice Regarding Deadline Extension for Assignment
-                                                                        Submission in Biology 101.
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                25
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Urgent Notice: Campus Maintenance Work Scheduled for
-                                                                        March 5th-7th.
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                25
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Notice of Guest Lecture: Dr. John Smith on
-                                                                        Neuroscience Advances.
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-
-                                            <div id="Exam" class="tab-pane fade">
-                                                <ul class="list-unstyled notice-content-box">
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                20
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Important Notice: Midterm Examination Schedule for
-                                                                        Spring Semester 2024.
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                21
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Notice Regarding Final Examination Timetable for
-                                                                        Fall Semester 2023
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                22
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Urgent Notice: Changes to Exam Dates for Biology 10
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                23
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Notice of Exam Venue Change for Chemistry 201
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                25
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Reminder Notice: Registration Deadline for Winter
-                                                                        Term Examinations
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div id="Admission" class="tab-pane fade">
-                                                <ul class="list-unstyled notice-content-box">
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                26
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Admission Notice: Applications Now Open for Fall
-                                                                        2024 Intake
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                27
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Important Notice: Admission Criteria and
-                                                                        Requirements for Undergraduate Programs
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                28
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Urgent Admission Notice: Extended Deadline for
-                                                                        Submission of Applications
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                29
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Notice of Scholarship Opportunities for Incoming
-                                                                        Freshmen
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-notice">
-                                                        <div class="single-notice-item">
-                                                            <div class="notice-date">
-                                                                30
-                                                                <span>Jan</span>
-                                                            </div>
-                                                            <div class="notice-content">
-                                                                <p>
-                                                                    <a href="notice-details.html">
-                                                                        Admission Notice: Information Session for
-                                                                        Prospective Students on 2024
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -5677,95 +5417,95 @@
                 </section>
 
                 <!-- <div class="row m-0 mt-5 shadow">
-                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
-                                                                                                                                                                                                                                                                                                                                                                                            <div class="text-white">
-                                                                                                                                                                                                                                                                                                                                                                                                <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
-                                                                                                                                                                                                                                                                                                                                                                                                <p class="my-3 text-justify text-white">
-                                                                                                                                                                                                                                                                                                                                                                                                    MCOH is an inclusive and equitable enviroment that provides educational
-                                                                                                                                                                                                                                                                                                                                                                                                    oppturities for anyone seeking update their skill being a new career path and
-                                                                                                                                                                                                                                                                                                                                                                                                    enhance professional Skills </p>
-                                                                                                                                                                                                                                                                                                                                                                                                <div class="mb-4 text-white">
-                                                                                                                                                                                                                                                                                                                                                                                                    <p class="locaton py-1 text-white">
-                                                                                                                                                                                                                                                                                                                                                                                                        <i class="fi fi-rs-marker"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                        501 S. Florida Avenue<br>
-                                                                                                                                                                                                                                                                                                                                                                                                        <span class="ml-4">Lakeland, FL 33801</span>
-                                                                                                                                                                                                                                                                                                                                                                                                    </p>
-                                                                                                                                                                                                                                                                                                                                                                                                    <p class="call py-1 text-white">
-                                                                                                                                                                                                                                                                                                                                                                                                        <i class="fi fi-br-phone-call"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                        863-250-8764 | 347-525-1736
-                                                                                                                                                                                                                                                                                                                                                                                                    </p>
-                                                                                                                                                                                                                                                                                                                                                                                                    <p class="time py-1 text-white">
-                                                                                                                                                                                                                                                                                                                                                                                                        <i class="fi fi-rs-clock-three"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                        Mon - Thur: 8:30 AM - 7:00 PM
-                                                                                                                                                                                                                                                                                                                                                                                                    </p>
-                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
-                                                                                                                                                                                                                                                                                                                                                                                            <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
-                                                                                                                                                                                                                                                                                                                                                                                                <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
-                                                                                                                                                                                                                                                                                                                                                                                                @csrf
-                                                                                                                                                                                                                                                                                                                                                                                                <label for="name" class="form-label">Your Name</label>
-                                                                                                                                                                                                                                                                                                                                                                                                <input type="text" name="name" class="form-control form_sm mb-2"
-                                                                                                                                                                                                                                                                                                                                                                                                    placeholder="">
-                                                                                                                                                                                                                                                                                                                                                                                                <label for="" class="form-label">Email Address</label>
-                                                                                                                                                                                                                                                                                                                                                                                                <input type="email" name="email" class="form-control form_sm mb-2"
-                                                                                                                                                                                                                                                                                                                                                                                                    placeholder="">
-                                                                                                                                                                                                                                                                                                                                                                                                <label for="" class="form-label">Phone #</label>
-                                                                                                                                                                                                                                                                                                                                                                                                <input type="text" name="phone" class="form-control form_sm mb-2"
-                                                                                                                                                                                                                                                                                                                                                                                                    placeholder="">
-                                                                                                                                                                                                                                                                                                                                                                                                <label for="" class="form-label">Zip Code</label>
-                                                                                                                                                                                                                                                                                                                                                                                                <input type="text" name="zip" class="form-control form_sm mb-2"
-                                                                                                                                                                                                                                                                                                                                                                                                    placeholder="">
-                                                                                                                                                                                                                                                                                                                                                                                                <label for="" class="form-label">Select Program</label>
-                                                                                                                                                                                                                                                                                                                                                                                                <select id="program" name="program" class="form-control form_sm mb-2" required>
-                                                                                                                                                                                                                                                                                                                                                                                                    <option value="" selected>Select Program</option>
-                                                                                                                                                                                                                                                                                                                                                                                                    <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
-                                                                                                                                                                                                                                                                                                                                                                                                    <option value="Refresher-RM(Endorsement & inactive License)">
-                                                                                                                                                                                                                                                                                                                                                                                                        Refresher-RM(Endorsement & inactive License)
-                                                                                                                                                                                                                                                                                                                                                                                                    </option>
-                                                                                                                                                                                                                                                                                                                                                                                                    <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
-                                                                                                                                                                                                                                                                                                                                                                                                    <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
-                                                                                                                                                                                                                                                                                                                                                                                                        Testing)
-                                                                                                                                                                                                                                                                                                                                                                                                    </option>
-                                                                                                                                                                                                                                                                                                                                                                                                    <option value="Clinical-Proctor">Clinical-Proctor</option>
-                                                                                                                                                                                                                                                                                                                                                                                                </select>
-                                                                                                                                                                                                                                                                                                                                                                                                <label for="year" class="form-label mt-2">High School Grade Year</label>
-                                                                                                                                                                                                                                                                                                                                                                                                <select id="years" name="year" class="form-control form_sm w-100 mb-2"
-                                                                                                                                                                                                                                                                                                                                                                                                    required>
-                                                                                                                                                                                                                                                                                                                                                                                                    <option value="" selected>Select Year</option>
-                                                                                                                                                                                                                                                                                                                                                                                                    @php
-                                                                                                                                                                                                                                                                                                                                                                                                        $years = range(
-                                                                                                                                                                                                                                                                                                                                                                                                            date(
-                                                                                                                                                                                                                                                                                                                                                                                                                'Y',
-                                                                                                                                                                                                                                                                                                                                                                                                            ),
-                                                                                                                                                                                                                                                                                                                                                                                                            1950,
-                                                                                                                                                                                                                                                                                                                                                                                                        );
-                                                                                                                                                                                                                                                                                                                                                                                                    @endphp
-                                                                                                                                                                                                                                                                                                                                                                                                    @forelse ($years as $year)
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
+    <div class="text-white">
+    <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
+    <p class="my-3 text-justify text-white">
+    MCOH is an inclusive and equitable enviroment that provides educational
+    oppturities for anyone seeking update their skill being a new career path and
+    enhance professional Skills </p>
+    <div class="mb-4 text-white">
+    <p class="locaton py-1 text-white">
+        <i class="fi fi-rs-marker"></i>
+        501 S. Florida Avenue<br>
+        <span class="ml-4">Lakeland, FL 33801</span>
+    </p>
+    <p class="call py-1 text-white">
+        <i class="fi fi-br-phone-call"></i>
+        863-250-8764 | 347-525-1736
+    </p>
+    <p class="time py-1 text-white">
+        <i class="fi fi-rs-clock-three"></i>
+        Mon - Thur: 8:30 AM - 7:00 PM
+    </p>
+    </div>
+    </div>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
+    <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
+    <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
+    @csrf
+    <label for="name" class="form-label">Your Name</label>
+    <input type="text" name="name" class="form-control form_sm mb-2"
+    placeholder="">
+    <label for="" class="form-label">Email Address</label>
+    <input type="email" name="email" class="form-control form_sm mb-2"
+    placeholder="">
+    <label for="" class="form-label">Phone #</label>
+    <input type="text" name="phone" class="form-control form_sm mb-2"
+    placeholder="">
+    <label for="" class="form-label">Zip Code</label>
+    <input type="text" name="zip" class="form-control form_sm mb-2"
+    placeholder="">
+    <label for="" class="form-label">Select Program</label>
+    <select id="program" name="program" class="form-control form_sm mb-2" required>
+    <option value="" selected>Select Program</option>
+    <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
+    <option value="Refresher-RM(Endorsement & inactive License)">
+        Refresher-RM(Endorsement & inactive License)
+    </option>
+    <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
+    <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
+        Testing)
+    </option>
+    <option value="Clinical-Proctor">Clinical-Proctor</option>
+    </select>
+    <label for="year" class="form-label mt-2">High School Grade Year</label>
+    <select id="years" name="year" class="form-control form_sm w-100 mb-2"
+    required>
+    <option value="" selected>Select Year</option>
+    @php
+        $years = range(
+            date(
+                'Y',
+            ),
+            1950,
+        );
+    @endphp
+    @forelse ($years as $year)
     <option value="{{ $year }}">{{ $year }}</option>
-                                    @empty
-                                                                                                                                                                                                                                                                                                                                                                                                        <option value="">No Year Found</option>
+    @empty
+    <option value="">No Year Found</option>
     @endforelse
-                                                                                                                                                                                                                                                                                                                                                                                                </select>
-                                                                                                                                                                                                                                                                                                                                                                                                <label for="message" class="form-label mt-2">Message</label>
-                                                                                                                                                                                                                                                                                                                                                                                                <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
-                                                                                                                                                                                                                                                                                                                                                                                                    placeholder="" required style="resize: none"></textarea>
-                                                                                                                                                                                                                                                                                                                                                                                                <div class="col-md-12 my-3 text-center">
-                                                                                                                                                                                                                                                                                                                                                                                                    <button type="submit" class="theme_btn small_btn4">Submit</button>
-                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                            </form>
-                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
+        </select>
+        <label for="message" class="form-label mt-2">Message</label>
+        <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
+            placeholder="" required style="resize: none"></textarea>
+        <div class="col-md-12 my-3 text-center">
+            <button type="submit" class="theme_btn small_btn4">Submit</button>
+        </div>
+    </form>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
 
-                                                                                                                                                                                                                                                                                                                                                                                            <div class="video1" onclick="homeVideo()">
-                                                                                                                                                                                                                                                                                                                                                                                                <div class="vidicons m-auto">
-                                                                                                                                                                                                                                                                                                                                                                                                    <i class="fa-solid fa-play"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                     -->
+    <div class="video1" onclick="homeVideo()">
+        <div class="vidicons m-auto">
+            <i class="fa-solid fa-play"></i>
+        </div>
+    </div>
+    </div>
+    </div>
+    -->
 
 
                 <div class="modal fade" id="video_image" tabindex="-1" role="dialog"
@@ -6026,7 +5766,7 @@
     @endif
     <script src="https://maps.googleapis.com/maps/api/js?key={{ Settings('gmap_key') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="path/to/swiper.min.js"></script>
+    {{-- <script src="path/to/swiper.min.js"></script> --}}
     {{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> --}}
     {{-- for scroll --}}
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

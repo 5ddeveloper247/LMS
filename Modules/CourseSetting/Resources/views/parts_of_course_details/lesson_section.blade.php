@@ -126,12 +126,12 @@
                                             </option>
                                         @endif
 
-                                        @if (isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="URL" @if (@$editLesson->host == 'URL') Selected @endif
                                             @if (empty(@$editLesson) && @$editLesson->host == 'URL') selected @endif>
                                                 Video URL
                                             </option>
-                                        @endif
+                                        @endif --}}
 
 {{--                                        @if (!isTutor() || isAdmin() || isInstructor())--}}
 {{--                                            <option value="Iframe" @if (@$editLesson->host == 'Iframe') Selected @endif--}}
@@ -140,35 +140,35 @@
 {{--                                            </option>--}}
 {{--                                        @endif--}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="Image" @if (@$editLesson->host == 'Image') Selected @endif
                                             @if (empty(@$editLesson) && @$editLesson->host == 'Image') selected @endif>
                                                 Image
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="PDF" @if (@$editLesson->host == 'PDF') Selected @endif
                                             @if (empty(@$editLesson) && @$editLesson->host == 'PDF') selected @endif>
                                                 PDF File
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="Word" @if (@$editLesson->host == 'Word') Selected @endif
                                             @if (empty(@$editLesson) && @$editLesson->host == 'Word') selected @endif>
                                                 Word File
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="Excel" @if (@$editLesson->host == 'Excel') Selected @endif
                                             @if (empty(@$editLesson) && @$editLesson->host == 'Excel') selected @endif>
                                                 Excel File
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="PowerPoint"
                                                     @if (@$editLesson->host == 'PowerPoint') Selected @endif
                                                     @if (empty(@$editLesson) && @$editLesson->host == 'PowerPoint') selected @endif>
@@ -176,7 +176,7 @@
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="Text" @if (@$editLesson->host == 'Text') Selected @endif
                                             @if (empty(@$editLesson) && @$editLesson->host == 'Text') selected @endif>
                                                 Text File
@@ -190,15 +190,15 @@
                                             </option>
                                         @endif
 
-                                        @if (isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="GoogleDrive"
                                                     @if (@$editLesson->host == 'GoogleDrive') Selected @endif
                                                     @if (empty(@$editLesson) && @$editLesson->host == 'GoogleDrive') selected @endif>
                                                 Google Drive
                                             </option>
-                                        @endif
+                                        @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (!isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('AmazonS3'))
                                                 <option value="AmazonS3"
                                                         @if (@$editLesson->host == 'AmazonS3') Selected @endif
@@ -206,18 +206,18 @@
                                                     Amazon S3
                                                 </option>
                                             @endif
-                                        @endif
+                                        @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (!isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('SCORM'))
                                                 <option value="SCORM"
                                                         @if (empty(@$editLesson) == 'SCORM') selected @endif>
                                                     SCORM Self
                                                 </option>
                                             @endif
-                                        @endif
+                                        @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (!isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('AmazonS3') && isModuleActive('SCORM'))
                                                 <option value="SCORM-AwsS3"
                                                         @if (empty(@$editLesson) == 'SCORM-AwsS3') selected @endif>
@@ -233,16 +233,16 @@
                                                     XAPI Self
                                                 </option>
                                             @endif
-                                        @endif
+                                        @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (!isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('AmazonS3') && isModuleActive('XAPI'))
                                                 <option value="XAPI-AwsS3"
                                                         @if (empty(@$editLesson) == 'XAPI-AwsS3') selected @endif>
                                                     XAPI AWS S3
                                                 </option>
                                             @endif
-                                        @endif
+                                        @endif --}}
                                     </select>
                                     @if ($errors->has('category'))
                                         <span class="invalid-feedback invalid-select" role="alert">
@@ -510,7 +510,7 @@ $(document).ready(function () {
                         });
                     return false;
                 }
-//                 $('#addLesson_form').submit();
+                $('#addLesson_form').submit();
             });
    	}
 </script>

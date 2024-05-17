@@ -108,12 +108,12 @@
                                             </option>
                                         @endif
 
-                                        @if (isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="URL"
                                                 {{ isset($editLesson) ? ($editLesson->host == 'URL' ? 'selected' : '') : '' }}>
                                                 Video URL
                                             </option>
-                                        @endif
+                                        @endif --}}
 
                                         @if (!isTutor() || isAdmin() || isInstructor())
                                             <option value="Image"
@@ -122,28 +122,28 @@
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="PDF"
                                                 {{ isset($editLesson) ? ($editLesson->host == 'PDF' ? 'selected' : '') : '' }}>
                                                 PDF File
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="Word"
                                                 {{ isset($editLesson) ? ($editLesson->host == 'Word' ? 'selected' : '') : '' }}>
                                                 Word File
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="Excel"
                                                 {{ isset($editLesson) ? ($editLesson->host == 'Excel' ? 'selected' : '') : '' }}>
                                                 Excel File
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="Text"
                                                 {{ isset($editLesson) ? ($editLesson->host == 'Text' ? 'selected' : '') : '' }}>
                                                 Text File
@@ -157,65 +157,65 @@
                                             </option>
                                         @endif
 
-                                        @if (isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="GoogleDrive"
                                                 @if (@$editLesson->host == 'GoogleDrive') Selected @endif
                                                 @if (empty(@$editLesson) && @$editLesson->host == 'GoogleDrive') selected @endif>
                                                 Google Drive
                                             </option>
-                                        @endif
+                                        @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="PowerPoint"
                                                 {{ isset($editLesson) ? ($editLesson->host == 'PowerPoint' ? 'selected' : '') : '' }}>
                                                 Power Point File
                                             </option>
                                         @endif
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('AmazonS3'))
                                                 <option value="AmazonS3"
                                                     {{ isset($editLesson) ? ($editLesson->host == 'AmazonS3' ? 'selected' : '') : '' }}>
                                                     Amazon S3
                                                 </option>
                                             @endif
-                                        @endif
+                                        @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('SCORM'))
                                                 <option value="SCORM"
                                                     {{ isset($editLesson) ? ($editLesson->host == 'SCORM' ? 'selected' : '') : '' }}>
                                                     SCORM Self
                                                 </option>
                                             @endif
-                                        @endif
+                                        @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('AmazonS3') && isModuleActive('SCORM'))
                                                 <option value="SCORM-AwsS3"
                                                     {{ isset($editLesson) ? ($editLesson->host == 'SCORM-AwsS3' ? 'selected' : '') : '' }}>
                                                     SCORM AWS S3
                                                 </option>
                                             @endif
-                                        @endif
+                                        @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('XAPI'))
                                                 <option value="XAPI"
                                                     @if (empty(@$editLesson) == 'XAPI') selected @endif>
                                                     XAPI Self
                                                 </option>
                                             @endif
-                                        @endif
+                                        @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('AmazonS3') && isModuleActive('XAPI'))
                                                 <option value="XAPI-AwsS3"
                                                     @if (empty(@$editLesson) == 'XAPI-AwsS3') selected @endif>
                                                     XAPI AWS S3
                                                 </option>
                                             @endif
-                                        @endif
+                                        @endif --}}
 
                                         @if (isTutor() || isAdmin() || isInstructor())
                                     </select>

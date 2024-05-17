@@ -731,7 +731,10 @@ class OnlineQuizController extends Controller
                 }
             }
 
-            $setup = QuizeSetup::firstOrCreate(['id' => 1]);
+            $setup = QuizeSetup::first();
+            if(!$setup){
+                $setup = new QuizeSetup();
+            }
             $setup->random_question = $request->random_question;
             $setup->set_per_question_time = $request->set_per_question_time;
             $setup->multiple_attend = $request->multiple_attend ?? 0;

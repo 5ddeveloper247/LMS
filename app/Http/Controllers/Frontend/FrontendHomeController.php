@@ -55,6 +55,7 @@ class FrontendHomeController extends Controller
             $latest_courses = Course::where('price', '!=', '0.00')->with('parent')->latest()->take(3)->get();
             //dd($latest_courses);
             $latest_blogs = Blog::where('status', 1)->with('user')->latest()->limit(4)->get();
+            $featured_blogs = Blog::where('status',1)->where('featured',1)->with('user')->latest()->limit(3)->get();
             $latest_course_reveiws = CourseReveiw::where('status', 1)->with('user')->latest()->limit(4)->get();
 
             $random_program = Program::where('status', 1)
@@ -65,7 +66,7 @@ class FrontendHomeController extends Controller
                 ->first();
             $faqs = HomePageFaq::where('status', 1)->orderBy('order','desc')->take(10)->get();
 
-            return view(theme('pages.index'), compact('random_program', 'blocks', 'latest_programs', 'latest_blogs', 'latest_course_reveiws', 'random_program', 'latest_courses','faqs'));
+            return view(theme('pages.index'), compact('random_program', 'blocks', 'latest_programs', 'latest_blogs', 'featured_blogs' , 'latest_course_reveiws', 'random_program', 'latest_courses','faqs'));
 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);

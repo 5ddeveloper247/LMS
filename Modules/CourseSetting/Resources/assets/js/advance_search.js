@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     $("#Asubcategory_id").on("change", function () {
         var url = $("#url").val();
-// console.log('sub');
+        // console.log('sub');
         var formData = {
             category_id: $('#Acategory_id').val(),
             subcategory_id: $('#Asubcategory_id').val(),
@@ -106,7 +106,6 @@ $(document).ready(function () {
         var formData = {
             id: $(this).val(),
         };
-        console.log(course_id);
 
         $.ajax({
             type: "GET",

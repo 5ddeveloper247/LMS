@@ -101,6 +101,7 @@ class BlogController extends Controller
             $blog->slug = $request->slug;
             $blog->category_id = $request->category;
             $blog->tags = $request->tags;
+            $blog->featured = $request->featured ?? 0;
             $blog->user_id = Auth::id();
 
 
@@ -178,6 +179,7 @@ class BlogController extends Controller
                 $blog->setTranslation('description', $key, $description);
             }
             $blog->slug = $request->slug;
+            $blog->featured = $request->featured ?? 0;
             $blog->user_id = Auth::id();
             $blog->authored_date = !empty($request->publish_date) ? getPhpDateFormat($request->publish_date) : date('m/d/y');
             $blog->authored_time = !empty($request->publish_time) ? $request->publish_time : date('H:i:s');
