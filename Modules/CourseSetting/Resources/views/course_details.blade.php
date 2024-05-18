@@ -257,18 +257,18 @@
                             @if ($course->type == 1 || $course->type == 9)
                                 <li class="nav-item">
                                     <a class="nav-link @if ($type == 'courses') active @endif"
-                                        href="#group_email_sms" role="tab" data-toggle="tab">{{ __('courses.Course') }}
+                                        href="#course_cirriculum" role="tab" data-toggle="tab">{{ __('courses.Course') }}
                                         {{ __('courses.Curriculum') }} </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link @if ($type == 'courseDetails') active @endif"
-                                        href="#indivitual_email_sms" role="tab"
+                                        href="#course_details" role="tab"
                                         data-toggle="tab">{{ __('courses.Course') }} {{ __('common.Details') }}</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link @if ($type == 'files') active @endif" href="#file_list"
+                                    <a class="nav-link @if ($type == 'files') active @endif" href="#course_exercise"
                                         role="tab" data-toggle="tab">{{ __('courses.Exercise') }}
                                         {{ __('common.Files') }}</a>
                                 </li>
@@ -302,7 +302,7 @@
                                     <input type="hidden" name="selectTab" id="selectTab">
                                     <div role="tabpanel"
                                         class="tab-pane fade @if ($type == 'courses') show active @endif"
-                                        id="group_email_sms">
+                                        id="course_cirriculum">
 
                                         <div class="QA_section QA_section_heading_custom check_box_table">
                                             <div class="QA_table">
@@ -501,7 +501,7 @@
 
                                     <div role="tabpanel"
                                         class="tab-pane fade @if ($type == 'courseDetails') show active @endif"
-                                        id="indivitual_email_sms">
+                                        id="course_details">
                                         <div class="white_box_30px pl-0 pr-0 pt-0">
                                             <form action="{{ route('AdminUpdateCourse') }}" method="POST"
                                                 enctype="multipart/form-data" id="course_form">
@@ -1810,7 +1810,7 @@
                                     <!-- End Individual Tab -->
                                     <div role="tabpanel"
                                         class="tab-pane fade @if ($type == 'files') show active @endif"
-                                        id="file_list">
+                                        id="course_exercise">
 
                                         <div class="">
                                             <div class="row mb_20 mt-20">
