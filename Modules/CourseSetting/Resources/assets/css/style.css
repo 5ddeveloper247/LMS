@@ -8185,9 +8185,9 @@ input::placeholder, textarea::placeholder {
 /* line 110, ../../../../Desktop/role_permission/scss/_role_permission.scss */
 .erp_role_permission_area .single_permission .permission_header {
   padding: 15px 25px;
-  background-image: -moz-linear-gradient(0deg, #7c32ff 0%, #a235ec 70%, #c738d8 100%);
-  background-image: -webkit-linear-gradient(0deg, #7c32ff 0%, #a235ec 70%, #c738d8 100%);
-  background-image: -ms-linear-gradient(0deg, #7c32ff 0%, #a235ec 70%, #c738d8 100%);
+  background-image: -moz-linear-gradient(0deg, #0079a8 0%, #a235ec 70%, #996699 100%);
+  background-image: -webkit-linear-gradient(0deg, #0079a8 0%, #a235ec 70%, #996699 100%);
+  background-image: -ms-linear-gradient(0deg, #0079a8 0%, #a235ec 70%, #996699 100%);
 }
 
 /* line 115, ../../../../Desktop/role_permission/scss/_role_permission.scss */
@@ -8227,17 +8227,17 @@ input::placeholder, textarea::placeholder {
 /* line 142, ../../../../Desktop/role_permission/scss/_role_permission.scss */
 .erp_role_permission_area .single_permission .permission_body .submodule label {
   font-size: 15px;
-  color: #7c32ff;
+  color: #0079a8;
 }
 
 /* line 146, ../../../../Desktop/role_permission/scss/_role_permission.scss */
 .erp_role_permission_area .single_permission .permission_body .submodule .common-radio:empty ~ label::before {
-  border: 1px solid #7c32ff;
+  border: 1px solid #0079a8;
 }
 
 /* line 149, ../../../../Desktop/role_permission/scss/_role_permission.scss */
 .erp_role_permission_area .single_permission .permission_body .submodule .common-radio:checked ~ label::after {
-  color: #7c32ff;
+  color: #0079a8;
   background-color: transparent;
 }
 

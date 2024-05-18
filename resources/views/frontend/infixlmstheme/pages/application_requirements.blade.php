@@ -20,7 +20,7 @@
     }
 
     .carrot-orange-clr {
-        color: #ff6700;
+        color: var(--system_primery_color);
     }
 
     .bg {
@@ -72,7 +72,7 @@
         height: 18px;
         width: 18px;
         border-radius: 50%;
-        background-color: #ff6700;
+        background-color: var(--system_primery_color);
     }
 
     .inner-white-point-of-bar {
@@ -131,7 +131,7 @@
         .expore p:hover {
             line-height: 30px !important;
             font-size: 17px !important;
-            color: #ff6700;
+            color: var(--system_primery_color);
             text-decoration: underline;
         }
 
@@ -156,7 +156,7 @@
     .footerbox p:hover {
         line-height: 30px !important;
         font-size: 16px !important;
-        color: #ff6700;
+        color: var(--system_primery_color);
     }
 
     /* .footerbox1 p {
@@ -170,7 +170,7 @@
         .footerbox1 p:hover {
             line-height: 30px !important;
             font-size: 17px !important;
-            color: #ff6700;
+            color: var(--system_primery_color);
             text-decoration: underline;
         }
 
@@ -184,7 +184,7 @@
     }
 
     .icons i:hover {
-        color: #ff6700;
+        color: var(--system_primery_color);
 
         font-size: 12px;
         padding: 3px;
@@ -278,7 +278,7 @@
     }
 
     .back-color {
-        background: #6a0dad;
+        background: #996699;
     }
 
     .faq_lst>.faq_blk {
@@ -294,7 +294,7 @@
     }
 
     .faq_lst>.faq_blk.active h5:after {
-        background: #6a0dad;
+        background: #996699;
         -webkit-clip-path: polygon(0 40%, 0 60%, 100% 60%, 100% 40%);
         clip-path: polygon(0 40%, 0 60%, 100% 60%, 100% 40%);
     }
@@ -486,7 +486,7 @@
         /* background: url("http://mchnursing.com/lms/public/frontend/infixlmstheme/img/images/courses-4.jpg"); */
         background-size: cover;
         height: 405px;
-        background: #6a0dad;
+        background: #996699;
     }
 
     .custom_fs_a {
@@ -495,7 +495,7 @@
         top: 50%;
         right: 0;
         font-family: "Poppins", sans-serif;
-        color: #6a0dad;
+        color: #996699;
 
 
     }
@@ -719,7 +719,7 @@
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
-                                <path fill="none" stroke="#ff6700" stroke-linecap="round" stroke-linejoin="round"
+                                <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
                             </svg>
                         </div>
@@ -741,7 +741,7 @@
                         <h2 class="carrot-orange-clr">Step 02</h2>
                         <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
                         <div class="d-flex align-items-center gap-3 pb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ff6700" width="50px" height="50px" x="0px"
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px" height="50px" x="0px"
                                 y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                 <g>
                                     <path
@@ -820,7 +820,7 @@
                         <div class="d-flex align-items-center gap-3 pb-3">
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ff6700" width="50px" height="50px" x="0px"
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px" height="50px" x="0px"
                                 y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                 <g>
                                     <path
@@ -845,7 +845,7 @@
                         <h2 class="carrot-orange-clr">Step 04</h2>
                         <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5>
                         <div class="d-flex align-items-center gap-3 pb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="#ff6700" x="0px"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="var(--system_primery_color)" x="0px"
                                 y="0px" viewBox="0 0 50 48" style="enable-background:new 0 0 50 48;"
                                 xml:space="preserve">
                                 <g>
@@ -1291,7 +1291,7 @@
 
                 if (parseInt(contentDiv[i].style.height) != contentDiv[i].scrollHeight) {
                     contentDiv[i].style.height = contentDiv[i].scrollHeight + "px";
-                    toggles[i].style.color = "#6a0dad";
+                    toggles[i].style.color = "#996699";
                     icons[i].classList.remove("fa-plus");
                     console.log(icons[i]);
                     icons[i].classList.add("fa-minus");

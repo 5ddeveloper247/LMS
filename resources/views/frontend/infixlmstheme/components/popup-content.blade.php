@@ -39,7 +39,7 @@
         }
 
         button.close:hover {
-            background-color: #6a0dad;
+            background-color: #996699;
             color: white;
         }
 

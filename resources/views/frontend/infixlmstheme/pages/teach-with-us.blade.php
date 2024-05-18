@@ -69,8 +69,8 @@
     }
 
     .btn_responsive:hover {
-        background-color: #ff6700 !important;
-        border-color: #ff6700 !important;
+        background-color: var(--system_primery_color) !important;
+        border-color: var(--system_primery_color) !important;
         transition: 0.3s ease !important;
     }
 
@@ -119,12 +119,12 @@
         color: #fff;
         text-transform: none;
         white-space: nowrap;
-        background-color: #6a0dad;
+        background-color: #996699;
         background-image: url("{{ asset('public/frontend/infixlmstheme/img/images/6446624444e808612b7591de_jasper-button-arrow.svg') }}");
         background-position: 7px;
         background-repeat: no-repeat;
         background-size: 1.875rem 1.875rem;
-        border-color: #6a0dad;
+        border-color: #996699;
         padding-left: 47px;
         font-weight: 500;
         overflow: visible;
@@ -139,7 +139,7 @@
         text-align: center;
         cursor: pointer;
         background-color: transparent;
-        border: 1px solid #6a0dad;
+        border: 1px solid #996699;
         border-radius: 500px;
         flex-direction: row;
         justify-content: center;
@@ -233,7 +233,7 @@
     }
 
     .button-tb--orange {
-        background-color: #ff6700 !important;
+        background-color: var(--system_primery_color) !important;
         border-color: #ff7600 !important;
     }
 
@@ -242,13 +242,13 @@
     }
 
     .nav-pills .nav-link.active {
-        background-color: #ff6700 !important;
+        background-color: var(--system_primery_color) !important;
         border-color: #ff7600 !important;
         color: #fff !important;
     }
 
     .heading_1_color {
-        color: #6a0dad !important;
+        color: #996699 !important;
     }
 
     .heading_2_color {
@@ -321,7 +321,7 @@
     }
 
     .carrot-orange-clr {
-        color: #ff6700;
+        color: var(--system_primery_color);
     }
 
     .bg {
@@ -373,7 +373,7 @@
         height: 18px;
         width: 18px;
         border-radius: 50%;
-        background-color: #ff6700;
+        background-color: var(--system_primery_color);
     }
 
     .inner-white-point-of-bar {
@@ -580,7 +580,7 @@
         </div>
         <div class="container px-lg-5">
 
-            <div class="row py-lg-5 px-xl-5 px-md-2">
+            <div class="row py-lg-5 px-xl-5 px-md-2 py-4">
                 <div class="col-md-12 text-center">
                     <h2 class="font-weight-bold custom_heading_1 mb-5">What We Offer!</h2>
                 </div>
@@ -889,7 +889,7 @@
                         </div>
                     </div> -->
         {{-- slider timeline --}}
-        <div class="our-process-section-container bg mt-lg-5 py-lg-5">
+        <div class="our-process-section-container bg mt-lg-5 py-lg-5 py-4">
             <div class="our-process-section-wrapper px-3">
                 <div class="w-100 d-flex justify-content-start">
                     <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right"
@@ -902,7 +902,7 @@
                                     aut fugit, sed quia consequuntur magni res.</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                     viewBox="0 0 24 24">
-                                    <path fill="none" stroke="#ff6700" stroke-linecap="round" stroke-linejoin="round"
+                                    <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
                                 </svg>
                             </div>
@@ -924,7 +924,7 @@
                             <h2 class="carrot-orange-clr">Step 02</h2>
                             <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
                             <div class="d-flex align-items-center gap-3 pb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#ff6700" width="50px" height="50px"
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px" height="50px"
                                     x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
                                     xml:space="preserve">
                                     <g>
@@ -1005,7 +1005,7 @@
                             <div class="d-flex align-items-center gap-3 pb-3">
                                 <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit
                                     aut fugit, sed quia consequuntur magni res.</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#ff6700" width="50px" height="50px"
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px" height="50px"
                                     x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
                                     xml:space="preserve">
                                     <g>
@@ -1031,7 +1031,7 @@
                             <h2 class="carrot-orange-clr">Step 04</h2>
                             <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5>
                             <div class="d-flex align-items-center gap-3 pb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="#ff6700"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="var(--system_primery_color)"
                                     x="0px" y="0px" viewBox="0 0 50 48" style="enable-background:new 0 0 50 48;"
                                     xml:space="preserve">
                                     <g>
@@ -1070,10 +1070,10 @@
             </div>
         </div>
         {{-- slider-end --}}
-        <div class="container custom-b-padd">
-            <div class="row px-xl-5 px-1 pt-5">
+        <div class="container custom-b-padd mb-4 mb-lg-5">
+            <div class="row px-xl-5 px-1 pt-lg-5 pt-4">
                 <div class="col-md-12 text-center">
-                    <h2 class="font-weight-bold custom_heading_1 mb-5">Courses From Individual Tutors</h2>
+                    <h2 class="font-weight-bold custom_heading_1 mb-lg-5 mb-4">Courses From Individual Tutors</h2>
                 </div>
                 @if (isset($courses))
                     @foreach ($courses as $course)
@@ -1127,8 +1127,8 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class="col-md-12 pt-4 text-center">
-                        <a href="{{ url('/prep-courses?tutor_courses=1') }}" class="small_btn2 theme_btn mt-2 p-2 mb-lg-5">View
+                    <div class="col-md-12 pt-lg-4 pt-2 text-center">
+                        <a href="{{ url('/prep-courses?tutor_courses=1') }}" class="small_btn2 theme_btn mt-2 p-2">View
                             More >></a>
                     </div>
                 @endif
@@ -1141,7 +1141,7 @@
                             </div>
                             <h1>
                                 {{ __('No Course Found') }}
-                            </h1>
+                            </h1> 
                         </div>
                     </div>
                 @endif
@@ -1168,7 +1168,7 @@
                                     $button = 'button-tb--orange';
                                 }
                             @endphp
-                            <div class="col-md-4 justify-content-center d-flex mb-4 mb-md-0">
+                            <div class="col-sm-6 col-lg-4 d-flex justify-content-center justify-content-center d-flex mb-4 mb-lg-0">
                                 <div class="card custom_card_plan shadow">
                                     <div class="card-body">
                                         <h5 class="price-card__plan--v2 {{ $heading }}">

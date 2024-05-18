@@ -79,13 +79,13 @@ class OnlineQuizController extends Controller
         if (demoCheck()) {
             return redirect()->back();
         }
-
+       // dd($request);
         if ($request->type == 2) {
             $rules = [
-                'title.*' => 'required',
-                'category' => 'required',
+                'title.en' => 'required',
+               // 'category' => 'required',
                 'percentage' => 'required',
-                'instruction.*' => 'required'
+                'instruction.en' => 'required'
             ];
             $this->validate($request, $rules, validationMessage($rules));
 
@@ -105,7 +105,7 @@ class OnlineQuizController extends Controller
                 }
 
 
-                $online_exam->category_id = $request->category;
+                $online_exam->category_id = $request->category ?? 0;
                 $online_exam->sub_category_id = $sub;
                 $online_exam->course_id = $request->course_id;
                 $online_exam->percentage = $request->percentage;

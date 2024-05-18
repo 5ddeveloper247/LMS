@@ -1011,7 +1011,7 @@
                     </div>
                     <!-- first-end -->
 <!-- 2ndtart -->
-<div class="row my-4 px-xl-5 small_screen">
+<div class="row my-4 px-lg-5 small_screen">
     <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12">
                     <div class="image_responsive program_image">
                         <img src="{{ getCourseImage($program_detail->image) }}"
@@ -1060,7 +1060,7 @@
                     </div>
                     <!--2ndend  -->
                     <!-- 3rdstart -->
-                    <div class="row px-xl-5 small_screen my-4">
+                    <div class="row px-lg-5 small_screen my-4">
                         <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12">
                         <div class="course_tabs">
                         <ul class="d-flex flex-column flex-md-row flex-sm-column lms_tabmenu nav w-100 text-center"
@@ -1735,7 +1735,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="boxaccordion mt-4 mb-5">
+                <div class="boxaccordion mt-4 mb-5 mb-lg-4">
                                     <h5 class="font-weight-bold custom_heading_1 mb-4">FAQs</h5>
                                     @forelse ($faqs as $faq)
                                         <div class="containerwidth">
@@ -1937,7 +1937,7 @@
                                     <a target="_blank" href="https://www.instagram.com/merakiinursing/"
                                     {{-- href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ URL::current() }}&amp;title={{ $program_detail->programtitle }}&amp;summary={{ $program_detail->programtitle }}"> --}}
                                     <i class="fa fa-instagram-square"
-                                       style="color: #ff6700;font-size: 50px;"></i>
+                                       style="color: var(--system_primery_color);font-size: 50px;"></i>
                                     </a>
                                 </div>
                             </div>
@@ -2155,7 +2155,7 @@
             toggles[i].addEventListener("click", () => {
                 if (parseInt(contentDiv[i].style.height) != contentDiv[i].scrollHeight) {
                     contentDiv[i].style.height = contentDiv[i].scrollHeight + "px";
-                    toggles[i].style.color = "#6a0dad";
+                    toggles[i].style.color = "#996699";
                     icons[i].classList.remove("fa-plus");
                     icons[i].classList.add("fa-minus");
                 } else {

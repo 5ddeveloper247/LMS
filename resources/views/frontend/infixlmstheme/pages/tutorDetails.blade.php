@@ -221,7 +221,7 @@
     }
 
     .newknowledge {
-        background-color: #6a0dad;
+        background-color: #996699;
     }
 
     /* .heading h2 {
@@ -618,7 +618,7 @@ p, label{
             <div class="col-md-6 p-0">
                 <img src="{{ asset('/public/assets/tutor/instructor.jpg') }}" class="img-fluid w-100 h-100">
             </div>
-            <div class="col-md-6 p-0 d-flex align-items-center px-xl-5" style="background-color: #6a0dad">
+            <div class="col-md-6 p-0 d-flex align-items-center px-xl-5" style="background-color: #996699">
             <div class="controlSize px-3 py-4 px-lg-5 hide-scrollbar">
                     <div class="lead">
                         <div class="controlSize2">

@@ -6681,7 +6681,7 @@ input[type=number] {
 
 /* line 61, ../../../../officeServer/www/infixlms_lv/public/frontend/infixlmstheme/scss/_login.scss */
 .login_wrapper .login_wrapper_left .login_wrapper_content .socail_links .facebookLoginBtn {
-    background: #395799;
+    background: var(--system_secendory_color);
 }
 
 /* line 65, ../../../../officeServer/www/infixlms_lv/public/frontend/infixlmstheme/scss/_login.scss */

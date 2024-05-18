@@ -143,7 +143,7 @@
             left: 0.5px;
             z-index: 3;
             color: #fff;
-            background: linear-gradient(0deg, rgba(254, 108, 10, 1) 0%, rgba(96, 42, 181, 1) 75%);
+            background: linear-gradient(0deg, rgb(255, 118, 25) 0%,rgb(153, 102, 153) 75%);
             padding: .4rem .75rem;
             display: flex;
             align-items: center;

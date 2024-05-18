@@ -27,7 +27,7 @@
     .footerbox1 p:hover {
         line-height: 30px !important;
         font-size: 17px !important;
-        color: #ff6700 !important;
+        color: var(--system_primery_color) !important;
         text-decoration: underline !important;
     }
 
@@ -56,7 +56,7 @@
     .expore p:hover {
         line-height: 30px !important;
         font-size: 17px !important;
-        color: #ff6700 !important;
+        color: var(--system_primery_color) !important;
         text-decoration: underline !important;
     }
 
@@ -67,7 +67,7 @@
     }
 
     .icons i:hover {
-        color: #ff6700 !important;
+        color: var(--system_primery_color) !important;
 
         font-size: 22px !important;
         /* padding: 11px !important; */

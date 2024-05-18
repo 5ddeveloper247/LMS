@@ -28,7 +28,7 @@
         }
 
         label:before {
-            background: linear-gradient(90deg, #7c32ff .47%, #c738d8);
+            background: linear-gradient(90deg, var(--footer_background_color) .47%, #c738d8);
             box-shadow: 0 5px 10px rgb(108 39 255 / 25%);
             transition: .3s;
             background-color: white;
@@ -63,7 +63,7 @@
         }
 
         .preloaderr.active {
-            border: 3px solid #7c32ff !important;
+            border: 3px solid var(--footer_background_color) !important;
         }
 
     </style>

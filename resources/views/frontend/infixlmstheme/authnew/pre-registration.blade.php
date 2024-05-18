@@ -156,7 +156,7 @@
             left: 0.5px;
             z-index: 3;
             color: #fff;
-            background: linear-gradient(0deg, rgba(254, 108, 10, 1) 0%, rgba(96, 42, 181, 1) 75%);
+            background: linear-gradient(0deg, var(--system_primery_color) 0%, var(--footer_background_color) 75%);
             padding: .4rem .75rem;
             display: flex;
             align-items: center;
@@ -210,7 +210,7 @@
         }
 
         .facebookLoginBtn {
-            background: #395799;
+            background: #1877F2;
             border-radius: 0;
             color: #fff !important;
             white-space: nowrap;
@@ -225,7 +225,7 @@
         }
 
         .googleLoginBtn {
-            background: rgb(227, 65, 51);
+            background:#EA4335;
             border-radius: 0;
             color: #fff !important;
             white-space: nowrap;

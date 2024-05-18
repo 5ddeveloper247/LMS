@@ -25,12 +25,12 @@
 
         .footerbox1 p:hover {
             line-height: 30px !important;
-            color: #ff6700 !important;
+            color: var(--system_primery_color) !important;
             text-decoration: underline !important;
         }
 
         .footerbox1 p:focus {
-            color: #ff6700 !important;
+            color: var(--system_primery_color) !important;
         }
 
         .footerbox1 span {
@@ -55,12 +55,12 @@
 
         .expore p:hover {
             line-height: 30px !important;
-            color: #ff6700 !important;
+            color: var(--system_primery_color) !important;
             text-decoration: underline !important;
         }
 
         .expore p:focus {
-            color: #ff6700 !important;
+            color: var(--system_primery_color) !important;
         }
 
         .fs-responsive {
@@ -75,13 +75,13 @@
         }
 
         .icons i:hover {
-            color: #ff6700 !important;
+            color: var(--system_primery_color) !important;
             font-size: 22px !important;
             /* padding: 11px !important; */
         }
 
         .icons i:focus {
-            color: #ff6700 !important;
+            color: var(--system_primery_color) !important;
         }
 
         .newsletter_btn {
@@ -117,7 +117,7 @@
         .sub-section {
             margin-top: -143px;
             background: rgb(254, 105, 3) !important;
-            background: linear-gradient(0deg, rgba(254, 108, 10, 1) 0%, rgba(96, 42, 181, 1) 75%) !important;
+            background: linear-gradient(0deg, rgb(255, 118, 25) 0%, rgb(153, 102, 153) 75%) !important;
             transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
             padding: 20px;
             border-radius: 15px;
@@ -163,7 +163,7 @@
             font-weight: 500;
             text-transform: uppercase;
             color: #fff;
-            background-color: #6a0dad;
+            background-color: #996699;
             border-style: none;
             border-radius: 20px;
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0);
@@ -607,7 +607,7 @@
         </div>
 </div>
 </footer>
-<div class="col-md-12" style="background: #6a0dad;box-shadow: 0px -10px 20px -14px;">
+<div class="col-md-12" style="background: #996699;box-shadow: 0px -10px 20px -14px;">
     <div class="container d-lg-flex footercolor justify-content-between footer-padd">
         <div class="my-lg-0 my-2">
             <span style="" class="fs-responsive text-white">
@@ -659,7 +659,7 @@
         });
     });
 
-    function selectedSearch(name) {
+    function selectedSearch(name,type='program') {
         if (localStorage.getItem('is_program_search') == 1) {
             $('#search_form').find('#search').val(name);
             $('#search_form').find('#search').focus();

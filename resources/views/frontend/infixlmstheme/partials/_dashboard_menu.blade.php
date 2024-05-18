@@ -7,20 +7,20 @@
     }
 
     .custom_student_nav {
-        background: linear-gradient(90deg, #7c32ff, #c738d8);
+        background: linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color));
     }
 
     .custom_student_sidebar_head {
-        background: linear-gradient(90deg, #c738d8, #7c32ff);
+        background: linear-gradient(90deg, var(--footer_background_color), var(--system_secondory_color));
     }
 
     .sidebar ul li a.active,
     .sidebar ul li a:hover {
-        background: linear-gradient(90deg, #7c32ff, #c738d8);
+        background: linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color));
     }
 
     .custom_student_btn {
-        background: linear-gradient(90deg, #7c32ff, #c738d8 51%, #7c32ff);
+        background: linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color) 51%, var(--system_secondory_color));
         color: #fff;
         background-size: 200% auto;
         transition: all 0.4s ease 0s;
@@ -36,11 +36,11 @@
     }
 
     .dashboard_notification_list .recent_notifications:hover {
-        background: linear-gradient(90deg, #7c32ff, #c738d8);
+        background: linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color));
     }
 
     .menu_icon svg {
-        color: #7c32ff;
+        color: var(--system_secondory_color);
     }
 
     .sidebar ul li a:hover svg {
@@ -48,19 +48,19 @@
     }
 
     .profile_info_icon svg {
-        color: #7c32ff;
+        color: var(--system_secondory_color);
     }
 
     .dashboard_title .custom_student_text_color,
     .head .custom_student_text_color {
-        background: -webkit-linear-gradient(90deg, #7c32ff, #c738d8);
+        background: -webkit-linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     /* my-courses-page-section Style */
     .custom_student_img_border {
-        border: 1px solid #c738d8;
+        border: 1px solid var(--footer_background_color);
     }
 </style>
 <div class="header_iner d-flex justify-content-between align-items-center custom_student_nav">

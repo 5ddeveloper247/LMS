@@ -40,6 +40,7 @@ use Modules\MyClass\Repositories\Interfaces\AddStudentToClassRepositoryInterface
 use Modules\Newsletter\Entities\NewsletterSetting;
 use Modules\Newsletter\Http\Controllers\AcelleController;
 use Modules\Payment\Entities\Cart;
+use Modules\Payment\Entities\PaymentPlans;
 use Modules\Quiz\Entities\OnlineQuiz;
 use Modules\Quiz\Entities\QuestionBankMuOption;
 use Modules\Quiz\Entities\QuizeSetup;
@@ -2045,18 +2046,37 @@ class WebsiteController extends Controller
 
             if ($request->ajax()) {
                 $search = $request->name;
-                $query = Program::orderBy('seq_no', 'asc')
-                    ->where('status', 1)
-                    ->has('currentProgramPlan')
-                    ->with('currentProgramPlan')
-                    ->where('programtitle', 'LIKE', "%{$search}%")
-                    ->get();
+                // $query = Program::orderBy('seq_no', 'asc')
+                //     ->where('status', 1)
+                //     ->has('currentProgramPlan')
+                //     ->with('currentProgramPlan')
+                //     ->where('programtitle', 'LIKE', "%{$search}%")
+                //     ->get();
 
+                $query = PaymentPlans::where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'))
+                        ->whereHas('courses', function ($query) use ($search) {
+                            $query->where('title', 'like', '%'.$search.'%');
+                        })
+                        ->orWhereHas('programName', function ($query) use ($search) {
+                            $query->where('programtitle', 'like', '%'.$search.'%');
+                        })
+                        ->with('courses','programName')
+                        ->where('status', 1)->latest()->get();
+                // dd($query);
                 $search_output = '';
                 if (count($query) > 0) {
                     $search_output = '<ul id="search_listing" class="list-group" style="display:block;position:relative; z-index:1">';
                     foreach ($query as $item) {
-                        $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->programtitle . '\')">' . $item->programtitle . '</li>';
+                        switch ($item->type) {
+                            case 'program':
+                                $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->programName->programtitle . '\',\''.$item->type.'\')">' . $item->programName->programtitle . '</li>';
+                                break;
+                                
+                                default:
+                                $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->courses->parent->title . '\',\''.$item->type.'\')">' . $item->courses->parent->title . '</li>';
+                                
+                                break;
+                        }
                     }
                     $search_output .= '</ul>';
                 } else {

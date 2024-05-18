@@ -10,6 +10,7 @@ use Modules\CourseSetting\Entities\Category;
 use Modules\StudentSetting\Entities\Program;
 use Modules\CourseSetting\Entities\CourseLevel;
 use Modules\VirtualClass\Entities\VirtualClass;
+use Modules\Payment\Entities\PaymentPlans;
 
 class SearchPageSection extends Component
 {
@@ -28,8 +29,20 @@ class SearchPageSection extends Component
     {
         // $query = Course::orderBy('total_enrolled', 'desc')
         //     ->with('user', 'enrolls', 'comments', 'reviews', 'lessons', 'activeReviews', 'enrollUsers', 'class', 'cartUsers', 'quiz', 'quiz.assign', 'courseLevel');
-        $query = Program::orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan');
-        $total_programs = Program::orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->count();
+        //$query = Program::orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan');
+        $search = $this->request->has('query') ? '%'.$this->request->get('query').'%' : '%'; 
+        $query = PaymentPlans::where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'))
+                        ->whereHas('courses', function ($query) use ($search) {
+                            $query->where('title', 'like', '%'.$search.'%');
+                        })
+                        ->orWhereHas('programName', function ($query) use ($search) {
+                            $query->where('programtitle', 'like', '%'.$search.'%');
+                        })
+                        ->with('courses','programName')
+                        ->where('status', 1)->latest();
+        $total_programs = count($query->get());
+        $request = $this->request;
+        // $total_programs = Program::orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->count();
         // if ($this->category_search != 0) {
         //     $quiz_id = OnlineQuiz::where('category_id', $this->category_search)->orWhere('sub_category_id', $this->category_search)->get()->pluck('id')->toArray();
         //     $course_id = Course::where('category_id', $this->category_search)->orWhere('subcategory_id', $this->category_search)->get()->pluck('id')->toArray();
@@ -118,15 +131,15 @@ class SearchPageSection extends Component
         //     $query->where('subcategory_id', $subCategory);
         // }
 
-        $query->where('status', 1);
+        // $query->where('status', 1);
 
 
-        if ($this->request->get('query')) {
-            $search = $this->request->get('query');
-            $query->where('programtitle', 'LIKE', "%{$search}%");
-        } else {
-            $search = '';
-        }
+        // if ($this->request->get('query')) {
+        //     $search = $this->request->get('query');
+        //     $query->where('programtitle', 'LIKE', "%{$search}%");
+        // } else {
+        //     $search = '';
+        // }
 
         // $order = $this->request->order;
         // if (empty($order)) {

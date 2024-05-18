@@ -199,7 +199,7 @@
     }
 
     .events-content .single-event:hover {
-        background: #36348e;
+        background: var(--system_secendory_color);
         transition: all 1s ease;
     }
     /* .events-content {
@@ -316,7 +316,7 @@
         top: 0;
         top: -50%;
         left: 0;
-        background: #36348e;
+        background: var(--system_secendory_color);
         z-index: -1;
         opacity: 0;
         transition: all 0.4s ease;
@@ -390,12 +390,12 @@
     }
 
     .news-events-tabs-section .news-events-tab .nav-item .nav-link.active {
-        background: #36348e;
+        background: var(--system_secendory_color);
         color: #fff !important;
     }
 
     .news-events-tabs-section .news-events-tab .nav-item .nav-link:hover {
-        background: #36348e;
+        background: var(--system_secendory_color);
         color: #fff !important;
     }
 
@@ -412,11 +412,11 @@
     .news-events-tabs-section .news-events-tab .tab-content {
         -ms-overflow-style: none;
         scrollbar-width: thin;
-        scrollbar-color: #36348E #F1F1FF;
+        scrollbar-color: var(--system_secendory_color) #F1F1FF;
     }
 
     .news-events-tabs-section .news-events-tab .tab-content {
-        scrollbar-color: #36348E #F1F1FF;
+        scrollbar-color: var(--system_secendory_color) #F1F1FF;
         scrollbar-width: medium;
     }
 
@@ -449,7 +449,7 @@
     .news-events-tabs-section .news-events-tab .single-notice-item .notice-date {
         font-size: 24px;
         font-weight: 600;
-        color: #09a24f;
+        color: #66c09a;
     }
 
     .news-events-tabs-section .news-events-tab .single-notice-item .notice-date span {
@@ -609,7 +609,7 @@
         left: 0.5px;
         z-index: 3;
         color: #fff;
-        background: linear-gradient(0deg, rgba(254, 108, 10, 1) 0%, rgba(96, 42, 181, 1) 75%);
+        background: linear-gradient(0deg, var(--system_primery_color) 0%, var(--footer_background_color) 75%);
         padding: .4rem .75rem;
         display: flex !important;
         align-items: center;
@@ -689,7 +689,7 @@
     .second_section i {
         background: #fff0f0;
         border-radius: 50%;
-        color: #ff6700;
+        color: var(--system_primery_color);
     }
 
     .learn_more {
@@ -764,8 +764,8 @@
     }
 
     .btn_glo:hover {
-        background-color: #ff6700 !important;
-        border: 2px solid #ff6700 !important;
+        background-color: var(--system_primery_color) !important;
+        border: 2px solid var(--system_primery_color) !important;
     }
 
     .select2-container--default .select2-selection--single {
@@ -941,7 +941,7 @@
     }
 
     .small_section_bg_color {
-        background-color: #6a0dad !important;
+        background-color: #996699 !important;
     }
 
     .small_section_bg_color>h2 {
@@ -1047,7 +1047,7 @@
 
     .dataflow {
         height: 100%;
-        background-color: #0079a8;
+        background-color: var(--system_secendory_color);
         position: relative;
         border-radius: 20px;
     }
@@ -1798,10 +1798,6 @@
         .heading-responsive-style {
             font-size: 30px !important;
         }
-
-        /* .dataflow {
-            height: 355px;
-        } */
     }
 
     @media only screen and (min-width: 1350px) {
@@ -2003,12 +1999,7 @@
             height: 5rem !important;
         }
 
-        /* .dataflow {
-            height: 500px;
-        } */
-
         .for-backcolor {
-            /* height: 30rem; */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -2541,7 +2532,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #192675;
+        background-color: var(--footer_background_color);
         opacity: 0.7;
         /* Adjust opacity to your preference */
         z-index: -1;
@@ -3358,7 +3349,7 @@
         <div class="row about_us py-5 justify-content-center" style="gap: 25px;">
             <div class="col-sm-6 about_us_height align-items-center  d-flex justify-content-center py-3 px-lg-2">
                 <div class="about_us_p">
-                    <i class="fa-regular fa-lightbulb fa-2x" style="color: #ff6700;"></i>
+                    <i class="fa-regular fa-lightbulb fa-2x" style="color: var(--system_primery_color);"></i>
                     <h2 class="font-weight-bold mb-4">AT MERAKII</h2>
                     <h2 class="font-weight-bold mb-4">WE ARE ADULT LEARNER-CENTRIC <br> <span
                             class="d-flex justify-content-center ml_span">and</span>EDUCATION IS FOR
@@ -5676,7 +5667,7 @@
                                 {{-- form-end --}}
                                 <div class=" col-md-4 flowdiv-ele">
                                     <div class="eltdf-eh-item eltdf-background-arrow-left changeborder ankar_eltdf"
-                                        style="background: #F9B5AE;">
+                                        style="background: var(--footer_background_color);">
 
                                         <div class="eltdf-eh-item-inner d-flex align-items-center justify-content-center"
                                             style="">

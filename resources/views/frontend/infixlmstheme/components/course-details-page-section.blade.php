@@ -3,7 +3,7 @@
     <input type="hidden" value="{{ asset('/') }}" id="baseUrl">
     <!-- course_details::start  -->
     <div class="course__details p-lg-5 p-3">
-        <div class="container px-0">
+        <div class="container px-lg-0">
             @php
                 if (!empty($request->courseType) && count($course->children)) {
                     foreach ($course->children as $child) {
@@ -20,7 +20,7 @@
             @endphp
             {{-- @dd($course->outcomes) --}}
             <!-- firststart -->
-            <div class="row px-xl-5 small_screen course_padding">
+            <div class="row px-lg-5 small_screen course_padding">
                 <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12 d-flex justify-content-between">
                     <div class="course__details_title w-100">
 
@@ -96,7 +96,7 @@
                         <div class="custom_section_color rounded_section p-2 img_round" style="height: auto;">
                             <h5 class="font-weight-bold custom_heading_1">This Course includes:
                             </h5>
-
+                            @if($course->type != 9)
                             <span class="program-span"><i class="fa-clock-o fas"></i>&nbsp;&nbsp; Duration |
                                 @if ($course->duration <= 1)
                                     1 Week
@@ -104,6 +104,7 @@
                                     {{ round($course->duration) . ' Weeks' }}
                                 @endif
                             </span>
+                            @endif
                             @if($course->type != '7')
                             @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
                             <br class="mt-2">
@@ -153,8 +154,8 @@
         </div>
         <!-- firstend -->
         <!-- 2ndstart -->
-        <div class="container px-0">
-            <div class="row my-4 px-xl-5 small_screen course_padding">
+        <div class="container px-lg-0">
+            <div class="row my-4 px-lg-5 small_screen course_padding">
 
                 <div class="col-lg-9 col-md-8 col-sm-7 col-12">
                     @if ($course->image == '')
@@ -259,8 +260,8 @@
         <!-- 3rdstart -->
 
         <!-- <div class="col-12"> -->
-        <div class="container px-0">
-            <div class="row px-xl-5 small_screen course_padding">
+        <div class="container px-lg-0">
+            <div class="row px-lg-5 small_screen course_padding">
                 <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12">
                     <div class="course_tabs w-100 mb-3 px-2">
                         <ul class="d-flex flex-column flex-md-row flex-sm-column lms_tabmenu nav w-100 text-center"
@@ -278,7 +279,7 @@
                                             aria-selected="false">{{ __('frontend.Curriculum') }}</a>
                                     </li>
                                 @endif
-                                @if (isset(request()->courseType) && request()->courseType != 5)
+                                @if (isset(request()->courseType) && in_array(request()->courseType,[4,6]))
                                     <li class="nav-item">
                                         <a class="nav-link" id="Classes-tab" data-toggle="tab" href="#Classes"
                                             role="tab" aria-controls="Classes"
@@ -683,6 +684,7 @@
                         {{-- @if (count($Classes))
 
                                 @endif --}}
+                        @if ((isset(request()->courseType) && in_array(request()->courseType,[4,6])) || $request->has('program_id'))
                         <div class="tab-pane fade" id="Classes" role="tabpanel" aria-labelledby="Curriculum-tab">
                             <!-- content  -->
                             <h5 class="font_22 f_w_$program_plan700">{{ __('Classes') }}</h5>
@@ -762,6 +764,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <div class="tab-pane fade" id="Timetable" role="tabpanel" aria-labelledby="Curriculum-tab">
                             <!-- content  -->
                             <h5 class="font_22 f_w_$program_plan700 mb_20">{{ __('Time Table') }}</h5>
@@ -1363,6 +1366,7 @@
                             <p class="font_14 f_w_500 mb_30 text-center"></p>
                             <h5 class="f_w_700 mb_10 course-span">{{ __('frontend.This course includes') }}:</h5>
                             <ul class="course_includes">
+                                @if(request()->has('courseType') && request()->courseType !=9)
                                 <li><i class="ti-alarm-clock"></i>
                                     <p class="nowrap course-span"> {{ __('frontend.Duration') }}
 
@@ -1376,6 +1380,7 @@
 
                                     </p>
                                 </li>
+                                @endif
                                 <!--<li><i class="ti-thumb-up"></i>-->
                                 <!--    <p>{{ __('frontend.Skill Level') }}-->
                                 <!--        @foreach ($levels as $level)

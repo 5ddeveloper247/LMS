@@ -58,13 +58,13 @@
         }
 
         .separator {
-            border-bottom: 4px solid #ff6700;
+            border-bottom: 4px solid var(--system_primery_color);
             max-width: 50px;
             margin-top: 15px;
         }
 
         .iconsdo i {
-            color: #ff6700;
+            color: var(--system_primery_color);
             font-size: 17px;
             padding-right: 5px;
             line-height: -16px;
@@ -114,7 +114,7 @@
         .footerbox p:hover {
             line-height: 30px !important;
             font-size: 17px !important;
-            color: #ff6700;
+            color: var(--system_primery_color);
         }
 
         .fonts {
@@ -229,7 +229,7 @@
 
         .btn-submit {
             padding: 14px 31px;
-            background: #ff6700;
+            background: var(--system_primery_color);
             border: 0;
             color: white;
             font-weight: bold;
@@ -379,7 +379,7 @@
 
         .dataflow {
             height: 100%;
-            background-color: #6a0dad;
+            background-color: #0079a8;
             position: relative;
             display: flex;
             flex-direction: column;

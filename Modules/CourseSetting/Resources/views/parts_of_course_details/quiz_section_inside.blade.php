@@ -128,7 +128,7 @@
                                                     <span>*</span></label>
                                                 <input {{ $errors->has('title') ? ' autofocus' : '' }}
                                                        class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
-                                                       type="text" name="title[{{$language->code}}]" autocomplete="off" required
+                                                       type="text" name="title[en]" autocomplete="off" required
                                                        value="{{isset($online_exam)? $online_exam->getTranslation('title',$language->code): ''}}">
                                                 <input type="hidden" name="id"
                                                        value="{{isset($online_exam)? $online_exam->id: ''}}">
@@ -145,7 +145,7 @@
                                                 <textarea {{ $errors->has('instruction') ? ' autofocus' : '' }}
                                                           class="primary_input_field name{{ $errors->has('instruction') ? ' is-invalid' : '' }}"
                                                           cols="0" rows="4"
-                                                          name="instruction[{{$language->code}}]">{{isset($online_exam)? $online_exam->getTranslation('instruction',$language->code): ''}}</textarea>
+                                                          name="instruction[en]">{{isset($online_exam)? $online_exam->getTranslation('instruction',$language->code): ''}}</textarea>
                                                 <span class="focus-border textarea"></span>
 
                                             </div>

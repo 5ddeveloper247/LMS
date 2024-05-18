@@ -80,7 +80,7 @@
 
                         <div class="col-lg-12">
 
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between">
                                 <label>  {{__('certificate.Title')}}  </label>
                                 <input type="text" {{ $errors->has('title') ? ' autofocus' : '' }}
                                 placeholder="{{__('certificate.Title')}}"
@@ -102,7 +102,7 @@
 
 
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Position X')}}  </label>
                                 <input type="number" required
                                        {{ $errors->has('title_position_x') ? ' autofocus' : '' }}
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Position Y')}}  </label>
                                 <input type="number" required
                                        {{ $errors->has('title_position_y') ? ' autofocus' : '' }}
@@ -136,7 +136,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-md-12">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Family')}} </label>
                                 <select class="primary_select title_font_family" onchange="getNew()"
                                         id="title_font_family"
@@ -158,7 +158,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Size')}} </label>
                                 <input type="number" required
                                        placeholder="{{__('certificate.Font Size')}}"
@@ -174,7 +174,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Color')}} </label>
                                 <input type="color" required
                                        class="primary_input_field change-input title_font_color {{ $errors->has('title_font_color') ? ' is-invalid' : '' }}"
@@ -221,7 +221,7 @@
 
 
                             <div class="col-lg-6">
-                                <div class="input-effect">
+                                <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                     <label> {{__('certificate.Position X')}}  </label>
                                     <input type="number" required
 
@@ -232,7 +232,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="input-effect">
+                                <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                     <label> {{__('certificate.Position Y')}}  </label>
                                     <input type="number" required
                                            placeholder="{{__('certificate.Position X')}}" id="org_chart_y"
@@ -244,7 +244,7 @@
                         </div>
                         <div class="row mt-25 padding_40">
                             <div class="col-md-12">
-                                <div class="input-effect">
+                                <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                     <label> {{__('certificate.Font Family')}} </label>
                                     <select class="primary_select title_font_family" onchange="getNew()"
                                             id="org_chart_font_family"
@@ -262,7 +262,7 @@
 
                         <div class="row mt-25 padding_40">
                             <div class="col-lg-6">
-                                <div class="input-effect">
+                                <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                     <label> {{__('certificate.Font Size')}} </label>
                                     <input type="number" required
                                            placeholder="{{__('certificate.Font Size')}}"
@@ -274,7 +274,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="input-effect">
+                                <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                     <label> {{__('certificate.Font Color')}} </label>
                                     <input type="color" required
                                            class="primary_input_field change-input org_chart_font_color {{ $errors->has('org_chart_font_color') ? ' is-invalid' : '' }}"
@@ -294,7 +294,7 @@
                     <hr>
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-12">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Body')}}  </label>
                                 <textarea
                                     {{ $errors->has('body') ? ' autofocus' : '' }}
@@ -313,7 +313,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position X')}}  </label>
                                 <input type="number"
                                        {{ $errors->has('x_portion') ? ' autofocus' : '' }}
@@ -329,7 +329,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position Y')}} </label>
                                 <input type="number"
                                        {{ $errors->has('y_portion') ? ' autofocus' : '' }}
@@ -347,7 +347,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-md-7">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Font Family')}} </label>
                                 <select class="primary_select body_font_family" onchange="getNew()"
                                         id="body_font_family"
@@ -366,7 +366,7 @@
                             </div>
                         </div>
                         <div class="col-lg-5">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Max Length')}} </label>
                                 <input type="number" min="1"
                                        class="primary_input_field change-input body_max_len {{ $errors->has('body_max_len') ? ' is-invalid' : '' }}"
@@ -383,7 +383,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Font Size')}} </label>
                                 <input type="number" required
                                        placeholder="{{__('certificate.Font Size')}}"
@@ -399,7 +399,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Font Color')}} </label>
                                 <input type="color" required
                                        class="primary_input_field change-input body_font_color {{ $errors->has('body_font_color') ? ' is-invalid' : '' }}"
@@ -442,7 +442,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position X')}}  </label>
                                 <input type="number"
                                        {{ $errors->has('name_position_x') ? ' autofocus' : '' }}
@@ -458,7 +458,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position Y')}} </label>
                                 <input type="number"
                                        {{ $errors->has('name_position_y') ? ' autofocus' : '' }}
@@ -477,7 +477,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-md-12">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Font Family')}} </label>
                                 <select class="primary_select name_font_family" onchange="getNew()"
                                         id="name_font_family"
@@ -499,7 +499,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Font Size')}} </label>
                                 <input type="number" required
                                        placeholder="{{__('certificate.Font Size')}}"
@@ -515,7 +515,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Font Color')}} </label>
                                 <input type="color" required
                                        class="primary_input_field change-input name_font_color  {{ $errors->has('name_font_color') ? ' is-invalid' : '' }}"
@@ -556,7 +556,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position X')}}  </label>
                                 <input type="number"
                                        {{ $errors->has('profile_x') ? ' autofocus' : '' }}
@@ -572,7 +572,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position Y')}} </label>
                                 <input type="number"
                                        {{ $errors->has('y_portion') ? ' autofocus' : '' }}
@@ -590,7 +590,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Image Height')}} </label>
                                 <input type="number" required
                                        {{ $errors->has('image_height') ? ' autofocus' : '' }}
@@ -607,7 +607,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Image Weight')}} </label>
                                 <input type="number" required
                                        {{ $errors->has('profile_weight') ? ' autofocus' : '' }}
@@ -651,7 +651,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position X')}}  </label>
                                 <input type="number"
                                        {{ $errors->has('qr_x') ? ' autofocus' : '' }}
@@ -667,7 +667,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position Y')}} </label>
                                 <input type="number"
                                        {{ $errors->has('qr_y') ? ' autofocus' : '' }}
@@ -685,7 +685,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Image Height')}} </label>
                                 <input type="number" required
                                        {{ $errors->has('qr_height') ? ' autofocus' : '' }}
@@ -702,7 +702,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Image Weight')}} </label>
                                 <input type="number" required
                                        {{ $errors->has('qr_weight') ? ' autofocus' : '' }}
@@ -744,7 +744,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position X')}}  </label>
                                 <input type="number"
                                        {{ $errors->has('profile_x') ? ' autofocus' : '' }}
@@ -760,7 +760,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Position Y')}} </label>
                                 <input type="number"
                                        {{ $errors->has('y_portion') ? ' autofocus' : '' }}
@@ -779,7 +779,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Certificate Pre Text')}} </label>
                                 <input type="text"
                                        {{ $errors->has('certificate_number_prefix') ? ' autofocus' : '' }}
@@ -795,7 +795,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between h-100">
                                 <label> {{__('certificate.Font Family')}} </label>
                                 <select class="primary_select certificate_no_font_family" onchange="getNew()"
                                         id="certificate_no_font_family"
@@ -817,7 +817,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Size')}} </label>
                                 <input type="number" required
                                        placeholder="{{__('certificate.Font Size')}}"
@@ -833,7 +833,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Color')}} </label>
                                 <input type="color" required
                                        class="primary_input_field change-input certificate_no_font_color  {{ $errors->has('certificate_no_font_color') ? ' is-invalid' : '' }}"
@@ -874,7 +874,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Position X')}}  </label>
                                 <input type="number"
                                        {{ $errors->has('profile_x') ? ' autofocus' : '' }}
@@ -890,7 +890,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Position Y')}} </label>
                                 <input type="number"
                                        {{ $errors->has('y_portion') ? ' autofocus' : '' }}
@@ -909,7 +909,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-md-12">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Family')}} </label>
                                 <select class="primary_select date_font_family" onchange="getNew()"
                                         id="date_font_family"
@@ -931,7 +931,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Size')}} </label>
                                 <input type="number" required
                                        placeholder="{{__('certificate.Font Size')}}"
@@ -947,7 +947,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Color')}} </label>
                                 <input type="color" required
                                        class="primary_input_field change-input date_font_color  {{ $errors->has('date_font_color') ? ' is-invalid' : '' }}"
@@ -966,7 +966,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-md-12">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Date Format')}} </label>
                                 <select class="primary_select date_format" onchange="getNew()" id="date_format"
                                         name="date_format">
@@ -1014,7 +1014,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Position X')}}  </label>
                                 <input type="number"
                                        {{ $errors->has('signature_position_x') ? ' autofocus' : '' }}
@@ -1030,7 +1030,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Position Y')}} </label>
                                 <input type="number"
                                        {{ $errors->has('signature_position_y') ? ' autofocus' : '' }}
@@ -1048,7 +1048,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Image Height')}} </label>
                                 <input type="number" required
                                        {{ $errors->has('signature_height') ? ' autofocus' : '' }}
@@ -1065,7 +1065,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Image Weight')}} </label>
                                 <input type="number" required
                                        {{ $errors->has('signature_weight') ? ' autofocus' : '' }}
@@ -1085,7 +1085,7 @@
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-12">
 
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label>  {{__('certificate.Footer')}} {{__('certificate.Title')}}  </label>
                                 <input type="text" {{ $errors->has('signature_text') ? ' autofocus' : '' }}
                                 placeholder="{{__('certificate.Title')}}"
@@ -1107,7 +1107,7 @@
 
 
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Position X')}}  </label>
                                 <input type="number" required
                                        {{ $errors->has('signature_text_position_x') ? ' autofocus' : '' }}
@@ -1123,7 +1123,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Position Y')}}  </label>
                                 <input type="number" required
                                        {{ $errors->has('signature_text_position_y') ? ' autofocus' : '' }}
@@ -1141,7 +1141,7 @@
                     </div>
                     <div class="row mt-25 padding_40">
                         <div class="col-md-12">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Family')}} </label>
                                 <select class="primary_select signature_text_font_family"
                                         id="signature_text_font_family" onchange="getNew()"
@@ -1163,7 +1163,7 @@
 
                     <div class="row mt-25 padding_40">
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Size')}} </label>
                                 <input type="number" required
                                        id="signature_text_font_size"
@@ -1180,7 +1180,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="input-effect">
+                            <div class="input-effect d-flex flex-column justify-content-between d-flex flex-column justify-content-between">
                                 <label> {{__('certificate.Font Color')}} </label>
                                 <input type="color" required id="signature_text_font_color"
                                        class="primary_input_field change-input signature_text_font_color {{ $errors->has('signature_text_font_color') ? ' is-invalid' : '' }}"

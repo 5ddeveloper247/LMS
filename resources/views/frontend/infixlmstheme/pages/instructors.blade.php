@@ -50,11 +50,11 @@
         }
 
         .border-purple {
-            border: 2px solid #6a0dad !important;
+            border: 2px solid #996699 !important;
         }
 
         .text-purple {
-            color: #6a0dad;
+            color: #996699;
         }
 
         .btn_responsive {
@@ -64,8 +64,8 @@
         }
 
         .btn_responsive:hover {
-            background-color: #ff6700 !important;
-            border-color: #ff6700 !important;
+            background-color: var(--system_primery_color) !important;
+            border-color: var(--system_primery_color) !important;
             transition: 0.3s ease !important;
             color: #fff;
         }

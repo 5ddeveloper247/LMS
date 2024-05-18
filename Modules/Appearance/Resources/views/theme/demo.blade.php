@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-12 col-md-8">
                     <div class="white_box_50px box_shadow_white text-center">
-                        <div style="padding:50px; " class="card mt-25">
+                        <div style="padding:50px; " class="card">
                             <form action="{{ route('appearance.themes.demoSubmit') }}" method="POST"
                                   enctype="multipart/form-data">
                                 @csrf

@@ -22,7 +22,7 @@ class PaymentPlans extends Model
     // relation
     public function programName()
     {
-        return $this->hasOne(Program::class, 'id', 'parent_id')->select(['id', 'programtitle', 'totalcost']);
+        return $this->hasOne(Program::class, 'id', 'parent_id')->select(['id', 'programtitle', 'totalcost', 'icon', 'discription' ,'allcourses']);
     }
     public function programPalnDetail()
     {

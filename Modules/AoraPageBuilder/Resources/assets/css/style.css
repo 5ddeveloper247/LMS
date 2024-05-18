@@ -3,9 +3,9 @@ body {
     height: 100%;
 }
 
-/* [data-aoraeditor="html"] {
+[data-aoraeditor="html"] {
     height: 100%;
-} */
+}
 
 #content-area {
     min-height: 100%;
@@ -63,7 +63,7 @@ pre.prettyprint {
     color: #fff;
     width: 40px;
     height: 40px;
-    background: #7c32ff;
+    background: #0079a8;
     border-radius: 50%;
     border: 0;
     display: inline-flex;
@@ -73,7 +73,7 @@ pre.prettyprint {
 }
 
 .aoraeditor-modal-close {
-    background: #7c32ff !important;
+    background: #0079a8 !important;
 }
 
 .aoraeditor-btn.aoraeditor-btn-default:hover,
@@ -81,7 +81,7 @@ pre.prettyprint {
 .aoraeditor-btn.aoraeditor-btn-default:active,
 .aoraeditor-btn.aoraeditor-btn-default:focus {
     box-shadow: 0px 10px 20px rgba(108, 39, 255, 0.3);
-    background: #7c32ff;
+    background: #0079a8;
 }
 
 .aoraeditor-modal {
@@ -228,17 +228,17 @@ span.aoraeditor-ui.aoraeditor-snippets-filter-label {
     -moz-transition: all 0.4s ease 0s;
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
-    background: #7c32ff;
+    background: #0079a8;
 }
 
 .btn.btn-primary:hover {
     box-shadow: 0px 10px 20px rgba(108, 39, 255, 0.3);
-    background: #7c32ff;
+    background: #0079a8;
 }
 
 .btn.btn-default {
     display: inline-block;
-    color: #7c32ff;
+    color: #0079a8;
     letter-spacing: 1px;
     font-size: 12px;
     font-weight: 500;
@@ -248,7 +248,7 @@ span.aoraeditor-ui.aoraeditor-snippets-filter-label {
     text-align: center;
     cursor: pointer;
     text-transform: uppercase;
-    border: 1px solid #7c32ff;
+    border: 1px solid #0079a8;
     border-radius: 5px;
     position: relative;
     overflow: hidden;
@@ -261,7 +261,7 @@ span.aoraeditor-ui.aoraeditor-snippets-filter-label {
 
 .btn.btn-default:hover {
     box-shadow: 0px 10px 20px rgba(108, 39, 255, 0.3);
-    background: #7c32ff !important;
+    background: #0079a8 !important;
     color: #fff !important;
 }
 
@@ -279,8 +279,8 @@ span.aoraeditor-ui.aoraeditor-snippets-filter-label {
 }
 
 /*.aoraeditor-snippet.selected {*/
-/*    border-color: #7c32ff;*/
-/*    box-shadow: 0 0 0 2px #7c32ff;*/
+/*    border-color: #0079a8;*/
+/*    box-shadow: 0 0 0 2px #0079a8;*/
 /*}*/
 
 .aoraeditor-ui.aoraeditor-snippets-filter-wrapper {
@@ -327,7 +327,7 @@ span.aoraeditor-ui.aoraeditor-snippets-filter-label {
     color: #fff;
     width: 40px;
     height: 40px;
-    background: #7c32ff !important;
+    background: #0079a8 !important;
     border-radius: 50%;
     border: 0;
     display: inline-flex;
@@ -340,11 +340,11 @@ span.aoraeditor-ui.aoraeditor-snippets-filter-label {
 
 .aoraeditor-toolbar.aoraeditor-toolbar-bottom {
     border-radius: 50% 50% 0 0 !important;
-    background: #7c32ff !important;
+    background: #0079a8 !important;
 }
 
 .aoraeditor-component:hover::before {
-    border-color: #7c32ff;
+    border-color: #0079a8;
 }
 
 .aoraeditor-component::before {
@@ -352,7 +352,7 @@ span.aoraeditor-ui.aoraeditor-snippets-filter-label {
 }
 
 .aoraeditor-component:hover::before {
-    border-color: #7c32ff;
+    border-color: #0079a8;
 }
 
 .aoraeditor-component .aoraeditor-toolbar {
@@ -389,11 +389,11 @@ span.aoraeditor-ui.aoraeditor-snippets-filter-label {
 }
 
 .aoraeditor-container > .aoraeditor-toolbar > a:hover {
-    background: #7c32ff;
+    background: #0079a8;
 }
 
 .aoraeditor-component .aoraeditor-toolbar > a:hover {
-    background: #7c32ff;
+    background: #0079a8;
 }
 
 .aoraeditor-modal-header .aoraeditor-modal-close {
@@ -434,7 +434,7 @@ span.aoraeditor-ui.aoraeditor-snippets-filter-label {
 .cke_toolbox a.cke_button_off:active {
     background-color: transparent;
     padding: 0;
-    border: 1px solid #7c32ff;
+    border: 1px solid #0079a8;
 }
 
 .cke_toolbox .cke_toolgroup a.cke_button:last-child::after,
@@ -497,7 +497,7 @@ a.cke_button.cke_button_disabled:hover:last-child::after {
 }
 
 .cke_toolbar .cke_button.cke_button_on {
-    border-color: #7c32ff !important;
+    border-color: #0079a8 !important;
 }
 
 .cke_float {

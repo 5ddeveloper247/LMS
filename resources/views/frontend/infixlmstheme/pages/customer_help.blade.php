@@ -19,7 +19,7 @@
 
     .nav-pills-custom .nav-link.active {
         color: #fff !important;
-        background: #6a0dad !important;
+        background: #996699 !important;
     }
 
     .tab-content {
@@ -835,7 +835,7 @@ tabLinks.forEach(function(link) {
             toggles[i].addEventListener("click", () => {
                 if (parseInt(contentDiv[i].style.height) != contentDiv[i].scrollHeight) {
                     contentDiv[i].style.height = contentDiv[i].scrollHeight + "px";
-                    toggles[i].style.color = "#6a0dad";
+                    toggles[i].style.color = "#996699";
                     wrapper[i].style.background = "#fff";
                     icons[i].classList.remove("fa-plus");
                     icons[i].classList.add("fa-minus");

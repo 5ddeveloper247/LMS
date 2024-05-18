@@ -4,7 +4,7 @@
     <style>
         .page-item.active .page-link {
             background: linear-gradient(
-                90deg, #7c32ff 0%, #c738d8 100%);
+                90deg, var(--footer_background_color); 0%, #c738d8 100%);
         }
     </style>
     {!! generateBreadcrumb() !!}

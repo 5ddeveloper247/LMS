@@ -157,7 +157,7 @@
                                                     <span>*</span></label>
                                                 <textarea {{ $errors->has('instruction') ? ' autofocus' : '' }}
                                                     class="primary_input_field name{{ $errors->has('instruction') ? ' is-invalid' : '' }}" cols="0"
-                                                    rows="4" name="instruction[{{ $language->code }}]">{{ isset($online_exam) ? $online_exam->getTranslation('instruction', $language->code) : '' }}</textarea>
+                                                    rows="4" name="instruction[{{$language->code}}]">{{ isset($online_exam) ? $online_exam->getTranslation('instruction', $language->code) : '' }}</textarea>
                                                 <span class="focus-border textarea"></span>
 
                                             </div>
@@ -249,49 +249,50 @@
 <script>
 	function quiz_add_form(button){
 		$('.preloader').show();
-	    var errors = [];
+	    // var errors = [];
 	    
-	    var form = $(button).closest("form");
-	
+	     var form = $(button).closest("form");
 	    
-		if (isEmpty(form.find("select[name='chapterId']").val())) {
-	    	errors.push('Choose Chapter first.');
-	   	}
+		// if (isEmpty(form.find("select[name='chapterId']").val())) {
+	    // 	errors.push('Choose Chapter first.');
+	   	// }
 	            
-	   	var type = form.find("input[name='type']:checked").val();
+	   	// var type = form.find("input[name='type']:checked").val();
 	
-	  	if(type == '1'){		// for existing
-	    	if (isEmpty(form.find("select[name='quiz']").val())) {
-	         	errors.push('Choose Quiz first.');
-	       	}
-	     	if (isEmpty(form.find("select[name='lock']").val())) {
-	        	errors.push('Choose Privacy first.');
-	      	}
-	  	}
+	  	// if(type == '1'){		// for existing
+	    // 	if (isEmpty(form.find("select[name='quiz']").val())) {
+	    //      	errors.push('Choose Quiz first.');
+	    //    	}
+	    //  	if (isEmpty(form.find("select[name='lock']").val())) {
+	    //     	errors.push('Choose Privacy first.');
+	    //   	}
+	  	// }
 	
-	  	if(type == '2'){		// for New
-			if (isEmpty(form.find("input[name='title[en]']").val())) {
-	       		errors.push('Quiz Title is required.');
-	  		}
-			if (isEmpty(form.find("input[name='instruction[en]']").val())) {
-	         	errors.push('Instruction is required.');
-	      	}	
-			if (isEmpty(form.find("input[name='percentage']").val())) {
-	        	errors.push('Percentage is required.');
-	      	}			
-	   	}
+	  	// if(type == '2'){		// for New
+		// 	if (isEmpty(form.find("input[name='title[en]']").val())) {
+	    //    		errors.push('Quiz Title is required.');
+	  	// 	}
+		// 	if (isEmpty(form.find("input[name='instruction[en]']").val())) {
+        //         console.log('empty');
+	    //      	errors.push('Instruction is required.');
+	    //   	}	
+		// 	if (isEmpty(form.find("input[name='percentage']").val())) {
+	    //     	errors.push('Percentage is required.');
+	    //   	}			
+	   	// }
 	
 	  	setTimeout(function() {
-	     	if (errors.length) {
-	       		console.log(errors);
-	        	$('.preloader').hide();
-	          	$('input[type="submit"]').attr('disabled', false);
-	          	$.each(errors.reverse(), function (index, item) {
-	        		toastr.error(item, 'Error', 1000);
-	          	});
-	       		return false;
-	   		}
+	     	// if (errors.length) {
+	       	// 	console.log(errors);
+	        // 	$('.preloader').hide();
+	        //   	$('input[type="submit"]').attr('disabled', false);
+	        //   	$.each(errors.reverse(), function (index, item) {
+	        // 		toastr.error(item, 'Error', 1000);
+	        //   	});
+	       	// 	return false;
+	   		// }
 	      	form.submit();
+            //$('.preloader').hide();
 	   	}, 3000);
 	}
 	function quiz_inside_form(button){
@@ -302,37 +303,37 @@
 	
 	    var type = form.find("input[name='type']:checked").val();
 	
-	  	if(type == '1'){		// for existing
-	    	if (isEmpty(form.find("select[name='quiz']").val())) {
-	         	errors.push('Choose Quiz first.');
-	       	}
-	     	if (isEmpty(form.find("select[name='lock']").val())) {
-	        	errors.push('Choose Privacy first.');
-	      	}
-	  	}
+	  	// if(type == '1'){		// for existing
+	    // 	if (isEmpty(form.find("select[name='quiz']").val())) {
+	    //      	errors.push('Choose Quiz first.');
+	    //    	}
+	    //  	if (isEmpty(form.find("select[name='lock']").val())) {
+	    //     	errors.push('Choose Privacy first.');
+	    //   	}
+	  	// }
 	
-	  	if(type == '2'){		// for New
-			if (isEmpty(form.find("input[name='title[en]']").val())) {
-	       		errors.push('Quiz Title is required.');
-	  		}
-			if (isEmpty(form.find("input[name='instruction[en]']").val())) {
-	         	errors.push('Instruction is required.');
-	      	}	
-			if (isEmpty(form.find("input[name='percentage']").val())) {
-	        	errors.push('Percentage is required.');
-	      	}			
-	   	}
+	  	// if(type == '2'){		// for New
+		// 	if (isEmpty(form.find("input[name='title[en]']").val())) {
+	    //    		errors.push('Quiz Title is required.');
+	  	// 	}
+		// 	if (isEmpty(form.find("input[name='instruction[en]']").val())) {
+	    //      	errors.push('Instruction is required.');
+	    //   	}	
+		// 	if (isEmpty(form.find("input[name='percentage']").val())) {
+	    //     	errors.push('Percentage is required.');
+	    //   	}			
+	   	// }
 	
 	  	setTimeout(function() {
-	     	if (errors.length) {
-	       		console.log(errors);
-	        	$('.preloader').hide();
-	          	$('input[type="submit"]').attr('disabled', false);
-	          	$.each(errors.reverse(), function (index, item) {
-	        		toastr.error(item, 'Error', 1000);
-	          	});
-	       		return false;
-	   		}
+	     	// if (errors.length) {
+	       	// 	console.log(errors);
+	        // 	$('.preloader').hide();
+	        //   	$('input[type="submit"]').attr('disabled', false);
+	        //   	$.each(errors.reverse(), function (index, item) {
+	        // 		toastr.error(item, 'Error', 1000);
+	        //   	});
+	       	// 	return false;
+	   		// }
 	      	form.submit();
 	   	}, 3000);
 	}

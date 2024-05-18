@@ -52,8 +52,8 @@
     }
 
     .btn_responsive:hover {
-        background-color: #ff6700 !important;
-        border-color: #ff6700 !important;
+        background-color: var(--system_primery_color) !important;
+        border-color: var(--system_primery_color) !important;
         transition: 0.3s ease !important;
     }
 
@@ -110,12 +110,12 @@
         color: #fff;
         text-transform: none;
         white-space: nowrap;
-        background-color: #6a0dad;
+        background-color: #996699;
         background-image: url("{{ asset('public/frontend/infixlmstheme/img/images/6446624444e808612b7591de_jasper-button-arrow.svg') }}");
         background-position: 7px;
         background-repeat: no-repeat;
         background-size: 1.875rem 1.875rem;
-        border-color: #6a0dad;
+        border-color: #996699;
         padding-left: 47px;
         font-weight: 500;
         overflow: visible;
@@ -130,7 +130,7 @@
         text-align: center;
         cursor: pointer;
         background-color: transparent;
-        border: 1px solid #6a0dad;
+        border: 1px solid #996699;
         border-radius: 500px;
         flex-direction: row;
         justify-content: center;
@@ -231,12 +231,12 @@
     }
 
     .button-tb--orange {
-        background-color: #ff6700 !important;
+        background-color: var(--system_primery_color) !important;
         border-color: #ff7600 !important;
     }
 
     .heading_1_color {
-        color: #6a0dad !important;
+        color: #996699 !important;
     }
 
     .heading_2_color {

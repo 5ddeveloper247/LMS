@@ -236,9 +236,9 @@
             <div class="row px-1 px-md-5">
                 <div class="col-12">
                     <h5 class="text-center">
-                        @if (isset($search) && !empty($search))
+                        @if ($request->has('query'))
                         {{ __('courses.Search result for') }}
-                        <span class="font-weight-bold">"{{ $search }}"</span>{{ ' out of ' . $total_programs . ' Program(s)' }}<br style="line-break: auto">
+                        <span class="font-weight-bold">"{{ $request->get('query') }}"</span>{{ ' out of ' . $total_programs . ' Program(s)' }}<br style="line-break: auto">
                         @if ($all_programs->count() == 0)
                         <span class="subtitle">
                             {{ __('0 Program(s) available') }}</span>
@@ -251,29 +251,68 @@
                 </div>
                 @if (isset($all_programs))
                 @foreach ($all_programs as $program)
+                @php
+                 switch ($program->type) {
+                    case 'program':
+                        $url_link = route('programs.detail', [$program->programName->id]);
+                        $course_image = getCourseImage($program->programName->icon);
+                        $course_title = $program->programName->programtitle;
+                        $course_description = $program->programName->discription;
+                        $classes = count(json_decode($program->programName->allcourses)).' Courses';
+                        $course_type = 'Program';
+                        
+                        break;
+                    case 'full_course':
+                        $url_link = route('courseDetailsView', ['slug' => $program->courses->parent->slug, 'courseType' => 4]);
+                        $course_image = getCourseImage($program->courses->thumbnail);
+                        $course_title = $program->courses->parent->title;
+                        $course_description = $program->courses->parent->about;
+                        $classes = count($program->courses->parent->lessons).' Lessons';
+                        $course_type = 'Full Course';
+                        break;
+                        case 'prep_course_live':
+                        $url_link = route('courseDetailsView', ['slug' => $program->courses->parent->slug, 'courseType' => 6]);
+                        $course_image = getCourseImage($program->courses->thumbnail);
+                        $course_title = $program->courses->parent->title;
+                        $course_description = $program->courses->parent->about;
+                        $classes = count($program->courses->parent->lessons).' Lessons';
+                        $course_type = 'Prep Course (Live)';
+                        break;
+                    
+                    default:
+                        # code...
+                        break;
+                 }
+                 $subtitle = '';   
+                @endphp
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 d-flex my-3">
-                    <div class="card rounded-card shadow">
-                        <div class="card-header rounded-card-header p-0">
-                            <a href="{{ route('programs.detail', [$program->id]) }}"><img src="{{ getCourseImage($program->icon) }}" class="img-fluid img-cover w-100 rounded-card-img"></a>
+                    <div class="quiz_wizged card rounded-card shadow">
+                        <div class="thumb card-header rounded-card-header p-0">
+                                    <a href="{{ $url_link }}"><img src="{{ $course_image }}" class="img-fluid img-cover w-100 rounded-card-img"></a>
+                                    {{-- <a href="{{ route('programs.detail', [$program->programName->id]) }}"><img src="{{ getCourseImage($program->programName->icon) }}" class="img-fluid img-cover w-100 rounded-card-img"></a> --}}
+                                    
+                        <span class="quiz_tag">
+                            {{$course_type}}
+                        </span>
                         </div>
                         <div class="card-body d-flex flex-column p-3">
                             <h5 class="font-weight-bold m-0">
-                                <a href="{{ route('programs.detail', [$program->id]) }}">
+                                <a href="{{ $url_link }}">
 
-                                    {{ $program->programtitle }}
+                                    {{ $course_title }}
 
                                 </a>
                             </h5>
                             <h6 class="mt-auto mb-0">
-                                @if (Str::length($program->subtitle) > 25)
-                                {{ Str::limit($program->subtitle, 25, '...') }}
+                                @if (Str::length($subtitle) > 25)
+                                {{ Str::limit($subtitle, 25, '...') }}
                                 @else
                                 {{ $program->subtitle }}
                                 @endif
                             </h6>
                             <p class="paragraph_custom_height ml-auto ">
                                 @php
-                                $description = str_replace('&nbsp;', ' ', htmlspecialchars_decode(strip_tags($program->discription)));
+                                $description = str_replace('&nbsp;', ' ', htmlspecialchars_decode(strip_tags($course_description)));
                                 @endphp
                                 @if (Str::length($description) > 119)
                                 {{ Str::limit($description, 119, '...') }}
@@ -285,19 +324,21 @@
                                 <div class="col-auto p-0">
                                     <small>
                                         <i class="fa fa-book-open"></i>
-                                        {{ count(json_decode($program->allcourses)) }} Courses
+                                        {{ $classes }}
                                     </small>
                                 </div>
                                 <div class="col-auto p-0">
                                     <small>
                                         <i class="fas fa-clock"></i>
-                                        {{ round((strtotime($program->currentProgramPlan[0]->edate) - strtotime($program->currentProgramPlan[0]->sdate)) / 604800, 1) }}
+                                        {{ round((strtotime($program->edate) - strtotime($program->sdate)) / 604800, 1) }}
+                                        {{-- {{ round((strtotime($program->currentProgramPlan[0]->edate) - strtotime($program->currentProgramPlan[0]->sdate)) / 604800, 1) }} --}}
                                         Weeks
                                     </small>
                                 </div>
                                 <div class="font-weight-bold col-auto p-0">
                                     <small class="font-weight-bold">
-                                        ${{ $program->currentProgramPlan[0]->amount }}
+                                        ${{ $program->amount }}
+                                        {{-- ${{ $program->currentProgramPlan[0]->amount }} --}}
                                     </small>
                                 </div>
                             </div>

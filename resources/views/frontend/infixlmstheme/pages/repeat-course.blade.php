@@ -105,7 +105,7 @@
         /* background: url("{{ asset('public/frontend/infixlmstheme/img/images/courses-4.jpg') }}"); */
         background-size: cover;
         /* height: 530px; */
-        background: #6a0dad;
+        background: #996699;
     }
 
     .custom_shadow {
@@ -285,7 +285,7 @@
     .cont1doimgdo {
         background-size: cover;
         /* height: 100%; */
-        background: #6a0dad;
+        background: #996699;
     }
 
     .rounded-card {
@@ -384,7 +384,7 @@
         .cont1doimgdo {
             background-size: cover;
             height: 613px;
-            background: #6a0dad;
+            background: #996699;
         }
 
     } */

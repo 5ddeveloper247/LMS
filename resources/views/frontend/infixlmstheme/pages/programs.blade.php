@@ -192,7 +192,7 @@ h2, h3 {
                 <div class="col-12 d-flex justify-content-between mb-4">
                 <div class="col-6 col-md-8">
                     <h2 class="font-weight-bold custom_heading_1">Program Features</h2>
-                    <ul style="color: #6a0dad!important" class="ml-4">
+                    <ul style="color: #996699!important" class="ml-4">
                         <li>
                             <h5 class="font-weight-bold">
                                 Courses | {{ getProgramListCourseCount() }}
