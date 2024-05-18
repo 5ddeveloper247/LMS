@@ -228,8 +228,8 @@
     }
 
     .button-tb.button-tb--cta.button-tb--blue {
-        background-color: #2872e1;
-        border-color: #2872e1;
+        background-color: #0079a8;
+        border-color: #0079a8;
     }
 
     .button-tb--orange {
@@ -252,7 +252,7 @@
     }
 
     .heading_2_color {
-        color: #2872e1 !important;
+        color: #0079a8 !important;
     }
 
     .heading_3_color {

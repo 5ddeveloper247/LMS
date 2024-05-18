@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/slick/slick-theme.css') }}">
 <script src="https://kit.fontawesome.com/b98cad50b5.js" crossorigin="anonymous"></script>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-{{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> --}}
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" />
 
@@ -421,7 +420,7 @@
     }
 
     .news-events-tabs-section .news-events-tab .tab-content {
-        height: 500px;
+        height: auto;
         overscroll-behavior: smooth;
         overflow-y: scroll;
     }
@@ -792,7 +791,7 @@
 
     .about_us {
         max-height: auto;
-        padding: 0px 3rem;
+        /* padding: 0px 3rem; */
     }
 
     .about_us_height {
@@ -873,7 +872,7 @@
     }
 
     .bottom-center {
-        bottom: 20%;
+        bottom: 16%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -886,7 +885,7 @@
         text-align: center;
     }
 .text-video-overlay h2{
-    font-size: 1.9rem;
+    font-size: 1.8rem;
 }
     .video-controls {
         position: absolute;
@@ -1034,12 +1033,11 @@
         background-image: url("{{ asset('public/assets/bgpicture.jpg') }}");
         height: auto;
         background-size: cover;
-        /* margin: 30px 0px; */
     }
 
     .flowdiv {
         width: 100% !important;
-        padding: 5rem 5rem;
+        padding: 5rem 0px;
         margin: auto;
         gap: 10px;
         justify-content: center;
@@ -1742,7 +1740,7 @@
             margin: 0 -53px 1.5rem 50px;
         }
         .text-video-overlay h2{
-            font-size: 1.5rem !important;
+            font-size: 1.4rem !important;
         }
     }
 
@@ -1846,7 +1844,7 @@
         }
 
         .about-img {
-            padding: 0px 25px 0px 0px !important;
+            /* padding: 0px 25px 0px 0px !important; */
             height: 400px;
         }
 
@@ -1945,7 +1943,9 @@
 
     @media only screen and (min-width: 1650px) {
 
-
+        .news-events-tabs-section .news-events-tab .tab-content {
+        height: 380px !important;
+    }
         .logos {
             min-width: 125rem !important;
         }
@@ -1974,15 +1974,6 @@
             width: 45rem;
         }
 
-        /* .hero-section-main-heading {
-            font-size: 60px !important;
-            font-weight: 700 !important;
-        } */
-
-        /* .about_us_height {
-            height: 657px;
-        } */
-
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             font-size: 19px;
         }
@@ -1999,16 +1990,6 @@
             height: 5rem !important;
         }
 
-        .for-backcolor {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .for-backcolor-container {
-            padding: 0px !important;
-        }
-
         .icon-img {
             max-width: 7% !important;
         }
@@ -2023,7 +2004,9 @@
     }
 
     @media only screen and (min-width: 1800px) {
-
+        .flowdiv {
+        padding: 5rem 3.5rem !important;
+    }
         .card-date {
             font-size: 18px !important;
         }
@@ -2075,19 +2058,14 @@
         .custom-button-call-to-action:hover {
             font-size: 18px !important;
         }
-
+/* 
         .for-backcolor-container {
             padding: 0px 55px !important;
-        }
+        } */
 
         .faqs-row {
             padding: 0px 20px !important;
         }
-
-        .mintban_row {
-            padding: 0px 55px !important;
-        }
-
         .about-img {
             height: 460px !important;
         }
@@ -2142,7 +2120,7 @@
         }
 
         .about_us {
-            padding: 0px 75px !important;
+            /* padding: 0px 75px !important; */
             height: 89vh !important;
         }
 
@@ -2245,7 +2223,7 @@
             min-width: 580px !important;
             max-width: 580px !important;
             height: 100%;
-            margin-left: 45px;
+            /* margin-left: 45px; */
             margin-right: 45px;
         }
 
@@ -2660,9 +2638,9 @@
             {{-- features section --}}
         </div>
     </section>
-    <section class="sec-2 p-lg-5 py-3">
-        <div class="container px-lg-0">
-            <div class="row px-lg-5 main-content-feature ">
+    <section class="sec-2">
+        <div class="container p-lg-5 p-3">
+            <div class="row px-xl-5 main-content-feature ">
                 <div class="col-5 content-features">
                     <div class="content-features1 px-xl-5 px-md-2 ">
                         <h2 class="content-features-h font-weight-bold">BEYOND KNOWLEDGE, EDUCATION TRANSFORMS LIVES
@@ -2753,7 +2731,7 @@
                 <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
                     Licensure.</p>
             </div>
-            <div class="row d-flex align-items-stretch pb-5 px-xl-5 px-md-3 animate">
+            <div class="row d-flex align-items-stretch pb-5 px-xl-5 animate">
                 <div class="col-md-6 mb-2 px-0">
                     <div class="custom-slider-container">
                         <button class="prev">❮</button>
@@ -2924,10 +2902,10 @@
     {{-- Custom Slider End --}}
 
     {{-- percent section --}}
-    <section class="sec-5">
-        <div class="percent-section pb-5 mt-3 px-lg-5">
-            <div class="container px-lg-5">
-                <div class="row percent-row">
+    <section class="sec-5 percent-section">
+        {{-- <div class=""> --}}
+            <div class="container px-lg-5 pb-5 mt-3">
+                <div class="row percent-row px-xl-5">
                     <div class="col-lg-6 d-flex flex-column counter-padd px-0 ">
 
                         <div class="d-flex justify-content-left align-items-center percent1 animatee">
@@ -3328,7 +3306,7 @@
 
 
                     </div>
-                    <div class="col-md-6 d-none d-lg-block percent-video">
+                    <div class="col-md-6 d-none d-lg-block percent-video pr-2">
                         <img src="{{ asset('/public/uploads/images/footerimg/counter_bg.png') }}" class="w-100 h-100">
                         {{-- <video autoplay loop muted height="100%" width="100%" style="object-fit: cover">
                             <source src="{{ asset('/public/uploads/images/footerimg/ezgif-3-7f2a47567b.mp4') }}">
@@ -3336,7 +3314,7 @@
                     </div>
 
                 </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </section>
 
@@ -3346,8 +3324,9 @@
     {{-- Map aboutus --}}
 
     <section class="sec-7">
-        <div class="row about_us py-5 justify-content-center" style="gap: 25px;">
-            <div class="col-sm-6 about_us_height align-items-center  d-flex justify-content-center py-3 px-lg-2">
+        <div class="container p-lg-5 ">
+        <div class="row about_us px-xl-5 justify-content-between">
+            <div class="col-sm-6 about_us_height align-items-center d-flex justify-content-center py-3 px-lg-2">
                 <div class="about_us_p">
                     <i class="fa-regular fa-lightbulb fa-2x" style="color: var(--system_primery_color);"></i>
                     <h2 class="font-weight-bold mb-4">AT MERAKII</h2>
@@ -3366,21 +3345,22 @@
                 </div>
             </div>
 
-            <div class="col-sm-5 d-flex p-0">
-                <div class="col-md-6 align-self-end about-img">
+            <div class="col-sm-6 d-flex">
+                <div class="col-md-6 align-self-end about-img pl-lg-0">
                     <img style="height:100%; object-fit: cover; object-position: right; border-radius: 20px;"
                         src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img">
                 </div>
-                <div class="col-md-6 align-self-start about-img">
+                <div class="col-md-6 align-self-start about-img pr-lg-0">
                     <img style="height:100%; object-fit: cover; object-position: right; border-radius: 20px;"
                         src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img">
                 </div>
             </div>
         </div>
+        </div>
     </section>
     {{-- aboutus end --}}
     {{-- after-about-section --}}
-    <section class=" px-5 d-none">
+    <section class="px-5 d-none">
         <div class="container">
             <div class="row mx-lg-2" style="overflow: hidden">
                 <h2 class="col-12 text-center mb-5 font-weight-bold">Our Trusted Education Partners</h2>
@@ -3442,7 +3422,7 @@
 
     <!-- call to action added by arsam  -->
 
-    <section class="sec-8 online-learning d-flex align-items-center justify-content-center mt-5 mb-3">
+    <section class="sec-8 online-learning d-flex align-items-center justify-content-center my-lg-3">
         <div class="animate">
             <h2 class="text-white text-center font-weight-bold text-capitalize">Start your transformation with a
                 single click.
@@ -3457,9 +3437,9 @@
         </div>
     </section>
     <!-- section-3b -->
-    <section class="sec-9 for-backcolor p-5 custom-padding">
-        <div class="container for-backcolor-container">
-            <div class="row justify-content-left px-lg-4">
+    <section class="sec-9 ">
+        <div class="container for-backcolor-container p-5">
+            <div class="row justify-content-left px-xl-5">
                 <!-- 1st -->
                 <div class="col-md-4 col-12 for-main px-lg-2">
                     <div>
@@ -5025,7 +5005,8 @@
 
                 {{-- FAQS section --}}
                 <section class="sec-10">
-                    <div class="row faqs-row justify-content-center mt-lg-3 mb-lg-2 mx-lg-5" style="gap: 25px;">
+                    <div class="container px-lg-5">
+                    <div class="row faqs-row justify-content-between mt-lg-3 mb-lg-2 px-xl-5">
                         {{-- <div class="col-sm-7 shadow_row video-h-cls p-0">
                             <div class="video-container">
                                 <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
@@ -5244,12 +5225,13 @@
 
 
                     </div>
+                    </div>
                 </section>
 
                 {{-- stayin touchend --}}
                 <section class="sec-11">
-                    <div class="container px-lg-4">
-                        <div class="row mx-xl-5 mx-md-2 py-5">
+                    <div class="container p-lg-5">
+                        <div class="row px-xl-5">
                             <div class="col-md-12">
                                 <div class="pb-5 text-center ">
                                     <h2 class="custom_heading_1 font-weight-bold">
@@ -5262,7 +5244,7 @@
                             </div>
                             {{-- new section --}}
                             @if(count($featured_blogs) > 0)
-                            <div class="col-md-11 col-lg-7">
+                            <div class="col-md-11 col-lg-7 px-lg-0">
                                 <div class="rts-event-section">
                                     <h4 class="rts-section-title mb--25">Blogs and News</h4>
                                     <div class="events-content">
@@ -5531,10 +5513,10 @@
                 <!-- new section -->
                 <section class="sec-12">
                     <div class="container-fluid mintban px-lg-5 mb-5">
-                        <div class="row mintban_row mb-5 mt-3">
+                        <div class="row mintban_row mb-5 mt-3 px-xl-5">
                             {{-- <div class="col-md-12 mb-5">
             <div class="row "> --}}
-                            <div class="flowdiv d-flex px-lg-5">
+                            <div class="flowdiv d-flex">
                                 {{-- <div class="row m-0" style=""> --}}
                                 <div class="col-md-4 ankar flowdiv-ele">
 
