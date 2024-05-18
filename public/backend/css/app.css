@@ -2153,7 +2153,7 @@ table.dataTable th {
     bottom: -1px;
     height: 2px;
     width: 0;
-    background: #7c32ff;
+    background: #0079a8;
     transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
@@ -2231,8 +2231,8 @@ table.dataTable th {
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
     color: #fff !important;
     border: 0;
-    background-color: #7c32ff;
-    background: linear-gradient(90deg, #7c32ff, #c738d8);
+    background-color: #0079a8;
+    background: linear-gradient(90deg, #0079a8, #996699);
     box-shadow: 0 10px 20px rgba(108, 39, 255, 0.3);
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
@@ -2249,8 +2249,8 @@ table.dataTable th {
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     color: #fff !important;
     border: 0;
-    background-color: #7c32ff;
-    background: linear-gradient(90deg, #7c32ff, #c738d8);
+    background-color: #0079a8;
+    background: linear-gradient(90deg, #0079a8, #996699);
     box-shadow: 0 10px 20px rgba(108, 39, 255, 0.3);
 }
 .dataTables_wrapper .dataTables_paginate .ellipsis {
@@ -2466,9 +2466,9 @@ button.dt-button:active:not(.disabled),
 div.dt-button.active:not(.disabled),
 div.dt-button:active:not(.disabled) {
     border: 0;
-    background-color: #7c32ff;
+    background-color: #0079a8;
     color: #fff;
-    background: linear-gradient(90deg, #7c32ff, #c738d8);
+    background: linear-gradient(90deg, #0079a8, #996699);
 }
 div.dt-button.active:not(.disabled) span {
     color: #fff;
@@ -2481,9 +2481,9 @@ div.dt-button.active:not(.disabled):hover:not(.disabled),
 div.dt-button:active:not(.disabled):hover:not(.disabled) {
     cursor: pointer;
     border: 0;
-    background-color: #7c32ff;
+    background-color: #0079a8;
     color: #fff;
-    background: linear-gradient(90deg, #7c32ff, #c738d8);
+    background: linear-gradient(90deg, #0079a8, #996699);
 }
 a.dt-button:hover,
 button.dt-button:hover,
@@ -2494,8 +2494,9 @@ a.dt-button:hover:not(.disabled),
 button.dt-button:hover:not(.disabled),
 div.dt-button:hover:not(.disabled) {
     border: 1px solid transparent;
-    background-color: #7c32ff;
-    background: linear-gradient(90deg, #7c32ff, #c738d8);
+    background-color: #0079a8;
+    /* background: linear-gradient(90deg, #0079a8, #996699); */
+    background: #996699;
 }
 button.buttons-columnVisibility {
     border: 0;
@@ -2523,7 +2524,7 @@ div.dt-buttons {
     bottom: 22px;
     float: right;
     background: 0 0;
-    border: 1px solid #7c32ff;
+    border: 1px solid #0079a8;
     border-radius: 31px;
     height: 30px;
     line-height: 27px;
@@ -2719,7 +2720,7 @@ table.dataTable.dtr-inline.collapsed
     font-family: Courier New, Courier, monospace;
     line-height: 18px;
     content: "+";
-    background: linear-gradient(90deg, #7c32ff, #c738d8);
+    background: linear-gradient(90deg, #0079a8, #996699);
     transition: all 0.4s ease 0s;
 }
 table.dataTable.dtr-inline.collapsed
@@ -2794,16 +2795,17 @@ table.dataTable > tbody > tr.child:hover {
 }
 table.dataTable > tbody > tr.child ul.dtr-details {
     display: flex;
+    /* justify-content: space-between; */
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 table.dataTable > tbody > tr.child ul.dtr-details > li {
-    padding: 0;
+    padding: 0 10px;
 }
 table.dataTable > tbody > tr.child ul.dtr-details > li:first-child {
     padding-top: 0;
-    padding-left: 8px;
+    padding-left: 0px;
 }
 table.dataTable > tbody > tr.child ul.dtr-details > li:last-child {
     border-bottom: none;
@@ -6379,7 +6381,7 @@ img.mfp-img {
 }
 .filepond--progress-indicator path {
     fill: none;
-    stroke: #7c32ff;
+    stroke: #0079a8;
 }
 .filepond--list-scroller {
     z-index: 6;

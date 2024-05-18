@@ -172,7 +172,7 @@
                                         </div>
                                     @endif
                                     <div class="col-12 mt-20">
-                                        <div class="search_course_btn text-right">
+                                        <div class="search_course_btn text-right d-flex">
                                             <button id="reset_filter_form"
                                                 class="primary-btn radius_30px fix-gr-bg mr-10">{{ __('Reset') }}
                                             </button>

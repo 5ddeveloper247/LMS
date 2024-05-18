@@ -253,20 +253,22 @@
                                         <div class="col-lg-12 ">
 
                                             <div class="d-flex radio-btn-flex  ">
-                                                <div class="mr-30  mb-25 ">
-
+                                                <div class="mr-30 row mb-25 ">
+                                                   <div class="col-md-12">
                                                     <label class="primary_checkbox d-flex mr-12"
-                                                           for="change_default_settings">
-                                                        <input type="radio" name="change_default_settings"
-                                                               id="change_default_settings" value="1"
-                                                               @if (isset($online_exam)) checked
-                                                               @endif class="common-radio change-default-settings relationButton">
-                                                        <span class="checkmark mr-2"></span> {{__('quiz.Yes')}}
-                                                    </label>
+                                                    for="change_default_settings">
+                                                 <input type="radio" name="change_default_settings"
+                                                        id="change_default_settings" value="1"
+                                                        @if (isset($online_exam)) checked
+                                                        @endif class="common-radio change-default-settings relationButton">
+                                                 <span class="checkmark mr-2"></span> {{__('quiz.Yes')}}
+                                             </label>
+                                                   </div>
                                                 </div>
 
-                                                <div class="col-md-12">
-                                                    <div class="mr-30  mb-25 ">
+                                                
+                                                    <div class="mr-30 row mb-25 ">
+                                                        <div class="col-md-12">
                                                         <label class="primary_checkbox d-flex mr-12"
                                                                for="change_default_settings2">
                                                             <input type="radio" name="change_default_settings"

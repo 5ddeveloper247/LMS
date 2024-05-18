@@ -984,8 +984,10 @@ button:focus {
 }
 
 .white-box.single-summery:hover {
-    background: url(../img/summery-bg1.png) no-repeat 50%;
-    box-shadow: 0 10px 30px rgba(108, 39, 255, .3);
+    /* background: url(../img/summery-bg1.png) no-repeat 50%; */
+    /* background: linear-gradient(45deg, #0079a8 0%, #996699 60%, #0079a8 100%); */
+    background-image: -webkit-linear-gradient(45deg, #996699 0%, #0079a8 9%, #996699 78%);
+    box-shadow: 0 10px 30px #99669900;
     background-size: 100% 100%
 }
 
@@ -1110,7 +1112,8 @@ button:focus {
 }
 
 .modal-content .modal-header {
-    background: url(../img/modal-header-bg.png) no-repeat 50%;
+    /* background: url(../img/modal-header-bg.png) no-repeat 50%; */
+    background: linear-gradient(45deg, #0079a8 0%, #996699 90%, #0079a8 100%);
     background-size: cover;
     border-radius: 5px 5px 0 0;
     border: 0;

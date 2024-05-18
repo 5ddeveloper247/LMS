@@ -5006,7 +5006,7 @@
                 {{-- FAQS section --}}
                 <section class="sec-10">
                     <div class="container px-lg-5">
-                    <div class="row faqs-row justify-content-between mt-lg-3 mb-lg-2 px-xl-5">
+                    <div class="row faqs-row  mt-lg-3 mb-lg-2 px-xl-5">
                         {{-- <div class="col-sm-7 shadow_row video-h-cls p-0">
                             <div class="video-container">
                                 <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
@@ -5032,7 +5032,7 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <div class="col-sm-7 shadow_row video-h-cls p-0">
+                        <div class="col-sm-8 shadow_row video-h-cls pr-lg-5 pl-lg-0">
                             <div class="video-container">
                                 <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
                                     <source src="{{ asset('/public/uploads/images/footerimg/ezgif-2-78802b2d5b.mp4') }}">
@@ -5300,14 +5300,14 @@
 
                                         <ul class="nav nav-tabs pb--30">
                                             <li class="nav-item active" role="presentation">
-                                                <a class="nav-link active"
-                                                    href="#">Latest</a>
+                                                <a class="nav-link blog-tag active" data-tag="latest"
+                                                    href="javascript:void(0)">Latest</a>
                                             </li>
                                             @foreach ($tagsArray as $tag)
 
                                             <li class="nav-item" role="presentation">
-                                                <a class="nav-link" class="nav-link"
-                                                href="#"> {{$tag}} </a>
+                                                <a class="nav-link blog-tag" class="nav-link" data-tag="{{$tag}}"
+                                                href="javascript:void(0)"> {{$tag}} </a>
                                             </li>
                                             @endforeach
                                             {{-- <li class="nav-item" role="presentation">
@@ -5744,19 +5744,31 @@
     {{-- for scroll --}}
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        // const iFrame = document.getElementById("myIframe")
-        // console.log(iFrame)
-        // function homeVideo() {
-        //     $('#video_image').modal('show');
-        // }
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     }
-        // });
+        $('.blog-tag').on('click',function(){
+            console.log('test');
+            var tag = $(this).attr('data-tag');
+            $('.blog-tag').removeClass('active');
+            $('.blog-tag').closest('li').removeClass('active');
+            $(this).addClass('active');
+            $(this).closest('li').addClass('active');
+
+            $.ajax({
+                    type: "POST",
+                    url: '{{route("fetchBlogsByTag")}}',
+                    data: {
+                        tag : tag
+                    },
+                    success: function(response) {
+                        console.log(response)
+                    }
+                        
+                });
+        });
+
         AOS.init({
             duration: 1000,
         });
+        
         $(document).ready(function() {
             $('#years').select2();
             $('#program').select2();
