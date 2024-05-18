@@ -286,7 +286,7 @@ i.ti-search {
     position: relative;
 }
 .communicate_submit{
-    border: 1px solid orange;
+    border: 1px solid #ff7619;
     background: var(--system_primery_color);
     color: white;
     position: absolute;

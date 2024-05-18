@@ -7,16 +7,16 @@
     }
 
     .custom_student_nav {
-        background: linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color));
+        background: linear-gradient(90deg,  #0079a8, #996699);
     }
 
     .custom_student_sidebar_head {
-        background: linear-gradient(90deg, var(--footer_background_color), var(--system_secondory_color));
+        background: linear-gradient(90deg, #996699, #0079a8);
     }
 
     .sidebar ul li a.active,
     .sidebar ul li a:hover {
-        background: linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color));
+        background: linear-gradient(90deg, #0079a8, #996699);
     }
 
     .custom_student_btn {

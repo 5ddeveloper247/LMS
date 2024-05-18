@@ -317,7 +317,7 @@ body {
     font-weight: 400;
 }
 a:hover{
-    color: var(--system_secendory_color);
+    color: #0079a8;
 }
 /* .header__wrapper{
     max-height: 16vh;
@@ -381,11 +381,6 @@ h5 a,
 h6 a {
     color: inherit;
 }
-
-/* h4 {
-    font-size: 20px;
-    line-height: 25px;
-} */
 
 ul {
     margin: 0;
