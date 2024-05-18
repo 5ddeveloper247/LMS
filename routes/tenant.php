@@ -47,6 +47,8 @@ Route::get('auto-login/{key}', '\App\Http\Controllers\Auth\LoginController@autol
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'FrontendHomeController@index')->name('frontendHomePage')->middleware('HeaderMenuPermissions');
     Route::get('/randomProgram', 'FrontendHomeController@getRandomProgram')->name('getRandomProgram');
+    Route::post('/fetch-blogs-by-tag', 'FrontendHomeController@fetchBlogsByTag')->name('fetchBlogsByTag');
+    
 
     Route::get('/get-courses-by-category/{category_id}', 'EdumeFrontendThemeController@getCourseByCategory')->name('getCourseByCategory');
     //wetech theme controller

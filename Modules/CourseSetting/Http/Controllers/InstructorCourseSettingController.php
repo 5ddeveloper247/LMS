@@ -899,7 +899,7 @@ class InstructorCourseSettingController extends Controller
 
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
 //                     return redirect()->to(url('admin/course/course-lesson-show/' . $request->course_id . '/' . $request->chapter_id . '/' . $request->lesson_id) );
-                    return redirect()->to(url('admin/course/course-details/' . $request->course_id) );
+                    return redirect()->to(url('admin/course/course-details/' . $request->course_id.'?type=courses') );
                 }
 
                 Toastr::error('Invalid Access !', 'Failed');

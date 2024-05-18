@@ -470,10 +470,11 @@ $(document).ready(function () {
                 }
                 
                 var host = $('#category_id').val();
-                if(host == 'Self' || host == 'GoogleDrive'|| host == 'Zip'|| host == 'Text' || 
+                if(host == 'GoogleDrive'|| host == 'Zip'|| host == 'Text' || 
                 	host == 'PowerPoint'|| host == 'Excel'|| host == 'Word'|| host == 'PDF' || 
                 	host == 'Image'){
                 	
+                	// if(!$("#hostFile")[0].files.length || $('#hostFile').files.length == 0){
                 	if (isEmpty($('#hostFile').val())) {
                         errors.push("Host file is required");
                     }

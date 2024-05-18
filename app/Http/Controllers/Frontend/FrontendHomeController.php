@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request as HttpRequest;
 use Modules\CourseSetting\Entities\Course;
 use Modules\FrontendManage\Entities\HeaderMenu;
 use Modules\StudentSetting\Entities\Program;
@@ -54,7 +55,7 @@ class FrontendHomeController extends Controller
             $latest_programs = Program::where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->latest()->take(6)->get();
             $latest_courses = Course::where('price', '!=', '0.00')->with('parent')->latest()->take(3)->get();
             //dd($latest_courses);
-            $latest_blogs = Blog::where('status', 1)->with('user')->latest()->limit(4)->get();
+            $latest_blogs = Blog::where('status', 1)->with('user')->latest()->limit(10)->get();
             $featured_blogs = Blog::where('status',1)->where('featured',1)->with('user')->latest()->limit(3)->get();
             $latest_course_reveiws = CourseReveiw::where('status', 1)->with('user')->latest()->limit(4)->get();
 
@@ -72,6 +73,28 @@ class FrontendHomeController extends Controller
             return response()->json(['error' => $e->getMessage()]);
         }
     }
+
+    public function fetchBlogsByTag(HttpRequest $request){
+       $rules = [
+            'tag' => 'required',
+        ];
+        $this->validate($request, $rules, validationMessage($rules));
+        switch ($request->tag) {
+            case 'latest':
+                # code...
+                $tag = '%';
+                break;
+            
+            default:
+                # code...
+                $tag = '%'.$request->tag.'%';
+                break;
+        }
+        $blogs = Blog::where('status', 1)->with('user')
+            ->where('tags','like',$tag)->latest()->limit(10)->get();
+        return response()->json(['success' => true, 'data' => $blogs]);
+    }
+
     public function getRandomProgram()
     {
         $random_program = Program::where('status', 1)
