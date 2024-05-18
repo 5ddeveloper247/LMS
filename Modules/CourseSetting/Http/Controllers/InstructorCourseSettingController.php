@@ -215,7 +215,7 @@ class InstructorCourseSettingController extends Controller
                     //                    }
 
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-                    return redirect()->route('courseDetails', $request->course_id);
+                    return redirect()->route('courseDetails', ['id' => $request->course_id, 'type' => 'courses']);
                 } else {
                     Toastr::error('Invalid Access !', 'Failed');
                     return redirect()->route('courseDetails', $request->course_id);
@@ -320,11 +320,11 @@ class InstructorCourseSettingController extends Controller
                     }
 
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-                    return redirect()->route('courseDetails', $request->course_id);
+                    return redirect()->route('courseDetails', ['id' => $request->course_id, 'type' => 'courses']);
                 }
 
                 Toastr::error('Invalid Access !', 'Failed');
-                return redirect()->route('courseDetails', $request->course_id);
+                return redirect()->route('courseDetails', ['id' => $request->course_id, 'type' => 'courses']);
             } catch (Exception $e) {
                 GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
             }
@@ -676,10 +676,10 @@ class InstructorCourseSettingController extends Controller
 
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
 //                     return redirect()->to(url('admin/course/course-chapter-show/' . $request->course_id . '/' . $request->chapter));
-                    return redirect()->to(url('admin/course/course-details/' . $request->course_id) );
+                    return redirect()->to(url('admin/course/course-details/' . $request->course_id.'?type=courses') );
                 } else {
                     Toastr::error('Invalid Access !', 'Failed');
-                    return redirect()->to(url('admin/course/course-chapter-show/' . $request->course_id . '/' . $request->chapter));;
+                    return redirect()->to(url('admin/course/course-chapter-show/' . $request->course_id . '/' . $request->chapter.'?type=courses'));;
                 }
             } catch (Exception $e) {
 
@@ -708,7 +708,7 @@ class InstructorCourseSettingController extends Controller
                     $lesson->save();
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
 //                     return redirect()->back();
-                    return redirect()->to(url('admin/course/course-details/' . $request->course_id) );
+                    return redirect()->to(url('admin/course/course-details/' . $request->course_id.'?type=courses') );
                 }
 
                 Toastr::error('Invalid Access !', 'Failed');

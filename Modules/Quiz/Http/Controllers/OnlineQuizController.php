@@ -311,10 +311,10 @@ class OnlineQuizController extends Controller
             return redirect()->back();
         }
         $rules = [
-            'title.*' => 'required',
-            'category' => 'required',
+            'title.en' => 'required',
+           // 'category' => 'required',
             'percentage' => 'required',
-            'instruction.*' => 'required'
+            'instruction.en' => 'required'
         ];
         $this->validate($request, $rules, validationMessage($rules));
 

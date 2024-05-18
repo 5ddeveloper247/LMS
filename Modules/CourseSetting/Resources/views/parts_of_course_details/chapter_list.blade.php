@@ -367,7 +367,7 @@
                                                     <a target="_blank"
                                                         href="{{ route('fullScreenView', [$course->id, $lesson->id]) }}"
                                                         class="dropdown-item">{{ __('common.View') }}</a>
-                                                    <a href="{{ url('admin/course/course-lesson-show/' . $course->id . '/' . $chapter->id . '/' . $lesson->id) }}"
+                                                    <a href="{{ url('admin/course/course-lesson-show/' . $course->id . '/' . $chapter->id . '/' . $lesson->id).'?type=courses' }}"
                                                         class="dropdown-item">{{ __('common.Edit') }}</a>
                                                     @if ($lesson->is_quiz == 1)
                                                         <a class="dropdown-item add_question"
@@ -478,7 +478,7 @@
                                                 <a target="_blank"
                                                     href="{{ $lesson->is_quiz == 0 ? route('fullScreenView', [$course->id, $lesson->id]) : route('quizStart', [$course->id, $lesson->quiz_id, $lesson->lessonQuiz->title]) }}"
                                                     class="dropdown-item">{{ __('common.View') }}</a>
-                                                <a href="{{ url('admin/course/course-lesson-show/' . $course->id . '/' . $chapter->id . '/' . $lesson->id) }}"
+                                                <a href="{{ url('admin/course/course-lesson-show/' . $course->id . '/' . $chapter->id . '/' . $lesson->id).'?type=courses' }}"
                                                     class="dropdown-item">{{ __('common.Edit') }}</a>
                                                 <a href="#" data-toggle="modal"
                                                     data-target="#deleteLesson{{ @$lesson->id }}"
