@@ -24,7 +24,7 @@
     }
 
     .bg {
-        background-color: #FAE6FA;
+        background-color: #ffe5b4;
     }
 
     .brdr-btm-of-txt {
@@ -38,7 +38,7 @@
     .side-bar-for-process-section {
         height: auto;
         min-width: 10px;
-        background-color: #F7B0BB;
+        background-color: #996699;
         position: relative;
         border-radius: 10px 10px 0 0;
     }
@@ -53,7 +53,7 @@
         border-radius: 50%;
         min-width: 30px;
         height: 30px;
-        background-color: pink;
+        background-color: #996699;
     }
 
     .top-of-2 {

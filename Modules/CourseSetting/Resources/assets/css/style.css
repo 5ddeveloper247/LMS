@@ -8185,10 +8185,11 @@ input::placeholder, textarea::placeholder {
 /* line 110, ../../../../Desktop/role_permission/scss/_role_permission.scss */
 .erp_role_permission_area .single_permission .permission_header {
   padding: 15px 25px;
-  background-image: -moz-linear-gradient(0deg, #0079a8 0%, #a235ec 70%, #996699 100%);
-  background-image: -webkit-linear-gradient(0deg, #0079a8 0%, #a235ec 70%, #996699 100%);
-  background-image: -ms-linear-gradient(0deg, #0079a8 0%, #a235ec 70%, #996699 100%);
+  background-image: -moz-linear-gradient(0deg, #996699 0%, #0079a8 70%, #996699 100%);
+  background-image: -webkit-linear-gradient(0deg, #996699 0%, #0079a8 70%, #996699 100%);
+  background-image: -ms-linear-gradient(0deg, #996699 0%, #0079a8 70%, #996699 100%);
 }
+
 
 /* line 115, ../../../../Desktop/role_permission/scss/_role_permission.scss */
 .erp_role_permission_area .single_permission .permission_header label {
