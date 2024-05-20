@@ -379,7 +379,8 @@ class CourseSettingController extends Controller
             } elseif ($request->type == 9) {
                 $course->quiz_id = null;
                 $course->type = $request->type;
-                $course->category_id = null;
+                $course->category_id = $request->category;
+                $course->subcategory_id = $request->sub_category;
                 $course->total_classes = null;
             }
 
@@ -439,6 +440,8 @@ class CourseSettingController extends Controller
             } else {
                 $course->required_type = 0;
             }
+
+            $course->tax = ($request->type == 9) ? calcProductTax($request->price) : 0;
 
             $course->publish = 1;
             $course->status = 0;
@@ -822,7 +825,8 @@ class CourseSettingController extends Controller
             } elseif ($request->type == 9) {
                 $course->quiz_id = null;
                 $course->type = $request->type;
-                $course->category_id = null;
+                $course->category_id = $request->category;
+                $course->subcategory_id = $request->sub_category;
                 $course->total_classes = null;
             }
 
@@ -1569,11 +1573,21 @@ class CourseSettingController extends Controller
           ->addColumn('price', function (Course $course) {
               return $course->price;
           })
+          ->addColumn('tax', function (Course $course) {
+              return $course->tax;
+          })
           ->addColumn('lessons', function (Course $course) {
               return $course->lessons->count();
           })
           ->addColumn('user', function (Course $course) {
-            return $course->user->name;
+            if(isAdmin()){
+
+                return $course->user->name;
+            }else {
+                 return '';
+            }
+
+            
           })
           ->addColumn('status', function (Course $course) {
               return view('coursesetting::components._course_status_td', ['query' => $course]);

@@ -919,18 +919,20 @@
                                     </h5>
                                 </div>
                                 <div class="row">
-                                    @foreach (@$course->user->courses->whereIn('type', [2, 4, 5, 6, 7, 8])->where('price', '!=', '0.00')->where('id','<>',$course_plan->id)->take(2) as $c)
+                                    @foreach (@$course->user->courses->whereIn('type', [2, 4, 5, 6, 8])->where('price', '!=', '0.00')->where('id','<>',$course_plan->id)->take(2) as $c)
                                     @php
                                         if(count($c->currentCoursePlan)){
                                             $price = $c->currentCoursePlan[0]->amount;
                                         }else{
                                             $price = $c->price;
                                         }
+                                        $c_slug = ($c->parent) ? $c->parent->slug : $c->slug;
                                     @endphp
                                         <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4">
                                             <div class="card quiz_wizged rounded-card shadow">
                                                 <div class="rounded-card-img thumb">
-                                                    <a href="{{ route('courseDetailsView',['slug' => $c->parent->slug, 'courseType' => $c->type]) }}">
+
+                                                    <a href="{{ route('courseDetailsView',['slug' => $c_slug, 'courseType' => $c->type]) }}">
                                                         <img src="{{ getCourseImage($c->thumbnail) }}"
                                                             alt="" class="img-fluid w-100 img_circle">
                                                         <x-price-tag :price="$price" :discount="$c->discount_price" />
@@ -972,7 +974,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="card-body course_content">
-                                                    <a href="{{ route('courseDetailsView',['slug' => $c->parent->slug, 'courseType' => $c->type]) }}">
+                                                    <a href="{{ route('courseDetailsView',['slug' => $c_slug, 'courseType' => $c->type]) }}">
                                                         <h5 class="nobrake">{{ @$c->parent->title }}</h5>
                                                     </a>
                                                     <div

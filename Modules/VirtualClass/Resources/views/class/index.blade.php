@@ -102,7 +102,7 @@
                                                                     class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
                                                                     name="{{ $language->code == 'en' ? 'title' : '' }}"
                                                                     {{ $errors->has('title') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($class) ? $class->title : (old('title') != '' ? old('title') : '') }}">
+                                                                    value="{{ isset($class) ? $class->title : (old('title') != '' ? old('title') : '') }}" @if($language->code == 'en') required @endif>
                                                                 <span class="focus-border textarea"></span>
                                                             </div>
                                                         </div>
@@ -131,7 +131,7 @@
                                                         </label>
                                                         <select class="primary_select category_id" name="assign_instructor"
                                                             id="assign_instructor"
-                                                            {{ $errors->has('assign_instructor') ? 'autofocus' : '' }}>
+                                                            {{ $errors->has('assign_instructor') ? 'autofocus' : '' }} required>
                                                             <option
                                                                 data-display="{{ __('common.Select') }} {{ __('courses.Instructor') }}"
                                                                 value="">{{ __('common.Select') }}
@@ -294,7 +294,7 @@
                                                         for="courseTypeId">{{ __('Course Type') }}
                                                     </label>
                                                     {{-- <select name="courseType[]" id="courseTypeId" class="multypol_check_select active mb-15 e1" multiple><!-- assistant_instructors[] --> --}}
-                                                    <select name="courseType[]" id="courseTypeId" class="primary_select select_section active mb-15 e1" ><!-- assistant_instructors[] -->
+                                                    <select name="courseType[]" id="courseTypeId" class="primary_select select_section active mb-15 e1" required><!-- assistant_instructors[] -->
 
 	                                                    <?php
 	                                                    	$course_types = (isset($class->course_types) && $class->course_types) != null ? json_decode($class->course_types): [] ;
@@ -334,7 +334,7 @@
                                                         ({{ __('virtual-class.in Minute') }}) *</label>
                                                     <input {{ $errors->has('duration') ? ' autofocus' : '' }}
                                                         class="primary_input_field name{{ $errors->has('duration') ? ' is-invalid' : '' }}"
-                                                        type="number" name="duration" placeholder="30"
+                                                        type="number" name="duration"
                                                         value="{{ isset($class) ? $class->duration : (old('duration') != '' ? old('duration') : '') }}">
                                                     <span class="focus-border"></span>
 
@@ -525,7 +525,7 @@
                                                                     <select placeholder="Days"
                                                                         class="primary_input_field primary-input form-control {{ @$errors->has('days') ? ' is-invalid' : '' }}"
                                                                         id="days" type="text" name="days"
-                                                                        autocomplete="off">
+                                                                        autocomplete="off" required>
                                                                         <option value="" selected>Choose Class Day
                                                                         </option>
                                                                         <option value="Mon"
@@ -964,16 +964,13 @@
                                         <tr>
                                             <th>{{ __('common.SL') }}</th>
                                             <th>{{ __('virtual-class.Title') }}</th>
-                                            @if (isModuleActive('Org'))
-                                                {{-- <th>{{ __('courses.Required Type') }}</th> --}}
-                                            @endif
-                                            <th>{{ __('virtual-class.Category') }}</th>
-                                            <th>{{ __('virtual-class.Sub Category') }}</th>
+                                            {{-- <th>{{ __('virtual-class.Category') }}</th>
+                                            <th>{{ __('virtual-class.Sub Category') }}</th> --}}
+                                            <th>{{ __('Course Name') }}</th>
+                                            <th>{{ __('Instructor') }}</th>
+
                                             {{-- <th>{{ __('virtual-class.Language') }}</th> --}}
                                             <th>{{ __('virtual-class.Duration') }}</th>
-                                            @if (showEcommerce())
-                                                {{-- <th>{{ __('virtual-class.Fees') }}</th> --}}
-                                            @endif
                                             {{-- <th>{{ __('virtual-class.Type') }}</th> --}}
                                             {{-- <th>{{ __('virtual-class.Start Date') }}</th> --}}
                                             <th>{{ __('Day') }}</th>
@@ -1110,20 +1107,24 @@
                     data: 'title',
                     name: 'title'
                 },
-                @if (isModuleActive('Org'))
-                    // {
-                    //     data: 'required_type',
-                    //     name: 'courses.required_type'
-                    // },
-                @endif {
-                    data: 'category_name',
-                    name: 'category.name'
+                {
+                    data: 'course',
+                    name: 'course'
                 },
                 {
-                    data: 'subCategory',
-                    name: 'subCategory.name',
+                    data: 'instructor',
+                    name: 'instructor',
                     orderable: false
                 },
+                // {
+                //     data: 'category_name',
+                //     name: 'category.name'
+                // },
+                // {
+                //     data: 'subCategory',
+                //     name: 'subCategory.name',
+                //     orderable: false
+                // },
                 // {
                 //     data: 'language',
                 //     name: 'language.name'
@@ -1136,12 +1137,6 @@
                     data: 'class_day',
                     name: 'class_day'
                 },
-                @if (showEcommerce())
-                    // {
-                    //     data: 'fees',
-                    //     name: 'fees'
-                    // },
-                @endif
                 // {
                 //     data: 'type',
                 //     name: 'type'
@@ -1524,10 +1519,16 @@
 
         }
         function formValidations(button){
+
+    	    var form = $('#virtual_class_form');
+
+    	    // var form = $(button).closest("form");
+            if (!document.getElementById('virtual_class_form').checkValidity()) {
+                document.getElementById('virtual_class_form').reportValidity();
+                return false;
+            }
     		$('.preloader').show();
     	    var errors = [];
-
-    	    var form = $(button).closest("form");
 
 
     	   	if (isEmpty(form.find("input[name='title']").val())) {

@@ -2575,6 +2575,19 @@ if (!function_exists('applyProductTax')) {
     }
 }
 
+if (!function_exists('calcProductTax')) {
+    function calcProductTax($price)
+    {
+      $percent_tax = Settings('percent_tax');
+      $fixed_tax = Settings('fixed_tax');
+
+      $percentAmount = ($percent_tax / 100) * $price;
+      $fixedAmount = $fixed_tax;
+      $totalTax = $percentAmount + $fixedAmount;
+      return $totalTax;
+    }
+}
+
 if (!function_exists('applyTax')) {
     function applyTax($price)
     {

@@ -84,6 +84,11 @@ class VirtualClass extends Model
     {
         return $this->hasOne(Course::class, 'class_id')->withDefault();
     }
+
+    public function parentcourse()
+    {
+        return $this->belongsTo(Course::class, 'course_id')->withDefault();
+    }
     
     public function paymentPlan(){
         return $this->hasOne(Course::class, 'parent_id');

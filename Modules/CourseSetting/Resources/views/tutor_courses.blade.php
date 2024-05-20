@@ -48,7 +48,12 @@
     if(request()->get('tutor_id')){
         $url = route('getTutorCourseData',['tutor_id' => request()->get('tutor_id')]);
     }else{
-    $url = route('getTutorCourseData');
+        if(isTutor()){
+            $url = route('getTutorCourseData',['tutor_id' => auth()->user()->id]);
+        }else{
+
+            $url = route('getTutorCourseData');
+        }
     }
     // $text = trans('common.All');
 
@@ -116,9 +121,15 @@
 
                                         <th scope="col">{{ __('Price') }}</th>
 
+                                        <th scope="col">{{ __('Tax') }}</th>
+
                                         <th scope="col">{{ __('courses.Lesson') }}</th>
 
+                                        @if(isAdmin())
+
                                         <th scope="col">{{ __('Tutor') }}</th>
+
+                                        @endif
 
                                         <th scope="col">{{ __('common.Status') }}</th>
 
@@ -267,6 +278,17 @@
                     searchable: false
 
                 },
+                {
+
+                    data: 'tax',
+
+                    name: 'tax',
+
+                    orderable: false,
+
+                    searchable: false
+
+                },
 
                 {
 
@@ -275,6 +297,8 @@
                     name: 'lessons'
 
                 },
+
+                @if(isAdmin())
 
                 {
 
@@ -285,7 +309,7 @@
                 },
 
 
-
+                @endif
 
 
                 {
