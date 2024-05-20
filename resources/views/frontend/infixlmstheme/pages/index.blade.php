@@ -5759,7 +5759,28 @@
                         tag : tag
                     },
                     success: function(response) {
-                        console.log(response)
+                        if(response.success){
+                            var html = '';
+                            $.each(response.data,function(index,row){
+                                var blog_url = '{{ route("blogDetails", "'+row.slug+'") }}';
+                                console.log(blog_url);
+                                // html = html + '<li class="single-notice">\
+                                //                         <div class="single-notice-item">\
+                                //                             <div class="notice-date">\
+                                //                                 {{ Carbon\Carbon::parse($latest_blog->authored_date)->format('d') }}\
+                                //                                 <span>{{ Carbon\Carbon::parse($latest_blog->authored_date)->format('M') }}</span>\
+                                //                             </div>\
+                                //                             <div class="notice-content">\
+                                //                                 <p>\
+                                //                                     <a href="{{ route('blogDetails', [$latest_blog->slug]) }}">\
+                                //                                         {{ $latest_blog->title }}\
+                                //                                     </a>\
+                                //                                 </p>\
+                                //                             </div>\
+                                //                         </div>\
+                                //                     </li>';
+                            });
+                        }
                     }
                         
                 });
