@@ -1700,6 +1700,41 @@
             font-size: 15px !important;
         } */
     }
+    @media only screen and (min-width: 769px) and (max-width: 1024px) {
+        .single-event::before{
+            left: calc(33% - 0.5px) !important;
+        }
+        .news-events-tabs-section{
+            padding-left: 0px !important;
+        }
+        .main_banner-section {
+            width: 25rem;
+        }
+
+        h2 {
+            font-size: 24px !important;
+        }
+
+        h5 {
+            font-size: 18px !important;
+        }
+
+        .about-img {
+            height: 365px !important;
+        }
+
+        .hero-section-main-heading {
+            font-size: 30px !important;
+        }
+
+        .cus-padding {
+            padding-left: 25px !important;
+        }
+
+        #program_title {
+            font-size: 15px !important;
+        }
+    }
 
     @media only screen and (min-width: 1024px) and (max-width: 1279px) {
         .for-border {
@@ -1742,44 +1777,10 @@
         .text-video-overlay h2{
             font-size: 1.4rem !important;
         }
+        .flowdiv {
+        padding: 5rem 4rem !important;
     }
-
-    @media only screen and (min-width: 769px) and (max-width: 1024px) {
-        .single-event::before{
-            left: calc(33% - 0.5px) !important;
-        }
-        .news-events-tabs-section{
-            padding-left: 0px !important;
-        }
-        .main_banner-section {
-            width: 25rem;
-        }
-
-        h2 {
-            font-size: 24px !important;
-        }
-
-        h5 {
-            font-size: 18px !important;
-        }
-
-        .about-img {
-            height: 365px !important;
-        }
-
-        .hero-section-main-heading {
-            font-size: 30px !important;
-        }
-
-        .cus-padding {
-            padding-left: 25px !important;
-        }
-
-        #program_title {
-            font-size: 15px !important;
-        }
     }
-
 
     @media only screen and (min-width: 1281px) {
         .text-video-overlay h2{
@@ -1872,7 +1873,11 @@
             height: 610px;
         }
     }
-
+@media only screen and (min-width: 1530px){
+    .flowdiv {
+        padding: 5rem 3rem !important;
+    }
+}
     @media only screen and (min-width: 1560px) {
         .main-content-feature {
             align-items: center
