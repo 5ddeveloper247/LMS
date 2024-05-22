@@ -1084,7 +1084,7 @@
                                     <div class="thumb rounded-card-img">
                                         <img src="{{ getCourseImage($course->thumbnail) }}" alt=""
                                             class="img-fluid w-100 h-100 custom-img" style="min-height: 50vh;">
-                                        <x-price-tag :price="$course->price" :discount="$course->discount_price" />
+                                        <x-price-tag :price="$course->price + @$course->tax" :discount="$course->discount_price" />
                                         <span class="quiz_tag">{{ __('Course') }}</span>
                                     </div>
                                 </a>

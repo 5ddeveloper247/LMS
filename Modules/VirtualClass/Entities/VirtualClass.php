@@ -14,6 +14,7 @@ use Modules\Localization\Entities\Language;
 use Illuminate\Support\Facades\Notification;
 use Modules\CourseSetting\Entities\Category;
 use Modules\Team\Entities\TeamMeeting;
+use Modules\StudentSetting\Entities\Program;
 use Spatie\Translatable\HasTranslations;
 
 class VirtualClass extends Model
@@ -38,6 +39,11 @@ class VirtualClass extends Model
                 'name' => ''
             ]
         );
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class, 'program_id')->withDefault();
     }
 
     public function language()

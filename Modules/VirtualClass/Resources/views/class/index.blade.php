@@ -966,9 +966,9 @@
                                             <th>{{ __('virtual-class.Title') }}</th>
                                             {{-- <th>{{ __('virtual-class.Category') }}</th>
                                             <th>{{ __('virtual-class.Sub Category') }}</th> --}}
-                                            <th>{{ __('Course Name') }}</th>
+                                            <th>{{ __('Course') }}</th>
+                                            {{-- <th>{{ __('Course Type') }}</th> --}}
                                             <th>{{ __('Instructor') }}</th>
-
                                             {{-- <th>{{ __('virtual-class.Language') }}</th> --}}
                                             <th>{{ __('virtual-class.Duration') }}</th>
                                             {{-- <th>{{ __('virtual-class.Type') }}</th> --}}
@@ -1111,6 +1111,11 @@
                     data: 'course',
                     name: 'course'
                 },
+                // {
+                //     data: 'courseType',
+                //     name: 'courseType',
+                //     orderable: false
+                // },
                 {
                     data: 'instructor',
                     name: 'instructor',
@@ -1266,6 +1271,10 @@
                 {
                     responsivePriority: 1,
                     targets: 1
+                },
+                {
+                    responsivePriority: 1,
+                    targets: 2
                 },
                 {
                     responsivePriority: 1,

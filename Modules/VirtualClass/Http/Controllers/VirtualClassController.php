@@ -328,11 +328,13 @@ class VirtualClassController extends Controller
           ->get();
           //->toSql();
           foreach ($checkConflict as $conflict) {
+            $conflictTypes = json_decode($conflict->course_types);
             if($conflict->course_id != $courseId || 
                 $conflict->start_date != $requestStartDate || 
                 $conflict->end_date != $requestEndDate || 
                 $conflict->time != $requestStartTime || 
-                $conflict->end_time != $requestEndTime){
+                $conflict->end_time != $requestEndTime ||
+                $conflictTypes[0] == $courseType[0]){
               $msg = 'This Instructor is already booked on given time. Please choose another time.';
             //  $msg = $conflict->course_id.' '.$courseId.' '.$conflict->start_date.' '.$requestStartDate.' '.$conflict->end_date.' '.$conflict->time.' '.$conflict->end_time;
               $arrRes['done'] = false;
@@ -2219,11 +2221,30 @@ class VirtualClassController extends Controller
             //     }
             // })
             ->addColumn('course', function ($query) {
-                if ($query->course) {
-                    return $query->parentcourse->title;
-                } else {
-                    return '';
+                $type = '';
+                $program = '';
+                $course = '';
+                $courseTypes= json_decode($query->course_types);
+                if (count($courseTypes)>0) {
+                    switch ($courseTypes[0]) {
+                        case 'program':
+                            $type = 'Program';
+                            break;
+                        case '4':
+                            $type = 'Full Course';
+                            break;
+                        case '6':
+                            $type = 'Prep Course (Live)';
+                            break;
+                    }
                 }
+                $course = $query->parentcourse->title;
+                $details = '<b>Course Name:</b> '.$course.'<br><b>Course Type:</b> '.$type;
+                if($courseTypes[0] == 'program'){
+                    $program = $query->program->programtitle;
+                    $details = $details.'<br><b>Program:</b> '.$program;
+                }
+                return $details;
             })
             ->addColumn('instructor', function ($query) {
                 if ($query->course->user) {
@@ -2232,6 +2253,24 @@ class VirtualClassController extends Controller
                     return '';
                 }
             })
+            // ->addColumn('courseType', function ($query) {
+            //     $courseTypes= json_decode($query->course_types);
+            //     if (count($courseTypes)>0) {
+            //         switch ($courseTypes[0]) {
+            //             case 'program':
+            //                 return 'Program';
+            //                 break;
+            //             case '4':
+            //                 return 'Full Course';
+            //                 break;
+            //             case '6':
+            //                 return 'Prep Course (Live)';
+            //                 break;
+            //         }
+            //     } else {
+            //         return '';
+            //     }
+            // })
             ->addColumn('required_type', function ($query) {
                 return $query->course->required_type == 1 ? trans('courses.Compulsory') : trans('courses.Open');
             })
@@ -2333,6 +2372,6 @@ class VirtualClassController extends Controller
                                                 </div>';
 
                 return $actioinView;
-            })->rawColumns(['status', 'image', 'action'])->make(true);
+            })->rawColumns(['status', 'image', 'action','course'])->make(true);
     }
 }

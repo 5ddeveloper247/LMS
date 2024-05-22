@@ -93,37 +93,38 @@
     {{-- FOR TUTOR PAYMENT --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
-    {{-- @endif --}}
-
-    @if (str_contains(request()->url(), 'chat'))
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+        {{-- @endif --}}
+        
+        @if (str_contains(request()->url(), 'chat'))
         <link rel="stylesheet" href="{{ asset('public/backend/css/jquery-ui.css') }}{{ assetVersion() }}" />
         <link rel="stylesheet" href="{{ asset('public/backend/vendors/select2/select2.css') }}{{ assetVersion() }}" />
         <link rel="stylesheet" href="{{ asset('public/chat/css/style-student.css') }}{{ assetVersion() }}">
-    @endif
-
-    @if (auth()->check() && auth()->user()->role_id == 3 && !str_contains(request()->url(), 'chat'))
+        @endif
+        
+        @if (auth()->check() && auth()->user()->role_id == 3 && !str_contains(request()->url(), 'chat'))
         <link rel="stylesheet" href="{{ asset('public/chat/css/notification.css') }}{{ assetVersion() }}">
-    @endif
-
-    @if (isModuleActive('WhatsappSupport'))
+        @endif
+        
+        @if (isModuleActive('WhatsappSupport'))
         <link rel="stylesheet" href="{{ asset('public/whatsapp-support/style.css') }}{{ assetVersion() }}">
-    @endif
-    <script>
-        window.Laravel = {
-            "baseUrl": '{{ url('/') }}' + '/',
-            "current_path_without_domain": '{{ request()->path() }}',
-            "csrfToken": '{{ csrf_token() }}',
-        }
+        @endif
+        <script>
+            window.Laravel = {
+                "baseUrl": '{{ url("/") }}' + '/',
+                "current_path_without_domain": '{{ request()->path() }}',
+                "csrfToken": '{{ csrf_token() }}',
+            }
+            </script>
+
+<script>
+    window._locale = '{{ app()->getLocale() }}';
+    window._translations = {!! json_encode(cache('translations'), JSON_INVALID_UTF8_IGNORE) !!}
     </script>
 
-    <script>
-        window._locale = '{{ app()->getLocale() }}';
-        window._translations = {!! json_encode(cache('translations'), JSON_INVALID_UTF8_IGNORE) !!}
-    </script>
-
-    @if (auth()->check() && auth()->user()->role_id == 3)
-        <style>
+@yield('css')
+@if (auth()->check() && auth()->user()->role_id == 3)
+<style>
             .admin-visitor-area {
                 margin: 0 30px 30px 30px !important;
             }
@@ -244,7 +245,6 @@
         media="screen,print">
     <script src="{{ asset('public/js/common.js') }}{{ assetVersion() }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
-    @yield('css')
 
     <link rel="stylesheet" href="{{ asset('public/frontend/infixlmstheme/css/custom.css') }}">
 </head>

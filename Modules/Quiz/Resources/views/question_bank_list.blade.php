@@ -39,8 +39,14 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="main-title">
-                        <h3 class="mb-20">{{ __('quiz.Question Bank List') }}</h3>
+                    <div class="main-title d-md-flex mb-20">
+                        <h3 class="mr-30 mb_xs_15px mb_sm_20px mb-0">{{ __('quiz.Question Bank List') }}</h3>
+                        <ul class="d-flex">
+                            <li>
+                                <a class="primary-btn radius_30px fix-gr-bg mr-10" href="{{route('question-bank')}}">
+                                    <i class="ti-plus"></i>Add Question</a>
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="QA_section QA_section_heading_custom check_box_table">

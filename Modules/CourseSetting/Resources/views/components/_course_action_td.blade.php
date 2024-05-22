@@ -4,10 +4,9 @@
         {{ trans('common.Action') }}
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-        {{-- @dd($query) --}}
         @if ($query->type != 'full_course' || $query->type != 'prep_course_live')
-            <a target="_blank" href="{{ route('courseDetailsView',['slug' => $query->parent->slug ?? $query->slug, 'courseType' => $query->courses->type ?? $query->type]) }}"
-            {{-- <a target="_blank" href="{{ courseDetailsUrl($query->id, $query->type, $query->slug) }}" --}}
+            <a target="_blank" href="{{ route('courseDetailsView',['slug' => $query->courses->parent->slug , 'courseType' => $query->courses->type]) }}"
+            {{-- <a target="_blank" href="{{ courseDetailsUrl($query->courses->id, $query->courses->type, $query->courses->slug) }}" --}}
                 class="dropdown-item">
                 {{ trans('courses.Frontend View') }}</a>
             @if (permissionCheck('courseDetails') && $query->type == 1)

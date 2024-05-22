@@ -80,7 +80,7 @@
                                             @if (@$course->discount_price != null)
                                                 {{ getPriceFormat($course->discount_price) }}
                                             @elseif ($course->price != null && $course->price != '0.00')
-                                                {{ getPriceFormat($course->price) }}
+                                                {{ getPriceFormat($course->price + $course->tax) }}
                                             @endif
                                         @endif
                                     @endif
@@ -212,7 +212,7 @@
                                                 {{ !empty($recent_course->parent_id) ? $recent_course->parent->title : $recent_course->title }}</a>
                                         </p>
                                         <p class="course-span" style="color: #ff6700;">
-                                            {{ getPriceFormat($recent_course->price) }}</p>
+                                            {{ getPriceFormat($recent_course->price + $recent_course->tax) }}</p>
 
                                         @if ($recent_course->type == 2)
                                             <p class="color course-span">{{ __('Big Quiz') }}</p>
@@ -924,7 +924,7 @@
                                         if(count($c->currentCoursePlan)){
                                             $price = $c->currentCoursePlan[0]->amount;
                                         }else{
-                                            $price = $c->price;
+                                            $price = $c->price + $c->tax;
                                         }
                                         $c_slug = ($c->parent) ? $c->parent->slug : $c->slug;
                                     @endphp

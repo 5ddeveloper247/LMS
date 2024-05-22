@@ -250,8 +250,9 @@
                         <h2 class="fw-bold opacity-75">
                             {{ $blog->title }}
                         </h2>
-
-                        {!! $blog->description !!}
+                        <div>
+                        {!! stripslashes($blog->getTranslation('description','en')) !!}
+                        </div>
                         @php
                             $tagsArr = explode(',', $blog->tags);
                         @endphp

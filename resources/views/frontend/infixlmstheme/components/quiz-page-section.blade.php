@@ -64,7 +64,7 @@
                                                 <div class="thumb rounded-card-img">
                                                     <img src="{{ getCourseImage($course->thumbnail) }}" alt=""
                                                         class="img-fluid w-100 img-thumb" style="min-height: 45vh;">
-                                                    <x-price-tag :price="$course->price" :discount="$course->discount_price" />
+                                                    <x-price-tag :price="$course->price + $course->tax" :discount="$course->discount_price" />
                                                     <span class="quiz_tag">{{ __('Big Quiz') }}</span>
                                                 </div>
                                             </a>
@@ -120,7 +120,7 @@
                                                         <img src="{{ getCourseImage($course->thumbnail) }}"
                                                             class="img-fluid w-100 rounded-card-img img-thumb" alt="" style="min-height:45vh">
 
-                                                        <x-price-tag :price="$course->price" :discount="$course->discount_price" />
+                                                        <x-price-tag :price="$course->price + $course->tax" :discount="$course->discount_price" />
                                                         <span class="quiz_tag">{{ __('Repeat Course') }}</span>
                                                     </div>
                                                 </a>
@@ -186,14 +186,11 @@
                                                       if (isset($course->currentCoursePlan[0])) {
                                                           $price = $course->currentCoursePlan[0]->amount;
                                                       } else {
-                                                          $price = $course->price;
+                                                          $price = $course->price + $course->tax;
                                                       }
                                                     @endphp
-                                                    @if($course->type == 9)
+
                                                     <x-price-tag :price="$price" :discount="$course->discount_price" />
-                                                    @else
-                                                    <x-price-tag :price="$price" :discount="$course->discount_price" />
-                                                    @endif
                                                     @if ($course->type == 4)
                                                         <span class="quiz_tag">{{ __('Full Course') }}</span>
                                                     @elseif($course->type == 5)

@@ -96,7 +96,10 @@ class BlogController extends Controller
                 $blog->setTranslation('title', $key, $name);
             }
             foreach ($request->description as $key => $description) {
-                $blog->setTranslation('description', $key, $description);
+                // $blog->setTranslation('description', $key, $description);
+                if($key == 'en'){
+                    $blog->description = $description;
+                }
             }
             $blog->slug = $request->slug;
             $blog->category_id = $request->category;

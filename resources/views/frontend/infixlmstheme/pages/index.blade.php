@@ -3,7 +3,7 @@
     {{ Settings('site_title') ? Settings('site_title') : 'Infix LMS' }} | {{ __('frontendmanage.Home') }}
 @endsection
 
-
+@section('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/slick/slick.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/slick/slick-theme.css') }}">
 <script src="https://kit.fontawesome.com/b98cad50b5.js" crossorigin="anonymous"></script>
@@ -425,6 +425,17 @@
         overflow-y: scroll;
     }
 
+    .news-events-tabs-section .news-events-tab .notice-content-box .notice-content-overlay {
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        background: #ffffff87;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .news-events-tabs-section .news-events-tab .notice-content-box {
         position: relative;
     }
@@ -2542,7 +2553,7 @@
         border-color: white !important;
     }
 </style>
-
+@endsection
 @section('mainContent')
     {{-- MainBanner --}}
     {{-- zaheer --}}
@@ -5321,12 +5332,12 @@
                                         </ul>
                                         <div class="tab-content">
                                             <div id="home" class="tab-pane active">
-                                                <ul class="list-unstyled notice-content-box">
+                                                <ul class="list-unstyled notice-content-box" id="blogs_ul">
                                                     @foreach ($latest_blogs as $latest_blog)
                                                     <li class="single-notice">
                                                         <div class="single-notice-item">
                                                             <div class="notice-date">
-                                                                {{ Carbon\Carbon::parse($latest_blog->authored_date)->format('d') }}
+                                                                {{ Carbon\Carbon::parse($latest_blog->authored_date)->format('d') }}<br>
                                                                 <span>{{ Carbon\Carbon::parse($latest_blog->authored_date)->format('M') }}</span>
                                                             </div>
                                                             <div class="notice-content">
@@ -5339,6 +5350,7 @@
                                                         </div>
                                                     </li>
                                                     @endforeach
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
@@ -5348,47 +5360,6 @@
 
                             {{-- section tabssss --}}
 
-                            {{-- new section end --}}
-                            @if (isset($latest_blogs))
-                                @foreach ($latest_blogs as $latest_blog)
-                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 my-3 px-2 d-none">
-                                        <div class="card rounded-card shadow card-shadow">
-                                            <div class="card-header rounded-card-header blog p-0">
-                                                <a href="{{ route('blogDetails', [$latest_blog->slug]) }}">
-                                                    <img src="{{ getBlogImage($latest_blog->thumbnail) }}"
-                                                        class="img-fluid w-100 custom_img_height rounded-card-img">
-                                                </a>
-                                            </div>
-                                            <div class="card-body d-flex flex-column justify-content-between"
-                                                style="overflow: hidden">
-                                                <h5 class="font-weight-bold mb-4">
-                                                    <a href="{{ route('blogDetails', [$latest_blog->slug]) }}">
-                                                        {{ $latest_blog->title }} </a>
-                                                </h5>
-                                                <p class="">
-                                                    {{ $latest_blog->user->name }} .
-                                                    {{ showDate($latest_blog->authored_date) }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                            @if (count($latest_blogs) == 0)
-                                <div class="col-lg-12">
-                                    <div
-                                        class="Nocouse_wizged d-flex align-items-center justify-content-center text-center">
-                                        <div class="thumb">
-                                            <img style="width: 50px"
-                                                src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png"
-                                                alt="">
-                                        </div>
-                                        <h1>
-                                            {{ __('No News & Events Found') }}
-                                        </h1>
-                                    </div>
-                                </div>
-                            @endif
 
                         </div>
                     </div>
@@ -5750,13 +5721,12 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         $('.blog-tag').on('click',function(){
-            console.log('test');
             var tag = $(this).attr('data-tag');
             $('.blog-tag').removeClass('active');
             $('.blog-tag').closest('li').removeClass('active');
             $(this).addClass('active');
             $(this).closest('li').addClass('active');
-
+            $('#blogs_ul').append('<li class="notice-content-overlay"><span class="circle circle5 c51"></span></li>');
             $.ajax({
                     type: "POST",
                     url: '{{route("fetchBlogsByTag")}}',
@@ -5767,33 +5737,50 @@
                         if(response.success){
                             var html = '';
                             $.each(response.data,function(index,row){
-                                var blog_url = '{{ route("blogDetails", "'+row.slug+'") }}';
-                                console.log(blog_url);
-                                // html = html + '<li class="single-notice">\
-                                //                         <div class="single-notice-item">\
-                                //                             <div class="notice-date">\
-                                //                                 {{ Carbon\Carbon::parse($latest_blog->authored_date)->format('d') }}\
-                                //                                 <span>{{ Carbon\Carbon::parse($latest_blog->authored_date)->format('M') }}</span>\
-                                //                             </div>\
-                                //                             <div class="notice-content">\
-                                //                                 <p>\
-                                //                                     <a href="{{ route('blogDetails', [$latest_blog->slug]) }}">\
-                                //                                         {{ $latest_blog->title }}\
-                                //                                     </a>\
-                                //                                 </p>\
-                                //                             </div>\
-                                //                         </div>\
-                                //                     </li>';
+                                var date = new Date(row.authored_date);
+                                var day = date.getDate();
+                                var month = date.getMonth();
+                                var base_url = $('#baseUrl').val();
+                                var blog_url = base_url+'/blog-details/'+row.slug;
+                                console.log(row.authored_date)
+                                var monthDay = [
+                                    'Jan',
+                                    'Feb',
+                                    'Mar',
+                                    'Apr',
+                                    'May',
+                                    'June',
+                                    'July',
+                                    'Aug',
+                                    'Sep',
+                                    'Oct',
+                                    'Nov',
+                                    'Dec',
+                                ];
+                                html = html + '<li class="single-notice">\
+                                                        <div class="single-notice-item">\
+                                                            <div class="notice-date">\
+                                                                '+day+'<br>\
+                                                                <span>'+monthDay[month]+'</span>\
+                                                            </div>\
+                                                            <div class="notice-content">\
+                                                                <p>\
+                                                                    <a href="'+blog_url+'">'+row.title.en+'</a>\
+                                                                </p>\
+                                                            </div>\
+                                                        </div>\
+                                                    </li>';
                             });
+                            $('#blogs_ul').html(html);
                         }
                     }
                         
                 });
         });
 
-        AOS.init({
-            duration: 1000,
-        });
+        // AOS.init({
+        //     duration: 1000,
+        // });
         
         $(document).ready(function() {
             $('#years').select2();
@@ -5817,8 +5804,6 @@
                         var programTotalsubtitle = response.program.subtitle;
                         var programTotaldesc = response.program.discription;
                         var programTotalcost = response.program.totalcost;
-
-                        console.log(response);
                         $('#program_icon').attr("src", icon);
                         $('#program_title').html(programTitle);
                         $('#program_subtitle').html(programTotalsubtitle);

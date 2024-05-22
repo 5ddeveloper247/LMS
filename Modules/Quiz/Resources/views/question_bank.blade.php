@@ -140,7 +140,7 @@
                                         <div class="col-xl-4">
                                             <div class="input-effect">
                                                 <label class="primary_input_label" for="">{{ __('quiz.Image') }}
-                                                    ({{ __('common.Optional') }})</label>
+                                                    (Recommended Dimensions: 300 X 300 - {{ __('common.Optional') }})</label>
                                                 <div class="primary_file_uploader">
                                                     <input class="primary-input filePlaceholder placeholder_txt" type="text"
                                                         id="" value="{{ showPicName(@$bank->image) }}"
