@@ -151,6 +151,7 @@
                                 <th scope="col">{{ __('courses.Purchase') }} {{ __('By') }} </th>
                                 <th scope="col">{{ __('courses.Purchase') }} {{ __('Price') }} </th>
                                 @if (isAdmin())
+                                    <th scope="col">{{ __('Tax') }}</th>
                                     <th scope="col">{{ __('Admin') }} {{ __('courses.Revenue') }}</th>
                                 @endif
                                 <th scope="col">{{ isAdmin() ? 'Tutor Revenue' : 'My Revenue' }}</th>
@@ -190,11 +191,12 @@
                                         <td>{{ @$enroll->course->user->name }}</td>
                                     @endif
                                     <td>{{ @$enroll->user->name }}</td>
-                                    <td>{{ getPriceFormat($enroll->purchase_price) }}</td>
+                                    <td>{{ getPriceFormat($enroll->purchase_price - $enroll->course->tax) }}</td>
                                     @if (isAdmin())
+                                        <td>{{ getPriceFormat($enroll->course->tax) }}</td>
                                         <td>{{ getPriceFormat($enroll->reveune) }}</td>
                                     @endif
-                                    <td>{{ getPriceFormat($enroll->purchase_price - $enroll->reveune) }}</td>
+                                    <td>{{ getPriceFormat($enroll->purchase_price - $enroll->course->tax - $enroll->reveune) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

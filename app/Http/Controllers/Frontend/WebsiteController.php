@@ -997,7 +997,7 @@ class WebsiteController extends Controller
                     if (count($course->currentCoursePlan) && in_array(request()->get('courseType'), [4, 6])) {
                         $course_price = $course->currentCoursePlan[0]->amount;
                     } else {
-                        $course_price = $course->price;
+                        $course_price = $course->price + $course->tax;
                     }
 
 
@@ -1172,7 +1172,7 @@ class WebsiteController extends Controller
                     if (count($course->currentCoursePlan) && in_array(request()->get('courseType'), [4, 6])) {
                         $course_price = $course->currentCoursePlan[0]->amount;
                     } else {
-                        $course_price = $course->price;
+                        $course_price = $course->price + $course->tax;
                     }
 
                     if (isset($oldCart)) {
@@ -2147,7 +2147,7 @@ class WebsiteController extends Controller
                             if ($course->discount_price != null) {
                                 $cart->price = $course->discount_price;
                             } else {
-                                $cart->price = $course->price;
+                                $cart->price = $course->price + $course->tax;
                             }
                             $cart->save();
                         } else {
@@ -2159,7 +2159,7 @@ class WebsiteController extends Controller
                             if ($course->discount_price != null) {
                                 $cart->price = $course->discount_price;
                             } else {
-                                $cart->price = $course->price;
+                                $cart->price = $course->price + $course->tax;
                             }
                             $cart->save();
                         }
@@ -2194,7 +2194,7 @@ class WebsiteController extends Controller
                 if ($course->discount_price > 0) {
                     $price = $course->discount_price;
                 } else {
-                    $price = $course->price;
+                    $price = $course->price + $course->tax;
                 }
 
 

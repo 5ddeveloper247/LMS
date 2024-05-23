@@ -3,13 +3,9 @@
         aria-haspopup="true" aria-expanded="false">
         {{ trans('common.Action') }}
     </button>
-    @php
-         $courseslug = ($query->parent) ? $query->parent->slug : $query->slug;
-        // $type = $query->courses->type ?? ;
-    @endphp
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
         @if ($query->type != 'full_course' || $query->type != 'prep_course_live')
-            <a target="_blank" href="{{ route('courseDetailsView',['slug' =>  $courseslug]) }}"
+            <a target="_blank" href="{{ route('courseDetailsView',['slug' =>  $query->courses->parent->slug , 'courseType' => $query->courses->type]) }}"
             {{-- <a target="_blank" href="{{ courseDetailsUrl($query->courses->id, $query->courses->type, $query->courses->slug) }}" --}}
                 class="dropdown-item">
                 {{ trans('courses.Frontend View') }}</a>

@@ -951,10 +951,11 @@ class PaymentController extends Controller
                 $itemPrice = $cart->price;
                 $discount_amount = 0.00;
             }
-
-            $cart_data = Cart::where('id', $cart->id)->with('course.user')->first();
+            $cart_data = Cart::where('id', $cart->id)->with('course','course.user')->first();
+            dd($cart_data->course);
             if (isset($cart_data->course) && $cart_data->course->user->role_id == 9) {
-                $admin_revenue = (40 / 100) * $cart->price;
+                $originalPrice = $cart->price - $cart_data->course->tax;
+                $admin_revenue = (Settings('commission') / 100) * $originalPrice;
                 $tutor_revenue = $cart->price - $admin_revenue;
                 $tutor = User::findOrFail($cart_data->course->user->id);
                 $admin = User::findOrFail(1);
@@ -970,7 +971,7 @@ class PaymentController extends Controller
                     $admin->save();
                 }
             } else {
-                $admin_revenue = $cart->price;
+                $admin_revenue = $cart->price - $cart_data->course->tax;
             }
 
             $enroll = new CourseEnrolled();

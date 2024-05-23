@@ -60,7 +60,7 @@ class CoursePlanController extends Controller
                 return view('coursesetting::components._course_status_td', ['query' => $query]);
             })
             ->addColumn('action', function ($query) {
-                return view('coursesetting::components._course_action_td', ['query' => $query]);
+                return view('coursesetting::components._course_plan_action_td', ['query' => $query]);
             })
             ->rawColumns([ 'type', 'title','amount',  'sdate', 'edate', 'cdate','status', 'action'])
             ->make(true);
