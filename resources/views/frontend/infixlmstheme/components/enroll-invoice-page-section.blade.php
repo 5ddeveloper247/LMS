@@ -5,7 +5,7 @@
                 <div class="col-lg-11 col-xl-9">
                     <div class="box_header common_table_header">
                         <div class="main-title d-flex">
-                            <h3 class="mr-30 text-uppercase mb-0">INV-{{ $enroll->id + 1000 }}</h3>
+                            <h3 class="mr-30 text-uppercase mb-0">C-{{ $enroll->id + 1000 }}</h3>
                         </div>
                         <div class="table_btn_wrap">
                             <ul>
@@ -22,7 +22,7 @@
 
                     <!-- invoice print part here -->
                     <div class="invoice_print pb-5">
-                        @include(theme('pages.invoice'))
+                        @include(theme('partials.enroll_invoice'))
                     </div>
                     <!-- invoice print part end -->
                 </div>

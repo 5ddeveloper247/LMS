@@ -325,6 +325,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
     Route::get('/all/cancel-list-data', 'AdminController@getCancelLogsData')->name('getCancelLogsData')->middleware('RoutePermissionCheck:admin.enrollLogs');
     Route::get('/all/cancel-program-list-data', 'AdminController@getCancelProgramLogsData')->name('getCancelProgramLogsData');
     Route::get('/all/payout-data', 'AdminController@getPayoutData')->name('getPayoutData');
+
+    Route::get('enroll-invoice/{id}', 'AdminController@revenueInvoice')->name('enrollInvoice');
 });
 
 
@@ -443,6 +445,6 @@ Route::get('login/facebookauth/callback', 'PreRegistrationController@handleFaceb
 
 
 Route::get('invoice',function(){
-    return view(theme('pages.invoice'));
+    return view(theme('pages.invoice_bak'));
 
 });

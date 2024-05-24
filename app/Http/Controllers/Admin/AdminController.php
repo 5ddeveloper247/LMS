@@ -210,6 +210,14 @@ class AdminController extends Controller
         }
     }
 
+    public function revenueInvoice($id){
+        try {
+                return view(theme('pages.invoice_enrolls'), compact('id'));
+        } catch (\Exception $e) {
+            GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
+        }
+    }
+
 
     public function tutorRevenue(Request $request)
     {

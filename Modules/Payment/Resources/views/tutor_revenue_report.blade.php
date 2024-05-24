@@ -155,6 +155,7 @@
                                     <th scope="col">{{ __('Admin') }} {{ __('courses.Revenue') }}</th>
                                 @endif
                                 <th scope="col">{{ isAdmin() ? 'Tutor Revenue' : 'My Revenue' }}</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
 
@@ -177,6 +178,7 @@
                                         <td></td>
                                         <td></td>
                                         <td>{{ getPriceFormat($subscription['price']) }}</td>
+                                        <td></td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -197,6 +199,7 @@
                                         <td>{{ getPriceFormat($enroll->reveune) }}</td>
                                     @endif
                                     <td>{{ getPriceFormat($enroll->purchase_price - $enroll->course->tax - $enroll->reveune) }}</td>
+                                    <td> <a href="{{ url('admin/enroll-invoice/'.$enroll->id) }}" class="primary-btn fix-gr-bg radius_30px text-white">View Invoice</a> </td>
                                 </tr>
                             @endforeach
                         </tbody>
