@@ -251,87 +251,13 @@ class MeetingController extends Controller
        
 
         try {
-
-
-            //            $users = Team::user()->where('status', 'active')->setPaginate(false)->setPerPage(300)->get()->toArray();
-            //
-            //            $profile = $users['data'][0];
             $start_date = Carbon::parse($data['date'])->format('Y-m-d') . ' ' . date("H:i:s", strtotime($data['time']));
-            //            $meeting = Team::meeting()->make([
-            //                "topic" => $data['topic'],
-            //                "type" => $data['is_recurring'] == 1 ? 8 : 2,
-            //                "duration" => $data['duration'],
-            //                "timezone" => Settings('active_time_zone'),
-            //                "password" => $data['password'],
-            //                "start_time" => new Carbon($start_date),
-            //            ]);
-            //
-            //            $meeting->settings()->make([
-            //                'join_before_host' => $this->setTrueFalseStatus($data['join_before_host']),
-            //                'host_video' => $this->setTrueFalseStatus($data['host_video']),
-            //                'participant_video' => $this->setTrueFalseStatus($data['participant_video']),
-            //                'mute_upon_entry' => $this->setTrueFalseStatus($data['mute_upon_entry']),
-            //                'waiting_room' => $this->setTrueFalseStatus($data['waiting_room']),
-            //                'audio' => $data['audio'],
-            //                'auto_recording' => $data['auto_recording'] ? $data['auto_recording'] : 'none',
-            //                'approval_type' => $data['approval_type'],
-            //            ]);
-            //
-            //            if ($data['is_recurring'] == 1) {
-            //                $end_date = Carbon::parse($data['recurring_end_date'])->endOfDay();
-            //                $meeting->recurrence()->make([
-            //                    'type' => $data['recurring_type'],
-            //                    'repeat_interval' => $data['recurring_repect_day'],
-            //                    'end_date_time' => $end_date
-            //                ]);
-            //            }
-            //            $meeting_details = team::user()->find($profile['id'])->meetings()->save($meeting);
-
-            //            $start_time = gmdate( 'Y-m-d\TH:i:s', strtotime(isset($data['date'])?$data['date']:date('Y-m-d H:i:s')) );
-            $password = (isset($data['password']) ? $data['password'] : $data['attendee_password']);
-            $post = array();
-
-
-            $post['topic'] = $data['topic'];
-            $post['agenda'] = $data['description'];
-          //  $post['type'] = '2';
-            $post['start_time'] = $start_date;
-            $post['timezone'] = Settings('active_time_zone');
-            $post['password'] = $password;
-            $post['duration'] = $data['duration'];
-            $post['settings'] = array(
-                'join_before_host' => $data['join_before_host'],
-                'host_video' => $data['host_video'],
-                'participant_video' =>  $data['participant_video'],
-                'mute_upon_entry' =>  $data['mute_upon_entry'],
-                'enforce_login' => true,
-                'auto_recording' => $data['auto_recording'],
-            );
-            $post['lobbyBypassSettings'] = array(
-              'scope' => 'everyone',
-              'isDialInBypassEnabled' => true
-            );
-            //$post['accessLevel'] = 'everyone';
-            // $post['participants'] = array(
-            //   'attendees' => array(
-            //     'identity' => array(
-            //       'user' => 'ubaidrahim@hotmail.com'
-            //     )
-            //   )
-            // );
-            //$post['allowedPresenters'] = 'everyone';
-            $postFields = $post;
-
-        
-            $start_time = $postFields['start_time'];
-            // duration will be in minutes
-
-            $minutesToAdd = $postFields['duration'];
+           
+            $minutesToAdd = $data['duration'];
            // dd($minutesToAdd);
-            $endTime = date('Y-m-d H:i:s', strtotime($start_time . ' + ' . $minutesToAdd . ' minutes'));
-            //  dd($endTime);
-            // dd($postFields['start_time']);
-            // $curl = curl_init();
+           $start_time = $start_date;
+            $endTime = date('Y-m-d H:i:s', strtotime($start_date . ' + ' . $minutesToAdd . ' minutes'));
+            
             $teamauthobj = new TeamAuthController();
             $tokenData = $teamauthobj->refreshAccessToken();
            
@@ -342,61 +268,6 @@ class MeetingController extends Controller
             }else{
             $access_token = $tokenData['access_token'];
 
-            // 	curl_setopt_array($curl, array(
-            // 	CURLOPT_URL => "https://api.team.us/v2/users/me/meetings",
-            // 	CURLOPT_RETURNTRANSFER => true,
-            // 	CURLOPT_ENCODING => "",
-            // 	CURLOPT_MAXREDIRS => 10,
-            // CURLOPT_TIMEOUT => 0,
-            // 	CURLOPT_FOLLOWLOCATION => true,
-            // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            // 	CURLOPT_CUSTOMREQUEST => "POST",
-            // 	CURLOPT_POSTFIELDS => $postFields,
-            // CURLOPT_HTTPHEADER => array(
-            //       "Authorization: Bearer  " . env('team_TOKEN')
-            //      ),
-            //      CURLOPT_HTTPHEADER => array(
-            //          "Authorization: Bearer " . env('team_TOKEN'),
-            //          "Content-Type: application/json" // Set the content type to JSON
-            //      ),
-            //  ));
-
-
-            // $response = curl_exec($curl);
-            // $err = curl_error($curl);
-            // curl_close($curl);
-
-            // $response = json_decode($response);
-            //dd($postFields);
-            // $curl = curl_init();
-
-            // curl_setopt_array($curl, array(
-            // CURLOPT_URL => env('Meeting_Url'),
-            // CURLOPT_RETURNTRANSFER => true,
-            // CURLOPT_ENCODING => '',
-            // CURLOPT_MAXREDIRS => 10,
-            // CURLOPT_TIMEOUT => 0,
-            // CURLOPT_FOLLOWLOCATION => true,
-            // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            // CURLOPT_CUSTOMREQUEST => 'POST',
-            // CURLOPT_POSTFIELDS =>'{
-            //     "startDateTime": "2023-01-01T18:00:00Z",
-            //     "endDateTime": "2023-01-01T19:00:00Z",
-            //     "subject": "Team Meeting"
-            //   }
-            //   ',
-            // CURLOPT_HTTPHEADER => array(
-            //     'Content-Type: application/json',
-            //     'Authorization: Bearer ' . $access_token,
-            // ),
-            // ));
-
-            // $response = curl_exec($curl);
-            // curl_close($curl);
-            //   echo('jfkdsaf');
-        //    dd($postFields['agenda']);
-
-        $jsonPostfields = json_encode($postFields);
         $startDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $start_time)->format('Y-m-d\TH:i:s\Z');
         // dd($startDateTime); "2023-12-19T11:48:00Z"
         // die;
@@ -406,7 +277,7 @@ class MeetingController extends Controller
         // dd('jkfjlaskjfdlkajsflkajs');
 
            $curl = curl_init();
-           $jsonData = '{"startDateTime":"'.$startDateTime.'", "endDateTime":"'.$endDateTime.'", "subject": "'.$postFields['agenda'].'","lobbyBypassSettings":{"scope":"everyone","isDialInBypassEnabled":true}}';
+           $jsonData = '{"startDateTime":"'.$startDateTime.'", "endDateTime":"'.$endDateTime.'", "subject": "'.$data['description'].'","lobbyBypassSettings":{"scope":"everyone","isDialInBypassEnabled":true}}';
 
           //dd($jsonData);
            curl_setopt_array($curl, array(
@@ -436,8 +307,7 @@ class MeetingController extends Controller
 
 
             // $r=$response['joinMeetingId'];
-             //dd($response);
-            $meeting_id = $response->meetingCode ?? null;
+            $meeting_id = $response->id ?? null;
             $system_meeting = new TeamMeeting();
             $system_meeting->topic = $data['topic'];
             $system_meeting->instructor_id = $data['instructor_id'];
@@ -630,6 +500,7 @@ class MeetingController extends Controller
         try {
             $data = $this->defaultPageData();
             $data['editdata'] = TeamMeeting::findOrFail($id);
+            $classid = $data['editdata']->class_id;
             $data['user'] = Auth::user();
             $data['classes'] = VirtualClass::select('id', 'title')->where('host', 'Team')->latest()->get();
             $data['instructors'] = User::select('id', 'name')->whereIn('role_id', [1, 2])->get();
@@ -670,79 +541,74 @@ class MeetingController extends Controller
             'class_id' => 'required',
             'topic' => 'required',
             'description' => 'nullable',
-            'password' => 'required',
             'attached_file' => 'nullable|mimes:jpeg,png,jpg,doc,docx,pdf,xls,xlsx',
             'time' => 'required',
-            'join_before_host' => 'required',
-            'host_video' => 'required',
-            'participant_video' => 'required',
-            'mute_upon_entry' => 'required',
-            'waiting_room' => 'required',
-            'audio' => 'required',
-            'auto_recording' => 'nullable',
-            'approval_type' => 'required',
-            'is_recurring' => 'required',
-            'recurring_type' => 'required_if:is_recurring,1',
-            'recurring_repect_day' => 'required_if:is_recurring,1',
-            'recurring_end_date' => 'required_if:is_recurring,1',
         ];
         $this->validate($request, $rules, validationMessage($rules));
-
+        $teamauthobj = new TeamAuthController();
+            $tokenData = $teamauthobj->refreshAccessToken();
+           
+            // $tokenData = $this->refreshAccessToken();
+            if(array_key_exists("error",$tokenData)){
+              Toastr::error('Error creating Teams meeting link');
+              return redirect()->back();
+            }
+            $access_token = $tokenData['access_token'];
         try {
             $system_meeting = TeamMeeting::findOrFail($id);
-
+            $teamMeeting = $system_meeting->first();
             //            if ($this->isTimeAvailableForMeeting($request, $id = $id)) {
             //                Toastr::error('Virtual class time is not available !', 'Failed');
             //                return redirect()->back();
             //            }
 
-            $users = Team::user()->where('status', 'active')->setPaginate(false)->setPerPage(300)->get()->toArray();
-            $profile = $users['data'][0];
+            //$users = Team::user()->where('status', 'active')->setPaginate(false)->setPerPage(300)->get()->toArray();
+           // $profile = $users['data'][0];
             $start_date = Carbon::parse($request['date'])->format('Y-m-d') . ' ' . date("H:i:s", strtotime($request['time']));
 
-            $meeting = Team::meeting()->find($system_meeting->meeting_id);
-            if ($meeting) {
-                $meeting->make([
-                    "topic" => $request['topic'],
-                    "type" => $request['is_recurring'] == 1 ? 8 : 2,
-                    "duration" => $system_meeting->meeting_duration,
-                    "timezone" => Settings('active_time_zone'),
-                    "start_time" => new Carbon($start_date),
-                    "password" => $request['password'],
-                ]);
-            } else {
-                $meeting = Team::meeting()->make([
-                    "topic" => $request['topic'],
-                    "type" => $request['is_recurring'] == 1 ? 8 : 2,
-                    "duration" => $system_meeting->meeting_duration,
-                    "timezone" => Settings('active_time_zone'),
-                    "password" => $request['password'],
-                    "start_time" => new Carbon($start_date),
-                ]);
-            }
+            // if ($meeting) {
+            //     $meeting->make([
+            //         "topic" => $request['topic'],
+            //         "type" => $request['is_recurring'] == 1 ? 8 : 2,
+            //         "duration" => $system_meeting->meeting_duration,
+            //         "timezone" => Settings('active_time_zone'),
+            //         "start_time" => new Carbon($start_date),
+            //         "password" => null,
+            //     ]);
+            // } else {
+            //     $meeting = Team::meeting()->make([
+            //         "topic" => $request['topic'],
+            //         "type" => $request['is_recurring'] == 1 ? 8 : 2,
+            //         "duration" => $system_meeting->meeting_duration,
+            //         "timezone" => Settings('active_time_zone'),
+            //         "password" => $request['password'],
+            //         "start_time" => new Carbon($start_date),
+            //     ]);
+            // }
+            //$meeting = Team::meeting()->find($system_meeting->meeting_id);
 
 
-            $meeting->settings()->make([
-                'join_before_host' => $this->setTrueFalseStatus($request['join_before_host']),
-                'host_video' => $this->setTrueFalseStatus($request['host_video']),
-                'participant_video' => $this->setTrueFalseStatus($request['participant_video']),
-                'mute_upon_entry' => $this->setTrueFalseStatus($request['mute_upon_entry']),
-                'waiting_room' => $this->setTrueFalseStatus($request['waiting_room']),
-                'audio' => $request['audio'],
-                'auto_recording' => $request->has('auto_recording') ? $request['auto_recording'] : 'none',
-                'approval_type' => $request['approval_type'],
-            ]);
+            // $meeting->settings()->make([
+            //     'join_before_host' => $this->setTrueFalseStatus($request['join_before_host']),
+            //     'host_video' => $this->setTrueFalseStatus($request['host_video']),
+            //     'participant_video' => $this->setTrueFalseStatus($request['participant_video']),
+            //     'mute_upon_entry' => $this->setTrueFalseStatus($request['mute_upon_entry']),
+            //     'waiting_room' => $this->setTrueFalseStatus($request['waiting_room']),
+            //     'audio' => $request['audio'],
+            //     'auto_recording' => $request->has('auto_recording') ? $request['auto_recording'] : 'none',
+            //     'approval_type' => $request['approval_type'],
+            // ]);
 
-            if ($request['is_recurring'] == 1) {
-                $end_date = Carbon::parse($request['recurring_end_date'])->endOfDay();
-                $meeting->recurrence()->make([
-                    'type' => $request['recurring_type'],
-                    'repeat_interval' => $request['recurring_repect_day'],
-                    'end_date_time' => $end_date
-                ]);
-            }
+            // if ($request['is_recurring'] == 1) {
+            //     $end_date = Carbon::parse($request['recurring_end_date'])->endOfDay();
+            //     $meeting->recurrence()->make([
+            //         'type' => $request['recurring_type'],
+            //         'repeat_interval' => $request['recurring_repect_day'],
+            //         'end_date_time' => $end_date
+            //     ]);
+            // }
 
-            Team::user()->find($profile['id'])->meetings()->save($meeting);
+            //Team::user()->find($profile['id'])->meetings()->save($meeting);
 
             DB::beginTransaction();
 
@@ -753,21 +619,6 @@ class MeetingController extends Controller
                 'description' => $request['description'],
                 'date_of_meeting' => Carbon::parse($request['date'])->format('m/d/Y'),
                 'time_of_meeting' => $request['time'],
-                'password' => $request['password'],
-
-                'host_video' => $request['host_video'],
-                'participant_video' => $request['participant_video'],
-                'join_before_host' => $request['join_before_host'],
-                'mute_upon_entry' => $request['mute_upon_entry'],
-                'waiting_room' => $request['waiting_room'],
-                'audio' => $request['audio'],
-                'auto_recording' => $request->has('auto_recording') ? $request['auto_recording'] : 'none',
-                'approval_type' => $request['approval_type'],
-
-                'is_recurring' => $request['is_recurring'],
-                'recurring_type' => $request['is_recurring'] == 1 ? $request['recurring_type'] : null,
-                'recurring_repect_day' => $request['is_recurring'] == 1 ? $request['recurring_repect_day'] : null,
-                'recurring_end_date' => $request['is_recurring'] == 1 ? $request['recurring_end_date'] : null,
 
                 'updated_by' => Auth::user()->id,
             ]);
@@ -788,6 +639,43 @@ class MeetingController extends Controller
                 }
             }
 
+            
+
+            $startDateTime = $teamMeeting->start_time;
+        // dd($startDateTime); "2023-12-19T11:48:00Z"
+        // die;
+        $endDateTime = $teamMeeting->end_time;
+        $agenda = $request['topic'];
+        $meetingId = $teamMeeting->meeting_id;
+        // echo('start:'. $startDateTime);
+        // echo('endtime'. $endDateTime);
+        // dd('jkfjlaskjfdlkajsflkajs');
+
+           $curl = curl_init();
+           $jsonData = '{"startDateTime":"'.$startDateTime.'", "endDateTime":"'.$endDateTime.'", "subject": "'.$agenda.'"';
+
+          //dd($jsonData);
+           curl_setopt_array($curl, array(
+               CURLOPT_URL => env('Meeting_Url').'/'.$meetingId,
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'PATCH',
+               CURLOPT_POSTFIELDS => $jsonData,
+               CURLOPT_HTTPHEADER => array(
+                   'Content-Type: application/json',
+                   'Authorization: Bearer ' . $access_token,
+               ),
+           ));
+
+           $response = curl_exec($curl);
+           curl_close($curl);
+
+           $response = json_decode($response);
+
             if (isset($request->instructor_id) && !empty($request->instructor_id)) {
                 TeamMeetingUser::where('meeting_id', $id)->delete();
                 $teamUser = new TeamMeetingUser();
@@ -797,13 +685,30 @@ class MeetingController extends Controller
                 $teamUser->save();
             }
 
-
             DB::commit();
             Toastr::success('Class updated successful', 'Success');
             return redirect()->route('team.meetings');
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
+    }
+
+    public function cancel(Request $request){
+        try {
+            $id = $request->meeting_id;
+            $meeting = TeamMeeting::where('id',$id);
+            $update = $meeting->update(['cancelled' => 1]);
+            if ($update) {
+                Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+                return redirect()->back();
+            } else {
+                Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
+                return redirect()->back();
+            }
+        } catch (Exception $e) {
+            GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
+        }
+        
     }
 
     /**

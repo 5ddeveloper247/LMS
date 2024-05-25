@@ -382,22 +382,22 @@ switch ($enroll->type) {
     <h6 class="ms-5">TOTAL PAYMENTS</h6>
     <label class="ms-5">0.00</label>
   </div> --}}
-  </div>
-
+  
   {{-- note --}}
   {{-- <div class="container mb-4"> --}}
-  <div class="row mb-4">
-    <div class="p-4 note_column">
-        <h6>THE INFORMATION OF THIS FEE INVOICE IS SUBJECT TO CHANGE WITHOUT NOTICE</h6>
-        <p>Payment Procedures: Acceptable form of payment are Money Order, Credit Card, Zelle, Debit Card, eCheck. 
-            Credit Card, Debit Card, and eCheck may be made online by going to <a href="mailto:mpaccounts@merkaiixcelprep.com" class="note_column-a">mpaccounts@merkaiixcelprep.com.</a> 
-            <span class="note_column-span">(provide the how to for payments online) </span>
-           <br> You  may also mail your Money Order to: Merkaii Xcellence Prep, Student Account Services, Attn: Payment Processing, 501 S. Florida Avenue, 
-            Lakeland, FL 33801 
-            <br>Late Payment of $100.00 will be assessed to students who do not pay their fees or do not pay their fees by the payment deadline. 
-            For more information on fee payment procedures, go to our website at <a href="mailto:studentaccounts@merkaiixcelprep.com" class="note_column-a">studentaccounts@merkaiixcelprep.com </a>
-            <br>Although great care was used to calculate your fees, payments etc., occasional errors do occur. MXP reserves the right to verify and make 
-            corrections to any information on this invoice without notice.</p>
-    </div>
+      <div class="row mb-4">
+          <div class="p-4 note_column">
+              <h6>THE INFORMATION OF THIS FEE INVOICE IS SUBJECT TO CHANGE WITHOUT NOTICE</h6>
+              <p>Payment Procedures: Acceptable form of payment are Money Order, Credit Card, Zelle, Debit Card, eCheck. 
+                  Credit Card, Debit Card, and eCheck may be made online by going to <a href="mailto:mpaccounts@merkaiixcelprep.com" class="note_column-a">mpaccounts@merkaiixcelprep.com.</a> 
+                  <span class="note_column-span">(provide the how to for payments online) </span>
+                  <br> You  may also mail your Money Order to: Merkaii Xcellence Prep, Student Account Services, Attn: Payment Processing, 501 S. Florida Avenue, 
+                  Lakeland, FL 33801 
+                  <br>Late Payment of $100.00 will be assessed to students who do not pay their fees or do not pay their fees by the payment deadline. 
+                  For more information on fee payment procedures, go to our website at <a href="mailto:studentaccounts@merkaiixcelprep.com" class="note_column-a">studentaccounts@merkaiixcelprep.com </a>
+                  <br>Although great care was used to calculate your fees, payments etc., occasional errors do occur. MXP reserves the right to verify and make 
+                  corrections to any information on this invoice without notice.</p>
+                </div>
+            </div>
   </div>
 </div>

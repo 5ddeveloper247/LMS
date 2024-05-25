@@ -12,7 +12,6 @@
                     <tr>
                     <tr>
                         <th>{{__('common.SL')}}</th>
-                        <th>   {{__('team.ID')}}</th>
                         <th>   {{__('team.Class')}}</th>
                         <th>   {{__('team.Instructor')}}</th>
                         <th>   {{__('team.Password')}}</th>
@@ -29,7 +28,6 @@
 
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $meeting->meeting_id }}</td>
                             <td>{{ $meeting->class->title }}</td>
                             <td>{{ $meeting->instructor->name }}</td>
                             <td>{{ $meeting->password }}</td>
@@ -38,6 +36,10 @@
                             <td>{{ $meeting->time_of_meeting }}</td>
                             <td>{{ $meeting->meeting_duration }} Min</td>
                             <td>
+                                @if($meeting->cancelled == 1)
+                                <a href="#"
+                                       class="primary-btn small bg-danger text-white border-0">Cancelled</a>
+                                @else
                                 @if($meeting->currentStatus == 'started')
 
                                     <a class="primary-btn small fix-gr-bg small  text-white border-0"
@@ -56,9 +58,11 @@
                                     <a href="#"
                                        class="primary-btn small bg-warning text-white border-0">Closed</a>
                                 @endif
+                                @endif
                             </td>
                             <td>
-                                <div class="dropdown CRM_dropdown">
+                                @if($meeting->created_by==$user->id)
+                                    <div class="dropdown CRM_dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button"
                                             id="dropdownMenu2" data-toggle="dropdown"
                                             aria-haspopup="true"
@@ -68,18 +72,14 @@
                                     <div class="dropdown-menu dropdown-menu-right"
                                          aria-labelledby="dropdownMenu2">
                                         <a class="dropdown-item"
-                                           href="{{ route('team.meetings.show', $meeting->meeting_id) }}">{{__('team.View')}}</a>
-                                        @if($meeting->created_by==$user->id)
-                                            <a class="dropdown-item"
-                                               href="{{ route('team.meetings.edit',$meeting->id )}}">{{__('team.Edit')}}</a>
+                                            href="{{ route('team.meetings.edit',$meeting->id )}}">{{__('team.Edit')}}</a>
 
-                                            <a class="dropdown-item" data-toggle="modal"
-                                               data-target="#d{{$meeting->id}}"
-                                               href="#">{{__('team.Delete')}}</a>
-                                        @endif
-
+                                        <a class="dropdown-item" onclick="assignCancelId({{ $meeting->id }})"
+                                            href="#">{{__('Cancel')}}</a>
+                                            
+                                        </div>
                                     </div>
-                                </div>
+                                 @endif
                             </td>
                         </tr>
 
@@ -122,3 +122,38 @@
     </div>
 
 </div>
+<div class="modal fade admin-query" id="cancelMeetingModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{{__('Cancel Class')}}</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="text-center">
+                                            <h4>{{__('Are you sure to cancel ?')}}</h4>
+                                        </div>
+
+                                        <div class="mt-40 d-flex justify-content-between">
+                                            <button type="button" class="primary-btn tr-bg"
+                                                    data-dismiss="modal">{{__('Close')}}</button>
+                                            <form class="" action="{{ route('team.meetings.cancel') }}"
+                                                  method="POST">
+                                                @csrf
+                                                <input type="hidden" id="cancelClassId" name="meeting_id">
+                                                <button class="primary-btn fix-gr-bg"
+                                                        type="submit">{{__('Cancel')}}</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+<script>
+    function assignCancelId(id){
+        $('#cancelClassId').val(id);
+        $('#cancelMeetingModal').modal('show');
+    }
+</script>

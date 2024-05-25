@@ -114,6 +114,7 @@
                             <th scope="col">{{__('report.Revenue')}}</th>
                             <th scope="col">{{__('report.Discount')}}</th>
                             <th scope="col">{{__('report.Enrolled Date')}}</th>
+                            <th scope="col">{{__('Action')}}</th>
                         </tr>
                         </thead>
 
@@ -137,6 +138,9 @@
 
                                 <td>
                                     {{ showDate(@$log->created_at??now()) }}
+                                </td>
+                                <td>
+                                    <a href="{{ url('admin/enroll-invoice/'.$log->id) }}" class="primary-btn fix-gr-bg radius_30px text-white">View Invoice</a>
                                 </td>
                             </tr>
 

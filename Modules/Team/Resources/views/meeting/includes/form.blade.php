@@ -19,7 +19,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="white-box">
-
                     <div class="row mt-20 d-none">
                         <div class="col-lg-12">
                             <div class="input-effect">
@@ -83,6 +82,7 @@
                             </div>
                         </div>
                     @endif
+                    
                     <div class="row mt-40">
                         <div class="col-lg-12">
                             <div class="input-effect">
@@ -119,10 +119,10 @@
                     </div>
 
                     <div class="row mt-40">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <label>{{__('team.Date Of Class')}} <span>*</span></label>
                             <input class="primary-input date form-control" id="startDate" type="text"
-                                   name="date" readonly="true"
+                                   name="date" @if(isset($editdata)) readonly @endif
                                    value="{{ isset($editdata) ? old('date',Carbon\Carbon::parse($editdata->date_of_meeting)->format('m/d/Y')): old('date',Carbon\Carbon::now()->format('m/d/Y'))}}"
                                    required>
                             @if ($errors->has('date'))
@@ -131,11 +131,13 @@
                                     </span>
                             @endif
                         </div>
-                        <div class="col-lg-6">
+                    </div>
+                    <div class="row mt-40">
+                        <div class="col-lg-12">
                             <label>{{__('team.Time Of Class')}} <span>*</span></label>
                             <input
                                 class="primary-input time form-control{{ @$errors->has('time') ? ' is-invalid' : '' }}"
-                                type="text" name="time"
+                                type="text" name="time" @if(isset($editdata)) readonly @endif
                                 value="{{ isset($editdata) ? old('time',$editdata->time_of_meeting): old('time')}}">
                             <span class="focus-border"></span>
                             @if ($errors->has('time'))
@@ -164,7 +166,7 @@
                             </div>
                         </div>
                     @endif
-                    <div class="row mt-40">
+                    {{-- <div class="row mt-40">
                         <div class="col-lg-12">
                             <div class="input-effect">
                                 <input
@@ -305,7 +307,7 @@
                                 </span>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="row no-gutters input-right-icon mt-30">
                         <div class="col">
@@ -334,7 +336,7 @@
                     </div>
 
                     {{-- Start setting  --}}
-                    <div class="row mt-40">
+                    {{-- <div class="row mt-40">
                         <div class="col-lg-12 d-flex">
                             <p class="text-uppercase fw-500 mb-10"
                             >{{__('team.Change Default Settings')}}</p>
@@ -703,7 +705,7 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{-- Start setting  --}}
 

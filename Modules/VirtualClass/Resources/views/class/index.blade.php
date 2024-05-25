@@ -138,7 +138,7 @@
                                                                 {{ __('courses.Instructor') }} </option>
                                                             @foreach ($instructors as $instructor)
                                                                 <option value="{{ $instructor->id }}"
-                                                                    {{ isset($class) ? ($instructor->id == $class->course->user_id ? 'selected' : (old('assign_instructor') == $instructor->id ? 'selected' : '')) : (old('assign_instructor') == $instructor->id ? 'selected' : '') }}>
+                                                                    {{ isset($class) ? ($instructor->id == $class->course->user_id ? 'selected' : (old('assign_instructor') == $instructor->id ? 'selected' : 'disabled')) : (old('assign_instructor') == $instructor->id ? 'selected' : '') }}>
                                                                     {{ @$instructor->name }} </option>
                                                             @endforeach
                                                         </select>
@@ -273,13 +273,13 @@
                                                     for="">{{ __('Courses') }} *</label>
                                                 <select
                                                     class="primary_select select_section"
-                                                    id="allcourses" name="courses">
+                                                    id="allcourses" name="courses" @if(isset($class)) readonly @endif>
                                                     <option value="" >Courses *</option>
 
                                                     @if (isset($courses))
                                                         @foreach ($courses as $course)
                                                             <option  value="{{ $course->id }}"
-                                                                {{ isset($class) && (int)$class->course_id == $course->id ? 'selected': (old('courses') == $course->id ? 'selected' : '') }}>
+                                                                @if(isset($class))  {{ (int)$class->course_id == $course->id ? 'selected': (old('courses') == $course->id ? 'selected' : 'disabled') }} @endif>
                                                                 {{ $course->title }}</option>
                                                         @endforeach
                                                     @endif
@@ -293,8 +293,7 @@
                                                     <label class="primary_input_label"
                                                         for="courseTypeId">{{ __('Course Type') }}
                                                     </label>
-                                                    {{-- <select name="courseType[]" id="courseTypeId" class="multypol_check_select active mb-15 e1" multiple><!-- assistant_instructors[] --> --}}
-                                                    <select name="courseType[]" id="courseTypeId" class="primary_select select_section active mb-15 e1" required><!-- assistant_instructors[] -->
+                                                    <select name="courseType[]" id="courseTypeId" class="primary_select select_section active mb-15 e1" required @if(isset($class)) readonly @endif><!-- assistant_instructors[] -->
 
 	                                                    <?php
 	                                                    	$course_types = (isset($class->course_types) && $class->course_types) != null ? json_decode($class->course_types): [] ;
@@ -312,8 +311,8 @@
 		                                                        	@elseif($courseType == 'program')
 		                                                        		{{$typeSlug = 'Program'}}
 		                                                        	@endif
-	                                                            <option  value="{{ $courseType }}"
-	                                                            	{{ (in_array($courseType, $course_types) || $courseType == $program_types ) ? 'selected' : '' }}>
+	                                                            <option  value="{{ $courseType }}" 
+	                                                                @if(isset($class))	{{ (in_array($courseType, $course_types) || $courseType == $program_types ) ? 'selected' : 'disabled' }} @endif>
 	                                                                	{{$typeSlug}}
 		                                                        	</option>
 	                                                        @endforeach
@@ -335,7 +334,7 @@
                                                     <input {{ $errors->has('duration') ? ' autofocus' : '' }}
                                                         class="primary_input_field name{{ $errors->has('duration') ? ' is-invalid' : '' }}"
                                                         type="number" name="duration"
-                                                        value="{{ isset($class) ? $class->duration : (old('duration') != '' ? old('duration') : '') }}">
+                                                        value="{{ isset($class) ? $class->duration : (old('duration') != '' ? old('duration') : '') }}" @if(isset($class)) readonly @endif>
                                                     <span class="focus-border"></span>
 
                                                 </div>
@@ -529,25 +528,25 @@
                                                                         <option value="" selected>Choose Class Day
                                                                         </option>
                                                                         <option value="Mon"
-                                                                            {{ isset($class) ? ($class->class_day == 'Mon' ? 'selected' : '') : (old('days') == 'Mon' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Mon' ? 'selected' : 'disabled') : (old('days') == 'Mon' ? 'selected' : '') }}>
                                                                             Monday</option>
                                                                         <option value="Tue"
-                                                                            {{ isset($class) ? ($class->class_day == 'Tue' ? 'selected' : '') : (old('days') == 'Tue' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Tue' ? 'selected' : 'disabled') : (old('days') == 'Tue' ? 'selected' : '') }}>
                                                                             Tuesday</option>
                                                                         <option value="Wed"
-                                                                            {{ isset($class) ? ($class->class_day == 'Wed' ? 'selected' : '') : (old('days') == 'Wed' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Wed' ? 'selected' : 'disabled') : (old('days') == 'Wed' ? 'selected' : '') }}>
                                                                             Wednesday</option>
                                                                         <option value="Thu"
-                                                                            {{ isset($class) ? ($class->class_day == 'Thu' ? 'selected' : '') : (old('days') == 'Thu' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Thu' ? 'selected' : 'disabled') : (old('days') == 'Thu' ? 'selected' : '') }}>
                                                                             Thursday</option>
                                                                         <option
-                                                                            value="Fri"{{ isset($class) ? ($class->class_day == 'Fri' ? 'selected' : (old('days') == 'Fri' ? 'selected' : '')) : (old('days') == 'Fri' ? 'selected' : '') }}>
+                                                                            value="Fri"{{ isset($class) ? ($class->class_day == 'Fri' ? 'selected' : (old('days') == 'Fri' ? 'selected' : 'disabled')) : (old('days') == 'Fri' ? 'selected' : '') }}>
                                                                             Friday</option>
                                                                         <option value="Sat"
-                                                                            {{ isset($class) ? ($class->class_day == 'Sat' ? 'selected' : (old('days') == 'Sat' ? 'selected' : '')) : (old('days') == 'Sat' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Sat' ? 'selected' : (old('days') == 'Sat' ? 'selected' : 'disabled')) : (old('days') == 'Sat' ? 'selected' : '') }}>
                                                                             Saturday</option>
                                                                         <option value="Sun"
-                                                                            {{ isset($class) ? ($class->class_day == 'Sun' ? 'selected' : (old('days') == 'Sun' ? 'selected' : '')) : (old('days') == 'Sun' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Sun' ? 'selected' : (old('days') == 'Sun' ? 'selected' : 'disabled')) : (old('days') == 'Sun' ? 'selected' : '') }}>
                                                                             Sunday</option>
                                                                     </select>
                                                                 </div>
@@ -596,7 +595,7 @@
                                                     <input required
                                                         class="primary-input primary_input_field time form-control{{ @$errors->has('time') ? ' is-invalid' : '' }}"
                                                         type="text" name="time"
-                                                        value="{{ isset($class) ? old('time', $class->time) : old('time') }}">
+                                                        value="{{ isset($class) ? old('time', $class->time) : old('time') }}" @if(isset($class)) readonly @endif>
 
                                                 </div>
 
@@ -1440,7 +1439,7 @@
                 },
 
                 success: function(data) {
-
+                    var programreadonly = (selectedProgramId == '') ? '' : 'readonly';
                     programHtml +=`<div class="row mt-25" id="program_list_row">
                                     <div class="col-xl-12">
                                         <div class="primary_input">
@@ -1448,7 +1447,7 @@
                                                 for="courseTypeId">{{ __('Program List') }}
                                             </label>
 
-                                            <select name="programList" id="programList" class="primary_select select_section active mb-15 e1" >
+                                            <select name="programList" id="programList" class="primary_select select_section active mb-15 e1" ${programreadonly}  >
                                                 <option>Select Program</option>
                                             </select>
                                         </div>
@@ -1478,7 +1477,7 @@
 
             }
         }
-
+        
         function mergeCourseTypeExisting(){
 
         	$('.preloader').show();
@@ -1629,7 +1628,12 @@
             })
     	}
     </script>
-
+    {{-- @if(isset($class))
+        
+        <script>
+            $('#courseTypeId').niceSelect('destroy');
+        </script>
+        @endif --}}
     <script src="{{ asset('/') }}/Modules/CourseSetting/Resources/assets/js/course.js"></script>
     <script src="{{ asset('public/backend/js/zoom.js') }}"></script>
     <script src="{{ asset('public/backend/js/team.js') }}"></script>
