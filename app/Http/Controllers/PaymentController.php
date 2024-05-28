@@ -952,7 +952,7 @@ class PaymentController extends Controller
                 $discount_amount = 0.00;
             }
             $cart_data = Cart::where('id', $cart->id)->with('course','course.user')->first();
-            dd($cart_data->course);
+            
             if (isset($cart_data->course) && $cart_data->course->user->role_id == 9) {
                 $originalPrice = $cart->price - $cart_data->course->tax;
                 $admin_revenue = (Settings('commission') / 100) * $originalPrice;

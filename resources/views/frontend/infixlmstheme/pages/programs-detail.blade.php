@@ -1848,7 +1848,7 @@
                             <div class="row mt-3 text-center">
                                 @if (!Auth::user())
                                     <div class="col-12">
-                                        <a href="{{ route('login') }}" class="theme_btn small_btn4 px-2 pt-1 pb-2">Apply
+                                        <a href="{{ route('buyNow', ['id' => $program_detail->id, 'plan_id' => $program_detail->currentProgramPlan[0]->id]) }}" class="theme_btn small_btn4 px-2 pt-1 pb-2">Apply
                                             Now</a>
                                     </div>
                                 @endif

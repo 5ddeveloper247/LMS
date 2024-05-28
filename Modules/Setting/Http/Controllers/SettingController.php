@@ -28,7 +28,8 @@ class SettingController extends Controller
 
     public function activation()
     {
-        $business_settings = BusinessSetting::all();
+        $business_settings = BusinessSetting::where('id',1)->get();
+        // $business_settings = BusinessSetting::all();
         return view('setting::activation', compact('business_settings'));
     }
 

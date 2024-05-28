@@ -397,11 +397,10 @@ canvas {
                     </div>
 
                     <div class="form-row">
-
                         <div class="form-group col-md-6">
                             <div class="position-relative mt-4  @if ($errors->first('student_name')) is-invalid @endif">
                                 <input type="text" class="outside form-control"name="student_name"
-                                    value="{{ $userDeclaration['student_name'] ?? old('student_name') }}" required />
+                                    value="{{ $userDeclaration['student_name'] ?? auth()->user()->name }}" required />
                                 <span class="floating-label-outside">Student Name</span>
                                 <i class="fa fa-user-o input-icon-outside"></i>
                             </div>
@@ -431,7 +430,7 @@ canvas {
                                 <div id='root'></div>
                                 <div class="" style="position: absolute; bottom: 0; padding: 5px;">
                                     <input class="date-btn" type="date" id="datepicker"
-                                        value="<%= new Date().toISOString().split('T')[0] %>" />
+                                        value="{{date('Y-m-d')}}" />
                                 </div>
                                 <div class="sign-btn" style="position: absolute;">
                                     <input type="button" value="Reset" id="resetCanvas" class="reset-btn mx-1" />

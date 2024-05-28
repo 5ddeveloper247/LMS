@@ -4,13 +4,43 @@ $(document).ready(function () {
     });
 });
 
+// function printDiv(divName) {
+//     var printContents = document.getElementById(divName).innerHTML;
+//     var originalContents = document.body.innerHTML;
+
+//     // Create a new window to preserve original document and styles
+//     var printWindow = window.open('', '_blank', 'height=600,width=800');
+//     printWindow.document.write('<html><head><title>Print</title>');
+//     // Include the CSS files or inline styles that are required for printing
+//     var cssLinks = document.querySelectorAll('link[rel="stylesheet"], style');
+//     cssLinks.forEach(function (link) {
+//         printWindow.document.write(link.outerHTML);
+//     });
+//     printWindow.document.write('</head><body>');
+//     printWindow.document.write(printContents);
+//     printWindow.document.write('</body></html>');
+//     printWindow.document.close(); // necessary for IE >= 10
+//     printWindow.focus(); // necessary for IE >= 10
+
+//     // Wait for the new window to load and then print
+//     printWindow.onload = function () {
+//         printWindow.print();
+//         printWindow.close();
+//     };
+
+//     // Restore the original contents
+//     setTimeout(function () {
+//         window.location.reload();
+//     }, 10000);
+// }
 function printDiv(divName) {
     var printContents = document.getElementById(divName).innerHTML;
     var originalContents = document.body.innerHTML;
 
     document.body.innerHTML = printContents;
 
-    window.print();
+    //printContents.print();
+     window.print();
 
     document.body.innerHTML = originalContents;
     setTimeout(function () {

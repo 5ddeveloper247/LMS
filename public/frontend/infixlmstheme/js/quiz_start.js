@@ -29,7 +29,7 @@ if (timeArray[0] == 0 && timeArray[1] == 0) {
     toastr.error("Time not define", "Failed");
 } else {
     // startTimer();
-    $("#StartConfirmModal").modal("show");
+    $("#StartConfirmModal").modal("show").appendTo('body');
 }
 $("#QuizStartBtn").click(function (e) {
     e.preventDefault();
@@ -174,7 +174,7 @@ $(".submitBtn").click(function (e) {
     questionSubmitSingle(question_type, assign_id);
     $(".submitBtn").html("Submitting..");
     setTimeout(function () {
-        $("#submitConfirmModal").modal("show");
+        $("#submitConfirmModal").modal("show").appendTo('body');
     }, 3000);
 });
 

@@ -3,7 +3,6 @@
     {{ Settings('site_title') ? Settings('site_title') : 'Infix LMS' }} | {{ __('frontendmanage.Home') }}
 @endsection
 
-@section('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/slick/slick.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/slick/slick-theme.css') }}">
 <script src="https://kit.fontawesome.com/b98cad50b5.js" crossorigin="anonymous"></script>
@@ -2553,7 +2552,6 @@
         border-color: white !important;
     }
 </style>
-@endsection
 @section('mainContent')
     {{-- MainBanner --}}
     {{-- zaheer --}}

@@ -30,7 +30,8 @@
                 <div class="biling_body_content" id="deafult">
                     <p>{{ @$checkout->billing->first_name }} {{ @$checkout->billing->last_name }}</p>
                     <p>{{ @$checkout->billing->address }}</p>
-                    <p>{{ @$checkout->billing->stateDetails->name }},{{ @$checkout->billing->cityDetails->name }} -
+                    <p>{{ (!empty($checkout->billing->stateDetails->name)) ? $checkout->billing->stateDetails->name.',' : '' }}
+                        {{ !empty($checkout->billing->cityDetails->name) ? $checkout->billing->cityDetails->name.' - ' : '' }}
                         {{ @$checkout->billing->zip_code }} </p>
                     <p> {{ @$checkout->billing->countryDetails->name }} </p>
                 </div>
@@ -64,7 +65,7 @@
                                 <input type="hidden" name="user_id"
                                     value="{{ Illuminate\Support\Facades\Auth::user()->id ?? null }}">
 
-                                <input type="hidden" name="tracking_id"value="{{ $checkout->tracking }}">
+                                <input type="hidden" name="tracking_id" value="{{ $checkout->tracking }}">
                                 <input type="hidden" name="id" value="{{ $checkout->id }}">
                                 <div class="form-row top-row">
                                     <div id="amount" class="field card-number">
@@ -82,26 +83,31 @@
                                         required>
                                 </div>
                                 <div class="col-md-6 mb-3">
+                                    <label for="cardHolderLastname">Cardholder Last Name</label>
+                                    <input type="text" class="form-control" name="cardHolderLastname" id="cardHolderLastname"
+                                        required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
                                     <label for="cardNumber">Card Number</label>
                                     <input type="text" class="form-control" name="cardNumber"
                                         id="cardNumber"placeholder="____ ____ ____ ____" required>
                                 </div>
-                            </div>
-
-                            <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="expiryDate">Expiry Date</label>
                                     <input type="text" class="form-control" name="expiryDate" id="expiryDate"
-                                        placeholder="MM/YY" required>
+                                        placeholder="MM/YYYY" required>
                                 </div>
+                            </div>
+                            
+                            <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="cvv">CVV</label>
                                     <input type="text" class="form-control" name="cvv" id="cvv"
                                         placeholder="_ _ _" required>
                                 </div>
-                            </div>
-
-                            <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="amount">Amount</label>
                                     <input type="hidden" name="amount"

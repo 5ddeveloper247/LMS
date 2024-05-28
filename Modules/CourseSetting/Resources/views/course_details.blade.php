@@ -1107,9 +1107,9 @@
                                                         @endif
 
                                                         <div class="col-xl-6 courseBox mb-25">
-                                                            <select class="primary_select edit_category_id"
-                                                                data-course_id="{{ @$course->id }}" name="category"
-                                                                id="addCategoryId">
+                                                            <select class="primary_select"
+                                                                 name="category"
+                                                                id="category_id">
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('quiz.Category') }}"
                                                                     value="">{{ __('common.Select') }}
@@ -1131,10 +1131,9 @@
                                                             </select>
                                                         </div>
 
-                                                        <div class="col-xl-6 courseBox mb-25"
-                                                            id="edit_subCategoryDiv{{ @$course->id }}">
+                                                        <div class="col-xl-6 courseBox mb-25 subCategoryDiv">
                                                             <select class="primary_select" name="sub_category"
-                                                                id="edit_subcategory_id">
+                                                                id="subcategory_id">
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('courses.Sub Category') }}"
                                                                     value="">{{ __('common.Select') }}
@@ -2753,7 +2752,7 @@
     {{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> --}}
     <script src="{{ asset('/') }}/Modules/CourseSetting/Resources/assets/js/course.js"></script>
-    <script src="{{ asset('/') }}/Modules/CourseSetting/Resources/assets/js/advance_search.js"></script>
+    {{-- <script src="{{ asset('/') }}/Modules/CourseSetting/Resources/assets/js/advance_search.js"></script> --}}
 
     {{-- <script src="{{ asset('public/backend/js/summernote-bs4.min.js') }}"></script> --}}
     {{--        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> --}}
@@ -3293,6 +3292,9 @@
 
 
     <script>
+        $('#category_id').on('change',function(){
+            console.log('changed');
+        });
         getVdoCipherList();
         getVdoCipherListForLesson();
 
@@ -3567,7 +3569,7 @@
                 }
 
                 if (type == 1) {
-                    if (isEmpty($('#addCategoryId').val())) {
+                    if (isEmpty($('#edit_category_id').val())) {
                         errors.push("Category is required");
                     }
                 }

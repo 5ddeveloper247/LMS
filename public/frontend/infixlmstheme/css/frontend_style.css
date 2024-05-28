@@ -16751,10 +16751,21 @@ body {
     top: 150px;
 }
 
-.sub-section {
+/* .sub-section {
     margin-top: -130px;
     background: rgb(254, 105, 3) !important;
     background: linear-gradient(0deg, rgba(254, 108, 10, 1) 0%, rgba(96, 42, 181, 1) 75%) !important;
+    transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    z-index: 1;
+} */
+
+.sub-section {
+    margin-top: -143px;
+    background: rgb(254, 105, 3) !important;
+    background: linear-gradient(0deg, rgb(255, 118, 25) 0%, rgb(153, 102, 153) 75%) !important;
     transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
     padding: 20px;
     border-radius: 15px;

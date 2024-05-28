@@ -190,13 +190,13 @@
                                             </option>
                                         @endif
 
-                                        {{-- @if (isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="GoogleDrive"
                                                     @if (@$editLesson->host == 'GoogleDrive') Selected @endif
                                                     @if (empty(@$editLesson) && @$editLesson->host == 'GoogleDrive') selected @endif>
                                                 Google Drive
                                             </option>
-                                        @endif --}}
+                                        @endif
 
                                         {{-- @if (!isTutor() || isAdmin() || isInstructor())
                                             @if (isModuleActive('AmazonS3'))

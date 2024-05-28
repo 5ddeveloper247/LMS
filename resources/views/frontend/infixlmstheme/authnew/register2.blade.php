@@ -123,7 +123,8 @@
         }
 
         input:focus~.floating-label-outside,
-        input:valid~.floating-label-outside {
+        input:valid~.floating-label-outside,
+        input:read-only~.floating-label-outside {
             top: -10px;
             opacity: 1;
             font-size: 15px;
@@ -133,7 +134,8 @@
         }
 
         input:focus~.floating-label-outside,
-        input:not(:focus):valid~.floating-label-outside {
+        input:not(:focus):valid~.floating-label-outside,
+        input:read-only~.floating-label-outside {
             left: 40px
         }
 
@@ -397,7 +399,7 @@ canvas {
                             <input id="agree_checkbox" class="borderbottom agree_checkbox w-50"
                                 type="text"name="term_one_text"
                                 value="{{ $payment_details->term_one_text ?? old('term_one_text') }}" required>
-                            <label for="agree_checkbox ">S/O</label>
+                            <label for="agree_checkbox ">Guardian</label>
                             <input id="agree_checkbox" class="borderbottom agree_checkbox w-50" type="text"
                                 name="term1_father_name"
                                 value="{{ $payment_details->term1_father_name ?? old('term1_father_name') }}" required>
@@ -422,7 +424,7 @@ canvas {
                             <input id="agree_checkbox" class="borderbottom agree_checkbox w-50"
                                 type="text"name="term_two_text"
                                 value="{{ $payment_details->term_two_text ?? old('term_two_text') }}" required>
-                            <label for="agree_checkbox ">S/O</label>
+                            <label for="agree_checkbox ">Guardian</label>
                             <input id="agree_checkbox" class="borderbottom agree_checkbox w-50"
                                 type="text"name="term2_father_name"
                                 value="{{ $payment_details->term2_father_name ?? old('term2_father_name') }}" required>
@@ -625,7 +627,8 @@ canvas {
                                 <div id='root'></div>
                                 <div class="" style="position: absolute; bottom: 0; padding: 5px;">
                                     <input class="date-btn" type="date" id="datepicker"
-                                        value="<%= new Date().toISOString().split('T')[0] %>" name="student_signature_date" />
+                                        value="{{date('Y-m-d')}}" name="student_signature_date" />
+                                        {{-- value="<%= new Date().toISOString().split('T')[0] %>" name="student_signature_date" /> --}}
                                 </div>
                                 <div class="sign-btn" style="position: absolute;">
                                     <input type="button" value="Reset" id="resetCanvas" class="reset-btn mx-1" />
@@ -699,7 +702,6 @@ canvas {
 
             window.location.href = "{{route('register')}}";
         };
-
     </script>
   
   <script>
