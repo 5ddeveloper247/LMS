@@ -47,8 +47,8 @@
     .tab-about {
         width: 100%;
         position: relative;
-        border-bottom: #eee;
-        color: #eee;
+        /* border-bottom: #eee;
+        color: #eee; */
     }
 
     .tab-about input {
@@ -64,7 +64,7 @@
 
     .tab-about input:checked~.tab-about-content {
         max-height: max-content;
-        color: #eee;
+        /* color: #eee; */
     }
 
     .accordion {
@@ -87,7 +87,7 @@
 
     .section-header {
         width: 100%;
-        color: #eee;
+        color: var(--system_secendory_color);
     }
 
     .tab-about-wrapper {
@@ -101,7 +101,7 @@
 
     .tab-about-wrapper:hover {
         background-color: transparent;
-        color: #eee;
+        /* color: #eee; */
     }
 
     .tab-about label {
@@ -213,7 +213,7 @@
 .single-event::before {
     position: absolute; 
     content: "";
-    left: calc(25% - 0.5px); 
+    left: calc(23% - 0.5px); 
     height: 100%;
     width: 1px;
     background: #eee;
@@ -800,7 +800,7 @@
     }
 
     .about_us {
-        max-height: auto;
+        max-height: 100%;
         /* padding: 0px 3rem; */
     }
 
@@ -832,17 +832,17 @@
     .Faq-btn {
         font-size: 12.5px;
         background: transparent;
-        color: #eee;
+        color: black;
         font-weight: 700;
         margin: 0px 0px 13px 0px;
-        border: 2px solid #eee;
+        border: 2px solid black;
         border-radius: 16px;
     }
 
     .Faq-btn:hover {
-        background: #eee;
-        color: black;
-        border: 2px solid black;
+        /* background: #eee; */
+        color: var(--system_secendory_color);
+        border: 2px solid var(--system_secendory_color);
     }
 
     .vidicons:hover {
@@ -1407,11 +1407,11 @@
     }
 
     .percent3 {
-        margin: 0 -74px 1.5rem 50px;
+        margin: 0 -53px 1.5rem 50px;
     }
 
     .percent4 {
-        margin: 0 -23px 1.5rem -8px;
+        margin: 0 -13px 1.5rem -8px;
     }
 
     .percent {
@@ -1572,6 +1572,16 @@
     /* logos section end */
     .about-img {
         height: 300px;
+    }
+    .about_us_img1{
+        position: absolute;
+        left: 20%;
+        top:5%;
+        z-index: 1;
+    }
+    .about_us_img2{
+        position: relative;
+        z-index: 2;
     }
 
     /*  */
@@ -1847,7 +1857,7 @@
         }
 
         .accordion {
-            max-height: 720px !important;
+            max-height: 520px !important;
         }
 
         .logos {
@@ -1860,7 +1870,7 @@
         }
 
         .about_us {
-            height: 75vh;
+            height: 90%;
         }
 
         .percent-video {
@@ -2019,6 +2029,9 @@
     }
 
     @media only screen and (min-width: 1800px) {
+        .accordion{
+            max-height: 720px !important;
+        }
         .flowdiv {
         padding: 5rem 3.5rem !important;
     }
@@ -2136,7 +2149,7 @@
 
         .about_us {
             /* padding: 0px 75px !important; */
-            height: 89vh !important;
+            height: 80% !important;
         }
 
         .percent-video {
@@ -3337,7 +3350,7 @@
 
     {{-- Map aboutus --}}
 
-    <section class="sec-7">
+    <section class="sec-7 mb-lg-5">
         <div class="container p-lg-5 ">
         <div class="row about_us px-xl-5 justify-content-between">
             <div class="col-sm-6 about_us_height align-items-center d-flex justify-content-center py-3 px-lg-2">
@@ -3360,13 +3373,13 @@
             </div>
 
             <div class="col-sm-6 d-flex">
-                <div class="col-md-6 align-self-end about-img pl-lg-0">
-                    <img style="height:100%; object-fit: cover; object-position: right; border-radius: 20px;"
-                        src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img">
+                <div class="col-md-6 align-self-end about-img  pl-lg-0">
+                    <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
+                        src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img1">
                 </div>
                 <div class="col-md-6 align-self-start about-img pr-lg-0">
-                    <img style="height:100%; object-fit: cover; object-position: right; border-radius: 20px;"
-                        src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img">
+                    <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
+                        src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img2">
                 </div>
             </div>
         </div>
@@ -5071,7 +5084,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-4 bg-dark shadow_ist d-flex flex-column align-items-center">
+                        <div class="col-sm-4 shadow_ist d-flex flex-column align-items-center " style="background-color: rgb(229,242,229)">
                             <div class="accordion">
                                 <h2 class="section-header font-weight-bold my-2">ASK US ANYTHING: FAQs</h2>
                                 <!-- tab-about1 -->
@@ -5084,7 +5097,7 @@
                                             <div id="collapse_{{ $loop->iteration }}"
                                                 class="tab-about-content accordion-body">
                                                 {{-- <p class="text-white">{{ strip_tags($faq->answer) }}</p> --}}
-                                                <p class="text-white">
+                                                <p class="">
                                                     @php
                                                         $answer = str_replace(
                                                             '&nbsp;',
@@ -5100,7 +5113,7 @@
                                 @endforeach
                             </div>
                             <a href="{{ route('customer-help') }}#faq" onclick="informationflag('faq')"
-                                class="text-white m-md-3"> <button class="Faq-btn py-2 px-4 ">More FAQS</button></a>
+                                class="m-md-3"> <button class="Faq-btn py-2 px-4 ">More FAQS</button></a>
                         </div>
                         <div class="col-md-3 col-sm-6 col-12 custom_section_color shadow_row custom_paragraph d-none"
                             style="padding: 1rem">
