@@ -48,10 +48,10 @@
                                     @csrf
 
                                     <div class="tab-content">
-                                        @foreach ($LanguageList as $key => $language)
+                                        {{-- @foreach ($LanguageList as $key => $language) --}}
                                             <div role="tabpanel"
-                                                class="tab-pane fade @if (auth()->user()->language_code == $language->code) show active @endif"
-                                                id="element{{ $language->code }}">
+                                                class="tab-pane fade show active"
+                                                id="elemen">
 
                                                 <div class="col-xl-12">
                                                     <div class="primary_input mb-25">
@@ -60,10 +60,10 @@
                                                             <strong class="text-danger">*</strong>
                                                         </label>
                                                         <input
-                                                            class="primary_input_field addTitle @if (auth()->user()->language_code == $language->code) addTitleActive @endif"
-                                                            name="title[{{ $language->code }}]" placeholder="-"
+                                                            class="primary_input_field addTitle addTitleActive"
+                                                            name="title" placeholder="-"
                                                             type="text"
-                                                            value="{{ old('title.' . $language->code, $blog->getTranslation('title', $language->code)) }}"
+                                                            value="{{ old('title', $blog->title) }}"
                                                             required>
                                                     </div>
                                                 </div>
@@ -74,12 +74,12 @@
                                                             {{ __('blog.Description') }}
 
                                                         </label>
-                                                        <textarea class="custom_summernote" name="description[{{ $language->code }}]" id="" cols="30"
-                                                            rows="10">{{ old('description.' . $language->code, $blog->getTranslation('description', $language->code)) }}</textarea>
+                                                        <textarea class="custom_summernote" name="description" id="" cols="30"
+                                                            rows="10">{{ old('description', $blog->description) }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        {{-- @endforeach --}}
                                     </div>
 
                                     <div class="row">

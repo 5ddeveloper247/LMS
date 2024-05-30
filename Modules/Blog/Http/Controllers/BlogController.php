@@ -92,15 +92,16 @@ class BlogController extends Controller
 
         try {
             $blog = new Blog;
-            foreach ($request->title as $key => $name) {
-                $blog->setTranslation('title', $key, $name);
-            }
-            foreach ($request->description as $key => $description) {
+            // foreach ($request->title as $key => $name) {
+             //   $blog->setTranslation('title', $key, $name);
+            // }
+            // foreach ($request->description as $key => $description) {
                 // $blog->setTranslation('description', $key, $description);
-                if($key == 'en'){
-                    $blog->description = $description;
-                }
-            }
+                // if($key == 'en'){
+                    $blog->title = $request->title;
+                    $blog->description = $request->description;
+                // }
+            // }
             $blog->slug = $request->slug;
             $blog->category_id = $request->category;
             $blog->tags = $request->tags;
@@ -175,12 +176,14 @@ class BlogController extends Controller
 
 
             $blog = Blog::find($request->id);
-            foreach ($request->title as $key => $name) {
-                $blog->setTranslation('title', $key, $name);
-            }
-            foreach ($request->description as $key => $description) {
-                $blog->setTranslation('description', $key, $description);
-            }
+            $blog->title = $request->title;
+            $blog->description = $request->description;
+            // foreach ($request->title as $key => $name) {
+            //     $blog->setTranslation('title', $key, $name);
+            // }
+            // foreach ($request->description as $key => $description) {
+            //     $blog->setTranslation('description', $key, $description);
+            // }
             $blog->slug = $request->slug;
             $blog->featured = $request->featured ?? 0;
             $blog->user_id = Auth::id();

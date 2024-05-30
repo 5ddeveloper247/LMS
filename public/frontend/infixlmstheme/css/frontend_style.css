@@ -2015,7 +2015,7 @@ label {
 }
 
 .header_area .main_menu ul li a {
-    color: var(--system_secendory_color);
+    color: var(--menu_text);
     font-size: 14px;
     font-weight: 600;
     margin: 0 8px;
@@ -2031,7 +2031,7 @@ label {
 
 .header_area .main_menu ul li a.active,
 .header_area .main_menu ul li a:hover {
-    color: var(--system_primery_color);
+    color: var(--menu_hover_text);
 }
 
 
