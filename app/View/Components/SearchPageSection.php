@@ -30,16 +30,36 @@ class SearchPageSection extends Component
         // $query = Course::orderBy('total_enrolled', 'desc')
         //     ->with('user', 'enrolls', 'comments', 'reviews', 'lessons', 'activeReviews', 'enrollUsers', 'class', 'cartUsers', 'quiz', 'quiz.assign', 'courseLevel');
         //$query = Program::orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan');
+        if($this->request->has('search_type')){
+            switch ($this->request->get('search_type')) {
+                case 'program':
+                    $search_type = '%program%';
+                    $wildcard = 'like';
+                    break;
+                case 'course':
+                    $search_type = $this->request->has('search_courseType') ? $this->request->get('search_courseType') : 'program';
+                    $wildcard = $this->request->has('search_courseType') ? 'like' : 'not like';
+                    break;
+            }
+        }else{
+            $search_type = '%';
+            $wildcard = 'like';
+        }
+       // dd($search_type,$wildcard);
         $search = $this->request->has('query') ? '%'.$this->request->get('query').'%' : '%'; 
         $query = PaymentPlans::where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'))
-                        ->whereHas('courses', function ($query) use ($search) {
-                            $query->where('title', 'like', '%'.$search.'%');
+            ->where(function($q) use ($search){
+                       $q->whereHas('courses', function ($query) use ($search) {
+                            $query->where('title', 'like', $search);
                         })
                         ->orWhereHas('programName', function ($query) use ($search) {
-                            $query->where('programtitle', 'like', '%'.$search.'%');
-                        })
+                            $query->where('programtitle', 'like', $search);
+                        });
+                })
+                        ->where('type',$wildcard,$search_type)
                         ->with('courses','programName')
                         ->where('status', 1)->latest();
+                        //dd($query->toSql());
         $total_programs = count($query->get());
         $request = $this->request;
         // $total_programs = Program::orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->count();

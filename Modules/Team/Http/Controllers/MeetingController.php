@@ -252,37 +252,36 @@ class MeetingController extends Controller
 
         try {
             $start_date = Carbon::parse($data['date'])->format('Y-m-d') . ' ' . date("H:i:s", strtotime($data['time']));
-           
-            $minutesToAdd = $data['duration'];
-           // dd($minutesToAdd);
-           $start_time = $start_date;
-            $endTime = date('Y-m-d H:i:s', strtotime($start_date . ' + ' . $minutesToAdd . ' minutes'));
             
+            $minutesToAdd = $data['duration'];
+            // dd($minutesToAdd);
+            $start_time = $start_date;
+            $endTime = date('Y-m-d H:i:s', strtotime($start_date . ' + ' . $minutesToAdd . ' minutes'));
             $teamauthobj = new TeamAuthController();
             $tokenData = $teamauthobj->refreshAccessToken();
-           
+            
             // $tokenData = $this->refreshAccessToken();
             if(array_key_exists("error",$tokenData)){
-              Toastr::error('Error creating Teams meeting link');
-              die();
+                Toastr::error('Error creating Teams meeting link. The API credentials may have expired.');
+                return redirect()->back();
             }else{
-            $access_token = $tokenData['access_token'];
-
-        $startDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $start_time)->format('Y-m-d\TH:i:s\Z');
-        // dd($startDateTime); "2023-12-19T11:48:00Z"
-        // die;
-        $endDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $endTime)->format('Y-m-d\TH:i:s\Z');
-        // echo('start:'. $startDateTime);
-        // echo('endtime'. $endDateTime);
-        // dd('jkfjlaskjfdlkajsflkajs');
-
-           $curl = curl_init();
-           $jsonData = '{"startDateTime":"'.$startDateTime.'", "endDateTime":"'.$endDateTime.'", "subject": "'.$data['description'].'","lobbyBypassSettings":{"scope":"everyone","isDialInBypassEnabled":true}}';
-
-          //dd($jsonData);
-           curl_setopt_array($curl, array(
-               CURLOPT_URL => env('Meeting_Url'),
-               CURLOPT_RETURNTRANSFER => true,
+                $access_token = $tokenData['access_token'];
+                
+                $startDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $start_time)->format('Y-m-d\TH:i:s\Z');
+                // dd($startDateTime); "2023-12-19T11:48:00Z"
+                // die;
+                $endDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $endTime)->format('Y-m-d\TH:i:s\Z');
+                // echo('start:'. $startDateTime);
+                // echo('endtime'. $endDateTime);
+                // dd('jkfjlaskjfdlkajsflkajs');
+                
+                $curl = curl_init();
+                $jsonData = '{"startDateTime":"'.$startDateTime.'", "endDateTime":"'.$endDateTime.'", "subject": "'.$data['description'].'","lobbyBypassSettings":{"scope":"everyone","isDialInBypassEnabled":true}}';
+                
+                //dd($jsonData);
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => env('Meeting_Url'),
+                    CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => '',
                CURLOPT_MAXREDIRS => 10,
                CURLOPT_TIMEOUT => 0,
@@ -293,19 +292,19 @@ class MeetingController extends Controller
                CURLOPT_HTTPHEADER => array(
                    'Content-Type: application/json',
                    'Authorization: Bearer ' . $access_token,
-               ),
-           ));
+                ),
+            ));
 
-           $response = curl_exec($curl);
-           curl_close($curl);
-
-           $response = json_decode($response);
-           
-
-           //dd($response, $jsonPostfields, $jsonData);
-
-
-
+            $response = curl_exec($curl);
+            curl_close($curl);
+            
+            $response = json_decode($response);
+            
+            
+            //dd($response, $jsonPostfields, $jsonData);
+            
+            
+            
             // $r=$response['joinMeetingId'];
             $meeting_id = $response->id ?? null;
             $system_meeting = new TeamMeeting();
@@ -331,7 +330,7 @@ class MeetingController extends Controller
             $system_meeting->meeting_id = strval($meeting_id);
             $system_meeting->password = '';
             $system_meeting->url = $response->joinUrl; // join Url
-          //  $system_meeting->start_url = $response->joinUrl; //meeting _url
+            //  $system_meeting->start_url = $response->joinUrl; //meeting _url
             $system_meeting->start_url = $response->joinWebUrl; //meeting _url
             $system_meeting->start_time = Carbon::parse($start_date)->toDateTimeString();
             $system_meeting->end_time = Carbon::parse($start_date)->addMinute($data['duration'])->toDateTimeString();
@@ -343,8 +342,8 @@ class MeetingController extends Controller
             $user->user_id = Auth::user()->id;
             $user->host = 1;
             $user->save();
-
-
+            
+            
             if ($system_meeting) {
                 Toastr::success(trans('common.Operation successful'), trans('common.Success'));
                 return redirect()->back();

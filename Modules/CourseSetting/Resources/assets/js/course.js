@@ -3,7 +3,7 @@ let baseURL = $("#url").val();
 $(document).ready(function () {
     $("#category_id").on("change", function () {
         var url = $("#url").val();
-        // console.log(url);
+        console.log(url);
 
         var formData = {
             id: $(this).val(),

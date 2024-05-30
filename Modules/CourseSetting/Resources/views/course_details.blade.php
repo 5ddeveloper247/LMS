@@ -1109,7 +1109,7 @@
                                                         <div class="col-xl-6 courseBox mb-25">
                                                             <select class="primary_select"
                                                                  name="category"
-                                                                id="category_id">
+                                                                id="course_cat_id">
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('quiz.Category') }}"
                                                                     value="">{{ __('common.Select') }}
@@ -1131,9 +1131,9 @@
                                                             </select>
                                                         </div>
 
-                                                        <div class="col-xl-6 courseBox mb-25 subCategoryDiv">
+                                                        <div class="col-xl-6 courseBox mb-25" id="subCatDiv">
                                                             <select class="primary_select" name="sub_category"
-                                                                id="subcategory_id">
+                                                                id="subcat_id">
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('courses.Sub Category') }}"
                                                                     value="">{{ __('common.Select') }}
@@ -2700,7 +2700,7 @@
                     });
                 });
 
-
+                
 
                 $(document).on('change', '.AddSelectCateogry', function(e) {
                     var category = $(".AddSelectCateogry option:selected").val();
@@ -2994,6 +2994,59 @@
         // Image Cropper End
     </script>
     <script>
+
+        $('#course_cat_id').on('change',function(){
+                   var url = $("#url").val();
+                    console.log(url);
+
+                    var formData = {
+                        id: $(this).val(),
+                    };
+                    // get section for student
+                    $.ajax({
+                        type: "GET",
+                        data: formData,
+                        dataType: "json",
+                        url: url + "/" + "admin/course/ajaxGetCourseSubCategory",
+                        success: function (data) {
+                            var a = "";
+                            // $.loading.onAjax({img:'loading.gif'});
+                            $.each(data, function (i, item) {
+                                if (item.length) {
+                                    $("#subcat_id").find("option").not(":first").remove();
+                                    $("#subCatDiv ul").find("li").not(":first").remove();
+
+                                    $.each(item, function (i, section) {
+                                        $("#subcat_id").append(
+                                            $("<option>", {
+                                                value: section.id,
+                                                text: section.name[lang],
+                                            })
+                                        );
+
+                                        $("#subCatDiv ul").append(
+                                            "<li data-value='" +
+                                            section.id +
+                                            "' class='option'>" +
+                                            section.name[lang] +
+                                            "</li>"
+                                        );
+                                    });
+                                    $("#subCatDiv .current").html("Select Sub Category");
+                                } else {
+                                    $("#subCatDiv .current").html("Select Sub Category");
+                                    $("#subcat_id").find("option").not(":first").remove();
+                                    $("#subCatDiv ul").find("li").not(":first").remove();
+                                }
+                            });
+                            // console.log(a);
+                        },
+                        error: function (data) {
+                            console.log("Error:", data);
+                        },
+                    });
+                });
+
         function showCnaPrepPrice() {
             if ($('.type2').is(':checked')) {
                 $('#price_div').removeClass('d-none');
@@ -3569,7 +3622,7 @@
                 }
 
                 if (type == 1) {
-                    if (isEmpty($('#edit_category_id').val())) {
+                    if (isEmpty($('#course_cat_id').val())) {
                         errors.push("Category is required");
                     }
                 }

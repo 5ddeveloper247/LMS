@@ -660,7 +660,28 @@
     });
 
     function selectedSearch(name,type='program') {
+
+        if(type != null){
+            switch (type) {
+                case 'prep_course_live':
+                    
+                    name = name + '(Prep Course - Live)';
+                    break;
+                    case 'full_course':
+                    name = name + '(Full Course)';
+                    
+                    break;
+                    case 'program':
+                    name = name + '(Program)';
+                    
+                    break;
+            
+                default:
+                    break;
+            }
+        }
         if (localStorage.getItem('is_program_search') == 1) {
+
             $('#search_form').find('#search').val(name);
             $('#search_form').find('#search').focus();
             $('#search_listing').remove();

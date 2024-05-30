@@ -535,9 +535,6 @@ class VirtualClassController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request);
-
-          
 
         $code = auth()->user()->language_code;
         try {
@@ -674,28 +671,27 @@ class VirtualClassController extends Controller
             }
 
             // $programkeyToRemove = array_search('program', $ctypes);
-            //dd($date_today->format('Y-m-d'),$StartDate->format('Y-m-d'),$EndDate->format('Y-m-d'),$courseTotalClasses);
-
-            if ($ctypes != '') {
-                // unset($ctypes[$programkeyToRemove]);
-                $class->program_types = 'true';
+         //   dd($date_today->format('Y-m-d'),$StartDate->format('Y-m-d'),$EndDate->format('Y-m-d'),$courseTotalClasses);
+         if ($ctypes != '') {
+             // unset($ctypes[$programkeyToRemove]);
+             $class->program_types = 'true';
             } else {
                 $class->program_types = 'false';
             }
-
+            
             $class->course_types = (json_encode($ctypes) != null) ? json_encode($ctypes) : [];
-
+            
             if ($request->type == 1) {
                 $interval = $this->dateInterval($request->start_date, $request->end_date, 1);
-
+                
                 //if (!empty($request->start_date)) {
-
+                    
                     $class->start_date = $StartDate;
                     //$class->start_date = date('Y-m-d', strtotime($request->start_date));
-                //}
-                //if (!empty($request->end_date)) {
-                    $class->end_date = $EndDate;
-                    //$class->end_date = date('Y-m-d', strtotime($request->end_date));
+                    //}
+                    //if (!empty($request->end_date)) {
+                        $class->end_date = $EndDate;
+                        //$class->end_date = date('Y-m-d', strtotime($request->end_date));
                 //}
                 if (!empty($request->days)) {
                     $class->class_day = $request->days;
@@ -714,14 +710,14 @@ class VirtualClassController extends Controller
             if ($request->file('image') != "") {
                 $class->image = $this->saveImage($request->image);
             }
-
+            
             $course = new Course();
             $course->scope = isset($request->scope) ? $request->scope : '1';
             //             $course->class_id = $class->id;
             $course->user_id = Auth::id();
             $course->lang_id = $request->lang_id;
             $course->title = $request->title;
-
+            
             if (showEcommerce()) {
                 if ($request->free == '0') {
                     $course->price = 0;
@@ -734,7 +730,7 @@ class VirtualClassController extends Controller
 
             $ctypes1 = isset($request->courseType) ? $request->courseType : [];
             $programkeyToRemove1 = array_search('program', $ctypes1);
-
+            
             if ($programkeyToRemove1 !== false) {
                 unset($ctypes1[$programkeyToRemove1]);
                 $course->program_types = 'true';
@@ -744,19 +740,19 @@ class VirtualClassController extends Controller
             $course->course_types = (json_encode($ctypes1) != null) ? json_encode($ctypes1) : [];
 
             // foreach ($request->title as $key => $title) {
-            //     $course->setTranslation('title', $key, $title);
-            // }
-
-            //             foreach ($request->description as $key => $about) {
-            //                 $course->setTranslation('about', $key, $about);
-            //             }
-            $course->about = $request->description;
-
-            if (isModuleActive('Org')) {
-                $course->required_type = $request->required_type;
-            } else {
-                $course->required_type = 0;
-            }
+                //     $course->setTranslation('title', $key, $title);
+                // }
+                
+                //             foreach ($request->description as $key => $about) {
+                    //                 $course->setTranslation('about', $key, $about);
+                    //             }
+                    $course->about = $request->description;
+                    
+                    if (isModuleActive('Org')) {
+                        $course->required_type = $request->required_type;
+                    } else {
+                        $course->required_type = 0;
+                    }
 
             if (Settings('frontend_active_theme') == "edume") {
                 $course->what_learn1 = $request->what_learn1;
@@ -764,7 +760,7 @@ class VirtualClassController extends Controller
             }
 
             $course->certificate_id = $request->certificate;
-
+            
             if ($request->file('image') != "") {
                 $course->image = $this->saveImage($request->image);
                 $course->thumbnail = $this->saveImage($request->image, 270);
@@ -773,36 +769,36 @@ class VirtualClassController extends Controller
             if (!empty($request->assign_instructor)) {
                 $course->user_id = $request->assign_instructor;
             }
-            //             if (!empty($request->assistant_instructors)) {
-            //                 $assistants = $request->assistant_instructors;
-            //                 if (($key = array_search($course->user_id, $assistants)) !== false) {
-            //                     unset($assistants[$key]);
-            //                 }
-            //                 if (!empty($assistants)) {
-            //                     $course->assistant_instructors = json_encode(array_values($assistants));
-            //                 }
-            //             }
-            $course->type = 3;
+                        if (!empty($request->assistant_instructors)) {
+                            $assistants = $request->assistant_instructors;
+                            if (($key = array_search($course->user_id, $assistants)) !== false) {
+                                unset($assistants[$key]);
+                            }
+                            if (!empty($assistants)) {
+                                $course->assistant_instructors = json_encode(array_values($assistants));
+                            }
+                        }
+                        $course->type = 3;
 
-            $start_date = strtotime($class['start_date']);
-            $end_date = strtotime($class['end_date']);
-            if ($class->type == 0) {
+                        $start_date = strtotime($class['start_date']);
+                        $end_date = strtotime($class['end_date']);
+                        if ($class->type == 0) {
                 $end_date = strtotime($class['start_date']);
             }
 
             $datediff = $end_date - $start_date;
 
             $days = ceil($datediff / (60 * 60 * 24)) + 1;
-
+            
             $class->duration = $request->duration;
-
+            
             $class->total_class = $days;
-
-
+            
+            
             $class->save();
-
+            
             $course->class_id = $class->id;
-
+            
             $course->save();
             if (!empty($request->assign_instructor)) {
                 send_email(
@@ -811,47 +807,48 @@ class VirtualClassController extends Controller
                     [
                         'time' => \Carbon\Carbon::now()->format('d-M-Y, g:i A'),
                         'class' => $course->title
-                    ]
-                );
-            }
-
-            if ($days != 0) {
-                for (
-                    $i = 0;
-                    $i < $days;
-                    $i++
-                ) {
-                    $new_date = date('m/d/Y', strtotime($class['start_date'] . '+' . $i . ' day'));
+                        ]
+                    );
+                }
+                
+                if ($days != 0) {
+                    for (
+                        $i = 0;
+                        $i < $days;
+                        $i++
+                        ) {
+                            $new_date = date('m/d/Y', strtotime($class['start_date'] . '+' . $i . ' day'));
                     if(Carbon::parse($new_date)->is($dayofWeek)){
-                      if ($class->host == "Team") {
+                        if ($class->host == "Team") {
+                            
+                            $fileName = "";
+                            if ($request->file('attached_file') != "") {
+                                $file = $request->file('attached_file');
+                                $ignore = strtolower($file->getClientOriginalExtension());
+                              if ($ignore != 'php') {
+                                  $fileName = $request->topic . time() . "." . $file->getClientOriginalExtension();
+                                  $file->move('public/uploads/team-meeting/', $fileName);
+                                  $fileName = 'public/uploads/team-meeting/' . $fileName;
+                                }
+                          }
+                          
+                          //    dd("fjdaksjfkjsakfjlsakjf");
+                          
+                          $result= $this->createClassWithTeam($class, $new_date, $request, $fileName);
+                          //dd('test');
+                       
+                          
+                      }
 
+                      elseif ($class->host == "Zoom") {
+                          
                           $fileName = "";
                           if ($request->file('attached_file') != "") {
                               $file = $request->file('attached_file');
                               $ignore = strtolower($file->getClientOriginalExtension());
                               if ($ignore != 'php') {
                                   $fileName = $request->topic . time() . "." . $file->getClientOriginalExtension();
-                                  $file->move('public/uploads/team-meeting/', $fileName);
-                                  $fileName = 'public/uploads/team-meeting/' . $fileName;
-                              }
-                          }
-
-                      //    dd("fjdaksjfkjsakfjlsakjf");
-
-                        $result= $this->createClassWithTeam($class, $new_date, $request, $fileName);
-                       
-
-                      }
-
-                      elseif ($class->host == "Zoom") {
-
-                        $fileName = "";
-                        if ($request->file('attached_file') != "") {
-                            $file = $request->file('attached_file');
-                            $ignore = strtolower($file->getClientOriginalExtension());
-                            if ($ignore != 'php') {
-                                $fileName = $request->topic . time() . "." . $file->getClientOriginalExtension();
-                                $file->move('public/uploads/zoom-meeting/', $fileName);
+                                  $file->move('public/uploads/zoom-meeting/', $fileName);
                                 $fileName = 'public/uploads/zoom-meeting/' . $fileName;
                             }
                         }
@@ -934,7 +931,7 @@ class VirtualClassController extends Controller
             return redirect()->back();
         }
        catch (Exception $e) {
-            //Toastr::error($e->getMessage(), 'Error!');
+           // Toastr::error($e->getMessage(), 'Error!');
             Toastr::error(trans('common.Something Went Wrong'), 'Error!');
             return redirect()->back();
         }
@@ -2079,7 +2076,6 @@ class VirtualClassController extends Controller
         $data['host_video'] = $setting->host_video;
         $data['participant_video'] = $setting->participant_video;
         $data['join_before_host'] = $setting->join_before_host;
-
         $result = $meeting->classStore($data);
         
 

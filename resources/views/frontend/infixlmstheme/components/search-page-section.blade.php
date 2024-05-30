@@ -27,6 +27,11 @@
         overflow: hidden;
     }
 
+    .filter-tabs input[type="radio"],
+    .filter-tabs input[type="checkbox"] {
+        display:none;
+    }
+
     /* @media (width > 1650px) {
         .breadcrumb_area .breadcam_wrap h3 {
             font-size: 100px !important;
@@ -71,7 +76,10 @@
         border-radius: 20px !important;
     }
 
-    .nav-sub-links.active {
+    .nav-sub-links.active,
+    .filter-tabs input[type="radio"]:checked + label.nav-sub-links,
+    .filter-tabs input[type="checkbox"]:checked + label.nav-sub-links
+    {
         background-color: var(--system_primery_color) !important;
         color: #fff !important;
         border: 1px solid var(--process--text-color) !important;
@@ -87,6 +95,7 @@
 <div>
     <div class="container">
         <h2 class="px-md-5 px-2 pt-5">Please Choose Type</h2>
+        <div class="filter-tabs">
         <div class="d-flex align-items-center px-md-5 px-2">
             <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 mb-2 tab-padding" id="pills-tab" role="tablist">
                 <li id="filter-type" class="nav-item px-1" role="presentation">
@@ -106,14 +115,14 @@
                 </li>
                 <li id="filter-prize" class="nav-item px-1" role="presentation">
                     <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
-                        Prize
+                        Price
                     </button>
                 </li>
-                <li id="filter-duration" class="nav-item px-1" role="presentation">
+                {{-- <li id="filter-duration" class="nav-item px-1" role="presentation">
                     <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
                         Duration
                     </button>
-                </li>
+                </li> --}}
             </ul>
 
         </div>
@@ -122,29 +131,16 @@
             <div class="d-flex align-items-center px-md-5 px-2">
                 <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 mb-2 tab-padding" id="pills-tab" role="tablist">
                     <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center active" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
-                            Type 1
-                        </button>
+                        <input type="radio" name="search_type" id="typeProgram" value="program" @if($request->has('search_type') && $request->get('search_type') == 'program') checked @endif>
+                        <label for="typeProgram" class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
+                            Programs
+                        </label>
                     </li>
                     <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
-                            Type 2
-                        </button>
-                    </li>
-                    <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links create-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
-                            Type 3
-                        </button>
-                    </li>
-                    <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
-                            Type 4
-                        </button>
-                    </li>
-                    <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
-                            Type 5
-                        </button>
+                        <input type="radio" name="search_type" id="typeCourse" value="course" @if($request->has('search_type') && $request->get('search_type') == 'course') checked @endif>
+                        <label for="typeCourse" class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                            Courses
+                        </label>
                     </li>
                 </ul>
             </div>
@@ -152,8 +148,17 @@
         <!-- filter title  -->
         <div id="filter-name-content" style="display: none">
             <div class="d-flex flex-column align-items-start px-md-5 px-2">
-                <label for="program_title">Program Title</label>
-                <input type="text" name="program_title" class="form-control form-control-sm" id="program_title" value="{{ request()->has('filter') ? request()->input('program_title','') : '' }}" placeholder="Enter Program Name">
+                <label for="program_title">Search Course / Program</label>
+                {{-- <input type="text" name="program_title" class="form-control form-control-sm" id="program_title" value="{{ request()->has('filter') ? request()->input('program_title','') : '' }}" placeholder="Enter Program Name"> --}}
+                <div class="align-items-center d-flex input-group bg-light w-75">
+                    <input type="text" class="form-control bg-transparent" id="search_query" placeholder="Search for Courses / Programs" value="{{$request->has('query') ? $request->get('query') : ''}}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search for Courses / Programs'">
+                                            <div class="input-group-prepend">
+                                                <button class="btn" type="button" id="search_button"><i class="ti-search"></i>
+                                                </button>
+                                            </div>
+
+                                        </div>
+                
                 <div id="program_list" class="position-absolute"></div>
             </div>
         </div>
@@ -166,34 +171,40 @@
                     </div>
                     <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 mb-2 tab-padding" id="pills-tab" role="tablist">
                     <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center active" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
+                        <input type="radio" name="search_courseType" value="big_quiz" id="search_big_quiz" @if($request->has('search_courseType') && $request->get('search_courseType') == 'big_quiz') checked @endif>
+                        <label for="search_big_quiz" class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
                             Big Quiz
-                        </button>
+                        </label>
                     </li>
                     <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                        <input type="radio" name="search_courseType" value="full_course" id="search_full_course" @if($request->has('search_courseType') && $request->get('search_courseType') == 'full_course') checked @endif>
+                        <label for="search_full_course" class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
                             Full Course
-                        </button>
+                        </label>
                     </li>
                     <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links create-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                        <input type="radio" name="search_courseType" value="prep_course_ondemand" id="search_prep_course_ondemand" @if($request->has('search_courseType') && $request->get('search_courseType') == 'prep_course_ondemand') checked @endif>
+                        <label for="search_prep_course_ondemand" class="nav-sub-links create-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
                             Prep-Course(On-Demand)
-                        </button>
+                        </label>
                     </li>
                     <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                        <input type="radio" name="search_courseType" value="prep_course_live" id="search_prep_course_live" @if($request->has('search_courseType') && $request->get('search_courseType') == 'prep_course_live') checked @endif>
+                        <label for="search_prep_course_live" class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
                         Prep-Course(Live)
-                        </button>
+                        </label>
                     </li>
                     <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                        <input type="radio" name="search_courseType" value="time_table" id="search_time_table" @if($request->has('search_courseType') && $request->get('search_courseType') == 'time_table') checked @endif>
+                        <label for="search_time_table" class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
                             Time Table
-                        </button>
+                        </label>
                     </li>
                     <li class="nav-item px-1" role="presentation">
-                        <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                        <input type="radio" name="search_courseType" value="repeat_course" id="search_repeat_course" @if($request->has('search_courseType') && $request->get('search_courseType') == 'repeat_course') checked @endif>
+                        <label for="search_repeat_course" class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
                             Repeat Course
-                        </button>
+                        </label>
                     </li>
                 </ul>
             </div>
@@ -228,7 +239,7 @@
 
         <div id="filter-duration-content" style="display: none;">filter-duration</div>
 
-
+    </div>
 
     </div>
     <div class="courses_area ">
@@ -356,7 +367,7 @@
                                 @if (!isset($search))
                                 {{ __('frontend.No Course Found') }}
                                 @else
-                                {{ __('frontend.No results found for') }} {{ $search }}
+                                {{ __('No results found') }} {{ $request->has('query') ? 'for '.$request->get('query') : '' }}
                                 @endif
                             </div>
                         </h1>
@@ -387,13 +398,31 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     const buttons = document.querySelectorAll('.nav-sub-links');
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-            });
-            button.classList.add('active');
-        });
+    // buttons.forEach(button => {
+    //     button.addEventListener('click', () => {
+    //         buttons.forEach(btn => {
+    //             btn.classList.remove('active');
+    //         });
+    //         button.classList.add('active');
+    //     });
+    // });
+    $('input[name="search_type"]').on('change',function(){
+        let value = $(this).val();
+        let url = new URL(window.location.href);
+        url.searchParams.set('search_type', value);
+        window.location.href = url.toString();
+    });
+    $('input[name="search_courseType"]').on('change',function(){
+        let value = $(this).val();
+        let url = new URL(window.location.href);
+        url.searchParams.set('search_courseType', value);
+        window.location.href = url.toString();
+    });
+    $('#search_button').on('click',function(){
+        let value = $('#search_query').val();
+        let url = new URL(window.location.href);
+        url.searchParams.set('query', value);
+        window.location.href = url.toString();
     });
     $(document).on('click', '#filter-type', function() {
         $('#filter-type-content').show();

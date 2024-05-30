@@ -2069,11 +2069,28 @@ class WebsiteController extends Controller
                     foreach ($query as $item) {
                         switch ($item->type) {
                             case 'program':
-                                $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->programName->programtitle . '\',\''.$item->type.'\')">' . $item->programName->programtitle . '</li>';
+                                $search_output .= '<li class="list-group-item on_cursor"><a class="text-dark" href="'.route('programs.detail',[$item->parent_id]).'">' . $item->programName->programtitle . ' <small>(Program)</small></a></li>';
+                                // $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->programName->programtitle . '\',\''.$item->type.'\')"><a href="'.route('programs.detail',[$item->id]).'">' . $item->programName->programtitle . '</li>';
                                 break;
                                 
                                 default:
-                                $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->courses->parent->title . '\',\''.$item->type.'\')">' . $item->courses->parent->title . '</li>';
+                                    switch ($item->type) {
+                                        case 'prep_course_live':
+                                            $courseType = 6;
+                                            $courseTypeName = 'Prep Course - Live';
+                                            break;
+                                        case 'full_course':
+                                            $courseType = 4;
+                                            $courseTypeName = 'Full Course';
+                                            break;
+                                        
+                                        default:
+                                            $courseType = 1;
+                                            $courseTypeName = 'Course';
+                                            break;
+                                    }
+                                $search_output .= '<li class="list-group-item on_cursor"><a class="text-dark" href="'.route('courseDetailsView',['slug' => $item->courses->parent->slug,'courseType' => $courseType]).'">' . $item->courses->parent->title . ' <small>('.$courseTypeName.')</small></a></li>';
+                                // $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->courses->parent->title . '\',\''.$item->type.'\')"><a href="'.route('courseDetailsView',['slug' => $item->parent->slug,'courseType' => $courseType]).'">' . $item->courses->parent->title . '</li>';
                                 
                                 break;
                         }

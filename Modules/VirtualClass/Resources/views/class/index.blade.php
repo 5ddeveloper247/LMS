@@ -147,7 +147,7 @@
                                             </div>
                                         @endif
 
-                                        <div class="row mt-25 d-none">
+                                        <div class="row mt-25">
                                             <div class="col-xl-12">
                                                 <div class="primary_input">
                                                     <label class="primary_input_label"

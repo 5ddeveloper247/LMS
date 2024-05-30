@@ -355,21 +355,21 @@
 
 
                 <h6 class="text-center mb-4 text-capitalize heading-login hidemainContent">hello, welcome to merakii </h6>
-
+                @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true' || saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
                 <div class="socail_links hidemainContent">
-
+                    @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true')
                     <a href="{{ route('social.oauth', 'facebook') }}" class="facebookLoginBtn text-center p-2">
                         <i class="fab fa-facebook-f"></i>
                         {{ __('frontend.Login with Facebook') }}</a>
-
-
+                    @endif
+                    @if(saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
                     <a href="{{ route('googleredirect') }}" class="googleLoginBtn text-center p-2">
                         <i class="fab fa-google"></i>
                         {{ __('frontend.Login with Google') }}</a>
-
+                    @endif
                 </div>
                 <h6 class="hidemainContent text-center mt-4 mb-2 text-capitalize heading-login"> OR</h6>
-
+                @endif
                 <h6 class="hidemainContent text-center mb-4 text-capitalize heading-login"> please fill the form
                     below to get started</h6>
                 <form action="{{ route('login') }}" method="POST" id="loginForm" class="hidemainContent">
