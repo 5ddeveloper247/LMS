@@ -590,7 +590,9 @@ class RegisterController extends Controller
              // dd($paymentResponse->paid);
             // dd($paymentResponse->paid, $clover->makePayment($request, 'student_register', true, null, true));
             if ($paymentResponse["paid"]) {
-
+                $user = User::find($request->user_id);
+                $user->enrolled_date = date('Y-m-d');
+                $user->save();
                 // SendGeneralEmail::dispatch(User::find($request->user_id),  'New_Student_Reg', [
                 //     'time' => Carbon::now()->format('d-M-Y, g:i A'),
                 // ]);

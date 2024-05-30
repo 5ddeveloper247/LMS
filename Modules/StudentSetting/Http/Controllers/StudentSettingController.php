@@ -864,6 +864,12 @@ class StudentSettingController extends Controller
             ->editColumn('reg_src', function ($query) {
                 return $query->register_source ?? '';
             })
+            ->editColumn('enrolled_date', function ($query) {
+                return $query->enrolled_date ?? '';
+            })
+            ->editColumn('preregister_date', function ($query) {
+                return $query->preregister_date ?? '';
+            })
             ->addColumn('status', function ($query) {
                 $route = 'student.change_status';
                 return view('backend.partials._td_status', compact('query', 'route'));

@@ -259,9 +259,9 @@ class MeetingController extends Controller
             $endTime = date('Y-m-d H:i:s', strtotime($start_date . ' + ' . $minutesToAdd . ' minutes'));
             $teamauthobj = new TeamAuthController();
             $tokenData = $teamauthobj->refreshAccessToken();
-            
             // $tokenData = $this->refreshAccessToken();
             if(array_key_exists("error",$tokenData)){
+                
                 Toastr::error('Error creating Teams meeting link. The API credentials may have expired.');
                 return redirect()->back();
             }else{
@@ -282,14 +282,14 @@ class MeetingController extends Controller
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => env('Meeting_Url'),
                     CURLOPT_RETURNTRANSFER => true,
-               CURLOPT_ENCODING => '',
-               CURLOPT_MAXREDIRS => 10,
-               CURLOPT_TIMEOUT => 0,
-               CURLOPT_FOLLOWLOCATION => true,
-               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-               CURLOPT_CUSTOMREQUEST => 'POST',
-               CURLOPT_POSTFIELDS => $jsonData,
-               CURLOPT_HTTPHEADER => array(
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => $jsonData,
+                    CURLOPT_HTTPHEADER => array(
                    'Content-Type: application/json',
                    'Authorization: Bearer ' . $access_token,
                 ),

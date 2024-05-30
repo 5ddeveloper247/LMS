@@ -53,6 +53,8 @@ class PreRegistrationController extends Controller{
         'language_code' => Settings('language_code') ?? 'en',
         'language_rtl' => Settings('language_rtl') ?? '0',
         'country' => Settings('country_id'),
+        'enroll_date' => null,
+        'preregister_date' => date('Y-m-d'),
         'username' => null,
         'address' =>  null,
         'status' => 1,

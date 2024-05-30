@@ -69,6 +69,7 @@
                                             <th scope="col">{{ __('common.Date of Birth') }}</th>
                                             <th scope="col">{{ __('common.Country') }}</th>
                                             <th scope="col">{{ __('Enrolled') }}</th>
+                                            <th scope="col" id="dateTitle">{{ __('Enrollment Date') }}</th>
                                             <th scope="col">{{ __('Registration Source') }}</th>
                                             <th scope="col">{{ __('common.Status') }}</th>
                                             <th scope="col">{{ __('common.Action') }}</th>
@@ -755,6 +756,8 @@
         });
       populateTable('enrolled');
       function populateTable(type){
+        let headtitle = (type == 'enrolled') ? 'Enrollment Date' : 'Pre Register Date';
+        $('#dateTitle').html(headtitle);
         $('.filter-link').removeClass('active');
         $('.filter-link.'+type).addClass('active');
         let table = $('#lms_table').DataTable({
@@ -824,6 +827,10 @@
                     name: 'enrolled'
                 },
                 {
+                    data: (type == 'enrolled') ? 'enrolled_date' : 'preregister_date',
+                    name: (type == 'enrolled') ? 'enrolled_date' : 'preregister_date'
+                },
+                {
                     data: 'reg_src',
                     name: 'reg_src'
                 },
@@ -886,8 +893,7 @@
                     title: $("#logo_title").val(),
                     titleAttr: '{{ __('common.PDF') }}',
                     exportOptions: {
-                        columns: ':visible',
-                        columns: ':not(:last-child)',
+                        columns: ':visible:not(:last-child):not(:nth-child(2)):not(:nth-child(6)):not(:nth-child(7)):not(:nth-child(11))',
                     },
                     orientation: 'landscape',
                     pageSize: 'A4',
@@ -895,8 +901,10 @@
                     alignment: 'center',
                     header: true,
                     customize: function(doc) {
-                        doc.content[1].table.widths =
-                            Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        console.log(doc);
+                        doc.content[1].table.widths = ['5%','30%','30%','30%','5%'];
+                        // doc.content[1].table.widths =
+                        //     Array(doc.content[1].table.body[0].length + 1).join('*').split('');
                     }
 
                 },
