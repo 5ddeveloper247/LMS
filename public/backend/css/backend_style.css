@@ -1113,7 +1113,7 @@ button:focus {
 
 .modal-content .modal-header {
     /* background: url(../img/modal-header-bg.png) no-repeat 50%; */
-    background: linear-gradient(45deg, #0079a8 0%, #996699 90%, #0079a8 100%);
+    background: linear-gradient(70deg, #996699  40%, #ff7618 100%, var(--system_secendory_color));
     background-size: cover;
     border-radius: 5px 5px 0 0;
     border: 0;

@@ -5,7 +5,7 @@
 @section('content')
 
 
-    <div class="login_wrapper">
+    <div class="login_wrapper d-flex align-items-center justify-content-center my-4">
         <div class="login_wrapper_left">
             {{-- <div class="logo">
                 <a href="{{ url('/') }}">

@@ -1572,6 +1572,7 @@
     /* logos section end */
     .about-img {
         height: 300px;
+        width: 350px;
     }
     .about_us_img1{
         position: absolute;
@@ -3375,11 +3376,11 @@
             <div class="col-sm-6 d-flex">
                 <div class="col-md-6 align-self-end about-img  pl-lg-0">
                     <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                        src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img1">
+                        src="{{ asset('public/assets/courses-2.jpg') }}" class="img-fluid about_us_img1 w-100">
                 </div>
-                <div class="col-md-6 align-self-start about-img pr-lg-0">
+                <div class="col-md-6 align-self-start about-img p-lg-0">
                     <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                        src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img2">
+                        src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img2 w-100">
                 </div>
             </div>
         </div>

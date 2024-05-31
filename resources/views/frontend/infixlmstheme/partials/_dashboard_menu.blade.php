@@ -36,11 +36,12 @@
     }
 
     .dashboard_notification_list .recent_notifications:hover {
-        background: linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color));
+        background: linear-gradient(90deg, var(--system_secendory_color), var(--footer_background_color));
+        text-decoration: none;
     }
 
     .menu_icon svg {
-        color: var(--system_secondory_color);
+        color: var(--system_secendory_color);
     }
 
     .sidebar ul li a:hover svg {
@@ -48,12 +49,12 @@
     }
 
     .profile_info_icon svg {
-        color: var(--system_secondory_color);
+        color: var(--system_secendory_color);
     }
 
     .dashboard_title .custom_student_text_color,
     .head .custom_student_text_color {
-        background: -webkit-linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color));
+        background: -webkit-linear-gradient(90deg, var(--system_secendory_color), var(--footer_background_color));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }

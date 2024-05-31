@@ -37,7 +37,7 @@
                                             </p>
 
                                             <input type="hidden" id="user_id" value="{{ $profile->id }}">
-                                            <label class="form-label">Upload Form</label>
+                                            <label for="form_upload" class="form-label theme_btn mb-4">Upload Form</label>
                                             <input type="file" name="user_agreement_form" id="form_upload"
                                                    class="form-control primary-input">
                                         </form>
@@ -68,7 +68,7 @@
                                         </p>
 
                                         <input type="hidden" id="user_id" value="{{ $profile->id }}">
-                                        <label class="form-label">Upload Form</label>
+                                        <label for="form_upload" class="form-label theme_btn mb-4">Upload Form</label>
                                         <input type="file" name="user_agreement_form" id="form_upload"
                                                class="form-control primary-input">
                                     </form>
