@@ -49,21 +49,24 @@
         }
 
         .pop-up-row {
-            max-height: 350px;
+            max-height: 400px;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
         }
+        .popup-dialog{
+            max-width: 800px !important;
+        }
 
         @media screen and (min-width: 1400px) {
 
             .popup-dialog {
-                max-width: 961px !important;
+                max-width: 1000px !important;
             }
 
             .pop-up-row {
-                max-height: 450px;
+                max-height: 500px;
             }
         }
 

@@ -2,14 +2,14 @@
 use Illuminate\Support\Facades\DB;
 $clover = DB::table('clover_details')->first();
 ?>
-<div class="container">
+<div class="container p-5">
     <form action="{{ route('makePlaceOrder') }}" id="orderFrom" method="post" class="mb-4">
         @csrf
-        <div class="checkout_wrapper" id="mainFormData">
+        <div class="row checkout_wrapper d-flex px-lg-5" id="mainFormData">
             <input type="hidden" name="tracking_id" value="{{ $checkout->tracking }}">
 
             <input type="hidden" name="id" value="{{ $checkout->id }}">
-            <div class="billing_details_wrapper">
+            <div class="col-lg-7 billing_details_wrapper">
                 @if (count($bills) > 0)
                     <div class="row">
                         <div class="col-lg-12 col-12">
@@ -258,7 +258,7 @@ $clover = DB::table('clover_details')->first();
                     </div>
                 </div>
             </div>
-            <div class="order_wrapper">
+            <div class="col-lg-5 order_wrapper">
                 <h5 class="f_w_700 mb_30">{{ __('frontend.Your order') }}</h5>
                 <div class="ordered_products">
                     @php

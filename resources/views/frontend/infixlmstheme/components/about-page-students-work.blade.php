@@ -172,15 +172,15 @@
 
             <div class="slide">
 
-                <div class="row px-5 justify-content-center elem pb-5">
+                <div class="row px-md-5 px-2 justify-content-center elem pb-5">
 
-                    <div class="col-6 aboutus-img">
+                    <div class="col-md-6 aboutus-img">
 
                         <img src="{{ asset('/public/uploads/images/footerimg/image1.jpg') }}">
 
                     </div>
 
-                    <div class="col-6 pl-5 elem-content d-flex flex-column justify-content-center">
+                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center">
 
                         <p class="custom_paragraph my-5">This is the first paragraph on the right side of the circle.his
                             is the
@@ -203,15 +203,15 @@
 
             <div class="slide">
 
-                <div class="row px-5 justify-content-center elem">
+                <div class="row px-md-5 px-2 justify-content-center elem">
 
-                    <div class=" col-6 aboutus-img">
+                    <div class=" col-md-6 aboutus-img">
 
                         <img src="{{ asset('/public/uploads/images/footerimg/image2.jpg') }}">
 
                     </div>
 
-                    <div class="col-6 pl-5 elem-content d-flex flex-column justify-content-center">
+                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center">
 
                         <p class="my-5">First, we have our physical health. This means being fit physically and in the
                             absence of any kind of disease or illness. When you have good physical health, you will have
@@ -230,15 +230,15 @@
 
             <div class="slide">
 
-                <div class="row px-5 justify-content-center elem">
+                <div class="row px-md-5 px-2 justify-content-center elem">
 
-                    <div class="col-6 aboutus-img">
+                    <div class="col-md-6 aboutus-img">
 
                         <img src="{{ asset('/public/uploads/images/footerimg/image3.jpg') }}">
 
                     </div>
 
-                    <div class="col-6 pl-5 elem-content d-flex flex-column justify-content-center">
+                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center">
 
                         <p class="my-5 ">Next, we talk about our mental health. Mental health refers to the
                             psychological and emotional well-being of a person. The mental health of a person impacts

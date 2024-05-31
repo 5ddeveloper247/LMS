@@ -325,11 +325,11 @@
     }
 
     .bg {
-        background-color: #ffe5b4;
+        background-color: #b2dfcc;
     }
 
     .brdr-btm-of-txt {
-        border-bottom: 1px solid #f5e9d4;
+        border-bottom: 1px solid#9fcdb9;
     }
 
     .padding-top-of-first-part {

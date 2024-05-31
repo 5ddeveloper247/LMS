@@ -48,13 +48,8 @@
 }
 
 .course_fullview_wrapper .course__play_warp {
-    /* top: 53px; */
-    top: 50%;
-    transform: translateY(-32%);
-}
-
-.course_fullview_wrapper {
-    /* min-height: calc(100vh - 53px); */
+    /* top: 33%;
+    transform: translateY(-15%) !important; */
 }
 
 .progress {
@@ -1567,7 +1562,7 @@ Due to the split circle of progress-left and progress right, we must use the ani
     .course_fullview_wrapper .course__play_warp.active,
     .course_fullview_wrapper .course__play_warp {
         transform: none;
-        top: 0;
+        /* top: 0; */
         position: static;
     }
 
@@ -1648,6 +1643,11 @@ Due to the split circle of progress-left and progress right, we must use the ani
         display: none;
     }
 }
+@media (min-width: 767px) and (max-width: 1200px){
+    .course_fullview_wrapper .course__play_warp {
+        /* transform: translateY(-9%) !important; */
+    }
+}
 
 .course__play_warp.courseListPlayer:before {
     content: "";
@@ -1658,19 +1658,10 @@ Due to the split circle of progress-left and progress right, we must use the ani
     left: -5vw;
     top: 91.5vh;
 }
-@media screen and (min-width: 1024px) and (max-width: 1279px){
+
+/* @media screen and (min-width: 1440px) {
     .course_fullview_wrapper .course__play_warp {
-        transform: translateY(-40%) !important;
-    }
-}
-@media only screen and (min-width: 1300px){
-    .course_fullview_wrapper .course__play_warp {
-        transform: translateY(-40%) !important;
-    }
-}
-@media screen and (min-width: 1440px) {
-    .course_fullview_wrapper .course__play_warp {
-        transform: translateY(-36%) !important;
+        transform: translateY(-24%) !important;
     }
 }
 @media screen and (min-width: 1600px) {
@@ -1678,3 +1669,8 @@ Due to the split circle of progress-left and progress right, we must use the ani
         transform: translateY(-40%) !important;
     }
 }
+@media screen and (min-width: 1800px) {
+    .course_fullview_wrapper .course__play_warp {
+        transform: translateY(-37%) !important;
+    }
+} */
