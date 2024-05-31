@@ -302,16 +302,17 @@ class WebsiteController extends Controller
     {
         // dd($request->all());
         try {
+            $check_lesson = Lesson::where('id', $lesson_id)->with('online_test')->first();
             $isEnrolled = true;
             if ($request->has('program_id')) {
                 $isEnrolled = CourseEnrolled::where('program_id', $request->program_id)->where('user_id', Auth::id())->count();
-                if ($isEnrolled == 0) {
+                if ($isEnrolled == 0 && $check_lesson->is_lock == 1) {
                     Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
                     return redirect()->back();
                 }
             } elseif ($request->has('courseType')) {
                 $isEnrolled = CourseEnrolled::where('course_id', $course_id)->where('course_type', $request->courseType)->where('user_id', Auth::id())->count();
-                if ($isEnrolled == 0) {
+                if ($isEnrolled == 0 && $check_lesson->is_lock == 1) {
                     Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
                     return redirect()->back();
                 }
@@ -344,7 +345,6 @@ class WebsiteController extends Controller
             $preResult = [];
 
             $alreadyJoin = 0;
-            $check_lesson = Lesson::where('id', $lesson_id)->with('online_test')->first();
             // dd($check_lesson);
             // dd($request->all(), $course_id, $lesson_id);
             if (request()->has('program_id')) {

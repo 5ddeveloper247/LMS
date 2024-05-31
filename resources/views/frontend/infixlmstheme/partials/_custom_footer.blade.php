@@ -625,7 +625,8 @@
         </div>
         <div class="my-lg-0 my-2">
             <span style="" class="fs-responsive text-white">
-                © 2023 Merakii College of Health
+                {{-- © 2023 Merakii College of Health --}}
+                {{ function_exists('footerSettings') ? strip_tags(footerSettings('footer_copy_right')) : ''}}
             </span>
         </div>
         <div class="my-lg-0 my-2">
