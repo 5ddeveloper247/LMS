@@ -79,7 +79,6 @@ class OnlineQuizController extends Controller
         if (demoCheck()) {
             return redirect()->back();
         }
-       // dd($request);
         if ($request->type == 2) {
             $rules = [
                 'title.en' => 'required',

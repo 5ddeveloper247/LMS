@@ -115,7 +115,7 @@
                                             </option>
                                         @endif --}}
 
-                                        @if (!isTutor() || isAdmin() || isInstructor())
+                                        @if (isTutor() || isAdmin() || isInstructor())
                                             <option value="Image"
                                                 {{ isset($editLesson) ? ($editLesson->host == 'Image' ? 'selected' : '') : '' }}>
                                                 Image

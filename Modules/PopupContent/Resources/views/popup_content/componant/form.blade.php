@@ -111,7 +111,7 @@
 
         <div class="col-xl-6">
             <div class="primary_input mb-25">
-                <label class="mb-2 mr-30">{{ __('common.Image') }}<small>(327x446)px</small></label>
+                <label class="mb-2 mr-30">{{ __('common.Image') }}<small>(598 × 816)px</small></label>
                 <div class="primary_file_uploader">
                     <input class="primary-input" type="text" id="placeholderFileOneName"
                            placeholder="{{ __('common.Browse') }}" readonly="">
