@@ -96,7 +96,7 @@
         } else {
             $current_type = '?program_id=' . request()->get('program_id');
         }
-        
+
     @endphp
     <header>
         <div id="sticky-header" class="header_area">
@@ -139,7 +139,10 @@
                                                     $last_key = array_key_last($lesson_ids);
                                                     $last_previous_one = array_key_last($lesson_ids) - 1;
                                                     $current_page = (int) showPicName(Request::url());
-                                                    $current_index = array_search((int) showPicName(explode('&', Request::url())[0]), $lesson_ids);
+                                                    $current_index = array_search(
+                                                        (int) showPicName(explode('&', Request::url())[0]),
+                                                        $lesson_ids,
+                                                    );
                                                 @endphp
 
                                                 @if (0 == array_search($current_page, $lesson_ids))
@@ -233,1165 +236,1216 @@
     </div>
 
     <div class="course_fullview_wrapper">
+        <div class="course_quiz_left_wrapper">
+            @php
+                $video_lesson_hosts = [
+                    'Iframe',
+                    'Image',
+                    'PDF',
+                    'Word',
+                    'Excel',
+                    'PowerPoint',
+                    'Text',
+                    'Zip',
+                    'GoogleDrive',
+                ];
+            @endphp
+            @if (in_array($lesson->host, $video_lesson_hosts))
+                <button class="theme_btn small_btn2 top_right_btn completeAndPlayNext m-1 p-2">
+                    {{ __('frontend.Mark as Complete') }}</button>
+            @endif
+            @if ($lesson->is_quiz == 1)
+                @if (count($result) != 0)
+                    <div class="quiz_score_wrapper w-100 mt_70">
+                        @if (!isset($_GET['done']))
+                            <!-- quiz_test_header  -->
+                            <div class="quiz_test_header">
+                                <h3>{{ __('student.Your Exam Score') }}</h3>
+                            </div>
 
-        @php
-            $video_lesson_hosts = ['Iframe', 'Image', 'PDF', 'Word', 'Excel', 'PowerPoint', 'Text', 'Zip', 'GoogleDrive'];
-        @endphp
-        @if (in_array($lesson->host, $video_lesson_hosts))
-            <button class="theme_btn small_btn2 top_right_btn completeAndPlayNext m-1 p-2">
-                {{ __('frontend.Mark as Complete') }}</button>
-        @endif
-        @if ($lesson->is_quiz == 1)
-            @if (count($result) != 0)
-                <div class="quiz_score_wrapper w-100 mt_70">
-                    @if (!isset($_GET['done']))
-                        <!-- quiz_test_header  -->
-                        <div class="quiz_test_header">
-                            <h3>{{ __('student.Your Exam Score') }}</h3>
-                        </div>
-
-                        <div class="quiz_test_body">
-                            <h3>{{ __('student.Congratulations! You’ve completed') }} {{ $course->quiz->title }}</h3>
-                            @if ($result['publish'] == 1)
-                                <div class="">
-                                    <div class="row">
-                                        <div class="col-xl-12">
-                                            <div class="score_view_wrapper">
-                                                <div class="single_score_view">
-                                                    <p>{{ __('student.Exam Score') }}:</p>
-                                                    <ul>
-                                                        <li class="mb_15">
-                                                            <label class="primary_checkbox2 d-flex">
-                                                                <input checked="" type="checkbox" disabled>
-                                                                <span class="checkmark mr_10"></span>
-                                                                <span class="label_name">{{ $result['totalCorrect'] }}
-                                                                    {{ __('student.Correct Answer') }}</span>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label class="primary_checkbox2 error_ans d-flex">
-                                                                <input checked="" name="qus" type="checkbox"
-                                                                    disabled>
-                                                                <span class="checkmark mr_10"></span>
-                                                                <span class="label_name">{{ $result['totalWrong'] }}
-                                                                    {{ __('student.Wrong Answer') }}</span>
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="single_score_view d-flex">
-                                                    <div class="row">
-                                                        <div class="col md-2">
-                                                            <p>{{ __('frontend.Start') }}</p>
-                                                            <span> {{ $result['start_at'] }} </span>
-                                                        </div>
-
-                                                        <div class="col md-2">
-                                                            <p>{{ __('frontend.Finish') }}</p>
-                                                            <span> {{ $result['end_at'] }} </span>
-                                                        </div>
-
-                                                        <div class="col md-2">
-                                                            <p class="nowrap">{{ __('frontend.Duration') }}
-                                                                ({{ __('frontend.Minute') }})</p>
-                                                            <h4 class="f_w_700"> {{ $result['duration'] }} </h4>
-                                                        </div>
-
-                                                        <div class="col md-2">
-                                                            <p>{{ __('frontend.Mark') }}</p>
-                                                            <h4 class="f_w_700"> {{ $result['score'] }}
-                                                                /{{ $result['totalScore'] }} </h4>
-                                                        </div>
-
-                                                        <div class="col md-2">
-                                                            <p>{{ __('frontend.Percentage') }}</p>
-                                                            <h4 class="f_w_700"> {{ $result['mark'] }}% </h4>
-                                                        </div>
-
-                                                        <div class="col md-2">
-                                                            <p>{{ __('frontend.Rating') }}</p>
-                                                            <h4 class="f_w_700 theme_text {{ $result['text_color'] }}">
-                                                                {{ $result['status'] }} </h4>
-                                                        </div>
+                            <div class="quiz_test_body">
+                                <h3>{{ __('student.Congratulations! You’ve completed') }} {{ $course->quiz->title }}</h3>
+                                @if ($result['publish'] == 1)
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="score_view_wrapper">
+                                                    <div class="single_score_view">
+                                                        <p>{{ __('student.Exam Score') }}:</p>
+                                                        <ul>
+                                                            <li class="mb_15">
+                                                                <label class="primary_checkbox2 d-flex">
+                                                                    <input checked="" type="checkbox" disabled>
+                                                                    <span class="checkmark mr_10"></span>
+                                                                    <span class="label_name">{{ $result['totalCorrect'] }}
+                                                                        {{ __('student.Correct Answer') }}</span>
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label class="primary_checkbox2 error_ans d-flex">
+                                                                    <input checked="" name="qus" type="checkbox"
+                                                                        disabled>
+                                                                    <span class="checkmark mr_10"></span>
+                                                                    <span class="label_name">{{ $result['totalWrong'] }}
+                                                                        {{ __('student.Wrong Answer') }}</span>
+                                                                </label>
+                                                            </li>
+                                                        </ul>
                                                     </div>
 
+                                                    <div class="single_score_view d-flex">
+                                                        <div class="row">
+                                                            <div class="col md-2">
+                                                                <p>{{ __('frontend.Start') }}</p>
+                                                                <span> {{ $result['start_at'] }} </span>
+                                                            </div>
+
+                                                            <div class="col md-2">
+                                                                <p>{{ __('frontend.Finish') }}</p>
+                                                                <span> {{ $result['end_at'] }} </span>
+                                                            </div>
+
+                                                            <div class="col md-2">
+                                                                <p class="nowrap">{{ __('frontend.Duration') }}
+                                                                    ({{ __('frontend.Minute') }})</p>
+                                                                <h4 class="f_w_700"> {{ $result['duration'] }} </h4>
+                                                            </div>
+
+                                                            <div class="col md-2">
+                                                                <p>{{ __('frontend.Mark') }}</p>
+                                                                <h4 class="f_w_700"> {{ $result['score'] }}
+                                                                    /{{ $result['totalScore'] }} </h4>
+                                                            </div>
+
+                                                            <div class="col md-2">
+                                                                <p>{{ __('frontend.Percentage') }}</p>
+                                                                <h4 class="f_w_700"> {{ $result['mark'] }}% </h4>
+                                                            </div>
+
+                                                            <div class="col md-2">
+                                                                <p>{{ __('frontend.Rating') }}</p>
+                                                                <h4
+                                                                    class="f_w_700 theme_text {{ $result['text_color'] }}">
+                                                                    {{ $result['status'] }} </h4>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="sumit_skip_btns d-flex align-items-center">
-                                    @if (isset($result) && $result['status'] != 'Failed')
-                                        <form action="{{ route('lesson.complete') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                            <input type="hidden" value="{{ $lesson->id }}" name="lesson_id">
-                                            @if (request()->has('courseType'))
-                                                <input type="hidden" value="{{ request()->get('courseType') }}"
-                                                    name="courseType">
-                                            @else
-                                                <input type="hidden" value="{{ request()->get('program_id') }}"
-                                                    name="program_id">
-                                            @endif
-                                            <input type="hidden" value="1" name="status">
-                                            <button type="submit"
-                                                class="theme_btn mr_20">{{ __('student.Done') }}</button>
-                                        </form>
-                                    @endif
+                                    <div class="sumit_skip_btns d-flex align-items-center">
+                                        @if (isset($result) && $result['status'] != 'Failed')
+                                            <form action="{{ route('lesson.complete') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                                <input type="hidden" value="{{ $lesson->id }}" name="lesson_id">
+                                                @if (request()->has('courseType'))
+                                                    <input type="hidden" value="{{ request()->get('courseType') }}"
+                                                        name="courseType">
+                                                @else
+                                                    <input type="hidden" value="{{ request()->get('program_id') }}"
+                                                        name="program_id">
+                                                @endif
+                                                <input type="hidden" value="1" name="status">
+                                                <button type="submit"
+                                                    class="theme_btn mr_20">{{ __('student.Done') }}</button>
+                                            </form>
+                                        @endif
 
-                                    @if ($lesson->lessonQuiz->show_result_each_submit == 1)
-                                        <a href="{{ route('quizResultPreview', $_GET['quiz_result_id'] ?? 0) }}"
-                                            target="_blank"
-                                            class="font_1 font_16 f_w_600 theme_text3 submit_q_btn">{{ __('student.See Answer Sheet') }}</a>
-                                    @endif
-                                </div>
-                            @else
-                                <span>{{ __('quiz.Please wait till completion marking process') }}</span>
-                            @endif
+                                        @if ($lesson->lessonQuiz->show_result_each_submit == 1)
+                                            <a href="{{ route('quizResultPreview', $_GET['quiz_result_id'] ?? 0) }}"
+                                                target="_blank"
+                                                class="font_1 font_16 f_w_600 theme_text3 submit_q_btn">{{ __('student.See Answer Sheet') }}</a>
+                                        @endif
+                                    </div>
+                                @else
+                                    <span>{{ __('quiz.Please wait till completion marking process') }}</span>
+                                @endif
 
-                            @if (count($preResult) != 0)
-                                <div id="historyDiv" class="pt-5" style="display:none;">
-                                    <table class="table-bordered table">
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Mark</th>
-                                            <th>Percentage</th>
-                                            <th>Rating</th>
-                                            @if ($lesson->lessonQuiz->show_result_each_submit == 1)
-                                                <th>Details</th>
-                                            @endif
-                                        </tr>
-                                        @foreach ($preResult as $pre)
+                                @if (count($preResult) != 0)
+                                    <div id="historyDiv" class="pt-5" style="display:none;">
+                                        <table class="table-bordered table">
                                             <tr>
-                                                <td>{{ $pre['date'] }}</td>
-                                                <td>{{ $pre['score'] }}/{{ $pre['totalScore'] }}</td>
-                                                <td>{{ $pre['mark'] }}%</td>
-                                                <td class="{{ $pre['text_color'] }}">{{ $pre['status'] }}</td>
+                                                <th>Date</th>
+                                                <th>Mark</th>
+                                                <th>Percentage</th>
+                                                <th>Rating</th>
                                                 @if ($lesson->lessonQuiz->show_result_each_submit == 1)
-                                                    <td>
-                                                        <a href="{{ route('quizResultPreview', $pre['quiz_test_id']) }}"
-                                                            class="font_1 font_16 f_w_600 theme_text3 submit_q_btn">{{ __('student.See Answer Sheet') }}</a>
-                                                    </td>
+                                                    <th>Details</th>
                                                 @endif
                                             </tr>
-                                        @endforeach
-                                    </table>
+                                            @foreach ($preResult as $pre)
+                                                <tr>
+                                                    <td>{{ $pre['date'] }}</td>
+                                                    <td>{{ $pre['score'] }}/{{ $pre['totalScore'] }}</td>
+                                                    <td>{{ $pre['mark'] }}%</td>
+                                                    <td class="{{ $pre['text_color'] }}">{{ $pre['status'] }}</td>
+                                                    @if ($lesson->lessonQuiz->show_result_each_submit == 1)
+                                                        <td>
+                                                            <a href="{{ route('quizResultPreview', $pre['quiz_test_id']) }}"
+                                                                class="font_1 font_16 f_w_600 theme_text3 submit_q_btn">{{ __('student.See Answer Sheet') }}</a>
+                                                        </td>
+                                                    @endif
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
+                                @endif
+                            </div>
+                        @else
+                            <h3 class="text-center">{{ __('student.Congratulations! You’ve completed') }}
+                                {{ $lesson->lessonQuiz->title }}</h3>
+                        @endif
+                    </div>
+                @else
+                    <div class="quiz_questions_wrapper w-100 px-lg-5">
+                        <!-- quiz_test_header  -->
+
+                        {{-- @dd($alreadyJoin, $lesson->lessonQuiz->multiple_attend) --}}
+                        @if ($alreadyJoin != 0 && $lesson->lessonQuiz->multiple_attend == 0)
+                            <div class="quiz_test_header d-flex justify-content-between align-items-center">
+                                <div class="quiz_header_left text-center">
+                                    <h3>{{ __('frontend.Sorry! You already attempted this quiz') }}</h3>
                                 </div>
-                            @endif
-                        </div>
-                    @else
-                        <h3 class="text-center">{{ __('student.Congratulations! You’ve completed') }}
-                            {{ $lesson->lessonQuiz->title }}</h3>
-                    @endif
-                </div>
-            @else
-                <div class="quiz_questions_wrapper w-100 px-lg-5">
-                    <!-- quiz_test_header  -->
-
-                    {{-- @dd($alreadyJoin, $lesson->lessonQuiz->multiple_attend) --}}
-                    @if ($alreadyJoin != 0 && $lesson->lessonQuiz->multiple_attend == 0)
-                        <div class="quiz_test_header d-flex justify-content-between align-items-center">
-                            <div class="quiz_header_left text-center">
-                                <h3>{{ __('frontend.Sorry! You already attempted this quiz') }}</h3>
                             </div>
-                        </div>
-                    @else
-                        <div class="quiz_test_header d-flex justify-content-between align-items-center">
-                            <div class="quiz_header_left">
-                                <h3>{{ $lesson->lessonQuiz->title }}
-                                </h3>
+                        @else
+                            <div class="quiz_test_header d-flex justify-content-between align-items-center">
+                                <div class="quiz_header_left">
+                                    <h3>{{ $lesson->lessonQuiz->title }}
+                                    </h3>
+                                </div>
+
+                                <div class="quiz_header_right">
+
+                                    <span class="question_time">
+                                        @php
+                                            $timer = 0;
+
+                                            if (!empty($lesson->lessonQuiz->question_time_type == 1)) {
+                                                $timer = $lesson->lessonQuiz->question_time;
+                                            } else {
+                                                $timer = $lesson->lessonQuiz->question_time * count($questions);
+                                            }
+
+                                        @endphp
+
+                                        <span id="timer">{{ $timer }}:00</span> min</span>
+                                    <p>{{ __('student.Left of this Section') }}</p>
+                                </div>
                             </div>
+                            <!-- quiz_test_body  -->
+                            <form action="{{ route('quizSubmit') }}" method="POST" id="quizForm">
+                                <input type='hidden' name="from" value="course">
+                                <input type="hidden" name="courseId" value="{{ $course->id }}">
+                                <input type="hidden" name="quizType" value="1">
+                                <input type="hidden" name="quizId" value="{{ $lesson->lessonQuiz->id }}">
+                                <input type="hidden" name="question_review" id="question_review"
+                                    value="{{ $lesson->lessonQuiz->question_review }}">
+                                <input type="hidden" name="start_at" value="">
+                                <input type="hidden" name="quiz_test_id" value="">
+                                <input type="hidden" name="quiz_start_url" value="{{ route('quizTestStart') }}">
+                                <input type="hidden" name="single_quiz_submit_url"
+                                    value="{{ route('singleQuizSubmit') }}">
+                                @if (request()->has('program_id'))
+                                    <input type="hidden" value="{{ request()->get('program_id') }}" name="program_id">
+                                @else
+                                    <input type="hidden" value="{{ request()->get('courseType') }}" name="courseType">
+                                @endif
+                                @csrf
 
-                            <div class="quiz_header_right">
-
-                                <span class="question_time">
-                                    @php
-                                        $timer = 0;
-                                        
-                                        if (!empty($lesson->lessonQuiz->question_time_type == 1)) {
-                                            $timer = $lesson->lessonQuiz->question_time;
-                                        } else {
-                                            $timer = $lesson->lessonQuiz->question_time * count($questions);
-                                        }
-                                        
-                                    @endphp
-
-                                    <span id="timer">{{ $timer }}:00</span> min</span>
-                                <p>{{ __('student.Left of this Section') }}</p>
-                            </div>
-                        </div>
-                        <!-- quiz_test_body  -->
-                        <form action="{{ route('quizSubmit') }}" method="POST" id="quizForm">
-                            <input type='hidden' name="from" value="course">
-                            <input type="hidden" name="courseId" value="{{ $course->id }}">
-                            <input type="hidden" name="quizType" value="1">
-                            <input type="hidden" name="quizId" value="{{ $lesson->lessonQuiz->id }}">
-                            <input type="hidden" name="question_review" id="question_review"
-                                value="{{ $lesson->lessonQuiz->question_review }}">
-                            <input type="hidden" name="start_at" value="">
-                            <input type="hidden" name="quiz_test_id" value="">
-                            <input type="hidden" name="quiz_start_url" value="{{ route('quizTestStart') }}">
-                            <input type="hidden" name="single_quiz_submit_url" value="{{ route('singleQuizSubmit') }}">
-                            @if (request()->has('program_id'))
-                                <input type="hidden" value="{{ request()->get('program_id') }}" name="program_id">
-                            @else
-                                <input type="hidden" value="{{ request()->get('courseType') }}" name="courseType">
-                            @endif
-                            @csrf
-
-                            <div class="quiz_test_body d-none">
-                                <div class="tabControl">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="tab-content" id="pills-tabContent">
-                                                @php
-                                                    $count = 1;
-                                                @endphp
-                                                @if (isset($questions))
-                                                    @foreach ($questions as $key => $assign)
-                                                        @php
-                                                            $options = [];
-                                                            if (isset($assign->questionBank->questionMu)) {
-                                                                $options = $assign->questionBank->questionMu;
-                                                            }
-                                                        @endphp
-                                                        <div class="tab-pane fade {{ $key == 0 ? 'active show' : '' }} singleQuestion"
-                                                            data-qus-id="{{ $assign->id }}"
-                                                            data-qus-type="{{ $assign->questionBank->type }}"
-                                                            id="pills-{{ $assign->id }}" role="tabpanel"
-                                                            aria-labelledby="pills-home-tab{{ $assign->id }}">
-                                                            <!-- content  -->
-                                                            <div class="question_list_header">
+                                <div class="quiz_test_body d-none">
+                                    <div class="tabControl">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="tab-content" id="pills-tabContent">
+                                                    @php
+                                                        $count = 1;
+                                                    @endphp
+                                                    @if (isset($questions))
+                                                        @foreach ($questions as $key => $assign)
+                                                            @php
+                                                                $options = [];
+                                                                if (isset($assign->questionBank->questionMu)) {
+                                                                    $options = $assign->questionBank->questionMu;
+                                                                }
+                                                            @endphp
+                                                            <div class="tab-pane fade {{ $key == 0 ? 'active show' : '' }} singleQuestion"
+                                                                data-qus-id="{{ $assign->id }}"
+                                                                data-qus-type="{{ $assign->questionBank->type }}"
+                                                                id="pills-{{ $assign->id }}" role="tabpanel"
+                                                                aria-labelledby="pills-home-tab{{ $assign->id }}">
+                                                                <!-- content  -->
+                                                                <div class="question_list_header">
 
 
-                                                            </div>
-                                                            <div class="multypol_qustion mb_30">
-                                                                <h4 class="font_18 f_w_700 mb-0"> {!! @$assign->questionBank->question !!}
-                                                                </h4>
-                                                                <small>({{ __('quiz.Choose') }} <span
-                                                                        class="questionAnsTotal text-danger font-weight-bold">
-                                                                        {{ count($options->where('status', 1)) }}</span>
-                                                                    @if (count($options->where('status', 1)) <= 1)
-                                                                        {{ __('quiz.answer') }})
-                                                                    @else
-                                                                        {{ __('quiz.answers') }})
-                                                                    @endif
-                                                                </small>
-                                                            </div>
-                                                            <input type="hidden" class="question_type"
-                                                                name="type[{{ $assign->questionBank->id }}]"
-                                                                value="{{ @$assign->questionBank->type }}">
-                                                            <input type="hidden" class="question_id"
-                                                                name="question[{{ $assign->questionBank->id }}]"
-                                                                value="{{ @$assign->questionBank->id }}">
-
-                                                            @if ($assign->questionBank->type == 'M')
-                                                                <ul class="quiz_select">
-                                                                    @if (isset($assign->questionBank->questionMu))
-                                                                        @foreach (@$assign->questionBank->questionMu as $option)
-                                                                            <li>
-                                                                                <label
-                                                                                    class="primary_bulet_checkbox d-flex">
-                                                                                    <input class="quizAns"
-                                                                                        name="ans[{{ $option->question_bank_id }}][]"
-                                                                                        type="checkbox"
-                                                                                        value="{{ $option->id }}">
-
-                                                                                    <span class="checkmark mr_10"></span>
-                                                                                    <span
-                                                                                        class="label_name">{{ $option->title }}
-                                                                                    </span>
-                                                                                </label>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    @endif
-                                                                </ul>
-                                                            @else
-                                                                <div style="margin-bottom: 20px;">
-                                                                    <textarea class="textArea lms_summernote quizAns" id="editor{{ $assign->id }}" cols="30" rows="10"
-                                                                        name="ans[{{ $assign->questionBank->id }}]"></textarea>
                                                                 </div>
-                                                            @endif
-                                                            @if (!empty($assign->questionBank->image))
-                                                                <div class="ques_thumb mb_50">
-                                                                    <img src="{{ asset($assign->questionBank->image) }}"
-                                                                        class="img-fluid" alt="">
-                                                                </div>
-                                                            @endif
-                                                            <div class="sumit_skip_btns d-flex align-items-center mb_50">
-                                                                @if (count($questions) != $count)
-                                                                    <span class="theme_btn small_btn mr_20 next"
-                                                                        data-question_id="{{ $assign->questionBank->id }}"
-                                                                        data-assign_id="{{ $assign->id }}"
-                                                                        data-question_type="{{ $assign->questionBank->type }}"
-                                                                        @if (request()->has('program_id')) data-program_id="{{ request()->program_id }}"
+                                                                <div class="multypol_qustion mb_30">
+                                                                    <h4 class="font_18 f_w_700 mb-0">
+                                                                        {!! @$assign->questionBank->question !!}
+                                                                    </h4>
+                                                                    <small>({{ __('quiz.Choose') }} <span
+                                                                            class="questionAnsTotal text-danger font-weight-bold">
+                                                                            {{ count($options->where('status', 1)) }}</span>
+                                                                        @if (count($options->where('status', 1)) <= 1)
+                                                                            {{ __('quiz.answer') }})
                                                                         @else
-                                                                            data-courseType="{{ request()->courseType }}" @endif
-                                                                        id="next">{{ __('student.Continue') }}</span>
-                                                                    <span
-                                                                        class="font_1 font_16 f_w_600 theme_text3 submit_q_btn skip"
-                                                                        id="skip">{{ __('student.Skip') }}
-                                                                        {{ __('frontend.Question') }}</span>
+                                                                            {{ __('quiz.answers') }})
+                                                                        @endif
+                                                                    </small>
+                                                                </div>
+                                                                <input type="hidden" class="question_type"
+                                                                    name="type[{{ $assign->questionBank->id }}]"
+                                                                    value="{{ @$assign->questionBank->type }}">
+                                                                <input type="hidden" class="question_id"
+                                                                    name="question[{{ $assign->questionBank->id }}]"
+                                                                    value="{{ @$assign->questionBank->id }}">
+
+                                                                @if ($assign->questionBank->type == 'M')
+                                                                    <ul class="quiz_select">
+                                                                        @if (isset($assign->questionBank->questionMu))
+                                                                            @foreach (@$assign->questionBank->questionMu as $option)
+                                                                                <li>
+                                                                                    <label
+                                                                                        class="primary_bulet_checkbox d-flex">
+                                                                                        <input class="quizAns"
+                                                                                            name="ans[{{ $option->question_bank_id }}][]"
+                                                                                            type="checkbox"
+                                                                                            value="{{ $option->id }}">
+
+                                                                                        <span
+                                                                                            class="checkmark mr_10"></span>
+                                                                                        <span
+                                                                                            class="label_name">{{ $option->title }}
+                                                                                        </span>
+                                                                                    </label>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </ul>
                                                                 @else
-                                                                    <button type="button"
-                                                                        data-question_id="{{ $assign->questionBank->id }}"
-                                                                        data-assign_id="{{ $assign->id }}"
-                                                                        data-question_type="{{ $assign->questionBank->type }}"
-                                                                        @if (request()->has('program_id')) data-program_id="{{ request()->program_id }}"
+                                                                    <div style="margin-bottom: 20px;">
+                                                                        <textarea class="textArea lms_summernote quizAns" id="editor{{ $assign->id }}" cols="30" rows="10"
+                                                                            name="ans[{{ $assign->questionBank->id }}]"></textarea>
+                                                                    </div>
+                                                                @endif
+                                                                @if (!empty($assign->questionBank->image))
+                                                                    <div class="ques_thumb mb_50">
+                                                                        <img src="{{ asset($assign->questionBank->image) }}"
+                                                                            class="img-fluid" alt="">
+                                                                    </div>
+                                                                @endif
+                                                                <div
+                                                                    class="sumit_skip_btns d-flex align-items-center mb_50">
+                                                                    @if (count($questions) != $count)
+                                                                        <span class="theme_btn small_btn mr_20 next"
+                                                                            data-question_id="{{ $assign->questionBank->id }}"
+                                                                            data-assign_id="{{ $assign->id }}"
+                                                                            data-question_type="{{ $assign->questionBank->type }}"
+                                                                            @if (request()->has('program_id')) data-program_id="{{ request()->program_id }}"
                                                                         @else
                                                                             data-courseType="{{ request()->courseType }}" @endif
-                                                                        class="submitBtn theme_btn small_btn mr_20">
-                                                                        {{ __('student.Submit') }}
-                                                                    </button>
-                                                                @endif
+                                                                            id="next">{{ __('student.Continue') }}</span>
+                                                                        <span
+                                                                            class="font_1 font_16 f_w_600 theme_text3 submit_q_btn skip"
+                                                                            id="skip">{{ __('student.Skip') }}
+                                                                            {{ __('frontend.Question') }}</span>
+                                                                    @else
+                                                                        <button type="button"
+                                                                            data-question_id="{{ $assign->questionBank->id }}"
+                                                                            data-assign_id="{{ $assign->id }}"
+                                                                            data-question_type="{{ $assign->questionBank->type }}"
+                                                                            @if (request()->has('program_id')) data-program_id="{{ request()->program_id }}"
+                                                                        @else
+                                                                            data-courseType="{{ request()->courseType }}" @endif
+                                                                            class="submitBtn theme_btn small_btn mr_20">
+                                                                            {{ __('student.Submit') }}
+                                                                        </button>
+                                                                    @endif
+                                                                </div>
+
+
+                                                                <!-- content::end  -->
                                                             </div>
-
-
-                                                            <!-- content::end  -->
-                                                        </div>
-                                                        @php
-                                                            $count++;
-                                                        @endphp
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6">
-
-                                            @php
-                                                $count2 = 1;
-                                            @endphp
-
-                                            <div class="question_list_header">
-                                                <div class="question_list_top">
-                                                    <p>Question <span id="currentNumber">{{ $count2 }}</span>
-                                                        out
-                                                        of {{ count($questions) }}</p>
+                                                            @php
+                                                                $count++;
+                                                            @endphp
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
-                                            <div class="nav question_number_lists" id="nav-tab" role="tablist">
-                                                @if (isset($questions))
-                                                    @foreach ($questions as $key2 => $assign)
-                                                        <a class="nav-link questionLink link_{{ $assign->id }} {{ $key2 == 0 ? 'skip_qus' : 'pouse_qus' }}"
-                                                            data-toggle="tab" href="#pills-{{ $assign->id }}"
-                                                            role="tab" aria-controls="nav-home"
-                                                            data-qus="{{ $assign->id }}"
-                                                            aria-selected="true">{{ $count2 }}</a>
-                                                        @php
-                                                            $count2++;
-                                                        @endphp
-                                                    @endforeach
-                                                @endif
-                                            </div>
 
+                                            <div class="col-xl-6">
+
+                                                @php
+                                                    $count2 = 1;
+                                                @endphp
+
+                                                <div class="question_list_header">
+                                                    <div class="question_list_top">
+                                                        <p>Question <span id="currentNumber">{{ $count2 }}</span>
+                                                            out
+                                                            of {{ count($questions) }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="nav question_number_lists" id="nav-tab" role="tablist">
+                                                    @if (isset($questions))
+                                                        @foreach ($questions as $key2 => $assign)
+                                                            <a class="nav-link questionLink link_{{ $assign->id }} {{ $key2 == 0 ? 'skip_qus' : 'pouse_qus' }}"
+                                                                data-toggle="tab" href="#pills-{{ $assign->id }}"
+                                                                role="tab" aria-controls="nav-home"
+                                                                data-qus="{{ $assign->id }}"
+                                                                aria-selected="true">{{ $count2 }}</a>
+                                                            @php
+                                                                $count2++;
+                                                            @endphp
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    @endif
-                </div>
+                            </form>
+                        @endif
+                    </div>
 
 
 
-                @include(theme('partials._quiz_submit_confirm_modal'))
-                @include(theme('partials._quiz_start_confirm_modal'))
-            @endif
-        @elseif($lesson->is_assignment == 1)
-            @if (isModuleActive('Assignment'))
+                    @include(theme('partials._quiz_submit_confirm_modal'))
+                    @include(theme('partials._quiz_start_confirm_modal'))
+                @endif
+            @elseif($lesson->is_assignment == 1)
+                @if (isModuleActive('Assignment'))
 
-                @php
-                    
-                    $assignment_info = $lesson->assignmentInfo;
-                    if (Auth::check()) {
-                        $submit_info = Modules\Assignment\Entities\InfixSubmitAssignment::assignmentLastSubmitted($assignment_info->id, Auth::user()->id);
-                    
-                        if (Auth::user()->role_id == 1) {
-                            $sty = '-150px';
+                    @php
+
+                        $assignment_info = $lesson->assignmentInfo;
+                        if (Auth::check()) {
+                            $submit_info = Modules\Assignment\Entities\InfixSubmitAssignment::assignmentLastSubmitted(
+                                $assignment_info->id,
+                                Auth::user()->id,
+                            );
+
+                            if (Auth::user()->role_id == 1) {
+                                $sty = '-150px';
+                            } else {
+                                if ($submit_info != null) {
+                                    $sty = '50px';
+                                } else {
+                                    $sty = '280px';
+                                }
+                            }
                         } else {
+                            $submit_info = null;
                             if ($submit_info != null) {
                                 $sty = '50px';
                             } else {
                                 $sty = '280px';
                             }
                         }
-                    } else {
-                        $submit_info = null;
-                        if ($submit_info != null) {
-                            $sty = '50px';
-                        } else {
-                            $sty = '280px';
-                        }
-                    }
-                @endphp
-                <div class="col-lg-12 pl-5" style="margin-top: {{ @$sty }};">
-                    <div class="row" style="visibility: hidden">
-                        <div class="col-12">
-                            <div class="section__title3 mb_40">
-                                <h3 class="mb-0 mt-5">{{ __('assignment.Assignment') }} {{ __('common.Details') }}</h3>
-                                <h4></h4>
+                    @endphp
+                    <div class="col-lg-12 pl-5" style="margin-top: {{ @$sty }};">
+                        <div class="row" style="visibility: hidden">
+                            <div class="col-12">
+                                <div class="section__title3 mb_40">
+                                    <h3 class="mb-0 mt-5">{{ __('assignment.Assignment') }} {{ __('common.Details') }}
+                                    </h3>
+                                    <h4></h4>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="section__title3 mb_40">
-                                <h3 class="mb-0 mt-5"></h3>
-                                <h4></h4>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="section__title3 mb_40">
+                                    <h3 class="mb-0 mt-5"></h3>
+                                    <h4></h4>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <style>
-                        .assignment_info {
-                            margin-top: 10px;
-                        }
-                    </style>
-                    <div class="table-responsive-md table-responsive-sm assignment-info-table">
-                        <table class="table">
-                            <thead>
-                                <h3 class="mb-0 mt-5">{{ __('assignment.Assignment') }} {{ __('common.Details') }}</h3>
-                            </thead>
-                            <tr class="nowrap">
-                                <td>
-                                    {{ __('common.Title') }}
-                                </td>
-                                <td>
-                                    : {{ @$assignment_info->title }}
-                                </td>
-                                <td>
-                                    {{ __('courses.Course') }}
-                                </td>
-                                <td>
-                                    @if ($assignment_info->course->title)
-                                        : {{ @$assignment_info->course->title }}
-                                    @else
-                                        : Not Assigned
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr class="nowrap">
-                                <td>
-                                    {{ __('assignment.Marks') }}
-                                </td>
-                                <td>
-                                    : {{ @$assignment_info->marks }}
-                                </td>
-                                <td>
-                                    {{ __('assignment.Min Percentage') }}
-                                </td>
-                                <td>
-                                    : {{ @$assignment_info->min_parcentage }}%
-                                </td>
-                            </tr>
-                            @if ($submit_info != null)
+                        <style>
+                            .assignment_info {
+                                margin-top: 10px;
+                            }
+                        </style>
+                        <div class="table-responsive-md table-responsive-sm assignment-info-table">
+                            <table class="table">
+                                <thead>
+                                    <h3 class="mb-0 mt-5">{{ __('assignment.Assignment') }} {{ __('common.Details') }}
+                                    </h3>
+                                </thead>
                                 <tr class="nowrap">
                                     <td>
-                                        {{ __('assignment.Obtain Marks') }}
+                                        {{ __('common.Title') }}
                                     </td>
                                     <td>
-                                        : {{ @$submit_info->marks }}
+                                        : {{ @$assignment_info->title }}
                                     </td>
                                     <td>
-                                        {{ __('common.Status') }}
+                                        {{ __('courses.Course') }}
                                     </td>
                                     <td>
-                                        :
-
-                                        @if ($submit_info->assigned->pass_status == 1)
-                                            Pass
-                                        @elseif($submit_info->assigned->pass_status == 2)
-                                            Fail
+                                        @if ($assignment_info->course->title)
+                                            : {{ @$assignment_info->course->title }}
                                         @else
-                                            Not Marked
+                                            : Not Assigned
                                         @endif
                                     </td>
                                 </tr>
-                            @endif
+                                <tr class="nowrap">
+                                    <td>
+                                        {{ __('assignment.Marks') }}
+                                    </td>
+                                    <td>
+                                        : {{ @$assignment_info->marks }}
+                                    </td>
+                                    <td>
+                                        {{ __('assignment.Min Percentage') }}
+                                    </td>
+                                    <td>
+                                        : {{ @$assignment_info->min_parcentage }}%
+                                    </td>
+                                </tr>
+                                @if ($submit_info != null)
+                                    <tr class="nowrap">
+                                        <td>
+                                            {{ __('assignment.Obtain Marks') }}
+                                        </td>
+                                        <td>
+                                            : {{ @$submit_info->marks }}
+                                        </td>
+                                        <td>
+                                            {{ __('common.Status') }}
+                                        </td>
+                                        <td>
+                                            :
 
-                            <tr>
-                                <td>
-                                    {{ __('assignment.Submit Date') }}
-                                </td>
-                                <td>
-                                    : {{ showDate(@$assignment_info->last_date_submission) }}
-                                </td>
-                                <td>
-                                    {{ __('assignment.Attachment') }}
-                                </td>
-                                <td>
-                                    @if (file_exists($assignment_info->attachment))
-                                        : <a href="{{ asset(@$assignment_info->attachment) }}"
-                                            download="{{ @$assignment_info->title }}_attachment">{{ __('common.Download') }}</a>
-                                    @endif
-                                </td>
-                            </tr>
+                                            @if ($submit_info->assigned->pass_status == 1)
+                                                Pass
+                                            @elseif($submit_info->assigned->pass_status == 2)
+                                                Fail
+                                            @else
+                                                Not Marked
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endif
 
-                        </table>
-                    </div>
+                                <tr>
+                                    <td>
+                                        {{ __('assignment.Submit Date') }}
+                                    </td>
+                                    <td>
+                                        : {{ showDate(@$assignment_info->last_date_submission) }}
+                                    </td>
+                                    <td>
+                                        {{ __('assignment.Attachment') }}
+                                    </td>
+                                    <td>
+                                        @if (file_exists($assignment_info->attachment))
+                                            : <a href="{{ asset(@$assignment_info->attachment) }}"
+                                                download="{{ @$assignment_info->title }}_attachment">{{ __('common.Download') }}</a>
+                                        @endif
+                                    </td>
+                                </tr>
 
-
-                    <div class="row assignment_info">
-                        <div class="col-lg-2">
-                            {{ __('assignment.Description') }}
+                            </table>
                         </div>
-                        <div class="col-lg-12">
-                            {!! @$assignment_info->description !!}
-                        </div>
-                    </div>
 
-                    <hr>
-                    @php
-                        $todate = today()->format('Y-m-d');
-                    @endphp
-                    @if (empty($submit_info))
-                        @if (isset($assignment_info->last_date_submission) && Auth::user()->role_id == 3)
-                            @if (
-                                $todate <= $assignment_info->last_date_submission ||
-                                    (isset($submit_info) && $submit_info->assigned->pass_status == 0))
-                                @include(theme('partials._assignment_submit_section'))
-                            @endif
-                        @else
-                            @if (isset($submit_info) && $submit_info->assigned->pass_status == 0 && Auth::user()->role_id == 3)
-                                @include(theme('partials._assignment_submit_section'))
+
+                        <div class="row assignment_info">
+                            <div class="col-lg-2">
+                                {{ __('assignment.Description') }}
+                            </div>
+                            <div class="col-lg-12">
+                                {!! @$assignment_info->description !!}
+                            </div>
+                        </div>
+
+                        <hr>
+                        @php
+                            $todate = today()->format('Y-m-d');
+                        @endphp
+                        @if (empty($submit_info))
+                            @if (isset($assignment_info->last_date_submission) && Auth::user()->role_id == 3)
+                                @if (
+                                    $todate <= $assignment_info->last_date_submission ||
+                                        (isset($submit_info) && $submit_info->assigned->pass_status == 0))
+                                    @include(theme('partials._assignment_submit_section'))
+                                @endif
+                            @else
+                                @if (isset($submit_info) && $submit_info->assigned->pass_status == 0 && Auth::user()->role_id == 3)
+                                    @include(theme('partials._assignment_submit_section'))
+                                @endif
                             @endif
                         @endif
-                    @endif
 
-                </div>
-            @endif
-        @else
-            <input type="hidden" id="course_id" value="{{ $lesson->course_id }}">
-            <script>
-                var course_id = document.getElementById('course_id').value;
-            </script>
+                    </div>
+                @endif
+            @else
+                <input type="hidden" id="course_id" value="{{ $lesson->course_id }}">
+                <script>
+                    var course_id = document.getElementById('course_id').value;
+                </script>
 
-            @if ($lesson->host == 'Youtube')
-                @php
-                    if (Str::contains($lesson->video_url, '&')) {
-                        $video_id = explode('=', $lesson->video_url);
-                        $youtube_url = youtubeVideo($video_id[1]);
-                    } else {
-                        $youtube_url = getVideoId(showPicName(@$lesson->video_url));
-                    }
-                @endphp
-
-
-                <div style="" id="video-placeholder" style="height: 79vh"></div>
-                <input class="d-none" type="text" id="progress-bar">
-                <input type="hidden" name="" id="youtube_video_id" value="{{ $youtube_url }}">
-                @push('js')
-                    <script src="https://www.youtube.com/iframe_api"></script>
-                    <script>
-                        var source_video_id = $('#youtube_video_id').val();
-                        var player;
-                        // val youtube_video_id=$('#youtube_video_id').val();
-                        function onYouTubeIframeAPIReady() {
-                            console.log('yt api');
-                            player = new YT.Player('video-placeholder', {
-                                videoId: source_video_id,
-                                height: '100%',
-                                width: '100%',
-                                playerVars: {
-                                    color: 'white',
-                                    controls: {{ Settings('show_seek_bar') ? 1 : 0 }},
-                                    showinfo: 0,
-                                    rel: 0,
-                                },
-                                events: {
-                                    onReady: initialize
-
-                                }
-                            });
+                @if ($lesson->host == 'Youtube')
+                    @php
+                        if (Str::contains($lesson->video_url, '&')) {
+                            $video_id = explode('=', $lesson->video_url);
+                            $youtube_url = youtubeVideo($video_id[1]);
+                        } else {
+                            $youtube_url = getVideoId(showPicName(@$lesson->video_url));
                         }
+                    @endphp
 
-                        function initialize() {
-                            // Update the controls on load
-                            updateTimerDisplay();
-                            updateProgressBar();
 
-                            // if (jsonData.length == (current_index + 1)) {
-                            //     location.reload();
-                            //     player.pauseVideo();
-                            // } else {
-                            player.playVideo();
-                            // }
-                            console.log('play');
-                            time_update_interval = setInterval(function() {
+                    <div style="" id="video-placeholder" style="height: 79vh"></div>
+                    <input class="d-none" type="text" id="progress-bar">
+                    <input type="hidden" name="" id="youtube_video_id" value="{{ $youtube_url }}">
+                    @push('js')
+                        <script src="https://www.youtube.com/iframe_api"></script>
+                        <script>
+                            var source_video_id = $('#youtube_video_id').val();
+                            var player;
+                            // val youtube_video_id=$('#youtube_video_id').val();
+                            function onYouTubeIframeAPIReady() {
+                                console.log('yt api');
+                                player = new YT.Player('video-placeholder', {
+                                    videoId: source_video_id,
+                                    height: '100%',
+                                    width: '100%',
+                                    playerVars: {
+                                        color: 'white',
+                                        controls: {{ Settings('show_seek_bar') ? 1 : 0 }},
+                                        showinfo: 0,
+                                        rel: 0,
+                                    },
+                                    events: {
+                                        onReady: initialize
+
+                                    }
+                                });
+                            }
+
+                            function initialize() {
+                                // Update the controls on load
                                 updateTimerDisplay();
                                 updateProgressBar();
-                            }, 1000)
 
+                                // if (jsonData.length == (current_index + 1)) {
+                                //     location.reload();
+                                //     player.pauseVideo();
+                                // } else {
+                                player.playVideo();
+                                // }
+                                console.log('play');
+                                time_update_interval = setInterval(function() {
+                                    updateTimerDisplay();
+                                    updateProgressBar();
+                                }, 1000)
 
-                        }
-
-                        // player.addEventListener("onStateChange", function(state){
-                        //     if(state === 0){
-                        //         console.log('video complete');
-                        //         lessonAutoComplete(course_id,{{ showPicName(Request::url()) }});
-                        //     }
-                        // });
-                        function updateProgressBar() {
-                            $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
-                        }
-
-
-
-                        function updateTimerDisplay() {
-                            $('#currentTime').text(formatTime(player.getCurrentTime()));
-                            $('#totalTime').text(formatTime(player.getDuration()));
-
-                            if (player.getCurrentTime() >= Math.max(0, player.getDuration() - 1)) {
-                                if (!completeRequest) {
-                                    lessonAutoComplete(course_id, {{ showPicName(Request::url()) }});
-                                    completeRequest = true;
-                                }
 
                             }
 
-                        }
-
-
-                        function formatTime(time) {
-                            time = Math.round(time);
-                            var hours = Math.floor(time / 3600);
-                            var minutes = Math.floor((time % 3600) / 60);
-                            var remainingSeconds = Math.floor(time % 60);
-
-                            var formattedTime = '';
-
-                            if (hours > 0) {
-                                formattedTime += hours + ':';
+                            // player.addEventListener("onStateChange", function(state){
+                            //     if(state === 0){
+                            //         console.log('video complete');
+                            //         lessonAutoComplete(course_id,{{ showPicName(Request::url()) }});
+                            //     }
+                            // });
+                            function updateProgressBar() {
+                                $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
                             }
 
-                            formattedTime += (minutes < 10 ? '0' : '') + minutes + ':';
-                            formattedTime += (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
-
-                            return formattedTime;
-                            // var minutes = Math.floor(time / 60),
-                            //     seconds = time - minutes * 60;
-                            //
-                            // seconds = seconds < 10 ? '0' + seconds : seconds;
-                            //
-                            // return minutes + ":" + seconds;
-                        }
-
-                        $('#progress-bar').on('mouseup touchend', function(e) {
-
-                            // Calculate the new time for the video.
-                            // new time in seconds = total duration in seconds * ( value of range input / 100 )
-                            var newTime = player.getDuration() * (e.target.value / 100);
-
-                            // Skip video to new time.
-                            player.seekTo(newTime);
-
-                        });
-
-                        // This function is called by initialize()
-                        function updateProgressBar() {
-                            // Update the value of our progress bar accordingly.
-                            $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
-                        }
-                    </script>
-                @endpush
-            @endif
-            {{-- End Youtube --}}
-
-            @if ($lesson->host == 'Vimeo')
-                <iframe class="video_iframe" id="video-id"
-                    src="https://player.vimeo.com/video/{{ getVideoId(showPicName(@$lesson->video_url)) }}?autoplay=1&"
-                    frameborder="0" controls="1" allowfullscreen></iframe>
-                <script src="https://f.vimeocdn.com/js/froogaloop2.min.js"></script>
-
-                @push('js')
-                    <script src='https://player.vimeo.com/api/player.js'></script>
-                    <script>
-                        $(function() {
-                            var iframe = $('#video-id')[0];
-                            var player = new Vimeo.Player(iframe);
-                            var status = $('.status');
 
 
-                            player.on('pause', function() {
-                                console.log('paused');
-                            });
+                            function updateTimerDisplay() {
+                                $('#currentTime').text(formatTime(player.getCurrentTime()));
+                                $('#totalTime').text(formatTime(player.getDuration()));
 
-                            player.on('ended', function() {
-                                console.log('ended');
-                                console.log(completeRequest)
-                                if (!completeRequest) {
-                                    lessonAutoComplete(course_id, {{ showPicName(Request::url()) }});
-                                    completeRequest = true;
-                                }
-                                status.text('End');
-
-
-                            });
-
-                            player.on('timeupdate', function(data) {
-                                console.log(data.seconds + 's played');
-                            });
-
-                        });
-                    </script>
-                @endpush
-            @endif
-            @push('js')
-                <script>
-                    $("#autoNext").change(function() {
-                        if ($(this).is(':checked')) {
-                            localStorage.setItem('autoNext', 1);
-                        } else {
-                            localStorage.setItem('autoNext', 0);
-
-                        }
-
-                    });
-                    if (localStorage.getItem('autoNext') == 0) {
-                        $("#autoNext").prop('checked', false);
-                    }
-                    $("#autoNext").trigger('change');
-
-                    function lessonAutoComplete(course_id, lesson_id) {
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
-
-
-                        $.ajax({
-                            type: 'GET',
-                            "_token": "{{ csrf_token() }}",
-                            url: '{{ route('lesson.complete.ajax') }}',
-                            data: {
-                                course_id: course_id,
-                                lesson_id: lesson_id,
-                                @if (request()->has('courseType'))
-                                    courseType: '{{ request()->get('courseType') }}',
-                                @endif
-                                @if (request()->has('program_id'))
-                                    program_id: '{{ request()->get('program_id') }}',
-                                @endif
-                            },
-                            success: function(data) {
-                                if ($('#autoNext').is(':checked')) {
-                                    @if (isModuleActive('Org') && $lesson->host == 'SCORM')
-                                        $('#single_lesson_' + lesson_id).find('[type=checkbox]').prop('checked', true);
-                                    @else
-                                        reaload();
-                                    @endif
-
-                                }
-
-                            }
-                        });
-
-                        function reaload() {
-                            if ($('#next_lesson_btn').length) {
-                                jQuery('#next_lesson_btn').click();
-                            } else {
-                                location.reload();
-                            }
-                        }
-
-                        if (window.outerWidth < 425) {
-                            $('.courseListPlayer').toggleClass("active");
-                            $('.course_fullview_wrapper').toggleClass("active");
-                        }
-                    }
-                </script>
-            @endpush
-            @if ($lesson->host == 'VdoCipher')
-                <div id="embedBox" class="video_iframe"></div>
-
-                <script>
-                    (function(v, i, d, e, o) {
-                        v[o] = v[o] || {
-                            add: function V(a) {
-                                (v[o].d = v[o].d || []).push(a);
-                            }
-                        };
-                        if (!v[o].l) {
-                            v[o].l = 1 * new Date();
-                            a = i.createElement(d);
-                            m = i.getElementsByTagName(d)[0];
-                            a.async = 1;
-                            a.src = e;
-                            m.parentNode.insertBefore(a, m);
-                        }
-                    })(
-                        window,
-                        document,
-                        "script",
-                        "https://cdn-gce.vdocipher.com/playerAssets/1.6.10/vdo.js",
-                        "vdo"
-                    );
-                    vdo.add({
-                        otp: "{{ $lesson->otp }}",
-                        playbackInfo: "{{ $lesson->playbackInfo }}",
-                        theme: "9ae8bbe8dd964ddc9bdb932cca1cb59a",
-                        container: document.querySelector("#embedBox"),
-                        autoplay: true
-                    });
-                </script>
-
-                <script>
-                    var isRedirect = false;
-
-                    function onVdoCipherAPIReady() {
-                        let video = vdo.getObjects()[0];
-                        setInterval(function() {
-                            if (video.ended) {
-                                if (!isRedirect) {
+                                if (player.getCurrentTime() >= Math.max(0, player.getDuration() - 1)) {
                                     if (!completeRequest) {
                                         lessonAutoComplete(course_id, {{ showPicName(Request::url()) }});
                                         completeRequest = true;
                                     }
-                                    isRedirect = true;
+
+                                }
+
+                            }
+
+
+                            function formatTime(time) {
+                                time = Math.round(time);
+                                var hours = Math.floor(time / 3600);
+                                var minutes = Math.floor((time % 3600) / 60);
+                                var remainingSeconds = Math.floor(time % 60);
+
+                                var formattedTime = '';
+
+                                if (hours > 0) {
+                                    formattedTime += hours + ':';
+                                }
+
+                                formattedTime += (minutes < 10 ? '0' : '') + minutes + ':';
+                                formattedTime += (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+
+                                return formattedTime;
+                                // var minutes = Math.floor(time / 60),
+                                //     seconds = time - minutes * 60;
+                                //
+                                // seconds = seconds < 10 ? '0' + seconds : seconds;
+                                //
+                                // return minutes + ":" + seconds;
+                            }
+
+                            $('#progress-bar').on('mouseup touchend', function(e) {
+
+                                // Calculate the new time for the video.
+                                // new time in seconds = total duration in seconds * ( value of range input / 100 )
+                                var newTime = player.getDuration() * (e.target.value / 100);
+
+                                // Skip video to new time.
+                                player.seekTo(newTime);
+
+                            });
+
+                            // This function is called by initialize()
+                            function updateProgressBar() {
+                                // Update the value of our progress bar accordingly.
+                                $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
+                            }
+                        </script>
+                    @endpush
+                @endif
+                {{-- End Youtube --}}
+
+                @if ($lesson->host == 'Vimeo')
+                    <iframe class="video_iframe" id="video-id"
+                        src="https://player.vimeo.com/video/{{ getVideoId(showPicName(@$lesson->video_url)) }}?autoplay=1&"
+                        frameborder="0" controls="1" allowfullscreen></iframe>
+                    <script src="https://f.vimeocdn.com/js/froogaloop2.min.js"></script>
+
+                    @push('js')
+                        <script src='https://player.vimeo.com/api/player.js'></script>
+                        <script>
+                            $(function() {
+                                var iframe = $('#video-id')[0];
+                                var player = new Vimeo.Player(iframe);
+                                var status = $('.status');
+
+
+                                player.on('pause', function() {
+                                    console.log('paused');
+                                });
+
+                                player.on('ended', function() {
+                                    console.log('ended');
+                                    console.log(completeRequest)
+                                    if (!completeRequest) {
+                                        lessonAutoComplete(course_id, {{ showPicName(Request::url()) }});
+                                        completeRequest = true;
+                                    }
+                                    status.text('End');
+
+
+                                });
+
+                                player.on('timeupdate', function(data) {
+                                    console.log(data.seconds + 's played');
+                                });
+
+                            });
+                        </script>
+                    @endpush
+                @endif
+                @push('js')
+                    <script>
+                        $("#autoNext").change(function() {
+                            if ($(this).is(':checked')) {
+                                localStorage.setItem('autoNext', 1);
+                            } else {
+                                localStorage.setItem('autoNext', 0);
+
+                            }
+
+                        });
+                        if (localStorage.getItem('autoNext') == 0) {
+                            $("#autoNext").prop('checked', false);
+                        }
+                        $("#autoNext").trigger('change');
+
+                        function lessonAutoComplete(course_id, lesson_id) {
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                            });
+
+
+                            $.ajax({
+                                type: 'GET',
+                                "_token": "{{ csrf_token() }}",
+                                url: '{{ route('lesson.complete.ajax') }}',
+                                data: {
+                                    course_id: course_id,
+                                    lesson_id: lesson_id,
+                                    @if (request()->has('courseType'))
+                                        courseType: '{{ request()->get('courseType') }}',
+                                    @endif
+                                    @if (request()->has('program_id'))
+                                        program_id: '{{ request()->get('program_id') }}',
+                                    @endif
+                                },
+                                success: function(data) {
+                                    if ($('#autoNext').is(':checked')) {
+                                        @if (isModuleActive('Org') && $lesson->host == 'SCORM')
+                                            $('#single_lesson_' + lesson_id).find('[type=checkbox]').prop('checked', true);
+                                        @else
+                                            reaload();
+                                        @endif
+
+                                    }
+
+                                }
+                            });
+
+                            function reaload() {
+                                if ($('#next_lesson_btn').length) {
+                                    jQuery('#next_lesson_btn').click();
+                                } else {
+                                    location.reload();
                                 }
                             }
-                        }, 1000);
-                    }
-                </script>
-            @endif
 
-            @if ($lesson->host == 'Self')
-                <video class="" id="video-id" controls autoplay
-                    onended="lessonAutoComplete(course_id, {{ showPicName(Request::url()) }})">
-                    <source src="{{ asset($lesson->video_url) }}" type="video/mp4" />
-                    <source src="{{ asset($lesson->video_url) }}" type="video/ogg">
-                </video>
-            @endif
-
-
-
-            @if ($lesson->host == 'URL')
-                <video class="" id="video-id" controls autoplay
-                    onended="lessonAutoComplete(course_id, {{ showPicName(Request::url()) }})">
-                    <source src="{{ $lesson->video_url }}" type="video/mp4">
-                    <source src="{{ $lesson->video_url }}" type="video/ogg">
-                    Your browser does not support the video.
-                </video>
-            @endif
-            @if ($lesson->host == 'AmazonS3')
-                <video class="" id="video-id" controls
-                    onended="lessonAutoComplete(course_id, {{ showPicName(Request::url()) }})">
-                    <source src="{{ $lesson->video_url }}" type="video/mp4" />
-
-                </video>
-            @endif
-            @if ($lesson->host == 'XAPI' || $lesson->host == 'XAPI-AwsS3')
-                <iframe id="video-id" class="video_iframe"
-                    src="{{ asset($lesson->video_url) }}?actor=%7B%22mbox%22%3A%22mailto%3A{{ Settings('email') }}%22%2C%22name%22%3A%22{{ Settings('site_title') }}%22%2C%22objectType%22%3A%22Agent%22%7D&amp;endpoint={{ url('xapi') }}&amp;course_id={{ $course->id }}&amp;lesson_id={{ $lesson->id }}&amp;next_lesson={{ $lesson_ids[$current_index + 1] ?? '' }}"></iframe>
-            @endif
-            @if ($lesson->host == 'SCORM' || $lesson->host == 'SCORM-AwsS3')
-                @if (!empty($lesson->video_url))
-                    <iframe class="video_iframe" id="video-id" src=""
-                        @if ($lesson->scorm_version == 'scorm_12') onbeforeunload="API.LMSFinish('');" width="100%"
-                            height="100%" onunload="API.LMSFinish('');" @endif></iframe>
-                @endif
-            @endif
-
-            @if ($lesson->host == 'Iframe')
-                @if (!empty($lesson->video_url))
-                    <iframe class="video_iframe" id="video-id" src="{{ asset($lesson->video_url) }}"></iframe>
-                @endif
-            @endif
-
-
-            @if ($lesson->host == 'Image')
-                <img src="{{ asset($lesson->video_url) }}" alt="" class="w-100 h-100">
-            @endif
-
-            @if ($lesson->host == 'PDF')
-                {{--                <script src="{{asset('public/frontend/infixlmstheme/js/pdf.min.js')}}"></script> --}}
-                {{--                <script src="{{asset('public/frontend/infixlmstheme/js/pdfjs-viewer.js')}}"></script> --}}
-                {{--                <script src="{{asset('public/frontend/infixlmstheme/js/zoom.js')}}"></script> --}}
-                {{--                <link rel="stylesheet" href="{{asset('public/frontend/infixlmstheme/css/pdfjs-viewer.css')}}"/> --}}
-
-                {{--                <script> --}}
-                {{--                    var pdfjsLib = window['pdfjs-dist/build/pdf']; --}}
-                {{--                    pdfjsLib.GlobalWorkerOptions.workerSrc = '{{asset('public/frontend/infixlmstheme/js/pdf.worker.min.js')}}'; --}}
-                {{--                </script> --}}
-                {{--                <div class="w-100  h-100 pdfjs-viewer" --}}
-                {{--                     style="border: none;min-height: 400px"></div> --}}
-                {{--                <script> --}}
-                {{--                    let pdfViewer = new PDFjsViewer($('.pdfjs-viewer')); --}}
-                {{--                    pdfViewer.loadDocument("{{asset($lesson->video_url)}}").then(function () { --}}
-                {{--                        pdfViewer.setZoom('width'); --}}
-                {{--                    }); --}}
-                {{--                    enablePinchZoom(pdfViewer) --}}
-                {{--                </script> --}}
-                <iframe class=" w-100 h-100 mobile-min-height"
-                    src="https://docs.google.com/viewer?url={{ asset($lesson->video_url) }}&embedded=true"></iframe>
-            @endif
-            @if ($lesson->host == 'Word')
-                <iframe class="w-100 h-100 mobile-min-height"
-                    src="https://docs.google.com/gview?url={{ asset($lesson->video_url) }}&embedded=true"></iframe>
-            @endif
-            {{-- @dd($lesson->host) --}}
-            @if ($lesson->host == 'Excel' || $lesson->host == 'PowerPoint')
-                <iframe class="w-100 h-100 mobile-min-height"
-                    src="https://view.officeapps.live.com/op/view.aspx?src={{ asset($lesson->video_url) }}"></iframe>
-            @endif
-
-            @if ($lesson->host == 'GoogleDrive')
-                <iframe class="w-100 h-100" controlsList="nodownload"
-                    src="https://drive.google.com/uc?id={{ $lesson->video_url }}&export=view"></iframe>
-            @endif
-
-            @if ($lesson->host == 'Text')
-                <div class="w-100 h-100 textViewer">
-
-                </div>
-                <script>
-                    $(".textViewer").load("{{ asset($lesson->video_url) }}");
-                </script>
-            @endif
-
-
-            {{-- Iframe video --}}
-            @push('js')
-                <script>
-                    $(document).ready(function(e) {
-                        if ($('#video-id').length) {
-                            var iframe = document.getElementById("video-id");
-                            // console.log(iframe);
-                            var video = iframe.contentDocument.body.getElementsByTagName("video")[0];
-                            var supposedCurrentTime = 0;
-                            video.addEventListener('timeupdate', function() {
-                                if (!video.seeking) {
-                                    supposedCurrentTime = video.currentTime;
-                                }
-                            });
-                            // prevent user from seeking
-                            video.addEventListener('seeking', function() {
-                                // guard agains infinite recursion:
-                                // user seeks, seeking is fired, currentTime is modified, seeking is fired, current time is modified, ....
-                                var delta = video.currentTime - supposedCurrentTime;
-                                if (Math.abs(delta) > 0.01) {
-                                    console.log("Seeking is disabled");
-                                    video.currentTime = supposedCurrentTime;
-                                }
-                            });
-                            // delete the following event handler if rewind is not required
-                            video.addEventListener('ended', function() {
-                                if (!completeRequest) {
-                                    lessonAutoComplete(course_id, {{ showPicName(Request::url()) }});
-                                    completeRequest = true;
-                                }
-
-                                // reset state in order to allow for rewind
-                                console.log('video end');
-                                supposedCurrentTime = 0;
-                            });
+                            if (window.outerWidth < 425) {
+                                $('.courseListPlayer').toggleClass("active");
+                                $('.course_quiz_left_wrapper').toggleClass("active");
+                            }
                         }
-                    });
-                </script>
-            @endpush
-            @if ($lesson->host == 'Zip')
-                <style>
-                    .parent {
-                        position: fixed;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
+                    </script>
+                @endpush
+                @if ($lesson->host == 'VdoCipher')
+                    <div id="embedBox" class="video_iframe"></div>
 
-                    .child {
-                        position: relative;
-                        font-size: 10vw;
-                    }
-                </style>
-                <div class="w-100 parent h-100">
-                    <div class="">
-                        <div class="row">
-                            <div class="col text-center">
-                                <div class="child">
-                                    <a class="theme_btn" href="{{ asset($lesson->video_url) }}"
-                                        download="">{{ __('frontend.Download File') }}</a>
+                    <script>
+                        (function(v, i, d, e, o) {
+                            v[o] = v[o] || {
+                                add: function V(a) {
+                                    (v[o].d = v[o].d || []).push(a);
+                                }
+                            };
+                            if (!v[o].l) {
+                                v[o].l = 1 * new Date();
+                                a = i.createElement(d);
+                                m = i.getElementsByTagName(d)[0];
+                                a.async = 1;
+                                a.src = e;
+                                m.parentNode.insertBefore(a, m);
+                            }
+                        })(
+                            window,
+                            document,
+                            "script",
+                            "https://cdn-gce.vdocipher.com/playerAssets/1.6.10/vdo.js",
+                            "vdo"
+                        );
+                        vdo.add({
+                            otp: "{{ $lesson->otp }}",
+                            playbackInfo: "{{ $lesson->playbackInfo }}",
+                            theme: "9ae8bbe8dd964ddc9bdb932cca1cb59a",
+                            container: document.querySelector("#embedBox"),
+                            autoplay: true
+                        });
+                    </script>
+
+                    <script>
+                        var isRedirect = false;
+
+                        function onVdoCipherAPIReady() {
+                            let video = vdo.getObjects()[0];
+                            setInterval(function() {
+                                if (video.ended) {
+                                    if (!isRedirect) {
+                                        if (!completeRequest) {
+                                            lessonAutoComplete(course_id, {{ showPicName(Request::url()) }});
+                                            completeRequest = true;
+                                        }
+                                        isRedirect = true;
+                                    }
+                                }
+                            }, 1000);
+                        }
+                    </script>
+                @endif
+
+                @if ($lesson->host == 'Self')
+                    <video class="" id="video-id" controls autoplay
+                        onended="lessonAutoComplete(course_id, {{ showPicName(Request::url()) }})">
+                        <source src="{{ asset($lesson->video_url) }}" type="video/mp4" />
+                        <source src="{{ asset($lesson->video_url) }}" type="video/ogg">
+                    </video>
+                @endif
+
+
+
+                @if ($lesson->host == 'URL')
+                    <video class="" id="video-id" controls autoplay
+                        onended="lessonAutoComplete(course_id, {{ showPicName(Request::url()) }})">
+                        <source src="{{ $lesson->video_url }}" type="video/mp4">
+                        <source src="{{ $lesson->video_url }}" type="video/ogg">
+                        Your browser does not support the video.
+                    </video>
+                @endif
+                @if ($lesson->host == 'AmazonS3')
+                    <video class="" id="video-id" controls
+                        onended="lessonAutoComplete(course_id, {{ showPicName(Request::url()) }})">
+                        <source src="{{ $lesson->video_url }}" type="video/mp4" />
+
+                    </video>
+                @endif
+                @if ($lesson->host == 'XAPI' || $lesson->host == 'XAPI-AwsS3')
+                    <iframe id="video-id" class="video_iframe"
+                        src="{{ asset($lesson->video_url) }}?actor=%7B%22mbox%22%3A%22mailto%3A{{ Settings('email') }}%22%2C%22name%22%3A%22{{ Settings('site_title') }}%22%2C%22objectType%22%3A%22Agent%22%7D&amp;endpoint={{ url('xapi') }}&amp;course_id={{ $course->id }}&amp;lesson_id={{ $lesson->id }}&amp;next_lesson={{ $lesson_ids[$current_index + 1] ?? '' }}"></iframe>
+                @endif
+                @if ($lesson->host == 'SCORM' || $lesson->host == 'SCORM-AwsS3')
+                    @if (!empty($lesson->video_url))
+                        <iframe class="video_iframe" id="video-id" src=""
+                            @if ($lesson->scorm_version == 'scorm_12') onbeforeunload="API.LMSFinish('');" width="100%"
+                            height="100%" onunload="API.LMSFinish('');" @endif></iframe>
+                    @endif
+                @endif
+
+                @if ($lesson->host == 'Iframe')
+                    @if (!empty($lesson->video_url))
+                        <iframe class="video_iframe" id="video-id" src="{{ asset($lesson->video_url) }}"></iframe>
+                    @endif
+                @endif
+
+
+                @if ($lesson->host == 'Image')
+                    <img src="{{ asset($lesson->video_url) }}" alt="" class="w-100 h-100">
+                @endif
+
+                @if ($lesson->host == 'PDF')
+                    {{--                <script src="{{asset('public/frontend/infixlmstheme/js/pdf.min.js')}}"></script> --}}
+                    {{--                <script src="{{asset('public/frontend/infixlmstheme/js/pdfjs-viewer.js')}}"></script> --}}
+                    {{--                <script src="{{asset('public/frontend/infixlmstheme/js/zoom.js')}}"></script> --}}
+                    {{--                <link rel="stylesheet" href="{{asset('public/frontend/infixlmstheme/css/pdfjs-viewer.css')}}"/> --}}
+
+                    {{--                <script> --}}
+                    {{--                    var pdfjsLib = window['pdfjs-dist/build/pdf']; --}}
+                    {{--                    pdfjsLib.GlobalWorkerOptions.workerSrc = '{{asset('public/frontend/infixlmstheme/js/pdf.worker.min.js')}}'; --}}
+                    {{--                </script> --}}
+                    {{--                <div class="w-100  h-100 pdfjs-viewer" --}}
+                    {{--                     style="border: none;min-height: 400px"></div> --}}
+                    {{--                <script> --}}
+                    {{--                    let pdfViewer = new PDFjsViewer($('.pdfjs-viewer')); --}}
+                    {{--                    pdfViewer.loadDocument("{{asset($lesson->video_url)}}").then(function () { --}}
+                    {{--                        pdfViewer.setZoom('width'); --}}
+                    {{--                    }); --}}
+                    {{--                    enablePinchZoom(pdfViewer) --}}
+                    {{--                </script> --}}
+                    <iframe class=" w-100 h-100 mobile-min-height"
+                        src="https://docs.google.com/viewer?url={{ asset($lesson->video_url) }}&embedded=true"></iframe>
+                @endif
+                @if ($lesson->host == 'Word')
+                    <iframe class="w-100 h-100 mobile-min-height"
+                        src="https://docs.google.com/gview?url={{ asset($lesson->video_url) }}&embedded=true"></iframe>
+                @endif
+                {{-- @dd($lesson->host) --}}
+                @if ($lesson->host == 'Excel' || $lesson->host == 'PowerPoint')
+                    <iframe class="w-100 h-100 mobile-min-height"
+                        src="https://view.officeapps.live.com/op/view.aspx?src={{ asset($lesson->video_url) }}"></iframe>
+                @endif
+
+                @if ($lesson->host == 'GoogleDrive')
+                    <iframe class="w-100 h-100" controlsList="nodownload"
+                        src="https://drive.google.com/uc?id={{ $lesson->video_url }}&export=view"></iframe>
+                @endif
+
+                @if ($lesson->host == 'Text')
+                    <div class="w-100 h-100 textViewer">
+
+                    </div>
+                    <script>
+                        $(".textViewer").load("{{ asset($lesson->video_url) }}");
+                    </script>
+                @endif
+
+
+                {{-- Iframe video --}}
+                @push('js')
+                    <script>
+                        $(document).ready(function(e) {
+                            if ($('#video-id').length) {
+                                var iframe = document.getElementById("video-id");
+                                // console.log(iframe);
+                                var video = iframe.contentDocument.body.getElementsByTagName("video")[0];
+                                var supposedCurrentTime = 0;
+                                video.addEventListener('timeupdate', function() {
+                                    if (!video.seeking) {
+                                        supposedCurrentTime = video.currentTime;
+                                    }
+                                });
+                                // prevent user from seeking
+                                video.addEventListener('seeking', function() {
+                                    // guard agains infinite recursion:
+                                    // user seeks, seeking is fired, currentTime is modified, seeking is fired, current time is modified, ....
+                                    var delta = video.currentTime - supposedCurrentTime;
+                                    if (Math.abs(delta) > 0.01) {
+                                        console.log("Seeking is disabled");
+                                        video.currentTime = supposedCurrentTime;
+                                    }
+                                });
+                                // delete the following event handler if rewind is not required
+                                video.addEventListener('ended', function() {
+                                    if (!completeRequest) {
+                                        lessonAutoComplete(course_id, {{ showPicName(Request::url()) }});
+                                        completeRequest = true;
+                                    }
+
+                                    // reset state in order to allow for rewind
+                                    console.log('video end');
+                                    supposedCurrentTime = 0;
+                                });
+                            }
+                        });
+                    </script>
+                @endpush
+                @if ($lesson->host == 'Zip')
+                    <style>
+                        .parent {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        .child {
+                            position: relative;
+                            font-size: 10vw;
+                        }
+                    </style>
+                    <div class="w-100 parent h-100">
+                        <div class="">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <div class="child">
+                                        <a class="theme_btn" href="{{ asset($lesson->video_url) }}"
+                                            download="">{{ __('frontend.Download File') }}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+                @endif
 
-                </div>
             @endif
+            {{-- </div> --}}
 
-        @endif
-        {{-- </div> --}}
+    </div>
+            <input type="hidden" id="url" value="{{ url('/') }}">
+            <div class="course__play_warp courseListPlayer">
+                <div class="play_toggle_btn">
+                    <i class="ti-menu-alt"></i>
+                </div>
 
-
-        <input type="hidden" id="url" value="{{ url('/') }}">
-        <div class="course__play_warp courseListPlayer">
-            <div class="play_toggle_btn">
-                <i class="ti-menu-alt"></i>
-            </div>
-
-            <div class="play_warp_header d-flex justify-content-center">
-                <h3 class="font_16 lesson_count default-font mb-0">
-                    <a href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug) }}{{ request()->has('program_id') ? '?program_id=' . request()->get('program_id') : '' }}{{ request()->has('courseType') ? '?courseType=' . request()->get('courseType') : '' }}"
-                        class="theme_btn_mini">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                    {{ @$total }} {{ __('common.Lessons') }}
-                </h3>
-            </div>
-            <div class="course__play_list">
-                @php
-                    $i = 1;
-                @endphp
-                <div class="theme_according mb_30" id="accordion1">
-                    @foreach ($chapters as $k => $chapter)
-                        <div class="card">
-                            <div class="card-header pink_bg" id="heading{{ $chapter->id }}">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link text_white collapsed" data-toggle="collapse"
-                                        data-target="#collapse{{ $chapter->id }}" aria-expanded="false"
-                                        aria-controls="collapse{{ $chapter->id }}">
-                                        {{ $chapter->name }} <br>
-                                        <span class="course_length nowrap"> {{ count($chapter->lessons) }}
-                                            {{ __('frontend.Lectures') }}</span>
-                                    </button>
-                                </h5>
-                            </div>
-                            <div class="collapse" id="collapse{{ $chapter->id }}"
-                                aria-labelledby="heading{{ $chapter->id }}" data-parent="#accordion1">
-                                <div class="card-body">
-                                    <div class="curriculam_list">
-                                        @if (isset($lessons))
-                                            @php
-                                                // $video_lesson_hosts=['Youtube','Vimeo','Self','URL'];
-                                            @endphp
-                                            @foreach ($lessons as $key => $singleLesson)
-                                                @if ($singleLesson->chapter_id == $chapter->id)
-                                                    <div class="single_play_list"
-                                                        id="single_lesson_{{ $singleLesson->id }}">
-                                                        <a class="@if (showPicName(Request::url()) == $singleLesson->id) active @endif"
-                                                            href="#">
-                                                            @if ($singleLesson->is_quiz == 1)
-                                                                <div class="course_play_name">
-                                                                    @php
-                                                                        if (request()->has('program_id')) {
-                                                                            $programSingleLesson = $singleLesson->programCompleted;
-                                                                        } else {
-                                                                            $programSingleLesson = $singleLesson->completed;
-                                                                        }
-                                                                    @endphp
-                                                                    {{-- @dd($singleLesson) --}}
-                                                                    @foreach ($programSingleLesson as $lessonItem)
-                                                                        <label class="primary_checkbox d-flex mb-0">
-                                                                            @if (
-                                                                                (isset($lessonItem->courseType) && $lessonItem->courseType == request()->get('courseType')) ||
-                                                                                    (isset($lessonItem->program_id) && $lessonItem->program_id == request()->get('program_id')))
-                                                                                <input type="checkbox"
-                                                                                    {{ $lessonItem && $lessonItem->status == 1 ? 'checked' : '' }}
-                                                                                    disabled>
-                                                                                <span class="checkmark mr_15"
-                                                                                    style="cursor: not-allowed"></span>
-                                                                                <i class="ti-check-box"></i>
-                                                                            @endif
-                                                                        </label>
-                                                                    @endforeach
-
-                                                                    @foreach ($singleLesson->quiz as $quiz)
-                                                                        <span class="quizLink"
-                                                                            onclick="goFullScreen({{ $course->id }},{{ $singleLesson->id }},{{ request()->program_id ?? 'null' }} ,{{ request()->courseType ?? 'null' }})">
-                                                                            <span class="quiz_name">{{ $i }}.
-                                                                                {{ @$quiz->title }}</span>
-                                                                        </span>
-                                                                </div>
-                                                            @endforeach
-                                                        @else
-                                                            @php
-                                                                if (request()->has('program_id')) {
-                                                                    $programSingleLesson = $singleLesson->programCompleted;
-                                                                } else {
-                                                                    $programSingleLesson = $singleLesson->completed;
-                                                                }
-                                                            @endphp
-                                                            <div class="course_play_name">
-                                                                @if (request()->route('lesson_id') == $singleLesson->id)
-                                                                    <div
-                                                                        class="remember_forgot_pass d-flex justify-content-between">
+                <div class="play_warp_header d-flex justify-content-center">
+                    <h3 class="font_16 lesson_count default-font mb-0">
+                        <a href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug) }}{{ request()->has('program_id') ? '?program_id=' . request()->get('program_id') : '' }}{{ request()->has('courseType') ? '?courseType=' . request()->get('courseType') : '' }}"
+                            class="theme_btn_mini">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        {{ @$total }} {{ __('common.Lessons') }}
+                    </h3>
+                </div>
+                <div class="course__play_list">
+                    @php
+                        $i = 1;
+                    @endphp
+                    <div class="theme_according mb_30" id="accordion1">
+                        @foreach ($chapters as $k => $chapter)
+                            <div class="card">
+                                <div class="card-header pink_bg" id="heading{{ $chapter->id }}">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link text_white collapsed" data-toggle="collapse"
+                                            data-target="#collapse{{ $chapter->id }}" aria-expanded="false"
+                                            aria-controls="collapse{{ $chapter->id }}">
+                                            {{ $chapter->name }} <br>
+                                            <span class="course_length nowrap"> {{ count($chapter->lessons) }}
+                                                {{ __('frontend.Lectures') }}</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div class="collapse" id="collapse{{ $chapter->id }}"
+                                    aria-labelledby="heading{{ $chapter->id }}" data-parent="#accordion1">
+                                    <div class="card-body">
+                                        <div class="curriculam_list">
+                                            @if (isset($lessons))
+                                                @php
+                                                    // $video_lesson_hosts=['Youtube','Vimeo','Self','URL'];
+                                                @endphp
+                                                @foreach ($lessons as $key => $singleLesson)
+                                                    @if ($singleLesson->chapter_id == $chapter->id)
+                                                        <div class="single_play_list"
+                                                            id="single_lesson_{{ $singleLesson->id }}">
+                                                            <a class="@if (showPicName(Request::url()) == $singleLesson->id) active @endif"
+                                                                href="#">
+                                                                @if ($singleLesson->is_quiz == 1)
+                                                                    <div class="course_play_name">
+                                                                        @php
+                                                                            if (request()->has('program_id')) {
+                                                                                $programSingleLesson =
+                                                                                    $singleLesson->programCompleted;
+                                                                            } else {
+                                                                                $programSingleLesson =
+                                                                                    $singleLesson->completed;
+                                                                            }
+                                                                        @endphp
+                                                                        {{-- @dd($singleLesson) --}}
                                                                         @foreach ($programSingleLesson as $lessonItem)
                                                                             <label class="primary_checkbox d-flex mb-0">
-                                                                                @if ($isEnrolled)
-                                                                                    @if (
-                                                                                        (isset($lessonItem->courseType) && $lessonItem->courseType == request()->get('courseType')) ||
-                                                                                            (isset($lessonItem->program_id) && $lessonItem->program_id == request()->get('program_id')))
-                                                                                        <input type="checkbox"
-                                                                                            {{ $lessonItem && $lessonItem->status == 1 ? 'checked' : '' }}
-                                                                                            disabled>
-                                                                                        <span style="cursor: not-allowed"
-                                                                                            class="checkmark mr_15"></span>
-                                                                                        <i class="ti-control-play"></i>
-                                                                                        {{-- @else
+                                                                                @if (
+                                                                                    (isset($lessonItem->courseType) && $lessonItem->courseType == request()->get('courseType')) ||
+                                                                                        (isset($lessonItem->program_id) && $lessonItem->program_id == request()->get('program_id')))
+                                                                                    <input type="checkbox"
+                                                                                        {{ $lessonItem && $lessonItem->status == 1 ? 'checked' : '' }}
+                                                                                        disabled>
+                                                                                    <span class="checkmark mr_15"
+                                                                                        style="cursor: not-allowed"></span>
+                                                                                    <i class="ti-check-box"></i>
+                                                                                @endif
+                                                                            </label>
+                                                                        @endforeach
+
+                                                                        @foreach ($singleLesson->quiz as $quiz)
+                                                                            <span class="quizLink"
+                                                                                onclick="goFullScreen({{ $course->id }},{{ $singleLesson->id }},{{ request()->program_id ?? 'null' }} ,{{ request()->courseType ?? 'null' }})">
+                                                                                <span
+                                                                                    class="quiz_name">{{ $i }}.
+                                                                                    {{ @$quiz->title }}</span>
+                                                                            </span>
+                                                                    </div>
+                                                                @endforeach
+                                                            @else
+                                                                @php
+                                                                    if (request()->has('program_id')) {
+                                                                        $programSingleLesson =
+                                                                            $singleLesson->programCompleted;
+                                                                    } else {
+                                                                        $programSingleLesson = $singleLesson->completed;
+                                                                    }
+                                                                @endphp
+                                                                <div class="course_play_name">
+                                                                    @if (request()->route('lesson_id') == $singleLesson->id)
+                                                                        <div
+                                                                            class="remember_forgot_pass d-flex justify-content-between">
+                                                                            @foreach ($programSingleLesson as $lessonItem)
+                                                                                <label
+                                                                                    class="primary_checkbox d-flex mb-0">
+                                                                                    @if ($isEnrolled)
+                                                                                        @if (
+                                                                                            (isset($lessonItem->courseType) && $lessonItem->courseType == request()->get('courseType')) ||
+                                                                                                (isset($lessonItem->program_id) && $lessonItem->program_id == request()->get('program_id')))
+                                                                                            <input type="checkbox"
+                                                                                                {{ $lessonItem && $lessonItem->status == 1 ? 'checked' : '' }}
+                                                                                                disabled>
+                                                                                            <span
+                                                                                                style="cursor: not-allowed"
+                                                                                                class="checkmark mr_15"></span>
+                                                                                            <i class="ti-control-play"></i>
+                                                                                            {{-- @else
                                                                                             <input type="checkbox"
                                                                                                 disabled>
                                                                                             <span
                                                                                                 style="cursor: not-allowed"
                                                                                                 class="checkmark mr_15"></span>
                                                                                             <i class="ti-control-play"></i> --}}
+                                                                                        @endif
                                                                                     @endif
-                                                                                @endif
-                                                                            </label>
-                                                                        @endforeach
-                                                                    </div>
-                                                                @else
-                                                                    @foreach ($programSingleLesson as $lessonItem)
-                                                                        <label class="primary_checkbox d-flex mb-0">
-                                                                            @if (
-                                                                                (isset($lessonItem->courseType) && $lessonItem->courseType == request()->get('courseType')) ||
-                                                                                    (isset($lessonItem->program_id) && $lessonItem->program_id == request()->get('program_id')))
-                                                                                <input type="checkbox"
-                                                                                    {{ $lessonItem && $lessonItem->status == 1 ? 'checked' : '' }}>
-                                                                                <span style="cursor: not-allowed"
-                                                                                    class="checkmark mr_15"></span>
-                                                                                <i class="ti-control-play"></i>
-                                                                                {{-- @else
+                                                                                </label>
+                                                                            @endforeach
+                                                                        </div>
+                                                                    @else
+                                                                        @foreach ($programSingleLesson as $lessonItem)
+                                                                            <label class="primary_checkbox d-flex mb-0">
+                                                                                @if (
+                                                                                    (isset($lessonItem->courseType) && $lessonItem->courseType == request()->get('courseType')) ||
+                                                                                        (isset($lessonItem->program_id) && $lessonItem->program_id == request()->get('program_id')))
+                                                                                    <input type="checkbox"
+                                                                                        {{ $lessonItem && $lessonItem->status == 1 ? 'checked' : '' }}>
+                                                                                    <span style="cursor: not-allowed"
+                                                                                        class="checkmark mr_15"></span>
+                                                                                    <i class="ti-control-play"></i>
+                                                                                    {{-- @else
                                                                                     <input type="checkbox" disabled>
                                                                                     <span style="cursor: not-allowed"
                                                                                         class="checkmark mr_15"></span>
                                                                                     <i class="ti-control-play"></i> --}}
-                                                                            @endif
-                                                                        </label>
-                                                                    @endforeach
-                                                                @endif
+                                                                                @endif
+                                                                            </label>
+                                                                        @endforeach
+                                                                    @endif
 
+                                                                    <span
+                                                                        onclick="goFullScreen({{ $course->id }},{{ $singleLesson->id }},{{ request()->program_id ?? 'null' }} ,{{ request()->courseType ?? 'null' }})">{{ $i }}.
+                                                                        {{ $singleLesson->name }} </span>
+                                                                </div>
                                                                 <span
-                                                                    onclick="goFullScreen({{ $course->id }},{{ $singleLesson->id }},{{ request()->program_id ?? 'null' }} ,{{ request()->courseType ?? 'null' }})">{{ $i }}.
-                                                                    {{ $singleLesson->name }} </span>
-                                                            </div>
-                                                            <span
-                                                                class="course_play_duration nowrap">{{ MinuteFormat($singleLesson->duration) }}</span>
-                                                        </a>
-                                                    </div>
+                                                                    class="course_play_duration nowrap">{{ MinuteFormat($singleLesson->duration) }}</span>
+                                                            </a>
+                                                        </div>
+                                                    @endif
+                                                    @php
+                                                        $i++;
+                                                    @endphp
                                                 @endif
-                                                @php
-                                                    $i++;
-                                                @endphp
-                                            @endif
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                    @endforeach
-                </div>
-                <div class="row justify-content-center text-center">
-                    @if ($certificate)
-                        @if ($quizPass)
-                            @auth()
-                                @if ($percentage >= 100)
-                                    @if (isModuleActive('Survey') && $course->survey)
-                                        @if (Settings('must_survey_before_certificate'))
-                                            @if (auth()->user()->attendSurvey($course->survey))
+                        @endif
+                        @endforeach
+                    </div>
+                    <div class="row justify-content-center text-center">
+                        @if ($certificate)
+                            @if ($quizPass)
+                                @auth()
+                                    @if ($percentage >= 100)
+                                        @if (isModuleActive('Survey') && $course->survey)
+                                            @if (Settings('must_survey_before_certificate'))
+                                                @if (auth()->user()->attendSurvey($course->survey))
+                                                    <a href="{{ route('getCertificate', [$course->id, $course->title]) }}"
+                                                        class="theme_btn certificate_btn mt-5">
+                                                        {{ __('frontend.Get Certificate') }}
+                                                    </a>
+                                                    @if (isModuleActive('MyClass'))
+                                                        <a href="{{ route('get-transcript', [$course->id, auth()->user()->id]) }}"
+                                                            class="theme_btn certificate_btn ml-2 mt-5"
+                                                            target="__blank">{{ __('class.Get Transcript') }}</a>
+                                                    @endif
+                                                @else
+                                                    <button type="button" data-toggle="modal" data-target="#assignSubmit"
+                                                        class="theme_btn certificate_btn mt-5">
+                                                        {{ __('frontend.Survey') }}
+                                                    </button>
+                                                    <small>
+                                                        {{ __('frontend.You must attend survey before getting certificate') }}
+                                                    </small>
+                                                @endif
+                                            @else
+                                                @if (!auth()->user()->attendSurvey($course->survey))
+                                                    <button type="button" data-toggle="modal" data-target="#assignSubmit"
+                                                        class="theme_btn certificate_btn mr-1 mt-5">
+                                                        {{ __('frontend.Survey') }}
+                                                    </button>
+                                                @endif
                                                 <a href="{{ route('getCertificate', [$course->id, $course->title]) }}"
-                                                    class="theme_btn certificate_btn mt-5">
+                                                    class="theme_btn certificate_btn ml-1 mt-5">
                                                     {{ __('frontend.Get Certificate') }}
                                                 </a>
                                                 @if (isModuleActive('MyClass'))
@@ -1399,24 +1453,10 @@
                                                         class="theme_btn certificate_btn ml-2 mt-5"
                                                         target="__blank">{{ __('class.Get Transcript') }}</a>
                                                 @endif
-                                            @else
-                                                <button type="button" data-toggle="modal" data-target="#assignSubmit"
-                                                    class="theme_btn certificate_btn mt-5">
-                                                    {{ __('frontend.Survey') }}
-                                                </button>
-                                                <small>
-                                                    {{ __('frontend.You must attend survey before getting certificate') }}
-                                                </small>
                                             @endif
                                         @else
-                                            @if (!auth()->user()->attendSurvey($course->survey))
-                                                <button type="button" data-toggle="modal" data-target="#assignSubmit"
-                                                    class="theme_btn certificate_btn mr-1 mt-5">
-                                                    {{ __('frontend.Survey') }}
-                                                </button>
-                                            @endif
                                             <a href="{{ route('getCertificate', [$course->id, $course->title]) }}"
-                                                class="theme_btn certificate_btn ml-1 mt-5">
+                                                class="theme_btn certificate_btn mt-5">
                                                 {{ __('frontend.Get Certificate') }}
                                             </a>
                                             @if (isModuleActive('MyClass'))
@@ -1425,33 +1465,22 @@
                                                     target="__blank">{{ __('class.Get Transcript') }}</a>
                                             @endif
                                         @endif
-                                    @else
-                                        <a href="{{ route('getCertificate', [$course->id, $course->title]) }}"
-                                            class="theme_btn certificate_btn mt-5">
-                                            {{ __('frontend.Get Certificate') }}
-                                        </a>
-                                        @if (isModuleActive('MyClass'))
-                                            <a href="{{ route('get-transcript', [$course->id, auth()->user()->id]) }}"
-                                                class="theme_btn certificate_btn ml-2 mt-5"
-                                                target="__blank">{{ __('class.Get Transcript') }}</a>
-                                        @endif
                                     @endif
-                                @endif
-                            @endauth
+                                @endauth
+                            @endif
                         @endif
-                    @endif
 
-                </div>
-                <div class="d-none mb-5 pb-5">
-                    <div>{{ __('frontend.Current Time') }}: <span id="currentTime">0</span></div>
-                    <div>{{ __('frontend.Total Time') }} : <span id="totalTime">0</span></div>
-                    <div>{{ __('frontend.Status') }} : <span class="status"></span></div>
+                    </div>
+                    <div class="d-none mb-5 pb-5">
+                        <div>{{ __('frontend.Current Time') }}: <span id="currentTime">0</span></div>
+                        <div>{{ __('frontend.Total Time') }} : <span id="totalTime">0</span></div>
+                        <div>{{ __('frontend.Status') }} : <span class="status"></span></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
+       
     </div>
-
 
     <div class="modal fade" id="ShareLink" tabindex="-1" role="dialog" aria-labelledby=" " aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -1674,7 +1703,7 @@
 
             if (window.outerWidth < 425) {
                 $('.courseListPlayer').toggleClass("active");
-                $('.course_fullview_wrapper').toggleClass("active");
+                $('.course_quiz_left_wrapper').toggleClass("active");
             }
 
 
