@@ -69,6 +69,12 @@
                                     href="{{ route('teachWithUs') }}#package_prices">
                                     <i class="ti-plus"></i>{{ $button }}</a>
                             </div>
+                            @if($invoice)
+                            <div class="main-title d-md-flex">
+                                <a class="primary-btn radius_30px fix-gr-bg mr-10"
+                                    href="{{ route('invoice',[$invoice->id]) }}">Invoice</a>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 @endif
@@ -87,6 +93,7 @@
                                             <th scope="col">{{ __('Price') }}</th>
                                             <th scope="col">{{ __('Allowed Courses') }}</th>
                                             <th scope="col">{{ __('Buying Date') }}</th>
+                                            <th scope="col">{{ __('Expire Date') }}</th>
                                             @if (isAdmin())
                                                 <th scope="col">{{ __('common.Status') }}</th>
                                             @endif
@@ -169,6 +176,11 @@
                 {
                     data: 'buying_date',
                     name: 'buying_date',
+                    searchable: false
+                },
+                {
+                    data: 'expiry_date',
+                    name: 'expiry_date',
                     searchable: false
                 },
                 @if (isAdmin())

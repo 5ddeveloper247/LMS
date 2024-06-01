@@ -345,4 +345,34 @@ class CouponsController extends Controller
 
         }
     }
+
+    public function ajaxGetCourseList(Request $request)
+    {
+        try {
+            $category_id = $request->category_id;
+            $subcategory_id = $request->subcategory_id;
+            if (Auth::user()->role_id == 1) {
+                $query = Course::select('id', 'title');
+                if ($category_id) {
+                    $query->where('category_id', $category_id);
+                }
+                if ($subcategory_id) {
+                    $query->where('subcategory_id', $subcategory_id);
+                }
+                $subcategories = $query->has('parent')->with('parent')->get();
+            } else {
+                $subcategories = Course::select('id', 'title')->where('category_id', $category_id)->where('subcategory_id', $subcategory_id)->where('user_id', Auth::user()->id)->has('parent')->with('parent')->get();
+            }
+            $courses = [];
+            foreach ($subcategories as $key => $subcategory) {
+                $title = $subcategory->parent->title;
+                $courses[$key] = $subcategory;
+                $courses[$key]->title2 = $title;
+            }
+
+            return response()->json([$courses]);
+        } catch (\Throwable $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+    }
 }

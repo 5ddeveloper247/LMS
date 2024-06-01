@@ -372,7 +372,7 @@
                                                     @if ($lesson->is_quiz == 1)
                                                         <a class="dropdown-item add_question"
                                                             data-lesson_id="{{ $quiz->id }}"
-                                                            data-chapter_id="{{ $chapter->id }}" href="#">Add
+                                                            data-chapter_id="{{ $chapter->id }}" href="javascript:void(0)">Add
                                                             Question</a>
                                                     @endif
                                                     <a href="#" data-toggle="modal"
@@ -543,6 +543,7 @@
             var lesson_id = $(this).data('lesson_id');
             var chapter_id = $(this).data('chapter_id');
             $('#add_question_section_inside' + chapter_id).show();
+            document.getElementById('add_question_section_inside' + chapter_id).scrollIntoView();
             $('#quiz_id_inside' + chapter_id).val(lesson_id);
             console.log(lesson_id);
             console.log(chapter_id);

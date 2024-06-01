@@ -141,7 +141,7 @@
     <div class="section-margin-y container">
         <div class="justify-content-around px-md-5 row px-1">
             <div class="col-xl-12 mb-5 text-center">
-                <h3 class="font-weight-bold">Please Add Your Card Details</h3>
+                <h3 class="font-weight-bold">Please Add Your Bank Details</h3>
             </div>
             <div class="col-xl-6">
                 <h3 class="font-weight-bold mb-3">{{ 'Payment $' . $amount }}</h3>
@@ -167,7 +167,8 @@
                         <div class="col-md-9">
                             <label for="account_number" class="form-label">Account/IBAN Number</label>
                             <input type="text" name="account_number" id="account_number" class="form-control"
-                                value="{{ old('account_number') }}" onKeyPress="if(this.value.length==20) return false;" required>
+                                value="{{ old('account_number') }}" required>
+                                {{-- value="{{ old('account_number') }}" onKeyPress="if(this.value.length==20) return false;" required> --}}
                         </div>
                     </div>
                     <div class="mb-2">
@@ -231,7 +232,7 @@
       
         $(document).ready(function() {
        
-        $('#account_number').mask('0000 0000 0000 0000');
+        // $('#account_number').mask('0000 0000 0000 0000');
        
         $('#payment-form').submit(function(e) {
             e.preventDefault();

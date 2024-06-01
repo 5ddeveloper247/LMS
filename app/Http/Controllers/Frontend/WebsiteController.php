@@ -3008,10 +3008,24 @@ class WebsiteController extends Controller
                 session()->forget('user');
                // dd($request->user_id);
                 $PackagePricing = PackagePricing::where('id', $request->package_id)->first();
+                switch ($PackagePricing->package_term) {
+                    case 'annum':
+                        $expiry_date =  date('Y-m-d', strtotime('+365 day'));
+                        break;
+                        case 'mo':
+                            $expiry_date =  date('Y-m-d', strtotime('+30 day'));
+                            break;
+                            
+                            default:
+                            $expiry_date =  date('Y-m-d', strtotime('+3 day'));
+                        # code...
+                        break;
+                }
                 $package_purchasing = new PackagePurchasing();
                 $package_purchasing->user_id = $request->user_id;
                 $package_purchasing->package_id = $request->package_id;
                 $package_purchasing->course_limit = $PackagePricing->allowed_courses;
+                $package_purchasing->expiry_date = $expiry_date;
                 $package_purchasing->status = 1;
                 $package_purchasing->save();
                 //dd(PackagePurchasing::where('user_id', $request->user_id)->count());
@@ -3091,7 +3105,7 @@ class WebsiteController extends Controller
         $validator = Validator::make($data, [
             'bank_name' => 'required',
             'branch_code' => 'required',
-            'account_number' => 'required | numeric',
+            'account_number' => 'required',
             'account_holder' => 'required',
             'account_type' => 'required'
         ]);

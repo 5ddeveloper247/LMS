@@ -560,12 +560,13 @@
                                                                         @else
                                                                             @if (Auth::check() && $isEnrolled)
                                                                                 @if ($lesson->is_quiz == 0)
-                                                                                    <a href="#"
-                                                                                        data-course="{{ $course->id }}"
-                                                                                        data-lesson="{{ $lesson->id }}"
-                                                                                        @if (request()->has('program_id')) data-program_id="{{ $request->program_id }}" @endif
-                                                                                        @if (request()->has('courseType')) data-courseType="{{ $request->courseType }}" @endif
-                                                                                        class="theme_btn_lite goFullScreen">{{ __('common.View') }}</a>
+                                                                                    <a href="javascript:void(0)"
+                                                                                        {{-- data-course="{{ $course->id }}" --}}
+                                                                                        {{-- data-lesson="{{ $lesson->id }}" --}}
+                                                                                        {{-- @if (request()->has('program_id')) data-program_id="{{ $request->program_id }}" @endif --}}
+                                                                                        {{-- @if (request()->has('courseType')) data-courseType="{{ $request->courseType }}" @endif --}}
+                                                                                        onclick="goFullScreen({{ $course->id }},{{ $lesson->id }},{{ $request->program_id ?? 0 }},{{ $request->courseType ?? 0 }})"
+                                                                                        class="theme_btn_lite">{{ __('common.View') }}</a>
                                                                                 @else
                                                                                     <a href="#"
                                                                                         onclick="goFullScreen({{ $course->id }},{{ $lesson->id }},{{ $request->program_id ?? 0 }},{{ $request->courseType ?? 0 }})"

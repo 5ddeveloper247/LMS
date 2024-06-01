@@ -23,6 +23,8 @@ Route::group(['prefix'=>'coupons','as'=>'coupons.', 'middleware'=>['auth','admin
     Route::get('invite-settings-edit/{id}','CouponsController@inviteSettingEdit')->name('inviteSettingEdit');
     Route::get('invite-settings-delete/{id}','CouponsController@inviteSettingDelete')->name('inviteSettingDelete');
 
+    Route::post('ajaxGetCourseList','CouponsController@ajaxGetCourseList')->name('coupons.ajaxGetCourseList');
+
 });
 
 Route::group(['prefix'=>'coupons','as'=>'coupons.'], function (){

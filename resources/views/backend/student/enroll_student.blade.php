@@ -37,7 +37,7 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <input type="hidden" name="selectTab" id="selectTab">
-                            @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                            @if (Auth::user()->role_id == 1)
                                 <div role="tabpanel"
                                     class="tab-pane fade @if (!session()->get('type')) show active @endif"
                                     id="group_email_sms">
@@ -169,7 +169,7 @@
                                 </div>
                             @endif
 
-                            <div role="tabpanel" class="tab-pane fade @if (session()->get('type') == 2 || Auth::user()->role_id == 9) show active @endif"
+                            <div role="tabpanel" class="tab-pane fade @if (session()->get('type') == 2 || Auth::user()->role_id == 9  || Auth::user()->role_id == 2) show active @endif"
                                 id="indivitual_email_sms">
                                 <div class="row justify-content-center mt-50">
                                     <div class="col-lg-12">

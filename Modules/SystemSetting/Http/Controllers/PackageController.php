@@ -22,6 +22,7 @@ use Modules\SystemSetting\Entities\PackagePricing;
 use Modules\SystemSetting\Entities\PackagePurchasing;
 use Modules\SystemSetting\Entities\TutorSlote;
 use Yajra\DataTables\Facades\DataTables;
+use Modules\Payment\Entities\Checkout;
 
 class PackageController extends Controller
 {
@@ -255,6 +256,8 @@ class PackageController extends Controller
     public function soldOutPackages()
     {
         $total_packages = PackagePurchasing::where('user_id', Auth::id())->exists();
+        $current_package = PackagePurchasing::where('user_id', Auth::id())->latest()->first();
+        $invoice = Checkout::where('user_id',Auth::id())->where('type','package')->latest()->first();
         return view('systemsetting::packages.sold_packages', get_defined_vars());
     }
 
@@ -296,6 +299,10 @@ class PackageController extends Controller
             ->editColumn('buying_date', function ($query) {
                 $created_at = Carbon::parse($query->created_at)->format('m-d-Y');
                 return $created_at;
+            })
+            ->editColumn('expiry_date', function ($query) {
+                $expiry_date = ($query->expiry_date) ? Carbon::parse($query->expiry_date)->format('m-d-Y') : '';
+                return $expiry_date;
             })
             ->addColumn('status', function ($query) {
                 if (isAdmin()) {

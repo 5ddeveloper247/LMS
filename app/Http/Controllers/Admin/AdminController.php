@@ -138,9 +138,9 @@ class AdminController extends Controller
         try {
             $courses = Course::with('enrolls', 'user', 'currentCoursePlan')
                 ->withCount('enrolls')
-                ->has('enrolls') // This ensures that the course has at least one enrollment
+                ->has('enrolls')
+                ->latest()
                 ->get();
-
             return view('payment::admin_revenue', compact('courses'));
         } catch (\Exception $e) {
             return response()->json(['error' => trans("lang.Oops, Something Went Wrong")]);
@@ -233,7 +233,7 @@ class AdminController extends Controller
                 $query->whereBetween('created_at', [$from, $to]);
             }
 
-            if (Auth::user()->role_id == 2) {
+            if (Auth::user()->role_id == 2 || Auth::user()->role_id == 9) {
                 $query->whereHas('course', function ($q) {
                     $q->where('user_id', Auth::user()->id);
                 });

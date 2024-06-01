@@ -183,6 +183,10 @@ Route::group(['prefix' => 'saas', 'middleware' => ['auth']], function () {
     Route::get('paypalSaasFailed', 'SaasPaymentController@paypalSubscriptionFailed')->name('paypalSaasFailed');
 });
 
+Route::group(['namespace' => 'Frontend'], function () {
+    Route::get('invoice/{id}', 'StudentController@Invoice')->name('invoice');
+});
+
 Route::group(['namespace' => 'Frontend', 'middleware' => ['student']], function () {
     Route::get('student-dashboard', 'StudentController@myDashboard')->name('studentDashboard');
     Route::get('my-programs', 'StudentController@myCourses')->name('myCourses')->middleware('UserAgreementCheck');
@@ -221,7 +225,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['student']], function 
     Route::post('deposit', 'StudentController@deposit')->name('depositSelectOption');
     Route::get('logged-in/devices', 'StudentController@loggedInDevices')->name('logged.in.devices');
     Route::post('logged-out/device', 'StudentController@logOutDevice')->name('log.out.device');
-    Route::get('invoice/{id}', 'StudentController@Invoice')->name('invoice');
+    //Route::get('invoice/{id}', 'StudentController@Invoice')->name('invoice');
     Route::get('subscription-invoice/{id}', 'StudentController@subInvoice')->name('subInvoice');
     Route::get('StudentApplyCoupon', 'StudentController@StudentApplyCoupon')->name('StudentApplyCoupon');
     Route::get('checkout', 'StudentController@CheckOut')->name('CheckOut')->middleware('UserAgreementCheck');

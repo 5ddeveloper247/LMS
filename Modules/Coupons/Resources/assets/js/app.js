@@ -64,7 +64,7 @@ $(document).ready(function () {
             type: "GET",
             data: formData,
             dataType: "json",
-            url: url + "/" + "ajaxGetCourseList",
+            url: url + "/coupons/" + "ajaxGetCourseList",
             success: function (data) {
                 $.each(data, function (i, item) {
                     if (item.length) {
