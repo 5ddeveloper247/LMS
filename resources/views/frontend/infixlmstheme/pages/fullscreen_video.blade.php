@@ -49,6 +49,7 @@
 
         .quiz_questions_wrapper {
             height: 100%;
+            overflow: auto;
         }
 
         .question_number_lists {
@@ -165,7 +166,7 @@
                                             @if (Auth::user()->role_id == 3)
                                                 @if (!in_array(Auth::user()->id, $reviewer_user_ids))
                                                     <a href="" data-toggle="modal" data-target="#courseRating"
-                                                        class="headerSub text-nowrap mr-3 p-2">
+                                                        class="headerSub text-nowrap mr-3 p-2 d-none">
                                                         <i class="fa fa-star pr-2"></i>
                                                         {{ __('frontend.Leave a rating') }}
 
@@ -191,7 +192,7 @@
                                         </a>
 
                                         <a href="#" data-toggle="modal" data-target="#ShareLink"
-                                            class="theme_btn small_btn2 m-1 p-2">
+                                            class="theme_btn small_btn2 m-1 p-2 d-none">
                                             <i class="fa fa-share"></i>
                                             Share
                                         </a>
@@ -385,7 +386,7 @@
                     @endif
                 </div>
             @else
-                <div class="quiz_questions_wrapper w-100 mt_70 ml-5 mr-5">
+                <div class="quiz_questions_wrapper w-100 px-lg-5">
                     <!-- quiz_test_header  -->
 
                     {{-- @dd($alreadyJoin, $lesson->lessonQuiz->multiple_attend) --}}
@@ -1123,7 +1124,7 @@
                 {{--                    }); --}}
                 {{--                    enablePinchZoom(pdfViewer) --}}
                 {{--                </script> --}}
-                <iframe class="w-100 h-100 mobile-min-height"
+                <iframe class=" w-100 h-100 mobile-min-height"
                     src="https://docs.google.com/viewer?url={{ asset($lesson->video_url) }}&embedded=true"></iframe>
             @endif
             @if ($lesson->host == 'Word')
@@ -1229,7 +1230,7 @@
                 <i class="ti-menu-alt"></i>
             </div>
 
-            <div class="play_warp_header d-flex justify-content-between">
+            <div class="play_warp_header d-flex justify-content-center">
                 <h3 class="font_16 lesson_count default-font mb-0">
                     <a href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug) }}{{ request()->has('program_id') ? '?program_id=' . request()->get('program_id') : '' }}{{ request()->has('courseType') ? '?courseType=' . request()->get('courseType') : '' }}"
                         class="theme_btn_mini">
