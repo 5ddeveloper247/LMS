@@ -43,6 +43,10 @@
             $text = 'In order to Add New Course, Please';
             $button = 'Buy Package';
         }
+        if($current_package && $current_package->expiry_date != null && $current_package->expiry_date < Carbon\Carbon::now()){
+            $text = 'In order to Add New Course, Please';
+            $button = 'Renew Package';
+        }
     @endphp
     <section class="admin-visitor-area up_st_admin_visitor">
         <div class="container-fluid p-0">

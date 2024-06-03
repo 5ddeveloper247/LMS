@@ -151,7 +151,7 @@
                                         </div>
                                         <div class="col-xl-4">
                                             <div class="primary_input mb-35">
-                                                <div class="primary_file_uploader" id="image_file-1">
+                                                {{-- <div class="primary_file_uploader" id="image_file-1">
                                                     <input class="primary-input filePlaceholder" type="text"
                                                         id="input-1" {{ $errors->has('image') ? 'autofocus' : '' }}
                                                         placeholder="{{ __('courses.Browse Image file') }}" readonly=""
@@ -163,6 +163,18 @@
                                                             name="image" id="document_file_thumb-1">
                                                         <input type="hidden" name="hidden_file" id="cropper_img"
                                                             class="upload-editor-hidden-file-1">
+                                                    </button>
+                                                </div> --}}
+                                                <div class="primary_file_uploader">
+                                                    <input class="primary-input filePlaceholder placeholder_txt" type="text"
+                                                        id=""
+                                                        {{ $errors->has('image') ? 'autofocus' : '' }}
+                                                        placeholder="{{ __('courses.Browse Image file') }}" readonly="">
+                                                    <button class="" type="button">
+                                                        <label class="primary-btn small fix-gr-bg"
+                                                            for="document_file_thumb_2">{{ __('common.Browse') }}</label>
+                                                        <input type="file" class="d-none fileUpload" name="image"
+                                                            id="document_file_thumb_2" accept="image/*">
                                                     </button>
                                                 </div>
                                             </div>

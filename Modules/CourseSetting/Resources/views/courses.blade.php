@@ -218,6 +218,12 @@
                                         </li>
                                         @endif
                                     @elseif(isTutor() && $allowed_courses != 0)
+                                        @if($package_purchasing && $package_purchasing->expiry_date != null && $package_purchasing->expiry_date < Carbon\Carbon::now())
+                                            <li>
+                                                <p class="d-flex font-weight-bold align-items-center"><a class="fix-gr-bg primary-btn radius_30px mx-2"
+                                                        href="{{ route('teachWithUs') }}#package_prices">{{ __('Renew') }} </a>Your Package has expired. Please renew it to Add New Courses </p>
+                                            </li>
+                                        @else
                                         @php
                                             $remaining_course = $allowed_courses - $my_courses;
                                         @endphp
@@ -240,6 +246,7 @@
                                                         href="{{ route('teachWithUs') }}#package_prices">{{ __('Upgrade') }} </a> Your
                                                     Package</p>
                                             </li>
+                                        @endif
                                         @endif
                                     @else
                                         <li>

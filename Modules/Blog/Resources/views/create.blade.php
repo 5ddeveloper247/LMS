@@ -138,14 +138,14 @@
 
 
                                     <div class="row mt-20">
-                                        <div class="col-xl-5">
+                                        <div class="col-xl-7">
                                             <label class="primary_input_label">
                                                 Course Thumbnail (Max Image Size 1MB, Recommended Dimensions: 1170X600)
                                             </label>
                                         </div>
-                                        <div class="col-xl-4">
+                                        <div class="col-xl-5">
                                             <div class="primary_input mb-35">
-                                                <div class="primary_file_uploader" id="image_file-1">
+                                                {{-- <div class="primary_file_uploader" id="image_file-1">
                                                     <input class="primary-input filePlaceholder " type="text"
                                                         id="input-1" {{ $errors->has('image') ? 'autofocus' : '' }}
                                                         placeholder="{{ __('courses.Browse Image file') }}" readonly="">
@@ -157,13 +157,25 @@
                                                         <input type="hidden" name="hidden_file" id="cropper_img"
                                                             class="upload-editor-hidden-file-1">
                                                     </button>
+                                                </div> --}}
+                                                <div class="primary_file_uploader">
+                                                    <input class="primary-input filePlaceholder placeholder_txt" type="text"
+                                                        id=""
+                                                        {{ $errors->has('image') ? 'autofocus' : '' }}
+                                                        placeholder="{{ __('courses.Browse Image file') }}" readonly="">
+                                                    <button class="" type="button">
+                                                        <label class="primary-btn small fix-gr-bg"
+                                                            for="document_file_thumb_2">{{ __('common.Browse') }}</label>
+                                                        <input type="file" class="d-none fileUpload" name="image"
+                                                            id="document_file_thumb_2" accept="image/*">
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-3 text-center">
+                                        {{-- <div class="col-xl-3 text-center">
                                             <img src="{{ asset('public/assets/course/no_image.png') }}"
                                                 class="preview image-editor-preview-img-1" id="image_preview-1" />
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-xl-6">
                                             <div class="primary_input">
@@ -333,5 +345,28 @@
             });
         });
         // Image Cropper End
+        $("#document_file_thumb_2").change(function(e) {
+                var file, img;
+                if ((file = this.files[0])) {
+                    if (file.type.startsWith('image/')) {
+                        img = new Image();
+                        img.onload = function() {
+                            var image_width = this.width;
+                            var image_height = this.height;
+                            if (image_width != 1170 || image_height != 600) {
+                                
+                                $('#document_file_thumb_2').val('');
+                                toastr.error(
+                                    'Wrong Image Dimensions, Please Select Image of 1170 X 600 !',
+                                    'Error')
+                            }
+                        };
+                        img.src = _URL1.createObjectURL(file);
+                    } else {
+                            $('#document_file_thumb_2').val('');
+                        toastr.error('Please select a valid image file!', 'Error')
+                    }
+                }
+            });
     </script>
 @endpush

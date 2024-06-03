@@ -113,8 +113,10 @@ class BlogController extends Controller
             $blog->authored_time = !empty($request->publish_time) ? $request->publish_time : date('H:i:s');
 
             if ($request->image) {
-                $blog->image = $this->saveImage($request->image);
-                $blog->thumbnail = $this->saveCroppedImage($request->hidden_file);
+                $savedImage = $this->saveImage($request->image);
+                $blog->image = $savedImage;
+                $blog->thumbnail = $savedImage;
+             //   $blog->thumbnail = $this->saveCroppedImage($request->hidden_file);
             }
             $blog->save();
 
@@ -194,8 +196,11 @@ class BlogController extends Controller
             $blog->tags = $request->tags;
             $blog->category_id = $request->category;
             if ($request->image) {
-                $blog->image = $this->saveImage($request->image);
-                $blog->thumbnail = $this->saveCroppedImage($request->hidden_file);
+                $savedImage = $this->saveImage($request->image);
+                $blog->image = $savedImage;
+                $blog->thumbnail = $savedImage;
+                // $blog->image = $this->saveImage($request->image);
+                // $blog->thumbnail = $this->saveCroppedImage($request->hidden_file);
             }
             $blog->save();
             if (isModuleActive('Org')) {

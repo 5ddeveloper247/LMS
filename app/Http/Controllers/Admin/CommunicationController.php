@@ -49,9 +49,9 @@ class CommunicationController extends Controller
     	// 1=>admin, 2=>instructor, 3=>student, 9=>individual tutor
         if (Auth::user()->role_id == 1) {
 
-            $users = User::where('id', '!=', Auth::id())->whereIn('role_id', [2,3,9])->with('sender')->get();
+            $users = User::where('id', '!=', Auth::id())->whereIn('role_id', [2,3,9])->with('sender')->latest()->get();
 
-        }else if (Auth::user()->role_id == 2){
+        }else if (Auth::user()->role_id == 2 || Auth::user()->role_id == 9){
             $query = CourseEnrolled::with('user')
                 ->whereHas('program', function ($query) {
 
@@ -73,7 +73,7 @@ class CommunicationController extends Controller
 
             array_push($query,'1');
 
-            $users = User::with('sender')->where('id', '!=', Auth::id())->whereIn('id',$query)->get();
+            $users = User::with('sender')->where('id', '!=', Auth::id())->whereIn('id',$query)->latest()->get();
 //                ->where(function ($query) {
 //
 //                $query->where('role_id', 1)->orWhereIn('enrollStudents');
@@ -109,7 +109,7 @@ class CommunicationController extends Controller
             }
 
             //$user_ids = array_merge($user_ids,$student_ids);
-            $users = User::whereIn('id', $user_ids)->with('sender')->get();
+            $users = User::whereIn('id', $user_ids)->with('sender')->latest()->get();
 
         }else{
             Toastr::error("Permission Denied", 'Permission');
