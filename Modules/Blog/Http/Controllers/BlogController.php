@@ -85,7 +85,8 @@ class BlogController extends Controller
             'category' => 'required',
             'slug' => ['required', Rule::unique('blogs', 'slug')->when(isModuleActive('LmsSaas'), function ($q) {
                 return $q->where('lms_id', app('institute')->id);
-            })]
+            })],
+            'image' => 'dimensions:width=1170,height=600'
         ];
 
         $this->validate($request, $rules, validationMessage($rules));
@@ -170,6 +171,7 @@ class BlogController extends Controller
             'slug' => ['required', Rule::unique('blogs', 'slug')->ignore($request->slug, 'slug')->when(isModuleActive('LmsSaas'), function ($q, $request) {
                 return $q->where('lms_id', app('institute')->id)->where('id', '!=', $request->id);
             })],
+            'image' => 'dimensions:width=1170,height=600'
         ];
 
         $this->validate($request, $rules, validationMessage($rules));

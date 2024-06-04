@@ -232,7 +232,7 @@
             <div class="col-12 col-md-8 pr-0">
                 <div class="card rounded-3 pt-5 pb-4 px-5 ml-xl-5 mr-lg-4 mr-3" style="border-radius: 15px;">
                     <img src="{{ getBlogImage($blog->image) }}" class="img-fluid rounded-3" alt=""
-                        style="height: 78vh !important; border-radius:15px">
+                        style="border-radius:15px">
 
                     <div class="d-flex align-items-center py-3 gap-2">
                         <span class="text-dark">{{ $blog->user->name }}</span>
@@ -251,7 +251,9 @@
                             {{ $blog->title }}
                         </h2>
                         <div>
-                        {!! stripslashes($blog->getTranslation('description','en')) !!}
+                            {{-- @dd($blog->getTranslation('description','en')) --}}
+                        {{-- {!! stripslashes($blog->getTranslation('description','en')) !!} --}}
+                        {!! str_replace('\\','',$blog->getTranslation('description','en')) !!}
                         </div>
                         @php
                             $tagsArr = explode(',', $blog->tags);

@@ -304,16 +304,26 @@
                 codeviewFilter: true,
                 codeviewIframeFilter: true,
                 toolbar: [
-                    ['style', ['style']],
+                   // ['style', ['style']],
+                    
                     ['font', ['bold', 'underline', 'clear']],
                     ['fontname', ['fontname']],
                     ['fontsize', ['fontsize']],
                     ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['para', ['style','ul', 'ol']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen']],
+                    
                 ],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                callbacks: {
+                    onPaste: function (e) {
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                        e.preventDefault();
+                        document.execCommand('insertText', false, bufferText);
+                    }
+                },
                 height: 188,
                 tooltip: true
             });
@@ -341,6 +351,35 @@
                     img.src = _URL1.createObjectURL(file);
                 }
             });
+
+            $("#document_file_thumb_2").on('change',function(e) {
+                var file, img;
+                if ((file = this.files[0])) {
+                    if (file.type.startsWith('image/')) {
+                        img = new Image();
+                        img.onload = function() {
+                            var image_width = img.width;
+                            // var image_width = this.width;
+                            var image_height = img.height;
+                            // var image_height = this.height;
+                            console.log(image_width,image_height);
+                            if (image_width != 1170 || image_height != 600) {
+                                $('#input-1').val('');
+                                $('#document_file_thumb_2').val('');
+                                // e.preventDefault();
+                                toastr.error(
+                                    'Wrong Image Dimensions, Please Select Image of 1170 X 600 !',
+                                    'Error')
+                            }
+                        };
+                        img.src = URL.createObjectURL(file);
+                    } else {
+                            $('#document_file_thumb_2').val('');
+                        toastr.error('Please select a valid image file!', 'Error')
+                    }
+                }
+            });
+
             $('.image-editor-cancel-button-1').on('click', function() {
                 if ($('#image_preview-1').attr('src') != '' || $('#image_preview-1').attr('src') != null) {
                     $('#image_file-1').children().val('');

@@ -1225,16 +1225,26 @@
                 codeviewFilter: true,
                 codeviewIframeFilter: true,
                 toolbar: [
-                    ['style', ['style']],
+                   // ['style', ['style']],
+                    
                     ['font', ['bold', 'underline', 'clear']],
                     ['fontname', ['fontname']],
                     ['fontsize', ['fontsize']],
                     ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['para', ['style','ul', 'ol']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview']], //,'codeview'
+                    ['view', ['fullscreen','codeview']],
+                    
                 ],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                callbacks: {
+                    onPaste: function (e) {
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                        e.preventDefault();
+                        document.execCommand('insertText', false, bufferText);
+                    }
+                },
                 height: 188,
                 tooltip: true
             });
