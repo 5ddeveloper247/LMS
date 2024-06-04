@@ -95,7 +95,12 @@
     .slick-dotted.slick-slider {
         margin-bottom: 0px !important;
     }
-
+@media only screen and (max-width: 767px){
+    .about-pagination {
+        bottom: 3% !important;
+        left: 10% !important;
+    }
+}
     @media only screen and (max-width:1200px) {
         .about-pagination {
         bottom: 13%;
@@ -144,7 +149,7 @@
 
 <section class="my-3">
 
-    <div class="card-container">
+    <div class="card-container pb-4 pb-md-0">
 
         <div class="row justify-content-center align-items-center flex-column mx-5 mt-5 mb-3">
             <div class="text-center">
@@ -180,7 +185,7 @@
 
                     </div>
 
-                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center">
+                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center pb-3 pb-md-0">
 
                         <p class="custom_paragraph my-5">This is the first paragraph on the right side of the circle.his
                             is the
@@ -211,7 +216,7 @@
 
                     </div>
 
-                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center">
+                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center pb-3 pb-md-0">
 
                         <p class="my-5">First, we have our physical health. This means being fit physically and in the
                             absence of any kind of disease or illness. When you have good physical health, you will have
@@ -238,7 +243,7 @@
 
                     </div>
 
-                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center">
+                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center pb-3 pb-lg-0">
 
                         <p class="my-5 ">Next, we talk about our mental health. Mental health refers to the
                             psychological and emotional well-being of a person. The mental health of a person impacts
