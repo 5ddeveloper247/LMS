@@ -1540,15 +1540,16 @@ Due to the split circle of progress-left and progress right, we must use the ani
 
 @media (max-width: 580.98px) {
     .course_fullview_wrapper {
-        min-height: 200px;
-        height: 200px;
+        /* min-height: 200px;
+        height: 200px; */
+       position: relative !important;
     }
 }
 
 @media (min-width: 581px) and (max-width: 768.98px) {
 
     .course_fullview_wrapper {
-        height: 400px;
+        /* height: 400px; */
     }
     .course_fullview_wrapper .video_iframe {
         position: static;
@@ -1563,7 +1564,7 @@ Due to the split circle of progress-left and progress right, we must use the ani
     .course_fullview_wrapper .course__play_warp {
         transform: none;
         /* top: 0; */
-        position: static;
+        position: relative;
     }
 
     .course_fullview_wrapper .video_iframe {
@@ -1586,7 +1587,7 @@ Due to the split circle of progress-left and progress right, we must use the ani
 
     .course_fullview_wrapper .course__play_warp .course__play_list {
         min-height: auto;
-        max-height: auto;
+        max-height: fit-content;
         height: auto;
     }
 

@@ -7775,7 +7775,9 @@ input[type="number"] {
 }
 
 @media only screen and (max-width: 767px) {
-
+ .cta_area{
+    height: auto !important;
+  }
     .quiz_wizged .thumb .live_tag,
     .quiz_wizged .thumb .quiz_tag {
         font-size: 12px;
@@ -9434,10 +9436,10 @@ input[type="number"] {
     display: inline-block;
 }
 
-.cta_area-row {
+/* .cta_area-row {
     min-width: 700px;
     max-width: 700px;
-}
+} */
 
 /* .section__title h3.large_title {
     font-size: 33px;
@@ -9720,10 +9722,10 @@ input[type="number"] {
     .top_right_btn {
         right: 5% !important;
     }
-    .course__play_warp .course__play_list {
+    /* .course__play_warp .course__play_list {
         min-height: 610px !important;
         max-height: 610px !important;
-    }
+    } */
     .image_size {
 
         height: 100px !important;
@@ -9849,10 +9851,10 @@ input[type="number"] {
 }
 
 @media only screen and (min-width: 1800px) {
-    .course__play_warp .course__play_list {
+    /* .course__play_warp .course__play_list {
         min-height: 800px !important;
         max-height: 800px !important;
-    }
+    } */
     .prep-course-padding {
         padding: 0px 20px !important;
     }
@@ -9923,10 +9925,10 @@ input[type="number"] {
         font-size: 20px;
     }
 
-    .cta_area-row {
+    /* .cta_area-row {
         min-width: 82rem;
         max-width: 82rem;
-    }
+    } */
 
 }
 
@@ -11417,11 +11419,11 @@ input[type="number"] {
     background: #fff;
 }
 
-@media (max-width: 575.98px) {
+/* @media (max-width: 575.98px) {
     .course__play_warp {
         margin-top: 30px;
     }
-}
+} */
 
 .course__play_warp .play_warp_header {
     padding: 15px 15px 8px;
@@ -11429,8 +11431,8 @@ input[type="number"] {
 }
 
 .course__play_warp .course__play_list {
-    min-height: 450px;
-    max-height: 450px;
+    min-height: calc(100vh - 200px);
+    max-height: calc(100vh - 200px);
     overflow: auto;
 }
 
@@ -16930,6 +16932,11 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    .course_fullview_wrapper .course_quiz_left_wrapper{
+        width: 100% !important;
+        height: 100%;
+        overflow: auto !important;
+    }
     .couse_wizged .thumb {
         height: 300px !important;
     }
@@ -17035,10 +17042,10 @@ body {
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1200px) {
-    .course__play_warp .course__play_list {
+    /* .course__play_warp .course__play_list {
         min-height: 340px !important;
         max-height: 340px !important;
-    }
+    } */
     .service_cta_area .single_cta_service {
         padding: 15px 10px !important;
     }

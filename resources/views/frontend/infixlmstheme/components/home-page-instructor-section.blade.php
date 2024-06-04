@@ -1,9 +1,8 @@
 <section class="sec-3">
-    <div class="">
         <div class="cta_area d-flex justify-content-center mt-3" style="background-image: url('{{ asset(@$homeContent->instructor_banner) }}')">
             <div class="row justify-content-center align-items-center w-100 cta_area-row">
                 <div class="mx-auto">
-                    <div class="section__title text-white" id="section__title" >
+                    <div class="section__title text-white" id="section__title" style="margin: 0px 10%">
                         <h2 class="large_title text-white mb-4 font-weight-bold " >
                         Develop Job-Ready Skills
                             {{-- {{ @$homeContent->instructor_title }} --}}
@@ -20,7 +19,6 @@
                             Create Your Account 
                         {{-- {{ __('frontend.Find Our Instructor') }} --}}
                     </a>
-                    </div>
                 </div>
             </div>
         </div>

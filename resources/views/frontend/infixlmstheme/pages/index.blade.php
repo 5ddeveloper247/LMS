@@ -420,8 +420,8 @@
     }
 
     .news-events-tabs-section .news-events-tab .tab-content {
-        height: auto;
-        overscroll-behavior: smooth;
+        height: 500px;
+        overscroll-behavior: inherit;
         overflow-y: scroll;
     }
 
@@ -1693,6 +1693,9 @@
 
 
     @media only screen and (max-width: 768px) {
+        .news-events-tabs-section{
+            padding-left: 0px !important;
+        }
         .percent1 {
             margin: 0 0px 1.5rem 160px !important;
         }
@@ -2008,9 +2011,9 @@
 
     @media only screen and (min-width: 1650px) {
 
-        .news-events-tabs-section .news-events-tab .tab-content {
+        /* .news-events-tabs-section .news-events-tab .tab-content {
             height: 380px !important;
-        }
+        } */
 
         .logos {
             min-width: 125rem !important;
@@ -2808,7 +2811,7 @@
                     Licensure.</p>
             </div>
             <div class="row d-flex align-items-stretch pb-5 px-xl-5 animate">
-                <div class="col-md-6 mb-2 px-0">
+                <div class="col-md-6 mb-2 px-md-0">
                     <div class="custom-slider-container">
                         <button class="prev">❮</button>
                         <div class="custom-slider">
@@ -2983,7 +2986,7 @@
         {{-- <div class=""> --}}
         <div class="container px-lg-5 pb-5 mt-3">
             <div class="row percent-row px-xl-5">
-                <div class="col-lg-6 d-flex flex-column counter-padd px-0 ">
+                <div class="col-lg-6 d-flex flex-column counter-padd px-md-0 ">
 
                     <div class="d-flex justify-content-left align-items-center percent1 animatee">
                         <h2 class="percent font-weight-bold">
@@ -3418,13 +3421,13 @@
                 </div>
 
                 <div class="col-sm-6 d-flex">
-                    <div class="col-md-6 align-self-end about-img  pl-lg-0">
+                    <div class="col-md-6 align-self-end about-img about_us_img1 p-lg-0">
                         <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                            src="{{ asset('public/assets/courses-2.jpg') }}" class="img-fluid about_us_img1 w-100">
+                            src="{{ asset('public/assets/courses-2.jpg') }}" class="img-fluid  w-100">
                     </div>
-                    <div class="col-md-6 align-self-start about-img p-lg-0">
+                    <div class="col-md-6 align-self-start about-img about_us_img2 p-lg-0">
                         <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                            src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid about_us_img2 w-100">
+                            src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid  w-100">
                     </div>
                 </div>
             </div>
@@ -5104,7 +5107,7 @@
                                 </div>
                             </div>
                         </div> --}}
-                            <div class="col-sm-8 shadow_row video-h-cls pr-lg-5 pl-lg-0">
+                            <div class="col-md-8 shadow_row video-h-cls pr-lg-5 pl-lg-0">
                                 <div class="video-container">
                                     <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
                                         <source
@@ -5130,7 +5133,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-4 shadow_ist d-flex flex-column align-items-center "
+                            <div class="col-md-4 shadow_ist d-flex flex-column align-items-center "
                                 style="background-color: #b2dfcc">
                                 <div class="accordion">
                                     <h2 class="section-header font-weight-bold my-2">ASK US ANYTHING: FAQs</h2>
@@ -5319,7 +5322,7 @@
                             </div>
                             {{-- new section --}}
                             @if (count($featured_blogs) > 0)
-                                <div class="col-md-11 col-lg-7 px-lg-0">
+                                <div class="col-lg-7 px-lg-0 mb-4 mb-lg-0">
                                     <div class="rts-event-section">
                                         <h4 class="rts-section-title mb--25">Blogs and News</h4>
                                         <div class="events-content">
@@ -5354,7 +5357,7 @@
                                     </div>
                                 </div>
                             @endif
-                            <div class="col-md-11 @if (count($featured_blogs) > 0) col-lg-5 @else col-lg-12 @endif">
+                            <div class="col-md-12 @if (count($featured_blogs) > 0) col-lg-5 @else col-lg-12 @endif">
                                 @php
                                     $tags = Modules\Blog\Entities\Blog::where('status', 1)->pluck('tags')->toArray(); // Assuming 'tags' is the column name
 

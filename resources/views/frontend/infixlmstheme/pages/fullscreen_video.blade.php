@@ -29,7 +29,7 @@
             }
 
             #video-placeholder {
-                height: 300px;
+                height: 400px;
             }
         }
 
@@ -40,6 +40,7 @@
         @media (max-width: 767.98px) {
             .mobile-min-height {
                 height: 400px !important;
+                overflow: auto;
             }
         }
 
