@@ -2323,7 +2323,8 @@ input[type="number"] {
 }
 
 .slicknav_nav {
-    background: hsla(0, 0%, 100%, 0.96);
+    /* background: hsla(0, 0%, 100%, 0.96); */
+    background: var(--menu_bg);
     box-shadow: 0 5px 7px 0 rgba(13, 0, 36, 0.07);
     padding: 15px 6px;
     /* margin-top: 10px; */
