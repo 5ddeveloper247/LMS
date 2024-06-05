@@ -147,9 +147,9 @@
     }
 </style>
 
-<section class="my-3">
+<section class="card-container my-3">
 
-    <div class="card-container pb-4 pb-md-0">
+    <div class="container pb-4 pb-md-0">
 
         <div class="row justify-content-center align-items-center flex-column mx-5 mt-5 mb-3">
             <div class="text-center">
