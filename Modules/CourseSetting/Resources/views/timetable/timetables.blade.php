@@ -21,7 +21,7 @@
                             <ul class="d-flex">
                                 <li>
                                     <a class="primary-btn radius_30px fix-gr-bg mr-10" href="javascript:void(0)"
-                                        id="addTimeTable">
+                                        id="addTimeTable" onclick="add()">
                                         <i class="ti-plus"></i>{{ __('common.Add') }} {{ __('Time Table') }}</a>
                                 </li>
                             </ul>
@@ -162,6 +162,32 @@
             form.find('#name').val(name);
             form.find('#type').val(type);
             form.find('#start_date').val(start_date);
+            form.find('#timetable_form').val(timetable_form);
+
+            $('#type').niceSelect('update');
+        }
+        function add(){
+            var form = $('#timetable_form');
+            var url = '{{ route('Add.TimeTable') }}';
+            // var id = $(el).attr('data-id');
+            // var name = $(el).attr('data-name');
+            // var type = $(el).attr('data-type');
+            // var start_date_temp = $(el).attr('data-start_date');
+
+            // var dateComponents = start_date_temp.split('-');
+            // var year = dateComponents[0];
+            // var month = dateComponents[1];
+            // var day = dateComponents[2];
+
+            // Format the date as desired (dd/mm/yyyy)
+            // var start_date = month + '/' + day + '/' + year;
+
+
+            var action = form.attr('action', url);
+            form.find('#id').val('');
+            form.find('#name').val('');
+            form.find('#type').val('');
+            form.find('#start_date').val('');
             form.find('#timetable_form').val(timetable_form);
 
             $('#type').niceSelect('update');
