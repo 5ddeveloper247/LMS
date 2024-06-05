@@ -41,6 +41,9 @@ class CoursePlanController extends Controller
                 }
                 return $type;
             })
+            ->addColumn('course_code', function ($query) {
+                return $query->courses->parent->course_code ?? '';
+            })
             ->addColumn('title', function ($query) {
                 return $query->courses->parent->title ?? '';
             })

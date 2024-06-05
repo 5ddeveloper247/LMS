@@ -300,6 +300,7 @@ class CourseSettingController extends Controller
             'type' => 'required',
             'language' => 'nullable',
             'duration' => 'nullable',
+            'course_code' => 'unique:courses,course_code',
             'full_course_main_image' => 'required_if:cna_prep_type_check,==,1',
             //'assign_instructor' => 'required_unless:type,7',
             'test_prep_price' => 'required_if:test_prep_type,==,1',
@@ -388,11 +389,20 @@ class CourseSettingController extends Controller
             $course->lang_id = $request->language;
             $course->scope = $request->scope;
             $course->title = $request->title;
+            $course->course_code = $request->course_code ?? null;
             $course->review_id = $request->review;
             //            foreach ($request->title as $key => $title) {
             //                $course->setTranslation('title', $key, $title);
             //            }
 
+
+            // $about = str_replace("'", "`", $request->about['en']);
+            // $course->about = $about;
+            // $requirements = str_replace("'", "`", $requirements['en']);
+            // $course->requirements = $requirements;
+            // $outcomes = str_replace("'", "`", $outcomes['en']);
+            // $course->outcomes = $outcomes;
+            
             foreach ($request->about as $key => $about) {
                 $about = str_replace("'", "`", $about);
                 $course->setTranslation('about', $key, $about);
@@ -520,7 +530,7 @@ class CourseSettingController extends Controller
             $course->save();
 
             if ($request->type != 9) {
-
+                $child_course->course_code = null;
                 $child_course->type = 4;
                 if ($request->has('cna_prep_type') && $request->cna_prep_type == 1) {
                     $child_course->price = '';
@@ -659,6 +669,7 @@ class CourseSettingController extends Controller
                 //                    }
                 //                },
             ],
+            'course_code' => ['unique:courses,course_code,'.$request->id],
             //            'cna_prep_type' => 'required_if:type,==,2',
             //            'test_prep_type' => 'required_if:type,==,2',
             //            'test_prep_graded_type' => 'required_if:type,==,2',
@@ -722,6 +733,7 @@ class CourseSettingController extends Controller
                 $course->user_id = $request->assign_instructor ?? 0;
             }
             $course->drip = $request->drip;
+            $course->course_code = $request->course_code ?? null;
             $course->complete_order = $request->complete_order;
             $course->lang_id = $request->language;
             $course->title = $request->title;
@@ -1678,6 +1690,9 @@ class CourseSettingController extends Controller
             ->addIndexColumn()
             ->editColumn('title', function ($query) {
                 return $query->title;
+            })
+            ->editColumn('course_code', function ($query) {
+                return $query->course_code ?? '';
             })
             ->editColumn('required_type', function ($query) {
                 return $query->required_type == 1 ? trans('courses.Compulsory') : trans('courses.Open');

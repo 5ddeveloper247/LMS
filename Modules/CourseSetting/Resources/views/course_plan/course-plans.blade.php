@@ -46,6 +46,7 @@
                                         <tr>
                                             <th scope="col"> {{ __('common.SL') }}</th>
                                             <th scope="col"> {{ __('coupons.Type') }}</th>
+                                            <th scope="col"> {{ __('Course Code') }}</th>
                                             <th scope="col">{{ __('coupons.Title') }}</th>
                                             <th scope="col">{{ __('Amount ') }}</th>
                                             <th scope="col">{{ __('Start Date') }}</th>
@@ -122,6 +123,12 @@
                     data: 'type',
                     name: 'type',
                     // searchable: true
+                },
+                {
+                    data: 'course_code',
+                    name: 'course_code',
+                    orderable: false,
+                    searchable:true
                 },
                 {
                     data: 'title',

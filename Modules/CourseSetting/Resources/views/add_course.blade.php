@@ -357,22 +357,25 @@
                             </div>
                         </div>
 
-
-                        <div class="col-xl-12 courseBox instructorBox {{ $d_none }}">
+                        
+                        <div class="col-xl-6 courseBox instructorBox {{ $d_none }}">
                             <div class="primary_input mb-25">
-                                <label class="primary_input_label" for="assistant_instructors">{{ __('Total Classes') }}
+                                <label class="primary_input_label" for="course_code">{{ __('Course Code') }}
+                                    *
+                                </label>
+                                <input type="text" name="course_code" id="course_code" placeholder="-" class="primary_input_field active mb-15 e1">
+
+                            </div>
+                        </div>
+                        <div class="col-xl-6 courseBox instructorBox {{ $d_none }}">
+                            <div class="primary_input mb-25">
+                                <label class="primary_input_label" for="total_courses">{{ __('Total Classes') }}
                                     *
                                 </label>
                                 <input min="1" type="number" name="total_courses" id="total_courses" placeholder="-" class="primary_input_field active mb-15 e1">
 
                             </div>
                         </div>
-
-
-   
-
-
-
                     </div>
                     <div class="row">
 
@@ -465,7 +468,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xl-6 d-none">{{-- courseBox testPrepBox  $d_none --}}
+                        <div class="col-xl-6 {{ $d_none }}">{{-- courseBox testPrepBox  $d_none --}}
                             <div class="primary_input mb-25">
                                 <label class="primary_input_label"
                                     for="assistant_instructors">{{ __('courses.Assistant Instructor') }} </label>

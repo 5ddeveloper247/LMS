@@ -58,7 +58,7 @@
                                              <input class="primary_input_field" max="100"
                                                     value="{{@(float)$percent_tax}}"
                                                     name="percent_tax" placeholder="Tax Rate Percentage (%)"
-                                                    id="percent_tax" type="number">
+                                                    id="percent_tax" type="number" step="any">
                                          </div>
                                      </div>
 
@@ -70,7 +70,7 @@
                                                     value="{{@(float)$fixed_tax}}"
                                                     name="fixed_tax" id="fixed_tax"
                                                     placeholder="Tax Rate Fixed Amount"
-                                                    type="number">
+                                                    type="number" step="any">
                                          </div>
                                      </div>
                                        <div class="col-12 mb-10 pt_15">

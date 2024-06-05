@@ -827,9 +827,20 @@
                                                         </div>
                                                     </div>
 
-
                                                     <div
-                                                        class="col-xl-12 courseBox {{ $d_none }} {{ $course->type == 7 ? 'd-none' : '' }}">
+                                                        class="col-xl-6 courseBox {{ $d_none }} {{ $course->type == 7 ? 'd-none' : '' }}">
+                                                        <div class="primary_input mb-25">
+                                                            <label class="primary_input_label"
+                                                                for="course_code">{{ __('Course Code') }}
+                                                            </label>
+                                                            <input type="text" name="course_code" id="course_code"
+                                                                placeholder="-"
+                                                                class="primary_input_field active mb-15 e1"
+                                                                value="{{ $course->course_code ?? '' }}">
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col-xl-6 courseBox {{ $d_none }} {{ $course->type == 7 ? 'd-none' : '' }}">
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
                                                                 for="assistant_instructors">{{ __('Total Classes') }} *
@@ -976,7 +987,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-6 d-none">{{-- $d_none --}}
+                                                    <div class="col-xl-6">{{-- $d_none --}}
                                                         {{-- $course->type == 7 ? 'd-none' : '' --}}
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
@@ -2809,24 +2820,33 @@
             ];
             // Summer Note
             $('.custom_summernote').summernote({
+                pastePlain: true,
                 fontNames: customFontFam,
                 fontNamesIgnoreCheck: ['Cavolini', 'Jost'],
                 fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
                 codeviewFilter: true,
                 codeviewIframeFilter: true,
                 toolbar: [
-                    ['style', ['style']],
+                    //['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
                     ['fontname', ['fontname']],
                     ['fontsize', ['fontsize']],
                     ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['para', ['style','ul', 'ol']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview']], //,'codeview'
-
+                    ['view', ['fullscreen','codeview']],
+                    
                 ],
-                height: 200,
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                callbacks: {
+                    onPaste: function (e) {
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                        e.preventDefault();
+                        document.execCommand('insertText', false, bufferText);
+                    }
+                },
+                height: 188,
                 tooltip: true
             });
             // 1st Cropper

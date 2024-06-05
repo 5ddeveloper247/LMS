@@ -273,6 +273,7 @@
                                         <tr>
                                             <th scope="col"> {{ __('common.SL') }}</th>
                                             <th scope="col"> {{ __('coupons.Type') }}</th>
+                                            <th scope="col"> {{ __('Course Code') }}</th>
                                             @if (isModuleActive('Org'))
                                                 <th scope="col"> {{ __('courses.Required Type') }}</th>
                                             @endif
@@ -834,10 +835,16 @@
                         data: 'required_type',
                         name: 'required_type'
                     },
-                @endif {
+                @endif 
+                {
+                    data: 'course_code',
+                    name: 'course_code'
+                },
+                {
                     data: 'title',
                     name: 'title'
                 },
+                
                 // {data: 'mode_of_delivery', name: 'mode_of_delivery'},
                 @if (!isTutor())
                 {
