@@ -201,28 +201,24 @@
         transition: all 1s ease;
     }
 
-    /* .events-content {
-    display: flex;
-    flex-wrap: wrap;
-} */
     .single-event {
         display: flex;
-            align-items: center;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ccc;
-            position: relative;
+        align-items: center;
+        margin: 10px 0;
+        padding: 10px;
+        /* border: 1px solid #ccc; */
+        position: relative;
     }
 
     .single-event::before {
-    content: "";
-    position: absolute;
-    left: 170px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-color: #ccc;
-}
+        content: "";
+        position: absolute;
+        left: 170px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background-color: #ccc;
+    }
 
     .events-content .single-event-counter {
         padding-right: 20px;
@@ -337,50 +333,50 @@
 
     /* col-md-5 */
     .wrapper {
-            position: relative;
-            overflow-x: hidden;
-        }
+        position: relative;
+        overflow-x: hidden;
+    }
 
-        .wrapper .eventsIcon {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            width: auto;
-            display: flex;
-            align-items: center;
-        }
+    .wrapper .eventsIcon {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: auto;
+        display: flex;
+        align-items: center;
+    }
 
-        .eventsIcon:first-child {
-            left: 0;
-            display: none;
-            background: linear-gradient(90deg, #fff 70%, transparent);
-        }
+    .eventsIcon:first-child {
+        left: 0;
+        display: none;
+        background: linear-gradient(90deg, #fff 70%, transparent);
+    }
 
-        .eventsIcon:last-child {
-            right: 0;
-            justify-content: flex-end;
-            background: linear-gradient(-90deg, #fff 70%, transparent);
-        }
+    .eventsIcon:last-child {
+        right: 0;
+        justify-content: flex-end;
+        background: linear-gradient(-90deg, #fff 70%, transparent);
+    }
 
-        .eventsIcon i {
-            /* width: 30px;
+    .eventsIcon i {
+        /* width: 30px;
             height: 30px; */
-            cursor: pointer;
-            font-size: 14px;
-            text-align: center;
-            /* line-height: 30px; */
-            border-radius: 10%;
-            background: #efedfb;
-            padding: 10
-        }
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        /* line-height: 30px; */
+        border-radius: 10%;
+        background: #efedfb;
+        padding: 10
+    }
 
-        .eventsIcon:first-child i {
-            margin-left: 0px;
-        }
+    .eventsIcon:first-child i {
+        margin-left: 0px;
+    }
 
-        .eventsIcon:last-child i {
-            margin-right: 0px;
-        }
+    .eventsIcon:last-child i {
+        margin-right: 0px;
+    }
 
     /*  */
     .news-events-tabs-section {
@@ -850,7 +846,8 @@
         padding: 28px;
         font-size: 17px;
     }
-    .about_us{
+
+    .about_us {
         height: 100%;
     }
 
@@ -1623,9 +1620,10 @@
 
     /* logos section end */
     .about-img {
-    height: 380px;
-    width: 315px;
-}
+        height: 380px;
+        width: 315px;
+    }
+
     .about_us_img1 {
         position: absolute;
         right: 0;
@@ -1730,10 +1728,39 @@
 
 
     @media only screen and (max-width: 768px) {
-        .single-event::before{
+        .about_us_img2{
+            position: relative !important;
+        }
+        .about-img {
+    height: 320px;
+    width: 260px;
+}
+.about_us {
+    height: auto;
+}
+        .video-container {
+            height: 450px !important;
+        }
+
+        .top-center {
+            top: 8% !important;
+            left: 30% !important;
+            transform: translate(-26%, -0%) !important;
+            white-space: normal !important;
+        }
+
+        .bottom-center {
+            bottom: 8% !important;
+        }
+
+        .text-video-overlay h2 {
+            font-size: 20px;
+        }
+
+        .single-event::before {
             left: 85px !important;
         }
-       
+
         .events-content .single-event {
             padding: 35px 10px !important;
         }
@@ -1741,9 +1768,10 @@
         .events-content .single-event-counter .count-number {
             font-size: 50px !important;
         }
+
         .events-content .single-event-content {
-        padding-left: 5px !important;
-    }
+            padding-left: 5px !important;
+        }
 
         .news-events-tabs-section {
             padding-left: 0px !important;
@@ -1790,10 +1818,6 @@
             font-size: 25px;
         }
 
-        .for-main {
-            margin-bottom: 4rem;
-        }
-
         .hero-section-main-heading {
             font-size: 20px !important;
         }
@@ -1801,14 +1825,22 @@
         .flowdiv {
             padding: 3rem 0px !important;
         }
-
-        /*
-        #program_title {
-            font-size: 15px !important;
-        } */
     }
 
     @media only screen and (min-width: 769px) and (max-width: 1024px) {
+        .about-img {
+    height: 320px;
+    width: 260px;
+}
+.about_us {
+    height: auto;
+}
+        .top-center {
+            top: 16%;
+            left: 39% !important;
+            transform: translate(-32%, 0%) !important;
+            white-space: normal !important;
+        }
 
         .news-events-tabs-section {
             padding-left: 0px !important;
@@ -1844,6 +1876,10 @@
     }
 
     @media only screen and (min-width: 1024px) and (max-width: 1279px) {
+        .about-img {
+    height: 300px;
+    width: 295px;
+}
         .for-border {
             min-height: 237px !important;
         }
@@ -1928,9 +1964,10 @@
 
     @media only screen and (min-width: 1440px) {
         .about-img {
-        height: 430px !important;
-        width: 350px !important;
-    }
+            height: 430px !important;
+            width: 350px !important;
+        }
+
         .main-content-feature {
             height: 81vh;
             overflow: auto;
@@ -2014,11 +2051,6 @@
         .percent4 {
             margin: 0 -14px 1.5rem -8px !important;
         }
-
-        /* .top-center {
-            left: 30% !important;
-            transform: translate(-20%, 0%) !important;
-        } */
     }
 
     @media screen and (width < 1650px) {
@@ -2229,6 +2261,7 @@
         .card-shadow {
             min-height: 79vh;
         }
+
         .percent-video {
             max-height: 830px;
             min-height: 830px;
@@ -3427,10 +3460,10 @@
 
     {{-- Map aboutus --}}
 
-    <section class="sec-7 mb-lg-4">
-        <div class="container p-lg-5 ">
+    <section class="sec-7 mb-4">
+        <div class="container p-lg-5 py-4">
             <div class="row about_us px-xl-5 justify-content-between">
-                <div class="col-sm-6 about_us_height align-items-center d-flex justify-content-center py-3 px-lg-2">
+                <div class="col-md-6 about_us_height align-items-center d-flex justify-content-center py-3 px-lg-2">
                     <div class="about_us_p">
                         <i class="fa-regular fa-lightbulb fa-2x" style="color: var(--system_primery_color);"></i>
                         <h2 class="font-weight-bold mb-4">AT MERAKII</h2>
@@ -3449,7 +3482,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 position-relative">
+                <div class="col-md-6 position-relative">
                     <div class="align-self-end about-img about_us_img1 p-lg-0">
                         <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
                             src="{{ asset('public/assets/courses-2.jpg') }}" class="img-fluid  w-100">
@@ -3542,7 +3575,7 @@
     </section>
     <!-- section-3b -->
     <section class="sec-9 ">
-        <div class="container for-backcolor-container p-5">
+        <div class="container for-backcolor-container p-lg-5 p-4">
             <div class="row justify-content-left px-xl-5">
                 <!-- 1st -->
                 <div class="col-md-4 col-12 for-main px-lg-2">
@@ -4725,13 +4758,13 @@
             </div>
             </div> --}}
                     <!-- <section>
-                                                                                                                                                                                                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                                                                                                                                                                                                            <div class="col-md-12">
-                                                                                                                                                                                                                                                                                                                                                                                                                <img src="{{ asset('public/frontend/infixlmstheme/img/images/WE_ARE_HERE_TO_LISTEN.png') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                    alt="" class="img-fluid w-100">
+                                                                                                                                                                                                                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                                                                                                                                                                                                                <div class="col-md-12">
+                                                                                                                                                                                                                                                                                                                                                                                                                    <img src="{{ asset('public/frontend/infixlmstheme/img/images/WE_ARE_HERE_TO_LISTEN.png') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                        alt="" class="img-fluid w-100">
+                                                                                                                                                                                                                                                                                                                                                                                                                </div>
                                                                                                                                                                                                                                                                                                                                                                                                             </div>
-                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                    </section> -->
+                                                                                                                                                                                                                                                                                                                                                                                                        </section> -->
                     {{-- How to Buy --}}
                     {{-- hide from all screen --}}
                     <div class="section-margin-y container d-none">
@@ -5110,7 +5143,7 @@
                 {{-- FAQS section --}}
                 <section class="sec-10">
                     <div class="container px-lg-5">
-                        <div class="row faqs-row  mt-lg-3 mb-lg-2 px-xl-5">
+                        <div class="row faqs-row  mt-lg-3 mb-2 px-xl-5">
                             {{-- <div class="col-sm-7 shadow_row video-h-cls p-0">
                             <div class="video-container">
                                 <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
@@ -5136,7 +5169,7 @@
                                 </div>
                             </div>
                         </div> --}}
-                            <div class="col-md-8 shadow_row video-h-cls pr-lg-5 pl-lg-0">
+                            <div class="col-lg-8 col-md-7 shadow_row video-h-cls pr-lg-5 pl-lg-0">
                                 <div class="video-container">
                                     <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
                                         <source
@@ -5162,41 +5195,42 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 my-4 my-md-0">
-                        <div class=" shadow_ist d-flex flex-column align-items-center" 
-                        style="background-color: #b2dfcc">
-                        <h2 class="section-header font-weight-bold my-2" style=" padding: 1rem;">ASK US ANYTHING: FAQs</h2>
-                            <div class="accordion">
-                              
-                                <!-- tab-about1 -->
-                                @foreach ($faqs as $faq)
-                                    <div class="tab-about">
-                                        <div class="tab-about-wrapper">
-                                            <input type="checkbox" name="checkbox-1"
-                                                id="cb{{ $loop->iteration }}" />
-                                            <label for="cb{{ $loop->iteration }}" class="tab-about_label"
-                                                onclick="toggleAccordion('{{ $loop->iteration }}')">{{ $faq->question }}</label>
-                                            <div id="collapse_{{ $loop->iteration }}"
-                                                class="tab-about-content accordion-body">
-                                                {{-- <p class="text-white">{{ strip_tags($faq->answer) }}</p> --}}
-                                                <p class="">
-                                                    @php
-                                                        $answer = str_replace(
-                                                            '&nbsp;',
-                                                            ' ',
-                                                            htmlspecialchars_decode(strip_tags($faq->answer)),
-                                                        );
-                                                    @endphp
-                                                    {{ $answer }}
-                                                </p>
+                            <div class="col-lg-4 col-md-5 mt-4 mt-md-0 px-md-2">
+                                <div class=" shadow_ist d-flex flex-column align-items-center"
+                                    style="background-color: #b2dfcc">
+                                    <h2 class="section-header font-weight-bold my-2" style=" padding: 1rem;">ASK US
+                                        ANYTHING: FAQs</h2>
+                                    <div class="accordion">
+
+                                        <!-- tab-about1 -->
+                                        @foreach ($faqs as $faq)
+                                            <div class="tab-about">
+                                                <div class="tab-about-wrapper">
+                                                    <input type="checkbox" name="checkbox-1"
+                                                        id="cb{{ $loop->iteration }}" />
+                                                    <label for="cb{{ $loop->iteration }}" class="tab-about_label"
+                                                        onclick="toggleAccordion('{{ $loop->iteration }}')">{{ $faq->question }}</label>
+                                                    <div id="collapse_{{ $loop->iteration }}"
+                                                        class="tab-about-content accordion-body">
+                                                        {{-- <p class="text-white">{{ strip_tags($faq->answer) }}</p> --}}
+                                                        <p class="">
+                                                            @php
+                                                                $answer = str_replace(
+                                                                    '&nbsp;',
+                                                                    ' ',
+                                                                    htmlspecialchars_decode(strip_tags($faq->answer)),
+                                                                );
+                                                            @endphp
+                                                            {{ $answer }}
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     </div>
-                                @endforeach
-                            </div>
-                            <a href="{{ route('customer-help') }}#faq" onclick="informationflag('faq')"
-                                class="m-md-3"> <button class="Faq-btn py-2 px-4 ">More FAQS</button></a>
-                        </div>
+                                    <a href="{{ route('customer-help') }}#faq" onclick="informationflag('faq')"
+                                        class="m-md-3 m-2"> <button class="Faq-btn py-2 px-4">More FAQS</button></a>
+                                </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-12 custom_section_color shadow_row custom_paragraph d-none"
                                 style="padding: 1rem">
@@ -5340,10 +5374,10 @@
 
                 {{-- stayin touchend --}}
                 <section class="sec-11">
-                    <div class="container p-lg-5">
+                    <div class="container p-lg-5 py-4">
                         <div class="row px-xl-5">
                             <div class="col-md-12">
-                                <div class="pb-5 text-center ">
+                                <div class="pb-lg-5 pb-4 text-center ">
                                     <h2 class="custom_heading_1 font-weight-bold">
                                         Popular Events and News</h2>
                                     <p class="custom_paragraph font-weight-bold">
@@ -5408,24 +5442,26 @@
                                     </div>
                                     <div class="news-events-tab">
                                         <div class="wrapper">
-                                            <div class="eventsIcon"><i id="left" class="fa-solid fa-angle-left"></i></div>
-                                        <ul class="nav nav-tabs pb--30 news-events-navtabs">
-                                            <li class="nav-item active" role="presentation">
-                                                <a class="nav-link blog-tag active" data-tag="latest"
-                                                    href="javascript:void(0)">Latest</a>
-                                            </li>
-                                            @foreach ($tagsArray as $tag)
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link blog-tag" class="nav-link"
-                                                        data-tag="{{ $tag }}" href="javascript:void(0)">
-                                                        {{ $tag }} </a>
+                                            <div class="eventsIcon"><i id="left" class="fa-solid fa-angle-left"></i>
+                                            </div>
+                                            <ul class="nav nav-tabs pb--30 news-events-navtabs">
+                                                <li class="nav-item active" role="presentation">
+                                                    <a class="nav-link blog-tag active" data-tag="latest"
+                                                        href="javascript:void(0)">Latest</a>
                                                 </li>
-                                            @endforeach
-                                            {{-- <li class="nav-item" role="presentation">
+                                                @foreach ($tagsArray as $tag)
+                                                    <li class="nav-item" role="presentation">
+                                                        <a class="nav-link blog-tag" class="nav-link"
+                                                            data-tag="{{ $tag }}" href="javascript:void(0)">
+                                                            {{ $tag }} </a>
+                                                    </li>
+                                                @endforeach
+                                                {{-- <li class="nav-item" role="presentation">
                                                 <a class="nav-link" data-toggle="pill" href="#Admission">Admission</a>
                                             </li> --}}
-                                        </ul>
-                                        <div class="eventsIcon"><i id="right" class="fa-solid fa-angle-right"></i></div>
+                                            </ul>
+                                            <div class="eventsIcon"><i id="right"
+                                                    class="fa-solid fa-angle-right"></i></div>
                                         </div>
                                         {{-- fortabs --}}
                                         <div class="tab-content">
@@ -5465,90 +5501,90 @@
                 </section>
 
                 <!-- <div class="row m-0 mt-5 shadow">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
-                <div class="text-white">
-                <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
-                <p class="my-3 text-justify text-white">
-                MCOH is an inclusive and equitable enviroment that provides educational
-                oppturities for anyone seeking update their skill being a new career path and
-                enhance professional Skills </p>
-                <div class="mb-4 text-white">
-                <p class="locaton py-1 text-white">
-                    <i class="fi fi-rs-marker"></i>
-                    501 S. Florida Avenue<br>
-                    <span class="ml-4">Lakeland, FL 33801</span>
-                </p>
-                <p class="call py-1 text-white">
-                    <i class="fi fi-br-phone-call"></i>
-                    863-250-8764 | 347-525-1736
-                </p>
-                <p class="time py-1 text-white">
-                    <i class="fi fi-rs-clock-three"></i>
-                    Mon - Thur: 8:30 AM - 7:00 PM
-                </p>
-                </div>
-                </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
-                <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
-                <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
-                @csrf
-                <label for="name" class="form-label">Your Name</label>
-                <input type="text" name="name" class="form-control form_sm mb-2"
-                placeholder="">
-                <label for="" class="form-label">Email Address</label>
-                <input type="email" name="email" class="form-control form_sm mb-2"
-                placeholder="">
-                <label for="" class="form-label">Phone #</label>
-                <input type="text" name="phone" class="form-control form_sm mb-2"
-                placeholder="">
-                <label for="" class="form-label">Zip Code</label>
-                <input type="text" name="zip" class="form-control form_sm mb-2"
-                placeholder="">
-                <label for="" class="form-label">Select Program</label>
-                <select id="program" name="program" class="form-control form_sm mb-2" required>
-                <option value="" selected>Select Program</option>
-                <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
-                <option value="Refresher-RM(Endorsement & inactive License)">
-                    Refresher-RM(Endorsement & inactive License)
-                </option>
-                <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
-                <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
-                    Testing)
-                </option>
-                <option value="Clinical-Proctor">Clinical-Proctor</option>
-                </select>
-                <label for="year" class="form-label mt-2">High School Grade Year</label>
-                <select id="years" name="year" class="form-control form_sm w-100 mb-2"
-                required>
-                <option value="" selected>Select Year</option>
-                @php
-                    $years = range(date('Y'), 1950);
-                @endphp
-                @forelse ($years as $year)
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
+                    <div class="text-white">
+                    <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
+                    <p class="my-3 text-justify text-white">
+                    MCOH is an inclusive and equitable enviroment that provides educational
+                    oppturities for anyone seeking update their skill being a new career path and
+                    enhance professional Skills </p>
+                    <div class="mb-4 text-white">
+                    <p class="locaton py-1 text-white">
+                        <i class="fi fi-rs-marker"></i>
+                        501 S. Florida Avenue<br>
+                        <span class="ml-4">Lakeland, FL 33801</span>
+                    </p>
+                    <p class="call py-1 text-white">
+                        <i class="fi fi-br-phone-call"></i>
+                        863-250-8764 | 347-525-1736
+                    </p>
+                    <p class="time py-1 text-white">
+                        <i class="fi fi-rs-clock-three"></i>
+                        Mon - Thur: 8:30 AM - 7:00 PM
+                    </p>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
+                    <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
+                    <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
+                    @csrf
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" name="name" class="form-control form_sm mb-2"
+                    placeholder="">
+                    <label for="" class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control form_sm mb-2"
+                    placeholder="">
+                    <label for="" class="form-label">Phone #</label>
+                    <input type="text" name="phone" class="form-control form_sm mb-2"
+                    placeholder="">
+                    <label for="" class="form-label">Zip Code</label>
+                    <input type="text" name="zip" class="form-control form_sm mb-2"
+                    placeholder="">
+                    <label for="" class="form-label">Select Program</label>
+                    <select id="program" name="program" class="form-control form_sm mb-2" required>
+                    <option value="" selected>Select Program</option>
+                    <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
+                    <option value="Refresher-RM(Endorsement & inactive License)">
+                        Refresher-RM(Endorsement & inactive License)
+                    </option>
+                    <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
+                    <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
+                        Testing)
+                    </option>
+                    <option value="Clinical-Proctor">Clinical-Proctor</option>
+                    </select>
+                    <label for="year" class="form-label mt-2">High School Grade Year</label>
+                    <select id="years" name="year" class="form-control form_sm w-100 mb-2"
+                    required>
+                    <option value="" selected>Select Year</option>
+                    @php
+                        $years = range(date('Y'), 1950);
+                    @endphp
+                    @forelse ($years as $year)
     <option value="{{ $year }}">{{ $year }}</option>
     @empty
-                <option value="">No Year Found</option>
+                    <option value="">No Year Found</option>
     @endforelse
-                    </select>
-                    <label for="message" class="form-label mt-2">Message</label>
-                    <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
-                        placeholder="" required style="resize: none"></textarea>
-                    <div class="col-md-12 my-3 text-center">
-                        <button type="submit" class="theme_btn small_btn4">Submit</button>
+                        </select>
+                        <label for="message" class="form-label mt-2">Message</label>
+                        <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
+                            placeholder="" required style="resize: none"></textarea>
+                        <div class="col-md-12 my-3 text-center">
+                            <button type="submit" class="theme_btn small_btn4">Submit</button>
+                        </div>
+                    </form>
                     </div>
-                </form>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
+                    <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
 
-                <div class="video1" onclick="homeVideo()">
-                    <div class="vidicons m-auto">
-                        <i class="fa-solid fa-play"></i>
+                    <div class="video1" onclick="homeVideo()">
+                        <div class="vidicons m-auto">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
                     </div>
-                </div>
-                </div>
-                </div>
-                -->
+                    </div>
+                    </div>
+                    -->
 
 
                 <div class="modal fade" id="video_image" tabindex="-1" role="dialog"
@@ -5583,7 +5619,7 @@
                 <!-- new section -->
                 <section class="sec-12">
                     <div class="container-fluid mintban px-lg-5 mb-5">
-                        <div class="container mintban_row mb-5 mt-5 mt-lg-3 d-flex justify-content-center">
+                        <div class="container mintban_row mb-lg-5 my-4 mt-lg-3 d-flex justify-content-center">
                             {{-- <div class="col-md-12 mb-5">
             <div class="row "> --}}
                             <div class="row flowdiv ">
@@ -5608,12 +5644,12 @@
                                                     Instructor</a>
 
                                                 <!--
-                                                                                                                                                                                                                                                       <h1 class="mx-3 mt-5 pt-4">Ut enim ad minim veniam, quis nos trud exercita ion</h1>
-                                                                                                                                                                                                                                        <p class="mx-3 mt-2 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                                                                                                                                                                                                                        Doloremque, eveniet deleniti atque dicta ullam officia rerum. Non iure quos sint deserunt
-                                                                                                                                                                                                                                             sed officia sequi assumenda eos repellendus expedita? Quasi veritatis tenetur, fugiat quis
-                                                                                                                                                                                                                                                           numquam maxime voluptate praesentium dolores amet nemo ipsum soluta unde quam suscipit.
-                                                                                                                                                                                                                                                                                                        Rerum nobis amet voluptatem eos.</p> -->
+                                                                                                                                                                                                                                                           <h1 class="mx-3 mt-5 pt-4">Ut enim ad minim veniam, quis nos trud exercita ion</h1>
+                                                                                                                                                                                                                                            <p class="mx-3 mt-2 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                                                                                                                                                                                                                            Doloremque, eveniet deleniti atque dicta ullam officia rerum. Non iure quos sint deserunt
+                                                                                                                                                                                                                                                 sed officia sequi assumenda eos repellendus expedita? Quasi veritatis tenetur, fugiat quis
+                                                                                                                                                                                                                                                               numquam maxime voluptate praesentium dolores amet nemo ipsum soluta unde quam suscipit.
+                                                                                                                                                                                                                                                                                                            Rerum nobis amet voluptatem eos.</p> -->
                                                 {{-- <img src="{{ asset('public/assets/left-arrow-64.png') }}" height="50"
                                         class="lia" style="position:absolute;right: -12px;"> --}}
                                             </div>
@@ -5621,7 +5657,7 @@
                                     </div>
                                 </div>
                                 <!-- <div class="col-sm-6 ankar col-md-6 p-0" >
-                                                                             </div> -->
+                                                                                 </div> -->
                                 {{-- form-add --}}
                                 <div class="col-lg-4 col-md-6 my-3 my-lg-0 flowdiv-ele d-flex align-items-center">
 
@@ -5739,46 +5775,46 @@
                                                 </div>
                                             </div>
                                             <!-- <div class="eltdf-eh-item-content eltdf-eh-custom-5500"
-                                                                                                                                                                                                                                                                                                                                                                                                                style="padding: 66px 12% 0 12% !important;">
+                                                                                                                                                                                                                                                                                                                                                                                                                    style="padding: 66px 12% 0 12% !important;">
 
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                <div class="wpb_text_column wpb_content_element">
-                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="wpb_wrapper mt-3">
-                                                                                                                                                                                                                                                                                                                                                                                                                        <h3 style="font-weight: bold;">Apply Now</h3>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="wpb_text_column wpb_content_element">
+                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="wpb_wrapper mt-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                            <h3 style="font-weight: bold;">Apply Now</h3>
+                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
                                                                                                                                                                                                                                                                                                                                                                                                                     </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                <div class="vc_empty_space" style="height: 25px"><span
-                                                                                                                                                                                                                                                                                                                                                                                                                        class="vc_empty_space_inner"></span></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
-                                                                                                                                                                                                                                                                                                                                                                                                                    dir="ltr">
-                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="screen-reader-response">
-                                                                                                                                                                                                                                                                                                                                                                                                                        <p role="status" aria-live="polite" aria-atomic="true"></p>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <ul></ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                    <form action="{{ route('login') }}" method="POST" class="wpcf7-form init demo">
-                                                                                                                                                                                                                                                                                                                                                                                                                        @csrf
-                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="eltdf-contact-form-7-widget">
-                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="wpcf7-form-control-wrap" data-name="your-email"><input
-                                                                                                                                                                                                                                                                                                                                                                                                                                    type="email" name="email" value="{{ old('email') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    size="40"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    required placeholder="Email"></span><br>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="wpcf7-form-control-wrap" data-name="your-tel"><input
-                                                                                                                                                                                                                                                                                                                                                                                                                                    type="password" name="password" value="{{ old('password') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    size="40"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    required placeholder="Password"></span><br>
-                                                                                                                                                                                                                                                                                                                                                                                                                            {{-- <input type="submit" value="Get it now"
+                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="vc_empty_space" style="height: 25px"><span
+                                                                                                                                                                                                                                                                                                                                                                                                                            class="vc_empty_space_inner"></span></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
+                                                                                                                                                                                                                                                                                                                                                                                                                        dir="ltr">
+                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="screen-reader-response">
+                                                                                                                                                                                                                                                                                                                                                                                                                            <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                            <ul></ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                        <form action="{{ route('login') }}" method="POST" class="wpcf7-form init demo">
+                                                                                                                                                                                                                                                                                                                                                                                                                            @csrf
+                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="eltdf-contact-form-7-widget">
+                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="wpcf7-form-control-wrap" data-name="your-email"><input
+                                                                                                                                                                                                                                                                                                                                                                                                                                        type="email" name="email" value="{{ old('email') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                        size="40"
+                                                                                                                                                                                                                                                                                                                                                                                                                                        class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                                                                                                                                                                                                                                                                                                                                                                                                        required placeholder="Email"></span><br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="wpcf7-form-control-wrap" data-name="your-tel"><input
+                                                                                                                                                                                                                                                                                                                                                                                                                                        type="password" name="password" value="{{ old('password') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                        size="40"
+                                                                                                                                                                                                                                                                                                                                                                                                                                        class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
+                                                                                                                                                                                                                                                                                                                                                                                                                                        required placeholder="Password"></span><br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                {{-- <input type="submit" value="Get it now"
                                                     class="has-spinner small_btn theme_btn wpcf7-form-control wpcf7-submit mt-4"><span
                                                     class="wpcf7-spinner"></span> --}}
-                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="submit" class="theme_btn small_btn5 text-center">
-                                                                                                                                                                                                                                                                                                                                                                                                                                {{ __('common.Login') }}</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="wpcf7-response-output" aria-hidden="true"></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </form>
-                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                <button type="submit" class="theme_btn small_btn5 text-center">
+                                                                                                                                                                                                                                                                                                                                                                                                                                    {{ __('common.Login') }}</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="wpcf7-response-output" aria-hidden="true"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                        </form>
+                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -5850,19 +5886,20 @@
                                 'Dec',
                             ];
                             html = html + '<li class="single-notice">\
-                                                                    <div class="single-notice-item">\
-                                                                        <div class="notice-date">\
-                                                                            ' + day + '<br>\
-                                                                            <span>' + monthDay[month] + '</span>\
-                                                                        </div>\
-                                                                        <div class="notice-content">\
-                                                                            <p>\
-                                                                                <a href="' + blog_url + '">' + row.title
+                                                                        <div class="single-notice-item">\
+                                                                            <div class="notice-date">\
+                                                                                ' + day + '<br>\
+                                                                                <span>' + monthDay[month] + '</span>\
+                                                                            </div>\
+                                                                            <div class="notice-content">\
+                                                                                <p>\
+                                                                                    <a href="' + blog_url + '">' + row
+                                .title
                                 .en + '</a>\
-                                                                            </p>\
+                                                                                </p>\
+                                                                            </div>\
                                                                         </div>\
-                                                                    </div>\
-                                                                </li>';
+                                                                    </li>';
                         });
                         $('#blogs_ul').html(html);
                     }
@@ -6481,43 +6518,44 @@
     </script>
 
 
-<script>
-    const tabsBox = document.querySelector(".news-events-navtabs"),
-        allTabs = tabsBox.querySelectorAll(".nav-item"),
-        arroweventsIcons = document.querySelectorAll(".eventsIcon i");
+    <script>
+        const tabsBox = document.querySelector(".news-events-navtabs"),
+            allTabs = tabsBox.querySelectorAll(".nav-item"),
+            arroweventsIcons = document.querySelectorAll(".eventsIcon i");
 
-    const handleeventsIcons = () => {
-        let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-        arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
-        arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" : "flex";
-    }
+        const handleeventsIcons = () => {
+            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
+            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
+            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" :
+                "flex";
+        }
 
-    arroweventsIcons.forEach(eventsIcon => {
-        eventsIcon.addEventListener("click", () => {
-            // if clicked eventsIcon is left, scroll left else scroll right
-            if (eventsIcon.id === "left") {
-                tabsBox.scrollBy({
-                    left: -340,
-                    behavior: 'smooth'
-                });
-            } else {
-                tabsBox.scrollBy({
-                    left: 340,
-                    behavior: 'smooth'
-                });
-            }
+        arroweventsIcons.forEach(eventsIcon => {
+            eventsIcon.addEventListener("click", () => {
+                // if clicked eventsIcon is left, scroll left else scroll right
+                if (eventsIcon.id === "left") {
+                    tabsBox.scrollBy({
+                        left: -340,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    tabsBox.scrollBy({
+                        left: 340,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-    });
 
-    allTabs.forEach(tab => {
-        tab.addEventListener("click", () => {
-            tabsBox.querySelector(".active").classList.remove("active");
-            tab.classList.add("active");
+        allTabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabsBox.querySelector(".active").classList.remove("active");
+                tab.classList.add("active");
+            });
         });
-    });
 
-    tabsBox.addEventListener("scroll", handleeventsIcons);
-</script>
+        tabsBox.addEventListener("scroll", handleeventsIcons);
+    </script>
     </body>
 
 @endsection
