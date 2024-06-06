@@ -17,8 +17,7 @@
     .about-pagination {
         position: absolute;
         bottom: 13%;
-        left: 43.5%;
-        transform: translateX(-50%);
+        left: 44%;
     }
 
     .slick-slider {
@@ -95,23 +94,47 @@
     .slick-dotted.slick-slider {
         margin-bottom: 0px !important;
     }
-@media only screen and (max-width: 767px){
-    .about-pagination {
-        bottom: 3% !important;
-        left: 10% !important;
-    }
-}
-    @media only screen and (max-width:1200px) {
+
+    @media only screen and (max-width: 530px) {
         .about-pagination {
-        bottom: 13%;
-        left: 48%;
+            bottom: 4% !important;
+            left: 34% !important;
+        }
     }
-    
+
+    @media only screen and (max-width: 767px) {
+        .elem-content{
+            text-align: center !important;
+        }
+        .about-pagination {
+            bottom: 4% !important;
+        }
+
+        .aboutus-img {
+            min-width: 312px !important;
+            min-height: 312px !important;
+            height: 312px !important;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        .about-pagination {
+            bottom: 8% !important;
+            left: 50%;
+        }
+    }
+
+    @media only screen and (min-width: 1025px) and (max-width:1200px) {
+        .about-pagination {
+            bottom: 8%;
+            left: 50%;
+        }
+
     }
 
     @media only screen and (min-width: 1350px) {
         .about-pagination {
-            left: 41.5%;
+            left: 42.5%;
         }
     }
 
@@ -136,7 +159,7 @@
 
         .about-pagination {
             bottom: 20%;
-            left: 40%;
+            left: 42%;
         }
 
         .aboutus-img {
@@ -149,9 +172,9 @@
 
 <section class="card-container my-3">
 
-    <div class="container pb-4 pb-md-0">
+    <div class="container pb-4 pb-lg-0">
 
-        <div class="row justify-content-center align-items-center flex-column mx-5 mt-5 mb-3">
+        <div class="row justify-content-center align-items-center flex-column mx-md-5 mx-3 mt-5 mb-3">
             <div class="text-center">
                 <h2 class="custom_heading_1 font-weight-bold">
                     Real Student Voices and Success Stories
@@ -177,7 +200,7 @@
 
             <div class="slide">
 
-                <div class="row px-md-5 px-2 justify-content-center elem pb-5">
+                <div class="row px-lg-5 px-2 justify-content-center elem pb-5">
 
                     <div class="col-md-6 aboutus-img">
 
@@ -185,7 +208,7 @@
 
                     </div>
 
-                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center pb-3 pb-md-0">
+                    <div class="col-md-6 pl-lg-5 elem-content d-flex flex-column justify-content-center pb-3 pb-lg-0">
 
                         <p class="custom_paragraph my-5">This is the first paragraph on the right side of the circle.his
                             is the
@@ -208,7 +231,7 @@
 
             <div class="slide">
 
-                <div class="row px-md-5 px-2 justify-content-center elem">
+                <div class="row px-lg-5 px-2 justify-content-center elem">
 
                     <div class=" col-md-6 aboutus-img">
 
@@ -216,7 +239,7 @@
 
                     </div>
 
-                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center pb-3 pb-md-0">
+                    <div class="col-md-6 pl-lg-5 elem-content d-flex flex-column justify-content-center pb-3 pb-lg-0">
 
                         <p class="my-5">First, we have our physical health. This means being fit physically and in the
                             absence of any kind of disease or illness. When you have good physical health, you will have
@@ -235,7 +258,7 @@
 
             <div class="slide">
 
-                <div class="row px-md-5 px-2 justify-content-center elem">
+                <div class="row px-lg-5 px-2 justify-content-center elem">
 
                     <div class="col-md-6 aboutus-img">
 
@@ -243,7 +266,7 @@
 
                     </div>
 
-                    <div class="col-md-6 pl-5 elem-content d-flex flex-column justify-content-center pb-3 pb-lg-0">
+                    <div class="col-md-6 pl-lg-5 elem-content d-flex flex-column justify-content-center pb-3 pb-lg-0">
 
                         <p class="my-5 ">Next, we talk about our mental health. Mental health refers to the
                             psychological and emotional well-being of a person. The mental health of a person impacts
