@@ -4,8 +4,7 @@
                                                                                                                                                                                 overflow-x: visible !important;
                                                                                                                                                                             } */
         .containerdoosme {
-
-            padding-top: 160px;
+            padding-top: 200px;
         }
 
         .footerbox1 h5 {
@@ -19,8 +18,6 @@
             color: white !important;
             cursor: pointer;
             font-size: 12.5px;
-            /* font-weight: 600; */
-            /* transition: 1s; */
         }
 
         .footerbox1 p:hover {
@@ -111,11 +108,12 @@
             margin-right: auto;
             margin-left: auto;
             position: relative;
-            top: 144px;
+            /* top: 144px; */
         }
 
         .sub-section {
-            margin-top: -143px;
+            margin-bottom: -155px;
+            /* margin-top: -143px; */
             background: rgb(254, 105, 3) !important;
             background: linear-gradient(0deg, rgb(255, 118, 25) 0%, rgb(153, 102, 153) 75%) !important;
             transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
@@ -205,266 +203,6 @@
             gap: 5px;
         }
 
-        @media only screen and (max-width: 375px) {
-            .container-sub {
-                padding: 0 25px !important;
-                top: 175px !important;
-            }
-
-            .footer-img {
-                min-width: 250px;
-                max-width: 250px;
-                height: 185px !important;
-            }
-
-            .custom_footer_text {
-                font-size: 18px !important;
-            }
-        }
-
-        @media only screen and (min-width: 378px) and (max-width: 640px) {
-            .sub-section {
-                margin-top: -200px;
-            }
-
-            .custom_footer_text {
-                font-size: 18px !important;
-                text-align: center;
-            }
-
-            .subscribe_newsleter {
-                right: 3px;
-                top: 42%;
-                padding: 11px 10px 9px;
-                font-size: 12px;
-            }
-
-            .container-sub {
-                padding: 0 50px !important;
-                top: 155px !important;
-            }
-
-            .footer-img {
-                min-width: 220px;
-                max-width: 220px;
-                height: 170px !important;
-            }
-
-            .subscribe_newsleter {
-                padding: 11px 11px 9px !important;
-            }
-        }
-
-        @media only screen and (max-width: 767px) {
-
-
-            .footer-img {
-                min-width: 300px;
-                max-width: 300px;
-                height: 200px !important;
-            }
-
-            .custom_footer_btn {
-                align-items: center;
-            }
-
-            .footer-padd {
-                padding: 1rem 12px !important;
-            }
-
-            .custom_footer_text {
-                font-size: 20px;
-            }
-
-            .sub_email {
-                padding: 10px 10px 10px 10px;
-                line-height: 22px;
-            }
-
-            .subscribe_newsleter {
-                right: 3px;
-                top: 40%;
-                padding: 9px 13px 9px;
-            }
-
-            .container-sub {
-                padding: 0 120px;
-                top: 160px;
-            }
-
-            .sub-section {
-                margin-top: -205px;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .footer-padd {
-                padding: 1rem 45px !important;
-            }
-
-            .containerdoosme {
-                padding-top: 120px !important;
-            }
-
-            .sub-section {
-                margin-top: -115px;
-            }
-
-            .container-sub {
-                top: 128px;
-                padding: 0 105px;
-            }
-
-            .container-footer {
-                height: 50px;
-            }
-
-            .footer-img {
-                min-width: 300px;
-                max-width: 300px;
-                height: 200px;
-            }
-
-            /* .custom_footer_text {
-                font-size: 18px;
-            } */
-
-            .subscribe_newsleter {
-                padding: 14px 9px 9px;
-                font-size: 12px;
-            }
-
-            .subscribe_newsleter i {
-                font-size: 12px;
-            }
-
-            .sub_email {
-                line-height: 20px;
-            }
-        }
-
-        @media only screen and (min-width: 1025px) and (max-width: 1200px) {
-            .footer-img {
-                min-width: 270px;
-                max-width: 270px;
-                height: 240px;
-            }
-
-            .footer-padd {
-                padding: 1rem 30px !important;
-            }
-
-            /* .custom_footer_text {
-                font-size: 30px;
-            } */
-        }
-
-        @media (width > 1650px) {
-            .expore p {
-                font-size: 18px !important;
-                line-height: 35px !important;
-            }
-
-            .expore p:hover {
-                font-size: 18px !important;
-                line-height: 35px !important;
-            }
-
-            .footerbox1 p {
-                font-size: 18px !important;
-                line-height: 35px !important;
-            }
-
-            .footerbox1 p:hover {
-                font-size: 18px !important;
-                line-height: 35px !important;
-            }
-
-            .fs-responsive {
-                font-size: 18px !important;
-                line-height: 38px !important;
-            }
-
-            .icons i {
-                font-size: 25px !important;
-            }
-
-            .icons i:hover {
-                font-size: 25px !important;
-            }
-
-            .expore h4 {
-                font-size: 30px !important;
-                line-height: 40px !important;
-            }
-
-
-            .footerbox1 h4 {
-                font-size: 30px !important;
-                line-height: 40px !important;
-            }
-
-            .newsletter_btn {
-                font-size: 26px !important;
-            }
-
-            .form-control_responsive {
-                display: block;
-                width: 100%;
-                height: calc(2em + 0.75rem + 2px) !important;
-                padding: 0.375rem 0.75rem;
-                font-size: 1.4rem !important;
-                font-weight: 400;
-                line-height: 1.5;
-            }
-        }
-
-        @media only screen and (min-width: 1200px) {
-            /* .container-sub {
-                                                                                            padding: 0 125px;
-                                                                                        } */
-
-            .custom_footer_text {
-                /* font-size: 30px; */
-            }
-        }
-
-        @media only screen and (min-width: 1281px) {
-
-            .footer-img {
-                min-width: 380px;
-                max-width: 380px;
-                height: 280px;
-            }
-        }
-
-        @media only screen and (min-width: 1400px) {
-            .container-sub {
-                max-width: 1300px;
-            }
-
-            .container-sub {
-                padding: 0px 70px;
-                top: 160px;
-            }
-
-        }
-
-        @media only screen and (min-width: 1850px) {
-            .container-sub {
-                max-width: 1650px;
-            }
-
-            .container-sub {
-                top: 155px;
-            }
-        }
-
-        @media only screen and (min-width: 2000px) {
-            .container-sub {
-                max-width: 1800px !important;
-            }
-        }
     </style>
 @endsection
 <!-- UP_ICON  -->
@@ -475,12 +213,12 @@
 "></i>
     </a>
 </div>
-<div>
+{{-- <div> --}}
     <div class="container-sub">
         <section class="sub-section">
             <div class="background-overlay"></div>
             <div class="row justify-content-between align-items-center">
-                <div class="col-md-5 d-flex justify-content-center">
+                <div class="col-sm-5 d-flex justify-content-center">
                     <div class="footer-img">
                         <img src="{{ asset('/public/uploads/images/footerimg/iStock-1465263629.png') }}"
                             class="w-100 h-100">
@@ -490,7 +228,7 @@
                 </h6> --}}
 
                 </div>
-                <div class="col-md-7 custom_footer_btn " style="">
+                <div class="col-sm-7 custom_footer_btn " style="">
                     <h4 class="text-capitalize custom_footer_text" style=" ">
                         Don't Miss Out!<br>
                         Exclusive Offers & Latest Programs<br>
@@ -520,8 +258,8 @@
         <div class="containerdoosme container" style="
 ">
             <div class="row text-white">
-                <div class="col-lg-3">
-                    <div class="expore px-4 py-2 text-white">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="expore px-4 py-lg-2 py-sm-4 py-2 text-white">
                         <x-footer-section-one-widget />
                         {{-- <h5 class="font-weight-bold mb-3 mt-4 text-white">
                         Join our Community of Students
@@ -536,13 +274,13 @@
                     </div> --}}
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="footerbox1 px-4 py-2">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footerbox1 px-4 py-lg-2 py-sm-4 py-2">
                         <x-footer-section-two-widget />
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <div class="footerbox1 px-lg-0 px-4 py-2">
+                <div class="col-lg-2 col-sm-6">
+                    <div class="footerbox1 px-lg-0 px-4 py-lg-2 py-sm-4 py-2">
                         <h5>
                             Support | Services
                         </h5>
@@ -559,8 +297,8 @@
 
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="float-lg-right footerbox1 px-lg-5 px-3 py-2">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="float-lg-right footerbox1 px-lg-5 px-4 py-lg-2 py-sm-4 py-2">
                         <h5>
                             Contact
                         </h5>
@@ -613,7 +351,7 @@
 </div>
 </footer>
 <div class="col-md-12" style="background: #996699;box-shadow: 0px -10px 20px -14px;">
-    <div class="container d-lg-flex footercolor justify-content-between footer-padd">
+    <div class="container d-md-flex footercolor justify-content-between footer-padd">
         <div class="my-lg-0 my-2">
             <span style="" class="fs-responsive text-white">
                 <a href="{{ route('customer-help') }}" onclick="informationflag('privacy policy')"

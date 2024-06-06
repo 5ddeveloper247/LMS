@@ -17786,8 +17786,8 @@ padding: 1rem 12px !important;
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .footer-padd {
-padding: 1rem 45px !important;
-}
+        padding: 1rem 20px 
+    }
     .containerdoosme {
         padding-top: 120px !important;
     }

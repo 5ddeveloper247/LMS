@@ -414,7 +414,7 @@
         margin-bottom: 0;
         line-height: 1.2;
     }
-
+   
     .rts-arrow {
         color: var(--rt-primary);
         font-weight: 600;
@@ -1016,6 +1016,7 @@
         height: 100%;
         position: relative;
         padding-left: 30px;
+        min-height: 500px;
     }
 
     .main_bannar::before {
@@ -1699,6 +1700,9 @@
     }
 
     @media (min-width: 576px) and (max-width: 767px) {
+        .rts-section a{
+        font-size: 14px;
+    }
 
         .main_banner-section {
             width: 23rem;
@@ -1736,6 +1740,15 @@
 
 
     @media only screen and (max-width: 768px) {
+        .main_bannar{
+            min-height: auto;
+        }
+        .custom_heading_1{
+            font-size: 24px !important;
+        }
+        .cta_service_info h2{
+            font-size: 24px !important;
+        }
         .custom-card img {
         height: 320px;
     }
@@ -5719,7 +5732,7 @@ button.next{
                                 {{-- form-add --}}
                                 <div class="col-lg-4 col-md-6 my-3 my-lg-0 flowdiv-ele d-flex align-items-center">
 
-                                    <form
+                                    <form method="POST" action="{{ route('contactMsgSubmit') }}"
                                         class="w-100 custom_section_color shadow_row custom_paragraph custom_form mb-0 py-3 py-md-0 px-4">
                                         <h2 class="custom_heading_1 font-weight-bold my-2 form_h1">Stay in Touch!</h2>
                                         <div class="form-row mt-3">
