@@ -19,13 +19,13 @@ class PaymentController extends Controller
     {
         try {
             $courses = Course::whereNotNull('special_commission')->with('user', 'enrolls')->paginate(10);
-            $allcourses = Course::all();
+            $allcourses = Course::where('type',9)->latest()->get();
             $commission = Settings('commission');
             $percent_tax = Settings('percent_tax') ?? 0;
             $fixed_tax = Settings('fixed_tax') ?? 0;
-            $instructors = User::whereNotNull('special_commission')->whereIn('role_id', [1, 2])->paginate(10);
+            $instructors = User::whereNotNull('special_commission')->whereIn('role_id', [9])->paginate(10);
             $instructor_commission = 100 - $commission;
-            $users = User::whereIn('role_id', [1, 2])->get();
+            $users = User::whereIn('role_id', [9])->get();
 
 
             return view('payment::commission', compact('users', 'allcourses', 'courses', 'commission', 'users', 'instructor_commission', 'instructors','percent_tax','fixed_tax'));
