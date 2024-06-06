@@ -38,6 +38,7 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
     Route::get('social-setting-delete/{id}', 'FrontendManageController@socialSettingDelete')->name('socialSetting.delete');
     Route::post('social-setting', 'FrontendManageController@socialSettingSave')->name('socialSetting.store')->middleware('RoutePermissionCheck:frontend.socialSetting.store');
     Route::post('social-setting-update', 'FrontendManageController@socialSettingUpdate')->name('socialSetting.update')->middleware('RoutePermissionCheck:frontend.socialSetting.update');
+    Route::post('social-links/changeOrder', 'FrontendManageController@changeSocialLinkOrder')->name('socialSetting.changeSocialLinkOrder')->middleware('RoutePermissionCheck:frontend.socialSetting.update');
 
     Route::get('section-setting', 'FrontendManageController@sectionSetting')->name('sectionSetting')->middleware('RoutePermissionCheck:frontend.sectionSetting');
     Route::get('section-setting-edit/{id}', 'FrontendManageController@sectionSettingEdit')->name('sectionSetting_edit')->middleware('RoutePermissionCheck:frontend.sectionSetting.edit');

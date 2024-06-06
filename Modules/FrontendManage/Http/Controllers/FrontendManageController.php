@@ -636,7 +636,7 @@ class FrontendManageController extends Controller
     public function socialSetting()
     {
         try {
-            $data['social_links'] = SocialLink::latest()->get();
+            $data['social_links'] = SocialLink::orderBy('order','desc')->get();
             return view('frontendmanage::socialSetting', compact('data'));
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
@@ -646,7 +646,7 @@ class FrontendManageController extends Controller
     public function socialSettingEdit($id)
     {
         try {
-            $data['social_links'] = SocialLink::latest()->get();
+            $data['social_links'] = SocialLink::orderBy('order','desc')->get();
             $edit = SocialLink::find($id);
             return view('frontendmanage::socialSetting', compact('data', 'edit'));
         } catch (\Exception $e) {
@@ -667,6 +667,26 @@ class FrontendManageController extends Controller
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
+    }
+
+    public function changeSocialLinkOrder()
+    {
+
+        $payload = json_decode(file_get_contents('php://input'), true);
+        $order = $payload['order'];
+
+        foreach ($order as $item) {
+            $id = $item['id'];
+            $chapter = SocialLink::find($id);
+            if ($chapter) {
+                $chapter->order = $item['new_position'];
+                $chapter->save();
+            }
+
+        }
+
+        return response()->json(200);
+
     }
 
 
@@ -844,6 +864,7 @@ class FrontendManageController extends Controller
             $social_link->icon = $request->icon;
             $social_link->name = $request->name;
             $social_link->link = $request->btn_link;
+            $social_link->order = 0;
             $social_link->status = $request->status;
             $social_link->save();
 

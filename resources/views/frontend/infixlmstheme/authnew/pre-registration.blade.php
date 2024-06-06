@@ -295,20 +295,21 @@
 
 
                 <h6 class="text-center mb-4 text-capitalize heading-login">hello, welcome to merakii </h6>
-
+                @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true' || saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
                 <div class="socail_links">
-
+                    @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true')
                     <a href="{{ route('facebookredirect') }}" class="facebookLoginBtn text-center p-2">
                         <i class="fab fa-facebook-f"></i>
                         Register with Facebook</a>
-
-
+                    @endif
+                    @if(saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
                     <a href="{{ route('googleredirect') }}" class="googleLoginBtn text-center p-2">
                         <i class="fab fa-google"></i>
                         Register with Google</a>
-
+                    @endif
                 </div>
                 <h6 class="text-center mt-4 mb-2 text-capitalize heading-login"> OR</h6>
+                @endif
 
                 <h6 class="text-center mb-4 text-capitalize heading-login"> please fill the form
                     below to get started</h6>

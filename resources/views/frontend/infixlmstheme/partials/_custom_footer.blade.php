@@ -585,21 +585,26 @@
                             Sat – Sun: 10:00am – 3:00pm
 
                         </span>
-
+                        @php
+                         $social_icons = Modules\SystemSetting\Entities\SocialLink::where('status',1)->orderBy('order','desc')->get();   
+                        @endphp
+                        @if(count($social_icons)>0)
                         <h5 class="mb-3 mt-4">
                             Our Socials
                         </h5>
                         <span class="d-flex icons" style="gap: 25px;">
-                            <i class="fa-brands fa-twitter"></i>
-                            <a href="https://www.instagram.com/merakiinursing/" style="color:inherit;"><i
-                                    class="fa-brands fa-instagram"></i>
+                            @foreach ($social_icons as $link)
+                            <a href="{{$link->link}}" style="color:inherit;"><i
+                                class="{{$link->icon}}"></i>
                             </a>
+                            @endforeach
                             {{-- <i class="fa-brands fa-linkedin"></i> --}}
-                            <a href="https://www.facebook.com/merakiicollege" style="color:inherit;"><i
+                            {{-- <a href="https://www.facebook.com/merakiicollege" style="color:inherit;"><i
                                     class="fa-brands fa-facebook"></i></a>
                             <a href="https://www.tiktok.com/@merakiinursing" style="color:inherit;">
-                                <i class="fa-brands fa-tiktok"></i></a>
+                                <i class="fa-brands fa-tiktok"></i></a> --}}
                         </span>
+                        @endif
                     </div>
                     {{-- <img src="{{ asset('public/assets/map.png') }}" class="img-fluid mt-3"> --}}
                 </div>

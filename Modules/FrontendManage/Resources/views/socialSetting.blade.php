@@ -141,6 +141,7 @@
                                         </form>
                     </div>
                 </div>
+                @php $socialLinks = $data['social_links']; @endphp
                 <div class="col-lg-9">
 
                     <div class="box_header common_table_header">
@@ -152,7 +153,7 @@
                         <div class="QA_table ">
                             <!-- table-responsive -->
                             <div class="">
-                                <table id="lms_table" class="table Crm_table_active3">
+                                <table id="social_table" class="table Crm_table_active3">
                                     <thead>
                                     <tr>
                                         <th scope="col">{{ __('common.SL') }}</th>
@@ -167,7 +168,7 @@
 
 
                                     @foreach($data['social_links'] as $key => $item)
-                                        <tr>
+                                        <tr data-item="{{$item->id}}" data-seq_no="{{$item->order}}">
                                             <th>{{ $key+1 }}</th>
                                             <td><i class="{{@$item->icon}}"></i></td>
                                             <td>{{ $item->link }}</td>
@@ -218,5 +219,175 @@
     @include('backend.partials.delete_modal')
 @endsection
 @push('scripts')
+    <script>
+        if ($.fn.DataTable.isDataTable('#social_table')) {
+        $('#social_table').DataTable().destroy();
+    }
+    let table = $('#social_table').DataTable({
+        bLengthChange: true,
+        "bDestroy": true,
+        "lengthChange": true,
+        "lengthMenu": [
+            [10, 25, 50, 100],
+            [10, 25, 50, 100]
+        ],
+        // order: [
+        //     [0, "desc"]
+        // ],
+        language: {
+            emptyTable: "{{ __('common.No data available in the table') }}",
+            search: "<i class='ti-search'></i>",
+            searchPlaceholder: '{{ __('common.Quick Search') }}',
+            paginate: {
+                next: "<i class='ti-arrow-right'></i>",
+                previous: "<i class='ti-arrow-left'></i>"
+            }
+        },
+        dom: 'Blfrtip',
+        buttons: [{
+                extend: 'copyHtml5',
+                text: '<i class="far fa-copy"></i>',
+                title: $("#logo_title").val(),
+                titleAttr: '{{ __('common.Copy') }}',
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                text: '<i class="far fa-file-excel"></i>',
+                titleAttr: '{{ __('common.Excel') }}',
+                title: $("#logo_title").val(),
+                margin: [10, 10, 10, 0],
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                },
 
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i class="far fa-file-alt"></i>',
+                titleAttr: '{{ __('common.CSV') }}',
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="far fa-file-pdf"></i>',
+                title: $("#logo_title").val(),
+                titleAttr: '{{ __('common.PDF') }}',
+                exportOptions: {
+                    columns: ':visible',
+                    columns: ':not(:last-child)',
+                },
+                orientation: 'landscape',
+                pageSize: 'A4',
+                margin: [0, 0, 0, 12],
+                alignment: 'center',
+                header: true,
+                customize: function(doc) {
+                    doc.content[1].table.widths =
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                }
+
+            },
+            {
+                extend: 'print',
+                text: '<i class="fa fa-print"></i>',
+                titleAttr: '{{ __('common.Print') }}',
+                title: $("#logo_title").val(),
+                exportOptions: {
+                    columns: ':not(:last-child)',
+                }
+            },
+            {
+                extend: 'colvis',
+                text: '<i class="fa fa-columns"></i>',
+                postfixButtons: ['colvisRestore']
+            }
+        ],
+        columnDefs: [{
+                visible: false
+            },
+            {
+                responsivePriority: 1,
+                targets: 0
+            },
+            {
+                responsivePriority: 1,
+                targets: 2
+            },
+            {
+                responsivePriority: 2,
+                targets: -1
+            },
+            {
+                responsivePriority: 2,
+                targets: -2
+            },
+        ],
+        responsive: true,
+    });
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        let order = [];
+        var recordsTotal = '{{ count($socialLinks) }}';
+        let course_seq_url = '{{route("frontend.socialSetting.changeSocialLinkOrder")}}';
+        // let course_seq_url = '{{url("social-links/changeOrder")}}';
+        $('#social_table tbody').sortable({
+                cursor: "move",
+                update: function (event, ui) {
+                    // Get the sorted row IDs
+
+                    var page_length = parseInt($('.dataTable_select>.list>li.selected').data('value'));
+                    var current_page = parseInt($('.paginate_button.current').text());
+                    //
+                    var postion_for_text = (current_page * page_length) - page_length; //asc
+                    var postion_for = recordsTotal - (postion_for_text); // dsec
+
+
+                    $('#social_table tbody tr').each(function (index, element) {
+                        var rowData = table.row(index).data();
+
+                        order.push({
+                            id: $(this).attr('data-item'),
+                            new_position: postion_for,
+                        });
+
+                        $(this).data('seq_no', postion_for);
+
+                        postion_for = postion_for - 1;
+
+                    });
+                    console.log(order);
+
+                    $.ajax({
+                        // type: "POST",
+                        method: 'POST',
+                        url: course_seq_url,
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            order: order
+                        }),
+                        dataType: "json",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response == 200) {
+                                toastr.success('Order Successfully Changed !', 'Success');
+                                order = [];
+                            }
+                        }
+                    });
+                },
+            });
+    </script>
 @endpush
