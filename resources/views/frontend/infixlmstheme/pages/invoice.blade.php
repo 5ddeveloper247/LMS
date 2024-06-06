@@ -288,37 +288,65 @@ switch ($enroll->type) {
                                     @if ($item->course_type == '4')
                                         <h5 class="black_color">
                                             {{ @$item->course->title }}
+                                            @if($item->course->course_code)
+                                            <br>
+                                            <span style="font-size:0.95em">Course Code: {{$item->course->course_code}}</span>
+                                            @endif
                                             <small>(Full Course)</small>
                                         </h5>
                                     @elseif($item->course_type == '5')
                                         <h5 class="black_color">
                                             {{ @$item->course->title }}
+                                            @if($item->course->course_code)
+                                            <br>
+                                            <span style="font-size:0.95em">Course Code: {{$item->course->course_code}}</span>
+                                            @endif
                                             <small>(Prep-Course/on-demand)</small>
                                         </h5>
                                     @elseif($item->course_type == '6')
                                         <h5 class="black_color">
                                             {{ @$item->course->title }}
+                                            @if($item->course->course_code)
+                                            <br>
+                                            <span style="font-size:0.95em">Course Code: {{$item->course->course_code}}</span>
+                                            @endif
                                             <small>(Prep-Course/Live)</small>
                                         </h5>
                                     @elseif($item->course_type == '8')
                                         <h5 class="black_color">
                                             {{ @$item->course->title }}
+                                            @if($item->course->course_code)
+                                            <br>
+                                            <span style="font-size:0.95em">Course Code: {{$item->course->course_code}}</span>
+                                            @endif
                                             <small>(Repeat Course)</small>
                                         </h5>
                                     @elseif(!empty($item->course))
                                         @if ($item->course->type == '2')
                                             <h5 class="black_color">
                                                 {{ @$item->course->title }}
+                                            @if($item->course->course_code)
+                                            <br>
+                                            <span style="font-size:0.95em">Course Code: {{$item->course->course_code}}</span>
+                                            @endif
                                                 <small>(Big Quiz)</small>
                                             </h5>
                                         @elseif($item->course->type == '7')
                                             <h5 class="black_color">
                                                 {{ @$item->course->title }}
+                                                @if($item->course->course_code)
+                                            <br>
+                                            <span style="font-size:0.95em">Course Code: {{$item->course->course_code}}</span>
+                                            @endif
                                                 <small>(Time Table)</small>
                                             </h5>
                                         @elseif($item->course->type == '9')
                                             <h5 class="black_color">
                                                 {{ @$item->course->title }}
+                                                @if($item->course->course_code)
+                                                    <br>
+                                                    <span style="font-size:0.95em">Course Code: {{$item->course->course_code}}</span>
+                                                @endif
                                                 <small>(Individual Course)</small>
                                             </h5>
                                         @endif

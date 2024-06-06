@@ -203,9 +203,13 @@ class WebsiteController extends Controller
     {
         try {
             $certificate_record = CertificateRecord::where('certificate_id', $certificate_number)->first();
-            $course = Course::findOrFail($certificate_record->course_id);
+            $course = Course::find($certificate_record->course_id);
+            if(!$course || !$certificate_record){
+                Toastr::error(trans('certificate.Right Now You Cannot Download The Certificate'));
+                return back();
+            }
             if ($course->certificate_id != null) {
-                $certificate = Certificate::findOrFail($course->certificate_id);
+                $certificate = Certificate::find($course->certificate_id);
             } else {
                 if ($course->type == 1) {
                     $certificate = Certificate::where('for_course', 1)->first();
@@ -246,10 +250,13 @@ class WebsiteController extends Controller
     {
         try {
             $certificate_record = CertificateRecord::where('certificate_id', $certificate_number)->first();
-            $course = Course::findOrFail($certificate_record->course_id);
-
+            $course = Course::find($certificate_record->course_id);
+            if(!$course || !$certificate_record){
+                Toastr::error(trans('certificate.Right Now You Cannot Download The Certificate'));
+                return back();
+            }
             if ($course->certificate_id != null) {
-                $certificate = Certificate::findOrFail($course->certificate_id);
+                $certificate = Certificate::find($course->certificate_id);
             } else {
                 if ($course->type == 1) {
                     $certificate = Certificate::where('for_course', 1)->first();

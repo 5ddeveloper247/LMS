@@ -620,7 +620,7 @@ canvas {
                                 <div id='root'></div>
                                 <div class="" style="position: absolute; bottom: 0; padding: 5px;">
                                     <input class="date-btn" type="date" id="datepicker"
-                                        value="<%= new Date().toISOString().split('T')[0] %>" />
+                                        value="{{date('Y-m-d')}}" />
                                 </div>
                                 <div class="sign-btn" style="position: absolute;">
                                     <input type="button" value="Reset" id="resetCanvas" class="reset-btn mx-1" />
@@ -664,9 +664,9 @@ canvas {
     </div>
 
     @include(theme('partials._custom_footer'))
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script> --}}
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
     <script>
         $(document).ready(function() {
             $('#password2').on('input', function() {
