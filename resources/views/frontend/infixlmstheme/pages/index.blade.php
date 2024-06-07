@@ -2779,8 +2779,8 @@ button.next{
                 </div>
 
                 <div class="col-md-4 old_row pl-0">
-                    @if (isset($random_program))
-                        <div class="row" id="random_programs">
+                    <div class="row" id="random_programs" @if (!isset($random_program)) style="height:100%" @endif>
+                            @if (isset($random_program))
                             <div class="col-6 first_div random_program_data_1 height-card px-0">
                                 <img id="program_icon" src="{{ $random_program->icon }}"
                                     class="w-100 h-100 imgcls object-fit-cover img-fluid height-card">
@@ -2810,7 +2810,7 @@ button.next{
                                     </h5>
                                 </a>
                             </div>
-
+                            @endif
                             <div class="col-6 random_program_data_2 height-card">
                                 <div class="d-flex flex-column h-100 justify-content-center py-2 py-sm-3 py-md-0">
                                     <h5 class="font-weight-bold custom_heading_2 heading-responsive-style mb-4">
@@ -2833,7 +2833,7 @@ button.next{
                                 {{-- </div> --}}
                             </div>
                         </div>
-                    @endif
+                    
 
                 </div>
             </div>
@@ -2934,7 +2934,7 @@ button.next{
         <x-home-page-instructor-section :homeContent="$homeContent" />
     @endif
 
-
+    @if(count($latest_programs) > 0 || count($latest_courses) > 0)
     {{-- Custom Slider by Arsam --}}
     <section class="sec-4">
         <div class="container px-lg-5 pt-5">
@@ -3113,6 +3113,7 @@ button.next{
         </div>
     </section>
     {{-- Custom Slider End --}}
+    @endif
 
     {{-- percent section --}}
     <section class="sec-5 percent-section">
@@ -5444,6 +5445,7 @@ button.next{
                 </section>
 
                 {{-- stayin touchend --}}
+                @if(count($latest_blogs) > 0)
                 <section class="sec-11">
                     <div class="container p-lg-5 py-4">
                         <div class="row px-xl-5">
@@ -5521,11 +5523,13 @@ button.next{
                                                         href="javascript:void(0)">Latest</a>
                                                 </li>
                                                 @foreach ($tagsArray as $tag)
+                                                    @if($tag != '')
                                                     <li class="nav-item" role="presentation">
                                                         <a class="nav-link blog-tag" class="nav-link"
                                                             data-tag="{{ $tag }}" href="javascript:void(0)">
                                                             {{ $tag }} </a>
                                                     </li>
+                                                    @endif
                                                 @endforeach
                                                 {{-- <li class="nav-item" role="presentation">
                                                 <a class="nav-link" data-toggle="pill" href="#Admission">Admission</a>
@@ -5570,7 +5574,7 @@ button.next{
                         </div>
                     </div>
                 </section>
-
+                @endif
                 <!-- <div class="row m-0 mt-5 shadow">
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
                             <div class="text-white">
@@ -5738,7 +5742,7 @@ button.next{
                                         <div class="form-row mt-3">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="outside form-control" required />
+                                                    <input type="text" class="outside form-control" required name="name"/>
                                                     <span class="floating-label-outside">Your name</span>
                                                     <i class="fa fa-user-o input-icon-outside"></i>
                                                 </div>
@@ -5748,7 +5752,7 @@ button.next{
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" id="dateInput" class="outside" required />
+                                                    <input type="text" id="dateInput" class="outside" required name="email"/>
                                                     <span class="floating-label-outside">Email Address</span>
                                                     <i class="fa fa-envelope-o input-icon-outside"></i>
                                                 </div>
@@ -5758,7 +5762,7 @@ button.next{
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="outside" required />
+                                                    <input type="text" class="outside" required name="phone"/>
                                                     <span class="floating-label-outside">Phone #</span>
                                                     <i class="fa fa-mobile input-icon-outside"></i>
                                                 </div>
@@ -5768,7 +5772,7 @@ button.next{
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="outside" required />
+                                                    <input type="text" class="outside" name="zip" />
                                                     <span class="floating-label-outside">Zip Code</span>
                                                     <i class="fa fa-map-marker input-icon-outside"></i>
                                                 </div>
@@ -5778,14 +5782,28 @@ button.next{
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <select class="outside" required>
+                                                    <select class="outside" required name="program">
                                                         <option value="" disabled selected></option>
-                                                        <option value="9">Grade 9</option>
-                                                        <option value="10">Grade 10</option>
-                                                        <option value="11">Grade 11</option>
-                                                        <option value="12">Grade 12</option>
+                                                        <optgroup label="Programs">
+                                                            @if(count($allPrograms)>0)
+                                                                @foreach ($allPrograms as $thisProgram)
+                                                                    <option value="{{ $thisProgram->programtitle }}">{{ $thisProgram->programtitle }}</option>
+                                                                @endforeach
+                                                            @else
+                                                                    <option value="No Program">-- No Program --</option>
+                                                            @endif
+                                                        </optgroup>
+                                                        <optgroup label="Courses">
+                                                            @if(count($allCourses)>0)
+                                                            @foreach ($allCourses as $thisCourse)
+                                                                    <option value="{{ $thisCourse->title }}">{{ $thisCourse->title }}</option>
+                                                            @endforeach
+                                                            @else
+                                                                <option value="No Course">-- No Course --</option>
+                                                            @endif
+                                                        </optgroup>
                                                     </select>
-                                                    <span class="floating-label-outside">Select Program</span>
+                                                    <span class="floating-label-outside">Course / Program</span>
                                                     <i class="fa fa-chalkboard-user input-icon-outside"></i>
                                                 </div>
                                             </div>
@@ -5794,13 +5812,13 @@ button.next{
                                         <div class="form-row">
                                             <div class="form-group col-12 ">
                                                 <div class="position-relative mb-2">
-                                                    <select class="outside" required>
+                                                    <select class="outside" required name="year">
                                                         <option value="" disabled selected></option>
-                                                        <option value="9">Grade 9</option>
-                                                        <option value="10">Grade 10</option>
-                                                        <option value="11">Grade 11</option>
-                                                        <option value="12">Grade 12</option>
+                                                        @for($yr =1; $yr<=20; $yr++)
+                                                        <option value="{{ date('Y',strtotime('-'.$yr.' year')) }}">{{ date('Y',strtotime('-'.$yr.' year')) }}</option>
+                                                        @endfor
                                                     </select>
+                                                    {{-- <input type="date" class="outside" name="year" id="contactYr"/> --}}
                                                     <span class="floating-label-outside">High School Grade Year</span>
                                                     <i class="fa fa-graduation-cap input-icon-outside"></i>
                                                 </div>
@@ -5983,7 +6001,7 @@ button.next{
         // AOS.init({
         //     duration: 1000,
         // });
-
+        
         $(document).ready(function() {
             $('#years').select2();
             $('#program').select2();
@@ -6000,6 +6018,7 @@ button.next{
                     // data: "null",
                     dataType: "json",
                     success: function(response) {
+                        if(!response.status == true){
                         var icon = response.program.icon ? response.program.icon :
                             "asset('public/assets/program/no-image.png')";
                         var programTitle = response.program.programtitle;
@@ -6011,37 +6030,8 @@ button.next{
                         $('#program_subtitle').html(programTotalsubtitle);
                         $('#program_desc').html(programTotaldesc);
                         $('#program_cost').html('$' + programTotalcost);
-                        // $('.random_program_data').fadeOut(500, function() {
-                        //     $(this).remove();
-                        // });
-                        // random_program_data = `<div class="col-lg-6 col-md-6 col-sm-6 col-6 first_div px-0 random_program_data">
-                    //         <img src="` + response.program.icon + `" class="img-fluid w-100">
-                    //     </div>
-                    //     <div class="col-lg-6 col-md-6 col-sm-6 col-6 first_div px-0 random_program_data">
-                    //         <div class="small_section_bg_color h-100">
-                    //             <h2 class="px-4 pt-4 text-white">
-                    //                 ` + response.program.programtitle + `
-                    //             </h2>
-                    //             <h4 class="px-4 pt-2 text-white">
-                    //                 <span class="font-weight-bold font-italic">$` + response.program.totalcost + `</span>
-                    //                 <br class="mb-3">
-
-                    //             </h4>
-                    //         </div>
-                    //     </div>`;
-                        // random_program.html(random_program_data).fadeIn(500);
-
+                        }
                     }
-                    // });
-                    // if (first_div.hasClass('d-none')) {
-                    //     first_div.fadeIn(500).removeClass('d-none');
-                    //     second_div.fadeOut(500).addClass('d-none');
-                    //     console.log('The div has the specified class.');
-                    // } else {
-                    //     second_div.fadeIn(500).removeClass('d-none');
-                    //     first_div.fadeOut(500).addClass('d-none');
-                    //     console.log('The div does not have the specified class.');
-                    // }
                 });
             }, 10000);
 

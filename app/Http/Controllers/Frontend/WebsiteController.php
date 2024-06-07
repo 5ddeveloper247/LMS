@@ -1966,7 +1966,7 @@ class WebsiteController extends Controller
                 'email' => 'required|email',
                 'message' => 'required',
                 'phone' => 'required',
-                'zip' => 'required',
+                //'zip' => 'required',
                 'program' => 'required',
                 'year' => 'required',
                 'g-recaptcha-response' => 'required|captcha'
@@ -1977,7 +1977,7 @@ class WebsiteController extends Controller
                 'email' => 'required|email',
                 'message' => 'required',
                 'phone' => 'required',
-                'zip' => 'required',
+               // 'zip' => 'required',
                 'program' => 'required',
                 'year' => 'required'
             ];
@@ -1985,16 +1985,11 @@ class WebsiteController extends Controller
 
         $request->validate($validate_rules, validationMessage($validate_rules));
 
-        if (appMode()) {
-            Toastr::error('For demo version you can not send message', trans('common.Failed'));
-            return redirect()->back();
-        }
-
         $name = $request->get('name');
         $email = $request->get('email');
         $message = $request->get('message');
         $phone = $request->get('phone');
-        $zip = $request->get('zip');
+        $zip = $request->get('zip') ?? '';
         $program = $request->get('program');
         $year = $request->get('year');
 
