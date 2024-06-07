@@ -21,10 +21,11 @@
     <title>Lms</title>
     </head>
     <style>
-        /* .banner-img{
-                    min-height: 502px;
-                    max-height: 502px;
-                } */
+        .banner-img {
+            height: calc(100vh - 100px);
+            width: 100%;
+        }
+
         .mainbanner {
 
             background-image: url("{{ asset('public/assets/contact.jpg') }}");
@@ -136,9 +137,9 @@
 
         .flowdiv {
             max-width: 90%;
-            padding: 8rem 6rem;
+            padding: 6rem 5rem;
             margin: auto;
-            height: 85vh;
+            height: 100%;
             display: flex;
             align-items: center;
         }
@@ -421,41 +422,31 @@
         }
 
         /* .custom-heading {
-                                    font-size: 60px;
-                                } */
+                                            font-size: 60px;
+                                        } */
         .custom-padding {
             padding: 30px 0;
+        }
+        @media only screen  and (max-width: 400px){
+            .banner-img {
+                height: calc(100vh - 250px) !important;
+            }
         }
 
         @media only screen and (max-width: 768px) {
             .flowdiv {
-                height: 53vh;
-                padding: 4rem 4rem;
+                height: 340px;
+                padding: 0px;
                 width: 85%;
                 margin: auto;
             }
 
             .dataflow {
-                max-height: 300px;
-                padding: 2rem 1rem;
+                max-height: 340px;
+                padding: 2rem 0.5rem;
             }
-
-            .dataflow h2 {
-                font-size: 25px;
-            }
-
-            .wpb_wrapper_h {
-                font-size: 25px;
-            }
-
-            .theme_btn.small_btn5 {
-                width: 6rem;
-                padding: 13.5px 16px !important;
-            }
-
             .dataflow-p {
                 line-height: normal;
-                /* font-size: 12px; */
                 overflow: auto;
             }
 
@@ -538,96 +529,96 @@
 
 
         /* @media only screen and (min-width: 1281px){
-                                    .dataflow {height: 335px !important;}
-                                } */
+                                            .dataflow {height: 335px !important;}
+                                        } */
 
 
 
 
         /* meadi queries for 67% */
         /* @media (width > 1650px) {
-                                                                    .breadcrumb_area .breadcam_wrap h3 {
-                                                                        font-size: 100px !important;
-                                                                        font-weight: 900;
-                                                                        line-height: 76px;
-                                                                        color: #fff;
-                                                                    }
+                                                                            .breadcrumb_area .breadcam_wrap h3 {
+                                                                                font-size: 100px !important;
+                                                                                font-weight: 900;
+                                                                                line-height: 76px;
+                                                                                color: #fff;
+                                                                            }
 
-                                                                    h5 {
-                                                                        font-size: 27px !important;
-                                                                        line-height: 25px;
-                                                                    }
+                                                                            h5 {
+                                                                                font-size: 27px !important;
+                                                                                line-height: 25px;
+                                                                            }
 
-                                                                    h4 {
-                                                                        font-size: 32px !important;
-                                                                        line-height: 25px;
-                                                                    }
+                                                                            h4 {
+                                                                                font-size: 32px !important;
+                                                                                line-height: 25px;
+                                                                            }
 
-                                                                    .select2-container .select2-selection--single {
-                                                                        height: 67px !important;
-                                                                        border: 1px solid #e1e1e1 !important;
+                                                                            .select2-container .select2-selection--single {
+                                                                                height: 67px !important;
+                                                                                border: 1px solid #e1e1e1 !important;
 
-                                                                    }
+                                                                            }
 
-                                                                    .select2-container--default .select2-selection--single .select2-selection__rendered {
-                                                                        color: #444;
-                                                                        line-height: 61px !important;
-                                                                    }
+                                                                            .select2-container--default .select2-selection--single .select2-selection__rendered {
+                                                                                color: #444;
+                                                                                line-height: 61px !important;
+                                                                            }
 
-                                                                    .select2-container--default .select2-selection--single .select2-selection__arrow {
-                                                                        height: 35px !important;
+                                                                            .select2-container--default .select2-selection--single .select2-selection__arrow {
+                                                                                height: 35px !important;
 
-                                                                    }
+                                                                            }
 
-                                                                    .select2 .select2-container .select2-container--default {
-                                                                        width: 100% !important;
-                                                                    }
+                                                                            .select2 .select2-container .select2-container--default {
+                                                                                width: 100% !important;
+                                                                            }
 
-                                                                    .form-control {
-                                                                        display: block;
-                                                                        width: 100%;
-                                                                        height: calc(2.5em + 0.75rem + 2px) !important;
-                                                                        padding: 0.375rem 0.75rem;
-                                                                        font-size: 1.4rem !important;
-                                                                        font-weight: 400;
-                                                                        line-height: 1.5;
-                                                                        color: #495057;
-                                                                        background-color: #fff;
-                                                                        background-clip: padding-box;
-                                                                        border: 1px solid #ced4da;
-                                                                        border-radius: 0.25rem;
-                                                                        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-                                                                    }
+                                                                            .form-control {
+                                                                                display: block;
+                                                                                width: 100%;
+                                                                                height: calc(2.5em + 0.75rem + 2px) !important;
+                                                                                padding: 0.375rem 0.75rem;
+                                                                                font-size: 1.4rem !important;
+                                                                                font-weight: 400;
+                                                                                line-height: 1.5;
+                                                                                color: #495057;
+                                                                                background-color: #fff;
+                                                                                background-clip: padding-box;
+                                                                                border: 1px solid #ced4da;
+                                                                                border-radius: 0.25rem;
+                                                                                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                                                                            }
 
-                                                                    .ankar a {
-                                                                        font-size: 21px !important;
-                                                                        line-height:  !important 36px;
-                                                                    }
+                                                                            .ankar a {
+                                                                                font-size: 21px !important;
+                                                                                line-height:  !important 36px;
+                                                                            }
 
-                                                                    input,
-                                                                    input::placeholder {
-                                                                        font: 1.25rem/3 sans-serif;
-                                                                    }
+                                                                            input,
+                                                                            input::placeholder {
+                                                                                font: 1.25rem/3 sans-serif;
+                                                                            }
 
-                                                                    .eltdf-eh-item-inner {
-                                                                        height: 550px !important;
-                                                                    }
+                                                                            .eltdf-eh-item-inner {
+                                                                                height: 550px !important;
+                                                                            }
 
-                                                                    .dataflow {
-                                                                        height: 550px !important;
-                                                                    }
+                                                                            .dataflow {
+                                                                                height: 550px !important;
+                                                                            }
 
-                                                                    .theme_btn {
-                                                                        font-size: 23px !important;
-                                                                    }
-                                                                } */
+                                                                            .theme_btn {
+                                                                                font-size: 23px !important;
+                                                                            }
+                                                                        } */
 
         @media only screen and (min-width: 1800px) {
 
             /* .banner-img {
-            min-height: 815px;
-            max-height: 815px;
-        } */
+                    min-height: 815px;
+                    max-height: 815px;
+                } */
             .formdokana input.form-control-text {
                 font-size: 20px;
             }
@@ -645,7 +636,8 @@
                 max-width: 100% !important;
                 padding: 8rem 9rem !important;
             }
-            .small_btn2{
+
+            .small_btn2 {
                 margin-top: 20px !important;
             }
         }
@@ -854,8 +846,8 @@
     </div>
     {{-- </div> --}}
     {{-- apply now Section  --}}
-    <div class="contain mintban">
-        <div class="row m-0 mt-3 mb-5">
+    <div class="contain mintban mb-5">
+        <div class="row">
             {{-- <div class="col-md-12 mb-5">
                 <div class="row "> --}}
             <div class="col-md-12 flowdiv">
@@ -874,13 +866,13 @@
                         </div>
                     </div>
                     <!-- <div class="col-sm-6 ankar col-md-6 p-0" >
-                                                                                                                                                                             </div> -->
+                                                                                                                                                                                     </div> -->
                     <div class="col-6 ankar p-0" data-aos="fade-left">
                         <div class="eltdf-eh-item eltdf-background-arrow-left changeborder p-2 p-sm-4"
                             style="background: white;">
                             <!-- <div class="eltdf-eh-item eltdf-background-arrow-left" style="/* visibility: hidden; */border-color: #ffffff;/* display: none; */background-color: #ffffff;background-image: url(https://academist.qodeinteractive.com/wp-content/uploads/2018/07/Form-background-img.jpg)" data-item-class="eltdf-eh-custom-5500" data-769-1024="15% 10% 6% 10%" data-681-768="10% 15% 5% 15%" data-680="0% 20px 0% 20px"> -->
-                            <div class="eltdf-eh-item-inner pt-2">
-                                <div class="eltdf-eh-item-content eltdf-eh-custom-5500 mx-2 mx-md-3" style="">
+                            <div class="eltdf-eh-item-inner pt-2 mx-2">
+                                <div class="eltdf-eh-item-content eltdf-eh-custom-5500 mx-sm-2 mx-md-3" style="">
                                     <div class="wpb_text_column wpb_content_element">
                                         <div class="wpb_wrapper">
                                             <h2 class="wpb_wrapper_h"style="font-weight: bold;">Apply Now</h2>

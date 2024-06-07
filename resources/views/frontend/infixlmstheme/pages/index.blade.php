@@ -1055,7 +1055,7 @@
 
     .modal-lg,
     .modal-xl {
-        max-width: 600px !important;
+        max-width: 600px;
     }
 
     .paragraph_custom_height {
