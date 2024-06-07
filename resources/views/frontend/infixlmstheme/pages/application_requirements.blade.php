@@ -554,6 +554,7 @@
         .small_screen_carousel {
             position: absolute !important;
             bottom: 0;
+            top: 50%;
             z-index: 2;
             max-height: 330px;
             min-height: 330px;
@@ -570,6 +571,7 @@
         }
 
         .cont1domgdo_para {
+            max-height: 250px;
             overflow: auto;
 
         }
@@ -1006,7 +1008,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 py-3 back-color small_screen_carousel">
-                <div class="pt-4 mx-5 cont1domgdo_para">
+                <div class="pt-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-1
                     </h5>
@@ -1025,7 +1027,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 col-12 py-3 back-color small_screen_carousel">
-                <div class="pt-4 mx-5 cont1domgdo_para">
+                <div class="pt-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-2
                     </h5>
@@ -1045,7 +1047,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 col-12 py-4 back-color small_screen_carousel">
-                <div class="pt-4 mx-5 cont1domgdo_para">
+                <div class="pt-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-3
                     </h5>
@@ -1068,7 +1070,7 @@
         <div class="col-12 col-md-7 text-center text-lg-left">
             <h2 class="heading font-weight-bold">Required Application Documents</h2>
         </div>
-        <div class="col-md-7 col-12 mt-3">
+        <div class="col-md-7 col-10 mt-3">
             <div class="boxaccordion mt-2">
                 <div class="containerwidth">
                     <div class="wrapper">

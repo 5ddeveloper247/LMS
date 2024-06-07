@@ -235,9 +235,10 @@
         }
 
         .socail_links {
-            display: grid;
+            display: flex;
+            /* display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-gap: 10px;
+            grid-gap: 10px; */
         }
 
         @media only screen and (max-width: 768px) {
@@ -303,7 +304,7 @@
                         Register with Facebook</a>
                     @endif
                     @if(saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
-                    <a href="{{ route('googleredirect') }}" class="googleLoginBtn text-center p-2">
+                    <a href="{{ route('googleredirect') }}" class="googleLoginBtn text-center p-2 w-100">
                         <i class="fab fa-google"></i>
                         Register with Google</a>
                     @endif

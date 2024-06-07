@@ -16869,10 +16869,6 @@ body {
         max-width: 250px !important;
         height: 150px !important;
     }
-
-    .custom_footer_text {
-        font-size: 18px !important;
-    }
 }
 
 @media only screen and (min-width: 378px) and (max-width: 640px) {
@@ -16890,9 +16886,9 @@ body {
     }
 
     .footer-img {
-        min-width: 250px;
-        max-width: 250px;
-        height: 150px !important;
+        min-width: 200px;
+        max-width: 200px;
+        height: 100px !important;
     }
 
     .subscribe_newsleter {
@@ -16931,7 +16927,7 @@ body {
     }
 
     .custom_footer_text {
-        font-size: 18px;
+        font-size: 14px !important;
     }
 
     .sub_email {
