@@ -17,6 +17,7 @@ use Modules\CourseSetting\Entities\CourseReveiw;
 use Modules\FrontendManage\Entities\HomePageFaq;
 
 
+
 class FrontendHomeController extends Controller
 {
     public function __construct()
@@ -54,6 +55,8 @@ class FrontendHomeController extends Controller
             });
             $latest_programs = Program::where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->latest()->take(6)->get();
             $latest_courses = Course::where('price', '!=', '0.00')->with('parent')->latest()->take(3)->get();
+            $allPrograms = Program::where('status',1)->latest()->get();
+            $allCourses = Course::whereNull('parent_id')->latest()->get();
             //dd($latest_courses);
             $latest_blogs = Blog::where('status', 1)->with('user')->latest()->limit(10)->get();
             $featured_blogs = Blog::where('status',1)->where('featured',1)->with('user')->latest()->limit(3)->get();
@@ -67,7 +70,7 @@ class FrontendHomeController extends Controller
                 ->first();
             $faqs = HomePageFaq::where('status', 1)->orderBy('order','desc')->take(10)->get();
 
-            return view(theme('pages.index'), compact('random_program', 'blocks', 'latest_programs', 'latest_blogs', 'featured_blogs' , 'latest_course_reveiws', 'random_program', 'latest_courses','faqs'));
+            return view(theme('pages.index'), compact('random_program', 'blocks', 'latest_programs', 'latest_blogs', 'featured_blogs' , 'latest_course_reveiws', 'random_program', 'latest_courses','faqs','allPrograms','allCourses'));
 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
@@ -116,22 +119,27 @@ class FrontendHomeController extends Controller
         //     ->get()
         //     ->toArray();
         // dd($random_program);
+        if($random_program){
         $program_desc = strip_tags($random_program->discription);
-        return response()->json(
-            [
-                'program' =>
-
+            return response()->json(
                 [
-                    'id' => $random_program->id,
-                    'programtitle' => $random_program->programtitle,
-                    'totalcost' => $random_program->currentProgramPlan[0]->amount,
-                    'icon' => $random_program->icon,
-                    'subtitle' => $random_program->subtitle,
-                    'discription' =>  strlen($program_desc) > 145 ? substr($program_desc, 0, 145) . "..." : $program_desc
-                ]
-            ],
-            200
-        );
+                    'status' => true,
+                    'program' =>
+
+                    [
+                        'id' => $random_program->id,
+                        'programtitle' => $random_program->programtitle,
+                        'totalcost' => $random_program->currentProgramPlan[0]->amount,
+                        'icon' => $random_program->icon,
+                        'subtitle' => $random_program->subtitle,
+                        'discription' =>  strlen($program_desc) > 145 ? substr($program_desc, 0, 145) . "..." : $program_desc
+                    ]
+                ],
+                200
+            );
+        }else{
+            return response()->json(['status' => false, 'msg'=>'No Program Found']);
+        }
         // dd($random_program);
         // return response()->json([
         //     'id' => $random_program->id,
