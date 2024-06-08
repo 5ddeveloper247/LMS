@@ -109,37 +109,19 @@
         padding: 25px;
         margin-left: 0%;
     }
-    .small_btn2{
+
+    .small_btn2 {
         white-space: nowrap;
     }
 
-    /*
-        .expore h4 {
-            font-weight: 700;
-            color: white;
-            font-size: 24px;
-        }
+    .app_require {
+        height: calc(100vh - 150px);
+        overflow: hidden;
+    }
 
-        .expore p {
-            line-height: 30px !important;
-            font-size: 17px !important;
-            color: white;
-            cursor: pointer !important;
-            transition: .5s;
-        }
-
-        .expore p:hover {
-            line-height: 30px !important;
-            font-size: 17px !important;
-            color: var(--system_primery_color);
-            text-decoration: underline;
-        }
-
-        .footerbox1 h4 {
-            font-weight: 700;
-            color: white;
-            font-size: 24px;
-        } */
+    .cont1doimgdo {
+        height: 100%;
+    }
 
     .footerbox h5 {
         font-weight: 400;
@@ -206,8 +188,8 @@
 
 
     /* .custom_shadow:hover {
-                                                                                                                                            border: 1px solid rgb(255, 255, 255);
-                                                                                                                                        } */
+     border: 1px solid rgb(255, 255, 255);
+       } */
 
     .custom_shadow {
         border: 1px solid rgb(255, 255, 255);
@@ -478,14 +460,14 @@
         margin: 0 auto;
     }
 
-    .owl-stage-outer {
+    /* .owl-stage-outer {
         height: 25rem;
-    }
+    } */
 
     .cont1doimgdo {
         /* background: url("http://mchnursing.com/lms/public/frontend/infixlmstheme/img/images/courses-4.jpg"); */
         background-size: cover;
-        height: 405px;
+        /* height: 405px; */
         background: #996699;
     }
 
@@ -523,9 +505,9 @@
         max-width: unset !important;
     }
 
-    .owl-stage-outer {
+    /* .owl-stage-outer {
         height: 33rem;
-    }
+    } */
 
     @media (max-width: 768px) {
         .custom_h1 {
@@ -563,10 +545,51 @@
         .avail-ser {
             font-size: 35px !important;
         }
+
+        .app_require {
+            position: relative;
+          height:auto !important;
+        }
+
+        .small_screen_carousel {
+            position: absolute !important;
+            bottom: 0;
+            top: 50%;
+            z-index: 2;
+            max-height: 330px;
+            min-height: 330px;
+        }
+
+        .small_screen_carousel2 {
+            position: absolute !important;
+            top: 0;
+            z-index: 1;
+            bottom: 30%;
+            min-height: 330px !important;
+            max-height: 330px !important;
+            object-fit: cover;
+        }
+
+        .cont1domgdo_para {
+            max-height: 250px;
+            overflow: auto;
+
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
     }
 
     #loom-companion-mv3 #shadow-host-companion {
         padding: 0 !important;
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .app_require {
+            height: calc(100vh - 80px);
+        }
     }
 
     @media only screen and (min-width: 1650px) {
@@ -589,12 +612,14 @@
     }
 
     @media only screen and (min-width: 1800px) {
-        .cont1domgdo_para{
+        .cont1domgdo_para {
             padding: 0px 30px !important;
         }
-        .our_require_section{
-    padding: 0px 45px !important;
-}
+
+        .our_require_section {
+            padding: 0px 45px !important;
+        }
+
         .our-process-section-container {
             display: flex;
             justify-content: center;
@@ -612,9 +637,9 @@
             font-size: 25px !important;
         }
 
-        .owl-stage-outer {
+        /* .owl-stage-outer {
             height: 75vh;
-        }
+        } */
     }
 
     /* media queries for slider for 67% */
@@ -701,7 +726,7 @@
                         reiciendis dolore impedit quas nostrum est nesciunt repudiandae! Eius a numquam ullam
                         enim quae incidunt ut recusandae.</p>
                 </div>
-                <div class=" col-md-12  text-center contact_btn mt-4">
+                <div class="col-md-12  text-center contact_btn mt-4">
                     <a href="{{ route('register') }}" class="theme_btn small_btn2 p-2">Apply Now</a>
                 </div>
             </div>
@@ -719,8 +744,9 @@
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
-                                <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
+                                <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
                             </svg>
                         </div>
                     </div>
@@ -741,8 +767,9 @@
                         <h2 class="carrot-orange-clr">Step 02</h2>
                         <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
                         <div class="d-flex align-items-center gap-3 pb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px" height="50px" x="0px"
-                                y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
+                                height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
+                                xml:space="preserve">
                                 <g>
                                     <path
                                         d="M47.1,2H2.9C1.3,2,0,3.3,0,4.9V35C0,36.7,1.3,38,2.9,38h16.6l-0.8,4.2h-3.4c-1,0-1.9,0.8-1.9,1.9v2.1c0,1,0.8,1.9,1.9,1.9  h19.6c1,0,1.9-0.8,1.9-1.9V44c0-1-0.8-1.9-1.9-1.9h-3.4L30.5,38h16.6c1.6,0,2.9-1.3,2.9-2.9V4.9C50,3.3,48.7,2,47.1,2z M2.9,3.7  h44.2c0.7,0,1.3,0.6,1.3,1.3v26.3H1.7V4.9C1.7,4.2,2.2,3.7,2.9,3.7z M35,44v2.1c0,0.1-0.1,0.2-0.2,0.2H15.2c-0.1,0-0.2-0.1-0.2-0.2  V44c0-0.1,0.1-0.2,0.2-0.2h19.6C34.9,43.8,35,43.9,35,44z M29.7,42.1h-9.3l0.8-4.2h7.6L29.7,42.1z M47.1,36.3H2.9  c-0.7,0-1.3-0.6-1.3-1.3v-2.1h46.7V35C48.3,35.7,47.8,36.3,47.1,36.3z">
@@ -820,8 +847,9 @@
                         <div class="d-flex align-items-center gap-3 pb-3">
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px" height="50px" x="0px"
-                                y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
+                                height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
+                                xml:space="preserve">
                                 <g>
                                     <path
                                         d="M21.5,0c-1.9,0-3.5,1.2-4.2,2.8h-5c-0.6,0-1.2,0.5-1.2,1.1v1.7H6.5C4.6,5.7,3,7.2,3,9.1v37.5C3,48.5,4.6,50,6.5,50h25.5  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H6.5c-0.7,0-1.2-0.5-1.2-1.1V9.1C5.3,8.4,5.8,8,6.5,8h4.6v1.7H8.2  c0,0-0.1,0-0.1,0c-0.6,0.1-1.1,0.5-1,1.1v34.1c0,0.6,0.5,1.1,1.2,1.1h26.6c0.6,0,1.2-0.5,1.2-1.1V38c0.2,0,0.4,0,0.6,0  c0.4,0,0.8,0,1.2-0.1v8.6c0,0.6-0.5,1.1-1.2,1.1c-0.6,0-1.2,0.5-1.2,1.1c0,0.6,0.5,1.1,1.1,1.2c0,0,0,0,0,0c1.9,0,3.5-1.5,3.5-3.4  v-9.1c0.1,0,0.3-0.1,0.4-0.1l4.4,7c0.3,0.5,1.1,0.7,1.6,0.4c0.5-0.3,0.7-1,0.4-1.6l0,0l-4.3-6.9c2.7-1.8,4.5-4.9,4.5-8.4  c0-4.4-2.9-8.2-6.9-9.6V9.1c0-1.9-1.6-3.4-3.5-3.4h-4.6V4c0-0.6-0.5-1.1-1.2-1.1h-5C25,1.2,23.4,0,21.5,0z M21.5,2.3  c1.2,0,2.1,0.8,2.3,1.9c0.1,0.5,0.6,0.9,1.1,0.9h4.7v4.5H13.4V5.1h4.7c0.6,0,1-0.4,1.1-0.9C19.4,3.1,20.4,2.3,21.5,2.3z M31.9,8  h4.6c0.7,0,1.2,0.5,1.2,1.1v8.6c-0.4,0-0.8-0.1-1.2-0.1c-0.2,0-0.4,0-0.6,0v-6.9c0-0.6-0.5-1.1-1.2-1.1h-2.9V8z M9.4,11.9h24.3V18  c-4.3,1.2-7.5,5.2-7.5,9.8s3.2,8.6,7.5,9.8v6.1H9.4V11.9z M12.7,17.6c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8C12.8,17.6,12.8,17.6,12.7,17.6z M36.6,19.9c4.5,0,8.1,3.5,8.1,8  s-3.6,8-8.1,8s-8.1-3.5-8.1-8S32.1,19.9,36.6,19.9z M12.7,23.3c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1c0,0,0,0,0,0h9.3  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,23.3,12.8,23.3,12.7,23.3z M12.7,29c-0.6,0-1.1,0.6-1.1,1.2  c0,0.6,0.6,1.1,1.2,1.1h9.3c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,29,12.8,29,12.7,29z M12.7,34.7  c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8  C12.8,34.7,12.8,34.7,12.7,34.7z">
@@ -845,9 +873,9 @@
                         <h2 class="carrot-orange-clr">Step 04</h2>
                         <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5>
                         <div class="d-flex align-items-center gap-3 pb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="var(--system_primery_color)" x="0px"
-                                y="0px" viewBox="0 0 50 48" style="enable-background:new 0 0 50 48;"
-                                xml:space="preserve">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
+                                fill="var(--system_primery_color)" x="0px" y="0px" viewBox="0 0 50 48"
+                                style="enable-background:new 0 0 50 48;" xml:space="preserve">
                                 <g>
                                     <path
                                         d="M37.7,0.2c-0.3-0.3-0.8-0.3-1.1,0c0,0,0,0,0,0L20,16.9h2.2l14.9-15l2.4,2.4L27,16.9h2.2L40.7,5.4l7.5,7.5l-4,4h2.2l3.4-3.4  c0.3-0.3,0.3-0.8,0-1.1c0,0,0,0,0,0L37.7,0.2z">
@@ -976,73 +1004,73 @@
 
 
     </section> --}}
-    <div class="row featured-carousel owl-carousel m-0">
-        <div class="col-md-12 col-12 cont1doimgdo p-0">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-0 back-color">
-                    <div class="pt-4 mx-5 cont1domgdo_para">
-                        <h5 class="slider_heading_h1 font-weight-bold pt-5 px-0 px-lg-5 px-md-3 px-sm-5 text-white">
-                            zulqarnain-test-1
-                        </h5>
-                        <p class=" px-0 px-lg-5 px-md-3 px-sm-5 slider_paragraph text-white">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magni ut animi
-                            laborum quidem tempore quas sit et similique? Magni officiis dolores quam quos
-                            similique atque quidem repellat recusandae mollitia!
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-0">
-                    <img src="{{ asset('public/assets/c2.jpg') }}" class="d-md-block d-none img-fluid slider_img1">
+    <div class="row featured-carousel owl-carousel m-0 app_require">
+        {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
+        <div class="row h-100">
+            <div class="col-sm-6 py-3 back-color small_screen_carousel">
+                <div class="pt-4 mx-md-5 mx-3 cont1domgdo_para">
+                    <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
+                        zulqarnain-test-1
+                    </h5>
+                    <p class=" px-0 px-lg-5 px-sm-3 slider_paragraph text-white">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magni ut animi
+                        laborum quidem tempore quas sit et similique? Magni officiis dolores quam quos
+                        similique atque quidem repellat recusandae mollitia!
+                    </p>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12 col-12 cont1doimgdo p-0">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-0 back-color">
-                    <div class="pt-4 mx-5 cont1domgdo_para">
-                        <h5 class="slider_heading_h1 font-weight-bold pt-5 px-0 px-lg-5 px-md-3 px-sm-5 text-white">
-                            zulqarnain-test-2
-                        </h5>
-                        <p class="px-0 px-lg-5 px-md-3 px-sm-5 slider_paragraph text-white">
-                            In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                            demonstrate the visual form of a document or a typeface without relying on
-                            meaningful content. Lorem ipsum may be used as a placeholder before final copy is
-                            available.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-0">
-                    <img src="{{ asset('public/assets/c3.jpg') }}" class="d-md-block d-none img-fluid slider_img1">
-                </div>
+            <div class="col-sm-6 d-flex justify-content-center align-items-center p-0 small_screen_carousel2">
+                <img src="{{ asset('public/assets/c2.jpg') }}" class="d-block img-fluid slider_img1 h-100 w-100">
             </div>
         </div>
-        <div class="col-md-12 col-12 cont1doimgdo p-0">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-0 back-color">
-                    <div class="pt-4 mx-5 cont1domgdo_para">
-                        <h5 class="slider_heading_h1 font-weight-bold pt-5 px-0 px-lg-5 px-md-3 px-sm-5 text-white">
-                            zulqarnain-test-3
-                        </h5>
-                        <p class=" px-0 px-lg-5 px-md-3 px-sm-5 slider_paragraph text-white">
-                            In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                            demonstrate the visual form of a document or a typeface without relying on
-                            meaningful content. Lorem ipsum may be used as a placeholder before final copy is
-                            available.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-0">
-                    <img src="{{ asset('public/assets/c1.jpg') }}" class="d-md-block d-none img-fluid slider_img1">
+        {{-- </div> --}}
+        {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
+        <div class="row h-100">
+            <div class="col-sm-6 col-12 py-3 back-color small_screen_carousel">
+                <div class="pt-4 mx-md-5 mx-3 cont1domgdo_para">
+                    <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
+                        zulqarnain-test-2
+                    </h5>
+                    <p class="px-0 px-lg-5 px-sm-3 slider_paragraph text-white">
+                        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
+                        demonstrate the visual form of a document or a typeface without relying on
+                        meaningful content. Lorem ipsum may be used as a placeholder before final copy is
+                        available.
+                    </p>
                 </div>
             </div>
+            <div class="col-sm-6 d-flex justify-content-center align-items-center p-0 small_screen_carousel2">
+                <img src="{{ asset('public/assets/c3.jpg') }}" class="d-block img-fluid slider_img1 h-100 w-100">
+            </div>
         </div>
+        {{-- </div> --}}
+        {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
+        <div class="row h-100">
+            <div class="col-sm-6 col-12 py-4 back-color small_screen_carousel">
+                <div class="pt-4 mx-md-5 mx-3 cont1domgdo_para">
+                    <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
+                        zulqarnain-test-3
+                    </h5>
+                    <p class="px-0 px-lg-5 px-sm-3 slider_paragraph text-white">
+                        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
+                        demonstrate the visual form of a document or a typeface without relying on
+                        meaningful content. Lorem ipsum may be used as a placeholder before final copy is
+                        available.
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-center align-items-center p-0 small_screen_carousel2">
+                <img src="{{ asset('public/assets/c1.jpg') }}" class="d-block img-fluid slider_img1 h-100 w-100">
+            </div>
+        </div>
+        {{-- </div> --}}
     </div>
 
     <div class="justify-content-center mt-5 row">
-        <div class="col-12 col-md-7  text-center text-lg-left">
+        <div class="col-12 col-md-7 text-center text-lg-left">
             <h2 class="heading font-weight-bold">Required Application Documents</h2>
         </div>
-        <div class="col-md-7 col-12 mt-3">
+        <div class="col-md-7 col-10 mt-3">
             <div class="boxaccordion mt-2">
                 <div class="containerwidth">
                     <div class="wrapper">
@@ -1135,8 +1163,8 @@
 
                 $(".owl-carousel").owlCarousel({
                     loop: true,
-                    autoplay: false,
-                    autoplayTimeout: 4000,
+                    autoplay: true,
+                    autoplayTimeout: 8000,
                     // navigation : true,
 
                     margin: 30,

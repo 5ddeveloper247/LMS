@@ -18,13 +18,15 @@
         <div class="theme_cookies" style="display: none">
             <div class="theme_cookies_info flex-fill">
                 <div class="icon">
-                    <img src="{{asset(@$cookie->image)}}" alt="">
+                    <img src="{{asset(@$cookie->image)}}" alt="" class="h-100 w-100">
                     {{-- <img src="{{ asset('/public/uploads/images/footerimg/cookiess.png') }}"> --}}
                 </div>
                 <p>{!! @$cookie->details !!}</p>
             </div>
+           <div class="d-flex" style="gap: 10px">
             <button type="button" class="cookie_reject_btn" onclick="setCookies();">Reject</button>
             <button type="button" class="cookie_btn" onclick="setCookies();">{{@$cookie->btn_text}}</button>
+           </div>
         </div>
     @endif
 
