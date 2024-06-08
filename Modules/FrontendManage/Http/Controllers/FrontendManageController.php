@@ -932,4 +932,14 @@ class FrontendManageController extends Controller
         $messages = ContactMessage::latest()->get();
         return view('frontendmanage::contact-message',compact('messages'));
     }
+
+    public function fetchContactMessage(Request $request){
+        $id = $request->id ?? 0;
+        $message = ContactMessage::where('id',$id)->first();
+        if($message){
+            return response()->json(['success' => true, 'data' => $message]);
+        }else{
+            return response()->json(['success' => false, 'msg' => 'No Record Found']);
+        }
+    }
 }
