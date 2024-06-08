@@ -56,14 +56,18 @@
                 align-items: center;
                 margin: 1.75rem auto;
             }
-
+@media only screen and (max-width: 500px){
+    .popup-dialog{
+        max-width: 300px !important;
+    }
+}
             @media (max-width: 767.98px) {
                 .newsletter_form_wrapper .newsletter_form_inner .newsletter_form_thumb {
                     height: 180px;
                 }
 
                 .popup-dialog {
-                    max-width: 450px !important;
+                    max-width: 450px;
                 }
 
                 .pop-up-row {
@@ -107,7 +111,7 @@
                         </button>
                     </div>
                     <div class="modal-body py-0 pop-up-row">
-                        <div class="row ">
+                        <div class="row">
                             <div class="col-6 p-0">
                                 <div class="popup-image">
                                     <img src="{{ asset($popup->image) }}" class="img-fluid w-100 h-100 object-fit-cover"
@@ -115,8 +119,8 @@
                                 </div>
                             </div>
                             <div class="col-6 d-flex flex-column justify-content-center text-center">
-                                <h2 class="font-weight-bold my-3">{{ $popup->title }}</h2>
-                                <p class="my-3">
+                                <h2 class="font-weight-bold my-sm-3 mt-5 mb-2">{{ $popup->title }}</h2>
+                                <p class="my-2 my-md-3">
                                     {!! $popup->message !!}
                                 </p>
                                 <a href="{{ $popup->link }}" class="theme_btn w-75 mx-auto my-3 text-center p-2">

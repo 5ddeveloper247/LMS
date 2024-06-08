@@ -1747,7 +1747,7 @@
             font-size: 24px !important;
         }
         .cta_service_info h2{
-            font-size: 24px !important;
+            font-size: 18px !important;
         }
         .custom-card img {
         height: 320px;
