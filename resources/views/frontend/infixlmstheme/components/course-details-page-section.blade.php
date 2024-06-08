@@ -336,7 +336,7 @@
                                         <div class="theme_border"></div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive">
+                                                <div class="table-responsive ckdtext">
                                                     {{-- <iframe id="iframeAbout" style="border:unset;"></iframe> --}}
                                                     {!! $course->about !!}
                                                 </div>
@@ -352,7 +352,7 @@
                                         <div class="theme_border"></div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive">
+                                                <div class="table-responsive ckdtext">
                                                     {{-- <iframe id="iframeOutcome" style="border:unset;"></iframe> --}}
                                                     {!! $course->outcomes !!}
 
@@ -368,7 +368,7 @@
                                         <div class="theme_border"></div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive">
+                                                <div class="table-responsive ckdtext">
                                                     {{-- <iframe id="iframeRequirements"
                                                                 style="border:unset;"></iframe> --}}
                                                     {!! $course->requirements !!}

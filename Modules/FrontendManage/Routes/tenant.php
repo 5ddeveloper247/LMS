@@ -61,6 +61,7 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
 
 
     Route::get('contact-page', 'FrontendManageController@ContactPageContent')->name('ContactPageContent');
+    Route::get('contact-messages', 'FrontendManageController@contactMessages')->name('contactMessages');
     Route::post('contact-page', 'FrontendManageController@ContactPageContentUpdate')->name('ContactPageContentUpdate');
 
     // Home Content
