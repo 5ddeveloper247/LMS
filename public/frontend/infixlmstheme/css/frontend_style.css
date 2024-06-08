@@ -839,7 +839,7 @@ label {
 }
 
 .theme_search_field button,
-.theme_search_field button:hover {
+.theme_search_field button:hover, .theme_search_field button:focus {
     color: var(--system_primery_color);
 }
 
@@ -1116,7 +1116,8 @@ label {
 }
 
 .theme_btn:hover {
-    border-color: var(--system_primery_color);
+    border-color: var(--system_primery_color) !important;
+    color: var(--system_primery_color) !important;
     background: transparent;
 }
 
@@ -7737,6 +7738,58 @@ input[type="number"] {
 }
 
 @media (max-width: 575.98px) {
+    .category_search{
+    top: 38px;
+    position: absolute;
+    right: 104px;
+    width: 30px;
+    height: 30px;
+    }
+    .ti-search{
+        font-size: 20px;
+        font-weight: 900;
+    }
+    .theme_search_field{
+        background-color: transparent;
+        width: auto;
+        height: auto;
+    }
+    .float {
+        z-index: 100;
+        position: absolute;
+        width: 44px;
+        height: 44px;
+        top: 32px;
+        right: 55px;
+        z-index: 999;
+        background-color: transparent !important;
+        z-index: 2;
+        color: var(--system_primery_color);
+        text-align: center;
+    }
+    .float:hover,
+    .notify_count:hover {
+        color: var(--system_primery_color);
+    }
+    
+    .notify_count {
+        color: var(--system_primery_color);
+        text-align: center;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #fff;
+        font-size: 10px;
+        font-weight: 600;
+        font-family: Source Sans Pro, sans-serif;
+        display: inline-block;
+        position: absolute;
+        top: -2px;
+        right: 3px;
+    }
+    .sub-section {
+        margin-bottom: -155px !important;
+    }
     .header_iner .notification_wrapper ul li .notification_area {
         right: -200px;
         width: 300px;
@@ -7766,16 +7819,21 @@ input[type="number"] {
         max-height: 440px !important;
     }
 
-    .custom-heading {
-        font-size: 35px !important;
-    }
-
     .quiz_wizged {
         width: 17rem;
     }
 }
 
 @media only screen and (max-width: 767px) {
+    .custom-heading{
+        font-size: 20px !important;
+    }
+    .custom_small_heading{
+        font-size: 18px !important;
+    }
+    p{
+        font-size: 15px;
+    }
  .cta_area{
     height: auto !important;
   }
@@ -7787,8 +7845,6 @@ input[type="number"] {
     .theme_btn {
         font-size: 13px;
         white-space: nowrap;
-        display: flex;
-        justify-content: center;
     }
 
     .section__title3 h3 {
@@ -16906,8 +16962,8 @@ body {
     .containerdoosme {
         padding-top: 130px !important;
     }
-    .sub-section{
-        margin-bottom: -134px !important;
+    .sub-section {
+        margin-bottom: -115px;
     }
     .course_fullview_wrapper .course_quiz_left_wrapper{
         width: 100% !important;
@@ -16959,6 +17015,12 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+    .containerdoosme{
+        padding-top: 140px !important;
+    }
+    .sub-section {
+        margin-bottom: -134px !important;
+    }
     .service_cta_area .single_cta_service {
         padding: 15px 10px !important;
     }

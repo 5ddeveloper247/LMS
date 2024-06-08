@@ -510,6 +510,9 @@
     } */
 
     @media (max-width: 768px) {
+        .toggle{
+            font-size: 16px;
+        }
         .custom_h1 {
             font-size: calc(2.4rem + 1vmin) !important;
         }
@@ -703,7 +706,7 @@
                 </div>
                 <div class="col-lg-9 offset-1">
                     <div class="breadcam_wrap">
-                        <h2 class="text-white custom-heading">Apply Your Program and Courses Today</h2>
+                        <h2 class="custom_small_heading text-white custom-heading">Apply Your Program and Courses Today</h2>
                         <div class="contact_btn mt-5">
                             <a href="{{ route('register') }}" class="theme_btn small_btn2 p-2">Apply Now </a>
                         </div>
@@ -718,7 +721,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center text-center px-xl-4 px-md-3 ">
                 <div class="col-md-12 our_require_section">
-                    <h2 class="heading mb-3 font-weight-bold">Apply Requirements</h2>
+                    <h2 class="custom_small_heading heading mb-3 font-weight-bold">Apply Requirements</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis voluptate libero,
                         recusandae quam voluptates quae laudantium perferendis distinctio temporibus ipsum, id
                         ducimus dolorem vero tempore perspiciatis impedit repellat ex. Doloribus. Lorem ipsum
@@ -1068,7 +1071,7 @@
 
     <div class="justify-content-center mt-5 row">
         <div class="col-12 col-md-7 text-center text-lg-left">
-            <h2 class="heading font-weight-bold">Required Application Documents</h2>
+            <h2 class="custom_small_heading heading font-weight-bold">Required Application Documents</h2>
         </div>
         <div class="col-md-7 col-10 mt-3">
             <div class="boxaccordion mt-2">
@@ -1100,7 +1103,7 @@
                         </div>
                     </div>
                     <div class="  mb-5">
-                        <h2 class="heading heading text-center text-lg-left text-sm font-weight-bold">Most Asked Questions
+                        <h2 class="custom_small_heading heading text-center text-lg-left text-sm font-weight-bold">Most Asked Questions
                         </h2>
                     </div>
                     <div class="wrapper">
@@ -1129,7 +1132,7 @@
     <div class="row my-5 justify-content-center"style="background-color: #eee;">
         <div class="col-md-7  pt-5 pb-5">
             <div class="custom_fs_a d-flex justify-content-between align-items-center">
-                <h2 class="text-center font-weight-bold avail-ser">Focused Learning - Goals Realized</h2>
+                <h2 class="custom_small_heading text-center font-weight-bold avail-ser">Focused Learning - Goals Realized</h2>
                 <div class="contact_btn text-center">
                     <a href="{{ route('register') }}"class="theme_btn small_btn2 p-2">Apply Now </a>
                 </div>

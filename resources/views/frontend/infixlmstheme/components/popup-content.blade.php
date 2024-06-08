@@ -56,11 +56,13 @@
                 align-items: center;
                 margin: 1.75rem auto;
             }
-@media only screen and (max-width: 500px){
-    .popup-dialog{
-        max-width: 300px !important;
-    }
-}
+
+            @media only screen and (max-width: 500px) {
+                .popup-dialog {
+                    max-width: 300px !important;
+                }
+            }
+
             @media (max-width: 767.98px) {
                 .newsletter_form_wrapper .newsletter_form_inner .newsletter_form_thumb {
                     height: 180px;
@@ -72,6 +74,12 @@
 
                 .pop-up-row {
                     max-height: fit-content !important;
+                }
+            }
+
+            @media only screen and (min-width: 767.98px) and (max-width: 1024px) {
+                .popup-dialog {
+                    max-width: 600px !important;
                 }
             }
 
@@ -119,11 +127,13 @@
                                 </div>
                             </div>
                             <div class="col-6 d-flex flex-column justify-content-center text-center">
-                                <h2 class="font-weight-bold my-sm-3 mt-5 mb-2">{{ $popup->title }}</h2>
+                                <h2 class="custom_small_heading font-weight-bold my-sm-3 mt-5 mb-2">{{ $popup->title }}
+                                </h2>
                                 <p class="my-2 my-md-3">
                                     {!! $popup->message !!}
                                 </p>
-                                <a href="{{ $popup->link }}" class="theme_btn w-75 mx-auto my-3 text-center p-2">
+                                <a href="{{ $popup->link }}"
+                                    class="theme_btn w-75 mx-auto my-3 text-center p-2 d-flex justify-content-center">
                                     {{ $popup->btn_txt }}</a>
                             </div>
                         </div>

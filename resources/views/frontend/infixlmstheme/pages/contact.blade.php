@@ -399,9 +399,6 @@
         }
 
         .dataflow h2 {
-            /* font-size: 28px; */
-            /* margin: auto; */
-            /* line-height: 1.2em; */
             font-family: Poppins, sans-serif;
             color: #fff !important;
             font-weight: bold;
@@ -412,7 +409,6 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* align-items: center; */
             overflow: hidden;
         }
 
@@ -420,20 +416,13 @@
             top: 50%;
             transform: translateY(-50%);
         }
-
-        /* .custom-heading {
-                                            font-size: 60px;
-                                        } */
         .custom-padding {
             padding: 30px 0;
         }
-        @media only screen  and (max-width: 400px){
-            .banner-img {
-                height: calc(100vh - 250px) !important;
-            }
-        }
-
         @media only screen and (max-width: 768px) {
+            .dataflow h2, .wpb_wrapper_h, .data h2{
+                font-size: 18px !important;
+            }
             .flowdiv {
                 height: 340px;
                 padding: 0px;
@@ -461,7 +450,9 @@
                 padding: 4rem 0rem;
                 margin-bottom: 4rem;
             }
-
+            .banner-img {
+                height: 60vh !important;
+            }
         }
 
         @media only screen and (min-width:769px) and (max-width: 1024px) {
@@ -478,9 +469,15 @@
             .dataflow h2 {
                 font-size: 25px;
             }
+            .dataflow h2, .wpb_wrapper_h, .data h2{
+                font-size: 1.6rem !important;
+            }
         }
 
         @media only screen and (min-width: 1025px) and (max-width:1279px) {
+            .dataflow h2, .wpb_wrapper_h, .data h2{
+                font-size: 1.6rem !important;
+            }
             .dataflow {
                 max-height: 300px !important;
             }

@@ -72,7 +72,6 @@
         flex-direction: column;
         align-items: center;
         gap: 1rem;
-        padding: 1rem;
         border: none;
         border-radius: 1rem;
         max-height: 430px;
@@ -414,7 +413,7 @@
         margin-bottom: 0;
         line-height: 1.2;
     }
-   
+
     .rts-arrow {
         color: var(--rt-primary);
         font-weight: 600;
@@ -533,8 +532,7 @@
         border-top-left-radius: .25rem;
         border-bottom-left-radius: .25rem;
         box-sizing: border-box;
-        /* margin-bottom: -1px; */
-        padding: .375rem 45px;
+        padding: .375rem 10px .375rem 45px !important;
         position: relative;
         z-index: 1;
         height: calc(1.5em + .75rem + 2px);
@@ -646,7 +644,7 @@
     .floating-label-outside {
         position: absolute;
         pointer-events: none;
-        left: 60px;
+        left: 50px;
         top: 12px;
         transition: .2s ease all;
         color: #777;
@@ -655,6 +653,9 @@
         letter-spacing: .5px;
         z-index: 3;
         text-transform: uppercase;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .input-icon-outside {
@@ -943,7 +944,7 @@
     }
 
     .text-video-overlay h2 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
 
     .video-controls {
@@ -965,10 +966,6 @@
     .video-container:hover .overlay-video {
         opacity: 1;
     }
-
-    /* .video-container:hover .text-video-overlay {
-        opacity: 0;
-    } */
 
     .video-container:hover .video-controls {
         opacity: 1;
@@ -1016,7 +1013,7 @@
         height: 100%;
         position: relative;
         padding-left: 30px;
-        min-height: 500px;
+        min-height: 90vh;
     }
 
     .main_bannar::before {
@@ -1140,7 +1137,6 @@
 
     .cta_service_info h2 {
         font-weight: 700;
-        margin: 29px 0 29px;
         color: white;
     }
 
@@ -1469,16 +1465,10 @@
         color: var(--system_primery_color);
     }
 
-    /* features  */
-    /* .main-content-feature{
-    height: 50vh;
-    overflow: auto;
-} */
     .content-features {
-        padding: 3rem;
         border-radius: 10px;
         box-sizing: border-box;
-        background-image: url({{ asset('/public/uploads/images/footerimg/Photo.png')}});
+        background-image: url({{ asset('/public/uploads/images/footerimg/Photo.png') }});
         background-size: cover;
         background-position: center;
         color: white;
@@ -1537,9 +1527,9 @@
         opacity: 1;
     }
 
-    .main-content-feature {
+    /* .main-content-feature {
         align-items: center;
-    }
+    } */
 
     .content-features2-hh {
         color: #000;
@@ -1640,9 +1630,14 @@
 
     /*  */
     @media only screen and (max-width: 576px) {
+   
+        .video-container {
+            height: 450px !important;
+        }
         .custom-card img {
-        height: 240px !important;
-    }
+            height: 240px !important;
+        }
+
         .about-img {
             height: 250px !important;
             width: -webkit-fill-available !important;
@@ -1658,16 +1653,6 @@
 
         .hero-section-h-responsive {
             height: 400px !important;
-        }
-
-        .responsive-style-btn {
-            /* width: 100% !important; */
-            margin: 0 0 0 30px !important;
-        }
-
-        .heading-responsive-style {
-            font-size: 16px !important;
-            padding: 0px 0 0 30px !important;
         }
 
         .prep_card_height {
@@ -1693,16 +1678,16 @@
             object-fit: cover;
         }
 
-        .cta_service_info h2 {
-            margin: 17px 0 17px;
-        }
-
     }
 
     @media (min-width: 576px) and (max-width: 767px) {
-        .rts-section a{
-        font-size: 14px;
-    }
+
+        .video-container {
+            height: 450px !important;
+        }
+        .rts-section a {
+            font-size: 14px;
+        }
 
         .main_banner-section {
             width: 23rem;
@@ -1711,15 +1696,6 @@
         .hero-section-h-responsive {
             height: 440px !important;
             padding: 0px !important;
-        }
-
-        .responsive-style-btn {
-            margin: 0 0 0 30px !important;
-        }
-
-        .heading-responsive-style {
-            font-size: 37px !important;
-            padding: 0px 0 0 30px !important;
         }
 
         .random_program_data_1 {
@@ -1733,37 +1709,58 @@
             padding: 10px 0 !important;
         }
 
-        .heading-responsive-style {
-            font-size: 18px !important;
-        }
     }
 
 
     @media only screen and (max-width: 768px) {
-        .main_bannar{
-            min-height: auto;
+        .main_bannar {
+            min-height: auto !important;
         }
-        .custom_heading_1{
-            font-size: 24px !important;
+
+        .percent-h,
+        .for-label1,
+        .heading-responsive-style,
+        .content-features2-hh {
+            font-size: 16px !important;
         }
-        .cta_service_info h2{
+
+        .cta_service_info h2,
+        .custom_heading_1,
+        .section-header,
+        .text-video-overlay h2,
+        .custom_small_heading,
+        .content-features-h,
+        .content-features2-h,
+        .text-video-overlay h2 {
             font-size: 18px !important;
         }
+
+        p {
+            font-size: 14px !important;
+        }
+
         .custom-card img {
-        height: 320px;
-    }
+            height: 320px;
+        }
+
         .custom-card h5 {
-    left: 11px !important;
-}
-button.prev{
-    left: 5px !important;
-}
-button.next{
-    right: 5px !important;
-}
-        .for-focus, .for-affordability, .for-global{
+            left: 11px !important;
+        }
+
+        button.prev {
+            left: 5px !important;
+        }
+
+        button.next {
+            right: 5px !important;
+        }
+
+        .for-focus,
+        .for-affordability,
+        .for-global {
             min-width: 45px !important;
         }
+
         .for-border {
             min-height: 228px !important;
         }
@@ -1790,23 +1787,10 @@ button.next{
             height: auto;
         }
 
-        .video-container {
-            height: 450px !important;
-        }
-
         .top-center {
-            top: 8% !important;
-            left: 30% !important;
-            transform: translate(-26%, -0%) !important;
+            left: 20% !important;
+            transform: translate(-13%, -0%) !important;
             white-space: normal !important;
-        }
-
-        .bottom-center {
-            bottom: 8% !important;
-        }
-
-        .text-video-overlay h2 {
-            font-size: 20px;
         }
 
         .single-event::before {
@@ -1871,7 +1855,7 @@ button.next{
         }
 
         .hero-section-main-heading {
-            font-size: 25px !important;
+            font-size: 20px !important;
         }
 
         .flowdiv {
@@ -1879,14 +1863,23 @@ button.next{
         }
     }
 
-    @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    @media only screen and (min-width: 769px) and (max-width: 1023px) {
+        .text-video-overlay h2,
+        .section-header,
+        .custom_small_heading,
+        .custom_heading_1,
+        .content-features-h,.cta_service_info h2 {
+            font-size: 1.6rem !important;
+        }
         .custom-card h5 {
-        left: 0px !important;
-        text-align: center !important;
-    }
+            left: 0px !important;
+            text-align: center !important;
+        }
+
         .for-border {
-    min-height: 210px !important;
-}
+            min-height: 210px !important;
+        }
+
         .about-img {
             height: 320px;
             width: 260px;
@@ -1898,9 +1891,10 @@ button.next{
 
         .top-center {
             top: 16%;
-            left: 39% !important;
-            transform: translate(-32%, 0%) !important;
+            left: 2% !important;
+            transform: translate(0%, 0%) !important;
             white-space: normal !important;
+
         }
 
         .news-events-tabs-section {
@@ -1909,14 +1903,6 @@ button.next{
 
         .main_banner-section {
             width: 25rem;
-        }
-
-        h2 {
-            font-size: 24px !important;
-        }
-
-        h5 {
-            font-size: 18px !important;
         }
 
         .hero-section-main-heading {
@@ -1937,17 +1923,19 @@ button.next{
     }
 
     @media only screen and (min-width: 1024px) and (max-width: 1279px) {
-        .custom-card h5{
+        .custom-card h5 {
             left: auto !important;
             text-align: center !important;
         }
+
         .about-img {
-        height: 335px;
-        width: 295px;
-    }
-    .about_us{
-        height: auto !important;
-    }
+            height: 335px;
+            width: 295px;
+        }
+
+        .about_us {
+            height: auto !important;
+        }
 
         .for-border {
             min-height: 237px !important;
@@ -1981,13 +1969,13 @@ button.next{
             margin: 0 -53px 1.5rem 50px;
         }
 
-        .text-video-overlay h2 {
-            font-size: 1.4rem !important;
+        .text-video-overlay h2,
+        .section-header,
+        .custom_small_heading,
+        .custom_heading_1,
+        .content-features-h {
+            font-size: 1.6rem !important;
         }
-
-        /* .flowdiv {
-            padding: 5rem 4rem !important;
-        } */
     }
 
     @media only screen and (min-width: 1281px) {
@@ -2001,10 +1989,6 @@ button.next{
 
         .main_banner-section {
             width: 40rem;
-        }
-
-        .heading-responsive-style {
-            font-size: 30px !important;
         }
     }
 
@@ -2755,7 +2739,7 @@ button.next{
         <div class="container-fluid px-0 g-0 ">
             <div class="row mb-3">
                 <div class="col-md-8 pl-md-0 hero-section-h-responsive">
-                    <div class="main_bannar d-flex align-items-start justify-content-center flex-column py-5 pl-5">
+                    <div class="main_bannar d-flex align-items-start justify-content-center flex-column py-5 pl-sm-5 pl-3">
 
                         <div class="main_banner-section cus-padding">
 
@@ -2780,7 +2764,7 @@ button.next{
 
                 <div class="col-md-4 old_row pl-0">
                     <div class="row" id="random_programs" @if (!isset($random_program)) style="height:100%" @endif>
-                            @if (isset($random_program))
+                        @if (isset($random_program))
                             <div class="col-6 first_div random_program_data_1 height-card px-0">
                                 <img id="program_icon" src="{{ $random_program->icon }}"
                                     class="w-100 h-100 imgcls object-fit-cover img-fluid height-card">
@@ -2810,30 +2794,30 @@ button.next{
                                     </h5>
                                 </a>
                             </div>
-                            @endif
-                            <div class="col-6 random_program_data_2 height-card">
-                                <div class="d-flex flex-column h-100 justify-content-center py-2 py-sm-3 py-md-0">
-                                    <h5 class="font-weight-bold custom_heading_2 heading-responsive-style mb-4">
-                                        Accelerate Your Future
-                                        <br>
-                                        Learn New Things
-                                        <br>
-                                        Get New skills,
-                                        <br> JOIN US !
-                                    </h5>
-                                    <a class="theme_btn small_btn mt-2 text-center responsive-style-btn"
-                                        href="{{ url('/prep-courses') }}">View
-                                        Courses</a>
-                                </div>
-                            </div>
-                            <div class="col-6 height-card random_program_data_1 px-0">
-                                {{-- <div class=""> --}}
-                                <img src="http://mchnursing.com/lms/public/uploads/homepage/home_banner.jpg" alt=""
-                                    class="w-100 h-100 imgcls object-fit-cover img-fluid height-card" style="">
-                                {{-- </div> --}}
+                        @endif
+                        <div class="col-6 random_program_data_2 height-card">
+                            <div class="d-flex flex-column h-100 justify-content-center py-3 py-md-0 pl-md-2 pl-4">
+                                <h5 class="font-weight-bold custom_heading_2 heading-responsive-style mb-4">
+                                    Accelerate Your Future
+                                    <br>
+                                    Learn New Things
+                                    <br>
+                                    Get New skills,
+                                    <br> JOIN US !
+                                </h5>
+                                <a class="theme_btn small_btn mt-2 text-center responsive-style-btn"
+                                    href="{{ url('/prep-courses') }}">View
+                                    Courses</a>
                             </div>
                         </div>
-                    
+                        <div class="col-6 height-card random_program_data_1 px-0">
+                            {{-- <div class=""> --}}
+                            <img src="http://mchnursing.com/lms/public/uploads/homepage/home_banner.jpg" alt=""
+                                class="w-100 h-100 imgcls object-fit-cover img-fluid height-card" style="">
+                            {{-- </div> --}}
+                        </div>
+                    </div>
+
 
                 </div>
             </div>
@@ -2852,17 +2836,17 @@ button.next{
         <div class="container p-lg-5 p-3">
             <div class="row px-xl-5 main-content-feature ">
                 <div class="col-md-5 px-md-0">
-                   <div class="content-features">
-                    <div class="content-features1 px-xl-4 px-md-2 ">
-                        <h2 class="content-features-h font-weight-bold">BEYOND KNOWLEDGE, EDUCATION TRANSFORMS LIVES
-                            ANYWHERE</h2>
-                        <p class="content-features-p">We understand that life doesn't always stop for education. That's
-                            why we offer a truly
-                            affordable and flexible learning experience that fits your schedule and lifestyle.</p>
-                        <a href="{{ route('about') }}"><button class="content-features-btn py-2 px-4">How it
-                                Works</button></a>
+                    <div class="content-features p-md-5 px-3 py-4">
+                        <div class="content-features1 px-xl-4 px-md-2 ">
+                            <h2 class="content-features-h font-weight-bold">BEYOND KNOWLEDGE, EDUCATION TRANSFORMS LIVES
+                                ANYWHERE</h2>
+                            <p class="content-features-p">We understand that life doesn't always stop for education. That's
+                                why we offer a truly
+                                affordable and flexible learning experience that fits your schedule and lifestyle.</p>
+                            <a href="{{ route('about') }}"><button class="content-features-btn py-2 px-4">How it
+                                    Works</button></a>
+                        </div>
                     </div>
-                   </div>
                 </div>
                 <div id="content-container" class="col-md-7 d-flex content-feature mt-4 mt-md-0">
                     <div class="col-md-6 content-features2 d-flex flex-column ">
@@ -2934,191 +2918,196 @@ button.next{
         <x-home-page-instructor-section :homeContent="$homeContent" />
     @endif
 
-    @if(count($latest_programs) > 0 || count($latest_courses) > 0)
-    {{-- Custom Slider by Arsam --}}
-    <section class="sec-4">
-        <div class="container px-lg-5 pt-5">
-            <div class="row text-center main_row mb-5 px-2 px-md-0">
-                <h2 class="font-weight-bold">Gain the Edge in Healthcare School & Beyond</h2>
-                <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
-                    Licensure.</p>
-            </div>
-            <div class="row d-flex align-items-stretch pb-5 px-xl-5 animate">
-                <div class="col-md-6 mb-2 px-md-0">
-                    <div class="custom-slider-container">
-                        <button class="prev">❮</button>
-                        <div class="custom-slider">
-                            @php
-                                $recent_programs = $latest_programs;
-                                $first_program = $recent_programs->first();
-                                if ($first_program) {
-                                    $recent_programs = $recent_programs->except($first_program->id);
-                                }
-                            @endphp
-                            @php
-                                $recent_courses = $latest_courses;
-                                $first_course = $recent_courses->first();
-                                if ($first_course) {
-                                    $recent_courses = $recent_courses->except($first_course->id);
-                                }
-                                $i = 0;
-                            @endphp
-                            @foreach ($recent_programs as $keyprograms => $thisprogram)
-                                <div class="custom-slide">
-                                    <img src="{{ getCourseImage($thisprogram->image) }}" alt="Image 1">
-                                    <div class="overlay"></div>
-                                    <div class="text-overlay px-4 py-2">
-                                        <a href = "{{ route('programs.detail', [$thisprogram->id]) }}">
-                                            <h5 class="image-text font-weight-bold">{{ $thisprogram->programtitle }}</h5>
-                                        </a>
-                                        {{-- <br> --}}
-                                        <p>
-                                            @php
-                                                $description = str_replace(
-                                                    '&nbsp;',
-                                                    ' ',
-                                                    htmlspecialchars_decode(strip_tags($thisprogram->discription)),
-                                                );
-                                            @endphp
-                                            @if (Str::length($description) > 120)
-                                                {{ Str::limit($description, 120, '...') }}
-                                            @else
-                                                {{ $description }}
-                                            @endif
-                                        </p>
-                                    </div>
-                                    <div class="category">
-                                        <span class="category_name">Program</span>
-                                    </div>
-                                    <div class="date-overlay">
-                                        <span class="image-date">${{ $thisprogram->currentProgramPlan[0]->amount }}</span>
-                                    </div>
-                                </div>
-                            @endforeach
-                            @foreach ($recent_courses as $keycourses => $thiscourse)
-                                @if (array_key_exists($keycourses, $recent_courses->toArray()))
+    @if (count($latest_programs) > 0 || count($latest_courses) > 0)
+        {{-- Custom Slider by Arsam --}}
+        <section class="sec-4">
+            <div class="container px-lg-5 pt-5">
+                <div class="row text-center main_row mb-3 px-2 px-md-0">
+                    <h2 class="font-weight-bold">Gain the Edge in Healthcare School & Beyond</h2>
+                    <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
+                        Licensure.</p>
+                </div>
+                <div class="row d-flex align-items-stretch pb-5 px-xl-5 animate">
+                    <div class="col-md-6 mb-2 px-md-0">
+                        <div class="custom-slider-container">
+                            <button class="prev">❮</button>
+                            <div class="custom-slider">
+                                @php
+                                    $recent_programs = $latest_programs;
+                                    $first_program = $recent_programs->first();
+                                    if ($first_program) {
+                                        $recent_programs = $recent_programs->except($first_program->id);
+                                    }
+                                @endphp
+                                @php
+                                    $recent_courses = $latest_courses;
+                                    $first_course = $recent_courses->first();
+                                    if ($first_course) {
+                                        $recent_courses = $recent_courses->except($first_course->id);
+                                    }
+                                    $i = 0;
+                                @endphp
+                                @foreach ($recent_programs as $keyprograms => $thisprogram)
                                     <div class="custom-slide">
-                                        <img src="{{ getCourseImage($thiscourse->image) }}" alt="Recent Courses Image">
-
+                                        <img src="{{ getCourseImage($thisprogram->image) }}" alt="Image 1">
                                         <div class="overlay"></div>
-                                        <div class="text-overlay">
-                                            <a
-                                                href="{{ !empty($thiscourse->parent_id) ? courseDetailsUrl(@$thiscourse->parent->id, @$thiscourse->type, @$thiscourse->parent->slug) . '?courseType=' . $thiscourse->type : courseDetailsUrl(@$thiscourse->id, @$thiscourse->type, @$thiscourse->slug) }}">
-                                                <h5 class="image-text font-weight-bold">
-                                                    {{ !empty($thiscourse->parent_id) ? $thiscourse->parent->title : $thiscourse->title }}
+                                        <div class="text-overlay px-4 py-2">
+                                            <a href = "{{ route('programs.detail', [$thisprogram->id]) }}">
+                                                <h5 class="image-text font-weight-bold">{{ $thisprogram->programtitle }}
                                                 </h5>
                                             </a>
-                                            <br>
+                                            {{-- <br> --}}
                                             <p>
                                                 @php
-                                                    $requirements = str_replace(
+                                                    $description = str_replace(
                                                         '&nbsp;',
                                                         ' ',
-                                                        htmlspecialchars_decode(
-                                                            strip_tags(
-                                                                !empty($thiscourse->parent_id)
-                                                                    ? $thiscourse->parent->requirements
-                                                                    : $thiscourse->requirements,
-                                                            ),
-                                                        ),
+                                                        htmlspecialchars_decode(strip_tags($thisprogram->discription)),
                                                     );
                                                 @endphp
-                                                @if (Str::length($requirements) > 120)
-                                                    {{ Str::limit($requirements, 120, '...') }}
+                                                @if (Str::length($description) > 120)
+                                                    {{ Str::limit($description, 120, '...') }}
                                                 @else
-                                                    {{ $requirements }}
+                                                    {{ $description }}
                                                 @endif
                                             </p>
                                         </div>
                                         <div class="category">
-                                            <span class="text-white">
-                                                @if ($thiscourse->type == 1)
-                                                    {{ __('Course') }}
-                                                @elseif($thiscourse->type == 2)
-                                                    {{ __('Big Quiz') }}
-                                                @elseif($thiscourse->type == 3)
-                                                    {{ __('Individual Course') }}
-                                                @elseif($thiscourse->type == 4)
-                                                    {{ __('Full Course') }}
-                                                @elseif($thiscourse->type == 5)
-                                                    {{ __('Prep-Course (On-Demand)') }}
-                                                @elseif($thiscourse->type == 6)
-                                                    {{ __('Prep-Course (Live)') }}
-                                                @elseif($thiscourse->type == 8)
-                                                    {{ __('Repeat Course') }}
-                                                @elseif($thiscourse->type == 9)
-                                                    {{ __('Tutor Course') }}
-                                                @endif
-                                            </span>
+                                            <span class="category_name">Program</span>
                                         </div>
                                         <div class="date-overlay">
-                                            <span class="image-date">${{ number_format($thiscourse->price, 0) }}</span>
+                                            <span
+                                                class="image-date">${{ $thisprogram->currentProgramPlan[0]->amount }}</span>
                                         </div>
                                     </div>
-                                @endif
-                            @endforeach
+                                @endforeach
+                                @foreach ($recent_courses as $keycourses => $thiscourse)
+                                    @if (array_key_exists($keycourses, $recent_courses->toArray()))
+                                        <div class="custom-slide">
+                                            <img src="{{ getCourseImage($thiscourse->image) }}"
+                                                alt="Recent Courses Image">
+
+                                            <div class="overlay"></div>
+                                            <div class="text-overlay">
+                                                <a
+                                                    href="{{ !empty($thiscourse->parent_id) ? courseDetailsUrl(@$thiscourse->parent->id, @$thiscourse->type, @$thiscourse->parent->slug) . '?courseType=' . $thiscourse->type : courseDetailsUrl(@$thiscourse->id, @$thiscourse->type, @$thiscourse->slug) }}">
+                                                    <h5 class="image-text font-weight-bold">
+                                                        {{ !empty($thiscourse->parent_id) ? $thiscourse->parent->title : $thiscourse->title }}
+                                                    </h5>
+                                                </a>
+                                                <br>
+                                                <p>
+                                                    @php
+                                                        $requirements = str_replace(
+                                                            '&nbsp;',
+                                                            ' ',
+                                                            htmlspecialchars_decode(
+                                                                strip_tags(
+                                                                    !empty($thiscourse->parent_id)
+                                                                        ? $thiscourse->parent->requirements
+                                                                        : $thiscourse->requirements,
+                                                                ),
+                                                            ),
+                                                        );
+                                                    @endphp
+                                                    @if (Str::length($requirements) > 120)
+                                                        {{ Str::limit($requirements, 120, '...') }}
+                                                    @else
+                                                        {{ $requirements }}
+                                                    @endif
+                                                </p>
+                                            </div>
+                                            <div class="category">
+                                                <span class="text-white">
+                                                    @if ($thiscourse->type == 1)
+                                                        {{ __('Course') }}
+                                                    @elseif($thiscourse->type == 2)
+                                                        {{ __('Big Quiz') }}
+                                                    @elseif($thiscourse->type == 3)
+                                                        {{ __('Individual Course') }}
+                                                    @elseif($thiscourse->type == 4)
+                                                        {{ __('Full Course') }}
+                                                    @elseif($thiscourse->type == 5)
+                                                        {{ __('Prep-Course (On-Demand)') }}
+                                                    @elseif($thiscourse->type == 6)
+                                                        {{ __('Prep-Course (Live)') }}
+                                                    @elseif($thiscourse->type == 8)
+                                                        {{ __('Repeat Course') }}
+                                                    @elseif($thiscourse->type == 9)
+                                                        {{ __('Tutor Course') }}
+                                                    @endif
+                                                </span>
+                                            </div>
+                                            <div class="date-overlay">
+                                                <span
+                                                    class="image-date">${{ number_format($thiscourse->price, 0) }}</span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <button class="next">❯</button>
                         </div>
-                        <button class="next">❯</button>
+
                     </div>
+                    @php
 
-                </div>
-                @php
-
-                @endphp
-                <div class="col-md-6">
-                    <div class="row">
-                        @if ($first_program)
-                            <div class="col-6 px-lg-2">
-                                <div class="card custom-card">
-                                    <img src="{{ getCourseImage($first_program->icon) }}" class="card-img"
-                                        alt="...">
-                                    {{-- <img src="https://demoapus2.com/edumy/wp-content/uploads/elementor/thumbs/1105-pe3njtkqt5gexzmb6f3gua5ab17rzk5a1ccdwchmj0.jpg"
+                    @endphp
+                    <div class="col-md-6">
+                        <div class="row">
+                            @if ($first_program)
+                                <div class="col-6 px-lg-2">
+                                    <div class="card custom-card">
+                                        <img src="{{ getCourseImage($first_program->icon) }}" class="card-img"
+                                            alt="...">
+                                        {{-- <img src="https://demoapus2.com/edumy/wp-content/uploads/elementor/thumbs/1105-pe3njtkqt5gexzmb6f3gua5ab17rzk5a1ccdwchmj0.jpg"
                                     class="card-img" alt="..."> --}}
-                                    <div class="card-img-overlay">
-                                        <h5 class="card-title font-weight-bold">{{ $first_program->programtitle }}</h5>
-                                        <div class="card-date">
-                                            <span
-                                                class="card_date_heading">${{ number_format($first_program->currentProgramPlan[0]->amount, 0) }}</span>
+                                        <div class="card-img-overlay">
+                                            <h5 class="card-title font-weight-bold">{{ $first_program->programtitle }}
+                                            </h5>
+                                            <div class="card-date">
+                                                <span
+                                                    class="card_date_heading">${{ number_format($first_program->currentProgramPlan[0]->amount, 0) }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
-                        @if ($first_course)
-                            <div class="col-6 px-lg-2">
-                                <div class="card custom-card">
-                                    <img src="{{ getCourseImage($first_course->thumbnail) }}" class="card-img"
-                                        alt="...">
-                                    {{-- <img src="https://demoapus2.com/edumy/wp-content/uploads/elementor/thumbs/301242-pe3njtkqt5gexzmb6f3gua5ab17rzk5a1ccdwchmj0.jpg"
+                            @endif
+                            @if ($first_course)
+                                <div class="col-6 px-lg-2">
+                                    <div class="card custom-card">
+                                        <img src="{{ getCourseImage($first_course->thumbnail) }}" class="card-img"
+                                            alt="...">
+                                        {{-- <img src="https://demoapus2.com/edumy/wp-content/uploads/elementor/thumbs/301242-pe3njtkqt5gexzmb6f3gua5ab17rzk5a1ccdwchmj0.jpg"
                                     class="card-img" alt="..."> --}}
-                                    <div class="card-img-overlay">
-                                        <h5 class="card-title font-weight-bold">
-                                            {{ !empty($first_course->parent_id) ? $first_course->parent->title : $first_course->title }}
-                                        </h5>
-                                        <div class="card-date">
-                                            <span
-                                                class="card_date_heading">${{ number_format($first_course->price, 0) }}</span>
+                                        <div class="card-img-overlay">
+                                            <h5 class="card-title font-weight-bold">
+                                                {{ !empty($first_course->parent_id) ? $first_course->parent->title : $first_course->title }}
+                                            </h5>
+                                            <div class="card-date">
+                                                <span
+                                                    class="card_date_heading">${{ number_format($first_course->price, 0) }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-12 mt-5 text-center">
-                    <a href="{{ route('programs') }}" class="small_btn5 theme_btn py-2 px-4">View all Programs </a>
+                    <div class="col-md-12 mt-5 text-center">
+                        <a href="{{ route('programs') }}" class="small_btn5 theme_btn py-2 px-4">View all Programs </a>
 
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    {{-- Custom Slider End --}}
+        </section>
+        {{-- Custom Slider End --}}
     @endif
 
     {{-- percent section --}}
     <section class="sec-5 percent-section">
         {{-- <div class=""> --}}
-        <div class="container px-lg-5 pb-5 mt-3">
+        <div class="container px-lg-5 pb-sm-5 pt-5">
             <div class="row percent-row px-xl-5">
                 <div class="col-lg-6 d-flex flex-column counter-padd px-md-0 ">
 
@@ -3538,8 +3527,8 @@ button.next{
                 <div class="col-md-6 about_us_height align-items-center d-flex justify-content-center py-3 px-lg-2">
                     <div class="about_us_p">
                         <i class="fa-regular fa-lightbulb fa-2x" style="color: var(--system_primery_color);"></i>
-                        <h2 class="font-weight-bold mb-4">AT MERAKII</h2>
-                        <h2 class="font-weight-bold mb-4">WE ARE ADULT LEARNER-CENTRIC <br> <span
+                        <h2 class="custom_small_heading font-weight-bold mb-4">AT MERAKII</h2>
+                        <h2 class="custom_small_heading font-weight-bold mb-4">WE ARE ADULT LEARNER-CENTRIC <br> <span
                                 class="d-flex justify-content-center ml_span">and</span>EDUCATION IS FOR
                             EVERYONE</h2>
                         <p class="mb-4 custom_paragraph">
@@ -3633,7 +3622,8 @@ button.next{
 
     <section class="sec-8 online-learning d-flex align-items-center justify-content-center my-lg-3">
         <div class="animate">
-            <h2 class="text-white text-center font-weight-bold text-capitalize">Start your transformation with a
+            <h2 class="custom_small_heading text-white text-center font-weight-bold text-capitalize">Start your
+                transformation with a
                 single click.
                 Limited Seats Available!</h2>
             <p class="text-white text-center py-4">Get Licensure, <a href="{{ url('pre-registration') }}"><span
@@ -3653,7 +3643,8 @@ button.next{
                 <div class="col-lg-4 col-sm-12 for-main px-lg-2">
                     <div>
                         <label class="for-label">Why Attend Merakii</label>
-                        <h2 class="for-bold font-weight-bold">Unbound Learning: Your Healthcare Education, Anywhere
+                        <h2 class="custom_small_heading for-bold font-weight-bold">Unbound Learning: Your Healthcare
+                            Education, Anywhere
                         </h2>
                         <p class="for-para custom_paragraph mb-2">At Merakii, we understand that life doesn't always
                             stop
@@ -4830,13 +4821,13 @@ button.next{
             </div>
             </div> --}}
                     <!-- <section>
-                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="row">
-                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-md-12">
-                                                                                                                                                                                                                                                                                                                                                                                                                            <img src="{{ asset('public/frontend/infixlmstheme/img/images/WE_ARE_HERE_TO_LISTEN.png') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" class="img-fluid w-100">
+                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="col-md-12">
+                                                                                                                                                                                                                                                                                                                                                                                                                                <img src="{{ asset('public/frontend/infixlmstheme/img/images/WE_ARE_HERE_TO_LISTEN.png') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                    alt="" class="img-fluid w-100">
+                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
                                                                                                                                                                                                                                                                                                                                                                                                                         </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                </section> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                    </section> -->
                     {{-- How to Buy --}}
                     {{-- hide from all screen --}}
                     <div class="section-margin-y container d-none">
@@ -5214,8 +5205,8 @@ button.next{
 
                 {{-- FAQS section --}}
                 <section class="sec-10">
-                    <div class="container px-lg-5">
-                        <div class="row faqs-row  mt-lg-3 mb-2 px-xl-5">
+                    <div class="container px-lg-5 pb-md-5 pb-4">
+                        <div class="row faqs-row  mt-lg-3 px-xl-5">
                             {{-- <div class="col-sm-7 shadow_row video-h-cls p-0">
                             <div class="video-container">
                                 <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
@@ -5241,7 +5232,7 @@ button.next{
                                 </div>
                             </div>
                         </div> --}}
-                            <div class="col-lg-8 col-md-7 shadow_row video-h-cls pr-lg-5 pl-lg-0">
+                            <div class="col-lg-8 col-md-7 shadow_row video-h-cls pr-xl-5 pl-lg-0 pr-lg-3">
                                 <div class="video-container">
                                     <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
                                         <source
@@ -5272,7 +5263,7 @@ button.next{
                                     style="background-color: #b2dfcc">
                                     <h2 class="section-header font-weight-bold my-2" style=" padding: 1rem;">ASK US
                                         ANYTHING: FAQs</h2>
-                                    <div class="accordion">
+                                    <div class="accordion p-sm-3 p-2">
 
                                         <!-- tab-about1 -->
                                         @foreach ($faqs as $faq)
@@ -5445,117 +5436,47 @@ button.next{
                 </section>
 
                 {{-- stayin touchend --}}
-                @if(count($latest_blogs) > 0)
-                <section class="sec-11">
-                    <div class="container p-lg-5 py-4">
-                        <div class="row px-xl-5">
-                            <div class="col-md-12">
-                                <div class="pb-lg-5 pb-4 text-center ">
-                                    <h2 class="custom_heading_1 font-weight-bold">
-                                        Popular Events and News</h2>
-                                    <p class="custom_paragraph font-weight-bold">
-                                        Be in the Know: What’s happening at Merakii?
-                                    </p>
-                                    <p>Connect and Engage for all news and events from the desk of ThaRakii </p>
+                @if (count($latest_blogs) > 0)
+                    <section class="sec-11">
+                        <div class="container p-lg-5 py-4">
+                            <div class="row px-xl-5">
+                                <div class="col-md-12">
+                                    <div class="pb-lg-5 pb-4 text-center ">
+                                        <h2 class="custom_heading_1 font-weight-bold">
+                                            Popular Events and News</h2>
+                                        <p class="custom_paragraph font-weight-bold">
+                                            Be in the Know: What’s happening at Merakii?
+                                        </p>
+                                        <p>Connect and Engage for all news and events from the desk of ThaRakii </p>
+                                    </div>
                                 </div>
-                            </div>
-                            {{-- new section --}}
-                            @if (count($featured_blogs) > 0)
-                                <div class="col-lg-7 px-lg-0 mb-4 mb-lg-0">
-                                    <div class="rts-event-section">
-                                        <h4 class="rts-section-title mb--25">Blogs and News</h4>
-                                        <div class="events-content">
-                                            <ul class="list-unstyled rts-counter">
-                                                @foreach ($featured_blogs as $thisblog)
-                                                    <li class="single-event">
-                                                        <div class="single-event-counter">
-                                                            <div class="count-number rt-clip-text"></div>
-                                                        </div>
-                                                        <div class="single-event-content">
-                                                            <h5 class="event-title">{{ $thisblog->title }}</h5>
-                                                            <div class="single-event-content-meta">
-                                                                <div class="event-date">
-                                                                    <span><i class="fa fa-calendar"></i></span>
-                                                                    <span>{{ Carbon\Carbon::parse($thisblog->authored_date)->format('d M, y') }}</span>
-                                                                </div>
-                                                                <div class="event-time">
-                                                                    <span><i class="fa fa-clock"></i></span>
-                                                                    <span>{{ Carbon\Carbon::parse($thisblog->created_at)->format('h:i a') }}</span>
-                                                                </div>
-                                                                {{-- <div class="event-place">
+                                {{-- new section --}}
+                                @if (count($featured_blogs) > 0)
+                                    <div class="col-lg-7 px-lg-0 mb-4 mb-lg-0">
+                                        <div class="rts-event-section">
+                                            <h4 class="rts-section-title mb--25">Blogs and News</h4>
+                                            <div class="events-content">
+                                                <ul class="list-unstyled rts-counter">
+                                                    @foreach ($featured_blogs as $thisblog)
+                                                        <li class="single-event">
+                                                            <div class="single-event-counter">
+                                                                <div class="count-number rt-clip-text"></div>
+                                                            </div>
+                                                            <div class="single-event-content">
+                                                                <h5 class="event-title">{{ $thisblog->title }}</h5>
+                                                                <div class="single-event-content-meta">
+                                                                    <div class="event-date">
+                                                                        <span><i class="fa fa-calendar"></i></span>
+                                                                        <span>{{ Carbon\Carbon::parse($thisblog->authored_date)->format('d M, y') }}</span>
+                                                                    </div>
+                                                                    <div class="event-time">
+                                                                        <span><i class="fa fa-clock"></i></span>
+                                                                        <span>{{ Carbon\Carbon::parse($thisblog->created_at)->format('h:i a') }}</span>
+                                                                    </div>
+                                                                    {{-- <div class="event-place">
                                 <span><i class="fa fa-location-dot"></i></span>
                                 <span>Yarra Park, UK</span>
                             </div> --}}
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                @endforeach
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                            <div class="col-md-12 @if (count($featured_blogs) > 0) col-lg-5 @else col-lg-12 @endif">
-                                @php
-                                    $tags = Modules\Blog\Entities\Blog::where('status', 1)->pluck('tags')->toArray(); // Assuming 'tags' is the column name
-
-                                    $tagsArray = [];
-
-                                    foreach ($tags as $tagString) {
-                                        $tagsArray = array_merge($tagsArray, explode(',', trim($tagString)));
-                                    }
-                                    $tagsArray = array_unique($tagsArray);
-                                @endphp
-                                <div class="news-events-tabs-section">
-                                    <div class="rts-section rt-between pb--25 rts-border-bottom-2">
-                                        <h4 class="rts-section-title">Events</h4>
-                                        <a href="{{ route('blogs') }}" class="rts-arrow">View All <span><i
-                                                    class="fa fa-arrow-right"></i></span></a>
-                                    </div>
-                                    <div class="news-events-tab">
-                                        <div class="wrapper">
-                                            <div class="eventsIcon"><i id="left" class="fa-solid fa-angle-left"></i>
-                                            </div>
-                                            <ul class="nav nav-tabs pb--30 news-events-navtabs">
-                                                <li class="nav-item active" role="presentation">
-                                                    <a class="nav-link blog-tag active" data-tag="latest"
-                                                        href="javascript:void(0)">Latest</a>
-                                                </li>
-                                                @foreach ($tagsArray as $tag)
-                                                    @if($tag != '')
-                                                    <li class="nav-item" role="presentation">
-                                                        <a class="nav-link blog-tag" class="nav-link"
-                                                            data-tag="{{ $tag }}" href="javascript:void(0)">
-                                                            {{ $tag }} </a>
-                                                    </li>
-                                                    @endif
-                                                @endforeach
-                                                {{-- <li class="nav-item" role="presentation">
-                                                <a class="nav-link" data-toggle="pill" href="#Admission">Admission</a>
-                                            </li> --}}
-                                            </ul>
-                                            <div class="eventsIcon"><i id="right"
-                                                    class="fa-solid fa-angle-right"></i></div>
-                                        </div>
-                                        {{-- fortabs --}}
-                                        <div class="tab-content">
-                                            <div id="home" class="tab-pane active">
-                                                <ul class="list-unstyled notice-content-box" id="blogs_ul">
-                                                    @foreach ($latest_blogs as $latest_blog)
-                                                        <li class="single-notice">
-                                                            <div class="single-notice-item">
-                                                                <div class="notice-date">
-                                                                    {{ Carbon\Carbon::parse($latest_blog->authored_date)->format('d') }}<br>
-                                                                    <span>{{ Carbon\Carbon::parse($latest_blog->authored_date)->format('M') }}</span>
-                                                                </div>
-                                                                <div class="notice-content">
-                                                                    <p>
-                                                                        <a
-                                                                            href="{{ route('blogDetails', [$latest_blog->slug]) }}">
-                                                                            {{ $latest_blog->title }}
-                                                                        </a>
-                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -5565,101 +5486,175 @@ button.next{
                                             </div>
                                         </div>
                                     </div>
+                                @endif
+                                <div class="col-md-12 @if (count($featured_blogs) > 0) col-lg-5 @else col-lg-12 @endif">
+                                    @php
+                                        $tags = Modules\Blog\Entities\Blog::where('status', 1)
+                                            ->pluck('tags')
+                                            ->toArray(); // Assuming 'tags' is the column name
+
+                                        $tagsArray = [];
+
+                                        foreach ($tags as $tagString) {
+                                            $tagsArray = array_merge($tagsArray, explode(',', trim($tagString)));
+                                        }
+                                        $tagsArray = array_unique($tagsArray);
+                                    @endphp
+                                    <div class="news-events-tabs-section">
+                                        <div class="rts-section rt-between pb--25 rts-border-bottom-2">
+                                            <h4 class="rts-section-title">Events</h4>
+                                            <a href="{{ route('blogs') }}" class="rts-arrow">View All <span><i
+                                                        class="fa fa-arrow-right"></i></span></a>
+                                        </div>
+                                        <div class="news-events-tab">
+                                            <div class="wrapper">
+                                                <div class="eventsIcon"><i id="left"
+                                                        class="fa-solid fa-angle-left"></i>
+                                                </div>
+                                                <ul class="nav nav-tabs pb--30 news-events-navtabs">
+                                                    <li class="nav-item active" role="presentation">
+                                                        <a class="nav-link blog-tag active" data-tag="latest"
+                                                            href="javascript:void(0)">Latest</a>
+                                                    </li>
+                                                    @foreach ($tagsArray as $tag)
+                                                        @if ($tag != '')
+                                                            <li class="nav-item" role="presentation">
+                                                                <a class="nav-link blog-tag" class="nav-link"
+                                                                    data-tag="{{ $tag }}"
+                                                                    href="javascript:void(0)">
+                                                                    {{ $tag }} </a>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+                                                    {{-- <li class="nav-item" role="presentation">
+                                                <a class="nav-link" data-toggle="pill" href="#Admission">Admission</a>
+                                            </li> --}}
+                                                </ul>
+                                                <div class="eventsIcon"><i id="right"
+                                                        class="fa-solid fa-angle-right"></i></div>
+                                            </div>
+                                            {{-- fortabs --}}
+                                            <div class="tab-content">
+                                                <div id="home" class="tab-pane active">
+                                                    <ul class="list-unstyled notice-content-box" id="blogs_ul">
+                                                        @foreach ($latest_blogs as $latest_blog)
+                                                            <li class="single-notice">
+                                                                <div class="single-notice-item">
+                                                                    <div class="notice-date">
+                                                                        {{ Carbon\Carbon::parse($latest_blog->authored_date)->format('d') }}<br>
+                                                                        <span>{{ Carbon\Carbon::parse($latest_blog->authored_date)->format('M') }}</span>
+                                                                    </div>
+                                                                    <div class="notice-content">
+                                                                        <p>
+                                                                            <a
+                                                                                href="{{ route('blogDetails', [$latest_blog->slug]) }}">
+                                                                                {{ $latest_blog->title }}
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        @endforeach
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                {{-- section tabssss --}}
+
+
                             </div>
-
-                            {{-- section tabssss --}}
-
-
                         </div>
-                    </div>
-                </section>
+                    </section>
                 @endif
                 <!-- <div class="row m-0 mt-5 shadow">
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
-                            <div class="text-white">
-                            <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
-                            <p class="my-3 text-justify text-white">
-                            MCOH is an inclusive and equitable enviroment that provides educational
-                            oppturities for anyone seeking update their skill being a new career path and
-                            enhance professional Skills </p>
-                            <div class="mb-4 text-white">
-                            <p class="locaton py-1 text-white">
-                                <i class="fi fi-rs-marker"></i>
-                                501 S. Florida Avenue<br>
-                                <span class="ml-4">Lakeland, FL 33801</span>
-                            </p>
-                            <p class="call py-1 text-white">
-                                <i class="fi fi-br-phone-call"></i>
-                                863-250-8764 | 347-525-1736
-                            </p>
-                            <p class="time py-1 text-white">
-                                <i class="fi fi-rs-clock-three"></i>
-                                Mon - Thur: 8:30 AM - 7:00 PM
-                            </p>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
-                            <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
-                            <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
-                            @csrf
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" name="name" class="form-control form_sm mb-2"
-                            placeholder="">
-                            <label for="" class="form-label">Email Address</label>
-                            <input type="email" name="email" class="form-control form_sm mb-2"
-                            placeholder="">
-                            <label for="" class="form-label">Phone #</label>
-                            <input type="text" name="phone" class="form-control form_sm mb-2"
-                            placeholder="">
-                            <label for="" class="form-label">Zip Code</label>
-                            <input type="text" name="zip" class="form-control form_sm mb-2"
-                            placeholder="">
-                            <label for="" class="form-label">Select Program</label>
-                            <select id="program" name="program" class="form-control form_sm mb-2" required>
-                            <option value="" selected>Select Program</option>
-                            <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
-                            <option value="Refresher-RM(Endorsement & inactive License)">
-                                Refresher-RM(Endorsement & inactive License)
-                            </option>
-                            <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
-                            <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
-                                Testing)
-                            </option>
-                            <option value="Clinical-Proctor">Clinical-Proctor</option>
-                            </select>
-                            <label for="year" class="form-label mt-2">High School Grade Year</label>
-                            <select id="years" name="year" class="form-control form_sm w-100 mb-2"
-                            required>
-                            <option value="" selected>Select Year</option>
-                            @php
-                                $years = range(date('Y'), 1950);
-                            @endphp
-                            @forelse ($years as $year)
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
+                                <div class="text-white">
+                                <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
+                                <p class="my-3 text-justify text-white">
+                                MCOH is an inclusive and equitable enviroment that provides educational
+                                oppturities for anyone seeking update their skill being a new career path and
+                                enhance professional Skills </p>
+                                <div class="mb-4 text-white">
+                                <p class="locaton py-1 text-white">
+                                    <i class="fi fi-rs-marker"></i>
+                                    501 S. Florida Avenue<br>
+                                    <span class="ml-4">Lakeland, FL 33801</span>
+                                </p>
+                                <p class="call py-1 text-white">
+                                    <i class="fi fi-br-phone-call"></i>
+                                    863-250-8764 | 347-525-1736
+                                </p>
+                                <p class="time py-1 text-white">
+                                    <i class="fi fi-rs-clock-three"></i>
+                                    Mon - Thur: 8:30 AM - 7:00 PM
+                                </p>
+                                </div>
+                                </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
+                                <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
+                                <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
+                                @csrf
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" name="name" class="form-control form_sm mb-2"
+                                placeholder="">
+                                <label for="" class="form-label">Email Address</label>
+                                <input type="email" name="email" class="form-control form_sm mb-2"
+                                placeholder="">
+                                <label for="" class="form-label">Phone #</label>
+                                <input type="text" name="phone" class="form-control form_sm mb-2"
+                                placeholder="">
+                                <label for="" class="form-label">Zip Code</label>
+                                <input type="text" name="zip" class="form-control form_sm mb-2"
+                                placeholder="">
+                                <label for="" class="form-label">Select Program</label>
+                                <select id="program" name="program" class="form-control form_sm mb-2" required>
+                                <option value="" selected>Select Program</option>
+                                <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
+                                <option value="Refresher-RM(Endorsement & inactive License)">
+                                    Refresher-RM(Endorsement & inactive License)
+                                </option>
+                                <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
+                                <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
+                                    Testing)
+                                </option>
+                                <option value="Clinical-Proctor">Clinical-Proctor</option>
+                                </select>
+                                <label for="year" class="form-label mt-2">High School Grade Year</label>
+                                <select id="years" name="year" class="form-control form_sm w-100 mb-2"
+                                required>
+                                <option value="" selected>Select Year</option>
+                                @php
+                                    $years = range(date('Y'), 1950);
+                                @endphp
+                                @forelse ($years as $year)
     <option value="{{ $year }}">{{ $year }}</option>
     @empty
-                            <option value="">No Year Found</option>
+                                <option value="">No Year Found</option>
     @endforelse
-                                </select>
-                                <label for="message" class="form-label mt-2">Message</label>
-                                <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
-                                    placeholder="" required style="resize: none"></textarea>
-                                <div class="col-md-12 my-3 text-center">
-                                    <button type="submit" class="theme_btn small_btn4">Submit</button>
+                                    </select>
+                                    <label for="message" class="form-label mt-2">Message</label>
+                                    <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
+                                        placeholder="" required style="resize: none"></textarea>
+                                    <div class="col-md-12 my-3 text-center">
+                                        <button type="submit" class="theme_btn small_btn4">Submit</button>
+                                    </div>
+                                </form>
                                 </div>
-                            </form>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
+                                <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
 
-                            <div class="video1" onclick="homeVideo()">
-                                <div class="vidicons m-auto">
-                                    <i class="fa-solid fa-play"></i>
+                                <div class="video1" onclick="homeVideo()">
+                                    <div class="vidicons m-auto">
+                                        <i class="fa-solid fa-play"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            </div>
-                            </div>
-                            -->
+                                </div>
+                                </div>
+                                -->
 
 
                 <div class="modal fade" id="video_image" tabindex="-1" role="dialog"
@@ -5702,8 +5697,8 @@ button.next{
                                 <div class="col-lg-4 col-md-6 my-3 my-lg-0 ankar flowdiv-ele">
 
                                     <div class="dataflow p-2 text-white d-flex justify-content-center align-items-center">
-                                        <div class="eltdf-eh-item-content eltdf-eh-custom-5500 py-3 py-md-0 px-4">
-                                            <div class="cta_service_info txt">
+                                        <div class="eltdf-eh-item-content eltdf-eh-custom-5500 py-3 py-md-0 px-sm-4 px-2">
+                                            <div class="cta_service_info txt py-3">
                                                 <h2 class="mb-4">Become a MCInstructor | Tutor</h2>
                                                 <p class="mb-4"> Make a difference in the lives of future generations:
                                                     Merakii seeks
@@ -5719,12 +5714,12 @@ button.next{
                                                     Instructor</a>
 
                                                 <!--
-                                                                                                                                                                                                                                                                   <h1 class="mx-3 mt-5 pt-4">Ut enim ad minim veniam, quis nos trud exercita ion</h1>
-                                                                                                                                                                                                                                                    <p class="mx-3 mt-2 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                                                                                                                                                                                                                                    Doloremque, eveniet deleniti atque dicta ullam officia rerum. Non iure quos sint deserunt
-                                                                                                                                                                                                                                                         sed officia sequi assumenda eos repellendus expedita? Quasi veritatis tenetur, fugiat quis
-                                                                                                                                                                                                                                                                       numquam maxime voluptate praesentium dolores amet nemo ipsum soluta unde quam suscipit.
-                                                                                                                                                                                                                                                                                                                    Rerum nobis amet voluptatem eos.</p> -->
+                                                                                                                                                                                                                                                                       <h1 class="mx-3 mt-5 pt-4">Ut enim ad minim veniam, quis nos trud exercita ion</h1>
+                                                                                                                                                                                                                                                        <p class="mx-3 mt-2 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                                                                                                                                                                                                                                        Doloremque, eveniet deleniti atque dicta ullam officia rerum. Non iure quos sint deserunt
+                                                                                                                                                                                                                                                             sed officia sequi assumenda eos repellendus expedita? Quasi veritatis tenetur, fugiat quis
+                                                                                                                                                                                                                                                                           numquam maxime voluptate praesentium dolores amet nemo ipsum soluta unde quam suscipit.
+                                                                                                                                                                                                                                                                                                                        Rerum nobis amet voluptatem eos.</p> -->
                                                 {{-- <img src="{{ asset('public/assets/left-arrow-64.png') }}" height="50"
                                         class="lia" style="position:absolute;right: -12px;"> --}}
                                             </div>
@@ -5732,17 +5727,18 @@ button.next{
                                     </div>
                                 </div>
                                 <!-- <div class="col-sm-6 ankar col-md-6 p-0" >
-                                                                                         </div> -->
+                                                                                             </div> -->
                                 {{-- form-add --}}
                                 <div class="col-lg-4 col-md-6 my-3 my-lg-0 flowdiv-ele d-flex align-items-center">
 
                                     <form method="POST" action="{{ route('contactMsgSubmit') }}"
-                                        class="w-100 custom_section_color shadow_row custom_paragraph custom_form mb-0 py-3 py-md-0 px-4">
+                                        class="w-100 custom_section_color shadow_row custom_paragraph custom_form mb-0 py-3 py-md-0 px-sm-4 px-2">
                                         <h2 class="custom_heading_1 font-weight-bold my-2 form_h1">Stay in Touch!</h2>
                                         <div class="form-row mt-3">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="outside form-control" required name="name"/>
+                                                    <input type="text" class="outside form-control" required
+                                                        name="name" />
                                                     <span class="floating-label-outside">Your name</span>
                                                     <i class="fa fa-user-o input-icon-outside"></i>
                                                 </div>
@@ -5752,7 +5748,8 @@ button.next{
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" id="dateInput" class="outside" required name="email"/>
+                                                    <input type="text" id="dateInput" class="outside" required
+                                                        name="email" />
                                                     <span class="floating-label-outside">Email Address</span>
                                                     <i class="fa fa-envelope-o input-icon-outside"></i>
                                                 </div>
@@ -5762,7 +5759,7 @@ button.next{
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="outside" required name="phone"/>
+                                                    <input type="text" class="outside" required name="phone" />
                                                     <span class="floating-label-outside">Phone #</span>
                                                     <i class="fa fa-mobile input-icon-outside"></i>
                                                 </div>
@@ -5785,19 +5782,21 @@ button.next{
                                                     <select class="outside" required name="program">
                                                         <option value="" disabled selected></option>
                                                         <optgroup label="Programs">
-                                                            @if(count($allPrograms)>0)
+                                                            @if (count($allPrograms) > 0)
                                                                 @foreach ($allPrograms as $thisProgram)
-                                                                    <option value="{{ $thisProgram->programtitle }}">{{ $thisProgram->programtitle }}</option>
+                                                                    <option value="{{ $thisProgram->programtitle }}">
+                                                                        {{ $thisProgram->programtitle }}</option>
                                                                 @endforeach
                                                             @else
-                                                                    <option value="No Program">-- No Program --</option>
+                                                                <option value="No Program">-- No Program --</option>
                                                             @endif
                                                         </optgroup>
                                                         <optgroup label="Courses">
-                                                            @if(count($allCourses)>0)
-                                                            @foreach ($allCourses as $thisCourse)
-                                                                    <option value="{{ $thisCourse->title }}">{{ $thisCourse->title }}</option>
-                                                            @endforeach
+                                                            @if (count($allCourses) > 0)
+                                                                @foreach ($allCourses as $thisCourse)
+                                                                    <option value="{{ $thisCourse->title }}">
+                                                                        {{ $thisCourse->title }}</option>
+                                                                @endforeach
                                                             @else
                                                                 <option value="No Course">-- No Course --</option>
                                                             @endif
@@ -5814,8 +5813,9 @@ button.next{
                                                 <div class="position-relative mb-2">
                                                     <select class="outside" required name="year">
                                                         <option value="" disabled selected></option>
-                                                        @for($yr =1; $yr<=20; $yr++)
-                                                        <option value="{{ date('Y',strtotime('-'.$yr.' year')) }}">{{ date('Y',strtotime('-'.$yr.' year')) }}</option>
+                                                        @for ($yr = 1; $yr <= 20; $yr++)
+                                                            <option value="{{ date('Y', strtotime('-' . $yr . ' year')) }}">
+                                                                {{ date('Y', strtotime('-' . $yr . ' year')) }}</option>
                                                         @endfor
                                                     </select>
                                                     {{-- <input type="date" class="outside" name="year" id="contactYr"/> --}}
@@ -5832,7 +5832,7 @@ button.next{
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 text-center mb-3">
+                                        <div class="col-md-12 text-center mb-3 d-flex justify-content-center">
                                             <button type="submit"
                                                 class="theme_btn small_btn4 py-2 px-4">Submit</button>
                                         </div>
@@ -5847,8 +5847,9 @@ button.next{
                                         <div class="eltdf-eh-item-inner d-flex align-items-center justify-content-center"
                                             style="">
 
-                                            <div class="eltdf-eh-item-content eltdf-eh-custom-5500 py-3 py-md-0 px-4">
-                                                <div class="cta_service_info">
+                                            <div
+                                                class="eltdf-eh-item-content eltdf-eh-custom-5500 py-3 py-md-0 px-sm-4 px-2">
+                                                <div class="cta_service_info py-3">
                                                     <h2 class="mb-4">Expand Your Reach to Global Adult Learners</h2>
                                                     <p class="mb-4 text-white"> Fuel your passion for Teaching and join
                                                         Merakii's vibrant
@@ -5864,46 +5865,46 @@ button.next{
                                                 </div>
                                             </div>
                                             <!-- <div class="eltdf-eh-item-content eltdf-eh-custom-5500"
-                                                                                                                                                                                                                                                                                                                                                                                                                            style="padding: 66px 12% 0 12% !important;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                style="padding: 66px 12% 0 12% !important;">
 
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="wpb_text_column wpb_content_element">
-                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="wpb_wrapper mt-3">
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <h3 style="font-weight: bold;">Apply Now</h3>
+                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="wpb_text_column wpb_content_element">
+                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="wpb_wrapper mt-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <h3 style="font-weight: bold;">Apply Now</h3>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
                                                                                                                                                                                                                                                                                                                                                                                                                                 </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="vc_empty_space" style="height: 25px"><span
-                                                                                                                                                                                                                                                                                                                                                                                                                                    class="vc_empty_space_inner"></span></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
-                                                                                                                                                                                                                                                                                                                                                                                                                                dir="ltr">
-                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="screen-reader-response">
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <p role="status" aria-live="polite" aria-atomic="true"></p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul></ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                <form action="{{ route('login') }}" method="POST" class="wpcf7-form init demo">
-                                                                                                                                                                                                                                                                                                                                                                                                                                    @csrf
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="eltdf-contact-form-7-widget">
-                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="wpcf7-form-control-wrap" data-name="your-email"><input
-                                                                                                                                                                                                                                                                                                                                                                                                                                                type="email" name="email" value="{{ old('email') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                size="40"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                required placeholder="Email"></span><br>
-                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="wpcf7-form-control-wrap" data-name="your-tel"><input
-                                                                                                                                                                                                                                                                                                                                                                                                                                                type="password" name="password" value="{{ old('password') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                size="40"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                required placeholder="Password"></span><br>
-                                                                                                                                                                                                                                                                                                                                                                                                                                        {{-- <input type="submit" value="Get it now"
+                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="vc_empty_space" style="height: 25px"><span
+                                                                                                                                                                                                                                                                                                                                                                                                                                        class="vc_empty_space_inner"></span></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
+                                                                                                                                                                                                                                                                                                                                                                                                                                    dir="ltr">
+                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="screen-reader-response">
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <ul></ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    <form action="{{ route('login') }}" method="POST" class="wpcf7-form init demo">
+                                                                                                                                                                                                                                                                                                                                                                                                                                        @csrf
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="eltdf-contact-form-7-widget">
+                                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="wpcf7-form-control-wrap" data-name="your-email"><input
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    type="email" name="email" value="{{ old('email') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    size="40"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    required placeholder="Email"></span><br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="wpcf7-form-control-wrap" data-name="your-tel"><input
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    type="password" name="password" value="{{ old('password') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    size="40"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    required placeholder="Password"></span><br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                            {{-- <input type="submit" value="Get it now"
                                                     class="has-spinner small_btn theme_btn wpcf7-form-control wpcf7-submit mt-4"><span
                                                     class="wpcf7-spinner"></span> --}}
-                                                                                                                                                                                                                                                                                                                                                                                                                                        <button type="submit" class="theme_btn small_btn5 text-center">
-                                                                                                                                                                                                                                                                                                                                                                                                                                            {{ __('common.Login') }}</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="wpcf7-response-output" aria-hidden="true"></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                </form>
-                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="submit" class="theme_btn small_btn5 text-center">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                {{ __('common.Login') }}</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="wpcf7-response-output" aria-hidden="true"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    </form>
+                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -5975,21 +5976,22 @@ button.next{
                                 'Dec',
                             ];
                             html = html + '<li class="single-notice">\
-                                                                                <div class="single-notice-item">\
-                                                                                    <div class="notice-date">\
-                                                                                        ' + day + '<br>\
-                                                                                        <span>' + monthDay[month] + '</span>\
-                                                                                    </div>\
-                                                                                    <div class="notice-content">\
-                                                                                        <p>\
-                                                                                            <a href="' + blog_url + '">' +
+                                                                                    <div class="single-notice-item">\
+                                                                                        <div class="notice-date">\
+                                                                                            ' + day + '<br>\
+                                                                                            <span>' + monthDay[month] + '</span>\
+                                                                                        </div>\
+                                                                                        <div class="notice-content">\
+                                                                                            <p>\
+                                                                                                <a href="' + blog_url +
+                                '">' +
                                 row
                                 .title
                                 .en + '</a>\
-                                                                                        </p>\
+                                                                                            </p>\
+                                                                                        </div>\
                                                                                     </div>\
-                                                                                </div>\
-                                                                            </li>';
+                                                                                </li>';
                         });
                         $('#blogs_ul').html(html);
                     }
@@ -6001,7 +6003,7 @@ button.next{
         // AOS.init({
         //     duration: 1000,
         // });
-        
+
         $(document).ready(function() {
             $('#years').select2();
             $('#program').select2();
@@ -6018,18 +6020,18 @@ button.next{
                     // data: "null",
                     dataType: "json",
                     success: function(response) {
-                        if(!response.status == true){
-                        var icon = response.program.icon ? response.program.icon :
-                            "asset('public/assets/program/no-image.png')";
-                        var programTitle = response.program.programtitle;
-                        var programTotalsubtitle = response.program.subtitle;
-                        var programTotaldesc = response.program.discription;
-                        var programTotalcost = response.program.totalcost;
-                        $('#program_icon').attr("src", icon);
-                        $('#program_title').html(programTitle);
-                        $('#program_subtitle').html(programTotalsubtitle);
-                        $('#program_desc').html(programTotaldesc);
-                        $('#program_cost').html('$' + programTotalcost);
+                        if (!response.status == true) {
+                            var icon = response.program.icon ? response.program.icon :
+                                "asset('public/assets/program/no-image.png')";
+                            var programTitle = response.program.programtitle;
+                            var programTotalsubtitle = response.program.subtitle;
+                            var programTotaldesc = response.program.discription;
+                            var programTotalcost = response.program.totalcost;
+                            $('#program_icon').attr("src", icon);
+                            $('#program_title').html(programTitle);
+                            $('#program_subtitle').html(programTotalsubtitle);
+                            $('#program_desc').html(programTotaldesc);
+                            $('#program_cost').html('$' + programTotalcost);
                         }
                     }
                 });
@@ -6419,7 +6421,7 @@ button.next{
     </script>
     {{-- sec-2 --}}
     <script>
-              document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const options = {
                 root: null, // Use the viewport as the root
                 rootMargin: '0px',
@@ -6434,7 +6436,8 @@ button.next{
                             duration: 0.5
                         });
                         entry.target.classList.add('in-view');
-                        observer.unobserve(entry.target); // Stop observing once the animation has been triggered
+                        observer.unobserve(entry
+                        .target); // Stop observing once the animation has been triggered
                     }
                 });
             }, options);

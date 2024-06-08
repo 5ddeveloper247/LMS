@@ -13,21 +13,11 @@
             color: var(--system_primery_color);
         }
 
-        .login_btn {
-            color: #eee;
-            background-color: var(--system_primery_color);
-        }
-
-        .login_btn:hover {
-            color: var(--system_primery_color);
-            background: transparent;
-            /* border: 1.5px solid var(--system_primery_color); */
-        }
-
         .login_btn a {
             font-size: 12.5px;
             font-weight: 600;
             color: #eee;
+            background-color: var(--system_primery_color);
         }
 
         .login_btn a:focus {
@@ -36,6 +26,7 @@
 
         .login_btn a:hover {
             color: var(--system_primery_color);
+            background-color: #fff;
         }
 
         .fa-lg {
@@ -120,7 +111,6 @@
             .login_btn {
                 display: flex;
                 font-family: Jost, sans-serif;
-                /* padding: 6.5px 20px !important; */
                 margin: 0px 0px 0px 18px;
                 font-weight: 500;
                 width: fit-content;
@@ -229,15 +219,16 @@
                 font-size: 18px !important;
             }
         }
-        @media only screen and (min-width: 2000px){
-            .login_btn a{
+
+        @media only screen and (min-width: 2000px) {
+            .login_btn a {
                 font-size: 20px !important;
             }
         }
     </style>
     <!-- HEADER::START -->
 
-    <header>
+    <header class="main-header">
         <div id="sticky-header" class="header_area py-0 px-0">
             <div class="container-fluid px-0 py-0">
                 <div class="row">
@@ -316,14 +307,41 @@
                         </div>
                     </div>
                     {{-- small screen search --}}
-                    {{-- <div class="col-6 d-sm-none search-column">
-                        <div class="search-bar">
-                            <input class="search-txt" type="text" name="" placeholder="Type to search">
-                            <a class="search-btn" href="#">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </div>
-                    </div> --}}
+
+                    {{-- for serch --}}
+                    <div class="category_search d-sm-none category_box_iner ml-xl-5 ml-3">
+                        @if (@$homeContent->show_menu_search_box == 1)
+                            <form action="{{ route('search') }}" class="mb-0" id="search_form">
+                                <div class="align-items-center d-flex d-sm-none input-group theme_search_field" style="position: relative;">
+                                    <div class="input-group-prepend" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <button class="btn" type="button" id="button-addon1"><i class="ti-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        @endif
+                        <div id="courses_list" class="position-absolute"></div>
+                    </div>
+                    
+                    <div class="collapse" id="collapseExample">
+                        <input type="text" class="form-control" name="query" id="search_input" placeholder="{{ __('Search for Programs only') }}"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ __('Search for Programs only') }}'" style="position:relative; top: 100%">
+                    </div>
+                    
+
+                    {{-- cart --}}
+                    @if (Settings('show_cart') == 1)
+                        <a href="#" class="float notification_wrapper">
+                            <div class="notify_icon cart_store" style="padding-top: 7px">
+                                <img style="max-width: 30px; padding-left: 8px; min-width: 36px;"
+                                    src="{{ asset('/public/frontend/infixlmstheme/') }}/img/svg/cart_white.svg"
+                                    alt="" class="d-none d-sm-block">
+                                <i class="fa-solid fa-cart-shopping d-sm-none"
+                                    style="font-size: 20px; color: var(--system-primery-color)"></i>
+                            </div>
+                            <span class="notify_count">{{ @cartItem() }}</span>
+                        </a>
+                    @endif
+
                     <!-- header__left__start  -->
                     <div class="col-md-2 d-none d-md-block px-0 py-0">
                         <!-- Center (empty) -->
@@ -380,7 +398,7 @@
 
 
                                 <ul id="mobile-menu" class="d-lg-flex d-none align-items-center">
-                                    <div class="category_search d-flex category_box_iner ml-xl-5 ml-3">
+                                    {{-- <div class="category_search d-flex category_box_iner ml-xl-5 ml-3">
 
                                         @if (@$homeContent->show_menu_search_box == 1)
                                             <form action="{{ route('search') }}" class="mb-0" id="search_form">
@@ -401,7 +419,7 @@
                                             </form>
                                         @endif
                                         <div id="courses_list" class="position-absolute"></div>
-                                    </div>
+                                    </div> --}}
 
                                     @if (isset($menus))
                                         @foreach ($menus->where('parent_id', null) as $menu)
@@ -597,16 +615,16 @@
                                     @else
                                         <div class="header__right">
                                             <div class="contact_wrap d-flex align-items-center">
-                                                <div class="login_btn d-flex px-2 py-1">
+                                                <div class="login_btn d-flex p-0">
                                                     <a href="{{ url('login') }}"
-                                                        class="d-flex justify-content-center align-items-center "
+                                                        class="d-flex justify-content-center align-items-center  px-2 py-1"
                                                         style="gap: 5px;"><i
                                                             class="fa-regular fa-user"></i>{{ __('LogIn') }}
                                                     </a>
                                                 </div>
-                                                <div class="login_btn d-flex px-2 py-1">
+                                                <div class="login_btn d-flex p-0">
                                                     <a href="{{ url('pre-registration') }}"
-                                                        class="d-flex justify-content-center align-items-center register-btn-svg"
+                                                        class="d-flex justify-content-center align-items-center register-btn-svg px-2 py-1"
                                                         style="gap: 5px;"><svg aria-hidden="true" focusable="false"
                                                             data-prefix="fas" data-icon="grid-2" role="img"
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -636,9 +654,11 @@
             <div class="col-12">
                 <div class="mobile_menu d-block d-lg-none"></div>
             </div>
+
         </div>
 </div>
 </div>
+
 </header>
 
 @if (Settings('category_show'))
@@ -662,8 +682,13 @@
 @if (Settings('show_cart') == 1)
     <a href="#" class="float notification_wrapper">
         <div class="notify_icon cart_store" style="padding-top: 7px">
-            <img style="max-width: 30px;" src="{{ asset('/public/frontend/infixlmstheme/') }}/img/svg/cart_white.svg"
-                alt="">
+            <img style="max-width: 30px;
+    padding-left: 8px;
+    min-width: 36px;"
+                src="{{ asset('/public/frontend/infixlmstheme/') }}/img/svg/cart_white.svg" alt=""
+                class="d-none d-sm-block">
+            <i class="fa-solid fa-cart-shopping d-sm-none"
+                style="font-size: 20px; color: var(--system-primery-color)"></i>
         </div>
         <span class="notify_count">{{ @cartItem() }}</span>
     </a>
@@ -721,22 +746,32 @@
 
 <script>
     // Toggle dropdown content on button click
-    if(document.getElementById('dropdownButton')){
-    document.getElementById('dropdownButton').addEventListener('click', function() {
-        document.querySelector('.dropdown').classList.toggle('active');
-    });
+    if (document.getElementById('dropdownButton')) {
+        document.getElementById('dropdownButton').addEventListener('click', function() {
+            document.querySelector('.dropdown').classList.toggle('active');
+        });
 
-    // Close the dropdown if the user clicks outside of it
-    window.addEventListener('click', function(event) {
-        if (!event.target.matches('#dropdownButton')) {
-            var dropdowns = document.getElementsByClassName('dropdown');
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('active')) {
-                    openDropdown.classList.remove('active');
+        // Close the dropdown if the user clicks outside of it
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('#dropdownButton')) {
+                var dropdowns = document.getElementsByClassName('dropdown');
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('active')) {
+                        openDropdown.classList.remove('active');
+                    }
                 }
             }
+        });
+    }
+</script>
+<script>
+     document.addEventListener('click', function(event) {
+        var isClickInside = document.getElementById('collapseExample').contains(event.target);
+        var isIconClick = event.target.closest('.input-group-prepend');
+
+        if (!isClickInside && !isIconClick) {
+            $('#collapseExample').collapse('hide');
         }
     });
-}
 </script>

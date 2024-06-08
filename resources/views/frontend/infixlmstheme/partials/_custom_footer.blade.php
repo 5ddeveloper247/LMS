@@ -42,7 +42,7 @@
                        
                     </div>
                     <h6 class="custom_footer_text" style="color: #ffffff;">By Subscribing You agree to and with <a href="#"
-                        style="color: #ffffff; font-weight:700;">Our Privacy Policy</a> & <a href="#"
+                        style="color: #ffffff; font-weight::00;">Our Privacy Policy</a> & <a href="#"
                         style="color: #ffffff; font-weight:700;">Terms</a></h6>
                 </div>
             </div>
