@@ -62,6 +62,8 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
 
     Route::get('contact-page', 'FrontendManageController@ContactPageContent')->name('ContactPageContent');
     Route::post('contact-page', 'FrontendManageController@ContactPageContentUpdate')->name('ContactPageContentUpdate');
+    Route::get('contact-messages', 'FrontendManageController@contactMessages')->name('contactMessages');
+    Route::post('fetchContactMessage', 'FrontendManageController@fetchContactMessage')->name('fetchContactMessage');
 
     // Home Content
     Route::get('privacy-policy', 'FrontendManageController@PrivacyPolicy')->name('privacy_policy');

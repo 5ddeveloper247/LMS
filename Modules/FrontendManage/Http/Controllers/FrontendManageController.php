@@ -7,6 +7,7 @@ use Throwable;
 use App\AboutPage;
 use App\Http\Controllers\Controller;
 use App\Traits\ImageStore;
+use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -925,5 +926,20 @@ class FrontendManageController extends Controller
         return Cache::rememberForever('homepage_block_positions' . $domain, function () {
             return DB::table('homepage_block_positions')->select(['id', 'block_name', 'order'])->orderBy('order', 'asc')->get();
         });
+    }
+
+    public function contactMessages(){
+        $messages = ContactMessage::latest()->get();
+        return view('frontendmanage::contact-message',compact('messages'));
+    }
+
+    public function fetchContactMessage(Request $request){
+        $id = $request->id ?? 0;
+        $message = ContactMessage::where('id',$id)->first();
+        if($message){
+            return response()->json(['success' => true, 'data' => $message]);
+        }else{
+            return response()->json(['success' => false, 'msg' => 'No Record Found']);
+        }
     }
 }

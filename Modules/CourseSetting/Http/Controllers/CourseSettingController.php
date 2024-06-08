@@ -396,27 +396,27 @@ class CourseSettingController extends Controller
             //            }
 
 
-            // $about = str_replace("'", "`", $request->about['en']);
-            // $course->about = $about;
-            // $requirements = str_replace("'", "`", $requirements['en']);
-            // $course->requirements = $requirements;
-            // $outcomes = str_replace("'", "`", $outcomes['en']);
-            // $course->outcomes = $outcomes;
+            $about = str_replace("'", "`", $request->about['en']);
+            $course->about = $about;
+            $requirements = str_replace("'", "`", $request->requirements['en']);
+            $course->requirements = $requirements;
+            $outcomes = str_replace("'", "`", $request->outcomes['en']);
+            $course->outcomes = $outcomes;
             
-            foreach ($request->about as $key => $about) {
-                $about = str_replace("'", "`", $about);
-                $course->setTranslation('about', $key, $about);
-            }
+            // foreach ($request->about as $key => $about) {
+            //     $about = str_replace("'", "`", $about);
+            //     $course->setTranslation('about', $key, $about);
+            // }
 
-            foreach ($request->requirements as $key => $requirements) {
-                $requirements = str_replace("'", "`", $requirements);
-                $course->setTranslation('requirements', $key, $requirements);
-            }
+            // foreach ($request->requirements as $key => $requirements) {
+            //     $requirements = str_replace("'", "`", $requirements);
+            //     $course->setTranslation('requirements', $key, $requirements);
+            // }
 
-            foreach ($request->outcomes as $key => $outcomes) {
-                $outcomes = str_replace("'", "`", $outcomes);
-                $course->setTranslation('outcomes', $key, $outcomes);
-            }
+            // foreach ($request->outcomes as $key => $outcomes) {
+            //     $outcomes = str_replace("'", "`", $outcomes);
+            //     $course->setTranslation('outcomes', $key, $outcomes);
+            // }
 
             $course->slug = null;
             $course->duration = $request->duration;
@@ -742,19 +742,29 @@ class CourseSettingController extends Controller
             //                $course->setTranslation('title', $key, $title);
             //            }
 
-            foreach ($request->about as $key => $about) {
-                $about = str_replace("'", "`", $about);
-                $course->setTranslation('about', $key, $about);
-            }
+            $about = str_replace("'", "`", $request->about['en']);
+            // $about = str_replace("'", "`", $request->about['en']);
+            $course->about = $about;
+            $requirements = str_replace("'", "`", $request->requirements['en']);
+            // $requirements = str_replace("'", "`", $requirements['en']);
+            $course->requirements = $requirements;
+            $outcomes = str_replace("'", "`", $request->outcomes['en']);
+            // $outcomes = str_replace("'", "`", $outcomes['en']);
+            $course->outcomes = $outcomes;
 
-            foreach ($request->requirements as $key => $requirements) {
-                $requirements = str_replace("'", "`", $requirements);
-                $course->setTranslation('requirements', $key, $requirements);
-            }
-            foreach ($request->outcomes as $key => $outcomes) {
-                $outcomes = str_replace("'", "`", $outcomes);
-                $course->setTranslation('outcomes', $key, $outcomes);
-            }
+            // foreach ($request->about as $key => $about) {
+            //     $about = str_replace("'", "`", $about);
+            //     $course->setTranslation('about', $key, $about);
+            // }
+
+            // foreach ($request->requirements as $key => $requirements) {
+            //     $requirements = str_replace("'", "`", $requirements);
+            //     $course->setTranslation('requirements', $key, $requirements);
+            // }
+            // foreach ($request->outcomes as $key => $outcomes) {
+            //     $outcomes = str_replace("'", "`", $outcomes);
+            //     $course->setTranslation('outcomes', $key, $outcomes);
+            // }
             $course->duration = $request->duration;
             $course->subscription_list = $request->subscription_list;
 

@@ -5734,6 +5734,7 @@
                                     <form method="POST" action="{{ route('contactMsgSubmit') }}"
                                         class="w-100 custom_section_color shadow_row custom_paragraph custom_form mb-0 py-3 py-md-0 px-sm-4 px-2">
                                         <h2 class="custom_heading_1 font-weight-bold my-2 form_h1">Stay in Touch!</h2>
+                                        @csrf
                                         <div class="form-row mt-3">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
@@ -5769,7 +5770,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="outside" name="zip" />
+                                                    <input type="text" class="outside" name="zip" required/>
                                                     <span class="floating-label-outside">Zip Code</span>
                                                     <i class="fa fa-map-marker input-icon-outside"></i>
                                                 </div>
@@ -5827,7 +5828,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="shadow_msg" required />
+                                                    <input type="text" class="shadow_msg" required name="message"/>
                                                     <span class="floating-label-msg">Message</span>
                                                 </div>
                                             </div>

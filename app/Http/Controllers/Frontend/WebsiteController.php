@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentController;
 use App\Jobs\SendGeneralEmail;
 use App\LessonComplete;
 use App\Models\WithdrawRequest;
+use App\Models\ContactMessage;
 use App\Subscription;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -1964,7 +1965,7 @@ class WebsiteController extends Controller
             $validate_rules = [
                 'name' => 'required',
                 'email' => 'required|email',
-                'message' => 'required',
+                'message' => 'required|string|max:255',
                 'phone' => 'required',
                 //'zip' => 'required',
                 'program' => 'required',
@@ -1975,7 +1976,7 @@ class WebsiteController extends Controller
             $validate_rules = [
                 'name' => 'required',
                 'email' => 'required|email',
-                'message' => 'required',
+                'message' => 'required|string|max:255',
                 'phone' => 'required',
                // 'zip' => 'required',
                 'program' => 'required',
@@ -1993,8 +1994,18 @@ class WebsiteController extends Controller
         $program = $request->get('program');
         $year = $request->get('year');
 
+        $save = new ContactMessage();
+        $save->name = $name;
+        $save->email = $email;
+        $save->message = $message;
+        $save->phone = $phone;
+        $save->zip = $zip;
+        $save->program = $program;
+        $save->year = $year;
+        $save->save();
 
         $admin = User::where('role_id', 1)->first();
+
         $shortCodes = [
             'name' => $name,
             'email' => $email,

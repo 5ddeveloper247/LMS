@@ -7,6 +7,12 @@
 @endsection
 
 <style>
+    .ckdtext ul, .ckdtext ol{
+        padding: revert;
+    }
+    .ckdtext li{
+        list-style: revert;
+    }
     .course__details .video_screen {
         background-image: url('{{ getCourseImage(@$course->image) }}');
     }
