@@ -331,7 +331,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <div class="position-relative mt-4 d-flex">
-                                <input type="email" name="email" class="outside" required />
+                                <input type="email" name="email" class="outside" required value="{{ $contactLogin ? $contactLogin['email'] : old('email') }}"/>
                                 <br>
                                 <span class="floating-label-outside">Email</span>
                                 <i class="fa fa-envelope input-icon-outside"></i>
@@ -350,7 +350,7 @@
 
                         <div class="form-group col-md-12">
                             <div class="position-relative mt-4 d-flex">
-                                <input type="password" name="password" class="outside" required minlength="8"/>
+                                <input type="password" name="password" class="outside" required minlength="8" value="{{ $contactLogin ? $contactLogin['password'] : old('password') }}"/>
                                 <br>
                                 <span class="floating-label-outside">Password</span>
                                 <i id="icon1" class="bi bi-unlock input-icon-outside"></i>

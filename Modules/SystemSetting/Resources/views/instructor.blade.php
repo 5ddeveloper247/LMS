@@ -541,7 +541,7 @@
                                                 </div>
                                             </div>
                                             <input type="password" class="form-control primary_input_field"
-                                                id="password" name="password_confirmation"
+                                                id="password_confirm" name="password_confirmation"
                                                 placeholder="{{ __('common.Minimum 8 characters') }}"
                                                 {{ $errors->first('password_confirmation') ? 'autofocus' : '' }}>
                                         </div>
@@ -809,7 +809,6 @@
         @if (session()->has('type'))
             @if (session()->get('type') == 'tutor')
                 <script>
-                    alert('kamran');
                     $('#editInstructor').modal('show');
                 </script>
             @else

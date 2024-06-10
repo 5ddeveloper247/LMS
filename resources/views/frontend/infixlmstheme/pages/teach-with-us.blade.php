@@ -575,6 +575,7 @@
                             @endif
                         </div>
                     </div>
+                    {{-- <x-breadcrumb :banner="{{__('public/frontend/infixlmstheme/img/images/courses-4.jpg')}}" :title="{{__('Teach With Us')}}"> --}}
                 </div>
             </div>
         </div>

@@ -1872,6 +1872,21 @@ class WebsiteController extends Controller
         return ['hasResult' => $hasResult, 'output' => $output];;
     }
 
+    public function contactLogin(Request $request){
+        $email = $request->email ?? '';
+        $password = $request->password ?? '';
+        $data = [
+            'email' => $email,
+            'password' => $password
+        ];
+        session([
+            'contactLogin' => $data
+            // Process or use the password securely here if needed
+        ]);
+        return redirect()->route('preRegistration');
+        
+    }
+
     public function contact()
     {
         try {

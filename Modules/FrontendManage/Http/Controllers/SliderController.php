@@ -47,7 +47,7 @@ class SliderController extends Controller
             $slider->course_id = $request->course_id ?? '';
             $slider->title = $request->title;
             $slider->sub_title = $request->sub_title;
-
+            $slider->route = $request->route ?? null;
             $slider->btn_title1 = $request->btn_title1;
             $slider->btn_link1 = $request->btn_link1;
 
@@ -115,7 +115,7 @@ class SliderController extends Controller
             $slider->course_id = $request->course_id ?? '';
             $slider->title = $request->title;
             $slider->sub_title = $request->sub_title;
-
+            $slider->route = $request->route;
             $slider->btn_title1 = $request->btn_title1;
             $slider->btn_link1 = $request->btn_link1;
 

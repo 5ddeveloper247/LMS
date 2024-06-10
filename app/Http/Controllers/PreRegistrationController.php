@@ -22,6 +22,12 @@ class PreRegistrationController extends Controller{
       $this->userRepository = $userRepository;
   }
 
+  public function index(){
+    $contactLogin = session()->has('contactLogin') ? session()->get('contactLogin') : null;
+    session()->forget('contactLogin');
+    return view(theme('authnew.pre-registration'),compact('contactLogin'));
+  }
+
   public function preRegister(Request $request){
 
     $request->validate([

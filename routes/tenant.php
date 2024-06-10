@@ -58,8 +58,9 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     //    Route::get('/footer/page/{slug}', 'WebsiteController@page')->name('dynamic.page');
     Route::get('/about-us', 'WebsiteController@aboutData')->name('about');
-    Route::get('/contact-us', 'WebsiteController@contact')->name('contact')->middleware('HeaderMenuPermissions');;
-    Route::get('/contact', 'WebsiteController@contactUs')->name('contact-us')->middleware('HeaderMenuPermissions');;
+    Route::get('/contact-us', 'WebsiteController@contact')->name('contact')->middleware('HeaderMenuPermissions');
+    Route::post('/contact-login', 'WebsiteController@contactLogin')->name('contactLogin')->middleware('HeaderMenuPermissions');
+    Route::get('/contact', 'WebsiteController@contactUs')->name('contact-us')->middleware('HeaderMenuPermissions');
     Route::get('/repeat-course', 'WebsiteController@repeatCourse')->name('repeat-course');
     Route::get('/buy-repeat-course/{id}', 'WebsiteController@buyNow')->name('buyRepeatCourse');
 
@@ -432,9 +433,7 @@ Route::get('register5x', function () {
 
 // for pre registration of students
 
-Route::get('pre-registration', function () {
-    return view(theme('authnew.pre-registration'));
-});
+Route::get('pre-registration', 'PreRegistrationController@index')->name('preRegistration');
 
 
 Route::post('preRegister', 'PreRegistrationController@preRegister')->name('preRegister');

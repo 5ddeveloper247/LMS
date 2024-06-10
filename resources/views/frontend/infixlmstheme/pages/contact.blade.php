@@ -883,7 +883,7 @@
                                             <p role="status" aria-live="polite" aria-atomic="true"></p>
                                             <ul></ul>
                                         </div>
-                                        <form action="{{ route('login') }}" method="POST" class="wpcf7-form init demo">
+                                        <form action="{{ route('contactLogin') }}" method="POST" class="wpcf7-form init demo">
                                             @csrf
                                             <div class="eltdf-contact-form-7-widget">
                                                 <span class="wpcf7-form-control-wrap " data-name="your-email"><input

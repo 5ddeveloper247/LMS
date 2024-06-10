@@ -178,7 +178,7 @@
                                                                                                 for="">{{ __('frontendmanage.Homepage Banner') }}
                                                                                                 <small>({{__('common.Recommended Size')}}
                                                                                                     @if($currentTheme!="Edume")
-                                                                                                        1920x500
+                                                                                                        1920x1500
                                                                                                     @else
                                                                                                         570x610
                                                                                                     @endif
