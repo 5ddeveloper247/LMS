@@ -265,7 +265,7 @@
                                 @endif
                             </div>
 
-                            <div class="category_search d-flex category_box_iner ml-xl-5 ml-3 d-none">
+                            <div class="category_search category_box_iner ml-sm-5 d-none d-sm-block">
                                 {{-- @if (Settings('category_show'))
                                         <div class="input-group-prepend2">
                                             <a href="#" class="categories_menu">
@@ -296,9 +296,9 @@
                                             </div>
 
                                             <input type="text" class="form-control" name="query" id="search"
-                                                placeholder="{{ __('Search for Programs only') }}"
+                                                placeholder="{{ __('Search') }}"
                                                 onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = '{{ __('Search for Programs only') }}'">
+                                                onblur="this.placeholder = '{{ __('Search') }}'">
                                         </div>
                                     </form>
                                 @endif
@@ -309,7 +309,7 @@
                     {{-- small screen search --}}
 
                     {{-- for serch --}}
-                    <div class="category_search d-sm-none category_box_iner ml-xl-5 ml-3">
+                    <div class="category_search d-sm-none category_box_iner ml-md-5 mr-2 mr-sm-0">
                         @if (@$homeContent->show_menu_search_box == 1)
                             <form action="{{ route('search') }}" class="mb-0" id="search_form">
                                 <div class="align-items-center d-flex d-sm-none input-group theme_search_field" style="position: relative;">
@@ -323,15 +323,15 @@
                     </div>
                     
                     <div class="collapse" id="collapseExample">
-                        <input type="text" class="form-control" name="query" id="search_input" placeholder="{{ __('Search for Programs only') }}"
-                               onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ __('Search for Programs only') }}'" style="position:relative; top: 100%">
+                        <input type="text" class="form-control" name="query" id="search_input" placeholder="{{ __('Search') }}"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ __('Search') }}'" style="position:relative; top: 100%">
                     </div>
                     
 
                     {{-- cart --}}
                     @if (Settings('show_cart') == 1)
                         <a href="#" class="float notification_wrapper">
-                            <div class="notify_icon cart_store" style="padding-top: 7px">
+                            <div class="notify_icon cart_store">
                                 <img style="max-width: 30px; padding-left: 8px; min-width: 36px;"
                                     src="{{ asset('/public/frontend/infixlmstheme/') }}/img/svg/cart_white.svg"
                                     alt="" class="d-none d-sm-block">
@@ -412,9 +412,9 @@
 
                                                     <input type="text" class="form-control" name="query"
                                                         id="search"
-                                                        placeholder="{{ __('Search for Programs only') }}"
+                                                        placeholder="{{ __('Search') }}"
                                                         onfocus="this.placeholder = ''"
-                                                        onblur="this.placeholder = '{{ __('Search for Programs only') }}'">
+                                                        onblur="this.placeholder = '{{ __('Search') }}'">
                                                 </div>
                                             </form>
                                         @endif
@@ -681,7 +681,7 @@
 @endif
 @if (Settings('show_cart') == 1)
     <a href="#" class="float notification_wrapper">
-        <div class="notify_icon cart_store" style="padding-top: 7px">
+        <div class="notify_icon cart_store">
             <img style="max-width: 30px;
     padding-left: 8px;
     min-width: 36px;"

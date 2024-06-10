@@ -505,10 +505,6 @@
         max-width: unset !important;
     }
 
-    /* .owl-stage-outer {
-        height: 33rem;
-    } */
-
     @media (max-width: 768px) {
         .toggle{
             font-size: 16px;
@@ -529,6 +525,8 @@
 
         .slider_paragraph {
             font-size: 17px !important;
+            height: 178px;
+            overflow: auto;
         }
 
         .custom_P {
@@ -697,7 +695,7 @@
 </style>
 {{-- @endsection --}}
 @section('mainContent')
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-md-12 px-0">
             <div class="breadcrumb_area position-relative">
                 <div class="w-100 h-100 position-absolute bottom-0 left-0">
@@ -706,7 +704,7 @@
                 </div>
                 <div class="col-lg-9 offset-1">
                     <div class="breadcam_wrap">
-                        <h2 class="custom_small_heading text-white custom-heading">Apply Your Program and Courses Today</h2>
+                        <h2 class="section_main_heading text-white custom-heading">Apply Your Program and Courses Today</h2>
                         <div class="contact_btn mt-5">
                             <a href="{{ route('register') }}" class="theme_btn small_btn2 p-2">Apply Now </a>
                         </div>
@@ -717,7 +715,7 @@
 
     </div>
 
-    <section id="apply" class="p-5">
+    <section id="apply" class="p-lg-5 p-3">
         <div class="container-fluid">
             <div class="row justify-content-center text-center px-xl-4 px-md-3 ">
                 <div class="col-md-12 our_require_section">
@@ -736,12 +734,12 @@
         </div>
     </section>
     {{-- slider timeline --}}
-    <div class="our-process-section-container bg ">
-        <div class="our-process-section-wrapper px-3 py-5">
+    <div class="our-process-section-container bg mt-3">
+        <div class="our-process-section-wrapper px-3 py-lg-5 py-3">
             <div class="w-100 d-flex justify-content-start">
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                     <div class="padding-top-of-first-part ml_our_process">
-                        <h2 class="carrot-orange-clr text-end ">Step 01</h2>
+                        <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2>
                         <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
                         <div class="d-flex align-items-center gap-3 pb-3">
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
@@ -767,7 +765,7 @@
                 <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
                     data-aos-duration="1000">
                     <div class="d-flex flex-column align-items-start mr_our_process">
-                        <h2 class="carrot-orange-clr">Step 02</h2>
+                        <h2 class="custom_small_heading carrot-orange-clr">Step 02</h2>
                         <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
                         <div class="d-flex align-items-center gap-3 pb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
@@ -845,7 +843,7 @@
             <div class="">
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                     <div class="d-flex flex-column align-items-end ml_our_process">
-                        <h2 class="carrot-orange-clr">Step 03</h2>
+                        <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2>
                         <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
                         <div class="d-flex align-items-center gap-3 pb-3">
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
@@ -873,7 +871,7 @@
                 <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
                     data-aos-duration="1000">
                     <div class="d-flex flex-column padding-btm-last-part mr_our_process">
-                        <h2 class="carrot-orange-clr">Step 04</h2>
+                        <h2 class="custom_small_heading carrot-orange-clr">Step 04</h2>
                         <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5>
                         <div class="d-flex align-items-center gap-3 pb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
@@ -1007,11 +1005,11 @@
 
 
     </section> --}}
-    <div class="row featured-carousel owl-carousel m-0 app_require">
+    <div class="row featured-carousel owl-carousel m-0 app_require mb-3">
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 py-3 back-color small_screen_carousel">
-                <div class="pt-4 mx-md-5 mx-3 cont1domgdo_para">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-1
                     </h5>
@@ -1030,7 +1028,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 col-12 py-3 back-color small_screen_carousel">
-                <div class="pt-4 mx-md-5 mx-3 cont1domgdo_para">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-2
                     </h5>
@@ -1050,7 +1048,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 col-12 py-4 back-color small_screen_carousel">
-                <div class="pt-4 mx-md-5 mx-3 cont1domgdo_para">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-3
                     </h5>
@@ -1069,7 +1067,7 @@
         {{-- </div> --}}
     </div>
 
-    <div class="justify-content-center mt-5 row">
+    <div class="row justify-content-center pt-lg-5 pt-3">
         <div class="col-12 col-md-7 text-center text-lg-left">
             <h2 class="custom_small_heading heading font-weight-bold">Required Application Documents</h2>
         </div>
@@ -1096,13 +1094,13 @@
                             <p>Professional Trade License for Entrance in BSN program.</p>
                         </div>
                     </div>
-                    <div class="wrapper mb-5">
+                    <div class="wrapper mb-lg-5 mb-3">
                         <button class="toggle">Essay – Tell us about You<i class="fas fa-plus icon"></i></button>
                         <div class="content">
                             <p> Professionally - Who You are and why Nursing.</p>
                         </div>
                     </div>
-                    <div class="  mb-5">
+                    <div class="mb-lg-5 mb-3">
                         <h2 class="custom_small_heading heading text-center text-lg-left text-sm font-weight-bold">Most Asked Questions
                         </h2>
                     </div>
@@ -1129,9 +1127,9 @@
 
         </div>
     </div>
-    <div class="row my-5 justify-content-center"style="background-color: #eee;">
-        <div class="col-md-7  pt-5 pb-5">
-            <div class="custom_fs_a d-flex justify-content-between align-items-center">
+    <div class="row my-lg-5 my-4 justify-content-center"style="background-color: #eee;">
+        <div class="col-md-7 py-lg-5 px-5 px-lg-0 py-3">
+            <div class="custom_fs_a d-flex justify-content-between align-items-center mx-3 mx-lg-0">
                 <h2 class="custom_small_heading text-center font-weight-bold avail-ser">Focused Learning - Goals Realized</h2>
                 <div class="contact_btn text-center">
                     <a href="{{ route('register') }}"class="theme_btn small_btn2 p-2">Apply Now </a>
