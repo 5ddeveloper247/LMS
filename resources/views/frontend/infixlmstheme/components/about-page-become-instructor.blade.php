@@ -24,17 +24,17 @@
 </style>
 
 <div>
-    <div class="service_cta_area p-lg-5">
+    <div class="service_cta_area p-lg-5 p-3">
         <div class="container center-content-about mb-3">
             {{-- <div class="border_top_1px"></div> --}}
-            <div class="service_cta_row row px-xl-3" id="service_cta_row">
-                <div class="col-lg-4 ">
+            <div class="service_cta_row row px-xl-3 d-flex align-items-center justify-content-center" id="service_cta_row">
+                <div class="col-lg-4 col-md-6">
                     <div class="single_cta_service single_cta1">
                         <div class="thumb">
                             <img src="{{ asset(@$frontendContent->become_instructor_logo) }}" alt="">
                         </div>
                         <div class="cta_service_info">
-                            <h5 class="mb-4 font-weight-bold text-white">
+                            <h5 class="custom_small_heading mb-4 font-weight-bold text-white">
                                 {{ @$frontendContent->become_instructor_title }}</h5>
                             <p class="mb-4 text-white"> {{ @$frontendContent->become_instructor_sub_title }}
                             </p>
@@ -43,13 +43,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mt-3 mt-lg-0">
+                <div class="col-lg-4 col-md-6 mt-3 mt-md-0">
                     <div class="single_cta_service single_cta2">
                         <div class="thumb">
                             <img src="{{ asset(@$frontendContent->become_instructor_logo) }}" alt="">
                         </div>
                         <div class="cta_service_info">
-                            <h5 class="mb-4 font-weight-bold text-dark"> Become Tutor | Mentor </h5>
+                            <h5 class="custom_small_heading mb-4 font-weight-bold text-dark"> Become Tutor | Mentor </h5>
                             <p class="mb-4"> {{ @$frontendContent->become_instructor_sub_title }}
                             </p>
                             <a href="{{ route('register') }}" class="theme_btn small_btn p-2">Share Knowledge</a>
@@ -57,13 +57,13 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4  mt-3 mt-lg-0">
+                <div class="col-lg-4 col-md-6 mt-3 mt-lg-0">
                     <div class="single_cta_service single_cta3">
                         <div class="thumb">
                             <img src="{{ asset(@$frontendContent->become_instructor_logo) }}" alt="">
                         </div>
                         <div class="cta_service_info">
-                            <h5 class="mb-4 font-weight-bold text-white"> Transform A Life Now</h5>
+                            <h5 class="custom_small_heading mb-4 font-weight-bold text-white"> Transform A Life Now</h5>
                             <p class="mb-4 text-white"> {{ @$frontendContent->become_instructor_sub_title }}
                             </p>
                             <a href="{{ route('register') }}" class="theme_btn small_btn p-2">Start New Career </a>

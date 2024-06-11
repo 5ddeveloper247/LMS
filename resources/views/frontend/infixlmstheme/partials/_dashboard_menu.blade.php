@@ -11,7 +11,8 @@
     }
 
     .custom_student_sidebar_head {
-        background: linear-gradient(90deg, #996699, #0079a8);
+        /* background: linear-gradient(90deg, #996699, #0079a8); */
+        background: #fff !important;
     }
 
     .sidebar ul li a.active,

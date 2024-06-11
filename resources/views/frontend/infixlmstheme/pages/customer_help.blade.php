@@ -28,6 +28,49 @@
         margin-right: 0rem;
     }
 
+    .wrapper {
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .wrapper .eventsIcon {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .eventsIcon:first-child {
+        left: 0;
+        display: none;
+        background: linear-gradient(90deg, #fff 70%, transparent);
+    }
+
+    .eventsIcon:last-child {
+        right: 0;
+        justify-content: flex-end;
+        background: linear-gradient(-90deg, #fff 70%, transparent);
+    }
+
+    .eventsIcon i {
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        border-radius: 10%;
+        background: #efedfb;
+        padding: 10
+    }
+
+    .eventsIcon:first-child i {
+        margin-left: 0px;
+    }
+
+    .eventsIcon:last-child i {
+        margin-right: 0px;
+    }
+
     @media (min-width: 992px) {
         .nav-pills-custom .nav-link::before {
             content: '';
@@ -49,19 +92,11 @@
 
     .wrapper {
         background-color: #eee;
-        /* padding: 10px 20px; */
-        /* margin-bottom: 20px; */
-        /* -webkit-box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2);
-        box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2); */
         transition: 0.2s ease-in-out;
     }
 
     .wrapper:hover {
         background-color: white;
-        /* padding: 10px 20px; */
-        /* margin-bottom: 20px; */
-        /* -webkit-box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2);
-        box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2); */
     }
 
     .shadow-1 {
@@ -109,13 +144,6 @@
 
     @media (width > 1650px) {
 
-        /* .breadcrumb_area .breadcam_wrap h3 {
-            font-size: 100px !important;
-            font-weight: 900;
-            line-height: 76px;
-            color: #fff;
-        } */
-
         .breadcrumb_area .breadcam_wrap {
             max-width: 677px !important;
         }
@@ -146,84 +174,102 @@
     <main ng-app="project1">
         <section class="bg-gray-1 hero-section py-10">
             <div class="container my-lg-5">
-               
-                
+
+
             </div>
         </section>
         <!-- Demo header-->
-        <section class="header mb-2">
+        <section class="header mb-2 mt-5">
             <div class="container px-md-5">
                 <div class="row px-1 px-xl-5 px-md-2">
-                    <div class="col-md-3">
+
+                    <div class="col-md-3 px-md-0 px-lg-2">
                         <!-- Tabs nav -->
-                        <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist"
-                            aria-orientation="vertical">
-                            {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-8" data-toggle="pill" href="#customer"
+                        <div class="wrapper">
+                            <div class="eventsIcon d-md-none"><i id="left" class="fa-solid fa-angle-left"></i>
+                            </div>
+
+
+                            <div class="nav flex-md-column nav-pills nav-pills-custom small_pills" id="v-pills-tab"
+                                role="tablist" aria-orientation="vertical">
+
+                                {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-8" data-toggle="pill" href="#customer"
                                 role="tab" aria-controls="customer" aria-selected="false">
                                 <i class="fa fa-arrow-right mr-2"></i>
                                 <span class="font-weight-bold small text-uppercase">Customer Service</span></a> --}}
 
-                            {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-9" data-toggle="pill" href="#contact"
+                                {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-9" data-toggle="pill" href="#contact"
                                 role="tab" aria-controls="contact" aria-selected="false">
                                 <i class="fa fa-arrow-right mr-2"></i>
                                 <span class="font-weight-bold small text-uppercase">Contact Us</span></a> --}}
 
-                            <a class="nav-link active mb-3 p-3 shadow" id="v-pills-home-tab" data-toggle="pill"
-                                href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
-                                <i class="fa fa-arrow-right mr-2"></i>
-                                <span class="font-weight-bold small text-uppercase" onclick="changeTab('Term Of Use')">Term Of Use</span></a>
+                                <a class="nav-link active mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-home-tab"
+                                    data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                                    aria-selected="true">
+                                    <i class="fa fa-arrow-right mr-2"></i>
+                                    <span class="font-weight-bold small text-uppercase"
+                                        onclick="changeTab('Term Of Use')">Term
+                                        Of Use</span></a>
 
-                            <a class="nav-link mb-3 p-3 shadow" id="v-pills-profile-tab-1" data-toggle="pill"
-                                href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-                                aria-selected="false">
-                                <i class="fa fa-arrow-right mr-2"></i>
-                                <span class="font-weight-bold small text-uppercase" onclick="changeTab('Privacy Policy')">Privacy Policy</span></a>
+                                <a class="nav-link mb-mb-3 p-md-3 p-2 shadow main-items" id="v-pills-profile-tab-1"
+                                    data-toggle="pill" href="#v-pills-profile" role="tab"
+                                    aria-controls="v-pills-profile" aria-selected="false">
+                                    <i class="fa fa-arrow-right mr-2"></i>
+                                    <span class="font-weight-bold small text-uppercase"
+                                        onclick="changeTab('Privacy Policy')">Privacy Policy</span></a>
 
-                            <a class="nav-link mb-3 p-3 shadow" id="v-pills-messages-tab-2" data-toggle="pill"
-                                href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
-                                aria-selected="false">
-                                <i class="fa fa-arrow-right mr-2"></i>
-                                <span class="font-weight-bold small text-uppercase" onclick="changeTab('Help and Support')">Help and Support</span></a>
+                                <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-messages-tab-2"
+                                    data-toggle="pill" href="#v-pills-messages" role="tab"
+                                    aria-controls="v-pills-messages" aria-selected="false">
+                                    <i class="fa fa-arrow-right mr-2"></i>
+                                    <span class="font-weight-bold small text-uppercase"
+                                        onclick="changeTab('Help and Support')">Help and Support</span></a>
 
-                            <a class="nav-link mb-3 p-3 shadow" id="v-pills-settings-tab-3" data-toggle="pill"
-                                href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
-                                aria-selected="false">
-                                <i class="fa fa-arrow-right mr-2"></i>
-                                <span class="font-weight-bold small text-uppercase" onclick="changeTab('Certificate Verification')">Certificate Verification</span></a>
+                                <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-settings-tab-3"
+                                    data-toggle="pill" href="#v-pills-settings" role="tab"
+                                    aria-controls="v-pills-settings" aria-selected="false">
+                                    <i class="fa fa-arrow-right mr-2"></i>
+                                    <span class="font-weight-bold small text-uppercase"
+                                        onclick="changeTab('Certificate Verification')">Certificate Verification</span></a>
 
-                            {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-4" data-toggle="pill" href="#ship"
+                                {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-4" data-toggle="pill" href="#ship"
                             role="tab" aria-controls="ship" aria-selected="false">
                             <i class="fa fa-arrow-right mr-2"></i>
                             <span class="font-weight-bold small text-uppercase">Shipping & Returns</span></a> --}}
 
-                            {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-5" data-toggle="pill" href="#track"
+                                {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-5" data-toggle="pill" href="#track"
                             role="tab" aria-controls="track" aria-selected="false">
                             <i class="fa fa-arrow-right mr-2"></i>
                             <span class="font-weight-bold small text-uppercase">Track Order</span></a> --}}
-                            {{--
+                                {{--
                         <a class="nav-link mb-3 p-3 shadow" id="tab-6" data-toggle="pill" href="#account"
                             role="tab" aria-controls="account" aria-selected="false">
                             <i class="fa fa-arrow-right mr-2"></i>
                             <span class="font-weight-bold small text-uppercase">My Accounts</span></a> --}}
 
-                            <a class="nav-link mb-3 p-3 shadow" id="tab-7" data-toggle="pill" href="#faq"
-                                role="tab" aria-controls="faq" aria-selected="false">
-                                <i class="fa fa-arrow-right mr-2"></i>
-                                <span class="font-weight-bold small text-uppercase" onclick="changeTab('Faqs')">Faq's</span></a>
+                                <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="tab-7" data-toggle="pill"
+                                    href="#faq" role="tab" aria-controls="faq" aria-selected="false">
+                                    <i class="fa fa-arrow-right mr-2"></i>
+                                    <span class="font-weight-bold small text-uppercase"
+                                        onclick="changeTab('Faqs')">Faq's</span></a>
 
-                            <a class="nav-link mb-3 p-3 shadow" id="tab-8" data-toggle="pill" href="#resource-center"
-                                role="tab" aria-controls="resource-center" aria-selected="false">
-                                <i class="fa fa-arrow-right mr-2"></i>
-                                <span class="font-weight-bold small text-uppercase" onclick="changeTab('Resource center')">Resource center</span></a>
+                                <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="tab-8" data-toggle="pill"
+                                    href="#resource-center" role="tab" aria-controls="resource-center"
+                                    aria-selected="false">
+                                    <i class="fa fa-arrow-right mr-2"></i>
+                                    <span class="font-weight-bold small text-uppercase"
+                                        onclick="changeTab('Resource center')">Resource center</span></a>
+                            </div>
+                            <div class="eventsIcon d-md-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
                         </div>
                     </div>
 
 
-                    <div class="col-md-9">
-                        <h1 class="customer d-block d-md-none invisible">test</h1>
+                    <div class="col-md-9 mt-4 mt-md-0">
+                        <h1 class="customer d-none invisible">test</h1>
                         <!-- Tabs content -->
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-lg-5" id="customer" role="tabpanel"
+                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="customer" role="tabpanel"
                                 aria-labelledby="tab-8">
                                 <h5>FOR ASSISTANCE</h5>
                                 <h6>DOMESTIC CUSTOMERS</h6>
@@ -334,8 +380,8 @@
 
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-lg-5" id="v-pills-profile" role="tabpanel"
-                                aria-labelledby="v-pills-profile-tab">
+                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="v-pills-profile"
+                                role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                 <p>
                                     Barbara Sturm Molecular Cosmetics collects and uses your personal data exclusively in
                                     the framework of the
@@ -424,8 +470,8 @@
                                 </p>
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-lg-5" id="v-pills-messages" role="tabpanel"
-                                aria-labelledby="v-pills-messages-tab">
+                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="v-pills-messages"
+                                role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <p>
                                     Merakii College of Health are committed to providing a website that is accessible to
                                     all audiences, regardless of technology or ability. As part of this, Fenty Beauty+ Fenty
@@ -437,8 +483,8 @@
                                 </p>
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-lg-5" id="v-pills-settings" role="tabpanel"
-                                aria-labelledby="v-pills-settings-tab">
+                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="v-pills-settings"
+                                role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                 <h5>About this cookie policy</h5>
                                 <p>
                                     This Cookie Policy explains what cookies are and how we use them, the types of cookies
@@ -603,24 +649,26 @@
                                     style="color:white">Login</a></button>
 
                         </div> --}}
-                            <div class="tab-pane fade p-lg-5 rounded bg-white p-1 shadow mb-lg-5" id="faq" role="tabpanel"
-                                aria-labelledby="tab-7">
+                            <div class="tab-pane fade p-lg-5 rounded bg-white p-1 shadow mb-lg-5" id="faq"
+                                role="tabpanel" aria-labelledby="tab-7">
                                 <h5>Frequently Asked Questions</h5>
                                 <div class="col-12 mt-3 px-0">
                                     @forelse ($faqs as $faq)
                                         <div class="wrapper shadow-1 mb-4 rounded px-3 py-2">
-                                            <button class="toggle" onclick="toggleFaq({{$faq->id}})">{{ $faq->question }}<i
+                                            <button class="toggle"
+                                                onclick="toggleFaq({{ $faq->id }})">{{ $faq->question }}<i
                                                     class="fas fa-plus icon"></i></button>
-                                            <div class="content" >
-                                            	<div class="row">
+                                            <div class="content">
+                                                <div class="row">
                                                     <div class="col-12">
                                                         <div class="table-responsive">
-                                                        	<iframe id="iframeFaqAns_{{$faq->id}}" style="border:unset;width:100%;"></iframe>
-                                                            
+                                                            <iframe id="iframeFaqAns_{{ $faq->id }}"
+                                                                style="border:unset;width:100%;"></iframe>
+
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {{--<p>{!! $faq->answer !!}</p>--}}
+                                                {{-- <p>{!! $faq->answer !!}</p> --}}
                                             </div>
                                         </div>
                                     @empty
@@ -673,32 +721,32 @@
                                 </p> --}}
                             </div>
                             {{-- resourse center --}}
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-lg-5" id="resource-center" role="tabpanel"
-                            aria-labelledby="tab-8">
-                            <h5>FOR Resource Center</h5>
-                            <h6>DOMESTIC CUSTOMERS</h6>
-                            <h6>Call Us:</h6>
-                            <p>
-                                Representatives are available from 7am – 2am ET, 7 days a week (excluding major U.S.
-                                holidays) and are ready to help.
-                            </p>
-                            <p><u>863-250-8764</u></p>
+                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="resource-center"
+                                role="tabpanel" aria-labelledby="tab-8">
+                                <h5>FOR Resource Center</h5>
+                                <h6>DOMESTIC CUSTOMERS</h6>
+                                <h6>Call Us:</h6>
+                                <p>
+                                    Representatives are available from 7am – 2am ET, 7 days a week (excluding major U.S.
+                                    holidays) and are ready to help.
+                                </p>
+                                <p><u>863-250-8764</u></p>
 
-                            <h5>Live Chat with Us:</h5>
-                            <p>
-                                Representatives are available from 7am – 11pm ET, 7 days a week (excluding major U.S.
-                                holidays) and are ready to help. Click the ‘Chat now’ button at the lower right of any
-                                page.
-                            </p>
-                            <h5>International Customer</h5>
-                            <p>
-                                Our international customers may access our international help center 24 hours a day, 7
-                                days a week HERE. If you are unable to find the answer to your question, you may contact
-                                a customer service representative through the help center. Representatives are available
-                                6 days a week (Sunday - Friday) and are ready to help. Please allow 24 hours to receive
-                                a response.
-                            </p>
-                        </div>
+                                <h5>Live Chat with Us:</h5>
+                                <p>
+                                    Representatives are available from 7am – 11pm ET, 7 days a week (excluding major U.S.
+                                    holidays) and are ready to help. Click the ‘Chat now’ button at the lower right of any
+                                    page.
+                                </p>
+                                <h5>International Customer</h5>
+                                <p>
+                                    Our international customers may access our international help center 24 hours a day, 7
+                                    days a week HERE. If you are unable to find the answer to your question, you may contact
+                                    a customer service representative through the help center. Representatives are available
+                                    6 days a week (Sunday - Friday) and are ready to help. Please allow 24 hours to receive
+                                    a response.
+                                </p>
+                            </div>
                         </div>
 
                     </div>
@@ -710,32 +758,30 @@
 
     <script>
         // active-tab_heading
- function updateTabHeading(tabName) {
-    document.getElementById('tabHeading').innerText = tabName; 
-}
+        function updateTabHeading(tabName) {
+            document.getElementById('tabHeading').innerText = tabName;
+        }
 
-function setActiveTab(tabLink) {
-    var tabName = tabLink.innerText.trim(); 
-    updateTabHeading(tabName); 
-}
+        function setActiveTab(tabLink) {
+            var tabName = tabLink.innerText.trim();
+            updateTabHeading(tabName);
+        }
 
-document.addEventListener('DOMContentLoaded', function() {
-    var activeTab = document.querySelector('.nav-link.active');
-    setActiveTab(activeTab);
-});
+        document.addEventListener('DOMContentLoaded', function() {
+            var activeTab = document.querySelector('.nav-link.active');
+            setActiveTab(activeTab);
+        });
 
-var tabLinks = document.querySelectorAll('.nav-link');
-tabLinks.forEach(function(link) {
-    link.addEventListener('click', function() {
-        setActiveTab(link); 
-    });
-});
-
-
+        var tabLinks = document.querySelectorAll('.nav-link');
+        tabLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                setActiveTab(link);
+            });
+        });
     </script>
 
     <script>
-        if(window.location.hash){
+        if (window.location.hash) {
             let hash = window.location.hash;
             $(hash).tab('show');
         }
@@ -860,30 +906,75 @@ tabLinks.forEach(function(link) {
         }
 
         var faqs = @json($faqs);
-        if(faqs != ''){
-			for(var i=0; i<faqs.length; i++){
-				console.log(faqs[i]['answer'].en);
+        if (faqs != '') {
+            for (var i = 0; i < faqs.length; i++) {
+                console.log(faqs[i]['answer'].en);
 
-				// set About iframe
-			    var iframe = document.getElementById("iframeFaqAns_"+faqs[i]['id']);
-			    var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-			    var dynamicDiv = document.createElement("div");
+                // set About iframe
+                var iframe = document.getElementById("iframeFaqAns_" + faqs[i]['id']);
+                var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                var dynamicDiv = document.createElement("div");
 
-			    dynamicDiv.innerHTML = faqs[i]['answer'].en;
+                dynamicDiv.innerHTML = faqs[i]['answer'].en;
 
-			    iframeDoc.body.appendChild(dynamicDiv);
+                iframeDoc.body.appendChild(dynamicDiv);
 
-			    
-			}
-       	}
 
-       	function toggleFaq(id){
-           	
-       		var iframe = document.getElementById("iframeFaqAns_"+id);
-		    var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-       		var bodyHeight = iframeDoc.body.querySelector("div").scrollHeight + 25;
-		    $("#iframeFaqAns_"+id).css('height', bodyHeight);
-      	}
+            }
+        }
+
+        function toggleFaq(id) {
+
+            var iframe = document.getElementById("iframeFaqAns_" + id);
+            var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            var bodyHeight = iframeDoc.body.querySelector("div").scrollHeight + 25;
+            $("#iframeFaqAns_" + id).css('height', bodyHeight);
+        }
+    </script>
+
+
+    {{-- for slider in navtabs for mobile --}}
+    <script>
+        const tabsBox = document.querySelector(".small_pills");
+        const allTabs = tabsBox.querySelectorAll(".main-items");
+        const arroweventsIcons = document.querySelectorAll(".eventsIcon i");
+
+        arroweventsIcons.forEach(eventsIcon => {
+            eventsIcon.addEventListener("click", () => {
+                if (eventsIcon.id === "left") {
+                    tabsBox.scrollBy({
+                        left: -340,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    tabsBox.scrollBy({
+                        left: 340,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        tabsBox.addEventListener("scroll", () => {
+            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
+            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
+            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ?
+                "none" : "flex";
+        });
+
+        allTabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabsBox.querySelector(".active").classList.remove("active");
+                tab.classList.add("active");
+            });
+        });
+        const handleeventsIcons = () => {
+            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
+            console.log('scrollLeft:', tabsBox.scrollLeft, 'maxScrollableWidth:', maxScrollableWidth);
+            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
+            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" :
+                "flex";
+        }
     </script>
     @include(theme('partials._custom_footer'))
 @endsection

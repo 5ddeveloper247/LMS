@@ -505,20 +505,37 @@
         max-width: unset !important;
     }
 
-    @media (max-width: 768px) {
-        .toggle{
-            font-size: 16px;
-        }
-        .custom_h1 {
-            font-size: calc(2.4rem + 1vmin) !important;
-        }
-
-        .custom_P {
-            font-size: 1.5rem;
-        }
-    }
-
     @media (max-width: 576px) {
+        .small_gap {
+            gap: .2rem;
+        }
+
+        .carrot-orange-clr,
+        .brdr-btm-of-txt {
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .inner-white-point-of-bar {
+            height: 14px !important;
+            width: 14px !important;
+        }
+
+        .dot-point-side-bar-of-process-section {
+            min-width: 24px !important;
+            height: 24px !important;
+        }
+
+        .inner-end-point-of-bar {
+            height: 14px !important;
+            width: 14px !important;
+        }
+
+        .gap-5 {
+            gap: .4rem !important;
+        }
+
         .custom_h1 {
             font-size: calc(1.6rem + 1vmin) !important;
         }
@@ -549,7 +566,7 @@
 
         .app_require {
             position: relative;
-          height:auto !important;
+            height: auto !important;
         }
 
         .small_screen_carousel {
@@ -581,7 +598,46 @@
             display: none;
         }
 
+        .mr_our_process {
+            margin-right: 0px !important;
+        }
+
+        .ml_our_process {
+            margin-left: 0px !important;
+        }
     }
+
+    @media (max-width: 768px) {
+        .brdr-btm-of-txt {
+            font-size: 16px !important;
+        }
+
+        .toggle {
+            font-size: 16px;
+        }
+
+        .custom_h1 {
+            font-size: calc(2.4rem + 1vmin) !important;
+        }
+
+        .custom_P {
+            font-size: 1.5rem;
+        }
+
+        svg {
+            min-width: 20px;
+            min-height: 20px;
+        }
+
+        .ml_our_process {
+            margin-left: 50px;
+        }
+
+        .mr_our_process {
+            margin-right: 50px;
+        }
+    }
+
 
     #loom-companion-mv3 #shadow-host-companion {
         padding: 0 !important;
@@ -702,7 +758,7 @@
                     <img alt="Banner Image" class="w-100 h-100 img-cover"
                         src="{{ asset('public/assets/page-title-apply.jpg') }}">
                 </div>
-                <div class="col-lg-9 offset-1">
+                <div class="col-lg-9 col-10 offset-1">
                     <div class="breadcam_wrap">
                         <h2 class="section_main_heading text-white custom-heading">Apply Your Program and Courses Today</h2>
                         <div class="contact_btn mt-5">
@@ -735,13 +791,13 @@
     </section>
     {{-- slider timeline --}}
     <div class="our-process-section-container bg mt-3">
-        <div class="our-process-section-wrapper px-3 py-lg-5 py-3">
+        <div class="our-process-section-wrapper px-sm-3 px-2 py-lg-5 py-3">
             <div class="w-100 d-flex justify-content-start">
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                     <div class="padding-top-of-first-part ml_our_process">
                         <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2>
                         <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
-                        <div class="d-flex align-items-center gap-3 pb-3">
+                        <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
@@ -767,7 +823,7 @@
                     <div class="d-flex flex-column align-items-start mr_our_process">
                         <h2 class="custom_small_heading carrot-orange-clr">Step 02</h2>
                         <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
-                        <div class="d-flex align-items-center gap-3 pb-3">
+                        <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                 height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
                                 xml:space="preserve">
@@ -845,7 +901,7 @@
                     <div class="d-flex flex-column align-items-end ml_our_process">
                         <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2>
                         <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
-                        <div class="d-flex align-items-center gap-3 pb-3">
+                        <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
@@ -873,7 +929,7 @@
                     <div class="d-flex flex-column padding-btm-last-part mr_our_process">
                         <h2 class="custom_small_heading carrot-orange-clr">Step 04</h2>
                         <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5>
-                        <div class="d-flex align-items-center gap-3 pb-3">
+                        <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                 fill="var(--system_primery_color)" x="0px" y="0px" viewBox="0 0 50 48"
                                 style="enable-background:new 0 0 50 48;" xml:space="preserve">
@@ -1101,7 +1157,8 @@
                         </div>
                     </div>
                     <div class="mb-lg-5 mb-3">
-                        <h2 class="custom_small_heading heading text-center text-lg-left text-sm font-weight-bold">Most Asked Questions
+                        <h2 class="custom_small_heading heading text-center text-lg-left text-sm font-weight-bold">Most
+                            Asked Questions
                         </h2>
                     </div>
                     <div class="wrapper">
@@ -1130,7 +1187,8 @@
     <div class="row my-lg-5 my-4 justify-content-center"style="background-color: #eee;">
         <div class="col-md-7 py-lg-5 px-5 px-lg-0 py-3">
             <div class="custom_fs_a d-flex justify-content-between align-items-center mx-3 mx-lg-0">
-                <h2 class="custom_small_heading text-center font-weight-bold avail-ser">Focused Learning - Goals Realized</h2>
+                <h2 class="custom_small_heading text-center font-weight-bold avail-ser">Focused Learning - Goals Realized
+                </h2>
                 <div class="contact_btn text-center">
                     <a href="{{ route('register') }}"class="theme_btn small_btn2 p-2">Apply Now </a>
                 </div>
