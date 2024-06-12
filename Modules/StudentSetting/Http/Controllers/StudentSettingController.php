@@ -234,6 +234,7 @@ class StudentSettingController extends Controller
             $program->programtitle = $request->ProgramTitle;
             $program->subtitle = $request->subtitle;
             $program->review_id = $request->review;
+            $program->featured = $request->featured ?? 0;
 //            $program->totalcost = $request->totalcost;
 //            $program->duration = $request->duration;
             $program->requirement = str_replace("'", "`", $request->requirements);
@@ -304,6 +305,7 @@ class StudentSettingController extends Controller
             $program->programtitle = $request->ProgramTitle;
             $program->subtitle = $request->subtitle;
             $program->review_id = $request->review;
+            $program->featured = $request->featured ?? 0;
 //            $program->totalcost = $request->totalcost;
 //            $program->duration = $request->duration;
             $program->requirement = str_replace("'", "`", $request->requirements);

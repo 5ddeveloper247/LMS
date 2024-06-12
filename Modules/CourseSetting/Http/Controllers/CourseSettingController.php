@@ -390,6 +390,7 @@ class CourseSettingController extends Controller
             $course->scope = $request->scope;
             $course->title = $request->title;
             $course->course_code = $request->course_code ?? null;
+            $course->featured = $request->featured ?? 0;
             $course->review_id = $request->review;
             //            foreach ($request->title as $key => $title) {
             //                $course->setTranslation('title', $key, $title);
@@ -531,6 +532,7 @@ class CourseSettingController extends Controller
 
             if ($request->type != 9) {
                 $child_course->course_code = null;
+                $child_course->featured = 0;
                 $child_course->type = 4;
                 if ($request->has('cna_prep_type') && $request->cna_prep_type == 1) {
                     $child_course->price = '';
@@ -734,6 +736,7 @@ class CourseSettingController extends Controller
             }
             $course->drip = $request->drip;
             $course->course_code = $request->course_code ?? null;
+            $course->featured = $request->featured ?? 0;
             $course->complete_order = $request->complete_order;
             $course->lang_id = $request->language;
             $course->title = $request->title;
@@ -880,6 +883,8 @@ class CourseSettingController extends Controller
                     $child_course->parent_id = $course->id;
                     $child_course->type = 4;
                     $child_course->price = null;
+                    $child_course->course_code = null;
+                    $child_course->featured = 0;
 
                     if ($request->has('cna_prep_type') && $request->cna_prep_type == 1) {
 
@@ -926,6 +931,8 @@ class CourseSettingController extends Controller
 
                     $child_course->parent_id = $course->id;
                     $child_course->type = 5;
+                    $child_course->course_code = null;
+                    $child_course->featured = 0;
 
                     if ($request->has('test_prep_type') && $request->test_prep_type == 1) {
 
@@ -977,7 +984,8 @@ class CourseSettingController extends Controller
                     $child_course->parent_id = $course->id;
                     $child_course->type = 6;
                     $child_course->price = null;
-
+                    $child_course->course_code = null;
+                    $child_course->featured = 0;
                     if ($request->has('test_prep_graded_type') && $request->test_prep_graded_type == 1) {
                         if ($request->file('live_course_main_image') != "") {
                             $child_course->thumbnail = $this->saveCroppedImage($request->live_course_thumbnail_image);

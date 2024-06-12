@@ -261,8 +261,8 @@ class MeetingController extends Controller
             $tokenData = $teamauthobj->refreshAccessToken();
             // $tokenData = $this->refreshAccessToken();
             if(array_key_exists("error",$tokenData)){
-                
-                Toastr::error('Error creating Teams meeting link. The API credentials may have expired.');
+                $msg = (Auth::user()->role_id == 1) ? 'Teams API credentials have expired. Either Generate Token from API Settings or check the Client ID and Secret.' : 'Error creating Teams meeting link. The API credentials may have expired.';
+                Toastr::error($msg);
                 return redirect()->back();
             }else{
                 $access_token = $tokenData['access_token'];
@@ -556,58 +556,7 @@ class MeetingController extends Controller
         try {
             $system_meeting = TeamMeeting::findOrFail($id);
             $teamMeeting = $system_meeting->first();
-            //            if ($this->isTimeAvailableForMeeting($request, $id = $id)) {
-            //                Toastr::error('Virtual class time is not available !', 'Failed');
-            //                return redirect()->back();
-            //            }
-
-            //$users = Team::user()->where('status', 'active')->setPaginate(false)->setPerPage(300)->get()->toArray();
-           // $profile = $users['data'][0];
             $start_date = Carbon::parse($request['date'])->format('Y-m-d') . ' ' . date("H:i:s", strtotime($request['time']));
-
-            // if ($meeting) {
-            //     $meeting->make([
-            //         "topic" => $request['topic'],
-            //         "type" => $request['is_recurring'] == 1 ? 8 : 2,
-            //         "duration" => $system_meeting->meeting_duration,
-            //         "timezone" => Settings('active_time_zone'),
-            //         "start_time" => new Carbon($start_date),
-            //         "password" => null,
-            //     ]);
-            // } else {
-            //     $meeting = Team::meeting()->make([
-            //         "topic" => $request['topic'],
-            //         "type" => $request['is_recurring'] == 1 ? 8 : 2,
-            //         "duration" => $system_meeting->meeting_duration,
-            //         "timezone" => Settings('active_time_zone'),
-            //         "password" => $request['password'],
-            //         "start_time" => new Carbon($start_date),
-            //     ]);
-            // }
-            //$meeting = Team::meeting()->find($system_meeting->meeting_id);
-
-
-            // $meeting->settings()->make([
-            //     'join_before_host' => $this->setTrueFalseStatus($request['join_before_host']),
-            //     'host_video' => $this->setTrueFalseStatus($request['host_video']),
-            //     'participant_video' => $this->setTrueFalseStatus($request['participant_video']),
-            //     'mute_upon_entry' => $this->setTrueFalseStatus($request['mute_upon_entry']),
-            //     'waiting_room' => $this->setTrueFalseStatus($request['waiting_room']),
-            //     'audio' => $request['audio'],
-            //     'auto_recording' => $request->has('auto_recording') ? $request['auto_recording'] : 'none',
-            //     'approval_type' => $request['approval_type'],
-            // ]);
-
-            // if ($request['is_recurring'] == 1) {
-            //     $end_date = Carbon::parse($request['recurring_end_date'])->endOfDay();
-            //     $meeting->recurrence()->make([
-            //         'type' => $request['recurring_type'],
-            //         'repeat_interval' => $request['recurring_repect_day'],
-            //         'end_date_time' => $end_date
-            //     ]);
-            // }
-
-            //Team::user()->find($profile['id'])->meetings()->save($meeting);
 
             DB::beginTransaction();
 

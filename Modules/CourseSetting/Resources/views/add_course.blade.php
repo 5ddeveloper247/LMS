@@ -480,6 +480,23 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-xl-6 {{ $d_none }}">
+                            <label>Featured</label>
+                            <div class="d-flex py-3">
+                                <label class="primary_checkbox d-flex nowrap mr-5" for="featuredYes">
+                                <input type="radio" id="featuredYes"
+                                    name="featured"
+                                    value="1">
+                                <span class="checkmark mr-2"></span>
+                                {{ __('Yes') }}</label>
+                                <label class="primary_checkbox d-flex nowrap mr-5" for="featuredNo">
+                                <input type="radio" id="featuredNo"
+                                    name="featured"
+                                    value="0">
+                                <span class="checkmark mr-2"></span>
+                                {{ __('No') }}</label>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -1619,7 +1636,7 @@
 @push('scripts')
     <script src="{{ asset('/') }}/Modules/CourseSetting/Resources/assets/js/course.js"></script>
 
-
+    
 
     <script>
         let vdocipherList = $('.vdocipherList');

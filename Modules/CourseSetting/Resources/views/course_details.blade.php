@@ -667,7 +667,25 @@
                                                         </div>
                                                     </div> --}}
                                                     {{-- @dd('working') --}}
-                                                    <div
+                                                    {{-- <div
+                                                        class="col-xl-3 {{ isset($cna_prep_price->featured) ? '' : 'd-none' }} cna_prep_type">
+                                                        <label>Featured</label>
+                                                        <label class="primary_checkbox d-flex nowrap mr-12" for="featuredYes">
+                                                        <input type="radio" id="featuredYes"
+                                                            name="featured"
+                                                            value="1"
+                                                            {{ @$cna_prep_price->featured == 1 ? 'checked' : '' }}>
+                                                        <span class="checkmark mr-2"></span>
+                                                        {{ __('Yes') }}</label>
+                                                        <label class="primary_checkbox d-flex nowrap mr-12" for="featuredNo">
+                                                        <input type="radio" id="featuredNo"
+                                                            name="featured"
+                                                            value="0"
+                                                            {{ @$cna_prep_price->featured == 0 ? 'checked' : '' }}>
+                                                        <span class="checkmark mr-2"></span>
+                                                        {{ __('No') }}</label>
+                                                    </div> --}}
+                                                        <div
                                                         class="col-xl-10 {{ isset($cna_prep_price->thumbnail) ? '' : 'd-none' }} full_course_image cna_prep_type">
                                                         <div class="primary_input">
                                                             <label class="primary_input_label"
@@ -1002,6 +1020,26 @@
                                                                         {{ @$instructor->name }} </option>
                                                                 @endforeach
                                                             </select>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col-xl-6">
+                                                        <label>Featured</label>
+                                                        <div class="d-flex py-3">
+                                                            <label class="primary_checkbox d-flex nowrap mr-5" for="featuredYes">
+                                                            <input type="radio" id="featuredYes"
+                                                                name="featured"
+                                                                value="1"
+                                                                {{ @$course->featured == 1 ? 'checked' : '' }}>
+                                                            <span class="checkmark mr-2"></span>
+                                                            {{ __('Yes') }}</label>
+                                                            <label class="primary_checkbox d-flex nowrap mr-5" for="featuredNo">
+                                                            <input type="radio" id="featuredNo"
+                                                                name="featured"
+                                                                value="0"
+                                                                {{ @$course->featured == 0 ? 'checked' : '' }}>
+                                                            <span class="checkmark mr-2"></span>
+                                                            {{ __('No') }}</label>
                                                         </div>
                                                     </div>
                                                 </div>

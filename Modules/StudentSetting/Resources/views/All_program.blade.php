@@ -107,6 +107,23 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-xl-6">
+                                        <label>Featured</label>
+                                        <div class="d-flex py-3">
+                                            <label class="primary_checkbox d-flex nowrap mr-5" for="featuredYes">
+                                            <input type="radio" id="featuredYes"
+                                                name="featured"
+                                                value="1">
+                                            <span class="checkmark mr-2"></span>
+                                            {{ __('Yes') }}</label>
+                                            <label class="primary_checkbox d-flex nowrap mr-5" for="featuredNo">
+                                            <input type="radio" id="featuredNo"
+                                                name="featured"
+                                                value="0">
+                                            <span class="checkmark mr-2"></span>
+                                            {{ __('No') }}</label>
+                                        </div>
+                                     </div>
                                 </div>
 
                                 <div class="row mt-30 d-none mb-40">
@@ -351,31 +368,36 @@
             	fontNames: customFontFam,
                 fontNamesIgnoreCheck: ['Cavolini','Jost'],
                 fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
-        //         callbacks: {
-        //     onPaste: function (e) {
-        //         if (document.queryCommandSupported("insertText")) {
-        //             var text = $(e.currentTarget).html();
-        //             var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-        //
-        //             setTimeout(function () {
-        //                 document.execCommand('insertText', false, bufferText);
-        //             }, 10);
-        //             e.preventDefault();
-        //         } else { //IE
-        //             var text = window.clipboardData.getData("text")
-        //             if (trap) {
-        //                 trap = false;
-        //             } else {
-        //                 trap = true;
-        //                 setTimeout(function () {
-        //                     document.execCommand('paste', false, text);
-        //                 }, 10);
-        //                 e.preventDefault();
-        //             }
-        //         }
-        //
-        //     }
-        // },
+                callbacks: {
+                    onPaste: function (e) {
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                        e.preventDefault();
+                        document.execCommand('insertText', false, bufferText);
+                    }
+            // onPaste: function (e) {
+            //     if (document.queryCommandSupported("insertText")) {
+            //         var text = $(e.currentTarget).html();
+            //         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+        
+            //         setTimeout(function () {
+            //             document.execCommand('insertText', false, bufferText);
+            //         }, 10);
+            //         e.preventDefault();
+            //     } else { //IE
+            //         var text = window.clipboardData.getData("text")
+            //         if (trap) {
+            //             trap = false;
+            //         } else {
+            //             trap = true;
+            //             setTimeout(function () {
+            //                 document.execCommand('paste', false, text);
+            //             }, 10);
+            //             e.preventDefault();
+            //         }
+            //     }
+        
+            // }
+        },
                 codeviewFilter: true,
                 codeviewIframeFilter: true,
                 toolbar: [
