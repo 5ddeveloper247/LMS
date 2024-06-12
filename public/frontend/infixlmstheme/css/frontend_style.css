@@ -2620,9 +2620,11 @@ input[type="number"] {
     display: inline-block;
     transition: 0.3s;
 }
-.cart_store{
+
+.cart_store {
     padding-top: 5px;
 }
+
 .course_area .single_course .course_content .rating_cart .cart_store:hover {
     border-color: var(--system_primery_color);
     color: var(--system_primery_color);
@@ -3833,16 +3835,6 @@ input[type="number"] {
     }
 }
 
-/* .about_gallery_area {
-    padding:0px 70px;
-} */
-
-@media (max-width: 767.98px) {
-    /* .about_gallery_area {
-        padding-bottom: 30px;
-    } */
-}
-
 .about_gallery_area .about_gallery {
     display: grid;
     grid-template-columns: 330px 360px;
@@ -3859,17 +3851,10 @@ input[type="number"] {
     }
 }
 
-
-@media (max-width: 767.98px) {
-    .about_gallery_area .about_gallery {
-        grid-template-columns: auto;
-    }
-}
-
 @media (min-width: 768px) and (max-width: 991.98px) {
     .about_gallery_area .about_gallery {
         grid-template-columns: repeat(2, 1fr);
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 }
 
@@ -3896,33 +3881,8 @@ input[type="number"] {
     }
 }
 
-/* .about_gallery_area .section__title h3 {
-    margin-bottom: 40px;
-} */
-
-/* .about_gallery_area .section__title p {
-    font-size: 16px;
-    line-height: 26px;
-    font-family: Jost, sans-serif;
-    color: var(--system_secendory_color);
-    font-weight: 400;
-} */
-
 .counter_area {
-    /* padding: 45px 80px 0px; */
     position: relative;
-}
-
-@media (max-width: 767.98px) {
-    .counter_area {
-        padding: 36px 0 72px;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .counter_area {
-        padding: 25px 0 144px;
-    }
 }
 
 /* .counter_area:before {
@@ -3966,12 +3926,12 @@ input[type="number"] {
 @media (max-width: 767.98px) {
     .counter_area .counter_wrapper .single_counter {
         padding-left: 0 !important;
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: flex-start;
     }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
     .counter_area .counter_wrapper .single_counter h3 {
         font-size: 2rem !important;
         min-width: 100px !important;
@@ -7458,7 +7418,7 @@ input[type="number"] {
 
 .sidebar .logo {
     background-color: var(--system_primery_color);
-    padding: 15px 50px;
+    padding: 5px 50px;
 }
 
 @media (max-width: 991.98px) {
@@ -7745,6 +7705,11 @@ input[type="number"] {
 }
 
 @media (max-width: 575.98px) {
+    .about_gallery_area .about_gallery {
+        grid-template-columns: auto auto !important;
+        grid-gap: 20px !important;
+    }
+
     .category_search {
         top: 28px;
         position: absolute;
@@ -7850,391 +7815,6 @@ input[type="number"] {
     }
 }
 
-@media only screen and (max-width: 767px) {
-    .custom-heading {
-        font-size: 20px !important;
-    }
-   .section_main_heading{
-    font-size: 20px !important;
-   }
-    .custom_small_heading {
-        font-size: 18px !important;
-    }
-
-    p {
-        font-size: 15px;
-    }
-
-    .cta_area {
-        height: auto !important;
-    }
-
-    .quiz_wizged .thumb .live_tag,
-    .quiz_wizged .thumb .quiz_tag {
-        font-size: 12px;
-    }
-
-    .theme_btn {
-        font-size: 13px;
-        white-space: nowrap;
-    }
-
-    .section__title3 h3 {
-        font-size: 26px;
-    }
-
-    .couse_wizged .course_content .course_less_students a {
-        font-size: 12px;
-    }
-
-    .dashboard_notification_list a {
-        padding: 15px 10px !important;
-    }
-
-    .dashboard_notification_list a .content {
-        font-size: 12px !important;
-    }
-
-    .dashboard_notification_list a .content span:last-child {
-        padding-left: 1px !important;
-    }
-
-    .reward-blance-content .d-flex {
-        flex-wrap: wrap;
-    }
-
-    .reward-blance-content h3 {
-        font-size: 31px;
-        line-height: 1.3;
-    }
-
-    .reward-blance-content h3 {
-        font-size: 24px;
-    }
-
-    .reward-blance-content {
-        padding-left: 0;
-        max-width: 100% !important;
-        text-align: center;
-    }
-
-    .reward-blance-img {
-        margin: auto auto 20px;
-    }
-
-    .reward-blance {
-        --img-width: 170px;
-    }
-
-    .reward-card.leader {
-        padding: 20px;
-    }
-
-    .reward-card-points .content h4 {
-        font-size: 24px !important;
-    }
-
-    .reward-card-points .content {
-        padding-left: 0;
-        text-align: center;
-    }
-
-    .reward-card-points .img {
-        display: none;
-    }
-
-    .reward-card-points {
-        --icon: 0;
-    }
-
-    .reward .col-md-6.col-xl-4.col-xxl-3 {
-        width: 50%;
-    }
-
-    .sidebar-user h4 {
-        font-size: 18px;
-    }
-
-    .header_iner {
-        padding: 18px 20px;
-    }
-
-    .header_iner .notification_wrapper ul li:not(:last-child) {
-        margin-right: 20px;
-    }
-
-    .reward-blance-content .d-flex>div {
-        text-align: center !important;
-    }
-
-    .reward-blance-content .d-flex>div:first-child {
-        max-width: 100%;
-        flex: 0 0 100%;
-        margin-bottom: 14px;
-    }
-
-    .reward-blance-content .d-flex>div:last-child {
-        max-width: 100%;
-        flex: 0 0 100%;
-    }
-
-    .reward-blance-content h4 {
-        font-size: 34px;
-    }
-
-    .reward-blance-content .theme_btn {
-        padding: 10px 20px;
-        font-size: 14px;
-        min-width: -webkit-max-content;
-        min-width: -moz-max-content;
-        min-width: max-content;
-    }
-
-    .header_iner .notification_wrapper ul {
-        padding: 13px 15px;
-    }
-
-    .dashboard_notification_list a .content .dot {
-        --dot-width: 5px !important;
-    }
-
-    .reward-badge h4 {
-        font-size: 18px;
-    }
-
-    .reward-table table {
-        width: 600px !important;
-    }
-
-    .dashboard_main_wrapper .main_content_iner.main_content_padding {
-        padding: 25px 20px 50px;
-    }
-
-    #invoice_print {
-        padding: 40px;
-        overflow: auto;
-    }
-
-    .account_profile_wrapper .privacy_permission {
-        margin-bottom: 36px;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 30px;
-    }
-
-    #back-top {
-        bottom: 28px !important;
-    }
-
-    #back-top {
-        bottom: 10px;
-    }
-
-
-    .breadcrumb_area2 .breadcam_wrap h3 {
-        font-size: 35px;
-        line-height: 51px;
-    }
-
-    .breadcrumb_area2 {
-        height: 400px !important;
-        padding-top: 0;
-        display: flex;
-        align-items: center;
-    }
-
-    .account_main_content {
-        padding: 75px 0;
-    }
-
-    .account_profile_wrapper .account_profile_thumb .thumb {
-        width: 200px;
-        height: 200px;
-    }
-
-    .social_btns {
-        display: flex;
-        flex-wrap: wrap;
-        /* gap: 8px; */
-    }
-
-    .dashboard_card .card {
-        width: calc(50% - 10px);
-        min-width: -webkit-max-content;
-        min-width: -moz-max-content;
-        min-width: max-content;
-        padding: 20px 0;
-    }
-
-    #historyDiv {
-        overflow: hidden;
-        overflow-x: auto;
-    }
-
-    #historyDiv table {
-        width: 600px;
-    }
-
-    .header__left form {
-        display: none;
-    }
-
-    .popupClose {
-        --pc-size: 30px;
-        font-size: 16px;
-    }
-
-    .module_single_area .module_wrap {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .modules_area .modile_main_wrap {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .modules_area {
-        padding-bottom: 40px;
-    }
-
-    .instructor_process .single_instructor_icon {
-        height: 70px;
-        width: 70px;
-        line-height: 70px;
-    }
-
-    .quiz_score_wrapper .quiz_test_body .retake_info {
-        padding-left: 0;
-    }
-
-    .course_review_wrapper .course_feedback .feedbark_progressbar .single_progrssbar .progress {
-        margin-right: 15px;
-    }
-
-    .course_review_wrapper .course_feedback .course_feedback_left .feedmak_stars i {
-        font-size: 12px !important;
-    }
-
-    .reward-table table tr td,
-    .reward-table table tr th {
-        font-size: 14px;
-        padding: 16px 22px;
-        font-weight: 500;
-    }
-
-    footer {
-        overflow: hidden;
-    }
-
-    .dashboard_badge_item .img {
-        --icon: 70px;
-    }
-
-    .reward-table table tr td p,
-    .reward-table table tr th p {
-        font-size: 16px;
-        font-weight: 500;
-    }
-
-    .reward-leader h4 {
-        font-size: 18px;
-    }
-
-    .profile_info_icon {
-        padding: 14px 16px;
-    }
-
-    .reward-modal .modal-dialog {
-        max-width: calc(100% - 30px);
-    }
-
-    .dashboard_badge_carousel .owl-item.center .img {
-        --icon: 100px;
-    }
-
-    .header_iner .notification_wrapper ul li .notification_area:after {
-        right: auto;
-        left: 90px;
-    }
-
-    .reward-modal .modal-body p {
-        font-size: 24px;
-    }
-
-    .dashboard_main_wrapper .main_content_iner .dashboard_banner .banner_info {
-        padding-right: 0;
-    }
-
-    .dashboard_main_wrapper .main_content_iner .dashboard_banner .banner_info .title {
-        font-size: 18px;
-    }
-
-    /* .dashboard_part .col-sm-6 {
-    width: 50%;
-} */
-    .header_iner .notification_wrapper ul li:not(:last-child) {
-        margin: 6px;
-    }
-
-    .theme_btn.point_btn {
-        padding: 8px;
-    }
-
-    .header_iner .notification_wrapper ul li a .notify_icon img {
-        max-width: 26px;
-        width: 26px;
-    }
-
-    /* .dashboard_part .col-sm-6:nth-child(2n + 2) {
-    padding-left: 0;
-} */
-    .reward-modal .modal-body h4 {
-        font-size: 24px;
-    }
-
-    .dashboard_title h3 {
-        font-size: 22px !important;
-    }
-
-    .dashboard_title p {
-        font-size: 18px;
-    }
-
-    .dashboard_card {
-        margin-bottom: 24px;
-    }
-
-    .dashboard_card .head h4 {
-        font-size: 18px;
-    }
-
-    .dashboard_card .head a {
-        font-size: 16px !important;
-    }
-
-    .dashboard_card>span {
-        font-size: 16px;
-    }
-
-    .dashboard_card h4 {
-        font-size: 24px;
-        font-size: 20px;
-    }
-
-    .dashboard_badge_carousel {
-        min-height: 227px;
-    }
-
-    .dashboard_badge_carousel .owl-nav div {
-        width: 40px;
-        height: 40px;
-        font-size: 26px;
-    }
-
-    .prise_tag {
-        font-size: 10px !important;
-        min-height: 45px !important;
-        min-width: 45px !important;
-    }
-}
 .header_iner .notification_wrapper ul li .notification_area .notification_body .single_nofy {
     display: flex;
     align-items: center;
@@ -9585,20 +9165,17 @@ input[type="number"] {
     .profile_info span {
         font-size: 12px;
     }
-
-    /* .section__title h3.large_title {
-    font-size: 50px;
-    line-height: 65px;
-} */
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .section_main_heading{
+    .section_main_heading {
         font-size: 30px !important;
-       }
-       .custom_small_heading{
+    }
+
+    .custom_small_heading {
         font-size: 1.5rem !important;
-       }
+    }
+
     .prise_tag {
         font-size: 10px !important;
         min-height: 50px !important;
@@ -16165,7 +15742,7 @@ body {
 .sidebar .logo>a {
     display: block;
     width: auto;
-    height: 70px;
+    height: 70px !important;
     margin: auto;
 }
 
@@ -16532,10 +16109,6 @@ body {
 
 .dashboard_part .theme_search_field {
     height: 56px;
-}
-
-.sidebar .logo>a {
-    height: 50px;
 }
 
 .header_iner .notification_wrapper ul li a .notify_icon img {
@@ -16966,6 +16539,58 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    .main-items {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    .small_pills {
+        overscroll-behavior: inherit;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        overflow-x: scroll;
+        flex-wrap: nowrap !important;
+        gap: 10px;
+    }
+
+    .counter-image {
+        clip-path: none !important;
+    }
+
+    .counter_area .counter_wrapper .single_counter h3 {
+        min-width: 100px !important;
+    }
+
+    .counter_area .counter_wrapper .single_counter:first-child {
+        margin: 30px 0px 15px 0px !important;
+    }
+
+    .counter_area .counter_wrapper .single_counter:nth-child(2) {
+        margin: 0 0px 15px 0px !important;
+    }
+
+    .counter_area .counter_wrapper .single_counter:nth-child(3) {
+        margin: 0 0px 15px 0px !important;
+    }
+
+    .counter_area .counter_wrapper .single_counter:nth-child(4) {
+        margin: 0px 0px 30px 0px !important;
+    }
+
+    .counter_video {
+        height: 350px;
+    }
+
+    .image_thumb {
+        height: 200px;
+    }
+
+    .image_thumb img {
+        height: 100%;
+    }
+
     .containerdoosme {
         padding-top: 130px !important;
     }
@@ -17025,9 +16650,409 @@ body {
     .icons i {
         font-size: 20px !important;
     }
+
+    .about_gallery_area .about_gallery {
+        grid-template-columns: 130px 130px;
+        grid-gap: 20px;
+    }
+
+    .custom-heading {
+        font-size: 20px !important;
+    }
+
+    .section_main_heading {
+        font-size: 20px !important;
+    }
+
+    .custom_small_heading {
+        font-size: 18px !important;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .cta_area {
+        height: auto !important;
+    }
+
+    .quiz_wizged .thumb .live_tag,
+    .quiz_wizged .thumb .quiz_tag {
+        font-size: 12px;
+    }
+
+    .theme_btn {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .section__title3 h3 {
+        font-size: 26px;
+    }
+
+    .couse_wizged .course_content .course_less_students a {
+        font-size: 12px;
+    }
+
+    .dashboard_notification_list a {
+        padding: 15px 10px !important;
+    }
+
+    .dashboard_notification_list a .content {
+        font-size: 12px !important;
+    }
+
+    .dashboard_notification_list a .content span:last-child {
+        padding-left: 1px !important;
+    }
+
+    .reward-blance-content .d-flex {
+        flex-wrap: wrap;
+    }
+
+    .reward-blance-content h3 {
+        font-size: 31px;
+        line-height: 1.3;
+    }
+
+    .reward-blance-content h3 {
+        font-size: 24px;
+    }
+
+    .reward-blance-content {
+        padding-left: 0;
+        max-width: 100% !important;
+        text-align: center;
+    }
+
+    .reward-blance-img {
+        margin: auto auto 20px;
+    }
+
+    .reward-blance {
+        --img-width: 170px;
+    }
+
+    .reward-card.leader {
+        padding: 20px;
+    }
+
+    .reward-card-points .content h4 {
+        font-size: 24px !important;
+    }
+
+    .reward-card-points .content {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .reward-card-points .img {
+        display: none;
+    }
+
+    .reward-card-points {
+        --icon: 0;
+    }
+
+    .reward .col-md-6.col-xl-4.col-xxl-3 {
+        width: 50%;
+    }
+
+    .sidebar-user h4 {
+        font-size: 18px;
+    }
+
+    .header_iner {
+        padding: 18px 20px;
+    }
+
+    .header_iner .notification_wrapper ul li:not(:last-child) {
+        margin-right: 20px;
+    }
+
+    .reward-blance-content .d-flex>div {
+        text-align: center !important;
+    }
+
+    .reward-blance-content .d-flex>div:first-child {
+        max-width: 100%;
+        flex: 0 0 100%;
+        margin-bottom: 14px;
+    }
+
+    .reward-blance-content .d-flex>div:last-child {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .reward-blance-content h4 {
+        font-size: 34px;
+    }
+
+    .reward-blance-content .theme_btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        min-width: -webkit-max-content;
+        min-width: -moz-max-content;
+        min-width: max-content;
+    }
+
+    .header_iner .notification_wrapper ul {
+        padding: 13px 15px;
+    }
+
+    .dashboard_notification_list a .content .dot {
+        --dot-width: 5px !important;
+    }
+
+    .reward-badge h4 {
+        font-size: 18px;
+    }
+
+    .reward-table table {
+        width: 600px !important;
+    }
+
+    .dashboard_main_wrapper .main_content_iner.main_content_padding {
+        padding: 25px 20px 50px;
+    }
+
+    #invoice_print {
+        padding: 40px;
+        overflow: auto;
+    }
+
+    .account_profile_wrapper .privacy_permission {
+        margin-bottom: 36px;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+    }
+
+    #back-top {
+        bottom: 28px !important;
+    }
+
+    #back-top {
+        bottom: 10px;
+    }
+
+
+    .breadcrumb_area2 .breadcam_wrap h3 {
+        font-size: 35px;
+        line-height: 51px;
+    }
+
+    .breadcrumb_area2 {
+        height: 400px !important;
+        padding-top: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .account_main_content {
+        padding: 75px 0;
+    }
+
+    .account_profile_wrapper .account_profile_thumb .thumb {
+        width: 200px;
+        height: 200px;
+    }
+
+    .social_btns {
+        display: flex;
+        flex-wrap: wrap;
+        /* gap: 8px; */
+    }
+
+    .dashboard_card .card {
+        width: calc(50% - 10px);
+        min-width: -webkit-max-content;
+        min-width: -moz-max-content;
+        min-width: max-content;
+        padding: 20px 0;
+    }
+
+    #historyDiv {
+        overflow: hidden;
+        overflow-x: auto;
+    }
+
+    #historyDiv table {
+        width: 600px;
+    }
+
+    .header__left form {
+        display: none;
+    }
+
+    .popupClose {
+        --pc-size: 30px;
+        font-size: 16px;
+    }
+
+    .module_single_area .module_wrap {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .modules_area .modile_main_wrap {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .modules_area {
+        padding-bottom: 40px;
+    }
+
+    .instructor_process .single_instructor_icon {
+        height: 70px;
+        width: 70px;
+        line-height: 70px;
+    }
+
+    .quiz_score_wrapper .quiz_test_body .retake_info {
+        padding-left: 0;
+    }
+
+    .course_review_wrapper .course_feedback .feedbark_progressbar .single_progrssbar .progress {
+        margin-right: 15px;
+    }
+
+    .course_review_wrapper .course_feedback .course_feedback_left .feedmak_stars i {
+        font-size: 12px !important;
+    }
+
+    .reward-table table tr td,
+    .reward-table table tr th {
+        font-size: 14px;
+        padding: 16px 22px;
+        font-weight: 500;
+    }
+
+    footer {
+        overflow: hidden;
+    }
+
+    .dashboard_badge_item .img {
+        --icon: 70px;
+    }
+
+    .reward-table table tr td p,
+    .reward-table table tr th p {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .reward-leader h4 {
+        font-size: 18px;
+    }
+
+    .profile_info_icon {
+        padding: 14px 16px;
+    }
+
+    .reward-modal .modal-dialog {
+        max-width: calc(100% - 30px);
+    }
+
+    .dashboard_badge_carousel .owl-item.center .img {
+        --icon: 100px;
+    }
+
+    .header_iner .notification_wrapper ul li .notification_area:after {
+        right: auto;
+        left: 90px;
+    }
+
+    .reward-modal .modal-body p {
+        font-size: 24px;
+    }
+
+    .dashboard_main_wrapper .main_content_iner .dashboard_banner .banner_info {
+        padding-right: 0;
+    }
+
+    .dashboard_main_wrapper .main_content_iner .dashboard_banner .banner_info .title {
+        font-size: 18px;
+    }
+
+    /* .dashboard_part .col-sm-6 {
+    width: 50%;
+} */
+    .header_iner .notification_wrapper ul li:not(:last-child) {
+        margin: 6px;
+    }
+
+    .theme_btn.point_btn {
+        padding: 8px;
+    }
+
+    .header_iner .notification_wrapper ul li a .notify_icon img {
+        max-width: 26px;
+        width: 26px;
+    }
+
+    /* .dashboard_part .col-sm-6:nth-child(2n + 2) {
+    padding-left: 0;
+} */
+    .reward-modal .modal-body h4 {
+        font-size: 24px;
+    }
+
+    .dashboard_title h3 {
+        font-size: 22px !important;
+    }
+
+    .dashboard_title p {
+        font-size: 18px;
+    }
+
+    .dashboard_card {
+        margin-bottom: 24px;
+    }
+
+    .dashboard_card .head h4 {
+        font-size: 18px;
+    }
+
+    .dashboard_card .head a {
+        font-size: 16px !important;
+    }
+
+    .dashboard_card>span {
+        font-size: 16px;
+    }
+
+    .dashboard_card h4 {
+        font-size: 24px;
+        font-size: 20px;
+    }
+
+    .dashboard_badge_carousel {
+        min-height: 227px;
+    }
+
+    .dashboard_badge_carousel .owl-nav div {
+        width: 40px;
+        height: 40px;
+        font-size: 26px;
+    }
+
+    .prise_tag {
+        font-size: 10px !important;
+        min-height: 45px !important;
+        min-width: 45px !important;
+    }
+
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+    .counter_area .counter_wrapper .single_counter:first-child {
+        margin: 30px -55px 15px 145px !important;
+    }
+
+    .counter_area .counter_wrapper .single_counter:nth-child(2) {
+        margin: 0 -54px 15px 100px !important;
+    }
+
     .containerdoosme {
         padding-top: 140px !important;
     }

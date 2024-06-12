@@ -100,6 +100,11 @@
             bottom: 4% !important;
             left: 34% !important;
         }
+        .student_container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     @media only screen and (max-width: 767px) {
@@ -154,7 +159,6 @@
     @media only screen and (min-width: 1800px) {
         .card-container {
             position: relative;
-            /* height: 80vh; */
         }
 
         .about-pagination {
@@ -172,11 +176,11 @@
 
 <section class="card-container my-3">
 
-    <div class="container pb-4 pb-lg-0">
+    <div class="container student_container pb-4 pb-lg-0 ">
 
         <div class="row justify-content-center align-items-center flex-column mx-md-5 mx-3 mt-5 mb-3">
             <div class="text-center">
-                <h2 class="custom_heading_1 font-weight-bold">
+                <h2 class="custom_small_heading custom_heading_1 font-weight-bold">
                     Real Student Voices and Success Stories
                 </h2>
                 <p class="custom_paragraph font-weight-bold">
@@ -198,7 +202,7 @@
 
         <div class="slick-slider" id="student-work-slider">
 
-            <div class="slide">
+            <div class="slide d-flex">
 
                 <div class="row px-lg-5 px-2 justify-content-center elem pb-5">
 
@@ -229,7 +233,7 @@
 
 
 
-            <div class="slide">
+            <div class="slide d-flex">
 
                 <div class="row px-lg-5 px-2 justify-content-center elem">
 
@@ -256,7 +260,7 @@
 
             </div>
 
-            <div class="slide">
+            <div class="slide d-flex">
 
                 <div class="row px-lg-5 px-2 justify-content-center elem">
 

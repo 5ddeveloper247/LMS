@@ -358,12 +358,9 @@
     }
 
     .eventsIcon i {
-        /* width: 30px;
-            height: 30px; */
         cursor: pointer;
         font-size: 14px;
         text-align: center;
-        /* line-height: 30px; */
         border-radius: 10%;
         background: #efedfb;
         padding: 10
@@ -376,8 +373,6 @@
     .eventsIcon:last-child i {
         margin-right: 0px;
     }
-
-    /*  */
     .news-events-tabs-section {
         padding-left: 75px;
     }
@@ -1742,7 +1737,6 @@
         }
 
         .cta_service_info h2,
-        .custom_heading_1,
         .section-header,
         .text-video-overlay h2,
         .custom_small_heading,
@@ -2939,7 +2933,7 @@
                     <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
                         Licensure.</p>
                 </div>
-                <div class="row d-flex align-items-stretch pb-5 px-xl-5 animate">
+                <div class="row d-flex align-items-stretch pb-4 px-xl-5 animate">
                     <div class="col-md-6 mb-2 px-md-0">
                         <div class="custom-slider-container">
                             <button class="prev">❮</button>
@@ -3106,7 +3100,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-12 mt-5 text-center">
+                    <div class="col-md-12 mt-4 text-center">
                         <a href="{{ route('programs') }}" class="small_btn5 theme_btn py-2 px-4">View all Programs </a>
 
                     </div>
@@ -6614,7 +6608,6 @@
 
         arroweventsIcons.forEach(eventsIcon => {
             eventsIcon.addEventListener("click", () => {
-                // if clicked eventsIcon is left, scroll left else scroll right
                 if (eventsIcon.id === "left") {
                     tabsBox.scrollBy({
                         left: -340,
