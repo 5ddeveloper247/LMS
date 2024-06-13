@@ -1,8 +1,8 @@
 <div>
     @php
-     $banner = ($slider_info && $slider_info->image!='') ? $slider->image : $banner;
-     $title = ($slider_info && $slider_info->title!='') ? $slider->title : $title;
-     $sub_title = ($slider_info && $slider_info->sub_title!='') ? $slider->sub_title : $sub_title;
+     $banner = ($slider_info && $slider_info->image!='') ? $slider_info->image : $banner;
+     $title = ($slider_info && $slider_info->title!='') ? $slider_info->title : $title;
+     $sub_title = ($slider_info && $slider_info->sub_title!='') ? $slider_info->sub_title : $sub_title;
     @endphp
     <div class="breadcrumb_area bradcam_bg_2" @if($banner != null) style="background-image: url('{{ asset(@$banner) }}')" @endif>
 

@@ -3,6 +3,7 @@
 <script src="{{ asset('public/backend/js/jquery-ui.js') }}"></script>
 <script src="{{ asset('public/backend/js/cropper.js') }}"></script>
 <script src="{{ asset('public/backend/js/image_editor.js') }}"></script>
+<script src="{{ asset('public/backend/js/ckeditor.js') }}"></script>
 
 <script>
     if ($('#main-nav-for-chat').length) {} else {

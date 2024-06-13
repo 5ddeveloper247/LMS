@@ -1237,37 +1237,40 @@
                 'Garamond', 'Georgia', 'monospace', 'fantasy', 'Papyrus', 'Poppins'
             ];
             // Summer Note
-            $('.custom_summernote').summernote({
-                pastePlain: true,
-                fontNames: customFontFam,
-                fontNamesIgnoreCheck: ['Cavolini', 'Jost'],
-                fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
-                codeviewFilter: true,
-                codeviewIframeFilter: true,
-                toolbar: [
-                   // ['style', ['style']],
+
+            CKEDITOR.replaceAll("custom_summernote");
+
+            // $('.custom_summernote').summernote({
+            //     pastePlain: true,
+            //     fontNames: customFontFam,
+            //     fontNamesIgnoreCheck: ['Cavolini', 'Jost'],
+            //     fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
+            //     codeviewFilter: true,
+            //     codeviewIframeFilter: true,
+            //     toolbar: [
+            //        // ['style', ['style']],
                     
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['style','ul', 'ol']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen','codeview']],
+            //         ['font', ['bold', 'underline', 'clear']],
+            //         ['fontname', ['fontname']],
+            //         ['fontsize', ['fontsize']],
+            //         ['color', ['color']],
+            //         ['para', ['style','ul', 'ol']],
+            //         ['table', ['table']],
+            //         ['insert', ['link', 'picture', 'video']],
+            //         ['view', ['fullscreen','codeview']],
                     
-                ],
-                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
-                callbacks: {
-                    onPaste: function (e) {
-                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                        e.preventDefault();
-                        document.execCommand('insertText', false, bufferText);
-                    }
-                },
-                height: 188,
-                tooltip: true
-            });
+            //     ],
+            //     styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+            //     callbacks: {
+            //         onPaste: function (e) {
+            //             var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+            //             e.preventDefault();
+            //             document.execCommand('insertText', false, bufferText);
+            //         }
+            //     },
+            //     height: 188,
+            //     tooltip: true
+            // });
 
             // 1st Cropper
             var _URL1 = window.URL || window.webkitURL;

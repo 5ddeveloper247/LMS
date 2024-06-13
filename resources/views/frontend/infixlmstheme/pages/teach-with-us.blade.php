@@ -575,8 +575,12 @@
                             @endif
                         </div>
                     </div>
-                    {{-- <x-breadcrumb :banner="{{__('public/frontend/infixlmstheme/img/images/courses-4.jpg')}}" :title="{{__('Teach With Us')}}"> --}}
                 </div>
+                @php
+                    $banner_title = 'Teach With Us';
+                    $banner_image = 'public/frontend/infixlmstheme/img/images/courses-4.jpg';
+                @endphp
+                {{-- <x-breadcrumb :banner="$banner_image" :title="$banner_title" /> --}}
             </div>
         </div>
         <div class="container px-lg-5">

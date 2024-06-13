@@ -831,10 +831,11 @@ class PaymentController extends Controller
             }
             $shortCodes = [
                 'time' => \Illuminate\Support\Carbon::now()->format('d-M-Y ,s:i A'),
-                'program' => $Program->programtitle,
-                'currency' => $checkout_info->user->currency->symbol ?? '$',
-                'price' => (!empty($checkout_info->user->currency) ? $checkout_info->user->currency->conversion_rate * $itemPrice : $itemPrice),
+                'title' => $Program->programtitle,
+                'currency' => '$',
+                'price' => $itemPrice,
                 'instructor' => $Program->user->name,
+                'type' => 'Program',
                 'gateway' => $gateWayName,
             ];
             if (UserEmailNotificationSetup('Course_Enroll_Payment', $checkout_info->user)) {
@@ -845,8 +846,8 @@ class PaymentController extends Controller
             }
             $browserNotificationShortCodes = [
                 'time' => Carbon::now()->format('d-M-Y ,s:i A'),
-                'Program' => $Program->title,
-                'currency' => $instractor->currency->symbol ?? '$',
+                'course' => $Program->title,
+                //'currency' => $instractor->currency->symbol ?? '$',
                 'price' => ($instractor->currency->conversion_rate * $itemPrice),
                 'rev' => @$reveune,
             ];
@@ -1071,8 +1072,8 @@ class PaymentController extends Controller
             }
             $shortCodes = [
                 'title' => $course->title,
-                'currency' => $checkout_info->user->currency->symbol ?? '$',
-                'price' => (!empty($checkout_info->user->currency) ? $checkout_info->user->currency->conversion_rate * $itemPrice : $itemPrice),
+                'currency' => '$',
+                'price' => $itemPrice,
                 'gateway' => $gateWayName,
                 'instructor' => $course->user->name,
                 'type' => $courseType,
@@ -1158,8 +1159,6 @@ class PaymentController extends Controller
                     $enroll->course_id = $course->course->id;
                     $enroll->purchase_price = $price;
                     $enroll->reveune = $checkout_info->reveune;
-                    e;
-                    rate;
                     $reveune = ($bundleCheck->price * $commission) / 100;
                     $bundleCheck->reveune += $reveune;
                     $bundleCheck->student += 1;
@@ -1175,7 +1174,7 @@ class PaymentController extends Controller
                     send_email($checkout_info->user, 'Course_Enroll_Payment', [
                         'title' => $bundleCheck->title,
                         'currency' => $checkout_info->user->currency->symbol ?? '$',
-                        'price' => (!empty($checkout_info->user->currency) ? $checkout_info->user->currency->conversion_rate * $bundleChe : $itemPriceck->price),
+                        'price' => (!empty($checkout_info->user->currency) ? $checkout_info->user->currency->conversion_rate * $bundleCheck : $itemPriceck->price),
                         'instructor' => $bundleCheck->user->name,
                         'gateway' => 'Sslcommerz',
                         'type' => '',
