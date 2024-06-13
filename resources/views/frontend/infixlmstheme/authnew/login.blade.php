@@ -295,16 +295,13 @@
             display: inline-block;
             text-align: center;
             line-height: 100%;
-            /* Ensures text is centered vertically */
-            /* padding: 10px 20px; */
             background-color: rgb(253, 126, 20);
             color: white;
             border: 1px solid #ccc;
             cursor: pointer;
             margin: 5px;
-            border-radius: 5px;
-            /* height: 100px;
-        width: 217px; */
+            padding: 0.5rem 1.5rem;
+            border-radius: 16px;
         }
     </style>
     @php
@@ -313,7 +310,7 @@
         session()->forget('payment_details');
     @endphp
 
-    <div class="container custom-bg px-lg-5 my-5">
+    <div class="container custom-bg px-lg-5 my-md-5 my-3">
         <div class="row pt-2 px-lg-5">
             <div class="col-md-7 ">
                 <div id="accountType">
@@ -321,7 +318,7 @@
                         <h3 class="text-uppercase text_login">We are merakii </h3>
                         <h6 class="heading-login text-capitalize"> choose account type</h6>
                     </div>
-                    <div class="text-center mt-5 mb-3">
+                    <div class="text-center mt-mb-5 mt-4 mb-3">
                         <div class="row ">
 
                             <div class="col-md-4 mb-2 px-sm-1 px-md-2 d-flex justify-content-center align-items-center">
@@ -371,7 +368,7 @@
                 </div>
                 <h6 class="hidemainContent text-center mt-4 mb-2 text-capitalize heading-login"> OR</h6>
                 @endif
-                <h6 class="hidemainContent text-center mb-4 text-capitalize heading-login"> please fill the form
+                <h6 class="hidemainContent text-center mb-md-4 mb-3 text-capitalize heading-login"> please fill the form
                     below to get started</h6>
                 <form action="{{ route('login') }}" method="POST" id="loginForm" class="hidemainContent">
                     @csrf
@@ -457,7 +454,7 @@
 
                 </form>
                 @if (Settings('student_reg') == 1 && saasPlanCheck('student') == false)
-                    <div class="col-md-12 px-0 hidemainContent mb-5 mb-md-0">
+                    <div class="col-md-12 px-0 hidemainContent mb-2 mb-md-0">
 
                         <label class="">Don't have an Account Yet ? <a href="#" class="text-capitalize"
                                 id="myButton" style="color: var(--system_primery_color);">Create an
