@@ -3833,8 +3833,15 @@ input[type="number"] {
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     .about_gallery_area .about_gallery {
-        grid-template-columns: repeat(2, 1fr);
+        /* grid-template-columns: repeat(2, 1fr); */
+        grid-template-columns: auto auto !important;
         margin-bottom: 20px;
+    }
+    .about_gallery_area .about_gallery .thumb img{
+        height: 60% !important;
+    }
+    .about_gallery_area .about_gallery .gallery_box .thumb.small_thumb {
+        margin: 30px 0 0 30px;
     }
 }
 
@@ -3857,7 +3864,7 @@ input[type="number"] {
 
 @media (max-width: 767.98px) {
     .about_gallery_area .about_gallery .gallery_box .thumb.small_thumb {
-        margin: 0;
+        margin: 30px 0px 0px 30px;
     }
 }
 
@@ -16651,7 +16658,7 @@ body {
     }
 
     .about_gallery_area .about_gallery {
-        grid-template-columns: 130px 130px;
+        grid-template-columns: auto auto;
         grid-gap: 20px;
     }
 

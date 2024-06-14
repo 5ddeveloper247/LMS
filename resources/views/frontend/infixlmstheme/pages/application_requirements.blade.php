@@ -701,60 +701,9 @@
             font-size: 25px !important;
         }
 
-        /* .owl-stage-outer {
-            height: 75vh;
-        } */
+      
     }
 
-    /* media queries for slider for 67% */
-    /* @media (width > 1650px) {
-
-        .breadcrumb_area .breadcam_wrap h3 {
-            font-size: 100px !important;
-            font-weight: 900;
-            line-height: 76px;
-            color: #fff;
-        }
-
-        p {
-            font-size: 24px !important;
-            line-height: 1.6 !important;
-        }
-
-        h5 {
-            font-size: 27px !important;
-            line-height: 25px;
-        }
-
-        h4 {
-            font-size: 32px !important;
-            line-height: 25px;
-        }
-
-        .theme_btn {
-            font-size: 23px !important;
-        }
-
-        .toggle {
-            font-size: 23px !important;
-        }
-
-        .slider_paragraph {
-            font-size: 24px !important;
-        }
-
-        .slider_heading_h1 font-weight-bold {
-            font-size: 47px !important;
-        }
-
-        .custom_card_body {
-            height: 28rem;
-        }
-
-        .owl-stage-outer {
-            height: 51rem;
-        }
-    } */
 </style>
 {{-- @endsection --}}
 @section('mainContent')
@@ -803,7 +752,7 @@
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                     <div class="padding-top-of-first-part ml_our_process">
                         <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2>
-                        <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
+                        <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
@@ -907,7 +856,7 @@
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                     <div class="d-flex flex-column align-items-end ml_our_process">
                         <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2>
-                        <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
+                        <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                             <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
