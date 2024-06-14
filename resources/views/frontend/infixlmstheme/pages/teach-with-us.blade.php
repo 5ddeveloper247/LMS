@@ -578,7 +578,7 @@
 
                 <div class="col-md-6 col-12 my-auto px-3 px-md-1" data-aos="fade-left"
                     data-aos-delay="500">
-                    <div class="px-xl-3 px-md-2 pt-4 pt-md-0">
+                    <div class="px-xl-3 pt-4 pt-md-0">
                         <h2 class="custom_small_heading font-weight-bold">
                             How to Sell as an Individual Tutors
                         </h2>
@@ -627,7 +627,7 @@
         </div>
         <!-- <x-about-page-gallery :about="$about" /> -->
         {{-- custom component made by arsam --}}
-        <div class="about_gallery_area px-md-5 my-lg-2 pb-2">
+        <div class="about_gallery_area px-lg-5 my-lg-2 pb-2">
             <div class="container px-md-5">
                 <div class="row align-items-center gallery_area_row">
                     <div class="col-lg-5">
