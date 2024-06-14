@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
+use App\Traits\ImageStore;
 
 class UploadFileController extends Controller
 {
+    use ImageStore;
 
     public function upload_image(Request $request)
     {
@@ -33,5 +35,17 @@ class UploadFileController extends Controller
         }
 
         return response()->json($image_url);
+    }
+
+    public function ckeditor_img(Request $request){
+        $image = '';
+        $url = '';
+        $fileName = '';
+        if($request->hasFile('upload')){
+            $image = $this->saveImage($request->upload);
+            $url = asset($image);
+            $fileName = basename($image);
+        }
+        return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
     }
 }

@@ -5591,7 +5591,7 @@ h6 {
     line-height: 1.2
 }
 
-li {
+/* li {
     list-style: none
 }
 
@@ -5599,7 +5599,7 @@ ol,
 ul {
     margin: 0;
     padding: 0
-}
+} */
 
 p {
     line-height: 24px;
@@ -16056,6 +16056,11 @@ table.dataTable tbody tr {
     border-left: 6px solid var(--system_secendory_color);
     border-image-source: linear-gradient(var(--footer_background_color), var(--system_secendory_color));
     border-image-slice: 6
+}
+.sidebar ul, .sidebar ol{
+    padding:0;
+    margin:0;
+    list-style-type: none;
 }
 
 .sidebar .mini_logo {

@@ -1,6 +1,9 @@
 @extends('backend.master')
 @push('styles')
     <style>
+        .ck-editor__editable {
+            min-height: 300px;
+        }
         .select2-container--default .select2-selection--single {
             background-color: #fff;
             width: 100%;
@@ -13,6 +16,13 @@
             border-radius: 30px;
             color: var(--base_color);
             border: 1px solid #ECEEF4
+        }
+
+        .ck-editor__editable ul li{
+            list-style: disc;
+        }
+        .ck-editor__editable ol li{
+            list-style: decimal;
         }
 
         .select2-container--default .select2-selection--single .select2-selection__arrow {
@@ -1237,8 +1247,76 @@
                 'Garamond', 'Georgia', 'monospace', 'fantasy', 'Papyrus', 'Poppins'
             ];
             // Summer Note
+            //CKEDITOR.replaceAll("custom_summernote");
+            $('.custom_summernote').each(function (){
+                var elId = $(this).attr('id');
+                ClassicEditor
+                .create( document.getElementById(elId),{
+                    ckfinder: {
+                        uploadUrl: "{{ route('ckeditor.upload',['_token' => csrf_token()]) }}",
+                    },
+                    //extraPlugins: ['font'],
+                    fontFamily: {
+                        options: [
+                            'default',
+                            'Arial, Helvetica, sans-serif',
+                            'Courier New, Courier, monospace',
+                            'Georgia, serif',
+                            'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                            'Tahoma, Geneva, sans-serif',
+                            'Times New Roman, Times, serif',
+                            'Trebuchet MS, Helvetica, sans-serif',
+                            'Verdana, Geneva, sans-serif'
+                        ],
+                        supportAllValues: true
+                    },
+                    fontSize: {
+                    options: [
+                        'tiny',
+                        'small',
+                        'default',
+                        'big',
+                        'huge'
+                    ]
+                },
+                fontColor: {
+                    columns: 5,
+                    documentColors: 10
+                },
+                fontBackgroundColor: {
+                    columns: 5,
+                    documentColors: 10
+                },
+                    toolbar: {
+                        items: [
+                            'undo', 'redo',
+                            '|', 'heading',
+                            '|', 'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor',
+                            '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+                            '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
+                            '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
+                        ],
+                        shouldNotGroupWhenFull: false
+                    }
+                } )
+                .then(editor => {
+                    // Save the editor instance to use it later
+                    window.editor = editor;
 
-            CKEDITOR.replaceAll("custom_summernote");
+                    // Listen to the change:data event
+                    editor.model.document.on('change:data', () => {
+                        // Get the editor content
+                        const editorData = editor.getData();
+                        // Update the textarea with the editor content
+                        // document.querySelector('#editor').value = editorData;
+                        $(this).val(editorData);
+                    });
+                })
+                .catch( error => {
+                    console.error( error );
+                });
+            });
+            
 
             // $('.custom_summernote').summernote({
             //     pastePlain: true,
