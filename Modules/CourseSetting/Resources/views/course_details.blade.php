@@ -4,6 +4,9 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('') }}"> --}}
     <style>
+        .ck-editor__editable {
+            min-height: 300px;
+        }
         .select2-container--default .select2-selection--single {
             background-color: #fff;
             width: 100%;
@@ -2856,37 +2859,107 @@
                 'Verdana',
                 'Garamond', 'Georgia', 'monospace', 'fantasy', 'Papyrus', 'Poppins'
             ];
-            // Summer Note
-            $('.custom_summernote').summernote({
-                pastePlain: true,
-                fontNames: customFontFam,
-                fontNamesIgnoreCheck: ['Cavolini', 'Jost'],
-                fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
-                codeviewFilter: true,
-                codeviewIframeFilter: true,
-                toolbar: [
-                    //['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['style','ul', 'ol']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen','codeview']],
-                    
-                ],
-                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
-                callbacks: {
-                    onPaste: function (e) {
-                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                        e.preventDefault();
-                        document.execCommand('insertText', false, bufferText);
-                    }
+
+            $('.custom_summernote').each(function (){
+                var elId = $(this).attr('id');
+                ClassicEditor
+                .create( document.getElementById(elId),{
+                    ckfinder: {
+                        uploadUrl: "{{ route('ckeditor.upload',['_token' => csrf_token()]) }}",
+                    },
+                    //extraPlugins: ['font'],
+                    fontFamily: {
+                        options: [
+                            'default',
+                            'Arial, Helvetica, sans-serif',
+                            'Courier New, Courier, monospace',
+                            'Georgia, serif',
+                            'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                            'Tahoma, Geneva, sans-serif',
+                            'Times New Roman, Times, serif',
+                            'Trebuchet MS, Helvetica, sans-serif',
+                            'Verdana, Geneva, sans-serif'
+                        ],
+                        supportAllValues: true
+                    },
+                    fontSize: {
+                    options: [
+                        'tiny',
+                        'small',
+                        'default',
+                        'big',
+                        'huge'
+                    ]
                 },
-                height: 188,
-                tooltip: true
+                fontColor: {
+                    columns: 5,
+                    documentColors: 10
+                },
+                fontBackgroundColor: {
+                    columns: 5,
+                    documentColors: 10
+                },
+                    toolbar: {
+                        items: [
+                            'undo', 'redo',
+                            '|', 'heading',
+                            '|', 'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor',
+                            '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+                            '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
+                            '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
+                        ],
+                        shouldNotGroupWhenFull: false
+                    }
+                } )
+                .then(editor => {
+                    // Save the editor instance to use it later
+                    window.editor = editor;
+
+                    // Listen to the change:data event
+                    editor.model.document.on('change:data', () => {
+                        // Get the editor content
+                        const editorData = editor.getData();
+                        // Update the textarea with the editor content
+                        // document.querySelector('#editor').value = editorData;
+                        $(this).val(editorData);
+                    });
+                })
+                .catch( error => {
+                    console.error( error );
+                });
             });
+
+            // Summer Note
+            // $('.custom_summernote').summernote({
+            //     pastePlain: true,
+            //     fontNames: customFontFam,
+            //     fontNamesIgnoreCheck: ['Cavolini', 'Jost'],
+            //     fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
+            //     codeviewFilter: true,
+            //     codeviewIframeFilter: true,
+            //     toolbar: [
+            //         //['style', ['style']],
+            //         ['font', ['bold', 'underline', 'clear']],
+            //         ['fontname', ['fontname']],
+            //         ['fontsize', ['fontsize']],
+            //         ['color', ['color']],
+            //         ['para', ['style','ul', 'ol']],
+            //         ['table', ['table']],
+            //         ['insert', ['link', 'picture', 'video']],
+            //         ['view', ['fullscreen','codeview']],
+                    
+            //     ],
+            //     styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+            //     callbacks: {
+            //         onPaste: function (e) {
+            //             var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+            //             e.preventDefault();
+            //             document.execCommand('insertText', false, bufferText);
+            //         }
+            //     },
+            //     height: 188,
+            //     tooltip: true
+            // });
             // 1st Cropper
             var _URL1 = window.URL || window.webkitURL;
             $("#document_file_thumb-1").change(function(e) {

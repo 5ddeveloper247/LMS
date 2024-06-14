@@ -390,6 +390,7 @@ Route::get('get_preview_modal/{id}', 'AjaxController@get_preview_modal')->name('
 Route::get('get_cart_price', 'AjaxController@get_cart_price')->name('get_cart_price');
 
 Route::post('summer-note-file-upload', 'UploadFileController@upload_image')->name('summerNoteFileUpload');
+Route::post('ckeditor/upload', 'UploadFileController@ckeditor_img')->name('ckeditor.upload');
 
 
 //auth adding
