@@ -2,7 +2,7 @@
 
     <input type="hidden" value="{{ asset('/') }}" id="baseUrl">
     <!-- course_details::start  -->
-    <div class="course__details p-lg-5 p-3">
+    <div class="course__details p-md-5 p-3">
         <div class="container px-lg-0">
             @php
                 if (!empty($request->courseType) && count($course->children)) {
@@ -21,16 +21,16 @@
             {{-- @dd($course->outcomes) --}}
             <!-- firststart -->
             <div class="row px-lg-5 small_screen course_padding">
-                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12 d-flex justify-content-between px-2">
-                    <div class="course__details_title w-100">
+                <div class="col-lg-9 col-md-8 col-sm-7 d-flex justify-content-between px-2">
+                    <div class="course__details_title w-100 mb-md-0">
 
-                        <div class="col-md-6 details_content d-flex flex-column justify-content-start">
+                        <div class="col-lg-6 col-md-8 details_content d-flex flex-column justify-content-start">
                             <h5 class="small_heading course-span f_w_700">{{ __('frontend.Category') }}</h5>
                             <p class="course-span">{{ @$course->category->name }}</p>
                             <div class="details_content">
                                 <h5 class="small_heading course-span f_w_700" style="color: #1770B5;">{{ __('frontend.Reviews') }}
                                 </h5>
-                                <div class="rating_star d-flex align-items-center">
+                                <div class="rating_star d-flex align-items-md-center flex-column flex-md-row">
                                     <div class="stars course-span d-flex">
                                         @php
                                             $main_stars = @$courseRating['rating'];
@@ -48,13 +48,13 @@
                                             @endfor
                                         @endif
                                     </div>
-                                    <p class="course-span px-3">{{ @$courseRating['rating'] }}
+                                    <p class="course-span px-md-3">{{ @$courseRating['rating'] }}
                                         ({{ @$courseRating['total'] }} {{ __('frontend.Rating') }})</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-6 d-flex align-items-end justify-content-end">
+                        <div class="col-lg-6 col-md-4 d-flex align-items-end justify-content-end">
 
                             <div class="sidebar__title">
                                 <h2 class="custom_small_heading font-weight-bold custom_heading_1 mb-0" style="color: #ff6700;">
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12 py-3 py-sm-0">
+                <div class="col-lg-3 col-md-4 col-sm-5 py-3 py-sm-0">
                     {{-- new card_1 starts --}}
                     {{-- this one needs t be fixed --}}
                     <div class="custom_section_color img_round course_tab px-2 pt-2"style="background-color: #eee;">
@@ -157,7 +157,7 @@
         <div class="container px-lg-0">
             <div class="row my-4 px-lg-5 small_screen course_padding">
 
-                <div class="col-lg-9 col-md-8 col-sm-7 col-12">
+                <div class="col-lg-9 col-md-8 col-sm-7 mb-3 mb-md-0">
                     @if ($course->image == '')
 
                         <div class="video_screen @if ($course->host != 'ImagePreview' && $course->host != '') theme__overlay @endif mb-4">
@@ -192,7 +192,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-12 py-sm-0 py-3">
+                <div class="col-lg-3 col-md-4 col-sm-5 py-sm-0 py-3">
                     <div class="custom_section_color img_round course_tab px-2 pt-2" style="background-color: #eee;">
                         <h5 class="font-weight-bold mt-1 course-span custom_heading_1 small_heading">You May also Like</h5>
                         <div class="row mx-0">
@@ -262,10 +262,10 @@
         <!-- <div class="col-12"> -->
         <div class="container px-lg-0">
             <div class="row px-lg-5 small_screen course_padding">
-                <div class="col-lg-9 col-md-8 col-sm-7 col-12">
+                <div class="col-lg-9 col-md-8 col-12">
                     
                     <div class="course_tabs w-100 mb-3">
-                        <div class="wrapper">
+                        <div class="events_wrapper">
                             <div class="eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
                             </div>
                         <ul class="d-flex lms_tabmenu nav w-100 text-center"
@@ -932,7 +932,7 @@
                                         }
                                         $c_slug = ($c->parent) ? $c->parent->slug : $c->slug;
                                     @endphp
-                                        <div class="col-sm-6 col-md-4 d-flex justify-content-center mb-3">
+                                        <div class="col-sm-6 col-lg-4 d-flex justify-content-center mb-3">
                                             <div class="card quiz_wizged rounded-card shadow">
                                                 <div class="rounded-card-img thumb">
 
@@ -1288,7 +1288,7 @@
 
                 {{-- new card_2 starts  --}}
                 {{-- this one needs to be fixed  --}}
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12 py-3 py-sm-0">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-12 py-3 py-sm-0">
                      @if($course->type != '7')
                      @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
                     <div class="custom_section_color rounded_section p-2 img_round " style="background-color: #eee; ">

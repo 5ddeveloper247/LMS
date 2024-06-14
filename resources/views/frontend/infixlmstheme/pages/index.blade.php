@@ -331,12 +331,12 @@
 }
 
     /* col-md-5 */
-    .wrapper {
+    .events_wrapper {
         position: relative;
         overflow-x: hidden;
     }
 
-    .wrapper .eventsIcon {
+    .events_wrapper .eventsIcon {
         position: absolute;
         top: 0;
         height: 100%;
@@ -5513,7 +5513,7 @@
                                                         class="fa fa-arrow-right"></i></span></a>
                                         </div>
                                         <div class="news-events-tab">
-                                            <div class="wrapper">
+                                            <div class="events_wrapper">
                                                 <div class="eventsIcon"><i id="left"
                                                         class="fa-solid fa-angle-left"></i>
                                                 </div>

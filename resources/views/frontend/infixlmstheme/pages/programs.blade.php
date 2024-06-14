@@ -68,16 +68,22 @@
     }
 
     .thumb_heading {
-        display: -webkit-box;
+        /* display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
+        overflow: hidden; */
+        white-space: nowrap;
+        width: auto;
         overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .course-small {
         display: flex;
         justify-content: space-between;
         gap: 5px;
+        text-align: center;
+        white-space: nowrap;
     }
 
     @media (max-width: 1600px) {
@@ -201,19 +207,19 @@
                 </div>
             </div>
         </div>
-        <div class="container custom-padd px-lg-5 pt-lg-5">
-            <div class="row px-lg-4 ">
+        <div class="container custom-padd px-lg-5 pt-md-5 pt-3">
+            <div class="row px-sm-4 ">
                 <div class="col-12 d-flex justify-content-between mb-4">
                     <div class="col-6 col-md-8">
-                        <h2 class="font-weight-bold custom_heading_1">Program Features</h2>
+                        <h2 class="custom_small_heading font-weight-bold custom_heading_1">Program Features</h2>
                         <ul style="color: #996699!important" class="ml-4">
                             <li>
-                                <h5 class="font-weight-bold">
+                                <h5 class="small_heading font-weight-bold">
                                     Courses | {{ getProgramListCourseCount() }}
                                 </h5>
                             </li>
                             <li>
-                                <h5 class="font-weight-bold">
+                                <h5 class="small_heading font-weight-bold">
                                     Classes | {{ getProgramListClassCount() }}
                                 </h5>
                             </li>
@@ -275,12 +281,17 @@
                 </div>
                 @if (isset($programs))
                     @foreach ($programs as $program)
-                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 d-flex justify-content-center mb-4">
+                        <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mb-md-4 mb-3">
                             <div class="quiz_wizged card rounded-card shadow w-100">
                                 <div class="thumb rounded-card-img">
                                     <a href="{{ route('programs.detail', [$program->id]) }}"><img
                                             src="{{ getCourseImage($program->icon) }}"
-                                            class="img-fluid img-cover w-100 rounded-card-img"></a>
+                                            class="img-fluid img-cover w-100 rounded-card-img">
+                                            <div>
+                                                <span class="prise_tag"><span> ${{ $program->currentProgramPlan[0]->amount }}</span>
+                                    </span>
+                                        </div>
+                                        </a>
                                 </div>
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="font-weight-bold thumb_heading">
@@ -321,9 +332,9 @@
                                             {{ round((strtotime($program->currentProgramPlan[0]->edate) - strtotime($program->currentProgramPlan[0]->sdate)) / 604800, 1) }}
                                             Weeks
                                         </small>
-                                        <small>
+                                        {{-- <small>
                                             ${{ $program->currentProgramPlan[0]->amount }}
-                                        </small>
+                                        </small> --}}
                                     </div>
                                 </div>
                             </div>

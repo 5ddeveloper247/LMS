@@ -282,11 +282,8 @@
     }
 
     .custom_height_2 {
-        height: 64vh !important;
-        /* padding-right: 60px; */
+        height: 56vh !important;
     }
-
-
     .custom-heading {
         font-size: 60px;
     }
@@ -309,12 +306,6 @@
         padding: 30px 0;
     }
 
-    /* .quiz_wizged{
-    height: 34vh;
-}
-.thumb{
-    height:20vh;
-} */
     /* slider timeline */
     .fw-medium {
         font-weight: 500;
@@ -401,10 +392,7 @@
     }
 
     @media only screen and (max-width: 767px) {
-        .custom_height_1 {
-            height: 45vh !important;
-        }
-
+     
         .custom_height_2 {
             height: 44vh !important;
         }
@@ -457,9 +445,9 @@
             line-height: 30px;
         }
 
-        .custom_height_2 {
+        /* .custom_height_2 {
             height: 35vh !important;
-        }
+        } */
     }
 
     .pricing-para {
@@ -483,11 +471,6 @@
 
         .our-process-section-wrapper {
             width: 96% !important;
-        }
-
-        .custom_height_2 {
-            height: 65vh !important;
-            /* padding-right: 60px; */
         }
 
         .price-card__plan--v2 {
@@ -569,7 +552,7 @@
                         <div class="breadcam_wrap">&nbsp;
                             <h2 class="text-white custom-heading">Teach With Us</h2>
                             @if (!auth()->check())
-                                <button class="hit ml-1 bg-transparent px-4 py-2 text-white openModal">Sell
+                                <button class="hit ml-1 bg-transparent px-2 px-md-4 py-2 text-white openModal">Sell
                                     With Us
                                 </button>
                             @endif
@@ -587,18 +570,18 @@
 
             <div class="row py-lg-5 px-xl-5 px-md-2 py-4">
                 <div class="col-md-12 text-center">
-                    <h2 class="font-weight-bold custom_heading_1 mb-5">What We Offer!</h2>
+                    <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3">What We Offer!</h2>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 px-2" data-aos="fade-right">
+                <div class="col-md-6 col-12 px-2" data-aos="fade-right">
                     <img src="{{ asset('public/assets/contact.jpg') }}" class="custom_height_1 w-100">
                 </div>
 
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 my-auto px-1" data-aos="fade-left"
+                <div class="col-md-6 col-12 my-auto px-3 px-md-1" data-aos="fade-left"
                     data-aos-delay="500">
-                    <div class="px-xl-3 px-md-2">
-                        <h5 class="font-weight-bold">
+                    <div class="px-xl-3 px-md-2 pt-4 pt-md-0">
+                        <h2 class="custom_small_heading font-weight-bold">
                             How to Sell as an Individual Tutors
-                        </h5>
+                        </h2>
                         <p class="custom_height_2 overflow-auto text-justify hide-scrollbar">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
                             sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
@@ -649,7 +632,7 @@
                 <div class="row align-items-center gallery_area_row">
                     <div class="col-lg-5">
                         <div class="section__title">
-                            <h2 class="mb-4 font-weight-bold">Build your own library for your career and personal growth.
+                            <h2 class="custom_small_heading mb-4 font-weight-bold">Build your own library for your career and personal growth.
                             </h2>
                             <p class="mb-4">Our goal is to learn the next generation of creative professionals for a
                                 future in any industry. We offer course in most demanded industries. Whether begin to your

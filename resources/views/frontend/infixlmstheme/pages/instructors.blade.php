@@ -206,7 +206,7 @@
                             <h1 class="text-white custom-heading">Instructors</h1>
                             @if (!auth()->check())
                                 <button
-                                    class="btn_responsive font-weight-bold hit ml-1 bg-transparent px-3 py-2 text-white openModal">
+                                    class="btn_responsive font-weight-bold hit ml-1 bg-transparent px-2 px-md-3 py-2 text-white openModal">
                                     Become
                                     an
                                     Instructor
@@ -340,7 +340,7 @@
                         Lorem ipsum dolor sit amet consecter
                     </h2>
                     @if (!auth()->check())
-                        <button class="border-purple text-purple font-weight-bold hit btn_responsive mt-3 px-3 py-2 openModal">
+                        <button class="border-purple text-purple font-weight-bold hit btn_responsive mt-3 px-2 px-md-3 py-2 openModal">
                             Become
                             an
                             Instructor
