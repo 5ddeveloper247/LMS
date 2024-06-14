@@ -623,10 +623,17 @@
         .custom_P {
             font-size: 1.5rem;
         }
-
+        .small_gap{
+            position: relative;
+        }
         svg {
             min-width: 20px;
             min-height: 20px;
+            max-width: 20px;
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .ml_our_process {

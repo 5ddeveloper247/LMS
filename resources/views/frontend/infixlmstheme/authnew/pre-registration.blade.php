@@ -290,9 +290,9 @@
         session()->forget('payment_details');
     @endphp
 
-    <div class="container custom-bg px-xl-5 my-5 ">
+    <div class="container custom-bg px-xl-5 my-md-5 my-3">
         <div class="row px-xl-5 px-md-2">
-            <div class="col-md-7 mb-4 mb-md-0">
+            <div class="col-md-7 mb-2 mb-md-0">
 
 
                 <h6 class="text-center mb-4 text-capitalize heading-login">hello, welcome to merakii </h6>
@@ -389,13 +389,13 @@
 
                     </div>
 
-                    <div class="text-center mt-4">
+                    <div class="text-center mt-4 mb-4 mb-md-0">
 
                         <button type="submit" class="btn btn_login">Register</button>
                     </div>
 
                 </form>
-                <div class="col-md-12 px-0 mb-5 mb-md-0">
+                <div class="col-md-12 px-0 mb-md-0">
 
                     <label class="">Already have an Account? <a href="{{ route('login') }}" class="text-capitalize"
                             id="myButton" style="color: var(--system_primery_color);">Login</a></label>

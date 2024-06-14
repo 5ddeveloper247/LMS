@@ -21,14 +21,14 @@
             {{-- @dd($course->outcomes) --}}
             <!-- firststart -->
             <div class="row px-lg-5 small_screen course_padding">
-                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12 d-flex justify-content-between">
+                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12 d-flex justify-content-between px-2">
                     <div class="course__details_title w-100">
 
                         <div class="col-md-6 details_content d-flex flex-column justify-content-start">
-                            <h5 class="course-span f_w_700">{{ __('frontend.Category') }}</h5>
+                            <h5 class="small_heading course-span f_w_700">{{ __('frontend.Category') }}</h5>
                             <p class="course-span">{{ @$course->category->name }}</p>
                             <div class="details_content">
-                                <h5 class="course-span f_w_700" style="color: #1770B5;">{{ __('frontend.Reviews') }}
+                                <h5 class="small_heading course-span f_w_700" style="color: #1770B5;">{{ __('frontend.Reviews') }}
                                 </h5>
                                 <div class="rating_star d-flex align-items-center">
                                     <div class="stars course-span d-flex">
@@ -57,7 +57,7 @@
                         <div class="col-md-6 d-flex align-items-end justify-content-end">
 
                             <div class="sidebar__title">
-                                <h2 class="font-weight-bold custom_heading_1 mb-0" style="color: #ff6700;">
+                                <h2 class="custom_small_heading font-weight-bold custom_heading_1 mb-0" style="color: #ff6700;">
                                     @php
                                         $course_plan = \Modules\CourseSetting\Entities\Course::where(
                                             'type',
@@ -89,12 +89,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12 p-sm-0 p-2">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12 py-3 py-sm-0">
                     {{-- new card_1 starts --}}
                     {{-- this one needs t be fixed --}}
                     <div class="custom_section_color img_round course_tab px-2 pt-2"style="background-color: #eee;">
                         <div class="custom_section_color rounded_section p-2 img_round" style="height: auto;">
-                            <h5 class="font-weight-bold custom_heading_1">This Course includes:
+                            <h5 class="font-weight-bold custom_heading_1 small_heading">This Course includes:
                             </h5>
                             @if($course->type != 9)
                             <span class="program-span"><i class="fa-clock-o fas"></i>&nbsp;&nbsp; Duration |
@@ -186,15 +186,15 @@
                             @endif
                         </div>
                     @else
-                        <div class="image_responsive px-2">
+                        <div class="course_detail_image image_responsive px-md-2">
                             <img src="{{ $course_image }}" class="img-fluid w-100 img_round course_image"
                                 style="">
                         </div>
                     @endif
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-12 p-sm-0 p-2">
+                <div class="col-lg-3 col-md-4 col-sm-5 col-12 py-sm-0 py-3">
                     <div class="custom_section_color img_round course_tab px-2 pt-2" style="background-color: #eee;">
-                        <h5 class="font-weight-bold mt-1 course-span custom_heading_1">You May also Like</h5>
+                        <h5 class="font-weight-bold mt-1 course-span custom_heading_1 small_heading">You May also Like</h5>
                         <div class="row mx-0">
                             @if (isset($recent_courses))
                                 @forelse($recent_courses as  $recent_course)
@@ -262,9 +262,13 @@
         <!-- <div class="col-12"> -->
         <div class="container px-lg-0">
             <div class="row px-lg-5 small_screen course_padding">
-                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12">
-                    <div class="course_tabs w-100 mb-3 px-2">
-                        <ul class="d-flex flex-column flex-md-row flex-sm-column lms_tabmenu nav w-100 text-center"
+                <div class="col-lg-9 col-md-8 col-sm-7 col-12">
+                    
+                    <div class="course_tabs w-100 mb-3">
+                        <div class="wrapper">
+                            <div class="eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
+                            </div>
+                        <ul class="d-flex lms_tabmenu nav w-100 text-center"
                             id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="Overview-tab" data-toggle="tab" href="#Overview"
@@ -321,9 +325,11 @@
                             @endif
 
                         </ul>
+                        <div class="eventsIcon d-xl-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
+                    </div>
                     </div>
 
-                    <div class="tab-content lms_tab_content px-2" id="myTabContent">
+                    <div class="tab-content lms_tab_content px-2 mb-3 mb-md-0" id="myTabContent">
                         <div class="tab-pane fade show active" id="Overview" role="tabpanel"
                             aria-labelledby="Overview-tab">
                             <!-- content  -->
@@ -331,7 +337,7 @@
 
                                 <div class="">
                                     @if (!empty($course->about))
-                                        <h5 class="font-weight-bold custom_heading_1 mt-1">
+                                        <h5 class="font-weight-bold custom_heading_1 small_heading mt-1">
                                             {{ __('frontend.Course Description') }}</h5>
                                         <div class="theme_border"></div>
                                         <div class="row">
@@ -342,11 +348,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="mb_20">
-                                        </p>
+                                      
                                     @endif
                                     @if (!empty($course->outcomes))
-                                        <h5 class="font-weight-bold custom_heading_1">
+                                        <h5 class="font-weight-bold custom_heading_1 small_heading">
                                             {{ __('frontend.Course Outcomes') }}
                                         </h5>
                                         <div class="theme_border"></div>
@@ -359,11 +364,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="mb_20">
-                                        </p>
+                                       
                                     @endif
                                     @if (!empty($course->requirements))
-                                        <h5 class="font-weight-bold custom_heading_1">
+                                        <h5 class="font-weight-bold custom_heading_1 small_heading">
                                             {{ __('frontend.Course Requirements') }}</h5>
                                         <div class="theme_border"></div>
                                         <div class="row">
@@ -376,8 +380,7 @@
                                             </div>
 
                                         </div>
-                                        <p class="mb_20">
-                                        </p>
+                                       
                                     @endif
                                     @if (!Settings('hide_social_share_btn') == '1')
                                         <div class="social_btns">
@@ -407,8 +410,8 @@
 
                         <div class="tab-pane fade" id="Curriculum" role="tabpanel" aria-labelledby="Curriculum-tab">
                             <!-- content  -->
-                            <h5 class="font-weight-bold custom_heading_1 ">{{ __('frontend.Course Curriculum') }}</h5>
-                            {{-- <h5 class="font-weight-bold custom_heading_1 ">{{ __('frontend.Course Curriculum') }}</h5> --}}
+                            <h5 class="font-weight-bold custom_heading_1 small_heading">{{ __('frontend.Course Curriculum') }}</h5>
+                            {{-- <h5 class="font-weight-bold custom_heading_1 small_heading ">{{ __('frontend.Course Curriculum') }}</h5> --}}
                             <div class="card mb-4 p-2">
                                 <div class="theme_according" id="accordion1">
                                     @if (isset($course->chapters))
@@ -429,7 +432,7 @@
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div class="collapse" id="collapse{{ $chapter->id }}"
+                                                <div class="course_collapse collapse" id="collapse{{ $chapter->id }}"
                                                     aria-labelledby="heading{{ $chapter->id }}"
                                                     data-parent="#accordion1">
                                                     <div class="card-body mt-3">
@@ -615,7 +618,7 @@
                             @if (isset($course_exercises))
                                 @if (count($course_exercises) != 0)
                                     <div class="card p-2">
-                                        <div class="theme_according mb_30" id="accordion0">
+                                        <div class="theme_according" id="accordion0">
 
                                             <div class="card">
 
@@ -630,7 +633,7 @@
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div class="show collapse" id="collapse" aria-labelledby="heading"
+                                                <div class="course_collapse show collapse" id="collapse" aria-labelledby="heading"
                                                     data-parent="#accordion1">
                                                     <div class="card-body mt-3">
                                                         <div class="curriculam_list">
@@ -688,7 +691,7 @@
                         @if ((isset(request()->courseType) && in_array(request()->courseType,[4,6])) || $request->has('program_id'))
                         <div class="tab-pane fade" id="Classes" role="tabpanel" aria-labelledby="Curriculum-tab">
                             <!-- content  -->
-                            <h5 class="font_22 f_w_$program_plan700">{{ __('Classes') }}</h5>
+                            <h5 class="small_heading font_22 f_w_$program_plan700">{{ __('Classes') }}</h5>
                             <div class="theme_according" id="accordion1">
                                 <div class="row">
                                     @if ($request->has('program_id'))
@@ -769,7 +772,7 @@
                         <div class="tab-pane fade" id="Timetable" role="tabpanel" aria-labelledby="Curriculum-tab">
                             <!-- content  -->
                             <h5 class="font_22 f_w_$program_plan700 mb_20">{{ __('Time Table') }}</h5>
-                            <div class="theme_according mb_30" id="accordion1">
+                            <div class="theme_according" id="accordion1">
                                 <div class="row p-2" id="invoice_print">
                                     <div class="">
                                         <table id="lms_table" class="table">
@@ -915,7 +918,7 @@
 
                             <div class="author_courses">
                                 <div class="section__title mb-4">
-                                    <h5 class="font-weight-bold custom_heading_1">
+                                    <h5 class="font-weight-bold custom_heading_1 small_heading">
                                         {{ __('frontend.More Courses by Author') }}
                                     </h5>
                                 </div>
@@ -929,7 +932,7 @@
                                         }
                                         $c_slug = ($c->parent) ? $c->parent->slug : $c->slug;
                                     @endphp
-                                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                        <div class="col-sm-6 col-md-4 d-flex justify-content-center mb-3">
                                             <div class="card quiz_wizged rounded-card shadow">
                                                 <div class="rounded-card-img thumb">
 
@@ -1285,11 +1288,11 @@
 
                 {{-- new card_2 starts  --}}
                 {{-- this one needs to be fixed  --}}
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12 p-sm-0 p-2">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12 py-3 py-sm-0">
                      @if($course->type != '7')
                      @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
                     <div class="custom_section_color rounded_section p-2 img_round " style="background-color: #eee; ">
-                        <h5 class="font-weight-bold custom_heading_1">Start Your Application:</h5>
+                        <h5 class="font-weight-bold custom_heading_1 small_heading">Start Your Application:</h5>
                         <p class="my-1 program-span"><i class="fa fa-calendar-days"></i>&nbsp;&nbsp; Current Cohort
                             End :
 
@@ -1336,38 +1339,38 @@
                                     @if ($isEnrolled || isAdmin())
                                         @if (request()->has('program_id'))
                                             <a href="{{ route('continueCourse', [$course->slug]) . '?program_id=' . $request->program_id }}"
-                                                class="d-lg-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Continue Watch') }}</a>
+                                                class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Continue Watch') }}</a>
                                         @endif
                                         @if (request()->has('courseType') && in_array(request()->courseType, [4, 5, 9]))
                                             <a href="{{ route('continueCourse', [$course->slug]) . '?courseType=' . $request->courseType }}"
-                                                class="d-lg-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Continue Watch') }}</a>
+                                                class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Continue Watch') }}</a>
                                         @endif
                                     @elseif(isStudent())
                                         @if ($is_cart == 1)
                                             <a href="javascript:void(0)"
-                                                class="d-lg-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Added To Cart') }}</a>
+                                                class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Added To Cart') }}</a>
                                         @else
                                             <a href=" {{ request()->has('courseType') ? route('addToCartQuiz', [@$course->id]) . '?courseType=' . $request->courseType : route('addToCartQuiz', [@$course->id]) }}"
-                                                class="d-lg-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Add To Cart') }}</a>
+                                                class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Add To Cart') }}</a>
                                         @endif
                                         <a href="{{ request()->has('courseType') ? route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType : route('buyNowQuiz', [@$course->id]) }}"
-                                            class="d-lg-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Buy Now') }}</a>
+                                            class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Buy Now') }}</a>
                                     @endif
                                 @else
                                     @if ($is_cart == 1)
                                         <a href="javascript:void(0)"
-                                            class="d-lg-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Added To Cart') }}</a>
+                                            class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Added To Cart') }}</a>
                                     @else
                                         <a href=" {{ request()->has('courseType') ? route('addToCartQuiz', [@$course->id]) . '?courseType=' . $request->courseType : route('addToCartQuiz', [@$course->id]) }} "
-                                            class="d-lg-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Add To Cart') }}</a>
+                                            class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Add To Cart') }}</a>
                                         <a href="{{ request()->has('courseType') ? route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType : route('buyNowQuiz', [@$course->id]) }}"
-                                            class="d-lg-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Buy Now') }}</a>
+                                            class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Buy Now') }}</a>
                                     @endif
                                 @endif
                             @endif
                             @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
                             <p class="font_14 f_w_500 mb_30 text-center"></p>
-                            <h5 class="f_w_700 mb_10 course-span">{{ __('frontend.This course includes') }}:</h5>
+                            <h5 class="small_heading f_w_700 mb_10 course-span">{{ __('frontend.This course includes') }}:</h5>
                             <ul class="course_includes">
                                 @if(request()->has('courseType') && request()->courseType !=9)
                                 <li><i class="ti-alarm-clock"></i>
@@ -1552,4 +1555,41 @@
 
 
     });
+</script>
+<script>
+    const tabsBox = document.querySelector(".lms_tabmenu"),
+            allTabs = tabsBox.querySelectorAll(".nav-item"),
+            arroweventsIcons = document.querySelectorAll(".eventsIcon i");
+
+        const handleeventsIcons = () => {
+            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
+            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
+            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" :
+                "flex";
+        }
+
+        arroweventsIcons.forEach(eventsIcon => {
+            eventsIcon.addEventListener("click", () => {
+                if (eventsIcon.id === "left") {
+                    tabsBox.scrollBy({
+                        left: -340,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    tabsBox.scrollBy({
+                        left: 340,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        allTabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabsBox.querySelector(".active").classList.remove("active");
+                tab.classList.add("active");
+            });
+        });
+
+        tabsBox.addEventListener("scroll", handleeventsIcons);
 </script>

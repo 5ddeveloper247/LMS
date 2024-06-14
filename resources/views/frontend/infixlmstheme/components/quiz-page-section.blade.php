@@ -1,14 +1,14 @@
 <div>
     <input type="hidden" class="class_route" name="class_route" value="{{ route('quizzes') }}">
     {{-- @dd($courses) --}}
-    <div class="py-5">
-        <div class="container px-md-5">
+    <div class="py-md-5 py-4">
+        <div class="container px-lg-5">
             <div class="row px-lg-5 prep-course-padding">
                 <!-- <div class="col-lg-12 col-xl-12">
                     <div class="row"> -->
                         <div class="col-12">
                             <div class="box_header d-flex align-items-center justify-content-between flex-wrap">
-                                <div class="d-flex justify-content-between w-100 align-items-center mb_30">
+                                <div class="d-flex justify-content-between w-100 align-items-center mb-3 mb-md-5">
                                     <h5 class="f_w_700 ">
                                         {{ $total > 1 ? $total . ' Prep-Course' : $total . ' Prep-Course' }}
                                         {{ __(' Found') }}</h5>
@@ -58,7 +58,7 @@
                             @foreach ($courses as $course)
                                 @if ($course->type == 2)
                                     <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 d-flex justify-content-center">
-                                        <div class="quiz_wizged card rounded-card shadow mb-4 w-100">
+                                        <div class="quiz_wizged card rounded-card shadow mb-md-4 mb-3 w-100">
                                             <a
                                                 href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug . '?courseType=' . $course->type) }}">
                                                 <div class="thumb rounded-card-img">
@@ -113,7 +113,7 @@
                                     @endphp
                                     {{-- @if ($start_date <= $today && $end_date >= $today) --}}
                                         <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 d-flex justify-content-center">
-                                            <div class="quiz_wizged card rounded-card shadow mb-4 w-100">
+                                            <div class="quiz_wizged card rounded-card shadow mb-md-4 mb-3 w-100">
                                                 <a href="{{ route('repeat-course') . '?course_id=' . $course->id }}">
                                                     <div class="thumb rounded-card-img">
 
@@ -175,7 +175,7 @@
                                     {{-- @endif --}}
                                 @else
                                     <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 d-flex justify-content-center">
-                                        <div class="quiz_wizged card rounded-card shadow mb-4 w-100">
+                                        <div class="quiz_wizged card rounded-card shadow mb-md-4 mb-3 w-100">
                                             <a
                                                 href="{{ !empty($course->parent_id) ? courseDetailsUrl(@$course->parent->id, @$course->type, @$course->parent->slug) . '?courseType=' . $course->type : courseDetailsUrl(@$course->id, @$course->type, @$course->slug . '?courseType=' . $course->type) }}">
 
@@ -231,7 +231,7 @@
                                                         @endguest
                                                     @endif
                                                 </div>
-                                                <div class="course_less_students d-flex justify-content-between course-small">
+                                                <div class="course_less_students d-flex justify-content-between course-small" style="gap: 5px; text-align: center;">
 
                                                     @if ($course->type == 6)
                                                         <small class="small_tag_color"> <i class="ti-agenda"></i>
@@ -303,7 +303,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="mt-4">
+                    <div class="">
                         {{ $courses->appends(Request::all())->links() }}
                     <!-- </div> -->
                 </div>

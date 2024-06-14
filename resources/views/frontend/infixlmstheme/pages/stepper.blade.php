@@ -16,13 +16,13 @@
         height: auto;
     }
 
-    .row {
+    .stepper_row {
         display: flex;
         flex: 1;
         width: 100%;
     }
 
-    .row .slider {
+    .stepper_row .slider {
         flex-wrap: wrap;
         flex: 1;
     }
@@ -69,7 +69,6 @@
         content: "";
         position: absolute;
         left: -70px;
-        /* Adjust as needed */
         top: 50%;
         transform: translateY(-50%);
         width: 60px;
@@ -82,26 +81,78 @@
         flex-direction: column;
         align-items: center;
     }
+@media only screen and (max-width: 576px){
+    .stepper_row {
+            flex-direction: column;
+        }
+        .paddingy{
+            padding-top: 40px !important;
+        }
+        .slider {
+            width: 100%;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+            border-right: none !important;
+            text-align: left !important;
+            margin-bottom: 20px; 
+        }
+        .slider h2 {
+            padding-left: 0 !important;
+        }
+        .slider h2::before,
+        .slider-right h2::before {
+            display: none;
+        }
+        .slider-right {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+        .slider-right h2 {
+            padding-left: 0 !important;
+        }
+        .stepper_row:not(:last-child) .slider::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -60px;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 60px;
+        background-color: #ccc;
+    }
 
+    .stepper_row:nth-child(2) .slider:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -60px;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 60px;
+        background-color: #ccc;   
+    }
+}
     @media only screen and (max-width: 767px) {
         .stepper_right {
-            padding-left: 40px !important;
+            padding-left: 20px !important;
         }
 
         .paddingy {
-            padding-right: 40px !important;
+            padding-right: 20px !important;
         }
 
         .slider h2::before {
             width: 30px !important;
         }
-        .slider-right h2::before{
+
+        .slider-right h2::before {
             width: 30px !important;
             left: -40px !important;
         }
+
         .image {
-    height: 300px !important;
-}
+            height: 300px !important;
+        }
     }
 
     @media only screen and (min-width: 1800px) {
@@ -121,8 +172,8 @@
 
 <div class="custom-padding px-md-5 mb-5">
     <div class="container center-content-about px-0">
-        <div class="row px-xl-5 px-lg-4 px-3 row-padding">
-            <div class="pl-0 slider d-flex flex-column align-items-end text-end paddingy" data-aos="fade-left"
+        <div class="row stepper_row px-xl-5 px-lg-4 px-3 row-padding">
+            <div class="pl-0 slider d-flex flex-column align-items-md-end text-end paddingy" data-aos="fade-left"
                 data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">Step 1</h2>
                 <p class="mb-3">This is the first step This is the third step This is the first step This is the third
@@ -140,8 +191,8 @@
                         class="w-100 h-100" style="object-fit: cover;"></div>
             </div>
         </div>
-        <div class="row px-xl-5 px-lg-4 px-3 row-padding">
-            <div class="pl-0 slider d-flex flex-column align-items-end text-end paddingy" data-aos="fade-right"
+        <div class="row stepper_row px-xl-5 px-lg-4 px-3 row-padding">
+            <div class="pl-0 slider d-flex flex-column align-items-md-end text-end paddingy" data-aos="fade-right"
                 data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">Step 3</h2>
                 <p class="mb-3"> This is the third stepThis is the third step This is the first step This is the third

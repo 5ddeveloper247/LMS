@@ -1173,7 +1173,7 @@ label {
 }
 
 .custom-heading {
-    font-size: 60px !important;
+    font-size: 60px;
     color: #fff;
 }
 
@@ -1354,26 +1354,6 @@ label {
     line-height: 76px;
 } */
 
-@media (max-width: 575.98px) {
-    /* .section__title h3.large_title {
-        font-size: 30px;
-        line-height: 46px;
-    } */
-}
-
-@media (min-width: 576px) and (max-width: 767.98px) {
-    /* .section__title h3.large_title {
-        font-size: 30px;
-        line-height: 46px;
-    } */
-}
-
-/* @media only screen and (min-width: 1200px) and (max-width: 1700.98px) {
-    .section__title h3.large_title {
-        font-size: 50px;
-        line-height: 66px;
-    }
-} */
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .section__title h3 {
@@ -3066,16 +3046,16 @@ input[type="number"] {
     transition: transform 0.3s ease-in-out;
     object-fit: cover;
 }
-
+/* 
 .courses_area {
     padding: 30px 0;
-}
+} */
 
-@media (max-width: 767.98px) {
+/* @media (max-width: 767.98px) {
     .courses_area {
         padding: 35px 0 30px;
     }
-}
+} */
 
 .course_category_chose .course_category_inner {
     border: 1px solid #e9e7f7;
@@ -4337,6 +4317,7 @@ input[type="number"] {
     background-color: #eee !important;
     border-radius: 10px;
     display: inline-flex;
+    justify-content: space-between;
 }
 
 .lms_tabmenu li a {
@@ -4345,20 +4326,19 @@ input[type="number"] {
     font-family: Source Sans Pro, sans-serif;
     color: var(--system_secendory_color);
     border-radius: 10px;
-    padding: 13px 39px;
+    padding: 13px;
+}
+.course_collapse{
+    transition: all 2s;
 }
 
 @media (max-width: 767.98px) {
     .lms_tabmenu li a {
-        padding: 13px 30px;
+        padding: 7px 10px;
+        font-size: 13px;
     }
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
-    .lms_tabmenu li a {
-        padding: 13px 27px;
-    }
-}
 
 .lms_tabmenu li a.active {
     background: var(--system_primery_color);
@@ -4605,7 +4585,51 @@ input[type="number"] {
         flex-direction: column;
     }
 }
+/* for eventsIcon for mobile */
+.wrapper {
+    position: relative;
+    overflow: hidden;
+}
 
+.wrapper .eventsIcon {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    z-index: 10; /* Ensure the buttons are above the tabs */
+}
+
+.eventsIcon:first-child {
+    left: -10px; /* Adjust as needed */
+    display: none;
+    background: linear-gradient(90deg, #fff 70%, transparent);
+}
+
+.eventsIcon:last-child {
+    right: -10px; /* Adjust as needed */
+    justify-content: flex-end;
+    background: linear-gradient(-90deg, #fff 70%, transparent);
+}
+
+.eventsIcon i {
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 50%; /* Make it round */
+    background: #efedfb;
+    padding: 10px;
+}
+
+.eventsIcon:first-child i {
+    margin-left: 10px; /* Adjust for better spacing */
+}
+
+.eventsIcon:last-child i {
+    margin-right: 10px; /* Adjust for better spacing */
+}
+/*  */
 .course__details .course__details_title .single__details {
     display: flex;
     align-items: center;
@@ -4825,7 +4849,7 @@ input[type="number"] {
 
 @media (max-width: 767.98px) {
     .lms_tab_content {
-        margin-bottom: 45px;
+        /* margin-bottom: 45px; */
     }
 }
 
@@ -4949,7 +4973,7 @@ input[type="number"] {
 }
 
 .course_review_wrapper .details_title {
-    margin-bottom: 28px;
+    /* margin-bottom: 28px; */
 }
 
 .course_review_wrapper .details_title h4 {
@@ -7675,13 +7699,12 @@ input[type="number"] {
     .theme_btn {
         font-size: 12px !important;
     }
+    .close-modal {
+        font-size: 12px !important;
+    }
 
     .contact_btn_theme {
         font-size: 16px !important;
-    }
-
-    label {
-        font-size: 12px !important;
     }
 
     .btn_login,
@@ -7810,9 +7833,9 @@ input[type="number"] {
         max-height: 440px !important;
     }
 
-    .quiz_wizged {
+    /* .quiz_wizged {
         width: 17rem;
-    }
+    } */
 }
 
 .header_iner .notification_wrapper ul li .notification_area .notification_body .single_nofy {
@@ -9070,16 +9093,6 @@ input[type="number"] {
     display: inline-block;
 }
 
-/* .cta_area-row {
-    min-width: 700px;
-    max-width: 700px;
-} */
-
-/* .section__title h3.large_title {
-    font-size: 33px;
-    font-weight: 700;
-    line-height: 60px;
-} */
 @media only screen and (min-width: 700px) {
     .header_area .main_menu ul li a {
         font-size: 11px;
@@ -9164,40 +9177,6 @@ input[type="number"] {
 
     .profile_info span {
         font-size: 12px;
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .section_main_heading {
-        font-size: 30px !important;
-    }
-
-    .custom_small_heading {
-        font-size: 1.5rem !important;
-    }
-
-    .prise_tag {
-        font-size: 10px !important;
-        min-height: 50px !important;
-        min-width: 50px !important;
-    }
-
-    .breadcrumb_area {
-        min-height: 500px !important;
-        max-height: 500px !important;
-    }
-
-    .breadcrumb_area2 .breadcam_wrap h3 {
-        font-size: 50px;
-        line-height: 66px;
-    }
-
-    .account_main_content {
-        padding: 100px 40px 150px;
-    }
-
-    .theme_btn {
-        font-size: 14px;
     }
 }
 
@@ -9296,11 +9275,6 @@ input[type="number"] {
     #back-top {
         bottom: 15px;
     }
-
-    /* .section__title h3.large_title {
-        font-size: 60px;
-        line-height: 76px;
-    } */
 }
 
 @media only screen and (min-width: 1350px) {
@@ -10077,12 +10051,6 @@ input[type="number"] {
     .feature_btn {
         display: none;
     }
-}
-
-@media (min-width: 576px) {
-    /* .modal-dialog {
-        max-width: 405px;
-    } */
 }
 
 @media (min-width: 991.98px) {
@@ -11899,6 +11867,7 @@ footer .social-network a {
 @media (max-width: 767.98px) {
     .theme_according .card .card-header h5 button {
         flex-wrap: wrap;
+        font-size: 16px;
     }
 }
 
@@ -16539,11 +16508,28 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    .course_detail_image{
+        min-height: 350px;
+    }
+    .close-modal {
+        font-size: 13px;
+    }
+    .text_small{
+        font-size: 13px;
+    }
     .main-items {
         display: flex;
         align-items: center;
         justify-content: center;
         white-space: nowrap;
+    }
+    .lms_tabmenu{
+        overscroll-behavior: inherit;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        overflow-x: scroll;
+        flex-wrap: nowrap !important;
+        gap: 10px;
     }
 
     .small_pills {
@@ -16667,7 +16653,15 @@ body {
     .custom_small_heading {
         font-size: 18px !important;
     }
-
+    .small_heading{
+        font-size: 16px !important;
+    }
+    .program-span{
+        font-size: 13px;
+    }
+    .course_deatil_image{
+        min-height: 350px;
+    }
     p {
         font-size: 15px;
     }
@@ -16861,7 +16855,6 @@ body {
     .social_btns {
         display: flex;
         flex-wrap: wrap;
-        /* gap: 8px; */
     }
 
     .dashboard_card .card {
@@ -17045,6 +17038,54 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+    .section_main_heading {
+        font-size: 30px !important;
+    }
+
+    .custom_small_heading {
+        font-size: 1.5rem !important;
+    }
+
+    .prise_tag {
+        font-size: 10px !important;
+        min-height: 50px !important;
+        min-width: 50px !important;
+    }
+
+    .breadcrumb_area {
+        min-height: 500px !important;
+        max-height: 500px !important;
+    }
+
+    .breadcrumb_area2 .breadcam_wrap h3 {
+        font-size: 50px;
+        line-height: 66px;
+    }
+
+    .account_main_content {
+        padding: 100px 40px 150px;
+    }
+
+    .theme_btn {
+        font-size: 14px;
+    }
+    .close-modal{
+        font-size: 14px;
+    }
+    .lms_tabmenu{
+        overscroll-behavior: inherit;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        overflow-x: scroll;
+        flex-wrap: nowrap !important;
+        gap: 10px;
+    }
+    .lms_tabmenu li a{
+        padding: 10px !important;
+    }
+    .custom-heading{
+        font-size: 30px !important;
+    }
     .counter_area .counter_wrapper .single_counter:first-child {
         margin: 30px -55px 15px 145px !important;
     }

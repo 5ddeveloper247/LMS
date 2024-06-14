@@ -11,136 +11,129 @@
 <script src="https://kit.fontawesome.com/b98cad50b5.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <style>
-    .nav-pills-custom .nav-link {
-        color: #aaa;
-        background: #fff;
-        position: relative;
-    }
+   .nav-pills-custom .nav-link {
+    color: #aaa;
+    background: #fff !important;
+    position: relative;
+}
 
-    .nav-pills-custom .nav-link.active {
-        color: #fff !important;
-        background: #996699 !important;
-    }
+.nav-pills-custom .nav-link.active {
+    color: #fff !important;
+    background: #996699 !important;
+}
 
-    .tab-content {
-        margin-left: 0rem;
-        margin-top: 0rem;
-        margin-right: 0rem;
-    }
+.tab-content {
+    margin-left: 0rem;
+    margin-top: 0rem;
+    margin-right: 0rem;
+}
 
-    .wrapper {
-        position: relative;
-        overflow-x: hidden;
-    }
+.wrapper {
+    position: relative;
+    overflow-x: hidden;
+}
 
-    .wrapper .eventsIcon {
+.wrapper .eventsIcon {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    z-index: 10; /* Ensure the buttons are above the tabs */
+}
+
+.eventsIcon:first-child {
+    left: -10px; /* Adjust as needed */
+    display: none;
+    background: linear-gradient(90deg, #fff 70%, transparent);
+}
+
+.eventsIcon:last-child {
+    right: -10px; /* Adjust as needed */
+    justify-content: flex-end;
+    background: linear-gradient(-90deg, #fff 70%, transparent);
+}
+
+.eventsIcon i {
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 50%; /* Make it round */
+    background: #efedfb;
+    padding: 10px;
+}
+
+.eventsIcon:first-child i {
+    margin-left: 10px; /* Adjust for better spacing */
+}
+
+.eventsIcon:last-child i {
+    margin-right: 10px; /* Adjust for better spacing */
+}
+
+@media (min-width: 992px) {
+    .nav-pills-custom .nav-link::before {
+        content: '';
+        display: block;
+        border-top: 8px solid transparent;
+        border-left: 10px solid #fff;
+        border-bottom: 8px solid transparent;
         position: absolute;
-        top: 0;
-        height: 100%;
-        width: auto;
-        display: flex;
-        align-items: center;
+        top: 50%;
+        right: -10px;
+        transform: translateY(-50%);
+        opacity: 0;
     }
+}
 
-    .eventsIcon:first-child {
-        left: 0;
-        display: none;
-        background: linear-gradient(90deg, #fff 70%, transparent);
-    }
+.nav-pills-custom .nav-link.active::before {
+    opacity: 1;
+}
 
-    .eventsIcon:last-child {
-        right: 0;
-        justify-content: flex-end;
-        background: linear-gradient(-90deg, #fff 70%, transparent);
-    }
+.wrapper {
+    background-color: #eee;
+    transition: 0.2s ease-in-out;
+}
 
-    .eventsIcon i {
-        cursor: pointer;
-        font-size: 14px;
-        text-align: center;
-        border-radius: 10%;
-        background: #efedfb;
-        padding: 10
-    }
+.wrapper:hover {
+    background-color: white;
+}
 
-    .eventsIcon:first-child i {
-        margin-left: 0px;
-    }
+.shadow-1 {
+    box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.15) !important
+}
 
-    .eventsIcon:last-child i {
-        margin-right: 0px;
-    }
+.toggle,
+.content {
+    font-family: "Poppins", sans-serif;
+}
 
-    @media (min-width: 992px) {
-        .nav-pills-custom .nav-link::before {
-            content: '';
-            display: block;
-            border-top: 8px solid transparent;
-            border-left: 10px solid #fff;
-            border-bottom: 8px solid transparent;
-            position: absolute;
-            top: 50%;
-            right: -10px;
-            transform: translateY(-50%);
-            opacity: 0;
-        }
-    }
+.toggle {
+    text-align: start;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #111130;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 0;
+}
 
-    .nav-pills-custom .nav-link.active::before {
-        opacity: 1;
-    }
-
-    .wrapper {
-        background-color: #eee;
-        transition: 0.2s ease-in-out;
-    }
-
-    .wrapper:hover {
-        background-color: white;
-    }
-
-    .shadow-1 {
-        box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.15) !important
-    }
-
-    .toggle,
-    .content {
-        font-family: "Poppins", sans-serif;
-    }
-
-    .toggle {
-        text-align: start;
-        width: 100%;
-        background-color: transparent;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        font-size: 16px;
-        color: #111130;
-        font-weight: 600;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 10px 0;
-    }
-
-    .content {
-        position: relative;
-        font-size: 14px;
-        text-align: justify;
-        line-height: 30px;
-        height: 0;
-        overflow: hidden;
-        -webkit-transition: all 1s;
-        -o-transition: all 1s;
-        transition: all 1s;
-    }
+.content {
+    position: relative;
+    font-size: 14px;
+    text-align: justify;
+    line-height: 30px;
+    height: 0;
+    overflow: hidden;
+    transition: all 1s;
+}
 
     @media (width > 1650px) {
 
@@ -196,68 +189,68 @@
                                 {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-8" data-toggle="pill" href="#customer"
                                 role="tab" aria-controls="customer" aria-selected="false">
                                 <i class="fa fa-arrow-right mr-2"></i>
-                                <span class="font-weight-bold small text-uppercase">Customer Service</span></a> --}}
+                                <span class="text_small font-weight-bold small text-uppercase">Customer Service</span></a> --}}
 
                                 {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-9" data-toggle="pill" href="#contact"
                                 role="tab" aria-controls="contact" aria-selected="false">
                                 <i class="fa fa-arrow-right mr-2"></i>
-                                <span class="font-weight-bold small text-uppercase">Contact Us</span></a> --}}
+                                <span class="text_small font-weight-bold small text-uppercase">Contact Us</span></a> --}}
 
                                 <a class="nav-link active mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-home-tab"
                                     data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
                                     aria-selected="true">
                                     <i class="fa fa-arrow-right mr-2"></i>
-                                    <span class="font-weight-bold small text-uppercase"
+                                    <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Term Of Use')">Term
                                         Of Use</span></a>
 
-                                <a class="nav-link mb-mb-3 p-md-3 p-2 shadow main-items" id="v-pills-profile-tab-1"
+                                <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-profile-tab-1"
                                     data-toggle="pill" href="#v-pills-profile" role="tab"
                                     aria-controls="v-pills-profile" aria-selected="false">
                                     <i class="fa fa-arrow-right mr-2"></i>
-                                    <span class="font-weight-bold small text-uppercase"
+                                    <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Privacy Policy')">Privacy Policy</span></a>
 
                                 <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-messages-tab-2"
                                     data-toggle="pill" href="#v-pills-messages" role="tab"
                                     aria-controls="v-pills-messages" aria-selected="false">
                                     <i class="fa fa-arrow-right mr-2"></i>
-                                    <span class="font-weight-bold small text-uppercase"
+                                    <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Help and Support')">Help and Support</span></a>
 
                                 <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-settings-tab-3"
                                     data-toggle="pill" href="#v-pills-settings" role="tab"
                                     aria-controls="v-pills-settings" aria-selected="false">
                                     <i class="fa fa-arrow-right mr-2"></i>
-                                    <span class="font-weight-bold small text-uppercase"
+                                    <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Certificate Verification')">Certificate Verification</span></a>
 
                                 {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-4" data-toggle="pill" href="#ship"
                             role="tab" aria-controls="ship" aria-selected="false">
                             <i class="fa fa-arrow-right mr-2"></i>
-                            <span class="font-weight-bold small text-uppercase">Shipping & Returns</span></a> --}}
+                            <span class="text_small font-weight-bold small text-uppercase">Shipping & Returns</span></a> --}}
 
                                 {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-5" data-toggle="pill" href="#track"
                             role="tab" aria-controls="track" aria-selected="false">
                             <i class="fa fa-arrow-right mr-2"></i>
-                            <span class="font-weight-bold small text-uppercase">Track Order</span></a> --}}
+                            <span class="text_small font-weight-bold small text-uppercase">Track Order</span></a> --}}
                                 {{--
                         <a class="nav-link mb-3 p-3 shadow" id="tab-6" data-toggle="pill" href="#account"
                             role="tab" aria-controls="account" aria-selected="false">
                             <i class="fa fa-arrow-right mr-2"></i>
-                            <span class="font-weight-bold small text-uppercase">My Accounts</span></a> --}}
+                            <span class="text_small font-weight-bold small text-uppercase">My Accounts</span></a> --}}
 
                                 <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="tab-7" data-toggle="pill"
                                     href="#faq" role="tab" aria-controls="faq" aria-selected="false">
                                     <i class="fa fa-arrow-right mr-2"></i>
-                                    <span class="font-weight-bold small text-uppercase"
+                                    <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Faqs')">Faq's</span></a>
 
                                 <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="tab-8" data-toggle="pill"
                                     href="#resource-center" role="tab" aria-controls="resource-center"
                                     aria-selected="false">
                                     <i class="fa fa-arrow-right mr-2"></i>
-                                    <span class="font-weight-bold small text-uppercase"
+                                    <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Resource center')">Resource center</span></a>
                             </div>
                             <div class="eventsIcon d-md-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
@@ -269,7 +262,7 @@
                         <h1 class="customer d-none invisible">test</h1>
                         <!-- Tabs content -->
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="customer" role="tabpanel"
+                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-5" id="customer" role="tabpanel"
                                 aria-labelledby="tab-8">
                                 <h5>FOR ASSISTANCE</h5>
                                 <h6>DOMESTIC CUSTOMERS</h6>
@@ -296,7 +289,7 @@
                                 </p>
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-lg-5" id="contact" role="tabpanel"
+                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-lg-5" id="contact" role="tabpanel"
                                 aria-labelledby="tab-9">
                                 <h5>WE’RE HERE FOR YOU!</h5>
                                 <p>
@@ -309,7 +302,7 @@
                             </div>
 
 
-                            <div class="tab-pane fade show active rounded bg-white p-5 shadow mb-lg-5" id="v-pills-home"
+                            <div class="tab-pane fade show active rounded bg-white p-3 p-lg-5 shadow mb-lg-5" id="v-pills-home"
                                 role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 <h5> SCOPE</h5>
                                 <p>The business relationships between Barbara Sturm Molecular Cosmetics GmbH - hereinafter
@@ -380,7 +373,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="v-pills-profile"
+                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-5" id="v-pills-profile"
                                 role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                 <p>
                                     Barbara Sturm Molecular Cosmetics collects and uses your personal data exclusively in
@@ -470,7 +463,7 @@
                                 </p>
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="v-pills-messages"
+                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-5" id="v-pills-messages"
                                 role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <p>
                                     Merakii College of Health are committed to providing a website that is accessible to
@@ -483,7 +476,7 @@
                                 </p>
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="v-pills-settings"
+                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-5" id="v-pills-settings"
                                 role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                 <h5>About this cookie policy</h5>
                                 <p>
@@ -649,7 +642,7 @@
                                     style="color:white">Login</a></button>
 
                         </div> --}}
-                            <div class="tab-pane fade p-lg-5 rounded bg-white p-1 shadow mb-lg-5" id="faq"
+                            <div class="tab-pane fade p-lg-5 rounded bg-white p-3 shadow mb-lg-5" id="faq"
                                 role="tabpanel" aria-labelledby="tab-7">
                                 <h5>Frequently Asked Questions</h5>
                                 <div class="col-12 mt-3 px-0">
@@ -721,7 +714,7 @@
                                 </p> --}}
                             </div>
                             {{-- resourse center --}}
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-5" id="resource-center"
+                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-md-5 mb-4" id="resource-center"
                                 role="tabpanel" aria-labelledby="tab-8">
                                 <h5>FOR Resource Center</h5>
                                 <h6>DOMESTIC CUSTOMERS</h6>
@@ -935,46 +928,48 @@
 
     {{-- for slider in navtabs for mobile --}}
     <script>
-        const tabsBox = document.querySelector(".small_pills");
-        const allTabs = tabsBox.querySelectorAll(".main-items");
-        const arroweventsIcons = document.querySelectorAll(".eventsIcon i");
+$(document).ready(function() {
+    const $tabsBox = $(".small_pills");
+    const $allTabs = $tabsBox.find(".main-items");
+    const $arrowEventsIcons = $(".eventsIcon i");
+    const $tabContents = $(".tab-pane");
 
-        arroweventsIcons.forEach(eventsIcon => {
-            eventsIcon.addEventListener("click", () => {
-                if (eventsIcon.id === "left") {
-                    tabsBox.scrollBy({
-                        left: -340,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    tabsBox.scrollBy({
-                        left: 340,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        tabsBox.addEventListener("scroll", () => {
-            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
-            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ?
-                "none" : "flex";
-        });
-
-        allTabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                tabsBox.querySelector(".active").classList.remove("active");
-                tab.classList.add("active");
-            });
-        });
-        const handleeventsIcons = () => {
-            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-            console.log('scrollLeft:', tabsBox.scrollLeft, 'maxScrollableWidth:', maxScrollableWidth);
-            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
-            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" :
-                "flex";
+    $arrowEventsIcons.on("click", function() {
+        if ($(this).attr("id") === "left") {
+            $tabsBox.animate({ scrollLeft: '-=340' }, 'smooth');
+        } else {
+            $tabsBox.animate({ scrollLeft: '+=340' }, 'smooth');
         }
+    });
+
+    $tabsBox.on("scroll", function() {
+        let maxScrollableWidth = this.scrollWidth - this.clientWidth;
+        $(".eventsIcon:first-child").css('display', this.scrollLeft <= 0 ? "none" : "flex");
+        $(".eventsIcon:last-child").css('display', maxScrollableWidth - this.scrollLeft <= 1 ? "none" : "flex");
+    });
+
+    $allTabs.on("click", function(e) {
+        e.preventDefault();
+        $allTabs.removeClass("active");
+        $(this).addClass("active");
+
+        // Remove active class
+        $tabContents.removeClass("show active");
+
+        // Add active class 
+        const targetContentId = $(this).attr("href").substring(1);
+        $("#" + targetContentId).addClass("show active");
+    });
+    const handleEventsIcons = function() {
+        let maxScrollableWidth = $tabsBox[0].scrollWidth - $tabsBox[0].clientWidth;
+        console.log('scrollLeft:', $tabsBox[0].scrollLeft, 'maxScrollableWidth:', maxScrollableWidth);
+        $(".eventsIcon:first-child").css('display', $tabsBox[0].scrollLeft <= 0 ? "none" : "flex");
+        $(".eventsIcon:last-child").css('display', maxScrollableWidth - $tabsBox[0].scrollLeft <= 1 ? "none" : "flex");
+    };
+    handleEventsIcons();
+});
+
+
     </script>
     @include(theme('partials._custom_footer'))
 @endsection

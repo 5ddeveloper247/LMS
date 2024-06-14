@@ -93,11 +93,11 @@
 </style>
 
 <div>
-    <div class="container">
-        <h2 class="px-md-5 px-2 pt-5">Please Choose Type</h2>
+    <div class="container py-3 py-md-5">
+        <h2 class="px-md-5 px-2">Please Choose Type</h2>
         <div class="filter-tabs">
         <div class="d-flex align-items-center px-md-5 px-2">
-            <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 mb-2 tab-padding" id="pills-tab" role="tablist">
+            <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 tab-padding" id="pills-tab" role="tablist">
                 <li id="filter-type" class="nav-item px-1" role="presentation">
                     <button class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center active" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
                         Type
@@ -129,7 +129,7 @@
         <!-- filter type  -->
         <div id="filter-type-content">
             <div class="d-flex align-items-center px-md-5 px-2">
-                <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 mb-2 tab-padding" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 tab-padding" id="pills-tab" role="tablist">
                     <li class="nav-item px-1" role="presentation">
                         <input type="radio" name="search_type" id="typeProgram" value="program" @if($request->has('search_type') && $request->get('search_type') == 'program') checked @endif>
                         <label for="typeProgram" class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
@@ -245,7 +245,7 @@
     <div class="courses_area ">
         <div class="container">
             <div class="row px-1 px-md-5">
-                <div class="col-12">
+                <div class="col-12 mb-3 mb-md-4">
                     <h5 class="text-center">
                         @if ($request->has('query'))
                         {{ __('courses.Search result for') }}
@@ -296,7 +296,7 @@
                  }
                  $subtitle = '';   
                 @endphp
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 d-flex my-3">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 d-flex mb-3">
                     <div class="quiz_wizged card rounded-card shadow">
                         <div class="thumb card-header rounded-card-header p-0">
                                     <a href="{{ $url_link }}"><img src="{{ $course_image }}" class="img-fluid img-cover w-100 rounded-card-img"></a>
@@ -374,7 +374,7 @@
                     </div>
                 </div>
                 @endif
-                <div class="col-md-12 mb-5 mt-5 pb-3">
+                <div class="col-md-12 my-3 pb-3">
                     @if (count($all_programs) != 0)
                     {{ $all_programs->appends(Request::all())->links() }}
                     @endif
