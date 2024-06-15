@@ -9205,7 +9205,7 @@ input[type="number"] {
         max-height: 502px !important;
     }
 }
-@media screen and (min-width: 1250px) {
+@media screen and (min-width: 1230px) {
     .modal_form{
         min-width: 1000px !important;
     }
@@ -9433,6 +9433,17 @@ input[type="number"] {
 }
 
 @media (min-width: 1650px) {
+    
+    .price-card__plan--v2 {
+        color: #17171a;
+        letter-spacing: -.04em;
+        min-height: 0vh !important;
+        margin-bottom: 0;
+        margin-right: 12px;
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 110%;
+    }
     .breadcrumb_area {
         min-height: 720px !important;
         max-height: 720px !important;
@@ -11101,14 +11112,8 @@ input[type="number"] {
 }
 
 .course_fullview_wrapper {
-    /* min-height: 100vh; */
-    /* background-repeat: no-repeat;
-    background-position: 50%;
-    background-size: cover; */
     position: fixed;
     display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
     width: 100%;
     transition: 0.3s;
 }
@@ -11124,9 +11129,6 @@ input[type="number"] {
     width: calc((100% - 340px));
 }
 
-/* .course_fullview_wrapper .course_quiz_left_wrapper.active{
-    width: 100%;
-} */
 .course_fullview_wrapper .video_iframe {
     position: absolute;
     top: 0;
@@ -11150,12 +11152,6 @@ input[type="number"] {
     transform: translateX(100%);
     position: absolute;
 }
-
-/* .course_fullview_wrapper .course__play_warp .course__play_list {
-    min-height: calc(100vh - 113px);
-    max-height: calc(100vh - 113px);
-} */
-
 .course_fullview_wrapper .course__play_warp .play_toggle_btn {
     width: 50px;
     height: 50px;
@@ -11164,7 +11160,7 @@ input[type="number"] {
     align-items: center;
     justify-content: center;
     position: absolute;
-    /* left: -50px; */
+    left: 0px;
     cursor: pointer;
 }
 
@@ -16199,9 +16195,9 @@ body {
     border-top-right-radius: 25px !important;
 }
 
-.section-margin-y {
+/* .section-margin-y {
     margin: 60px auto !important;
-}
+} */
 
 .section-padding-y {
     padding-top: 60px;
@@ -16465,6 +16461,24 @@ body {
     gap: 5px;
 }
 
+.price-card__plan--v2 {
+    color: #17171a;
+    /* min-height: 18vh; */
+    letter-spacing: -.04em;
+    margin-bottom: 0;
+    margin-right: 12px;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 110%;
+}
+.form_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.form_content textarea{
+    height:150px;
+}
 @media only screen and (max-width: 375px) {
     .container-sub {
         padding: 0 25px !important;
@@ -16527,6 +16541,58 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    
+    .course_fullview_wrapper .course_quiz_left_wrapper {
+        width: 100% !important;
+        height:-webkit-fill-available !important ;
+        position: fixed !important;
+    }
+    .course_fullview_wrapper .course_quiz_left_wrapper.active{
+        width: calc(100% - 50%) !important;
+        position: relative !important;
+    }
+    .course_fullview_wrapper .course__play_warp .play_toggle_btn {
+        left: -50px !important;
+        top: -58px !important;
+    }
+    
+  
+  .course_fullview_wrapper .course__play_warp {
+    width: 50% !important;
+    transform: translateX(100%) !important;
+    position: absolute;
+}
+.course_fullview_wrapper .course__play_warp.active {
+    transform: translateX(0%) !important;
+    /* top: -58px; */
+    position: absolute;
+}
+.theme_btn_mini{
+    font-size: 12px !important;
+    padding: 0.5rem !important;
+}
+.course__play_warp .course__play_list {
+    min-height: calc(100vh - 250px) !important;
+    max-height: calc(100vh - 250px) !important;
+    overflow: auto;
+}
+.theme_according .card-body{
+    padding: 0px !important;
+}
+    .form_label {
+        margin-bottom: 7px !important;
+        font-size: 14px !important;
+    }
+    .form_content textarea{
+    height: 120px !important;
+}
+    .price-card__price--v2 {
+        font-size: 25px;
+        line-height: 30px;
+    }
+    .price-card__plan--v2{
+        font-size: 25px !important;
+    }
     .course_detail_image{
         min-height: 350px;
     }
@@ -16603,12 +16669,6 @@ body {
 
     .sub-section {
         margin-bottom: -115px;
-    }
-
-    .course_fullview_wrapper .course_quiz_left_wrapper {
-        width: 100% !important;
-        height: 100%;
-        overflow: auto !important;
     }
 
     .couse_wizged .thumb {
@@ -16867,7 +16927,9 @@ body {
     .account_main_content {
         padding: 75px 0;
     }
-
+.custom-heading{
+    white-space: normal !important;
+}
     .account_profile_wrapper .account_profile_thumb .thumb {
         width: 200px;
         height: 200px;
@@ -16988,9 +17050,6 @@ body {
         font-size: 18px;
     }
 
-    /* .dashboard_part .col-sm-6 {
-    width: 50%;
-} */
     .header_iner .notification_wrapper ul li:not(:last-child) {
         margin: 6px;
     }
@@ -17004,9 +17063,6 @@ body {
         width: 26px;
     }
 
-    /* .dashboard_part .col-sm-6:nth-child(2n + 2) {
-    padding-left: 0;
-} */
     .reward-modal .modal-body h4 {
         font-size: 24px;
     }
@@ -17055,10 +17111,22 @@ body {
         min-height: 45px !important;
         min-width: 45px !important;
     }
+ 
 
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+ 
+    .price-card__price--v2 {
+        font-size: 25px;
+        line-height: 30px;
+    }
+    .price-card__plan--v2{
+        font-size: 25px !important;
+    }
+    .modal_form{
+        max-width: 700px !important;
+    }
     .lms_tab_content .instractor_details_wrapper .instractor_details_inner {
         grid-template-columns: auto auto !important;
         grid-gap: 35px !important;
@@ -17095,7 +17163,7 @@ body {
         font-size: 12px;
     }
     .close-modal{
-        font-size: 14px;
+        font-size: 12px;
     }
     .lms_tabmenu{
         overscroll-behavior: inherit;

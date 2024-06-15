@@ -43,10 +43,6 @@
         border-top-right-radius: 25px !important;
     }
 
-    .section-margin-y {
-        margin: 60px auto !important;
-    }
-
     .btn_responsive {
         font-size: 21px !important;
     }
@@ -246,6 +242,11 @@
     .heading_3_color {
         color: #ff7600 !important;
     }
+    @media only screen and (max-width: 767px){
+        .custom_heading_1{
+            font-size: 25px !important;
+        }
+    }
 </style>
 @section('mainContent')
     {{-- @dd($courses) --}}
@@ -268,10 +269,10 @@
         </div>
 
         @if (isTutor() || !auth()->check())
-            <div class="section-margin-y container px-md-5">
+            <div class="section-margin-y container px-md-5 my-md-5 my-3">
                 <div class="row justify-content-center px-md-5">
                     <div class="col-md-12 text-center">
-                        <h2 class="font-weight-bold custom_heading_1 mb-5">Check Out Our Pricings</h2>
+                        <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3">Check Out Our Pricings</h2>
                     </div>
                     @foreach ($packages as $package)
                         @php
@@ -286,7 +287,7 @@
                                 $button = 'button-tb--orange';
                             }
                         @endphp
-                        <div class="col-md-4 justify-content-center d-flex">
+                        <div class="col-lg-4 col-sm-6 justify-content-center d-flex mb-3">
                             <div class="card custom_card_plan shadow">
                                 <div class="card-body">
                                     <h4 class="price-card__plan--v2 {{ $heading }}">
@@ -345,7 +346,7 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class="col-md-12 mt-5 text-center">
+                    <div class="col-md-12 mt-md-4 mt-3 mb-2 mb-md-0 text-center">
                         <a href="{{ route('skipPricing') }}" class="small_btn3 theme_btn" onclick="showMsg()">Skip,
                             Remind me
                             Later</a>
