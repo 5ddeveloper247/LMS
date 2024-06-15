@@ -1,3 +1,4 @@
+@if(count($testimonials) > 0)
 <style>
     .card-container {
         position: relative;
@@ -201,39 +202,33 @@
         </div>
 
         <div class="slick-slider" id="student-work-slider">
-
+            @foreach ($testimonials as $item)
             <div class="slide d-flex">
 
                 <div class="row px-lg-5 px-2 justify-content-center elem pb-5">
 
                     <div class="col-md-6 aboutus-img">
 
-                        <img src="{{ asset('/public/uploads/images/footerimg/image1.jpg') }}">
+                        <img src="{{ asset($item->image) }}">
 
                     </div>
 
                     <div class="col-md-6 pl-lg-5 elem-content d-flex flex-column justify-content-center pb-3 pb-lg-0">
 
-                        <p class="custom_paragraph my-5">This is the first paragraph on the right side of the circle.his
-                            is the
+                        <p class="custom_paragraph my-5">{{ $item->body }}</p>
 
-                            first paragraph on the right side of the circle.This is the first paragraph on the
-
-                            right side of the circle.his is the
-
-                            first paragraph on the right side of the circle.</p>
-
-                        <h6 class="text-capitalize">sherdin berley - manager</h6>
+                        <h6 class="text-capitalize">{{ $item->author }} - {{ $item->profession }}</h6>
 
                     </div>
 
                 </div>
 
             </div>
+            @endforeach
 
 
 
-            <div class="slide d-flex">
+            {{-- <div class="slide d-flex">
 
                 <div class="row px-lg-5 px-2 justify-content-center elem">
 
@@ -258,9 +253,9 @@
 
 
 
-            </div>
+            </div> --}}
 
-            <div class="slide d-flex">
+            {{-- <div class="slide d-flex">
 
                 <div class="row px-lg-5 px-2 justify-content-center elem">
 
@@ -283,7 +278,7 @@
 
                 </div>
 
-            </div>
+            </div> --}}
 
         </div>
 
@@ -349,3 +344,4 @@
         });
     });
 </script>
+@endif
