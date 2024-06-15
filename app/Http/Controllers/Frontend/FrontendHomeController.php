@@ -15,7 +15,7 @@ use Modules\StudentSetting\Entities\Program;
 use Modules\FrontendManage\Entities\FrontPage;
 use Modules\CourseSetting\Entities\CourseReveiw;
 use Modules\FrontendManage\Entities\HomePageFaq;
-
+use Modules\SystemSetting\Entities\Testimonial;
 
 
 class FrontendHomeController extends Controller
@@ -65,6 +65,7 @@ class FrontendHomeController extends Controller
             $latest_blogs = Blog::where('status', 1)->with('user')->latest()->limit(10)->get();
             $featured_blogs = Blog::where('status',1)->where('featured',1)->with('user')->latest()->limit(3)->get();
             $latest_course_reveiws = CourseReveiw::where('status', 1)->with('user')->latest()->limit(4)->get();
+            $testimonials = Testimonial::where('status',1)->latest()->get();
 
             $random_program = Program::where('status', 1)
                 ->has('currentProgramPlan')
@@ -74,7 +75,7 @@ class FrontendHomeController extends Controller
                 ->first();
             $faqs = HomePageFaq::where('status', 1)->orderBy('order','desc')->take(10)->get();
 
-            return view(theme('pages.index'), compact('random_program', 'blocks', 'latest_programs', 'latest_blogs', 'featured_blogs' , 'latest_course_reveiws', 'random_program', 'latest_courses','faqs','allPrograms','allCourses'));
+            return view(theme('pages.index'), compact('random_program', 'blocks', 'latest_programs', 'latest_blogs', 'featured_blogs' , 'latest_course_reveiws', 'random_program', 'latest_courses','faqs','allPrograms','allCourses','testimonials'));
 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);

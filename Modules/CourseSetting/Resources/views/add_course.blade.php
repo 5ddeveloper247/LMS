@@ -1287,17 +1287,57 @@
                 //     columns: 5,
                 //     documentColors: 10
                 // },
-                    // toolbar: {
-                    //     items: [
-                    //         'undo', 'redo',
-                    //         '|', 'heading',
-                    //         '|', 'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor',
-                    //         '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                    //         '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                    //         '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-                    //     ],
-                    //     shouldNotGroupWhenFull: false
-                    // }
+                toolbar: {
+			items: [
+				'heading',
+				'|',
+				'bold',
+				'italic',
+				'link',
+				'bulletedList',
+				'numberedList',
+				'|',
+				'blockQuote',
+				'fontFamily',
+				'fontSize',
+				'fontColor',
+				'alignment',
+				'outdent',
+				'indent',
+				'|',
+				'insertTable',
+				'imageInsert',
+			//	'imageUpload',
+				'mediaEmbed',
+			//	'CKFinder',
+			//	'codeBlock',
+				'|',
+				'undo',
+				'redo'
+			]
+		},
+		language: 'en',
+		image: {
+			toolbar: [
+				'imageTextAlternative',
+				'toggleImageCaption',
+				'imageStyle:inline',
+				'imageStyle:block',
+				'imageStyle:side'
+			],
+            insert: {
+                // This is the default configuration, you do not need to provide
+                // this configuration key if the list content and order reflects your needs.
+                integrations: [ 'upload', 'url' ]
+            }
+		},
+		table: {
+			contentToolbar: [
+				'tableColumn',
+				'tableRow',
+				'mergeTableCells'
+			]
+		}
                 } )
                 .then(editor => {
                     // Save the editor instance to use it later

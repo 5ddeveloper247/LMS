@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Modules\SystemSetting\Entities\Testimonial;
 
 class AboutPageStudentsWork extends Component
 {
@@ -15,6 +16,7 @@ class AboutPageStudentsWork extends Component
 
     public function render()
     {
-        return view(theme('components.about-page-students-work'));
+        $testimonials = Testimonial::where('status',1)->latest()->get();
+        return view(theme('components.about-page-students-work',compact('testimonials')));
     }
 }
