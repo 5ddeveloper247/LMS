@@ -1256,48 +1256,48 @@
                         uploadUrl: "{{ route('ckeditor.upload',['_token' => csrf_token()]) }}",
                     },
                     //extraPlugins: ['font'],
-                    fontFamily: {
-                        options: [
-                            'default',
-                            'Arial, Helvetica, sans-serif',
-                            'Courier New, Courier, monospace',
-                            'Georgia, serif',
-                            'Lucida Sans Unicode, Lucida Grande, sans-serif',
-                            'Tahoma, Geneva, sans-serif',
-                            'Times New Roman, Times, serif',
-                            'Trebuchet MS, Helvetica, sans-serif',
-                            'Verdana, Geneva, sans-serif'
-                        ],
-                        supportAllValues: true
-                    },
-                    fontSize: {
-                    options: [
-                        'tiny',
-                        'small',
-                        'default',
-                        'big',
-                        'huge'
-                    ]
-                },
-                fontColor: {
-                    columns: 5,
-                    documentColors: 10
-                },
-                fontBackgroundColor: {
-                    columns: 5,
-                    documentColors: 10
-                },
-                    toolbar: {
-                        items: [
-                            'undo', 'redo',
-                            '|', 'heading',
-                            '|', 'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor',
-                            '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                            '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                            '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-                        ],
-                        shouldNotGroupWhenFull: false
-                    }
+                //     fontFamily: {
+                //         options: [
+                //             'default',
+                //             'Arial, Helvetica, sans-serif',
+                //             'Courier New, Courier, monospace',
+                //             'Georgia, serif',
+                //             'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                //             'Tahoma, Geneva, sans-serif',
+                //             'Times New Roman, Times, serif',
+                //             'Trebuchet MS, Helvetica, sans-serif',
+                //             'Verdana, Geneva, sans-serif'
+                //         ],
+                //         supportAllValues: true
+                //     },
+                //     fontSize: {
+                //     options: [
+                //         'tiny',
+                //         'small',
+                //         'default',
+                //         'big',
+                //         'huge'
+                //     ]
+                // },
+                // fontColor: {
+                //     columns: 5,
+                //     documentColors: 10
+                // },
+                // fontBackgroundColor: {
+                //     columns: 5,
+                //     documentColors: 10
+                // },
+                    // toolbar: {
+                    //     items: [
+                    //         'undo', 'redo',
+                    //         '|', 'heading',
+                    //         '|', 'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor',
+                    //         '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+                    //         '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
+                    //         '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
+                    //     ],
+                    //     shouldNotGroupWhenFull: false
+                    // }
                 } )
                 .then(editor => {
                     // Save the editor instance to use it later

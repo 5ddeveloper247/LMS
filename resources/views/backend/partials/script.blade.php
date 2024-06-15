@@ -6,7 +6,8 @@
 {{-- <script src="{{ asset('public/vendor/ckeditor4/ckeditor.js') }}"></script>
 <script src="{{ asset('public/vendor/ckeditor4/styles.js') }}"></script> --}}
 {{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script> --}}
-<script src="{{ asset('public/vendor/ckeditor5/build/ckeditor.js') }}"></script>
+<script src="{{ asset('public/vendor/ckeditor5-classic/build/ckeditor.js') }}"></script>
+{{-- <script src="{{ asset('public/vendor/ckeditor5/build/ckeditor.js') }}"></script> --}}
 
 <script>
     if ($('#main-nav-for-chat').length) {} else {
