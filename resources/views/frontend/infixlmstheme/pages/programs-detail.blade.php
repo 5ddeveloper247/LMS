@@ -815,9 +815,7 @@
     height: 100% !important;
     border-radius: 10px;
 }
-/* .theme_btn.small_btn {
-    padding: 13px 18px !important;
-} */
+
 @media only screen and (max-width: 576px){
     .small_screen {
      flex-direction: column;
@@ -828,17 +826,7 @@
 }
 }
 @media only screen and (max-width: 990px) {
-    .lms_tabmenu li a {
-    font-size: 12px !important;
-    padding: 13px 20px !important;
-}
-.theme_btn.small_btn {
-    padding: 7px 7px !important;
-}
-    .theme_btn {
-    font-size: 12px !important;
-    padding: 6px 6px !important;
-}
+
 .img_height{
      max-height: 10rem;
      height: 100%;
@@ -846,9 +834,9 @@
 .custom_heading_1 {
        font-size: 1rem !important;
     }
-    .program-span{
+    /* .program-span{
     font-size: 10px;
-}
+} */
 .span_h{
     font-size:12px !important;
 }
@@ -869,7 +857,7 @@
     font-size:12px !important;
 }
 .lms_tabmenu li a {
-    padding: 13px 30px !important;
+    /* padding: 13px 30px !important; */
 }
 }
 @media only screen and (min-width:1800px){
@@ -892,7 +880,7 @@
                              src="{{ asset('public/frontend/infixlmstheme/img/images/courses-4.jpg') }}">
                     </div>
 
-                    <div class="col-lg-9 offset-lg-1">
+                    <div class="col-lg-9 offset-1">
                         <div class="breadcam_wrap">&nbsp;
                             <h5 class="text-white custom-heading">Program Details</h5>
                         </div>
@@ -902,7 +890,7 @@
         </div>
 
 
-        <div class="container pt-5">
+        <div class="container pt-md-5 pt-3">
             <!-- <div class="px-xl-5 row px-1"> -->
                 @php
                     $count_enrolled = 0;
@@ -1060,10 +1048,13 @@
                     </div>
                     <!--2ndend  -->
                     <!-- 3rdstart -->
-                    <div class="row px-lg-5 small_screen my-4">
-                        <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12">
+                    <div class="row px-lg-5 small_screen mt-4 mb-2 mb-md-4">
+                        <div class="col-xl-9 col-lg-9 col-md-8 col-12">
                         <div class="course_tabs">
-                        <ul class="d-flex flex-column flex-md-row flex-sm-column lms_tabmenu nav w-100 text-center"
+                            <div class="events_wrapper">
+                                <div class="eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
+                                </div>
+                        <ul class="d-flex lms_tabmenu nav w-100 text-center"
                             style="
                         background: #eee;  " id="myTab" role="tablist">
 
@@ -1088,6 +1079,8 @@
                                 </a>
                             </li>
                         </ul>
+                        <div class="eventsIcon d-xl-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
+                    </div>
                     </div>
                     <hr>
                     <div>
@@ -1735,7 +1728,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="boxaccordion mt-4 mb-5 mb-lg-4">
+                <div class="boxaccordion mt-4 mb-4">
                                     <h5 class="font-weight-bold custom_heading_1 mb-4">FAQs</h5>
                                     @forelse ($faqs as $faq)
                                         <div class="containerwidth">
@@ -1764,7 +1757,7 @@
                                 </div>
                         </div>
                        <!-- 3rdmid -->
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-12">
                     <div class=" custom_section_color rounded_section mb-4 p-2" style="height: auto;">
                         <h5 class="font-weight-bold custom_heading_1">This Program includes:
                         </h5>
@@ -2233,6 +2226,42 @@
 	});
 
     </script>
+<script>
+    const tabsBox = document.querySelector(".lms_tabmenu"),
+            allTabs = tabsBox.querySelectorAll(".nav-item"),
+            arroweventsIcons = document.querySelectorAll(".eventsIcon i");
 
+        const handleeventsIcons = () => {
+            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
+            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
+            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" :
+                "flex";
+        }
+
+        arroweventsIcons.forEach(eventsIcon => {
+            eventsIcon.addEventListener("click", () => {
+                if (eventsIcon.id === "left") {
+                    tabsBox.scrollBy({
+                        left: -340,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    tabsBox.scrollBy({
+                        left: 340,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        allTabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabsBox.querySelector(".active").classList.remove("active");
+                tab.classList.add("active");
+            });
+        });
+
+        tabsBox.addEventListener("scroll", handleeventsIcons);
+</script>
 
 @endsection

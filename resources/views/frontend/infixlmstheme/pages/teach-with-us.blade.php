@@ -282,11 +282,8 @@
     }
 
     .custom_height_2 {
-        height: 64vh !important;
-        /* padding-right: 60px; */
+        height: 56vh !important;
     }
-
-
     .custom-heading {
         font-size: 60px;
     }
@@ -298,9 +295,9 @@
     .custom-b-padd {
         padding: 0px 40px !important;
     }
-    .custom-b-padd1 {
+    /* .custom-b-padd1 {
         padding: 0px 40px !important;
-    }
+    } */
     .custom-img {
         object-fit: none;
     }
@@ -309,12 +306,6 @@
         padding: 30px 0;
     }
 
-    /* .quiz_wizged{
-    height: 34vh;
-}
-.thumb{
-    height:20vh;
-} */
     /* slider timeline */
     .fw-medium {
         font-weight: 500;
@@ -399,24 +390,57 @@
     .custom_height_1 {
         height: 71vh !important;
     }
-
-    @media only screen and (max-width: 767px) {
-        .custom_height_1 {
-            height: 45vh !important;
+@media only screen and (max-width: 576px){
+    .mr_our_process {
+            margin-right: 0px !important;
         }
 
+        .ml_our_process {
+            margin-left: 0px !important;
+        }
+        .small_gap {
+            gap: .2rem;
+        }
+
+        .carrot-orange-clr,
+        .brdr-btm-of-txt {
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .inner-white-point-of-bar {
+            height: 14px !important;
+            width: 14px !important;
+        }
+
+        .dot-point-side-bar-of-process-section {
+            min-width: 24px !important;
+            height: 24px !important;
+        }
+
+        .inner-end-point-of-bar {
+            height: 14px !important;
+            width: 14px !important;
+        }
+
+        .gap-5 {
+            gap: .4rem !important;
+        }
+}
+    @media only screen and (max-width: 767px) {
+        .text_small{
+            font-size: 13px;
+        }
+        label{
+            font-size: 14px !important;
+        }
+        .price-card__plan--v2 {
+            font-size: 25px !important;
+        }
         .custom_height_2 {
             height: 44vh !important;
         }
-
-        h5 {
-            font-size: 14px;
-        }
-
-        p {
-            font-size: 13px !important;
-        }
-
         .custom_heading_1 {
             font-size: 20px;
         }
@@ -426,7 +450,30 @@
         }
 
         .thumb {
-            height: 50vh;
+            height: auto;
+        }
+        .small_gap{
+            position: relative;
+        }
+        svg {
+            min-width: 20px;
+            min-height: 20px;
+            max-width: 20px;
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ml_our_process {
+            margin-left: 50px;
+        }
+
+        .mr_our_process {
+            margin-right: 50px;
+        }
+        .brdr-btm-of-txt{
+            font-size: 16px;
         }
     }
 
@@ -457,9 +504,9 @@
             line-height: 30px;
         }
 
-        .custom_height_2 {
+        /* .custom_height_2 {
             height: 35vh !important;
-        }
+        } */
     }
 
     .pricing-para {
@@ -483,11 +530,6 @@
 
         .our-process-section-wrapper {
             width: 96% !important;
-        }
-
-        .custom_height_2 {
-            height: 65vh !important;
-            /* padding-right: 60px; */
         }
 
         .price-card__plan--v2 {
@@ -569,7 +611,7 @@
                         <div class="breadcam_wrap">&nbsp;
                             <h2 class="text-white custom-heading">Teach With Us</h2>
                             @if (!auth()->check())
-                                <button class="hit ml-1 bg-transparent px-4 py-2 text-white openModal">Sell
+                                <button class="hit ml-1 bg-transparent px-2 px-md-4 py-2 text-white openModal">Sell
                                     With Us
                                 </button>
                             @endif
@@ -585,20 +627,20 @@
         </div>
         <div class="container px-lg-5">
 
-            <div class="row py-lg-5 px-xl-5 px-md-2 py-4">
+            <div class="row py-md-5 px-xl-5 py-4">
                 <div class="col-md-12 text-center">
-                    <h2 class="font-weight-bold custom_heading_1 mb-5">What We Offer!</h2>
+                    <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3">What We Offer!</h2>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 px-2" data-aos="fade-right">
+                <div class="col-md-6 col-12 px-2" data-aos="fade-right">
                     <img src="{{ asset('public/assets/contact.jpg') }}" class="custom_height_1 w-100">
                 </div>
 
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 my-auto px-1" data-aos="fade-left"
+                <div class="col-md-6 col-12 my-auto px-3 px-md-1" data-aos="fade-left"
                     data-aos-delay="500">
-                    <div class="px-xl-3 px-md-2">
-                        <h5 class="font-weight-bold">
+                    <div class="px-xl-3 pt-4 pt-md-0">
+                        <h2 class="custom_small_heading font-weight-bold">
                             How to Sell as an Individual Tutors
-                        </h5>
+                        </h2>
                         <p class="custom_height_2 overflow-auto text-justify hide-scrollbar">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
                             sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
@@ -644,12 +686,12 @@
         </div>
         <!-- <x-about-page-gallery :about="$about" /> -->
         {{-- custom component made by arsam --}}
-        <div class="about_gallery_area px-md-5 my-lg-2 pb-2">
-            <div class="container px-md-5">
+        <div class="about_gallery_area px-md-5 pb-3">
+            <div class="container px-lg-5">
                 <div class="row align-items-center gallery_area_row">
-                    <div class="col-lg-5">
+                    <div class="col-lg-5 col-md-7">
                         <div class="section__title">
-                            <h2 class="mb-4 font-weight-bold">Build your own library for your career and personal growth.
+                            <h2 class="custom_small_heading mb-4 font-weight-bold">Build your own library for your career and personal growth.
                             </h2>
                             <p class="mb-4">Our goal is to learn the next generation of creative professionals for a
                                 future in any industry. We offer course in most demanded industries. Whether begin to your
@@ -676,7 +718,7 @@
                             </div> --}}
                         </div>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-7 col-md-5 mt-3 mt-md-0">
                         <div class="about_gallery">
                             <div class="gallery_box">
                                 <div class="thumb">
@@ -894,21 +936,20 @@
                         </div>
                     </div> -->
         {{-- slider timeline --}}
-        <div class="our-process-section-container bg mt-lg-5 py-lg-5 py-4">
-            <div class="our-process-section-wrapper px-3">
+        <div class="our-process-section-container bg mt-3">
+            <div class="our-process-section-wrapper px-sm-3 px-2 py-lg-5 py-3">
                 <div class="w-100 d-flex justify-content-start">
-                    <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right"
-                        data-aos-duration="1000">
+                    <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                         <div class="padding-top-of-first-part ml_our_process">
-                            <h2 class="carrot-orange-clr text-end">Step 01</h2>
-                            <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
-                            <div class="d-flex align-items-center gap-3 pb-3">
-                                <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit
-                                    aut fugit, sed quia consequuntur magni res.</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
-                                    viewBox="0 0 24 24">
-                                    <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
+                            <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2>
+                            <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
+                            <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
+                                <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
+                                    fugit, sed quia consequuntur magni res.</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
                                 </svg>
                             </div>
                         </div>
@@ -926,11 +967,11 @@
                     <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
                         data-aos-duration="1000">
                         <div class="d-flex flex-column align-items-start mr_our_process">
-                            <h2 class="carrot-orange-clr">Step 02</h2>
+                            <h2 class="custom_small_heading carrot-orange-clr">Step 02</h2>
                             <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
-                            <div class="d-flex align-items-center gap-3 pb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px" height="50px"
-                                    x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
+                            <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
+                                    height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
                                     xml:space="preserve">
                                     <g>
                                         <path
@@ -989,29 +1030,28 @@
                                         </path>
                                     </g>
                                 </svg>
-                                <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
-                                    fugit, sed quia consequuntur magni res.</p>
+                                <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
+                                    sed quia consequuntur magni res.</p>
                             </div>
                         </div>
                         <div class="side-bar-for-process-section margin-left-minus-10">
                             <div class="dot-point-side-bar-of-process-section top-1">
                                 <div class="inner-white-point-of-bar"></div>
                             </div>
-
+    
                         </div>
                     </div>
                 </div>
                 <div class="">
-                    <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right"
-                        data-aos-duration="1000">
+                    <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                         <div class="d-flex flex-column align-items-end ml_our_process">
-                            <h2 class="carrot-orange-clr">Step 03</h2>
-                            <h5 class="w-100 text-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
-                            <div class="d-flex align-items-center gap-3 pb-3">
-                                <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit
-                                    aut fugit, sed quia consequuntur magni res.</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px" height="50px"
-                                    x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
+                            <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2>
+                            <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
+                            <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
+                                <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
+                                    fugit, sed quia consequuntur magni res.</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
+                                    height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
                                     xml:space="preserve">
                                     <g>
                                         <path
@@ -1025,20 +1065,20 @@
                             <div class="dot-point-side-bar-of-process-section top-1">
                                 <div class="inner-white-point-of-bar"></div>
                             </div>
-
+    
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-end ">
+                <div class="d-flex justify-content-end">
                     <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
                         data-aos-duration="1000">
                         <div class="d-flex flex-column padding-btm-last-part mr_our_process">
-                            <h2 class="carrot-orange-clr">Step 04</h2>
+                            <h2 class="custom_small_heading carrot-orange-clr">Step 04</h2>
                             <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5>
-                            <div class="d-flex align-items-center gap-3 pb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="var(--system_primery_color)"
-                                    x="0px" y="0px" viewBox="0 0 50 48" style="enable-background:new 0 0 50 48;"
-                                    xml:space="preserve">
+                            <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
+                                    fill="var(--system_primery_color)" x="0px" y="0px" viewBox="0 0 50 48"
+                                    style="enable-background:new 0 0 50 48;" xml:space="preserve">
                                     <g>
                                         <path
                                             d="M37.7,0.2c-0.3-0.3-0.8-0.3-1.1,0c0,0,0,0,0,0L20,16.9h2.2l14.9-15l2.4,2.4L27,16.9h2.2L40.7,5.4l7.5,7.5l-4,4h2.2l3.4-3.4  c0.3-0.3,0.3-0.8,0-1.1c0,0,0,0,0,0L37.7,0.2z">
@@ -1057,8 +1097,8 @@
                                         </path>
                                     </g>
                                 </svg>
-                                <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
-                                    fugit, sed quia consequuntur magni res.</p>
+                                <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
+                                    sed quia consequuntur magni res.</p>
                             </div>
                         </div>
                         <div class="side-bar-for-process-section margin-left-minus-10">
@@ -1068,7 +1108,7 @@
                             <div class="dot-point-side-bar-of-process-section bottom-0">
                                 <div class="inner-end-point-of-bar"></div>
                             </div>
-
+    
                         </div>
                     </div>
                 </div>
@@ -1139,14 +1179,14 @@
                 @endif
                 @if (count($courses) == 0)
                     <div class="col-lg-12">
-                        <div class="Nocouse_wizged d-flex align-items-center justify-content-center text-center">
+                        <div class="Nocouse_wizged d-flex align-items-center justify-content-center text-center my-3">
                             <div class="thumb">
                                 <img style="width: 50px"
                                     src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png" alt="">
                             </div>
-                            <h1>
+                            <h2 class="custom_small_heading">
                                 {{ __('No Course Found') }}
-                            </h1> 
+                            </h2> 
                         </div>
                     </div>
                 @endif
@@ -1155,7 +1195,7 @@
         @if (isTutor() || (!auth()->check() && !session()->has('pre-registered-user')))
             {{-- @dd(count($packages)) --}}
             @if (count($packages))
-                <div class="container custom-b-padd1 mb-4 mb-lg-5" id="package_prices">
+                <div class="container custom-b-padd1 mb-3 mb-md-5" id="package_prices">
                     <div class="row justify-content-center px-xl-5">
                         <div class="col-md-12 text-center mb-lg-3">
                             <h2 class="font-weight-bold custom_heading_1 mb-4">Check Out Our Pricings</h2>
@@ -1276,14 +1316,14 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h2 class="my-3 text-center">
+                                    <h2 class="custom_small_heading my-3 text-center">
                                         Become a Tutor
                                     </h2>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="mb-0 mt-2">What position are you applying?<p>*</p></label>
                                     <select name="instructor_position_id"
-                                        class="form-select form-control @if ($errors->first('instructor_position_id')) is-invalid @endif"
+                                        class="text_small form-select form-control @if ($errors->first('instructor_position_id')) is-invalid @endif"
                                         aria-label="Default select example" required>
                                         <option value="" selected>--SELECT--</option>
                                         @foreach ($postions as $postion)
@@ -1296,7 +1336,7 @@
                                 <div class="col-md-4">
                                     <label class="mb-0 mt-2">How did you hear about us ?<p>*</p></label>
                                     <select name="instructor_hear_id"
-                                        class="form-select form-control @if ($errors->first('instructor_hear_id')) is-invalid @endif"
+                                        class="text_small form-select form-control @if ($errors->first('instructor_hear_id')) is-invalid @endif"
                                         aria-label="Default select example" required>
                                         <option value="" selected>--SELECT--</option>
                                         @foreach ($hears as $hear)
@@ -1315,7 +1355,7 @@
 
                                 <!-- personal information section  -->
                                 <div class="col-md-12">
-                                    <h2 class="my-3 text-center">
+                                    <h2 class="custom_small_heading my-3 text-center">
                                         Personal Information
                                     </h2>
                                 </div>
@@ -1340,7 +1380,7 @@
                                 <div class="col-md-3">
                                     <label class="mb-0 mt-2">Gender<p>*</p></label>
                                     <select name="gender"
-                                        class="form-select form-control @if ($errors->first('gender')) is-invalid @endif"
+                                        class="text_small form-select form-control @if ($errors->first('gender')) is-invalid @endif"
                                         aria-label="Default select example" required>
                                         <option value="" selected>--SELECT--</option>
                                         <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>
@@ -1388,7 +1428,7 @@
                                         style="height:150px">{{ old('address') }}</textarea>
                                 </div>
                                 <div class="col-md-12">
-                                    <h2 class="my-3 text-center">
+                                    <h2 class="custom_small_heading my-3 text-center">
                                         School Information
                                     </h2>
                                 </div>
@@ -1407,7 +1447,7 @@
                                 <div class="col-md-3">
                                     <label class="mb-0 mt-2">Graduates<p>*</p></label>
                                     <select name="school_year_graduate"
-                                        class="form-select form-control @if ($errors->first('school_year_graduate')) is-invalid @endif"
+                                        class="text_small form-select form-control @if ($errors->first('school_year_graduate')) is-invalid @endif"
                                         aria-label="Default select example" required>
                                         <option value="" selected>--SELECT--</option>
                                         <option value="yes"
@@ -1441,7 +1481,7 @@
                                 <div class="col-md-4">
                                     <label class="mb-0 mt-2">Graduates<p>*</p></label>
                                     <select name="college_graduate"
-                                        class="form-select form-control @if ($errors->first('college_graduate')) is-invalid @endif"
+                                        class="text_small form-select form-control @if ($errors->first('college_graduate')) is-invalid @endif"
                                         aria-label="Default select example" value="{{ old('f_name') }}" required>
                                         <option value="" selected>--SELECT--</option>
                                         <option value="yes" {{ 'yes' == old('college_graduate') ? 'selected' : '' }}>
@@ -1474,7 +1514,7 @@
                                 <div class="col-md-3">
                                     <label class="mb-0 mt-2">Graduates<p>*</p></label>
                                     <select name="trade_year_graduate"
-                                        class="form-select form-control @if ($errors->first('trade_year_graduate')) is-invalid @endif"
+                                        class="text_small form-select form-control @if ($errors->first('trade_year_graduate')) is-invalid @endif"
                                         aria-label="Default select example" required>
                                         <option value="" selected>--SELECT--</option>
                                         <option value="yes"
@@ -1489,7 +1529,7 @@
 
                                 <!-- Teaching Experience section  -->
                                 <div class="col-md-12">
-                                    <h2 class="my-3 text-center">
+                                    <h2 class="custom_small_heading my-3 text-center">
                                         Teaching Experience
                                     </h2>
                                 </div>
