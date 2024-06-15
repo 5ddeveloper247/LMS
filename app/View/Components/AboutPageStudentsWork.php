@@ -17,6 +17,6 @@ class AboutPageStudentsWork extends Component
     public function render()
     {
         $testimonials = Testimonial::where('status',1)->latest()->get();
-        return view(theme('components.about-page-students-work',compact('testimonials')));
+        return view(theme('components.about-page-students-work'),compact('testimonials'));
     }
 }
