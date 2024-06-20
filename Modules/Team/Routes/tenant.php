@@ -10,8 +10,8 @@ Route::prefix('team')->group(function () {
         Route::get('meetings', 'MeetingController@index')->name('meetings')->middleware('RoutePermissionCheck:team.meetings.index');
         Route::post('meetings', 'MeetingController@store')->name('meetings.store')->middleware('RoutePermissionCheck:team.meetings.store');
         Route::get('meetings-show/{id}', 'MeetingController@show')->name('meetings.show')->middleware('RoutePermissionCheck:team.meetings');
-        Route::get('meetings-edit/{id}', 'MeetingController@edit')->name('meetings.edit')->middleware('RoutePermissionCheck:team.meetings.edit');
-        Route::post('meetings/{id}', 'MeetingController@update')->name('meetings.update')->middleware('RoutePermissionCheck:team.meetings.edit');
+        Route::get('meetings-edit/{id}', 'MeetingController@edit')->name('meetings.edit')->middleware('RoutePermissionCheck:virtual-class.edit');
+        Route::post('meetings/{id}', 'MeetingController@update')->name('meetings.update')->middleware('RoutePermissionCheck:virtual-class.edit');
         Route::post('meetings-cancel', 'MeetingController@cancel')->name('meetings.cancel')->middleware('RoutePermissionCheck:team.meetings.destroy');
         Route::delete('meetings/{id}', 'MeetingController@destroy')->name('meetings.destroy')->middleware('RoutePermissionCheck:team.meetings.destroy');
 

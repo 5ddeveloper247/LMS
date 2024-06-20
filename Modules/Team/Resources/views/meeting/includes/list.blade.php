@@ -14,7 +14,6 @@
                         <th>{{__('common.SL')}}</th>
                         <th>   {{__('team.Class')}}</th>
                         <th>   {{__('team.Instructor')}}</th>
-                        <th>   {{__('team.Password')}}</th>
                         <th>   {{__('team.Topic')}}</th>
                         <th>   {{__('team.Date')}}</th>
                         <th>   {{__('team.Time')}}</th>
@@ -29,8 +28,7 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $meeting->class->title }}</td>
-                            <td>{{ $meeting->instructor->name }}</td>
-                            <td>{{ $meeting->password }}</td>
+                            <td>{{ $meeting->class->course->user->name }}</td>
                             <td>{{ $meeting->topic }}</td>
                             <td>{{ $meeting->date_of_meeting }}</td>
                             <td>{{ $meeting->time_of_meeting }}</td>
