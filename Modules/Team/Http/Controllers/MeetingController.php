@@ -510,7 +510,7 @@ class MeetingController extends Controller
                 ->whereIn('id', $data['participate_ids'])
                 ->select('id', 'name', 'role_id')->get();
             if (Auth::user()->role_id != 1) {
-                if (Auth::user()->id != $data['editdata']->created_by) {
+                if (Auth::user()->id != $data['editdata']->class->course->user_id) {
                     Toastr::error('Class is created by other, you could not modify !', 'Failed');
                     return redirect()->back();
                 }
