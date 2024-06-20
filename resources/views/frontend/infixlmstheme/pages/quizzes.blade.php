@@ -192,9 +192,9 @@ h2, h3{
    .course-small{
     font-size: 13px !important;
    }
-   .filter_btn{
+   /* .filter_btn{
     font-size: 1px !important;
-}
+} */
     }
 @media only screen and (min-width: 1800px){
     .thumb-height{

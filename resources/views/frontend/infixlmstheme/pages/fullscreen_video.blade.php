@@ -39,8 +39,9 @@
 
         @media (max-width: 767.98px) {
             .mobile-min-height {
-                height: 400px !important;
-                overflow: auto;
+                min-height: 225px !important;
+                height: 100%;
+                overflow-y: auto;
             }
         }
 

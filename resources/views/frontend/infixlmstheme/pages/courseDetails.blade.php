@@ -22,8 +22,7 @@
     }
 
     .theme_according .card .card-header h5 button {
-
-        padding: 12.3px 25px 13px 30px !important;
+        padding: 12.3px 25px 13px 30px;
     }
 
     .table-responsive {

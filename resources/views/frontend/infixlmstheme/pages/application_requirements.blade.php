@@ -443,7 +443,6 @@
     #banner .flex_blk {
         display: -webkit-box;
         display: -ms-flexbox;
-        /* display: flex; */
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
@@ -459,10 +458,6 @@
         color: #fff;
         margin: 0 auto;
     }
-
-    /* .owl-stage-outer {
-        height: 25rem;
-    } */
 
     .cont1doimgdo {
         /* background: url("http://mchnursing.com/lms/public/frontend/infixlmstheme/img/images/courses-4.jpg"); */
@@ -692,15 +687,6 @@
         .our-process-section-wrapper {
             width: 90%;
         }
-
-        p {
-            font-size: 20px !important;
-        }
-
-        h5 {
-            font-size: 25px !important;
-        }
-
       
     }
 

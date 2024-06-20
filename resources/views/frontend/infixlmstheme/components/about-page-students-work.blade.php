@@ -98,8 +98,7 @@
 
     @media only screen and (max-width: 530px) {
         .about-pagination {
-            bottom: 4% !important;
-            left: 34% !important;
+            left: 30% !important;
         }
         .student_container{
             display: flex;
@@ -114,6 +113,7 @@
         }
         .about-pagination {
             bottom: 4% !important;
+            left: 40%;
         }
 
         .aboutus-img {
@@ -123,14 +123,7 @@
         }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
-        .about-pagination {
-            bottom: 8% !important;
-            left: 50%;
-        }
-    }
-
-    @media only screen and (min-width: 1025px) and (max-width:1200px) {
+    @media only screen (max-width:1200px) {
         .about-pagination {
             bottom: 8%;
             left: 50%;
@@ -332,16 +325,22 @@
 </script>
 
 <script>
-    $(document).ready(function() {
-        $('.slick-slider').slick({
-            autoplay: true,
-            autoplaySpeed: 2000,
-            dots: true,
-            appendDots: $('.about-pagination'),
-            arrows: false,
-            fade: true,
-            cssEase: 'linear'
-        });
+$(document).ready(function() {
+    $('.slick-slider').slick({
+        autoplay: true,
+        autoplaySpeed: 2000,
+        dots: true,
+        appendDots: $('.about-pagination'),
+        arrows: false,
+        fade: true,
+        cssEase: 'linear'
     });
+
+    $('.elem').on('click', function(event) {
+        event.stopPropagation();
+    });
+});
+
+
 </script>
 @endif
