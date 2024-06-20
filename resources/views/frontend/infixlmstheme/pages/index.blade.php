@@ -1755,7 +1755,8 @@
         }
 
         .custom-card h5 {
-            left: 11px !important;
+            left: 50% !important;
+            transform: translateX(-50%)
         }
 
         button.prev {
@@ -1880,10 +1881,10 @@
             font-size: 1.5rem !important;
         }
 
-        .custom-card h5 {
+        /* .custom-card h5 {
             left: 0px !important;
             text-align: center !important;
-        }
+        } */
 
         .for-border {
             min-height: 210px !important;

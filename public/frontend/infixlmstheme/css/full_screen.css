@@ -41,17 +41,6 @@
     display: inline-block;
 }
 
-.course_fullview_wrapper {
-    /* height: 500px; */
-    height: -webkit-fill-available;
-    position: fixed;
-}
-
-.course_fullview_wrapper .course__play_warp {
-    /* top: 33%;
-    transform: translateY(-15%) !important; */
-}
-
 .progress {
     padding: 10px;
     width: 40px;
@@ -1538,19 +1527,9 @@ Due to the split circle of progress-left and progress right, we must use the ani
     max-width: calc(100%) !important;
 }
 
-@media (max-width: 580.98px) {
-    .course_fullview_wrapper {
-        /* min-height: 200px;
-        height: 200px; */
-       position: relative !important;
-    }
-}
-
 @media (min-width: 581px) and (max-width: 768.98px) {
 
-    .course_fullview_wrapper {
-        /* height: 400px; */
-    }
+
     .course_fullview_wrapper .video_iframe {
         position: static;
         height: 400px;
@@ -1560,45 +1539,10 @@ Due to the split circle of progress-left and progress right, we must use the ani
 
 @media (max-width: 767.98px) {
 
-    .course_fullview_wrapper .course__play_warp.active,
-    .course_fullview_wrapper .course__play_warp {
-        transform: none;
-        /* top: 0; */
-        position: relative;
-    }
 
     .course_fullview_wrapper .video_iframe {
         position: static;
         height: 350px;
-    }
-
-    /* body {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    } */
-    .course_fullview_wrapper {
-        min-height: auto;
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .course_fullview_wrapper .course__play_warp .course__play_list {
-        min-height: auto;
-        max-height: fit-content;
-        height: auto;
-    }
-
-    .course_fullview_wrapper .course__play_warp .play_toggle_btn {
-
-        display: none;
-    }
-
-    .course_fullview_wrapper .course__play_warp {
-        width: 100%;
-        transform: none !important;
     }
 
     .header_area .contact_wrap {
@@ -1644,11 +1588,6 @@ Due to the split circle of progress-left and progress right, we must use the ani
         display: none;
     }
 }
-@media (min-width: 767px) and (max-width: 1200px){
-    .course_fullview_wrapper .course__play_warp {
-        /* transform: translateY(-9%) !important; */
-    }
-}
 
 .course__play_warp.courseListPlayer:before {
     content: "";
@@ -1659,19 +1598,8 @@ Due to the split circle of progress-left and progress right, we must use the ani
     left: -5vw;
     top: 91.5vh;
 }
-
-/* @media screen and (min-width: 1440px) {
-    .course_fullview_wrapper .course__play_warp {
-        transform: translateY(-24%) !important;
+@media screen and (max-width: 767px) {
+    .course__play_warp.courseListPlayer:before{
+        top: 0 !important;
     }
 }
-@media screen and (min-width: 1600px) {
-    .course_fullview_wrapper .course__play_warp {
-        transform: translateY(-40%) !important;
-    }
-}
-@media screen and (min-width: 1800px) {
-    .course_fullview_wrapper .course__play_warp {
-        transform: translateY(-37%) !important;
-    }
-} */

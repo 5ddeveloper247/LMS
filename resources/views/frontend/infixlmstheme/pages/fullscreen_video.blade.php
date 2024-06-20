@@ -28,9 +28,9 @@
                 margin: 0 !important;
             }
 
-            #video-placeholder {
+            /* #video-placeholder {
                 height: 400px;
-            }
+            } */
         }
 
         .course__play_warp.courseListPlayer:before {
@@ -115,7 +115,7 @@
                                     </a>
                                 </div>
 
-                                <div class="category_search d-flex category_box_iner">
+                                <div class="category_maternity d-flex category_box_iner">
                                     <div class="input-group-prepend2 pl-3">
                                         <a class="headerTitle"
                                             href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . $current_type }}"
@@ -128,7 +128,7 @@
 
                             <div class="header__right">
                                 <div class="contact_wrap d-flex align-items-center flex-wrap">
-                                    <div class="contact_btn d-flex align-items-center flex-wrap">
+                                    <div class="contact_btn d-flex align-items-center">
                                         @if (isset($lessons))
                                             <label class="lmsSwitch_toggle pr-2" for="autoNext">
                                                 <input type="checkbox" id="autoNext" checked>
@@ -219,7 +219,7 @@
                         {{ $course->title }}
                     </h4>
                 </div>
-                <div class="col-12">
+                <div class="col-md-12 col-6">
                     <div class="next_prev_button">
                         <a href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug) }}"
                             class="theme_btn d-inline-flex align-items-center">
@@ -1267,7 +1267,7 @@
                     @php
                         $i = 1;
                     @endphp
-                    <div class="theme_according mb_30" id="accordion1">
+                    <div class="theme_according mb-3" id="accordion1">
                         @foreach ($chapters as $k => $chapter)
                             <div class="card">
                                 <div class="card-header pink_bg" id="heading{{ $chapter->id }}">

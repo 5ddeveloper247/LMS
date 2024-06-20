@@ -31,7 +31,7 @@
     .filter-tabs input[type="checkbox"] {
         display:none;
     }
-
+  
     /* @media (width > 1650px) {
         .breadcrumb_area .breadcam_wrap h3 {
             font-size: 100px !important;
@@ -94,26 +94,26 @@
 
 <div>
     <div class="container py-3 py-md-5">
-        <h2 class="px-md-5 px-2">Please Choose Type</h2>
+        <h2 class="custom_small_heading px-md-5 px-2">Please Choose Type</h2>
         <div class="filter-tabs">
         <div class="d-flex align-items-center px-md-5 px-2">
-            <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 tab-padding" id="pills-tab" role="tablist">
-                <li id="filter-type" class="nav-item px-1" role="presentation">
-                    <button class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center active" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
+            <ul class="nav nav-pills d-flex flex-sm-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 tab-padding" id="pills-tab" role="tablist">
+                <li id="filter-type" class="nav-item px-1 mb-2" role="presentation">
+                    <button class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 m-0 d-flex flex-column align-items-center justify-content-center active" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
                         Type
                     </button>
                 </li>
-                <li id="filter-name" class="nav-item px-1" role="presentation">
-                    <button class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
+                <li id="filter-name" class="nav-item px-1 mb-2" role="presentation">
+                    <button class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 m-0 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
                         Name
                     </button>
                 </li>
-                <li id="filter-prep-course-type" class="nav-item px-1" role="presentation">
+                <li id="filter-prep-course-type" class="nav-item px-1 mb-2" role="presentation">
                     <button class="nav-sub-links create-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
                         Prep-Courses Type
                     </button>
                 </li>
-                <li id="filter-prize" class="nav-item px-1" role="presentation">
+                <li id="filter-prize" class="nav-item px-1 mb-2" role="presentation">
                     <button class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
                         Price
                     </button>
@@ -130,13 +130,13 @@
         <div id="filter-type-content">
             <div class="d-flex align-items-center px-md-5 px-2">
                 <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 tab-padding" id="pills-tab" role="tablist">
-                    <li class="nav-item px-1" role="presentation">
+                    <li class="nav-item px-1 mb-2" role="presentation">
                         <input type="radio" name="search_type" id="typeProgram" value="program" @if($request->has('search_type') && $request->get('search_type') == 'program') checked @endif>
                         <label for="typeProgram" class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
                             Programs
                         </label>
                     </li>
-                    <li class="nav-item px-1" role="presentation">
+                    <li class="nav-item px-1 mb-2" role="presentation">
                         <input type="radio" name="search_type" id="typeCourse" value="course" @if($request->has('search_type') && $request->get('search_type') == 'course') checked @endif>
                         <label for="typeCourse" class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
                             Courses
@@ -170,37 +170,37 @@
                         <h6>Course Type</h6>
                     </div>
                     <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 mb-2 tab-padding" id="pills-tab" role="tablist">
-                    <li class="nav-item px-1" role="presentation">
+                    <li class="nav-item px-1 mb-2" role="presentation">
                         <input type="radio" name="search_courseType" value="big_quiz" id="search_big_quiz" @if($request->has('search_courseType') && $request->get('search_courseType') == 'big_quiz') checked @endif>
                         <label for="search_big_quiz" class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
                             Big Quiz
                         </label>
                     </li>
-                    <li class="nav-item px-1" role="presentation">
+                    <li class="nav-item px-1 mb-2" role="presentation">
                         <input type="radio" name="search_courseType" value="full_course" id="search_full_course" @if($request->has('search_courseType') && $request->get('search_courseType') == 'full_course') checked @endif>
                         <label for="search_full_course" class="nav-sub-links user-list nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
                             Full Course
                         </label>
                     </li>
-                    <li class="nav-item px-1" role="presentation">
+                    <li class="nav-item px-1 mb-2" role="presentation">
                         <input type="radio" name="search_courseType" value="prep_course_ondemand" id="search_prep_course_ondemand" @if($request->has('search_courseType') && $request->get('search_courseType') == 'prep_course_ondemand') checked @endif>
                         <label for="search_prep_course_ondemand" class="nav-sub-links create-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-list" aria-selected="false" tabindex="-1">
                             Prep-Course(On-Demand)
                         </label>
                     </li>
-                    <li class="nav-item px-1" role="presentation">
+                    <li class="nav-item px-1 mb-2" role="presentation">
                         <input type="radio" name="search_courseType" value="prep_course_live" id="search_prep_course_live" @if($request->has('search_courseType') && $request->get('search_courseType') == 'prep_course_live') checked @endif>
                         <label for="search_prep_course_live" class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
                         Prep-Course(Live)
                         </label>
                     </li>
-                    <li class="nav-item px-1" role="presentation">
+                    <li class="nav-item px-1 mb-2" role="presentation">
                         <input type="radio" name="search_courseType" value="time_table" id="search_time_table" @if($request->has('search_courseType') && $request->get('search_courseType') == 'time_table') checked @endif>
                         <label for="search_time_table" class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
                             Time Table
                         </label>
                     </li>
-                    <li class="nav-item px-1" role="presentation">
+                    <li class="nav-item px-1 mb-2" role="presentation">
                         <input type="radio" name="search_courseType" value="repeat_course" id="search_repeat_course" @if($request->has('search_courseType') && $request->get('search_courseType') == 'repeat_course') checked @endif>
                         <label for="search_repeat_course" class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
                             Repeat Course
@@ -246,7 +246,7 @@
         <div class="container">
             <div class="row px-1 px-md-5">
                 <div class="col-12 mb-3 mb-md-4">
-                    <h5 class="text-center">
+                    <h5 class="small_heading text-center">
                         @if ($request->has('query'))
                         {{ __('courses.Search result for') }}
                         <span class="font-weight-bold">"{{ $request->get('query') }}"</span>{{ ' out of ' . $total_programs . ' Program(s)' }}<br style="line-break: auto">
@@ -296,10 +296,17 @@
                  }
                  $subtitle = '';   
                 @endphp
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 d-flex mb-3">
+                <div class="col-xl-3 col-lg-4 col-sm-6 d-flex justify-content-center mb-3">
                     <div class="quiz_wizged card rounded-card shadow">
                         <div class="thumb card-header rounded-card-header p-0">
-                                    <a href="{{ $url_link }}"><img src="{{ $course_image }}" class="img-fluid img-cover w-100 rounded-card-img"></a>
+                                    <a href="{{ $url_link }}"><img src="{{ $course_image }}" class="img-fluid img-cover w-100 rounded-card-img">
+                                        <div class="prise_tag font-weight-bold col-auto p-0">
+                                            <small class="font-weight-bold">
+                                                ${{ $program->amount }}
+                                                {{-- ${{ $program->currentProgramPlan[0]->amount }} --}}
+                                            </small>
+                                        </div>
+                                    </a>
                                     {{-- <a href="{{ route('programs.detail', [$program->programName->id]) }}"><img src="{{ getCourseImage($program->programName->icon) }}" class="img-fluid img-cover w-100 rounded-card-img"></a> --}}
                                     
                         <span class="quiz_tag">
@@ -346,12 +353,7 @@
                                         Weeks
                                     </small>
                                 </div>
-                                <div class="font-weight-bold col-auto p-0">
-                                    <small class="font-weight-bold">
-                                        ${{ $program->amount }}
-                                        {{-- ${{ $program->currentProgramPlan[0]->amount }} --}}
-                                    </small>
-                                </div>
+                              
                             </div>
                         </div>
                     </div>
@@ -374,7 +376,7 @@
                     </div>
                 </div>
                 @endif
-                <div class="col-md-12 my-3 pb-3">
+                <div class="col-md-12 @if (count($all_programs) != 0) my-3 pb-3 @endif">
                     @if (count($all_programs) != 0)
                     {{ $all_programs->appends(Request::all())->links() }}
                     @endif

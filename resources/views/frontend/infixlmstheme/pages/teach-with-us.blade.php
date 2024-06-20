@@ -17,12 +17,6 @@
         font-style: normal;
         font-weight: 400;
     }
-
-    /* for-modal */
-    .modal_form {
-        max-width: 1000px !important;
-    }
-
     .modal.fade.show {
         background: rgba(3, 3, 3, 0.7) !important;
     }
@@ -74,7 +68,7 @@
         transition: 0.3s ease !important;
     }
 
-    label p {
+    .form_label span {
         color: red !important;
         display: inline !important;
     }
@@ -390,6 +384,7 @@
     .custom_height_1 {
         height: 71vh !important;
     }
+  
 @media only screen and (max-width: 576px){
     .mr_our_process {
             margin-right: 0px !important;
@@ -432,21 +427,14 @@
         .text_small{
             font-size: 13px;
         }
-        label{
+        .form_label{
             font-size: 14px !important;
-        }
-        .price-card__plan--v2 {
-            font-size: 25px !important;
         }
         .custom_height_2 {
             height: 44vh !important;
         }
         .custom_heading_1 {
             font-size: 20px;
-        }
-
-        .price-card__price--v2 {
-            font-size: 30px;
         }
 
         .thumb {
@@ -482,26 +470,12 @@
             font-size: 15px !important;
             padding: 6.5px 15px;
         }
-
-        .price-card__plan--v2 {
-            font-size: 25px !important;
-        }
-
         .pricing__text--12 {
             font-size: 11px !important;
         }
 
         .button-tb.button-tb--cta.is--pricing {
             height: 45px;
-        }
-
-        p {
-            font-size: 14px !important;
-        }
-
-        .price-card__price--v2 {
-            font-size: 25px;
-            line-height: 30px;
         }
 
         /* .custom_height_2 {
@@ -532,16 +506,6 @@
             width: 96% !important;
         }
 
-        .price-card__plan--v2 {
-            color: #17171a;
-            letter-spacing: -.04em;
-            min-height: 0vh !important;
-            margin-bottom: 0;
-            margin-right: 12px;
-            font-size: 40px;
-            font-weight: 800;
-            line-height: 110%;
-        }
     }
 
 
@@ -586,16 +550,6 @@
         }
     }
 
-    .price-card__plan--v2 {
-        color: #17171a;
-        /* min-height: 18vh; */
-        letter-spacing: -.04em;
-        margin-bottom: 0;
-        margin-right: 12px;
-        font-size: 40px;
-        font-weight: 800;
-        line-height: 110%;
-    }
 </style>
 @section('mainContent')
     {{-- @dd($courses) --}}
@@ -1305,7 +1259,7 @@
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
-                <div class="modal-body py-0">
+                <div class="modal-body p-0">
                     <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data"
                         id="tutor_reqister">
                         @csrf
@@ -1320,8 +1274,8 @@
                                         Become a Tutor
                                     </h2>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">What position are you applying?<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6">
+                                    <label class="mb-0 mt-2 form_label">What position are you applying?<span>*</span></label>
                                     <select name="instructor_position_id"
                                         class="text_small form-select form-control @if ($errors->first('instructor_position_id')) is-invalid @endif"
                                         aria-label="Default select example" required>
@@ -1333,8 +1287,8 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">How did you hear about us ?<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6">
+                                    <label class="mb-0 mt-2 form_label">How did you hear about us ?<span>*</span></label>
                                     <select name="instructor_hear_id"
                                         class="text_small form-select form-control @if ($errors->first('instructor_hear_id')) is-invalid @endif"
                                         aria-label="Default select example" required>
@@ -1346,8 +1300,8 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">Start Date</label>
+                                <div class="col-lg-4">
+                                    <label class="mb-0 mt-2 form_label">Start Date</label>
                                     <input name="start_date" id="start_date"
                                         class="input--style-1 js-datepicker form-control @if ($errors->first('start_date')) is-invalid @endif"
                                         type="date" placeholder="" name="birthday" value="{{ old('start_date') }}">
@@ -1359,26 +1313,26 @@
                                         Personal Information
                                     </h2>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">First Name<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">First Name<span>*</span></label>
                                     <input class="form-control @if ($errors->first('first_name')) is-invalid @endif"
                                         type="text" placeholder="" name="first_name"
                                         value="{{ old('first_name') }}" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Middle Name</label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Middle Name</label>
                                     <input class="form-control @if ($errors->first('middle_name')) is-invalid @endif"
                                         type="text" placeholder="" name="middle_name"
                                         value="{{ old('middle_name') }}">
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Last Name<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Last Name<span>*</span></label>
                                     <input class="form-control @if ($errors->first('last_name')) is-invalid @endif"
                                         type="text" placeholder="" name="last_name" value="{{ old('last_name') }}" required>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Gender<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Gender<span>*</span></label>
                                     <select name="gender"
                                         class="text_small form-select form-control @if ($errors->first('gender')) is-invalid @endif"
                                         aria-label="Default select example" required>
@@ -1394,58 +1348,58 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Date of Birth<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Date of Birth<span>*</span></label>
                                     <input id="datepicker"
                                         class="form-control @if ($errors->first('dob')) is-invalid @endif"
                                         type="date" placeholder="" name="dob" value="{{ old('dob') }}" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Email<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Email<span>*</span></label>
                                     <input class="form-control @if ($errors->first('email')) is-invalid @endif"
                                         type="text" placeholder="" name="email" value="{{ old('email') }}" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Phone (Home)</label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Phone (Home)</label>
                                     <input class="form-control @if ($errors->first('phone')) is-invalid @endif"
                                         maxlength="14" type="text" placeholder="" name="phone"
                                         value="{{ old('phone') }}" onKeyPress="if(this.value.length==14) return false;">
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Cell<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Cell<span>*</span></label>
                                     <input class="form-control @if ($errors->first('cell')) is-invalid @endif"
                                         maxlength="14" type="text" placeholder="" name="cell"
                                         value="{{ old('cell') }}" onKeyPress="if(this.value.length==14) return false;" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Work</label>
+                                <div class="col-lg-3 col-sm-4 form_content">
+                                    <label class="mb-0 mt-2 form_label">Work</label>
                                     <textarea name="work" class="form-control @if ($errors->first('work')) is-invalid @endif"
-                                        style="height:150px">{{ old('work') }}</textarea>
+                                        >{{ old('work') }}</textarea>
                                 </div>
-                                <div class="col-md-9">
-                                    <label class="mb-0 mt-2">Address<p>*</p></label>
+                                <div class="col-lg-9 col-sm-8 form_content">
+                                    <label class="mb-0 mt-2 form_label">Address<span>*</span></label>
                                     <textarea name="address" class="form-control @if ($errors->first('address')) is-invalid @endif"
-                                        style="height:150px">{{ old('address') }}</textarea>
+                                        >{{ old('address') }}</textarea>
                                 </div>
                                 <div class="col-md-12">
                                     <h2 class="custom_small_heading my-3 text-center">
                                         School Information
                                     </h2>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">High School/GED<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">High School/GED<span>*</span></label>
                                     <input class="form-control @if ($errors->first('high_school')) is-invalid @endif"
                                         type="text" placeholder="" name="high_school"
                                         value="{{ old('high_school') }}" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Year Attended<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Year Attended<span>*</span></label>
                                     <input class="form-control @if ($errors->first('school_years_attended')) is-invalid @endif"
                                         type="date" placeholder="" name="school_years_attended"
                                         value="{{ old('school_years_attended') }}" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Graduates<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Graduates<span>*</span></label>
                                     <select name="school_year_graduate"
                                         class="text_small form-select form-control @if ($errors->first('school_year_graduate')) is-invalid @endif"
                                         aria-label="Default select example" required>
@@ -1461,25 +1415,25 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Degree/Major<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Degree/Major<span>*</span></label>
                                     <input class="form-control @if ($errors->first('school_degree')) is-invalid @endif"
                                         type="text" placeholder="" name="school_degree"
                                         value="{{ old('school_degree') }}" required>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">College<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">College<span>*</span></label>
                                     <input class="form-control @if ($errors->first('college')) is-invalid @endif"
                                         type="text" placeholder="" name="college" value="{{ old('college') }}" required>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">Year Attended<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Year Attended<span>*</span></label>
                                     <input class="form-control @if ($errors->first('college_email')) is-invalid @endif"
                                         type="date" placeholder="" name="college_email"
                                         value="{{ old('college_email') }}" required>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">Graduates<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Graduates<span>*</span></label>
                                     <select name="college_graduate"
                                         class="text_small form-select form-control @if ($errors->first('college_graduate')) is-invalid @endif"
                                         aria-label="Default select example" value="{{ old('f_name') }}" required>
@@ -1492,27 +1446,27 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Trade or Correspondence School<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Trade or Correspondence School<span>*</span></label>
                                     <input class="form-control @if ($errors->first('trade_school')) is-invalid @endif"
                                         type="text" placeholder="" name="trade_school"
                                         value="{{ old('trade_school') }}" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Degree/Major<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Degree/Major<span>*</span></label>
                                     <input class="form-control @if ($errors->first('trade_degree')) is-invalid @endif"
                                         type="text" placeholder="" name="trade_degree"
                                         value="{{ old('trade_degree') }}" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Year Attended<p>*</p></label>
+                                <div class="col-lg-3 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Year Attended<span>*</span></label>
                                     <input class="form-control @if ($errors->first('trade_years_attended')) is-invalid @endif"
                                         type="date" placeholder="" name="trade_years_attended"
                                         value="{{ old('trade_years_attended') }}" required>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <label class="mb-0 mt-2">Graduates<p>*</p></label>
+                                <div class="col-lg-3 form_content">
+                                    <label class="mb-0 mt-2 form_label">Graduates<span>*</span></label>
                                     <select name="trade_year_graduate"
                                         class="text_small form-select form-control @if ($errors->first('trade_year_graduate')) is-invalid @endif"
                                         aria-label="Default select example" required>
@@ -1533,66 +1487,66 @@
                                         Teaching Experience
                                     </h2>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">Current Position<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Current Position<span>*</span></label>
                                     <input class="form-control @if ($errors->first('current_position')) is-invalid @endif"
                                         type="text" placeholder="" name="current_position"
                                         value="{{ old('current_position') }}" required>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">Employer's Phone Number<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Employer's Phone Number<span>*</span></label>
                                     <input class="form-control @if ($errors->first('Teach_phone')) is-invalid @endif"
                                         type="text" placeholder="" name="Teach_phone" maxlength="14"
                                         value="{{ old('Teach_phone') }}"
                                         onKeyPress="if(this.value.length==14) return false;" required>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">Employer Name<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Employer Name<span>*</span></label>
                                     <input class="form-control @if ($errors->first('employee_name')) is-invalid @endif"
                                         type="text" placeholder="" name="employee_name"
                                         value="{{ old('employee_name') }}" required>
                                 </div>
-                                <div class="col-md-5">
-                                    <label class="mb-0 mt-2">Position Start Date<p>*</p></label>
+                                <div class="col-lg-5 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Position Start Date<span>*</span></label>
                                     <input class="form-control @if ($errors->first('date_employer_start')) is-invalid @endif"
                                         type="date" placeholder="" name="date_employer_start"
                                         value="{{ old('date_employer_start') }}" required>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-lg-5 col-sm-7 form_content">
                                     <div id="end_date_div"
                                         style="{{ old('currently_employed') ? 'display:none;' : '' }}">
-                                        <label class="mb-0 mt-2">Position End Date<p>*</p></label>
+                                        <label class="mb-0 mt-2 form_label">Position End Date<span>*</span></label>
                                         <input class="form-control @if ($errors->first('date_employer_end')) is-invalid @endif"
                                             type="date" placeholder="" name="date_employer_end"
                                             value="{{ old('date_employer_end') }}">
                                     </div>
                                 </div>
-                                <div class="col-md-2 d-flex justify-content-center align-items-center mt-3 gap-2">
+                                <div class="col-lg-2 col-sm-5 d-flex align-items-center justify-content-lg-center mt-3 gap-2">
                                     <input class="@if ($errors->first('currently_employed')) is-invalid @endif" type="checkbox"
                                         id="postion" name="currently_employed"
                                         {{ old('currently_employed') ? 'checked' : '' }}>
-                                    <label class="mb-0" for="postion">Currently Employed?</label><br>
+                                    <label class="mb-0 form_label" for="postion">Currently Employed?</label><br>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">Supervisor Name<p>*</p></label>
+                                <div class="col-lg-4 form_content">
+                                    <label class="mb-0 mt-2 form_label">Supervisor Name<span>*</span></label>
                                     <input class="form-control @if ($errors->first('supervisor_name')) is-invalid @endif"
                                         type="text" placeholder="" name="supervisor_name"
                                         value="{{ old('supervisor_name') }}" required>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">Upload Resume<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Upload Resume<span>*</span></label>
                                     <input class="form-control @if ($errors->first('upload_resume')) is-invalid @endif"
                                         type="file" placeholder="" name="upload_resume" accept=".doc,.docx,.pdf" required>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="mb-0 mt-2">Upload Coverletter<p>*</p></label>
+                                <div class="col-lg-4 col-sm-6 form_content">
+                                    <label class="mb-0 mt-2 form_label">Upload Coverletter<span>*</span></label>
                                     <input class="form-control @if ($errors->first('cover_letter')) is-invalid @endif"
                                         type="file" placeholder="" name="cover_letter" accept=".doc,.docx,.pdf" required>
                                 </div>
-                                <div class="col-md-12">
-                                    <label class="mb-0 mt-2">Address<p>*</p></label>
+                                <div class="col-md-12 form_content">
+                                    <label class="mb-0 mt-2 form_label">Address<span>*</span></label>
                                     <textarea name="employer_address" class="form-control @if ($errors->first('employer_address')) is-invalid @endif"
-                                        style="height:150px;" required>{{ old('employer_address') }}</textarea>
+                                         required>{{ old('employer_address') }}</textarea>
                                 </div>
                                 <div class="col-md-auto ml-auto mt-3">
                                     <button type="button" class="close-modal btn btn-secondary closeModal" data-bs-dismiss="modal">Close</button>
