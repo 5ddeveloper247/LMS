@@ -1128,7 +1128,7 @@
     </div>
     <div class="row mb-md-5 mt-md-4 mt-2 mb-4 justify-content-center"style="background-color: #eee;">
         <div class="col-md-7 py-lg-5 px-5 px-lg-0 py-3">
-            <div class="custom_fs_a d-flex justify-content-between align-items-center mx-3 mx-lg-0">
+            <div class="custom_fs_a d-flex justify-content-between align-items-center mx-lg-0">
                 <h2 class="custom_small_heading text-center font-weight-bold avail-ser">Focused Learning - Goals Realized
                 </h2>
                 <div class="contact_btn text-center">

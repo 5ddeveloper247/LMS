@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="section__title3 mb_40">
-                                    <h3 class="mb-0">{{__('communication.Your referral link')}}</h3>
+                                    <h3 class="mb-0 custom_small_heading ">{{__('communication.Your referral link')}}</h3>
                                     <p>{{__('communication.Share the referral link with your friends.')}}</p>
                                 </div>
                             </div>

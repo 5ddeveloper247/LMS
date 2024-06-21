@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section__title3 margin-50">
-                            <h3>{{ __('setting.Notification Setup') }}</h3>
+                            <h3 class="custom_small_heading">{{ __('setting.Notification Setup') }}</h3>
                         </div>
                     </div>
                     <style>

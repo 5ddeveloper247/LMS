@@ -655,12 +655,12 @@
                                                             </a>
                                                         @elseif ($currClassStatus == 'waiting')
                                                             <span
-                                                                class="theme_line_btn small_btn2 d-block height_50 text-center">
+                                                                class="theme_line_btn small_btn2 height_50 text-center">
                                                                 {{ __('frontend.Waiting') }}
                                                             </span>
                                                         @else
                                                             <span
-                                                                class="theme_line_btn small_btn2 d-block height_50 text-center">
+                                                                class="theme_line_btn small_btn2 height_50 text-center">
                                                                 {{ __('frontend.Closed') }}
                                                             </span>
                                                         @endif
@@ -754,12 +754,12 @@
                                                               </a>
                                                           @elseif ($currClassStatus == 'waiting')
                                                               <span
-                                                                  class="theme_line_btn small_btn2 d-block height_50 text-center">
+                                                                  class="theme_line_btn small_btn2 height_50 text-center">
                                                                   {{ __('frontend.Waiting') }}
                                                               </span>
                                                           @else
                                                               <span
-                                                                  class="theme_line_btn small_btn2 d-block height_50 text-center">
+                                                                  class="theme_line_btn small_btn2 height_50 text-center">
                                                                   {{ __('frontend.Closed') }}
                                                               </span>
                                                           @endif
