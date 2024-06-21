@@ -24,11 +24,11 @@
     <input type="hidden" name="start_time" class="class_start_time"
         value="{{ isset($course->nextMeeting->start_time) ? $course->nextMeeting->start_time : '' }}">
     <!-- course_details::start  -->
-    <div class="course__details">
+    <div class="course__details py-md-5 py-4">
         <div class="container">
             <div class="row px-md-5 px-1">
                 <div class="col-xl-12">
-                    <div class="course__details_title">
+                    <div class="course__details_title class_details">
                         <div class="single__details">
                             <div class="thumb"
                                 style="background-image: url('{{ getInstructorImage(@$course->user->image) }}')">
@@ -36,7 +36,7 @@
                             <div class="details_content">
                                 <span>{{ __('frontend.Instructor Name') }}</span>
                                 <a href="{{ route('instructorDetails', [$course->user->id, $course->user->name]) }}">
-                                    <h5 class="f_w_700">{{ @$course->user->name }}</h5>
+                                    <h5 class="custom_small_heading f_w_700">{{ @$course->user->name }}</h5>
                                 </a>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb_60">
+                    <div class="mb-md-5 mb-4">
                         <div class="video_play text-center">
 
                             @if (Auth::check())
@@ -216,8 +216,11 @@
                     </div>
                     <div class="row">
                         <div class="{{ onlySubscription() ? 'col-xl-12 col-lg-12' : 'col-xl-8 col-lg-8' }}">
-                            <div class="course_tabs text-center">
-                                <ul class="w-100 nav lms_tabmenu justify-content-between mb_55" id="myTab"
+                            <div class="course_tabs w-100 text-center mb-md-5 mb-3">
+                                <div class="events_wrapper">
+                                    <div class="eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
+                                    </div>
+                                <ul class="d-flex w-100 nav lms_tabmenu text-center" id="myTab"
                                     role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="Overview-tab" data-toggle="tab" href="#Overview"
@@ -249,6 +252,8 @@
                                         </li>
                                     @endif
                                 </ul>
+                                <div class="eventsIcon d-xl-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
+                            </div>
                             </div>
 
                             <div class="tab-content lms_tab_content" id="myTabContent">
@@ -645,17 +650,17 @@
                                                         @if ($currClassStatus == 'started')
                                                             <a target="_blank"
                                                                 href="{{ route('classStart', [$course->slug, 'Zoom', $meeting->id]) }}"
-                                                                class="theme_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                class="theme_btn small_btn2 d-block height_50 text-center">
                                                                 {{ __('common.Watch Now') }}
                                                             </a>
                                                         @elseif ($currClassStatus == 'waiting')
                                                             <span
-                                                                class="theme_line_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                class="theme_line_btn small_btn2 d-block height_50 text-center">
                                                                 {{ __('frontend.Waiting') }}
                                                             </span>
                                                         @else
                                                             <span
-                                                                class="theme_line_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                class="theme_line_btn small_btn2 d-block height_50 text-center">
                                                                 {{ __('frontend.Closed') }}
                                                             </span>
                                                         @endif
@@ -749,12 +754,12 @@
                                                               </a>
                                                           @elseif ($currClassStatus == 'waiting')
                                                               <span
-                                                                  class="theme_line_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                  class="theme_line_btn small_btn2 d-block height_50 text-center">
                                                                   {{ __('frontend.Waiting') }}
                                                               </span>
                                                           @else
                                                               <span
-                                                                  class="theme_line_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                  class="theme_line_btn small_btn2 d-block height_50 text-center">
                                                                   {{ __('frontend.Closed') }}
                                                               </span>
                                                           @endif
@@ -1326,7 +1331,47 @@
     </div>
 
     @include(theme('partials._delete_model'))
-    
-
 
 </div>
+<script>
+            $(document).ready(function() {
+    const $tabsBox = $(".lms_tabmenu"),
+        $allTabs = $tabsBox.find(".nav-item"),
+        $arrowEventsIcons = $(".eventsIcon i");
+
+    const handleEventsIcons = () => {
+        let maxScrollableWidth = $tabsBox[0].scrollWidth - $tabsBox[0].clientWidth;
+        if (maxScrollableWidth <= 0) {
+            // Hide both arrows if there's no overflow
+            $arrowEventsIcons.parent().css("display", "none");
+        } else {
+            // Handle visibility based on scroll position
+            $arrowEventsIcons.eq(0).parent().css("display", $tabsBox.scrollLeft() <= 0 ? "none" : "flex");
+            $arrowEventsIcons.eq(1).parent().css("display", maxScrollableWidth - $tabsBox.scrollLeft() <= 1 ? "none" : "flex");
+        }
+    };
+
+    // Initial check
+    handleEventsIcons();
+
+    $arrowEventsIcons.on("click", function() {
+        if ($(this).attr("id") === "left") {
+            $tabsBox.animate({
+                scrollLeft: "-=340"
+            }, 400);
+        } else {
+            $tabsBox.animate({
+                scrollLeft: "+=340"
+            }, 400);
+        }
+    });
+
+    $allTabs.on("click", function() {
+        $tabsBox.find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    $tabsBox.on("scroll", handleEventsIcons);
+    $(window).on("resize", handleEventsIcons); // Check on resize as well
+});
+</script>

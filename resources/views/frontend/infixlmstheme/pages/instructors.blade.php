@@ -221,7 +221,7 @@
 
                 <div class=" d-flex align-items-center col-md-6 col-12 px-lg-5 px-3" data-aos="fade-left"
                     data-aos-delay="500">
-                    <div class="pl-md-5 pt-4 pt-md-0">
+                    <div class="pl-md-5 pt-3 pt-md-0">
                         <h2 class="custom_small_heading mt-2 mt-lg-0 font-weight-bold">
                             Lorem ipsum dolor sit amet consecter
                         </h2>
@@ -318,7 +318,7 @@
                 @empty
                     <p>No Tutor Found</p>
                 @endforelse
-                <div class="col-md-12 {{ count($instructors) ? 'd-block' : 'd-none' }} mt-4">
+                <div class="col-md-12 {{ count($instructors) ? 'd-block' : 'd-none' }}">
                     {{ $instructors->links() }}
                 </div>
             </div>

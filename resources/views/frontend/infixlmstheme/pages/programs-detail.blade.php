@@ -1143,7 +1143,7 @@
                                                     <div class="card-body border">
                                                         <div class="row">
                                                             <div class="col-lg-3 col-xl-3 col-md-6 col-sm-6 col-6 my-1">
-                                                                <h5 class="font-weight-bold">Course Title</h5>
+                                                                <h5 class="custom_small_heading font-weight-bold">Course Title</h5>
                                                                 <p>
                                                                     @if ($is_allow)
                                                                         <a
@@ -1158,7 +1158,7 @@
                                                                 </p>
                                                             </div>
                                                             <div class="col-lg-3 col-xl-3 col-md-6 col-sm-6 col-6 my-1">
-                                                                <h5 class="font-weight-bold">
+                                                                <h5 class="custom_small_heading font-weight-bold">
                                                                     {{ __('frontend.Course Rating') }}
                                                                 </h5>
                                                                 <p>
@@ -1181,7 +1181,7 @@
                                                                 </p>
                                                             </div>
                                                             <div class="col-lg-3 col-xl-3 col-md-6 col-sm-6 col-6 my-1">
-                                                                <h5 class="font-weight-bold">
+                                                                <h5 class="custom_small_heading font-weight-bold">
                                                                     Course
                                                                     {{ __('frontend.Lectures') }}
                                                                 </h5>
@@ -1191,7 +1191,7 @@
                                                             </div>
 
                                                             <div class="col-lg-3 col-xl-3 col-md-6 col-sm-6 col-6 my-1">
-                                                                <h5 class="font-weight-bold">
+                                                                <h5 class="custom_small_heading font-weight-bold">
                                                                     {{ __('frontend.Instructor') }}
                                                                 </h5>
                                                                 <p>
@@ -1223,7 +1223,7 @@
                                                             </style>
                                                             <div class="col-12 mt-3 mb-1">
                                                                 <div class="courseDescription">
-                                                                    <h5 class="font-weight-bold">
+                                                                    <h5 class="custom_small_heading font-weight-bold">
                                                                         Course Description
                                                                     </h5>
                                                                     <p>

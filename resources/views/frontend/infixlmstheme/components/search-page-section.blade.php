@@ -93,7 +93,7 @@
 </style>
 
 <div>
-    <div class="container py-3 py-md-5">
+    <div class="container py-4 py-md-5">
         <h2 class="custom_small_heading px-md-5 px-2">Please Choose Type</h2>
         <div class="filter-tabs">
         <div class="d-flex align-items-center px-md-5 px-2">
@@ -243,8 +243,8 @@
 
     </div>
     <div class="courses_area ">
-        <div class="container">
-            <div class="row px-1 px-md-5">
+        <div class="container mb-3 mb-md-0">
+            <div class="row px-4 px-sm-2 px-md-5">
                 <div class="col-12 mb-3 mb-md-4">
                     <h5 class="small_heading text-center">
                         @if ($request->has('query'))
@@ -376,7 +376,7 @@
                     </div>
                 </div>
                 @endif
-                <div class="col-md-12 @if (count($all_programs) != 0) my-3 pb-3 @endif">
+                <div class="col-md-12 @if (count($all_programs) != 0) my-md-3 pb-3 @endif">
                     @if (count($all_programs) != 0)
                     {{ $all_programs->appends(Request::all())->links() }}
                     @endif

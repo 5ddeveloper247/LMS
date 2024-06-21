@@ -693,7 +693,7 @@
 </style>
 {{-- @endsection --}}
 @section('mainContent')
-    <div class="row mb-3">
+    <div class="row">
         <div class="col-md-12 px-0">
             <div class="breadcrumb_area position-relative">
                 <div class="w-100 h-100 position-absolute bottom-0 left-0">
@@ -713,7 +713,7 @@
 
     </div>
 
-    <section id="apply" class="p-lg-5 p-3">
+    <section id="apply" class="p-lg-5 p-3 pt-4">
         <div class="container-fluid">
             <div class="row justify-content-center text-center px-xl-4 px-md-3 ">
                 <div class="col-md-12 our_require_section">
@@ -1126,7 +1126,7 @@
 
         </div>
     </div>
-    <div class="row my-lg-5 my-4 justify-content-center"style="background-color: #eee;">
+    <div class="row mb-md-5 mt-md-4 mt-2 mb-4 justify-content-center"style="background-color: #eee;">
         <div class="col-md-7 py-lg-5 px-5 px-lg-0 py-3">
             <div class="custom_fs_a d-flex justify-content-between align-items-center mx-3 mx-lg-0">
                 <h2 class="custom_small_heading text-center font-weight-bold avail-ser">Focused Learning - Goals Realized

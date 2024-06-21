@@ -12,8 +12,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12 p-0">
                     <div class="col-12">
-                        <div class="section__title3 margin-50">
-                            <h3>
+                        <div class="section__title3 my-4">
+                            <h3 class="custom_small_heading">
                                     {{ __('Private Message') }}
                             </h3>
                         </div>

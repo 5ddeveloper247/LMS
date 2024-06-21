@@ -17,7 +17,7 @@
         <div class="container center-content-about">
             <div class="row counter_area_row px-lg-3">
                 <div class="col-lg-6 d-flex align-items-center">
-                    <div class="counter_wrapper">
+                    <div class="counter_wrapper mb-3 mb-lg-0">
                         <div class="single_counter">
                             <h3><span class="">{{ $about->total_teacher }}</span></h3>
                             <div class="counter_content">

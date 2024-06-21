@@ -59,9 +59,9 @@
     <div class="shoping_wrapper">
         <div class="dark_overlay"></div>
         <div class="shoping_cart">
-            <div class="shoping_cart_inner">
+            <div class="shoping_cart_inner mt-3 mt-sm-0">
                 <div class="cart_header d-flex justify-content-between">
-                    <h4>{{ __('frontend.Shopping Cart') }}</h4>
+                    <h4 class="custom_small_heading">{{ __('frontend.Shopping Cart') }}</h4>
                     <div class="chart_close">
                         <i class="ti-close"></i>
                     </div>
