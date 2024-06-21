@@ -122,10 +122,8 @@
     }
 
     .instabox i {
-
         font-size: 50px;
         cursor: pointer;
-
     }
 
     .instabox {
@@ -213,13 +211,6 @@
         background: white;
         color: black !important;
     }
-
-    /* .desc h5 {
-        font-family: Poppins, sans-serif;
-        color: #252525;
-        font-weight: 800;
-        font-size: 25px;
-    } */
 
     body {
         background-color: #f9f9fa;
@@ -391,8 +382,6 @@
         line-height: 24px !important;
         font-size: 15px !important;
         color: white;
-
-        /* font-weight: 700; */
     }
 
     .icons i {
@@ -824,6 +813,9 @@
 .program-span {
     font-size: 12px !important;
 }
+.buttons-padding{
+    margin: 7px 0px;
+}
 }
 @media only screen and (max-width: 990px) {
 
@@ -834,9 +826,6 @@
 .custom_heading_1 {
        font-size: 1rem !important;
     }
-    /* .program-span{
-    font-size: 10px;
-} */
 .span_h{
     font-size:12px !important;
 }
@@ -855,9 +844,6 @@
 }
 .span_h{
     font-size:12px !important;
-}
-.lms_tabmenu li a {
-    /* padding: 13px 30px !important; */
 }
 }
 @media only screen and (min-width:1800px){
@@ -928,7 +914,7 @@
 
 
                         <!-- <div class="row"> -->
-                        <div class=" buttons-padding  d-flex " style="gap: 10px;">
+                        <div class="buttons-padding d-flex " style="gap: 10px;">
                         @if (Auth::check())
                             @if ($isEnrolled  ||  isAdmin())
                                 <a href="javascript:void(0)" class="small_btn theme_btn m-1 ">Enrolled
@@ -2227,41 +2213,48 @@
 
     </script>
 <script>
-    const tabsBox = document.querySelector(".lms_tabmenu"),
-            allTabs = tabsBox.querySelectorAll(".nav-item"),
-            arroweventsIcons = document.querySelectorAll(".eventsIcon i");
+    $(document).ready(function() {
+    const $tabsBox = $(".lms_tabmenu"),
+        $allTabs = $tabsBox.find(".nav-item"),
+        $arrowEventsIcons = $(".eventsIcon i");
 
-        const handleeventsIcons = () => {
-            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
-            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" :
-                "flex";
+    const handleEventsIcons = () => {
+        let maxScrollableWidth = $tabsBox[0].scrollWidth - $tabsBox[0].clientWidth;
+        if (maxScrollableWidth <= 0) {
+            // Hide both arrows if there's no overflow
+            $arrowEventsIcons.parent().css("display", "none");
+        } else {
+            // Handle visibility based on scroll position
+            $arrowEventsIcons.eq(0).parent().css("display", $tabsBox.scrollLeft() <= 0 ? "none" : "flex");
+            $arrowEventsIcons.eq(1).parent().css("display", maxScrollableWidth - $tabsBox.scrollLeft() <= 1 ? "none" : "flex");
         }
+    };
 
-        arroweventsIcons.forEach(eventsIcon => {
-            eventsIcon.addEventListener("click", () => {
-                if (eventsIcon.id === "left") {
-                    tabsBox.scrollBy({
-                        left: -340,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    tabsBox.scrollBy({
-                        left: 340,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+    // Initial check
+    handleEventsIcons();
 
-        allTabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                tabsBox.querySelector(".active").classList.remove("active");
-                tab.classList.add("active");
-            });
-        });
+    $arrowEventsIcons.on("click", function() {
+        if ($(this).attr("id") === "left") {
+            $tabsBox.animate({
+                scrollLeft: "-=340"
+            }, 400);
+        } else {
+            $tabsBox.animate({
+                scrollLeft: "+=340"
+            }, 400);
+        }
+    });
 
-        tabsBox.addEventListener("scroll", handleeventsIcons);
+    $allTabs.on("click", function() {
+        $tabsBox.find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    $tabsBox.on("scroll", handleEventsIcons);
+    $(window).on("resize", handleEventsIcons); // Check on resize as well
+});
+
+
 </script>
 
 @endsection

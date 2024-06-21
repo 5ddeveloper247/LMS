@@ -155,9 +155,9 @@
         <!-- firstend -->
         <!-- 2ndstart -->
         <div class="container px-lg-0">
-            <div class="row my-4 px-lg-5 small_screen course_padding">
+            <div class="row my-sm-4 my-2 px-lg-5 small_screen course_padding">
 
-                <div class="col-lg-9 col-md-8 col-sm-7 mb-3 mb-md-0">
+                <div class="col-lg-9 col-md-8 col-sm-7 mb-2 mb-sm-0">
                     @if ($course->image == '')
 
                         <div class="video_screen @if ($course->host != 'ImagePreview' && $course->host != '') theme__overlay @endif mb-4">
@@ -329,7 +329,7 @@
                     </div>
                     </div>
 
-                    <div class="tab-content lms_tab_content px-2 mb-3 mb-md-0" id="myTabContent">
+                    <div class="tab-content lms_tab_content px-sm-2 mb-2 mb-md-0" id="myTabContent">
                         <div class="tab-pane fade show active" id="Overview" role="tabpanel"
                             aria-labelledby="Overview-tab">
                             <!-- content  -->
@@ -410,7 +410,7 @@
 
                         <div class="tab-pane fade" id="Curriculum" role="tabpanel" aria-labelledby="Curriculum-tab">
                             <!-- content  -->
-                            <h5 class="font-weight-bold custom_heading_1 small_heading">{{ __('frontend.Course Curriculum') }}</h5>
+                            <h5 class="font-weight-bold custom_heading_1 small_heading mb-3">{{ __('frontend.Course Curriculum') }}</h5>
                             {{-- <h5 class="font-weight-bold custom_heading_1 small_heading ">{{ __('frontend.Course Curriculum') }}</h5> --}}
                             <div class="card mb-4 p-2">
                                 <div class="theme_according" id="accordion1">
@@ -1288,7 +1288,7 @@
 
                 {{-- new card_2 starts  --}}
                 {{-- this one needs to be fixed  --}}
-                <div class="col-xl-3 col-lg-3 col-md-4 col-12 py-3 py-sm-0">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-12 pb- py-sm-0">
                      @if($course->type != '7')
                      @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
                     <div class="custom_section_color rounded_section p-2 img_round " style="background-color: #eee; ">
@@ -1332,39 +1332,39 @@
 
 
                     <div class="">
-                        <div class="sidebar__widget p-2">
+                        <div class="sidebar__widget p-2 p-sm-0">
 
                             @if (!onlySubscription())
                                 @if (Auth::check())
                                     @if ($isEnrolled || isAdmin())
                                         @if (request()->has('program_id'))
                                             <a href="{{ route('continueCourse', [$course->slug]) . '?program_id=' . $request->program_id }}"
-                                                class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Continue Watch') }}</a>
+                                                class="d-block mb_10 small_btn theme_btn text-center mt-2">{{ __('common.Continue Watch') }}</a>
                                         @endif
                                         @if (request()->has('courseType') && in_array(request()->courseType, [4, 5, 9]))
                                             <a href="{{ route('continueCourse', [$course->slug]) . '?courseType=' . $request->courseType }}"
-                                                class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Continue Watch') }}</a>
+                                                class="d-block mb_10 small_btn theme_btn text-center mt-2">{{ __('common.Continue Watch') }}</a>
                                         @endif
                                     @elseif(isStudent())
                                         @if ($is_cart == 1)
                                             <a href="javascript:void(0)"
-                                                class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Added To Cart') }}</a>
+                                                class="d-block mb_10 small_btn theme_btn text-center mt-2 mt-sm-0">{{ __('common.Added To Cart') }}</a>
                                         @else
                                             <a href=" {{ request()->has('courseType') ? route('addToCartQuiz', [@$course->id]) . '?courseType=' . $request->courseType : route('addToCartQuiz', [@$course->id]) }}"
-                                                class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Add To Cart') }}</a>
+                                                class="d-block mb_10 small_btn theme_btn text-center mt-2 mt-sm-0">{{ __('common.Add To Cart') }}</a>
                                         @endif
                                         <a href="{{ request()->has('courseType') ? route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType : route('buyNowQuiz', [@$course->id]) }}"
-                                            class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Buy Now') }}</a>
+                                            class="d-block mb_10 small_btn theme_btn text-center">{{ __('common.Buy Now') }}</a>
                                     @endif
                                 @else
                                     @if ($is_cart == 1)
                                         <a href="javascript:void(0)"
-                                            class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Added To Cart') }}</a>
+                                            class="d-block mb_10 small_btn theme_btn text-center mt-2">{{ __('common.Added To Cart') }}</a>
                                     @else
                                         <a href=" {{ request()->has('courseType') ? route('addToCartQuiz', [@$course->id]) . '?courseType=' . $request->courseType : route('addToCartQuiz', [@$course->id]) }} "
-                                            class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Add To Cart') }}</a>
+                                            class="d-block mb_10 small_btn theme_btn text-center mt-2 mt-sm-0">{{ __('common.Add To Cart') }}</a>
                                         <a href="{{ request()->has('courseType') ? route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType : route('buyNowQuiz', [@$course->id]) }}"
-                                            class="d-block mb_10 small_btn theme_btn text-center p-2">{{ __('common.Buy Now') }}</a>
+                                            class="d-block mb_10 small_btn theme_btn text-center ">{{ __('common.Buy Now') }}</a>
                                     @endif
                                 @endif
                             @endif
@@ -1557,39 +1557,45 @@
     });
 </script>
 <script>
-    const tabsBox = document.querySelector(".lms_tabmenu"),
-            allTabs = tabsBox.querySelectorAll(".nav-item"),
-            arroweventsIcons = document.querySelectorAll(".eventsIcon i");
+        $(document).ready(function() {
+    const $tabsBox = $(".lms_tabmenu"),
+        $allTabs = $tabsBox.find(".nav-item"),
+        $arrowEventsIcons = $(".eventsIcon i");
 
-        const handleeventsIcons = () => {
-            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
-            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" :
-                "flex";
+    const handleEventsIcons = () => {
+        let maxScrollableWidth = $tabsBox[0].scrollWidth - $tabsBox[0].clientWidth;
+        if (maxScrollableWidth <= 0) {
+            // Hide both arrows if there's no overflow
+            $arrowEventsIcons.parent().css("display", "none");
+        } else {
+            // Handle visibility based on scroll position
+            $arrowEventsIcons.eq(0).parent().css("display", $tabsBox.scrollLeft() <= 0 ? "none" : "flex");
+            $arrowEventsIcons.eq(1).parent().css("display", maxScrollableWidth - $tabsBox.scrollLeft() <= 1 ? "none" : "flex");
         }
+    };
 
-        arroweventsIcons.forEach(eventsIcon => {
-            eventsIcon.addEventListener("click", () => {
-                if (eventsIcon.id === "left") {
-                    tabsBox.scrollBy({
-                        left: -340,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    tabsBox.scrollBy({
-                        left: 340,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+    // Initial check
+    handleEventsIcons();
 
-        allTabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                tabsBox.querySelector(".active").classList.remove("active");
-                tab.classList.add("active");
-            });
-        });
+    $arrowEventsIcons.on("click", function() {
+        if ($(this).attr("id") === "left") {
+            $tabsBox.animate({
+                scrollLeft: "-=340"
+            }, 400);
+        } else {
+            $tabsBox.animate({
+                scrollLeft: "+=340"
+            }, 400);
+        }
+    });
 
-        tabsBox.addEventListener("scroll", handleeventsIcons);
+    $allTabs.on("click", function() {
+        $tabsBox.find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    $tabsBox.on("scroll", handleEventsIcons);
+    $(window).on("resize", handleEventsIcons); // Check on resize as well
+});
+
 </script>

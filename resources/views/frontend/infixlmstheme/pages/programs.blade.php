@@ -209,7 +209,7 @@
         </div>
         <div class="container custom-padd px-lg-5 pt-md-5 pt-3">
             <div class="row px-sm-4 ">
-                <div class="col-12 d-flex justify-content-between mb-4">
+                <div class="col-12 d-flex justify-content-between mb-3">
                     <div class="col-6 col-md-8">
                         <h2 class="custom_small_heading font-weight-bold custom_heading_1">Program Features</h2>
                         <ul style="color: #996699!important" class="ml-4">

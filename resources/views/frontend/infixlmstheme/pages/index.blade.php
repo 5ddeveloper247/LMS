@@ -1598,9 +1598,9 @@
     .at_merakii{
         font-size: 1.8rem;
     }
-    /*  */
-    @media only screen and (max-width: 575px) {
 
+    @media only screen and (max-width: 575px) {
+        
         .for-backcolor-row {
             gap: 3rem;
         }
@@ -1707,8 +1707,11 @@
     }
 
     @media only screen and (max-width: 768px) {
+        .custom-slider-container{
+        height: 343px !important;
+        }
         .percent-video {
-            max-height: 350px !important;
+            height: 390px !important;
         }
 
         .fa-lightbulb {
@@ -1752,11 +1755,6 @@
 
         .custom-card img {
             height: 320px;
-        }
-
-        .custom-card h5 {
-            left: 50% !important;
-            transform: translateX(-50%)
         }
 
         button.prev {
@@ -1881,11 +1879,6 @@
             font-size: 1.5rem !important;
         }
 
-        /* .custom-card h5 {
-            left: 0px !important;
-            text-align: center !important;
-        } */
-
         .for-border {
             min-height: 210px !important;
         }
@@ -1933,10 +1926,7 @@
     }
 
     @media only screen and (min-width: 1024px) and (max-width: 1279px) {
-        .custom-card h5 {
-            left: auto !important;
-            text-align: center !important;
-        }
+     
 
         .about-img {
             /* height: 335px; */
@@ -2660,12 +2650,15 @@
         height: 100%;
         box-sizing: border-box;
         border-radius: 10px;
+        display: flex;
+        justify-content: center;
     }
 
     .custom-card h5 {
         position: absolute;
+        text-align: center;
         bottom: 5%;
-        left: 30px;
+        /* left: 30px; */
         color: white;
     }
 
@@ -2930,7 +2923,7 @@
         <section class="sec-4">
             <div class="container px-lg-5 pt-lg-5 pt-3">
                 <div class="row text-center main_row mb-3 px-2 px-md-0">
-                    <h2 class="font-weight-bold">Gain the Edge in Healthcare School & Beyond</h2>
+                    <h2 class="custom_small_heading font-weight-bold">Gain the Edge in Healthcare School & Beyond</h2>
                     <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
                         Licensure.</p>
                 </div>

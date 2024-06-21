@@ -170,7 +170,7 @@
 </style>
 
 
-<div class="custom-padding px-md-5 mb-5">
+<div class="custom-padding px-md-5 mb-md-5 mb-3">
     <div class="container center-content-about px-0">
         <div class="row stepper_row px-xl-5 px-lg-4 px-3 row-padding">
             <div class="pl-0 slider d-flex flex-column align-items-md-end text-end paddingy" data-aos="fade-left"
@@ -182,7 +182,7 @@
                 <div class="image"><img src="{{ asset('/public/uploads/images/footerimg/image1.jpg') }}"
                         class="w-100 h-100" style="object-fit: cover;"></div>
             </div>
-            <div class="pr-0 slider slider-right stepper_right" data-aos="fade-left" data-aos-duration="1000">
+            <div class="pr-0 slider slider-right stepper_right" data-aos="fade-right" data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">Step 2</h2>
                 <p class="mb-3">This is the second step This is the third stepThis is the first step This is the third
                     step This is the third step This is the second step This is the third stepThis is the third stepThis
@@ -201,7 +201,7 @@
                 <div class="image"><img src="{{ asset('/public/uploads/images/footerimg/image1.jpg') }}"
                         class="w-100 h-100" style="object-fit: cover;"></div>
             </div>
-            <div class="pr-0 slider slider-right stepper_right" data-aos="fade-right" data-aos-duration="1000">
+            <div class="pr-0 slider slider-right stepper_right" data-aos="fade-left" data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">Step 4</h2>
                 <p class="mb-3">This is the fourth stepThis is the fourth step This is the first step This is the
                     third step This is the fourth step This is the second step This is the third stepThis is the third

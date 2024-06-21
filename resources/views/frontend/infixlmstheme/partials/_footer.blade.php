@@ -374,6 +374,7 @@
     @endif
     <!-- wathsapp -->
     <style>
+      
         .float-a {
             position: fixed !important;
             width: 44px !important;
@@ -393,6 +394,11 @@
         .my-float {
             margin-top: 7px;
             /* margin-left: 1px; */
+        }
+        @media only screen and (max-width: 767px){
+            .float-a{
+                right: 5px !important;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">

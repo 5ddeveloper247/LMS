@@ -5,11 +5,12 @@
 {{-- @section('css') --}}
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/slick/slick.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/slick/slick-theme.css') }}">
-<link href="{{ asset('public/frontend/infixlmstheme/css/class_details.css') }}" rel="stylesheet"/>
+<link href="{{ asset('public/frontend/infixlmstheme/css/class_details.css') }}" rel="stylesheet" />
 <style>
-    .d-inine{
+    .d-inine {
         cursor: pointer;
     }
+
     /* .btn-for-book{
         width: 6rem;
         text-align: center;
@@ -84,6 +85,9 @@
         padding-right: 55px;
         margin-bottom: 15px !important;
     } */
+    .tutor_detail_image {
+        height: 60vh;
+    }
 
     .review_username {
         width: 150px;
@@ -201,12 +205,13 @@
         font-family: Poppins, sans-serif;
     } */
 
-    .markdone{
+    .markdone {
         max-height: 55vh;
         overflow-y: auto;
         scrollbar-width: none;
 
     }
+
     .markdone p i {
         font-size: 20px;
         color: #ff7600;
@@ -215,8 +220,8 @@
 
 
     .controlSize2 {
-        height: 350px !important;
-        overflow:auto;
+        height: 350px;
+        overflow: auto;
         scrollbar-width: none;
     }
 
@@ -275,9 +280,16 @@
     .theme_color2 {
         color: var(--system_primery_color);
     }
-
+@media only screen and (max-width: 540px){
+    .controlSize2 {
+            height: 350px !important;
+        }
+}
 
     @media only screen and (max-width: 768px) {
+        .controlSize2 {
+            height: auto;
+        }
 
         /* Left Sidebar Section  style*/
         .left {
@@ -328,16 +340,6 @@
             visibility: visible;
 
         }
-h2,h5, h5{
-    font-size:20px !important;
-}
-p, label{
-    font-size: 14px !important;
-}
-        .vansena p {
-            font-weight: 300;
-            font-size: 20px;
-        }
 
         .datatext {
             width: auto;
@@ -356,19 +358,18 @@ p, label{
         .review_username {
             width: unset;
         }
-.for-column{
-    display: flex;
-    flex-direction: column;
-}
-.h-font{
-    font-size: 20px;
-}
+
+        .for-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .h-font {
+            font-size: 20px;
+        }
     }
-@media only screen and (min-width: 769px) and (max-width:1024px) {
-    h2,h5,h5{
-        font-size: 20px !important;
-    }
-}
+
+
     /* @media (width >
 
     1650px
@@ -387,15 +388,9 @@ p, label{
     .section-margin-y {
         margin: 60px auto !important;
     }
-    .tutor_detail{
-            padding: 0px 50px !important;
-        }
-    @media only screen and (min-width: 1800px){
-        .lead{
+    @media only screen and (min-width: 1800px) {
+        .lead {
             padding: 0px 45px !important;
-        }
-        .tutor_detail{
-            padding: 0px 30px !important;
         }
     }
 </style>
@@ -438,7 +433,7 @@ p, label{
 
         }
 
-        $(document).on('click', '.tab_spy', function () {
+        $(document).on('click', '.tab_spy', function() {
             $(".tab_spy").find('i').addClass('d-none');
             $(this).find('i').removeClass('d-none');
 
@@ -457,7 +452,7 @@ p, label{
         <div class="breadcrumb_area position-relative">
             <div class="w-100 h-100 position-absolute bottom-0 left-0">
                 <img alt="Banner Image" class="w-100 h-100 img-cover"
-                     src="{{ asset('public\frontend\infixlmstheme\img\images\instructors.jpg') }}">
+                    src="{{ asset('public\frontend\infixlmstheme\img\images\instructors.jpg') }}">
             </div>
 
             <div class="col-lg-9 offset-1">
@@ -471,40 +466,40 @@ p, label{
     {{-- <div class="row m-0 mt-5">
                     <div class="col-md-12"> --}}
     {{-- <div class="container-fluid"> --}}
-        <div class="container my-md-5 my-3 tutor_detail">
-            <div class="row px-1 px-md-5">
-                <div class="col-lg-3 col-md-3 d-md-block justify-content-between for-column px-0 px-lg-2">
-                    <div class="whatWedo what tab_spy  mb-3">
-                        <h5 class="d-inine font-weight-bold" onclick="shoot(1)">
-                            About Tutor
-                            <i class="fa-solid fa-arrow-right "></i>
-                        </h5>
-                    </div>
-                    <div class="whatWedo course tab_spy my-3">
-                        <h5 class="d-inine font-weight-bold" onclick="shoot(2)">
-                            Courses
-                            <i class="fa-solid fa-arrow-right d-none"></i>
-                        </h5>
-                    </div>
-                    @if(auth()->check())
-                        @if(isStudent() || isAdmin())
-                            <div class="whatWedo register tab_spy mb-3">
-                                <h5 class="d-inine font-weight-bold" onclick="shoot(3)">
-                                    Book Now
-                                    <i class="fa-solid fa-arrow-right d-none"></i>
-                                </h5>
-                            </div>
-                        @endif
-                    @else
+    <div class="container my-md-5 my-4 tutor_detail px-md-5 px-3">
+        <div class="row px-3 px-md-5">
+            <div class="col-lg-3 col-md-3 d-md-block justify-content-between for-column px-0 px-lg-2">
+                <div class="whatWedo what tab_spy mb-3">
+                    <h5 class="custom_small_heading d-inine font-weight-bold" onclick="shoot(1)">
+                        About Tutor
+                        <i class="fa-solid fa-arrow-right "></i>
+                    </h5>
+                </div>
+                <div class="whatWedo course tab_spy mb-3">
+                    <h5 class="custom_small_heading d-inine font-weight-bold" onclick="shoot(2)">
+                        Courses
+                        <i class="fa-solid fa-arrow-right d-none"></i>
+                    </h5>
+                </div>
+                @if (auth()->check())
+                    @if (isStudent() || isAdmin())
                         <div class="whatWedo register tab_spy mb-3">
-                            <h5 class="d-inine font-weight-bold" onclick="shoot(3)">
+                            <h5 class="custom_small_heading d-inine font-weight-bold" onclick="shoot(3)">
                                 Book Now
                                 <i class="fa-solid fa-arrow-right d-none"></i>
                             </h5>
                         </div>
                     @endif
+                @else
+                    <div class="whatWedo register tab_spy mb-3">
+                        <h5 class="custom_small_heading d-inine font-weight-bold" onclick="shoot(3)">
+                            Book Now
+                            <i class="fa-solid fa-arrow-right d-none"></i>
+                        </h5>
+                    </div>
+                @endif
 
-                    {{-- <div class="whatWedo how mx-3 my-3">
+                {{-- <div class="whatWedo how mx-3 my-3">
                                     <h5 class="d-inine" onclick="shoot(4)">
                                         <i class="bi bi-arrow-right"></i>How we do it
                                     </h5>
@@ -514,12 +509,12 @@ p, label{
                                         <i class="bi bi-arrow-right"></i>Our Program
                                     </h5>
                                 </div> --}}
-                </div>
-                <div class="col-6 select whatmain hide-scrollbar px-0 px-md-2" style="">
-                    <h5 class="h-font font-weight-bold">{{ $tutor->name }}</h5>
-                    <div class="markdone">
-                        <p style="text-align: justify;">{!! $tutor->about !!}</p>
-                        {{-- <p> Lorem ipsum dolor sit amet conse</p>
+            </div>
+            <div class="col-6 select whatmain hide-scrollbar px-2" style="">
+                <h5 class="custom_small_heading h-font font-weight-bold">{{ $tutor->name }}</h5>
+                <div class="markdone">
+                    <p style="text-align: justify;">{!! $tutor->about !!}</p>
+                    {{-- <p> Lorem ipsum dolor sit amet conse</p>
                                     <p> <i class="bi bi-check"></i>
                                         Nulla ante eros, venenatis vel suad
                                     </p>
@@ -528,24 +523,24 @@ p, label{
                                     </p>
                                     <p> <i class="bi bi-check"></i>
                                         Vestibulum vitae libero neque</p> --}}
-                    </div>
                 </div>
-                <div class="col-6 coursemain d-none select px-0 px-md-2">
-                    <h5 class="h-font font-weight-bold">Course</h5>
-                    <div class="markdone">
-                        <ul>
-                            @forelse ($courses as $course)
-                                <li>
-                                    <p><i class="ti ti-check"></i> {{ $course->title }}</p>
-                                </li>
-                            @empty
-                                <li>
-                                    <p>No Course of This Tutor</p>
-                                </li>
-                                <h5></h5>
-                            @endforelse
-                        </ul>
-                        {{-- <p> <i class="bi bi-check"></i>
+            </div>
+            <div class="col-6 coursemain d-none select px-0 px-md-2">
+                <h5 class="h-font font-weight-bold">Course</h5>
+                <div class="markdone">
+                    <ul>
+                        @forelse ($courses as $course)
+                            <li>
+                                <p><i class="ti ti-check"></i> {{ $course->title }}</p>
+                            </li>
+                        @empty
+                            <li>
+                                <p>No Course of This Tutor</p>
+                            </li>
+                            <h5></h5>
+                        @endforelse
+                    </ul>
+                    {{-- <p> <i class="bi bi-check"></i>
                                         Nulla ante eros, venenatis vel suad
                                     </p>
                                     <p><i class="bi bi-check"></i> Lorem ipsum dolor sit amet conse</p>
@@ -554,16 +549,17 @@ p, label{
                                     <p><i class="bi bi-check"></i>
                                         Lorem ipscras maximus turpis egit
                                     </p> --}}
-                    </div>
                 </div>
-                <div class="col-6 d-none registermain select px-0 px-md-2">
-                    <h5 class="h-font font-weight-bold">Book Now</h5>
-                    <p>If you want to hire the Tutor, Please Click the Below Button</p>
+            </div>
+            <div class="col-6 d-none registermain select px-0 px-md-2">
+                <h5 class="h-font font-weight-bold">Book Now</h5>
+                <p>If you want to hire the Tutor, Please Click the Below Button</p>
 
-                    <a href="{{ route('tutorBooking', $tutor->id) }}" class="theme_btn small_btn2 btn-for-book mt-4 p-2">Book</a>
+                <a href="{{ route('tutorBooking', $tutor->id) }}"
+                    class="theme_btn small_btn2 btn-for-book mt-4 p-2">Book</a>
 
 
-                    {{-- <div class="markdone">
+                {{-- <div class="markdone">
                                     <p><i class="bi bi-check"></i> Lorem ipsum dolor sit amet conse</p>
                                     <p> <i class="bi bi-check"></i>
                                         Nulla ante eros, venenatis vel suad
@@ -574,8 +570,8 @@ p, label{
                                     <p> <i class="bi bi-check"></i>
                                         Vestibulum vitae libero neque</p>
                                 </div> --}}
-                </div>
-                {{-- <div class="col-md-4 select howmain d-none">
+            </div>
+            {{-- <div class="col-md-4 select howmain d-none">
                                 <h2>How we do it</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                                 <div class="markdone">
@@ -605,24 +601,24 @@ p, label{
                                     </p>
                                 </div>
                             </div> --}}
-                <div class="col-6 col-md-3 p-0" style=" height:60vh !important;">
-                    <img src="{{ !empty($tutor->image) ? asset($tutor->image)  :asset('public/demo/user/admin.jpg')  }}"
-                         class="img-fluid w-100 object-fit-cover h-100"
-                         style="object-fit:cover;
-                ">
+            <div class="col-6 col-md-3 p-0">
+                <div class="tutor_detail_image">
+                    <img src="{{ !empty($tutor->image) ? asset($tutor->image) : asset('public/demo/user/admin.jpg') }}"
+                        class="img-fluid w-100 h-100" style="object-fit:cover;">
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="mt-4 row">
-            <div class="col-md-6 p-0">
-                <img src="{{ asset('/public/assets/tutor/instructor.jpg') }}" class="img-fluid w-100 h-100">
-            </div>
-            <div class="col-md-6 p-0 d-flex align-items-center px-xl-5" style="background-color: #996699">
-            <div class="controlSize px-3 py-4 px-lg-5 hide-scrollbar">
-                    <div class="lead">
-                        <div class="controlSize2">
-                        <h2 class="font-weight-bold text-white">New knowledge is important</h2>
+    <div class="mt-4 row">
+        <div class="col-md-6 p-0">
+            <img src="{{ asset('/public/assets/tutor/instructor.jpg') }}" class="img-fluid w-100 h-100">
+        </div>
+        <div class="col-md-6 p-0 d-flex align-items-center px-xl-5" style="background-color: #996699">
+            <div class="controlSize px-4 py-4 px-sm-5 hide-scrollbar">
+                <div class="lead">
+                    <div class="controlSize2">
+                        <h2 class="custom_small_heading font-weight-bold text-white">New knowledge is important</h2>
                         <p class=" text-justify text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
                             consequuntur, voluptatem
                             sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
@@ -634,20 +630,21 @@ p, label{
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
                             sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
                             Lorem ipsum dolor.</p>
-                            </div>
-                        <p class="font-weight-bold mt-3 text-white"><a href="{{ route('instructors') }}" style="color:inherit;">
-                                <u>All
-                                    Tutors</u></a></p>
                     </div>
+                    <p class="font-weight-bold mt-3 text-white"><a href="{{ route('instructors') }}"
+                            style="color:inherit;">
+                            <u>All
+                                Tutors</u></a></p>
                 </div>
             </div>
-            <div
-                class="col-md-6 newknowledgeImg order-1 order-lg-0 order-md-0 px-1 px-xl-5 d-flex align-items-center" style="
+        </div>
+        <div class="col-md-6 newknowledgeImg order-1 order-lg-0 order-md-0 px-1 px-xl-5 d-flex align-items-center"
+            style="
             background: #eee; ">
-                <div class="controlSize px-3 py-4 px-lg-5 hide-scrollbar">
-                    <div class="lead">
-                        <div class="controlSize2">
-                        <h2 class="font-weight-bold">New knowledge is important</h2>
+            <div class="controlSize px-4 py-4 px-sm-5 hide-scrollbar">
+                <div class="lead">
+                    <div class="controlSize2">
+                        <h2 class="custom_small_heading font-weight-bold">New knowledge is important</h2>
                         <p class=" text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
                             consequuntur, voluptatem
                             sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
@@ -659,24 +656,24 @@ p, label{
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
                             sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
                             Lorem ipsum dolor.</p>
-                            </div>
-                        <p class="font-weight-bold mt-3"><a href="{{ route('instructors') }}" style="color:inherit;">
-                                <u>All
-                                    Tutors</u></a></p>
                     </div>
+                    <p class="font-weight-bold mt-3"><a href="{{ route('instructors') }}" style="color:inherit;">
+                            <u>All
+                                Tutors</u></a></p>
                 </div>
             </div>
-            <div class="col-md-6 p-0">
-                <img src="{{ asset('/public/assets/tutor/instructor.jpg') }}" class="img-fluid h-100 w-100">
-            </div>
         </div>
+        <div class="col-md-6 p-0">
+            <img src="{{ asset('/public/assets/tutor/instructor.jpg') }}" class="img-fluid h-100 w-100">
+        </div>
+    </div>
     {{-- </div> --}}
     </div>
-    <div class="container my-md-5 mt-3 tutor_detail">
+    <div class="container my-md-5 my-4 tutor_detail px-md-5 px-3">
 
 
         <div class="course_review_wrapper w-100">
-            <div class="row px-1 px-md-5">
+            <div class="row px-3 px-md-5">
                 <!-- content  -->
 
 
@@ -815,12 +812,15 @@ p, label{
                 <div class="col-6 col-sm-8">
                     @php
                         $PickId = $tutor->id;
-                        $user_tutor_hiring_count = \Modules\SystemSetting\Entities\TutorHiring::where('user_id', \Illuminate\Support\Facades\Auth::id())
+                        $user_tutor_hiring_count = \Modules\SystemSetting\Entities\TutorHiring::where(
+                            'user_id',
+                            \Illuminate\Support\Facades\Auth::id(),
+                        )
                             ->where('instructor_id', $PickId)
                             ->count();
                     @endphp
 
-                    <div class="course_cutomer_reviews border-0" >
+                    <div class="course_cutomer_reviews border-0">
                         <div class="details_title">
                             <h5 class="f_w_700">{{ __('frontend.Reviews') }}</h5>
 
@@ -835,7 +835,7 @@ p, label{
                         <div class="row align-items-center">
                             <div class="col-md-6 px-sm-0 px-lg-2">
                                 <div class="review_poients">
-                                    @if(isAdmin() || isStudent())
+                                    @if (isAdmin() || isStudent())
                                         @if ($user_tutor_hiring_count > 0)
                                             @if ($tutor->tutorReviews->count() < 1)
                                                 @if (Auth::check() && $tutor->userTutorReviews->count() == 0)
@@ -843,7 +843,8 @@ p, label{
                                                         {{ __('frontend.Be the first reviewer') }}
                                                     </p>
                                                 @else
-                                                    <p class="theme_color font_16 mb-0">{{ __('frontend.No Review found') }}
+                                                    <p class="theme_color font_16 mb-0">
+                                                        {{ __('frontend.No Review found') }}
                                                     </p>
                                                 @endif
                                             @endif
@@ -858,35 +859,34 @@ p, label{
 
 
                                     @if (Auth::check())
-                                        @if(isAdmin() || isStudent())
+                                        @if (isAdmin() || isStudent())
                                             @if ($tutor->userTutorReviews->count() == 0 && $user_tutor_hiring_count > 0)
                                                 <div class="star_icon d-flex align-items-center justify-content-end">
                                                     <a class="rating">
-                                                        <input type="radio" id="star5" name="rating" value="5"
-                                                               class="rating"/><label class="full" for="star5"
-                                                                                      id="star5"
-                                                                                      title="Awesome - 5 stars"
-                                                                                      onclick="Rates(5, {{ @$PickId }})"></label>
+                                                        <input type="radio" id="star5" name="rating"
+                                                            value="5" class="rating" /><label class="full"
+                                                            for="star5" id="star5" title="Awesome - 5 stars"
+                                                            onclick="Rates(5, {{ @$PickId }})"></label>
 
-                                                        <input type="radio" id="star4" name="rating" value="4"
-                                                               class="rating"/><label class="full" for="star4"
-                                                                                      title="Pretty good - 4 stars"
-                                                                                      onclick="Rates(4, {{ @$PickId }})"></label>
+                                                        <input type="radio" id="star4" name="rating"
+                                                            value="4" class="rating" /><label class="full"
+                                                            for="star4" title="Pretty good - 4 stars"
+                                                            onclick="Rates(4, {{ @$PickId }})"></label>
 
-                                                        <input type="radio" id="star3" name="rating" value="3"
-                                                               class="rating"/><label class="full" for="star3"
-                                                                                      title="Meh - 3 stars"
-                                                                                      onclick="Rates(3, {{ @$PickId }})"></label>
+                                                        <input type="radio" id="star3" name="rating"
+                                                            value="3" class="rating" /><label class="full"
+                                                            for="star3" title="Meh - 3 stars"
+                                                            onclick="Rates(3, {{ @$PickId }})"></label>
 
-                                                        <input type="radio" id="star2" name="rating" value="2"
-                                                               class="rating"/><label class="full" for="star2"
-                                                                                      title="Kinda bad - 2 stars"
-                                                                                      onclick="Rates(2, {{ @$PickId }})"></label>
+                                                        <input type="radio" id="star2" name="rating"
+                                                            value="2" class="rating" /><label class="full"
+                                                            for="star2" title="Kinda bad - 2 stars"
+                                                            onclick="Rates(2, {{ @$PickId }})"></label>
 
-                                                        <input type="radio" id="star1" name="rating" value="1"
-                                                               class="rating"/><label class="full" for="star1"
-                                                                                      title="Bad  - 1 star"
-                                                                                      onclick="Rates(1,{{ @$PickId }})"></label>
+                                                        <input type="radio" id="star1" name="rating"
+                                                            value="1" class="rating" /><label class="full"
+                                                            for="star1" title="Bad  - 1 star"
+                                                            onclick="Rates(1,{{ @$PickId }})"></label>
 
                                                     </a>
                                                 </div>
@@ -894,9 +894,9 @@ p, label{
                                         @endif
                                     @else
                                         <p class=" f_w_400 mt-0"><a href="{{ url('login') }}"
-                                                                    class="theme_color2">{{ __('frontend.Sign In') }}</a>
+                                                class="theme_color2">{{ __('frontend.Sign In') }}</a>
                                             {{ __('frontend.or') }} <a class="theme_color2"
-                                                                       href="{{ url('register') }}">{{ __('frontend.Sign Up') }}</a>
+                                                href="{{ url('register') }}">{{ __('frontend.Sign Up') }}</a>
                                             {{ __('frontend.as student to post a review') }}</p>
                                     @endif
                                 </div>
@@ -928,8 +928,7 @@ p, label{
 
                         <div class="text-center">
                             <textarea class="lms_summernote" name="review" name="" id=""
-                                      placeholder="{{ __('frontend.Write your review') }}" cols="30"
-                                      rows="10">{{ old('review') }}</textarea>
+                                placeholder="{{ __('frontend.Write your review') }}" cols="30" rows="10">{{ old('review') }}</textarea>
                             <span class="text-danger" role="alert">{{ $errors->first('review') }}</span>
                         </div>
 
@@ -938,7 +937,7 @@ p, label{
                     <div class="modal-footer justify-content-center">
                         <div class="mt-40">
                             <button type="button" class="theme_line_btn mr-2"
-                                    data-dismiss="modal">{{ __('common.Cancel') }}
+                                data-dismiss="modal">{{ __('common.Cancel') }}
                             </button>
                             <button class="theme_btn " type="submit">{{ __('common.Submit') }}</button>
                         </div>
@@ -987,17 +986,17 @@ p, label{
 
         function load_more_review(page) {
             $.ajax({
-                url: SITEURL + "?page=" + page,
-                type: "get",
-                datatype: "html",
-                data: {
-                    'type': 'review',
-                },
-                beforeSend: function () {
-                    $('.ajax-loading').show();
-                }
-            })
-                .done(function (data) {
+                    url: SITEURL + "?page=" + page,
+                    type: "get",
+                    datatype: "html",
+                    data: {
+                        'type': 'review',
+                    },
+                    beforeSend: function() {
+                        $('.ajax-loading').show();
+                    }
+                })
+                .done(function(data) {
                     if (data.length == 0) {
 
                         //notify user if nothing to load
@@ -1010,7 +1009,7 @@ p, label{
                     if ($('.slick-slider').hasClass('slick-initialized')) {
                         $('.slick-slider').slick('destroy');
                     }
-                    setTimeout(function () {
+                    setTimeout(function() {
                         $('.slick-slider').slick({
                             slidesToShow: 1,
                             autoplaySpeed: 1500,
@@ -1069,7 +1068,7 @@ p, label{
                     }, 500);
 
                 })
-                .fail(function (jqXHR, ajaxOptions, thrownError) {
+                .fail(function(jqXHR, ajaxOptions, thrownError) {
                     console.log('No response from server');
                 });
 
