@@ -976,7 +976,9 @@
                                             <th>{{ __('virtual-class.Time') }}</th>
                                             <th>{{ __('virtual-class.Host') }}</th>
                                             {{-- <th>{{ __('courses.View Scope') }}</th> --}}
+                                            @if(auth()->user()->role_id == 1)
                                             <th>{{ __('common.Status') }}</th>
+                                            @endif
                                             <th>{{ __('common.Action') }}</th>
                                         </tr>
                                     </thead>
@@ -1172,11 +1174,13 @@
                 //     data: 'scope',
                 //     name: 'scope'
                 // },
+                @if(auth()->user()->role_id == 1)
                 {
                     data: 'status',
                     name: 'status',
                     orderable: false
                 },
+                @endif
                 {
                     data: 'action',
                     name: 'action',

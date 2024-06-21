@@ -985,6 +985,7 @@ class AdminController extends Controller
             $user->image = null;
         }
         $user->image = showPicName($user->image);
+        $user->pass = $user->getOriginal('password');
         return $user;
     }
 

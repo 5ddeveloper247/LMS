@@ -378,9 +378,9 @@ class HomeController extends Controller
                 $info['totalEnroll'] = $allCourseEnrolled->count();
                 $info['student'] = User::where('role_id', 3)->count();
                 $info['instructor'] = User::where('role_id', 2)->count();
-                $info['adminRev'] = Checkout::sum('reveune');
+                $info['adminRev'] = Checkout::whereNotNull('payment_method')->sum('reveune');
                 $info['totalSell'] = number_format($info['adminRev'], 2, '.', '');
-                $info['totalSell'] = Checkout::sum('purchase_price');
+                $info['totalSell'] = CourseEnrolled::sum('purchase_price');
                 $info['totalSell'] = number_format($info['totalSell'], 2, '.', '');
                 $info['allCourse'] = Course::whereIn('type', [1, 2, 7, 9])->count();
             }

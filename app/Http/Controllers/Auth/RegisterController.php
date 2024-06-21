@@ -86,7 +86,7 @@ class RegisterController extends Controller
         } else {
             $rules = [
                 'name' => ['required', 'string', 'max:255'],
-                'phone' => 'required|nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
+                'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
                 'email' => 'required|string|email|max:255',
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'f_name' => 'required',
@@ -110,7 +110,7 @@ class RegisterController extends Controller
         if (isset($data['is_lms_signup'])) {
             $rules = [
                 'name' => ['required', 'string', 'max:255'],
-                'phone' => 'required|nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
+                'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'institute_name' => ['required', 'string', 'max:255'],
