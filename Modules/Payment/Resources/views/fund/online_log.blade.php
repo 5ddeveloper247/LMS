@@ -119,7 +119,7 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            Other Amount
+                            Checkout Amount
                         </h5>
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
@@ -129,7 +129,7 @@
                             @endif
                         </h5>
                     </div>
-                    <div class="col-xl-6 col-md-6 col-lg-6">
+                    {{-- <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
                             Individual Courses Revenue
                         </h5>
@@ -140,7 +140,7 @@
                                 {{ getPriceFormat($admin_revenue) }}
                             @endif
                         </h5>
-                    </div>
+                    </div> --}}
                     <div class="col-12">
                         <hr class="border-secondary">
                     </div>
@@ -151,8 +151,10 @@
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            @if (!empty($admin_revenue) && $admin_revenue != '0' && !empty($onlineLogs) && $onlineLogs != '0')
-                                {{ getPriceFormat($onlineLogs + $admin_revenue) }}
+                            @if (!empty($onlineLogs) && $onlineLogs != '0')
+                            {{-- @if (!empty($admin_revenue) && $admin_revenue != '0' && !empty($onlineLogs) && $onlineLogs != '0') --}}
+                                {{ getPriceFormat($onlineLogs) }}
+                                {{-- {{ getPriceFormat($onlineLogs + $admin_revenue) }} --}}
                             @endif
                         </h5>
                     </div>

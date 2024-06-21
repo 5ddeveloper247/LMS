@@ -27,10 +27,9 @@ $(document).on("click", ".editInstructor", function () {
             _token: token,
         },
         success: function (instructor) {
-            // console.log(instructor);
-            // let password_required = (instructor.password) ? false : true;
-            // console.log(password_required);
-            // $('#password').attr('required',password_required);
+            let password_required = (instructor.pass) ? false : true;
+            $('#password').attr('required',password_required);
+            $('#password_confirm').attr('required',password_required);
             $("#instructorId").val(instructor.id);
             $("#instructorRoleId").val(instructor.role_id);
             $("#instructorName").val(instructor.name);

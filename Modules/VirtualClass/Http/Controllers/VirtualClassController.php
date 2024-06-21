@@ -87,7 +87,8 @@ class VirtualClassController extends Controller
         $user = Auth::user();
         if ($user->role_id == 2) {
             $classes = VirtualClass::with('category', 'subCategory', 'language')->whereHas('course', function ($query) {
-                $query->where('user_id', '=', Auth::user()->id);
+                $query->where('user_id', '=', Auth::user()->id)
+                ->orWhere("assistant_instructors",'like' , '%"'.Auth::user()->id.'"%');
             })->latest()->get();
         } else {
             $classes = VirtualClass::with('category', 'subCategory', 'language')->latest()->get();
@@ -2199,7 +2200,7 @@ class VirtualClassController extends Controller
             $query = VirtualClass::with('course', 'category', 'subCategory', 'language','parentcourse')->whereHas('course', function ($query) {
                 $query->where('user_id', '=', Auth::user()->id);
                 //                $query->orWhereJsonContains('assistant_instructors', [(string)Auth::user()->id]);
-                $query->orWhere('assistant_instructors', 'like', '%"{' . Auth::id() . '}"%');
+                $query->orWhere('assistant_instructors', 'like', '%"' . Auth::id() . '"%');
             });
         } else {
             $query = VirtualClass::with('course', 'category', 'subCategory', 'language','parentcourse');
@@ -2328,7 +2329,7 @@ class VirtualClassController extends Controller
             })
             ->addColumn('action', function ($query) {
 
-                if (permissionCheck('virtual-class.edit')) {
+                if (permissionCheck('virtual-class.edit') && ($query->course->user_id == Auth::id() || Auth::user()->role_id == 1)) {
 
                     $class_edit = '   <a class="dropdown-item edit_brand"
                                                                href="' . route('virtual-class.edit', [$query->id]) . '">' . trans('common.Edit') . '</a>';
@@ -2337,7 +2338,7 @@ class VirtualClassController extends Controller
                 }
 
 
-                if (permissionCheck('virtual-class.destroy')) {
+                if (permissionCheck('virtual-class.destroy') && ($query->course->user_id == Auth::id() || Auth::user()->role_id == 1)) {
 
                     $class_delete = '<button class="dropdown-item deleteClass"
                                                                     data-id="' . $query->id . '"
