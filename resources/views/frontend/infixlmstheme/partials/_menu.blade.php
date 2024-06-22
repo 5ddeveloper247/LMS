@@ -20,9 +20,9 @@
             background-color: var(--system_primery_color);
         }
 
-        .login_btn a:focus {
+        /* .login_btn a:focus {
             color: #eee !important;
-        }
+        } */
 
         .login_btn a:hover {
             color: var(--system_primery_color);
@@ -323,7 +323,7 @@
                         <div id="courses_list" class="position-absolute"></div>
                     </div>
                     
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapseExample" style="position: absolute; top:100%; left:10%; width: 80%;">
                         <input type="text" class="form-control" name="query" id="search_input" placeholder="{{ __('Search') }}"
                                onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ __('Search') }}'" style="position:relative; top: 100%">
                     </div>

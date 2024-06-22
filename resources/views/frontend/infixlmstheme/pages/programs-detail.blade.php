@@ -1616,7 +1616,7 @@
 
                                                     </div>
                                                 @elseif ($course->type == 4 || $course->type == 5 || $course->type == 6 || $course->type == 7)
-                                                    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                                    <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mb-md-4 mb-3">
                                                         <div class="quiz_wizged card rounded-card shadow">
                                                             <a
                                                                 href="{{ !empty($course->parent_id) ? courseDetailsUrl(@$course->parent->id, @$course->type, @$course->parent->slug) . '?courseType=' . $course->type : courseDetailsUrl(@$course->id, @$course->type, @$course->slug) }}">

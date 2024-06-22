@@ -640,7 +640,7 @@
         </div>
         <!-- <x-about-page-gallery :about="$about" /> -->
         {{-- custom component made by arsam --}}
-        <div class="about_gallery_area px-md-5 pb-3 pb-md-4">
+        <div class="about_gallery_area px-md-5 pb-3 pb-md-5">
             <div class="container px-lg-5">
                 <div class="row align-items-center gallery_area_row">
                     <div class="col-lg-5 col-md-7">

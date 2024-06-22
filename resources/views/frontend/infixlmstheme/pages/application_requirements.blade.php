@@ -186,7 +186,20 @@
         background: red;
     }
 
+/* for text animation */
+.hidden {
+        opacity: 0;
+        transition: all 1s;
+        filter: blur(1px);
+        transform: translateY(-100%);
+    }
 
+    .show {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+        transition: all 2s ease;
+    }
     /* .custom_shadow:hover {
      border: 1px solid rgb(255, 255, 255);
        } */
@@ -1003,11 +1016,11 @@
 
 
     </section> --}}
-    <div class="row featured-carousel owl-carousel m-0 app_require mb-3">
+    <div class="row featured-carousel owl-carousel m-md-0 app_require mb-3">
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 py-3 back-color small_screen_carousel">
-                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para hidden">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-1
                     </h5>
@@ -1026,7 +1039,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 col-12 py-3 back-color small_screen_carousel">
-                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para hidden">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-2
                     </h5>
@@ -1046,7 +1059,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 col-12 py-4 back-color small_screen_carousel">
-                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para hidden">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-3
                     </h5>
@@ -1342,6 +1355,22 @@
             });
         }
         //]]>
+    </script>
+    {{-- for text animation --}}
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                console.log(entry)
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        });
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">

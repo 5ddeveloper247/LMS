@@ -153,10 +153,35 @@ class FrontendHomeController extends Controller
         //     'icon' => $random_program->icon
         // ]);
     }
-    // public function test()
-    // {
-    //     dd('kamran');
-    //     return view(theme('pages.new_test_page'));
-    //     // return view(theme('pages.test'));
-    // }
+    public function resource()
+    {
+        $program_detail = Program::where('id', 1)->with(['programPlans.programPalnDetail', 'currentPlan', 'nextPlans', 'currentProgramPlan' => function ($q) {
+            $q->with(['initialProgramPalnDetail', 'programPalnDetail']);
+        }])->first();
+
+        // $next_plan = Program::where('id', $id)->with('programPlans')->first();
+        //        program enroll check
+        $is_allow = false;
+        //        $course_count = 2;
+        $isEnrolled = false;
+        // if (isset($program_detail->currentProgramPlan[0])) {
+        //     if (Auth::check() && $program_detail->isLoginUserEnrolled) {
+        //         $is_allow = true;
+        //         //                $course_count = 6;
+        //         $isEnrolled = true;
+        //     }
+        // }
+
+
+        //        program faqs
+        $faqs = HomePageFaq::whereIn('id', json_decode($program_detail->faqs) ?? [])->orderBy('order', 'desc')->where('status', 1)->get();
+
+        //        program course
+        $courses = Course::whereIn('id', json_decode($program_detail->allcourses) ?? [])->with('enrollUsers', 'user', 'user.courses', 'user.courses.enrollUsers', 'user.courses.lessons', 'chapters.lessons', 'enrolls', 'lessons', 'reviews', 'chapters', 'activeReviews')->orderBy('created_at', 'DESC')->get();
+        //      resent progrm
+        $recent_program = Program::where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->inRandomOrder()->take(3)->get();
+        return view(theme('pages.resource'),get_defined_vars());
+    }
+    
 }
+

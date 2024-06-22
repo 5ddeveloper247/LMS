@@ -1332,7 +1332,7 @@
 
 
                     <div class="">
-                        <div class="sidebar__widget p-2 p-sm-0">
+                        <div class="sidebar__widget p-2 p-sm-0 mt-md-4">
 
                             @if (!onlySubscription())
                                 @if (Auth::check())
