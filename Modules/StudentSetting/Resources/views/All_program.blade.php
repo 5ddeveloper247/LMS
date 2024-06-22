@@ -2,6 +2,9 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('public/backend/css/student_list.css') }}" />
     <style>
+        .ck-editor__editable {
+            min-height: 300px;
+        }
         .image-editor-preview-img-1 {
             width: 180px;
             height: 90px;
@@ -363,57 +366,171 @@
         $(document).ready(function() {
 
         	var customFontFam = ['Arial','Helvetica','Cavolini','Jost','Impact','Tahoma','Verdana','Garamond','Georgia','monospace','fantasy','Papyrus','Poppins'];
-            // Summer Note
-            $('.custom_summernote').summernote({
-            	fontNames: customFontFam,
-                fontNamesIgnoreCheck: ['Cavolini','Jost'],
-                fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
-                callbacks: {
-                    onPaste: function (e) {
-                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                        e.preventDefault();
-                        document.execCommand('insertText', false, bufferText);
-                    }
-            // onPaste: function (e) {
-            //     if (document.queryCommandSupported("insertText")) {
-            //         var text = $(e.currentTarget).html();
-            //         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-        
-            //         setTimeout(function () {
-            //             document.execCommand('insertText', false, bufferText);
-            //         }, 10);
-            //         e.preventDefault();
-            //     } else { //IE
-            //         var text = window.clipboardData.getData("text")
-            //         if (trap) {
-            //             trap = false;
-            //         } else {
-            //             trap = true;
-            //             setTimeout(function () {
-            //                 document.execCommand('paste', false, text);
-            //             }, 10);
-            //             e.preventDefault();
-            //         }
-            //     }
-        
-            // }
-        },
-                codeviewFilter: true,
-                codeviewIframeFilter: true,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview']],
-                ],
-                height: 188,
-                tooltip: true
+            
+            $('.custom_summernote').each(function (){
+                var elId = $(this).attr('id');
+                ClassicEditor
+                .create( document.getElementById(elId),{
+                    ckfinder: {
+                        uploadUrl: "{{ route('ckeditor.upload',['_token' => csrf_token()]) }}",
+                    },
+                    //extraPlugins: ['font'],
+                //     fontFamily: {
+                //         options: [
+                //             'default',
+                //             'Arial, Helvetica, sans-serif',
+                //             'Courier New, Courier, monospace',
+                //             'Georgia, serif',
+                //             'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                //             'Tahoma, Geneva, sans-serif',
+                //             'Times New Roman, Times, serif',
+                //             'Trebuchet MS, Helvetica, sans-serif',
+                //             'Verdana, Geneva, sans-serif'
+                //         ],
+                //         supportAllValues: true
+                //     },
+                //     fontSize: {
+                //     options: [
+                //         'tiny',
+                //         'small',
+                //         'default',
+                //         'big',
+                //         'huge'
+                //     ]
+                // },
+                // fontColor: {
+                //     columns: 5,
+                //     documentColors: 10
+                // },
+                // fontBackgroundColor: {
+                //     columns: 5,
+                //     documentColors: 10
+                // },
+                mediaEmbed : {
+                    previewsInData: true,
+                    removeProviders: [ 'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook' ],
+                },
+                toolbar: {
+			items: [
+				'heading',
+				'|',
+				'bold',
+				'italic',
+				'link',
+				'bulletedList',
+				'numberedList',
+				'|',
+				'blockQuote',
+				'fontFamily',
+				'fontSize',
+				'fontColor',
+				'alignment',
+				'outdent',
+				'indent',
+				'|',
+				'insertTable',
+				'imageInsert',
+			//	'imageUpload',
+				'mediaEmbed',
+			//	'CKFinder',
+			//	'codeBlock',
+				'|',
+				'undo',
+				'redo'
+			]
+		},
+		language: 'en',
+		image: {
+			toolbar: [
+				'imageTextAlternative',
+				'toggleImageCaption',
+				'imageStyle:inline',
+				'imageStyle:block',
+				'imageStyle:side'
+			],
+            insert: {
+                // This is the default configuration, you do not need to provide
+                // this configuration key if the list content and order reflects your needs.
+                integrations: [ 'upload', 'url' ]
+            }
+		},
+		table: {
+			contentToolbar: [
+				'tableColumn',
+				'tableRow',
+				'mergeTableCells'
+			]
+		}
+                } )
+                .then(editor => {
+                    // Save the editor instance to use it later
+                    window.editor = editor;
+
+                    // Listen to the change:data event
+                    editor.model.document.on('change:data', () => {
+                        // Get the editor content
+                        const editorData = editor.getData();
+                        // Update the textarea with the editor content
+                        // document.querySelector('#editor').value = editorData;
+                        $(this).val(editorData);
+                    });
+                })
+                .catch( error => {
+                    console.error( error );
+                });
             });
+            
+            // Summer Note
+        //     $('.custom_summernote').summernote({
+        //     	fontNames: customFontFam,
+        //         fontNamesIgnoreCheck: ['Cavolini','Jost'],
+        //         fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
+        //         callbacks: {
+        //             onPaste: function (e) {
+        //                 var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+        //                 e.preventDefault();
+        //                 document.execCommand('insertText', false, bufferText);
+        //             }
+        //     // onPaste: function (e) {
+        //     //     if (document.queryCommandSupported("insertText")) {
+        //     //         var text = $(e.currentTarget).html();
+        //     //         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+        
+        //     //         setTimeout(function () {
+        //     //             document.execCommand('insertText', false, bufferText);
+        //     //         }, 10);
+        //     //         e.preventDefault();
+        //     //     } else { //IE
+        //     //         var text = window.clipboardData.getData("text")
+        //     //         if (trap) {
+        //     //             trap = false;
+        //     //         } else {
+        //     //             trap = true;
+        //     //             setTimeout(function () {
+        //     //                 document.execCommand('paste', false, text);
+        //     //             }, 10);
+        //     //             e.preventDefault();
+        //     //         }
+        //     //     }
+        
+        //     // }
+        // },
+        //         codeviewFilter: true,
+        //         codeviewIframeFilter: true,
+        //         toolbar: [
+        //             ['style', ['style']],
+        //             ['font', ['bold', 'underline', 'clear']],
+        //             ['fontname', ['fontname']],
+        //             ['fontsize', ['fontsize']],
+        //             ['color', ['color']],
+        //             ['para', ['ul', 'ol', 'paragraph']],
+        //             ['table', ['table']],
+        //             ['insert', ['link', 'picture', 'video']],
+        //             ['view', ['fullscreen', 'codeview']],
+        //         ],
+        //         height: 188,
+        //         tooltip: true
+        //     });
 
 //             // Summer Note
 //             $('.lms_summernote').summernote({

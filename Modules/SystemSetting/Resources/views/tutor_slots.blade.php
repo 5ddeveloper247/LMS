@@ -469,7 +469,6 @@
                     'start_time': start_time
                 },
                 success: function(data) {
-
                     if (data.done == 'merge') {
                         $('.preloader').hide();
                         $("#courseTypConfirmMessage").text(data.error);

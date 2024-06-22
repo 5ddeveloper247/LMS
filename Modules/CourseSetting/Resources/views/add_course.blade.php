@@ -1287,6 +1287,10 @@
                 //     columns: 5,
                 //     documentColors: 10
                 // },
+                mediaEmbed : {
+                    previewsInData: true,
+                    removeProviders: [ 'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook' ],
+                },
                 toolbar: {
 			items: [
 				'heading',
