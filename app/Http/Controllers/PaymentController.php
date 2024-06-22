@@ -234,6 +234,9 @@ class PaymentController extends Controller
         $authorize = new DoAuthorizeNetPaymentController();
         $paymentResponse = $authorize->makePayment($request, 'pay', true, null, true);
         if ($paymentResponse["paid"]) {
+            $customer = User::find(Auth::id());
+            $customer->balance = $request->remaining_balance ?? 0;
+            $customer->save();
             $this->payWithGateWay($paymentResponse, "AuthorizeNet", $user = null, session()->get('invoice'));
             $cart = Cart::where('user_id', Auth::id())->first();
            // dd($cart);

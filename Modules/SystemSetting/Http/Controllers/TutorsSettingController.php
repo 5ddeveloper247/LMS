@@ -65,21 +65,21 @@ class TutorsSettingController extends Controller
             $date = Carbon::parse($request->date)->format('Y-m-d');
             // dd($start_time, $end_time, $date);
             //             if (!$this->checkTimeSlot(Auth::id(), $start_time, $end_time)) {
+            
+                    $user = TutorSlote::findOrFail($request->id);
+                    $user->start_time = $start_time;
+                    $user->end_time = $end_time;
+                    $user->date = $date;
+                    $user->save();
 
-            $user = TutorSlote::findOrFail($request->id);
-            $user->start_time = $start_time;
-            $user->end_time = $end_time;
-            $user->date = $date;
-            $user->save();
-
-            Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-            return redirect()->back()->with('slotDate', $request->slot_date);
-            //             }
+                    Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+                    return redirect()->back()->with('slotDate', $request->slot_date);
 
             //             Toastr::error(trans('Choose another time Already set.'), trans('common.Failed'));
             //             return redirect()->back();
         } catch (\Exception $e) {
-            Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
+            Toastr::error($e->getMessage(), trans('common.Failed'));
+            //Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
             return redirect()->back();
         }
     }
@@ -195,8 +195,10 @@ class TutorsSettingController extends Controller
     // to delete booked slot on student request
     public function cancelBookedSlot(Request $request, $id)
     {
-        $record = TutorHiring::find($id);
-
+        $record = TutorHiring::with('student')->find($id);
+        $user = User::find($record->student->id);
+        $user->balance = $user->balance + $record->price;
+        $user->save();
         if ($record) {
             $record->delete();
             return redirect()->back()->with('success', 'Slot cancelled successfully');
@@ -236,8 +238,8 @@ class TutorsSettingController extends Controller
     {
 
         $slotId = $request->id;
-        $start_time = Carbon::parse($request->start_time)->format('h:i a');
-        $end_time = Carbon::parse($request->start_time)->addHour(1)->format('h:i a');
+        $start_time = Carbon::parse($request->start_time)->format('H:i:s');
+        $end_time = Carbon::parse($request->start_time)->addHour(1)->format('H:i:s');
         $date = Carbon::parse($request->slot_date)->format('Y-m-d');
         $dayofWeek = Carbon::parse($request->slot_date)->isoFormat('ddd');
         // $arrRes['done'] = false;
@@ -251,25 +253,43 @@ class TutorsSettingController extends Controller
             return response()->json($arrRes);
             die();
         }
-        $checkConflict = VirtualClass::where('user_id',Auth::id())
-        //->where('course_id','<>',$courseId)
-        //->where('id','<>',$class_id)
-        ->where('class_day', '=', $dayofWeek)
-        ->where(function ($query) use ($start_time, $end_time) {
-            $query->where('time', '<=', $end_time)
-                ->where('end_time', '>=', $start_time);
-        })
-        ->where(function ($query) use ($date) {
-            $query->where('start_date', '<=', $date)
-                ->where('end_date', '>', $date);
-        })
-        ->count();
-        if($checkConflict > 0){
+        $checkConflict = VirtualClass::whereHas('course' , function ($q) {
+                    $q->where('user_id', Auth::id());
+                })
+                ->where(function ($q) use ($start_time, $end_time) {
+                        $q->whereBetween('time', [$start_time, $end_time])
+                            ->orWhereBetween('end_time', [$start_time, $end_time])
+                            ->orWhere(function ($q) use ($start_time, $end_time) {
+                                $q->where('time', '<', $start_time)->where('end_time', '>', $end_time);
+                            })
+                            ->orWhere(function ($q) use ($start_time, $end_time) {
+                                $q->where('time', '=', $start_time)->where('end_time', '=', $end_time);
+                            });
+                    })
+                ->where(function($q) use($date) {
+                    $q->where('start_date', '<=', $date)
+                    ->where('end_date', '>=', $date);
+                })
+                ->where('class_day', date('D', strtotime($date)))->first();
+        // $checkConflict = VirtualClass::where('user_id',Auth::id())
+        // //->where('course_id','<>',$courseId)
+        // //->where('id','<>',$class_id)
+        // ->where('class_day', '=', $dayofWeek)
+        // ->where(function ($query) use ($start_time, $end_time) {
+        //     $query->where('time', '<=', $end_time)
+        //         ->where('end_time', '>=', $start_time);
+        // })
+        // ->where(function ($query) use ($date) {
+        //     $query->where('start_date', '<=', $date)
+        //         ->where('end_date', '>', $date);
+        // })
+        // ->first();
+        if($checkConflict){
           $arrRes['done'] = false;
           $arrRes['error'] = 'There is already a class for this time. Please choose another time.';
-          return response()->json($arrRes);
+          return response()->json($checkConflict);
           die();
-        }
+          }
     }
 
     public function checkTimeSlotWrtDate($instructor_id, $start_time, $end_time, $slot_date, $slotId)

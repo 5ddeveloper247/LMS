@@ -75,7 +75,11 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @php
+                             $purchase_amount = ($checkout->purchase_price > $balance) ? $checkout->purchase_price - $balance : 0;
+                             $remaining_balance = ($checkout->purchase_price > $balance) ? 0 : $balance - $checkout->purchase_price; 
+                            @endphp
+                            <input type="hidden" name="remaining_balance" value="{{ $remaining_balance }}">
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="cardHolder">Cardholder Name</label>
@@ -111,10 +115,10 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="amount">Amount</label>
                                     <input type="hidden" name="amount"
-                                        value="{{ convertCurrency(Settings('currency_code') ?? 'BDT', 'USD', $checkout->purchase_price) * 100 }}"
+                                        value="{{ convertCurrency(Settings('currency_code') ?? 'BDT', 'USD', $purchase_amount) * 100 }}"
                                         placeholder="Amount" class="col">
                                     <input type="text" class="form-control col"
-                                        value="{{ convertCurrency(Settings('currency_code') ?? 'BDT', 'USD', $checkout->purchase_price) }}"
+                                        value="{{ convertCurrency(Settings('currency_code') ?? 'BDT', 'USD', $purchase_amount) }}"
                                         readonly>
 
                                 </div>
@@ -339,16 +343,22 @@
                         <span class="total_text">{{ __('payment.Discount Amount') }}</span>
                         <span>{{ $checkout->discount == '' ? '0' : getPriceFormat($checkout->discount) }}</span>
                     </div>
+                    
                     @if (hasTax())
                         <div class="single_lists">
                             <span class="total_text">{{ __('tax.TAX') }} </span>
                             <span class="totalTax">{{ getPriceFormat($checkout->tax) }}</span>
                         </div>
                     @endif
-
+                    @if($balance && $balance > 0)
+                    <div class="single_lists">
+                        <span class="total_text">{{ __('Balance Amount') }}</span>
+                        <span>- {{ $balance == '' ? '0' : getPriceFormat($balance) }}</span>
+                    </div>
+                    @endif
                     <div class="single_lists">
                         <span class="total_text">{{ __('frontend.Payable Amount') }} </span>
-                        <span class="totalBalance">{{ getPriceFormat($checkout->purchase_price) }}</span>
+                        <span class="totalBalance">{{ getPriceFormat($checkout->purchase_price - $balance) }}</span>
                     </div>
                 @endif
             </div>
