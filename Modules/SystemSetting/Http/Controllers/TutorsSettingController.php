@@ -195,8 +195,10 @@ class TutorsSettingController extends Controller
     // to delete booked slot on student request
     public function cancelBookedSlot(Request $request, $id)
     {
-        $record = TutorHiring::find($id);
-
+        $record = TutorHiring::with('student')->find($id);
+        $user = User::find($record->student->id);
+        $user->balance = $user->balance + $record->price;
+        $user->save();
         if ($record) {
             $record->delete();
             return redirect()->back()->with('success', 'Slot cancelled successfully');

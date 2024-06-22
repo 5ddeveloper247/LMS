@@ -27,12 +27,15 @@
         <div class="container-fluid no-gutters">
             <!-- bootstrap 4 remove g-0 and add no-gutters -->
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-6">
                     <div class="dashboard_title">
                         <h3>{{ @$wish_string }}, <span class="custom_student_text_color">{{ Auth::user()->name }}</span>
                         </h3>
                         <p>{{ @$date }}</p>
                     </div>
+                </div>
+                <div class="col-md-6 text-right">
+                    <h5> <span class="custom_student_text_color">Wallet: {{ getPriceFormat(Auth::user()->balance) }}</span> </h5>
                 </div>
             </div>
 

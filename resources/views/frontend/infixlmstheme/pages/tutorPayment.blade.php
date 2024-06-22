@@ -160,11 +160,24 @@
                                             <div class="form-row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="cardHolder">Cardholder Name</label>
-                                                    <input type="text" class="form-control" name="cardHolder" id="cardHolder" required>
+                                                    <input type="text" class="form-control" name="cardHolder" id="cardHolder"
+                                                        required>
                                                     @error('cardHolder')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="cardHolderLastname">Cardholder Last Name</label>
+                                                    <input type="text" class="form-control" name="cardHolderLastname" id="cardHolderLastname"
+                                                        required>
+                                                    @error('cardHolderLastname')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                
+                                            </div>
+                                           
+                                            <div class="form-row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="cardNumber">Card Number</label>
                                                     <input type="text" class="form-control" name="cardNumber" id="cardNumber" placeholder="____ ____ ____ ____" required>
@@ -172,12 +185,9 @@
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                           
-                                            <div class="form-row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="expiryDate">Expiry Date</label>
-                                                    <input type="text" class="form-control" name="expiryDate" id="expiryDate" placeholder="MM/YY" required>
+                                                    <input type="text" class="form-control" name="expiryDate" id="expiryDate" placeholder="MM/YYYY" required>
                                                     @error('expiryDate')
                                                       <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
@@ -188,6 +198,10 @@
                                                     @error('cvv')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label>Amount</label>
+                                                    <input type="text" disabled class="form-control" value="{{request()->amount}}">
                                                 </div>
                                             </div>
                                           

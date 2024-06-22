@@ -182,11 +182,12 @@ class CourseInvitationController extends Controller
                                                              ' . $checked . '><i class="slider round"></i></label>';
 
                 return $view;
-            })->addColumn('notify_user', function ($query) use ($course) {
+            })
+            ->addColumn('notify_user', function ($query) use ($course) {
                 if (round($course->userTotalPercentage($query->id, $course->id)) < 100) {
                     $link = '<a class="" href="' . route('course.courseStudentNotify', [$course->id, $query->id]) . '" data-id="' . $query->id . '" type="button">Notify</a>';
                 } else {
-                    $link = '';
+                    $link = '<a href = "#" class="primary-btn fix-gr-bg radius_30px text-white">Generate Certificate</a>';
 
                 }
                 return $link;
