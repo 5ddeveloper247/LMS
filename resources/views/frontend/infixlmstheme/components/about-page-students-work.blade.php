@@ -29,8 +29,8 @@
     }
 
     .aboutus-img {
-        max-width: 350px !important;
-        min-width: 350px !important;
+        max-width: 350px;
+        min-width: 350px;
         height: 315px;
 
     }
@@ -95,7 +95,12 @@
     .slick-dotted.slick-slider {
         margin-bottom: 0px !important;
     }
-
+@media only screen and (max-width: 350px){
+    .aboutus-img {
+        min-height: 280px !important;
+        height: 280px !important;
+    }
+}
     @media only screen and (max-width: 530px) {
         .about-pagination {
             left: 30% !important;
@@ -117,9 +122,9 @@
         }
 
         .aboutus-img {
-            min-width: 312px !important;
-            min-height: 312px !important;
-            height: 312px !important;
+            min-width: 312px;
+            min-height: 312px;
+            height: 312px;
         }
     }
 

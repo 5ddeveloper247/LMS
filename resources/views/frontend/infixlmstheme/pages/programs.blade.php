@@ -208,9 +208,9 @@
             </div>
         </div>
         <div class="container custom-padd px-lg-5 pt-md-5 pt-3">
-            <div class="row px-sm-4 ">
+            <div class="row px-4 ">
                 <div class="col-12 d-flex justify-content-between mb-3">
-                    <div class="col-6 col-md-8">
+                    <div class="col-6 col-md-8 p-0">
                         <h2 class="custom_small_heading font-weight-bold custom_heading_1">Program Features</h2>
                         <ul style="color: #996699!important" class="ml-4">
                             <li>
@@ -228,7 +228,7 @@
                     <div class="col-6 col-md-4 d-flex justify-content-end">
 
                         <a class="font-weight-500 pull-bs-canvas-left text-dark filter_btn" id="filter_btn"
-                            style="cursor: pointer">
+                            style="cursor: pointer; text-align:center;">
                             Show Filter
                             <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg">
                                 <g id="icon-filter" fill-rule="nonzero" fill="none">

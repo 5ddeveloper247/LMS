@@ -1,7 +1,9 @@
 <style>
-    /* .service_cta_row {
-    padding: 45px 70px 30px 70px;
-} */
+    .service_cta_row {
+        display: flex;
+        height: 100%;
+        width: 100%
+}
 .center-content-about{
     display: flex;
     align-items: center;

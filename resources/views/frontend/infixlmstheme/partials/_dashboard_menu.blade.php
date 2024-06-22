@@ -69,7 +69,7 @@
     <div class="sidebar_icon d-lg-none">
         <i class="ti-menu"></i>
     </div>
-    <div class="category_search d-flex category_box_iner bandsha">
+    <div class="d-flex category_box_iner bandsha">
 
         {{--        <div class="input-group-prepend2"> --}}
         {{--            <a href="#" class="categories_menu"> --}}

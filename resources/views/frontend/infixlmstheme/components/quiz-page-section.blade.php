@@ -1,19 +1,19 @@
 <div>
     <input type="hidden" class="class_route" name="class_route" value="{{ route('quizzes') }}">
     {{-- @dd($courses) --}}
-    <div class="py-md-5 py-4">
+    <div class="py-lg-5 py-4 pt-md-5 pb-md-4">
         <div class="container px-lg-5">
-            <div class="row px-lg-5 prep-course-padding">
+            <div class="row px-lg-5 px-4 prep-course-padding">
                 <!-- <div class="col-lg-12 col-xl-12">
                     <div class="row"> -->
                         <div class="col-12">
                             <div class="box_header d-flex align-items-center justify-content-between flex-wrap">
-                                <div class="d-flex justify-content-between w-100 align-items-center mb-3 mb-md-5">
-                                    <h5 class="f_w_700 ">
+                                <div class="d-flex justify-content-between w-100 align-items-center mb-3 mb-md-5 px-4 px-sm-0">
+                                    <h5 class="custom_small_heading f_w_700 ">
                                         {{ $total > 1 ? $total . ' Prep-Course' : $total . ' Prep-Course' }}
                                         {{ __(' Found') }}</h5>
                                     <a class="font-weight-500 pull-bs-canvas-left filter_btn" id="filter_btn"
-                                        style="cursor: pointer">
+                                        style="cursor: pointer; text-align: center;">
                                         Show Filter
                                         <svg width="22" height="16" viewBox="0 0 22 16"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +72,7 @@
                                             <div class="card-body course_content">
                                                 <a
                                                     href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug . '?courseType=' . $course->type) }}">
-                                                    <h5 class="noBrake font-weight-bold" title=" {{ $course->title }}">
+                                                    <h5 class="custom_small_heading noBrake font-weight-bold" title=" {{ $course->title }}">
                                                         {{ $course->title }}
                                                     </h5>
                                                 </a>
@@ -231,7 +231,7 @@
                                                         @endguest
                                                     @endif
                                                 </div>
-                                                <div class="course_less_students d-flex justify-content-between course-small" style="gap: 5px; text-align: center;">
+                                                <div class="course_less_students d-flex justify-content-between course-small" style="gap: 7px; text-align: center;">
 
                                                     @if ($course->type == 6)
                                                         <small class="small_tag_color"> <i class="ti-agenda"></i>

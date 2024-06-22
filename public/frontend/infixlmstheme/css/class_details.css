@@ -63,9 +63,9 @@ label {
 .rating > input:checked ~ label:hover ~ label {
     color: #FFC107;
 }
-.lms_tabmenu li a {
+/* .lms_tabmenu li a {
     padding: 12px 35px;
-}
+} */
 .unchecked {
     color: #ddd !important;
 }

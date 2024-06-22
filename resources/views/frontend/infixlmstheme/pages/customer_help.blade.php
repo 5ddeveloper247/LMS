@@ -172,7 +172,7 @@
             </div>
         </section>
         <!-- Demo header-->
-        <section class="header mb-2 mt-5">
+        <section class="header mb-2 mt-md-5 mt-4">
             <div class="container px-md-5">
                 <div class="row px-1 px-xl-5 px-md-2">
 

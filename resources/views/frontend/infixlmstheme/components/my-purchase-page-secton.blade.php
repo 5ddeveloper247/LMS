@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="section__title3 mb_40">
-                                    <h3 class="mb-0">{{ __('payment.Purchase history') }}</h3>
+                                    <h3 class="custom_small_heading mb-0">{{ __('payment.Purchase history') }}</h3>
                                     <h4></h4>
                                 </div>
                             </div>

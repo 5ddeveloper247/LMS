@@ -640,7 +640,7 @@
         </div>
         <!-- <x-about-page-gallery :about="$about" /> -->
         {{-- custom component made by arsam --}}
-        <div class="about_gallery_area px-md-5 pb-3">
+        <div class="about_gallery_area px-md-5 pb-3 pb-md-4">
             <div class="container px-lg-5">
                 <div class="row align-items-center gallery_area_row">
                     <div class="col-lg-5 col-md-7">
@@ -1070,9 +1070,9 @@
         </div>
         {{-- slider-end --}}
         <div class="container custom-b-padd mb-4 mb-lg-5">
-            <div class="row px-xl-5 px-1 pt-lg-5 pt-4">
+            <div class="row px-xl-5 px-1 pt-md-5 pt-4">
                 <div class="col-md-12 text-center">
-                    <h2 class="font-weight-bold custom_heading_1 mb-lg-5 mb-4">Courses From Individual Tutors</h2>
+                    <h2 class="font-weight-bold custom_heading_1 mb-md-4 mb-3">Courses From Individual Tutors</h2>
                 </div>
                 @if (isset($courses))
                     @foreach ($courses as $course)
@@ -1126,14 +1126,14 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class="col-md-12 pt-lg-4 pt-2 text-center">
+                    <div class="col-md-12 py-2 text-center">
                         <a href="{{ url('/prep-courses?tutor_courses=1') }}" class="small_btn2 theme_btn mt-2 p-2">View
                             More >></a>
                     </div>
                 @endif
                 @if (count($courses) == 0)
                     <div class="col-lg-12">
-                        <div class="Nocouse_wizged d-flex align-items-center justify-content-center text-center my-3">
+                        <div class="Nocouse_wizged d-flex align-items-center justify-content-center text-center mt-md-4 mt-3">
                             <div class="thumb">
                                 <img style="width: 50px"
                                     src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png" alt="">
@@ -1149,10 +1149,10 @@
         @if (isTutor() || (!auth()->check() && !session()->has('pre-registered-user')))
             {{-- @dd(count($packages)) --}}
             @if (count($packages))
-                <div class="container custom-b-padd1 mb-3 mb-md-5" id="package_prices">
+                <div class="container custom-b-padd1 mb-4 mb-md-5" id="package_prices">
                     <div class="row justify-content-center px-xl-5">
-                        <div class="col-md-12 text-center mb-lg-3">
-                            <h2 class="font-weight-bold custom_heading_1 mb-4">Check Out Our Pricings</h2>
+                        <div class="col-md-12 text-center">
+                            <h2 class="font-weight-bold custom_heading_1 mb-4 mb-md-5">Check Out Our Pricings</h2>
                         </div>
                         @foreach ($packages as $package)
                             @php
@@ -1167,7 +1167,7 @@
                                     $button = 'button-tb--orange';
                                 }
                             @endphp
-                            <div class="col-sm-6 col-lg-4 d-flex justify-content-center justify-content-center d-flex mb-4 mb-lg-0">
+                            <div class="col-sm-6 col-lg-4 d-flex justify-content-center justify-content-center d-flex mb-3">
                                 <div class="card custom_card_plan shadow">
                                     <div class="card-body">
                                         <h5 class="price-card__plan--v2 {{ $heading }}">
