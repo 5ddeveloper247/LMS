@@ -65,13 +65,13 @@
                     <div class="input-effect mt_35">
                         <div class="col-xl-6">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-6">
 
                                     <input type="radio" class="common-radio type1" id="type{{ @$course->id }}5"
                                         name="type" value="1" checked>
                                     <label for="type{{ @$course->id }}5">Existing</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <input type="radio" class="common-radio type2" id="type{{ @$course->id }}6"
                                         name="type" value="2">
                                     <label for="type{{ @$course->id }}6">New</label>

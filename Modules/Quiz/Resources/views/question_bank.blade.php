@@ -37,7 +37,7 @@
                             <div class="white-box">
                                 <div class="add-visitor">
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-xl-4 col-md-6 d-flex flex-column justify-content-between">
 
                                             <label class="primary_input_label" for="groupInput">{{ __('quiz.Group') }}
                                                 *</label>
@@ -61,7 +61,7 @@
                                             </select>
 
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-xl-4 col-md-6 mt-3 mt-md-0 d-flex flex-column justify-content-between">
                                             <label class="primary_input_label" for="category_id">{{ __('quiz.Category') }}
                                                 *</label>
                                             <select {{ $errors->has('category') ? ' autofocus' : '' }}
@@ -84,7 +84,7 @@
                                             </select>
 
                                         </div>
-                                        <div class="col-lg-4 mt-30-md" id="subCategoryDiv">
+                                        <div class="col-xl-4 mt-3 mt-xl-0 d-flex flex-column justify-content-between" id="subCategoryDiv">
                                             <label class="primary_input_label"
                                                 for="subcategory_id">{{ __('quiz.Sub Category') }}</label>
                                             <select {{ $errors->has('sub_category') ? ' autofocus' : '' }}
@@ -105,7 +105,7 @@
                                     </div>
                                     {{-- <input type="hidden" name="question_type" value="M"> --}}
                                     <div class="row mt-25">
-                                        <div class="col-lg-4">
+                                        <div class="col-xl-4 col-md-6 d-flex flex-column justify-content-between">
                                             <label class="primary_input_label"
                                                 for="question-type">{{ __('quiz.Question Type') }} *</label>
                                             <select {{ $errors->has('question_type') ? ' autofocus' : '' }}
@@ -125,20 +125,20 @@
                                             </select>
 
                                         </div>
-                                        <div class="col-lg-4">
-                                            <div class="input-effect">
+                                        <div class="col-xl-4 col-md-6 mt-3 mt-md-0 d-flex flex-column justify-content-between">
+                                            {{-- <div class="input-effect"> --}}
                                                 <label> {{ __('quiz.Marks') }} <span id="marks_required">*</span> </label>
                                                 <input {{ $errors->has('marks') ? ' autofocus' : '' }}
                                                     class="primary_input_field name{{ $errors->has('marks') ? ' is-invalid' : '' }}"
                                                     type="number" name="marks" id="marks"
                                                     value="{{ isset($bank) ? $bank->marks : (old('marks') != '' ? old('marks') : '') }}">
-                                                <span class="focus-border"></span>
+                                                {{-- <span class="focus-border"></span> --}}
 
-                                            </div>
+                                            {{-- </div> --}}
                                         </div>
 
-                                        <div class="col-xl-4">
-                                            <div class="input-effect">
+                                        <div class="col-xl-4 mt-3 mt-xl-0 d-flex flex-column justify-content-between">
+                                            {{-- <div class="input-effect "> --}}
                                                 <label class="primary_input_label" for="">{{ __('quiz.Image') }}
                                                     (Recommended Dimensions: 300 X 300 - {{ __('common.Optional') }})</label>
                                                 <div class="primary_file_uploader">
@@ -153,7 +153,7 @@
                                                             id="document_file_thumb_2" accept="image/*">
                                                     </button>
                                                 </div>
-                                            </div>
+                                            {{-- </div> --}}
                                         </div>
 
                                     </div>

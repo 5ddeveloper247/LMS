@@ -40,7 +40,7 @@
 
         .theme_btn.small_btn2 {
             white-space: nowrap;
-            border-radius: 10px !important;
+            border-radius: 16px !important;
         }
 
         .on_cursor:hover {

@@ -53,6 +53,13 @@
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 10px
         }
+        
+    .erp_role_permission_area .single_permission .permission_header {
+        padding: 10px !important;
+    }
+    .erp_role_permission_area .single_permission .permission_header div{
+        top: 0 !important;
+    }
     }
 
     .permission_header {
@@ -169,9 +176,9 @@
             <div class="single_role_blocks parent" data-id="{{ $chapter->id }}">
                 <div class="single_permission" id="chapter_id{{ $key }}">
                     <div class="permission_header d-flex align-items-center justify-content-between">
-                        <div>
+                        <div class="d-flex align-items-center">
                             <i class="ti-move text-white"></i>
-                            <label for="Main_Module_1" class="pl-10">{{ @$chapter->name }}</label>
+                            <label for="Main_Module_1" class="pl-10 mb-0">{{ @$chapter->name }}</label>
                         </div>
                         {{-- <div class="arrow collapsed"  data-toggle="collapse" data-target="#Rolechapter_id{{$key}}"  aria-expanded="true"> --}}
                         <div class="mr-20 mt-1">
@@ -224,7 +231,7 @@
 
                                         <button data-purpose="add-lesson-btn" aria-label="Add Lesson" type="button"
                                             data-chapter="{{ $key }}" id="show_lesson_section_inside"
-                                            class="ellipsis btn btn-tertiary btn-block show_lesson_section_inside">
+                                            class="ellipsis btn btn-tertiary btn-block show_lesson_section_inside curriculumn-btn">
                                             <i class="ti-plus"></i>
                                             {{ __('courses.Lesson') }}
                                         </button>
@@ -238,7 +245,7 @@
                                         @endif
                                         <button data-purpose="add-quiz-btn" aria-label="Add Exam" type="button"
                                             data-chapter="{{ $key }}" id="show_quiz_section_inside"
-                                            class="ellipsis btn btn-tertiary btn-block show_quiz_section_inside">
+                                            class="ellipsis btn btn-tertiary btn-block show_quiz_section_inside curriculumn-btn">
                                             <i class="ti-plus"></i> {{ __('Exam') }}
                                         </button>
                                     </div>

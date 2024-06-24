@@ -16435,7 +16435,9 @@ body {
 .form_content textarea {
     height: 150px;
 }
-
+.custom_list_style li{
+    list-style: none;
+}
 @media only screen and (max-width: 377px) {
     .course__play_warp .course__play_list {
         min-height: calc(100vh - 300px) !important;
@@ -16875,6 +16877,7 @@ body {
     #invoice_print {
         padding: 40px;
         overflow: auto;
+        display: none;
     }
 
     .account_profile_wrapper .privacy_permission {
