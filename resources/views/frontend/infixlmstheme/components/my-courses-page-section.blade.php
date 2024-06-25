@@ -161,6 +161,15 @@
                                         } else {
                                             $course_title = $course->title;
                                         }
+                                        $childCourse = Modules\CourseSetting\Entities\Course::where('type', $SingleCourse->course_type)->where('parent_id',$course->id)->first();
+                                        $courseCompletion = round($course->userTotalPercentage($SingleCourse->user->id, $course->id));
+                                        $quizPass = true;
+                                            $hasQuiz = Modules\Quiz\Entities\QuizTest::where('course_id', $course->id)->where('user_id', $SingleCourse->user_id)->groupBy('quiz_id')->get();
+                                            $hasPassQuiz = Modules\Quiz\Entities\QuizTest::where('course_id', $course->id)->where('user_id', $SingleCourse->user_id)->where('pass', 1)->groupBy('quiz_id')->get();
+
+                                            if (count($hasQuiz) != count($hasPassQuiz)) {
+                                                $quizPass = false;
+                                            }
                                     @endphp
                                     <div class="col-xl-4 col-sm-6 col-12">
                                         @if ($course->type == 1)
@@ -187,17 +196,35 @@
                                                     </div>
                                                 </a>
                                                 <div class="course_content pb-2 px-2">
-                                                    <a
-                                                        href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $SingleCourse->course_type }}">
-                                                        <h4 class="noBrake" title="{{ $course->title }}">
-                                                            {{ $course->title }}
-                                                        </h4>
-                                                    </a>
-                                                    <div class="rating_cart">
+                                                    <div class="d-flex justify-content-between align-items-center">
+
+                                                        <a
+                                                                href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $SingleCourse->course_type }}">
+                                                            <h4 class="noBrake" title="{{ $course->title }}">
+                                                                {{ $course->title }}
+                                                            </h4>
+                                                        </a>
+                                                        
+                                                    </div>
+                                                    <div class="rating_cart justify-content-between align-items-center">
                                                         <div class="rateing">
                                                             <span>{{ $course->totalReview }}/5</span>
                                                             <i class="fas fa-star"></i>
                                                         </div>
+                                                        @if($courseCompletion >= 100 && $quizPass)
+                                                        <small class="d-flex flex-column">
+                                                            @if($SingleCourse->certificate_access > 0)
+                                                            <a href="{{ route('getCertificate', [$course->id, $course->title]) }}"
+                                                                class="theme_btn w-100 text-center">
+                                                                {{ __('frontend.Get Certificate') }}
+                                                            </a>
+                                                            @else
+                                                            <span class="w-50 ml-auto text-right">
+                                                                Your certificate will be available soon.
+                                                            </span>
+                                                            @endif
+                                                            </small>
+                                                        @endif
                                                     </div>
                                                     <div class="course_less_students d-flex justify-content-between">
                                                         @if ($course->type == 6)

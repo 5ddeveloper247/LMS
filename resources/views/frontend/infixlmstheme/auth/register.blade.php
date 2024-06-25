@@ -557,7 +557,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4 text mb-3">
+                                        <div class="col-md-6 text mb-3">
                                             <div
                                                 class="box borderbottom @if ($errors->first('city')) is-invalid @endif my-2">
                                                 <span class="d-flex">
@@ -566,7 +566,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 text mb-3">
+                                        <div class="col-md-6 text mb-3">
                                             <div
                                                 class="box borderbottom @if ($errors->first('state')) is-invalid @endif my-2">
                                                 <span class="d-flex">
@@ -575,12 +575,24 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 text mb-3">
+                                        <div class="col-md-6 text mb-3">
                                             <div
                                                 class="box borderbottom @if ($errors->first('zip')) is-invalid @endif my-2">
                                                 <span class="d-flex">
                                                     Zip: <input type="text" name="zip" class="w-100 border-0"
                                                                 value="{{ $user->zip ?? old('zip') }}">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text mb-3">
+                                            <div
+                                                class="box borderbottom @if ($errors->first('country')) is-invalid @endif my-2">
+                                                <span class="d-flex">
+                                                    Country: <select class="small_select w-100" name="country" class="w-100 border-0"
+                                                                value="">
+                                                                    <option>Select Country</option>
+                                                                    <option value="1">America</option>
+                                                                </select>
                                                 </span>
                                             </div>
                                         </div>

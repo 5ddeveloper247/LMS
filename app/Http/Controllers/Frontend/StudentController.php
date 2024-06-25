@@ -944,7 +944,6 @@ class StudentController extends Controller
                 $certificate = null;
             }
         }
-
         if (!$certificate) {
             Toastr::error(trans('certificate.Right Now You Cannot Download The Certificate'));
             return back();
@@ -955,7 +954,7 @@ class StudentController extends Controller
             return back();
         }
         if ($course->type == 1) {
-            $percentage = round($course->loginUserTotalPercentage);
+            $percentage = round($course->userTotalPercentage(Auth::id(), $course->id));
             if ($percentage < 100) {
                 Toastr::error(trans('certificate.Please Complete The Course First'));
                 return back();

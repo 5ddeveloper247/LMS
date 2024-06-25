@@ -65,6 +65,8 @@
 
         input.outside,
         input[class=outside],
+        select.outside,
+        select[class=outside],
         [type=password].outside {
             color: #555;
             width: 100%;
@@ -89,7 +91,7 @@
             z-index: 2
         }
 
-        input:focus~.floating-label-outside input:not(:focus):valid~.floating-label-outside {
+        input:focus~.floating-label-outside input:not(:focus):valid~.floating-label-outside, select~.floating-label-outside {
             top: 15px;
             left: 40px;
             font-size: 15px;
@@ -99,6 +101,7 @@
 
         input:focus~.floating-label-outside,
         input[type="date"]~.floating-label-outside,
+        select~.floating-label-outside,
         input:valid~.floating-label-outside {
             top: -10px;
             opacity: 1;
@@ -486,7 +489,7 @@ canvas {
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <div class="position-relative mt-4 @if ($errors->first('city')) is-invalid @endif">
                                 <input type="text"name="city" value="{{ $userSetting->city ?? old('city') }}"
                                     class="outside" required />
@@ -495,7 +498,7 @@ canvas {
                             </div>
 
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <div class="position-relative mt-4 @if ($errors->first('state')) is-invalid @endif">
                                 <input type="text" name="state" value="{{ $userSetting->state ?? old('state') }}"
                                     class="outside" required />
@@ -503,11 +506,22 @@ canvas {
                                 <i class="fa fa-flag input-icon-outside"></i>
                             </div>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <div class="position-relative mt-4 @if ($errors->first('zip')) is-invalid @endif">
                                 <input type="text" name="zip" value="{{ $user->zip ?? old('zip') }}" class="outside"
                                     required />
                                 <span class="floating-label-outside">Zip</span>
+                                <i class="bi bi-geo input-icon-outside"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="position-relative mt-4 @if ($errors->first('country')) is-invalid @endif">
+                                <select name="country" class="outside"
+                                    required>
+                                    <option>Select Country</option>
+                                    <option value="1">America</option>
+                                </select>
+                                <span class="floating-label-outside">Country</span>
                                 <i class="bi bi-geo input-icon-outside"></i>
                             </div>
                         </div>

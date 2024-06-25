@@ -125,70 +125,72 @@ class CourseInvitationController extends Controller
     {
 
         $course = Course::find($course_id);
-        $query = $course->enrollUsers;
+        $query = $course->enrolls;
         // $query = $course->program->totalEnrolledStudent;
         // $query = $courseenrolls->merge($programenrolls)->sortBy('created_at');
-
+        
 
         return Datatables::of($query)
             ->addIndexColumn()
             ->addColumn('image', function ($query) {
-                return " <div class=\"profile_info\"><img src='" . getStudentImage($query->image) . "'   alt='" . $query->name . " image'></div>";
+                return " <div class=\"profile_info\"><img src='" . getStudentImage($query->user->image) . "'   alt='" . $query->user->name . " image'></div>";
             })->addColumn('student_name', function ($query) {
-                return '<a class="dropdown-item" target="_blank" href="' . route('student.courses', $query->id) . '" data-id="' . $query->id . '" type="button">' . $query->name . '</a>';
+                return '<a class="dropdown-item" target="_blank" href="' . route('student.courses', $query->user->id) . '" data-id="' . $query->user->id . '" type="button">' . $query->user->name . '</a>';
 
             })->editColumn('email', function ($query) {
-                return $query->email;
+                return $query->user->email;
 
             })
             ->editColumn('phone', function ($query) {
-                return $query->phone;
+                return $query->user->phone;
 
             })
             ->addColumn('progressbar', function ($query) use ($course) {
                 return "  <div class='progress_percent flex-fill text-right'>
                                                     <div class='progress theme_progressBar '>
                                                         <div class='progress-bar' role='progressbar'
-                                                             style='width:" . round($course->userTotalPercentage($query->id, $course->id)) . "%'
+                                                             style='width:" . round($course->userTotalPercentage($query->user->id, $course->id)) . "%'
                                                              aria-valuenow='25'
                                                              aria-valuemin='0' aria-valuemax='100'></div>
                                                     </div>
-                                                    <p class='font_14 f_w_400'>" . round($course->userTotalPercentage($query->id, $course->id)) . "% Complete</p>
+                                                    <p class='font_14 f_w_400'>" . round($course->userTotalPercentage($query->user->id, $course->id)) . "% Complete</p>
                                                 </div>";
 
             })
             ->editColumn('dob', function ($query) {
-                return showDate($query->dob);
+                return showDate($query->user->dob);
 
             })
             ->addColumn('start_working_date', function ($query) {
                 if (isModuleActive('Org')) {
-                    return showDate($query->start_working_date);
+                    return showDate($query->user->start_working_date);
                 } else {
                     return '';
                 }
 
             })
             ->editColumn('country', function ($query) {
-                return $query->userCountry->name;
+                return $query->user->userCountry->name;
 
             })
             ->addColumn('status', function ($query) {
 
-                $checked = $query->status == 1 ? "checked" : "";
-                $view = '<label class="switch_toggle" for="active_checkbox' . $query->id . '">
+                $checked = $query->user->status == 1 ? "checked" : "";
+                $view = '<label class="switch_toggle" for="active_checkbox' . $query->user->id . '">
                                                     <input type="checkbox" class="status_enable_disable"
-                                                           id="active_checkbox' . $query->id . '" value="' . $query->id . '"
+                                                           id="active_checkbox' . $query->user->id . '" value="' . $query->user->id . '"
                                                              ' . $checked . '><i class="slider round"></i></label>';
 
                 return $view;
             })
             ->addColumn('notify_user', function ($query) use ($course) {
-                if (round($course->userTotalPercentage($query->id, $course->id)) < 100) {
-                    $link = '<a class="" href="' . route('course.courseStudentNotify', [$course->id, $query->id]) . '" data-id="' . $query->id . '" type="button">Notify</a>';
+                $link = '';
+                if (round($course->userTotalPercentage($query->user->id, $course->id)) < 100) {
+                    $link = '<a class="" href="' . route('course.courseStudentNotify', [$course->id, $query->user->id]) . '" data-id="' . $query->user->id . '" type="button">Notify</a>';
                 } else {
-                    $link = '<a href = "#" class="primary-btn fix-gr-bg radius_30px text-white">Generate Certificate</a>';
-
+                    if($query->certificate_access == 0){
+                        $link = '<a href = "'.route('course.generateCertificate',[$query->id]).'">Generate Certificate</a>';
+                        }
                 }
                 return $link;
 

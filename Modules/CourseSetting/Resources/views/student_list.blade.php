@@ -106,6 +106,8 @@
     @endphp
 
     <script>
+        
+
         let table = $('#lms_table').DataTable({
             bLengthChange: true,
             "lengthChange": true,
@@ -249,6 +251,13 @@
         // let table = $('#allData').DataTable() ;
         // table.clearPipeline();
         // table.ajax.reload();
+        $('.generateCertificate').on('click',function(e){
+            e.preventDefault();
+            console.log('test');
+            var course_id = $(this).attr('data-course');
+            var student_id = $(this).attr('data-student');
+            console.log(course_id,student_id);
+        });
     </script>
 
     <script src="{{ asset('public/backend/js/student_list.js') }}"></script>

@@ -1413,7 +1413,7 @@
                         @endif
                         @endforeach
                     </div>
-                    <div class="row justify-content-center text-center">
+                    {{-- <div class="row justify-content-center text-center">
                         @if ($certificate)
                             @if ($quizPass)
                                 @auth()
@@ -1472,7 +1472,7 @@
                             @endif
                         @endif
 
-                    </div>
+                    </div> --}}
                     <div class="d-none mb-5 pb-5">
                         <div>{{ __('frontend.Current Time') }}: <span id="currentTime">0</span></div>
                         <div>{{ __('frontend.Total Time') }} : <span id="totalTime">0</span></div>

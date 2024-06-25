@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Modules\Coupons\Entities\Coupon;
 use Modules\CourseSetting\Entities\Category;
 use Modules\CourseSetting\Entities\Course;
+use Modules\CourseSetting\Entities\CourseEnrolled;
 use Modules\OrgInstructorPolicy\Entities\OrgPolicyCategory;
 
 class CourseController extends Controller
@@ -294,5 +295,21 @@ class CourseController extends Controller
             Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
             return redirect()->back();
         }
+    }
+
+    public function generateCertificate($enroll_id){
+        $enrolled = CourseEnrolled::find($enroll_id);
+        if($enrolled){
+            $enrolled->certificate_access = 1;
+            $enrolled->save();
+
+        Toastr::success(trans('Certificate has been generated.'), trans('common.Success'));
+                return redirect()->back();
+        }
+        else{
+            Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
+                return redirect()->back();
+        }
+        
     }
 }

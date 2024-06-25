@@ -354,6 +354,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'course', 'as' => 'course.', '
     Route::post('sub-categories/update', 'CourseController@sub_category_update')->name('subcategory.update')->middleware('RoutePermissionCheck:course.subcategory.edit');
     Route::get('sub-categories/edit/{id}', 'CourseController@sub_category_edit')->name('subcategory.edit')->middleware('RoutePermissionCheck:course.subcategory.edit');
     Route::get('sub-categories/delete/{id}', 'CourseController@sub_category_delete')->name('subcategory.delete')->middleware('RoutePermissionCheck:course.subcategory.delete');
+    Route::get('generate-certificate/{id}', 'CourseController@generateCertificate')->name('generateCertificate');
 });
 Route::get('status-enable-disable', 'AjaxController@statusEnableDisable')->name('statusEnableDisable')->middleware(['auth']);
 
