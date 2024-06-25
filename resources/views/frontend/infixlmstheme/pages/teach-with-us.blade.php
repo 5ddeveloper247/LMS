@@ -561,7 +561,7 @@
     <div class="container-fluid px-0">
         <div class="row">
             <div class="col-md-12 px-0">
-                <div class="breadcrumb_area position-relative">
+                {{-- <div class="breadcrumb_area position-relative">
                     <div class="w-100 h-100 position-absolute bottom-0 left-0">
                         <img alt="Banner Image" class="w-100 h-100 img-cover"
                             src="{{ asset('public/frontend/infixlmstheme/img/images/courses-4.jpg') }}">
@@ -576,12 +576,13 @@
                             @endif
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 @php
                     $banner_title = 'Teach With Us';
                     $banner_image = 'public/frontend/infixlmstheme/img/images/courses-4.jpg';
+                    $btn_title = auth()->check() ? '' : 'Sell With Us';
                 @endphp
-                {{-- <x-breadcrumb :banner="$banner_image" :title="$banner_title" /> --}}
+                <x-breadcrumb :banner="$banner_image" :title="$banner_title" :btntitle="$btn_title" :btnclass="'hit openModal'" />
             </div>
         </div>
         <div class="container px-lg-5">

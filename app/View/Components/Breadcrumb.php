@@ -8,13 +8,16 @@ use Modules\FrontendManage\Entities\Slider;
 
 class Breadcrumb extends Component
 {
-    public $banner, $title, $sub_title;
+    public $banner, $title, $sub_title, $btntitle, $btnlink ,$btnclass;
 
-    public function __construct($banner = null, $title = null, $subTitle = null)
+    public function __construct($banner = null, $title = null, $subTitle = null, $btntitle = '', $btnclass= '' , $btnlink='#')
     {
         $this->banner = $banner;
         $this->title = $title;
         $this->sub_title = $subTitle;
+        $this->btntitle = $btntitle;
+        $this->btnlink = $btnlink;
+        $this->btnclass = $btnclass;
     }
 
 

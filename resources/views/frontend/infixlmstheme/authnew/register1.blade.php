@@ -516,13 +516,15 @@ canvas {
                         </div>
                         <div class="form-group col-md-6">
                             <div class="position-relative mt-4 @if ($errors->first('country')) is-invalid @endif">
-                                <select name="country" class="outside"
+                                <select name="country" class="outside outside_select w-100 pl-5"
                                     required>
                                     <option>Select Country</option>
-                                    <option value="1">America</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}" @if($user && $user->country == $country->id) selected @endif>{{ $country->name }}</option>
+                                    @endforeach
                                 </select>
                                 <span class="floating-label-outside">Country</span>
-                                <i class="bi bi-geo input-icon-outside"></i>
+                                <i class="bi bi-geo input-icon-outside" style="height:42px;"></i>
                             </div>
                         </div>
                     </div>
@@ -740,6 +742,10 @@ canvas {
             }
 
             return new Blob([uInt8Array], { type: contentType });
+        }
+
+        if ($('.outside_select').length > 0) {
+            $('.outside_select').niceSelect();
         }
 
         // Function to set the file input field's value with a Blob
