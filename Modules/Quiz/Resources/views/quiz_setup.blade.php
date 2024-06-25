@@ -19,7 +19,7 @@
                             <div class="white-box">
                                 <div class="add-visitor">
                                     <div class="row">
-                                        <div class="col-lg-4 mt-40">
+                                        <div class="col-md-4 col-sm-6 mt-40">
                                             <ul class="permission_list">
                                                 <li>
                                                     <label class="primary_checkbox d-flex mr-12 ">
@@ -33,7 +33,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-md-4 col-sm-6">
                                             @if (@$quiz_setup->set_per_question_time==1)
                                                 <div class="form-group" id="per_question_time">
                                                     <label
@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="row">
 
-                                        <div class="col-lg-4 mt-40">
+                                        <div class="col-md-4 mt-40">
                                             <ul class="permission_list">
                                                 <li>
                                                     <label class="primary_checkbox d-flex mr-12 ">
@@ -101,7 +101,7 @@
                                                 $show_result_each='style=display:none';
                                             }
                                         @endphp
-                                        <div class="col-lg-4 mt-40" {{@$show_result_each}} id="showResultDiv">
+                                        <div class="col-md-4 mt-40" {{@$show_result_each}} id="showResultDiv">
                                             <ul class="permission_list">
                                                 <li>
                                                     <label class="primary_checkbox d-flex mr-12 ">
@@ -114,7 +114,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-lg-4 mt-40">
+                                        <div class="col-md-4 mt-40">
                                             <ul class="permission_list">
                                                 <li>
                                                     <label class="primary_checkbox d-flex mr-12 ">
@@ -127,7 +127,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-lg-4 mt-40">
+                                        <div class="col-md-4 mt-40">
                                             <ul class="permission_list">
                                                 <li>
                                                     <label class="primary_checkbox d-flex mr-12 ">
@@ -141,7 +141,7 @@
                                             </ul>
                                         </div>
 
-                                        <div class="col-lg-4 mt-40">
+                                        <div class="col-md-4 mt-40">
                                             <ul class="permission_list">
                                                 <li>
                                                     <label class="primary_checkbox d-flex mr-12 ">
@@ -155,7 +155,7 @@
                                             </ul>
                                         </div>
 
-                                        <div class="col-lg-4 mt-40">
+                                        <div class="col-md-4 mt-40">
                                             <ul class="permission_list">
                                                 <li>
                                                     <label class="primary_checkbox d-flex mr-12 ">
@@ -169,9 +169,9 @@
                                             </ul>
                                         </div>
 
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <div class="row">
-                                                <div class="col-lg-3 mt-40">
+                                                <div class="col-md-4 mt-40">
                                                     <ul class="permission_list">
                                                         <li>
                                                             <label class="primary_checkbox d-flex mr-12 text-nowrap ">
@@ -193,9 +193,9 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-lg-8 losing_total_count_div">
+                                                <div class="col-md-8 losing_total_count_div">
                                                     <div class="row">
-                                                        <div class="col-lg-6">
+                                                        <div class="col-sm-6">
                                                             <label class="primary_input_label"
                                                                    for="groupInput">{{__('quiz.Losing type')}} *</label>
                                                             <select
@@ -217,7 +217,7 @@
 
                                                         </div>
 
-                                                        <div class="col-lg-6">
+                                                        <div class="col-sm-6">
                                                             <label
                                                                 for="#">
 

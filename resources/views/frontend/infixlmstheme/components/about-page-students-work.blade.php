@@ -95,12 +95,6 @@
     .slick-dotted.slick-slider {
         margin-bottom: 0px !important;
     }
-@media only screen and (max-width: 350px){
-    .aboutus-img {
-        min-height: 280px !important;
-        height: 280px !important;
-    }
-}
     @media only screen and (max-width: 530px) {
         .about-pagination {
             left: 30% !important;
@@ -122,9 +116,10 @@
         }
 
         .aboutus-img {
-            min-width: 312px;
-            min-height: 312px;
-            height: 312px;
+            min-width: 300px;
+            max-width: 300px;
+            min-height: 270px;
+            height: 270px;
         }
     }
 

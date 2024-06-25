@@ -39,9 +39,9 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="main-title d-md-flex mb-20">
+                    <div class="main-title d-sm-flex mb-20">
                         <h3 class="mr-30 mb_xs_15px mb_sm_20px mb-0">{{ __('quiz.Question Bank List') }}</h3>
-                        <ul class="d-flex">
+                        <ul class="d-flex custom_list_style p-0">
                             <li>
                                 <a class="primary-btn radius_30px fix-gr-bg mr-10" href="{{route('question-bank')}}">
                                     <i class="ti-plus"></i>Add Question</a>

@@ -26,10 +26,10 @@
                                         </form>
                                     </div>
                                 </div>
-                                <ul id="receiver_list">
+                                <ul id="receiver_list custom_list_style">
                                     @foreach ($users as $user)
                                         
-                                        <li class="@if(@$user->sender->seen=='0') unseen @endif">
+                                        <li class=" @if(@$user->sender->seen=='0') unseen @endif">
                                             <a href="#" id="user{{$user->id}}" class="user_list"
                                                onClick="getMessage({{$user->id}})">
                                                 <div class="message_pre_left">

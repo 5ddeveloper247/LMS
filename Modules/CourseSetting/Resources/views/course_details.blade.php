@@ -7,6 +7,7 @@
         .ck-editor__editable {
             min-height: 300px;
         }
+
         .select2-container--default .select2-selection--single {
             background-color: #fff;
             width: 100%;
@@ -85,7 +86,11 @@
         .makeResize.responsiveResize.col-xl-6 {
             margin-top: 30px;
         }
-
+        .custom_text{
+            width: auto;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
         @media (max-width: 1199px) {
             .responsiveResize2 {
                 margin-top: 30px;
@@ -101,108 +106,93 @@
             object-fit: contain !important;
             margin-bottom: 5px;
         }
+
         .course_review_wrapper .course_cutomer_reviews .single_reviews {
-    display: flex;
-    /* border-bottom: 1px solid #e9e7f7; */
-    padding-bottom: 30px;
-    padding-top:30px;
-}
+            display: flex;
+            /* border-bottom: 1px solid #e9e7f7; */
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
 
-/* .course_review_wrapper .course_cutomer_reviews .single_reviews:last-child {
-    padding-bottom: 37px;
-    border: 0;
-} */
+        /* .course_review_wrapper .course_cutomer_reviews .single_reviews:last-child {
+            padding-bottom: 37px;
+            border: 0;
+        } */
 
-@media (max-width: 767.98px) {
-    .course_review_wrapper .course_cutomer_reviews .single_reviews {
-        padding-bottom: 40px;
-        margin-bottom: 40px;
-    }
-}
+        @media (max-width: 767.98px) {
+            .course_review_wrapper .course_cutomer_reviews .single_reviews {
+                padding-bottom: 40px;
+                margin-bottom: 40px;
+            }
 
-@media (max-width: 575.98px) {
-    .course_review_wrapper .course_cutomer_reviews .single_reviews {
-        flex-direction: column;
-    }
-}
+            .add-item-forms--inline-menu--1OTdc .curriculumn-btn {
+                font-size: 13px !important;
+            }
+            .add-item-forms--inline-menu--1OTdc{
+                padding: 8px 10px !important;
+                height: auto !important;
+            }
+            .add-item-forms--inline-menu--1OTdc button{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
 
-.course_review_wrapper .course_cutomer_reviews .single_reviews .thumb {
-    font-size: 20px;
-    font-weight: 700;
-    font-family: Source Sans Pro, sans-serif;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: var(--system_primery_color);
-    flex: 80px 0 0;
-    margin-right: 40px;
-    color: #fff;
-    text-transform: uppercase;
-    text-align: center;
-    line-height: 80px;
-    margin-bottom: 20px;
-}
+        @media (max-width: 575.98px) {
+            .course_review_wrapper .course_cutomer_reviews .single_reviews {
+                flex-direction: column;
+            }
+        }
 
-.course_review_wrapper
-    .course_cutomer_reviews
-    .single_reviews
-    .review_content
-    h4 {
-    margin-bottom: 0;
-}
+        .course_review_wrapper .course_cutomer_reviews .single_reviews .thumb {
+            font-size: 20px;
+            font-weight: 700;
+            font-family: Source Sans Pro, sans-serif;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--system_primery_color);
+            flex: 80px 0 0;
+            margin-right: 40px;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 80px;
+            margin-bottom: 20px;
+        }
 
-.course_review_wrapper
-    .course_cutomer_reviews
-    .single_reviews
-    .review_content
-    .rated_customer {
-    display: flex;
-    align-items: center;
-    margin: 7px 0 21px;
-}
+        .course_review_wrapper .course_cutomer_reviews .single_reviews .review_content h4 {
+            margin-bottom: 0;
+        }
 
-.course_review_wrapper
-    .course_cutomer_reviews
-    .single_reviews
-    .review_content
-    .rated_customer
-    .feedmak_stars {
-    display: flex;
-    align-items: center;
-    margin: 0 15px 0 0;
-}
+        .course_review_wrapper .course_cutomer_reviews .single_reviews .review_content .rated_customer {
+            display: flex;
+            align-items: center;
+            margin: 7px 0 21px;
+        }
 
-.course_review_wrapper
-    .course_cutomer_reviews
-    .single_reviews
-    .review_content
-    .rated_customer
-    .feedmak_stars
-    i {
-    color: #ffc107;
-    font-size: 15px;
-}
+        .course_review_wrapper .course_cutomer_reviews .single_reviews .review_content .rated_customer .feedmak_stars {
+            display: flex;
+            align-items: center;
+            margin: 0 15px 0 0;
+        }
 
-.course_review_wrapper
-    .course_cutomer_reviews
-    .single_reviews
-    .review_content
-    .rated_customer
-    .feedmak_stars
-    i:not(:last-child) {
-    margin-right: 5px;
-}
+        .course_review_wrapper .course_cutomer_reviews .single_reviews .review_content .rated_customer .feedmak_stars i {
+            color: #ffc107;
+            font-size: 15px;
+        }
 
-.course_review_wrapper
-    .course_cutomer_reviews
-    .single_reviews
-    .review_content
-    .rated_customer
-    span {
-    font-size: 14px;
-    font-weight: 500;
-    color: #373737;
-}
+        .course_review_wrapper .course_cutomer_reviews .single_reviews .review_content .rated_customer .feedmak_stars i:not(:last-child) {
+            margin-right: 5px;
+        }
+
+        .course_review_wrapper .course_cutomer_reviews .single_reviews .review_content .rated_customer span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #373737;
+        }
     </style>
 @endpush
 @section('table')course_reveiws @stop
@@ -260,24 +250,26 @@
                             @if ($course->type == 1 || $course->type == 9)
                                 <li class="nav-item">
                                     <a class="nav-link @if ($type == 'courses') active @endif"
-                                        href="#course_cirriculum" role="tab" data-toggle="tab">{{ __('courses.Course') }}
+                                        href="#course_cirriculum" role="tab"
+                                        data-toggle="tab">{{ __('courses.Course') }}
                                         {{ __('courses.Curriculum') }} </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link @if ($type == 'courseDetails') active @endif"
-                                        href="#course_details" role="tab"
-                                        data-toggle="tab">{{ __('courses.Course') }} {{ __('common.Details') }}</a>
+                                        href="#course_details" role="tab" data-toggle="tab">{{ __('courses.Course') }}
+                                        {{ __('common.Details') }}</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link @if ($type == 'files') active @endif" href="#course_exercise"
-                                        role="tab" data-toggle="tab">{{ __('courses.Exercise') }}
+                                    <a class="nav-link @if ($type == 'files') active @endif"
+                                        href="#course_exercise" role="tab"
+                                        data-toggle="tab">{{ __('courses.Exercise') }}
                                         {{ __('common.Files') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#course_reviews"
-                                        role="tab" data-toggle="tab">{{ __('courses.Course') }}
+                                    <a class="nav-link" href="#course_reviews" role="tab"
+                                        data-toggle="tab">{{ __('courses.Course') }}
                                         {{ __('Reviews') }}</a>
                                 </li>
                                 <li class="nav-item d-none">
@@ -388,21 +380,21 @@
                                                                                 <button data-purpose="add-chapter-btn"
                                                                                     aria-label="Add Chapter" type="button"
                                                                                     id="show_chapter_section"
-                                                                                    class="ellipsis btn btn-tertiary btn-block">
+                                                                                    class="ellipsis btn btn-tertiary btn-block curriculumn-btn">
                                                                                     <i class="ti-plus"></i>
                                                                                     {{ __('courses.Chapter') }}
                                                                                 </button>
                                                                                 <button data-purpose="add-lesson-btn"
                                                                                     aria-label="Add Lesson" type="button"
                                                                                     id="show_lesson_section"
-                                                                                    class="ellipsis btn btn-tertiary btn-block">
+                                                                                    class="ellipsis btn btn-tertiary btn-block curriculumn-btn">
                                                                                     <i class="ti-plus"></i>
                                                                                     {{ __('courses.Lesson') }}
                                                                                 </button>
                                                                                 <button data-purpose="add-quiz-btn"
                                                                                     aria-label="Add Quiz" type="button"
                                                                                     id="show_quiz_section"
-                                                                                    class="ellipsis btn btn-tertiary btn-block">
+                                                                                    class="ellipsis btn btn-tertiary btn-block curriculumn-btn">
                                                                                     <i class="ti-plus"></i>
                                                                                     {{ __('Add Exam') }}
                                                                                 </button>
@@ -596,17 +588,26 @@
                                                     </div>
 
                                                     @php
-                                                        $cna_prep_price = \Modules\CourseSetting\Entities\Course::where('type', 4)
+                                                        $cna_prep_price = \Modules\CourseSetting\Entities\Course::where(
+                                                            'type',
+                                                            4,
+                                                        )
                                                             ->where('parent_id', $course->id)
                                                             ->first();
                                                     @endphp
                                                     @php
-                                                        $test_prep_price = \Modules\CourseSetting\Entities\Course::where('type', 5)
+                                                        $test_prep_price = \Modules\CourseSetting\Entities\Course::where(
+                                                            'type',
+                                                            5,
+                                                        )
                                                             ->where('parent_id', $course->id)
                                                             ->first();
                                                     @endphp
                                                     @php
-                                                        $test_prep_graded_price = \Modules\CourseSetting\Entities\Course::where('type', 6)
+                                                        $test_prep_graded_price = \Modules\CourseSetting\Entities\Course::where(
+                                                            'type',
+                                                            6,
+                                                        )
                                                             ->where('parent_id', $course->id)
                                                             ->first();
                                                     @endphp
@@ -688,7 +689,7 @@
                                                         <span class="checkmark mr-2"></span>
                                                         {{ __('No') }}</label>
                                                     </div> --}}
-                                                        <div
+                                                    <div
                                                         class="col-xl-10 {{ isset($cna_prep_price->thumbnail) ? '' : 'd-none' }} full_course_image cna_prep_type">
                                                         <div class="primary_input">
                                                             <label class="primary_input_label"
@@ -722,7 +723,7 @@
                                                     </div>
 
                                                     <div
-                                                        class="col-xl-2 {{ isset($cna_prep_price->thumbnail) ? '' : 'd-none' }} full_course_image cna_prep_type text-center">
+                                                        class="col-xl-2 {{ isset($cna_prep_price->thumbnail) ? '' : 'd-none' }} full_course_image cna_prep_type text-xl-center text-right">
                                                         <img src="{{ !empty($cna_prep_price->thumbnail) ? getCourseImage(@$cna_prep_price->thumbnail) : asset('public/assets/course/image-375x500.png') }}"
                                                             class="preview image-editor-preview-img-2"
                                                             id="image_preview-2" />
@@ -773,7 +774,7 @@
                                                     </div>
 
                                                     <div
-                                                        class="col-xl-2 prep_course_demand_image {{ isset($test_prep_price->price) && $test_prep_price->price != '0.00' ? '' : 'd-none' }} test_prep_type text-center">
+                                                        class="col-xl-2 prep_course_demand_image {{ isset($test_prep_price->price) && $test_prep_price->price != '0.00' ? '' : 'd-none' }} test_prep_type text-xl-center text-right">
                                                         <img src="{{ isset($test_prep_price->thumbnail) ? getCourseImage(@$test_prep_price->thumbnail) : asset('public/assets/course/image-375x500.png') }}"
                                                             class="preview image-editor-preview-img-3"
                                                             id="image_preview-3" />
@@ -825,7 +826,7 @@
                                                     </div>
 
                                                     <div
-                                                        class="col-xl-2 prep_course_live_image {{ isset($test_prep_graded_price->thumbnail) ? '' : 'd-none' }} test_prep_graded_type text-center">
+                                                        class="col-xl-2 prep_course_live_image {{ isset($test_prep_graded_price->thumbnail) ? '' : 'd-none' }} test_prep_graded_type text-xl-center text-right">
                                                         <img src="{{ isset($test_prep_graded_price->thumbnail) ? getCourseImage(@$test_prep_graded_price->thumbnail) : asset('public/assets/course/image-375x500.png') }}"
                                                             class="preview image-editor-preview-img-4"
                                                             id="image_preview-4" />
@@ -1025,24 +1026,23 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div
-                                                        class="col-xl-6">
+                                                    <div class="col-xl-6">
                                                         <label>Featured</label>
                                                         <div class="d-flex py-3">
-                                                            <label class="primary_checkbox d-flex nowrap mr-5" for="featuredYes">
-                                                            <input type="radio" id="featuredYes"
-                                                                name="featured"
-                                                                value="1"
-                                                                {{ @$course->featured == 1 ? 'checked' : '' }}>
-                                                            <span class="checkmark mr-2"></span>
-                                                            {{ __('Yes') }}</label>
-                                                            <label class="primary_checkbox d-flex nowrap mr-5" for="featuredNo">
-                                                            <input type="radio" id="featuredNo"
-                                                                name="featured"
-                                                                value="0"
-                                                                {{ @$course->featured == 0 ? 'checked' : '' }}>
-                                                            <span class="checkmark mr-2"></span>
-                                                            {{ __('No') }}</label>
+                                                            <label class="primary_checkbox d-flex nowrap mr-5"
+                                                                for="featuredYes">
+                                                                <input type="radio" id="featuredYes" name="featured"
+                                                                    value="1"
+                                                                    {{ @$course->featured == 1 ? 'checked' : '' }}>
+                                                                <span class="checkmark mr-2"></span>
+                                                                {{ __('Yes') }}</label>
+                                                            <label class="primary_checkbox d-flex nowrap mr-5"
+                                                                for="featuredNo">
+                                                                <input type="radio" id="featuredNo" name="featured"
+                                                                    value="0"
+                                                                    {{ @$course->featured == 0 ? 'checked' : '' }}>
+                                                                <span class="checkmark mr-2"></span>
+                                                                {{ __('No') }}</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1074,19 +1074,19 @@
                                                                 <div class="row">
 
                                                                     <!-- <div class="col-xl-12">
-                                                                                                                                                                                                                                <div class="primary_input mb-25">
-                                                                                                                                                                                                                                    <label class="primary_input_label mt-1"
-                                                                                                                                                                                                                                           for="">{{ __('courses.Course Title') }}
-                                                                                                                                                                                                                            <small>(Max size
-                                                                                                                                                                                                                                30 Characters)</small> *</label>
-                                                                                                                                                                                                                        </label>
-                                                                                                                                                                                                                        <input class="primary_input_field"
-                                                                                                                                                                                                                               name="{{ $language->code == 'en' ? 'title' : '' }}"
-                                                                                                                                                                                                                                           value="{{ $course->getTranslation('title', $language->code) }}"
-                                                                                                                                                                                                                                           placeholder="-" type="text"
-                                                                                                                                                                                                                                           maxlength="30">
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                        <div class="primary_input mb-25">
+                                                                                                                                                                                                                                            <label class="primary_input_label mt-1"
+                                                                                                                                                                                                                                                   for="">{{ __('courses.Course Title') }}
+                                                                                                                                                                                                                                    <small>(Max size
+                                                                                                                                                                                                                                        30 Characters)</small> *</label>
+                                                                                                                                                                                                                                </label>
+                                                                                                                                                                                                                                <input class="primary_input_field"
+                                                                                                                                                                                                                                       name="{{ $language->code == 'en' ? 'title' : '' }}"
+                                                                                                                                                                                                                                                   value="{{ $course->getTranslation('title', $language->code) }}"
+                                                                                                                                                                                                                                                   placeholder="-" type="text"
+                                                                                                                                                                                                                                                   maxlength="30">
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    </div> -->
                                                                     {{-- @dd($language->code, $LanguageList, $course) --}}
                                                                     <div class="col-xl-12">
                                                                         <div class="primary_input mb-35">
@@ -1127,7 +1127,10 @@
 
                                                     <div class="row">
                                                         @php
-                                                            if (courseSetting()->show_mode_of_delivery == 1 || isModuleActive('Org')) {
+                                                            if (
+                                                                courseSetting()->show_mode_of_delivery == 1 ||
+                                                                isModuleActive('Org')
+                                                            ) {
                                                                 $col_size = 4;
                                                             } elseif (currentTheme() == 'tvt') {
                                                                 $col_size = 3;
@@ -1159,15 +1162,16 @@
                                                         @endif
 
                                                         <div class="col-xl-6 courseBox mb-25">
-                                                            <select class="primary_select"
-                                                                 name="category"
+                                                            <select class="primary_select" name="category"
                                                                 id="course_cat_id">
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('quiz.Category') }}"
                                                                     value="">{{ __('common.Select') }}
                                                                     {{ __('quiz.Category') }} </option>
                                                                 @php
-                                                                    request()->replace(['category' => $course->category_id]);
+                                                                    request()->replace([
+                                                                        'category' => $course->category_id,
+                                                                    ]);
                                                                 @endphp
                                                                 @foreach ($categories as $category)
                                                                     @if ($category->parent_id == 0)
@@ -1658,14 +1662,14 @@
                                                                                     placeholder="{{ __('courses.Browse Video file') }}"
                                                                                     readonly="">
                                                                                 <!-- <button class="" type="button">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <label
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        class="primary-btn small fix-gr-bg"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for="document_file_thumb_vimeo_add">{{ __('common.Browse') }}</label>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <input type="file"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           class="d-none fileUpload"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           name="vimeo"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           id="document_file_thumb_vimeo_add">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <label
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="primary-btn small fix-gr-bg"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                for="document_file_thumb_vimeo_add">{{ __('common.Browse') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <input type="file"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   class="d-none fileUpload"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   name="vimeo"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   id="document_file_thumb_vimeo_add">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </button> -->
                                                                             </div>
                                                                         @else
                                                                             <select
@@ -1868,7 +1872,7 @@
                                                 <div class="col-lg-2">
 
                                                     <ul class="d-flex">
-                                                        <li><a data-toggle="modal" data-target="#addFile"
+                                                        <li style="list-style: none;"><a data-toggle="modal" data-target="#addFile"
                                                                 class="primary-btn radius_30px fix-gr-bg"
                                                                 href="#"><i
                                                                     class="ti-plus"></i>{{ __('common.Add') }}
@@ -1961,7 +1965,7 @@
                                                 <div class="QA_table">
                                                     <!-- table-responsive -->
                                                     <div class="">
-                                                        <table id="lms_table" class="table">
+                                                        <table id="lms_table" class="table table-responsive">
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">{{ __('common.SL') }}</th>
@@ -2070,91 +2074,105 @@
                                         </div>
 
                                     </div>
-                                    <div role="tabpanel"
-                                        class="tab-pane fade"
-                                        id="course_reviews">
-                                        @if(count($course_reviews) > 0)
-                                        <div class="erp_role_permission_area mt 30">
-                                            <!-- single_permission  -->
-                                            <div class="mesonary_role_header nastable" id="reviews_sortable">
-                                              @foreach($course_reviews as $thisreview)
-                                              @php
-                                                $checked = $thisreview->status == 1 ? "checked" : "";
-                                                $status_enable_eisable = "review_enable_disable";
-                                              @endphp
-                                              <div class="single_role_blocks parent" data-id="{{ $thisreview->id }}">
-                                                  <div class="single_permission" id="review_id{{ $thisreview->id }}">
-                                                    <div class="permission_header d-flex align-items-center justify-content-between">
-                                                      <div>
-                                                          <i class="ti-move text-white"></i>
-                                                          <label for="Main_Module_1" class="pl-10">{{ $thisreview->comment }}</label>
-                                                      </div>
-                                                      <div class="mr-20 mt-1 text-white">
-                                                        <span>
-                                                        {{-- @for ($i = 0; $i < 5; $i++)
-                                                            <i class="fas @if($i <= floor($thisreview->star))text-warning @endif fa-star"></i>
+                                    <div role="tabpanel" class="tab-pane fade" id="course_reviews">
+                                        @if (count($course_reviews) > 0)
+                                            <div class="erp_role_permission_area mt 30">
+                                                <!-- single_permission  -->
+                                                <div class="mesonary_role_header nastable" id="reviews_sortable">
+                                                    @foreach ($course_reviews as $thisreview)
+                                                        @php
+                                                            $checked = $thisreview->status == 1 ? 'checked' : '';
+                                                            $status_enable_eisable = 'review_enable_disable';
+                                                        @endphp
+                                                        <div class="single_role_blocks parent"
+                                                            data-id="{{ $thisreview->id }}">
+                                                            <div class="single_permission"
+                                                                id="review_id{{ $thisreview->id }}">
+                                                                <div
+                                                                    class="permission_header d-flex align-items-center justify-content-between">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <i class="ti-move text-white"></i>
+                                                                        <label for="Main_Module_1"
+                                                                            class="pl-10">{{ $thisreview->comment }}</label>
+                                                                    </div>
+                                                                    <div class="mr-20 mt-1 text-white">
+                                                                        <span>
+                                                                            {{-- @for ($i = 0; $i < 5; $i++)
+                                                            <i class="fas @if ($i <= floor($thisreview->star))text-warning @endif fa-star"></i>
                                                         @endfor --}}
-                                                        Show on Frontend
-                                                        {{-- <label class="switch_toggle" for="review_status{{ $thisreview->id }}">
+                                                                            Show on Frontend
+                                                                            {{-- <label class="switch_toggle" for="review_status{{ $thisreview->id }}">
                                                             <input type="checkbox" class="status_enable_disable" id="review_status{{$thisreview->id}}" value="{{$thisreview->id}}">
                                                             <i class="slider round"></i>
                                                         </label> --}}
-                                                        <label class="switch_toggle" for="review_checkbox{{$thisreview->id}}">
-                                                            <input type="checkbox" class="{{$status_enable_eisable}}"
-                                                                   id="review_checkbox{{$thisreview->id}}" value="{{$thisreview->id}}"
-                                                                {{$checked}}><i class="slider round"></i></label>
-                                                      </span>
-                                                      </div>
-                                                      <div class="arrow" data-toggle="collapse"
-                                                          data-target="#review_content{{ $thisreview->id }}" aria-expanded="true">
-                                                      </div>
-                                                    </div>
-                                                    <div id="review_content{{ $thisreview->id }}"
-                                                        class="capter_body collapse">
-                                                        <div class="row py-2 px-3">
-                                                          <div class="col-md-12">
-                                                            <div class="course_review_wrapper">
-                                                              <div class="course_cutomer_reviews">
-                                                              <div class="customers_reviews" id="customers_reviews{{$thisreview->id}}">
-
-                                                              <div class="single_reviews" id="12_single_reviews{{$thisreview->id}}">
-                                                                <div class="">
-                                                                  <div class="thumb link">
-                                                                    {{ substr($thisreview->user->name, 0, 1) }}
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="review_content">
-                                                                  <h4 class="f_w_700">{{ $thisreview->user->name }}</h4>
-                                                                  <div class="rated_customer d-flex align-items-center">
-                                                                    <div class="feedmak_stars">
-                                                                      @for ($i=0; $i < 5; $i++)
-                                                                        <i class="@if($i <= floor($thisreview->star)) fas @else far @endif fa-star" aria-hidden="true"></i>
-                                                                      @endfor
-
-
+                                                                            <label class="switch_toggle"
+                                                                                for="review_checkbox{{ $thisreview->id }}">
+                                                                                <input type="checkbox"
+                                                                                    class="{{ $status_enable_eisable }}"
+                                                                                    id="review_checkbox{{ $thisreview->id }}"
+                                                                                    value="{{ $thisreview->id }}"
+                                                                                    {{ $checked }}><i
+                                                                                    class="slider round"></i></label>
+                                                                        </span>
                                                                     </div>
-                                                                  </div>
-                                                                  <p>
-                                                                    {{ $thisreview->comment }}
-                                                                  </p>
+                                                                    <div class="arrow" data-toggle="collapse"
+                                                                        data-target="#review_content{{ $thisreview->id }}"
+                                                                        aria-expanded="true">
+                                                                    </div>
                                                                 </div>
-                                                              </div>
-                                                            </div>
-                                                            </div>
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                                                  </div>
-                                            </div>
-                                          @endforeach
-                                        </div>
-                                      </div>
-                                    @else
-                                      <p>No Reviews Found</p>
+                                                                <div id="review_content{{ $thisreview->id }}"
+                                                                    class="capter_body collapse">
+                                                                    <div class="row py-2 px-3">
+                                                                        <div class="col-md-12">
+                                                                            <div class="course_review_wrapper">
+                                                                                <div class="course_cutomer_reviews">
+                                                                                    <div class="customers_reviews"
+                                                                                        id="customers_reviews{{ $thisreview->id }}">
 
-                                    @endif
+                                                                                        <div class="single_reviews"
+                                                                                            id="12_single_reviews{{ $thisreview->id }}">
+                                                                                            <div class="">
+                                                                                                <div class="thumb link">
+                                                                                                    {{ substr($thisreview->user->name, 0, 1) }}
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="review_content">
+                                                                                                <h4 class="f_w_700">
+                                                                                                    {{ $thisreview->user->name }}
+                                                                                                </h4>
+                                                                                                <div
+                                                                                                    class="rated_customer d-flex align-items-center">
+                                                                                                    <div
+                                                                                                        class="feedmak_stars">
+                                                                                                        @for ($i = 0; $i < 5; $i++)
+                                                                                                            <i class="@if ($i <= floor($thisreview->star)) fas @else far @endif fa-star"
+                                                                                                                aria-hidden="true"></i>
+                                                                                                        @endfor
+
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p>
+                                                                                                    {{ $thisreview->comment }}
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @else
+                                            <p>No Reviews Found</p>
+
+                                        @endif
                                     </div>
                                     <div role="tabpanel"
                                         class="tab-pane fade @if ($type == 'certificate') show active @endif"
@@ -2209,7 +2227,8 @@
                                         <div class="QA_section QA_section_heading_custom check_box_table pt-20">
                                             <div class="QA_table">
                                                 <form action="{{ route('setCourseDripContent') }}" method="post">
-                                                    <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                                    <input type="hidden" name="course_id"
+                                                        value="{{ $course->id }}">
                                                     @csrf
                                                     <table class="table pt-0">
                                                         <thead>
@@ -2347,9 +2366,9 @@
                         @csrf
                         <input type="hidden" name="id" value="" class="editFileId">
 
-                        <p id="showFileName"></p>
+                        <p id="showFileName" class="custom_text" ></p>
                         <div class="">
-                            <input type="file" class="filepond" name="file">
+                            <input type="file" class="filepond " name="file">
 
 
                         </div>
@@ -2752,7 +2771,7 @@
                     });
                 });
 
-                
+
 
                 $(document).on('change', '.AddSelectCateogry', function(e) {
                     var category = $(".AddSelectCateogry option:selected").val();
@@ -2810,27 +2829,28 @@
     {{--        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> --}}
     <script>
         $(document).ready(function() {
-          $('.review_enable_disable').on('change',function(){
-            var status = $(this).is(":checked") ? 1 : 0;
-            var table = $('input[name="table_name"]').val();
-            var id = $(this).val();
-            //console.log(status,table,id);
-            $.ajax({
-                // type: "POST",
-                method: 'GET',
-                url: '{{ route('statusEnableDisable') }}?id='+id+'&status='+status+'&table='+table,
-                success: function (response) {
-                    if (response.success) {
-                        toastr.success(response.success, 'Success');
-                        //order = [];
-                    }
-                    if(response.error){
-                      toastr.error(response.error, 'Error');
+            $('.review_enable_disable').on('change', function() {
+                var status = $(this).is(":checked") ? 1 : 0;
+                var table = $('input[name="table_name"]').val();
+                var id = $(this).val();
+                //console.log(status,table,id);
+                $.ajax({
+                    // type: "POST",
+                    method: 'GET',
+                    url: '{{ route('statusEnableDisable') }}?id=' + id + '&status=' + status +
+                        '&table=' + table,
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success(response.success, 'Success');
+                            //order = [];
+                        }
+                        if (response.error) {
+                            toastr.error(response.error, 'Error');
 
+                        }
                     }
-                }
+                });
             });
-          });
 
             $('.note-editable').eq(6).keydown(function() { //Use appropriate listener
                 var text = $(this).html();
@@ -2860,117 +2880,119 @@
                 'Garamond', 'Georgia', 'monospace', 'fantasy', 'Papyrus', 'Poppins'
             ];
 
-            $('.custom_summernote').each(function (){
+            $('.custom_summernote').each(function() {
                 var elId = $(this).attr('id');
                 ClassicEditor
-                .create( document.getElementById(elId),{
-                    ckfinder: {
-                        uploadUrl: "{{ route('ckeditor.upload',['_token' => csrf_token()]) }}",
-                    },
-                    //extraPlugins: ['font'],
-                //     fontFamily: {
-                //         options: [
-                //             'default',
-                //             'Arial, Helvetica, sans-serif',
-                //             'Courier New, Courier, monospace',
-                //             'Georgia, serif',
-                //             'Lucida Sans Unicode, Lucida Grande, sans-serif',
-                //             'Tahoma, Geneva, sans-serif',
-                //             'Times New Roman, Times, serif',
-                //             'Trebuchet MS, Helvetica, sans-serif',
-                //             'Verdana, Geneva, sans-serif'
-                //         ],
-                //         supportAllValues: true
-                //     },
-                //     fontSize: {
-                //     options: [
-                //         'tiny',
-                //         'small',
-                //         'default',
-                //         'big',
-                //         'huge'
-                //     ]
-                // },
-                // fontColor: {
-                //     columns: 5,
-                //     documentColors: 10
-                // },
-                // fontBackgroundColor: {
-                //     columns: 5,
-                //     documentColors: 10
-                // },
-                mediaEmbed : {
-                    previewsInData: true,
-                    removeProviders: [ 'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook' ],
-                },
-                toolbar: {
-			items: [
-				'heading',
-				'|',
-				'bold',
-				'italic',
-				'link',
-				'bulletedList',
-				'numberedList',
-				'|',
-				'blockQuote',
-				'fontFamily',
-				'fontSize',
-				'fontColor',
-				'alignment',
-				'outdent',
-				'indent',
-				'|',
-				'insertTable',
-				'imageInsert',
-			//	'imageUpload',
-				'mediaEmbed',
-			//	'CKFinder',
-			//	'codeBlock',
-				'|',
-				'undo',
-				'redo'
-			]
-		},
-		language: 'en',
-		image: {
-			toolbar: [
-				'imageTextAlternative',
-				'toggleImageCaption',
-				'imageStyle:inline',
-				'imageStyle:block',
-				'imageStyle:side'
-			],
-            insert: {
-                // This is the default configuration, you do not need to provide
-                // this configuration key if the list content and order reflects your needs.
-                integrations: [ 'upload', 'url' ]
-            }
-		},
-		table: {
-			contentToolbar: [
-				'tableColumn',
-				'tableRow',
-				'mergeTableCells'
-			]
-		}
-                } )
-                .then(editor => {
-                    // Save the editor instance to use it later
-                    window.editor = editor;
+                    .create(document.getElementById(elId), {
+                        ckfinder: {
+                            uploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+                        },
+                        //extraPlugins: ['font'],
+                        //     fontFamily: {
+                        //         options: [
+                        //             'default',
+                        //             'Arial, Helvetica, sans-serif',
+                        //             'Courier New, Courier, monospace',
+                        //             'Georgia, serif',
+                        //             'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                        //             'Tahoma, Geneva, sans-serif',
+                        //             'Times New Roman, Times, serif',
+                        //             'Trebuchet MS, Helvetica, sans-serif',
+                        //             'Verdana, Geneva, sans-serif'
+                        //         ],
+                        //         supportAllValues: true
+                        //     },
+                        //     fontSize: {
+                        //     options: [
+                        //         'tiny',
+                        //         'small',
+                        //         'default',
+                        //         'big',
+                        //         'huge'
+                        //     ]
+                        // },
+                        // fontColor: {
+                        //     columns: 5,
+                        //     documentColors: 10
+                        // },
+                        // fontBackgroundColor: {
+                        //     columns: 5,
+                        //     documentColors: 10
+                        // },
+                        mediaEmbed: {
+                            previewsInData: true,
+                            removeProviders: ['instagram', 'twitter', 'googleMaps', 'flickr',
+                                'facebook'
+                            ],
+                        },
+                        toolbar: {
+                            items: [
+                                'heading',
+                                '|',
+                                'bold',
+                                'italic',
+                                'link',
+                                'bulletedList',
+                                'numberedList',
+                                '|',
+                                'blockQuote',
+                                'fontFamily',
+                                'fontSize',
+                                'fontColor',
+                                'alignment',
+                                'outdent',
+                                'indent',
+                                '|',
+                                'insertTable',
+                                'imageInsert',
+                                //	'imageUpload',
+                                'mediaEmbed',
+                                //	'CKFinder',
+                                //	'codeBlock',
+                                '|',
+                                'undo',
+                                'redo'
+                            ]
+                        },
+                        language: 'en',
+                        image: {
+                            toolbar: [
+                                'imageTextAlternative',
+                                'toggleImageCaption',
+                                'imageStyle:inline',
+                                'imageStyle:block',
+                                'imageStyle:side'
+                            ],
+                            insert: {
+                                // This is the default configuration, you do not need to provide
+                                // this configuration key if the list content and order reflects your needs.
+                                integrations: ['upload', 'url']
+                            }
+                        },
+                        table: {
+                            contentToolbar: [
+                                'tableColumn',
+                                'tableRow',
+                                'mergeTableCells'
+                            ]
+                        }
+                    })
+                    .then(editor => {
+                        // Save the editor instance to use it later
+                        window.editor = editor;
 
-                    // Listen to the change:data event
-                    editor.model.document.on('change:data', () => {
-                        // Get the editor content
-                        const editorData = editor.getData();
-                        // Update the textarea with the editor content
-                        // document.querySelector('#editor').value = editorData;
-                        $(this).val(editorData);
+                        // Listen to the change:data event
+                        editor.model.document.on('change:data', () => {
+                            // Get the editor content
+                            const editorData = editor.getData();
+                            // Update the textarea with the editor content
+                            // document.querySelector('#editor').value = editorData;
+                            $(this).val(editorData);
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
-                })
-                .catch( error => {
-                    console.error( error );
-                });
             });
 
             // Summer Note
@@ -2991,7 +3013,7 @@
             //         ['table', ['table']],
             //         ['insert', ['link', 'picture', 'video']],
             //         ['view', ['fullscreen','codeview']],
-                    
+
             //     ],
             //     styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
             //     callbacks: {
@@ -3169,58 +3191,57 @@
         // Image Cropper End
     </script>
     <script>
+        $('#course_cat_id').on('change', function() {
+            var url = $("#url").val();
+            console.log(url);
 
-        $('#course_cat_id').on('change',function(){
-                   var url = $("#url").val();
-                    console.log(url);
+            var formData = {
+                id: $(this).val(),
+            };
+            // get section for student
+            $.ajax({
+                type: "GET",
+                data: formData,
+                dataType: "json",
+                url: url + "/" + "admin/course/ajaxGetCourseSubCategory",
+                success: function(data) {
+                    var a = "";
+                    // $.loading.onAjax({img:'loading.gif'});
+                    $.each(data, function(i, item) {
+                        if (item.length) {
+                            $("#subcat_id").find("option").not(":first").remove();
+                            $("#subCatDiv ul").find("li").not(":first").remove();
 
-                    var formData = {
-                        id: $(this).val(),
-                    };
-                    // get section for student
-                    $.ajax({
-                        type: "GET",
-                        data: formData,
-                        dataType: "json",
-                        url: url + "/" + "admin/course/ajaxGetCourseSubCategory",
-                        success: function (data) {
-                            var a = "";
-                            // $.loading.onAjax({img:'loading.gif'});
-                            $.each(data, function (i, item) {
-                                if (item.length) {
-                                    $("#subcat_id").find("option").not(":first").remove();
-                                    $("#subCatDiv ul").find("li").not(":first").remove();
+                            $.each(item, function(i, section) {
+                                $("#subcat_id").append(
+                                    $("<option>", {
+                                        value: section.id,
+                                        text: section.name[lang],
+                                    })
+                                );
 
-                                    $.each(item, function (i, section) {
-                                        $("#subcat_id").append(
-                                            $("<option>", {
-                                                value: section.id,
-                                                text: section.name[lang],
-                                            })
-                                        );
-
-                                        $("#subCatDiv ul").append(
-                                            "<li data-value='" +
-                                            section.id +
-                                            "' class='option'>" +
-                                            section.name[lang] +
-                                            "</li>"
-                                        );
-                                    });
-                                    $("#subCatDiv .current").html("Select Sub Category");
-                                } else {
-                                    $("#subCatDiv .current").html("Select Sub Category");
-                                    $("#subcat_id").find("option").not(":first").remove();
-                                    $("#subCatDiv ul").find("li").not(":first").remove();
-                                }
+                                $("#subCatDiv ul").append(
+                                    "<li data-value='" +
+                                    section.id +
+                                    "' class='option'>" +
+                                    section.name[lang] +
+                                    "</li>"
+                                );
                             });
-                            // console.log(a);
-                        },
-                        error: function (data) {
-                            console.log("Error:", data);
-                        },
+                            $("#subCatDiv .current").html("Select Sub Category");
+                        } else {
+                            $("#subCatDiv .current").html("Select Sub Category");
+                            $("#subcat_id").find("option").not(":first").remove();
+                            $("#subCatDiv ul").find("li").not(":first").remove();
+                        }
                     });
-                });
+                    // console.log(a);
+                },
+                error: function(data) {
+                    console.log("Error:", data);
+                },
+            });
+        });
 
         function showCnaPrepPrice() {
             if ($('.type2').is(':checked')) {
@@ -3520,7 +3541,7 @@
 
 
     <script>
-        $('#category_id').on('change',function(){
+        $('#category_id').on('change', function() {
             console.log('changed');
         });
         getVdoCipherList();

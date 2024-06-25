@@ -3,6 +3,11 @@
     align-items: center;
     flex-wrap: wrap;
 }
+@media only screen and (max-width: 567px){
+    .common_table_header .table_btn_wrap > ul{
+        flex-wrap: nowrap !important;
+    }
+}
 
 .common_table_header .table_btn_wrap > ul > li {
     display: inline-block;

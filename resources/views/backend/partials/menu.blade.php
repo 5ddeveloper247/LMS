@@ -4,7 +4,7 @@
 <div class="container-fluid no-gutters" id="main-nav-for-chat">
     <div class="row">
         <div class="col-lg-12 p-0">
-            <div class="header_iner d-flex justify-content-between align-items-center">
+            <div class="header_iner d-flex justify-content-between align-items-center mb-4 mb-lg-5">
                 @php
                     $LanguageList = getLanguageList();
                     $path = asset(Settings('logo'));
