@@ -657,8 +657,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-
+                                                
+                                                </div>
                                                     {{-- Prep Course --}}
                                                     {{-- <div id="cna_prep_type"
                                                         class="col-xl-4 {{ isset($cna_prep_price->price) && $cna_prep_price->price != '0.00' ? '' : 'd-none' }}">
@@ -689,8 +689,19 @@
                                                         <span class="checkmark mr-2"></span>
                                                         {{ __('No') }}</label>
                                                     </div> --}}
+                                                <div class="row align-items-center">
                                                     <div
-                                                        class="col-xl-10 {{ isset($cna_prep_price->thumbnail) ? '' : 'd-none' }} full_course_image cna_prep_type">
+                                                        class="col-xl-2 {{ isset($cna_prep_price->thumbnail) ? '' : 'd-none' }} full_course_image cna_prep_type text-center">
+                                                            <div class="primary_input">
+                                                            <p class="primary_input_label">Featured</p>
+                                                            <label class="switch_toggle" for="cna_prep_price_checkbox">
+                                                                <input type="checkbox" class="" id="cna_prep_price_checkbox" name="cna_prep_featured" @if($cna_prep_price->featured == 1) checked @endif>
+                                                                <i class="slider round"></i>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                        <div
+                                                        class="col-xl-8 {{ isset($cna_prep_price->thumbnail) ? '' : 'd-none' }} full_course_image cna_prep_type">
                                                         <div class="primary_input">
                                                             <label class="primary_input_label"
                                                                 for="">{{ __('Image (RECOMMENDED DIMENSIONS: 1170X600)') }}</label>
@@ -728,11 +739,22 @@
                                                             class="preview image-editor-preview-img-2"
                                                             id="image_preview-2" />
                                                     </div>
-
+                                                </div>
+                                                <div class="row align-items-center">
                                                     {{-- Prep Course (on-demand) --}}
                                                     <div id="test_prep_type"
-                                                        class="col-xl-5 {{ isset($test_prep_price->price) && $test_prep_price->price != '0.00' ? '' : 'd-none' }} test_prep_type">
-                                                        <div class="primary_input mb-25">
+                                                        class="col-xl-2 {{ isset($test_prep_price->price) && $test_prep_price->price != '0.00' ? '' : 'd-none' }} test_prep_type text-center">
+                                                        <div class="primary_input">
+                                                            <p class="primary_input_label">Featured</p>
+                                                            <label class="switch_toggle" for="test_prep_price_checkbox">
+                                                                <input type="checkbox" class="" id="test_prep_price_checkbox" name="test_prep_featured" @if($test_prep_price->featured == 1) checked @endif>
+                                                                <i class="slider round"></i>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                        <div id="test_prep_type"
+                                                        class="col-xl-3 {{ isset($test_prep_price->price) && $test_prep_price->price != '0.00' ? '' : 'd-none' }} test_prep_type">
+                                                        <div class="primary_input mb-25 mb-md-0">
                                                             <label class="primary_input_label"
                                                                 for="">{{ __('Prep-Course Price(on-demand)') }}</label>
                                                             <input class="primary_input_field" name="test_prep_price"
@@ -779,7 +801,7 @@
                                                             class="preview image-editor-preview-img-3"
                                                             id="image_preview-3" />
                                                     </div>
-
+                                                </div>
                                                     {{-- Prep Course (Live) --}}
                                                     {{-- <div id="test_prep_graded_type"
                                                         class="col-xl-4 {{ isset($test_prep_graded_price->price) && $test_prep_graded_price->price != '0.00' ? '' : 'd-none' }}">
@@ -792,9 +814,19 @@
                                                                 value="{{ isset($test_prep_graded_price->price) && @$test_prep_graded_price->price != '0.00' ? @$test_prep_graded_price->price : null }}">
                                                         </div>
                                                     </div> --}}
-
+                                                <div class="row align-items-center">
                                                     <div
-                                                        class="col-xl-10 prep_course_live_image {{ isset($test_prep_graded_price->thumbnail) ? '' : 'd-none' }} test_prep_graded_type">
+                                                        class="col-xl-2 prep_course_live_image {{ isset($test_prep_graded_price->thumbnail) ? '' : 'd-none' }} test_prep_graded_type text-center">
+                                                        <div class="primary_input">
+                                                            <p class="primary_input_label">Featured</p>
+                                                            <label class="switch_toggle" for="test_prep_graded_checkbox">
+                                                                <input type="checkbox" class="" id="test_prep_graded_checkbox" name="test_prep_graded_featured" @if($test_prep_graded_price->featured == 1) checked @endif>
+                                                                <i class="slider round"></i>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col-xl-8 prep_course_live_image {{ isset($test_prep_graded_price->thumbnail) ? '' : 'd-none' }} test_prep_graded_type">
                                                         <div class="primary_input">
                                                             <label class="primary_input_label"
                                                                 for="">{{ __('Image (RECOMMENDED DIMENSIONS: 1170X600)') }}</label>
@@ -831,7 +863,8 @@
                                                             class="preview image-editor-preview-img-4"
                                                             id="image_preview-4" />
                                                     </div>
-
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-xl-12" id="element_course">
                                                         <div class="row">
                                                             <div class="col-xl-12">

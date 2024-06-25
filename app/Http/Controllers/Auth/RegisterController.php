@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Country;
 use App\Models\CloverPayment;
 use App\Traits\ImageStore;
 use App\Models\UserSetting;
@@ -195,7 +196,6 @@ class RegisterController extends Controller
         if (isset($data['password'])) {
             $password = Hash::make($data['password']);
         }
-
         $data = [
             'name' => $data['name'] ?? null,
             'phone' => $data['phone'] ?? null,
@@ -213,7 +213,7 @@ class RegisterController extends Controller
             'language_name' => Settings('language_name') ?? 'English',
             'language_code' => Settings('language_code') ?? 'en',
             'language_rtl' => Settings('language_rtl') ?? '0',
-            'country' => Settings('country_id'),
+            'country' => $data['country'] ?? Settings('country_id'),
             'username' => null,
             'address' => $data['mailing_address'] ?? null,
             'status' => $status,
@@ -240,6 +240,7 @@ class RegisterController extends Controller
             $user->dob = $data['dob'] ?? null;
             $user->gender = $data['gender'] ?? null;
             $user->enrolled = 'Yes';
+            $user->country = $data['country'] ?? Settings('country_id');
             $user->save();
             return $user;
         } else if (User::where('email', $data['email'])->exists()) {
@@ -302,6 +303,7 @@ class RegisterController extends Controller
         $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
         $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
         $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+        $countries = Country::orderBy('name','asc')->get();
         return view(theme('authnew.register1'), get_defined_vars());
     }
 
@@ -764,7 +766,6 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
-
         if (isset($user->error)) {
             Toastr::error($user->error, 'Error');
             return redirect()->back();
