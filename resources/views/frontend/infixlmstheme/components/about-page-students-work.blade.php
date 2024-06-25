@@ -291,7 +291,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 
-<script>
+{{-- <script>
     document.querySelectorAll(".slide").forEach(function(slide) {
         var elems = slide.querySelectorAll(".elem");
         elems.forEach(function(elem) {
@@ -322,7 +322,7 @@
             });
         });
     });
-</script>
+</script> --}}
 
 <script>
 $(document).ready(function() {

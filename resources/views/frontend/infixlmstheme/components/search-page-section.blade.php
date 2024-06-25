@@ -97,7 +97,7 @@
         <h2 class="custom_small_heading px-md-5 px-2">Please Choose Type</h2>
         <div class="filter-tabs">
         <div class="d-flex align-items-center px-md-5 px-2">
-            <ul class="nav nav-pills d-flex flex-sm-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 tab-padding" id="pills-tab" role="tablist">
+            <ul class="nav nav-pills d-flex align-items-center gap-0 gap-md-1 mt-3 tab-padding" id="pills-tab" role="tablist">
                 <li id="filter-type" class="nav-item px-1 mb-2" role="presentation">
                     <button class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 m-0 d-flex flex-column align-items-center justify-content-center active" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">
                         Type
@@ -129,7 +129,7 @@
         <!-- filter type  -->
         <div id="filter-type-content">
             <div class="d-flex align-items-center px-md-5 px-2">
-                <ul class="nav nav-pills d-flex flex-nowrap align-items-center justify-content-between gap-0 gap-md-1 mt-3 tab-padding" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills d-flex align-items-center gap-0 gap-md-1 mt-3 tab-padding" id="pills-tab" role="tablist">
                     <li class="nav-item px-1 mb-2" role="presentation">
                         <input type="radio" name="search_type" id="typeProgram" value="program" @if($request->has('search_type') && $request->get('search_type') == 'program') checked @endif>
                         <label for="typeProgram" class="nav-sub-links user-pending nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-user-pending" aria-selected="true">

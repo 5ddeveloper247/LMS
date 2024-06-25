@@ -1004,7 +1004,7 @@
     }
 
     .main_bannar {
-        background-image: url("{{ asset('public/assets/PN-Accelerated-fotor-2023070923837.jpg') }}");
+        background-image: url("{{asset(HomeContents('slider_banner'))}}");
         background-size: cover;
         height: 100%;
         position: relative;
@@ -1083,7 +1083,7 @@
 
     /* shift from contact */
     .mintban {
-        background-image: url("{{ asset('public/assets/bgpicture.jpg') }}");
+        background-image: url("{{ asset('public/assets/Section9-.jpg') }}");
         height: auto;
         background-size: cover;
     }
@@ -1418,8 +1418,8 @@
         transform: translateX(0);
     }
 
-    .percent-video video {
-        clip-path: polygon(29% 0, 100% 0, 100% 100%, 0 100%);
+    .percent-video img {
+        clip-path: polygon(26% 0, 100% 0, 100% 100%, 0 100%);
     }
 
     .percent-video {
@@ -1441,11 +1441,11 @@
     }
 
     .percent3 {
-        margin: 0 -53px 1.5rem 50px;
+        margin: 0 -63px 1.5rem 50px;
     }
 
     .percent4 {
-        margin: 0 -13px 1.5rem -8px;
+        margin: 0 -20px 1.5rem -8px;
     }
 
     .percent {
@@ -2132,7 +2132,7 @@
         }
 
         .percent4 {
-            margin: 0 -14px 1.5rem -8px !important;
+            margin: 0 -20px 1.5rem -8px !important;
         }
     }
 
@@ -2708,7 +2708,7 @@
     .online-learning {
         position: relative;
         /* Ensure relative positioning for absolute pseudo-element */
-        background-image: url('https://mchnursing.com/lms/public/frontend/infixlmstheme/img/banner/bradcam_bg_3.jpg');
+        background-image: url('{{ asset("/public/assets/Section8-Transformation.jpg") }}');
         color: white;
         /* Set text color to white for better visibility */
         background-position: center;
@@ -3535,10 +3535,8 @@
 
                 </div>
                 <div class="col-lg-6 percent-video pr-2">
-                    <img src="{{ asset('/public/uploads/images/footerimg/counter_bg.png') }}" class="w-100 h-100">
-                    {{-- <video autoplay loop muted height="100%" width="100%" style="object-fit: cover">
-                            <source src="{{ asset('/public/uploads/images/footerimg/ezgif-3-7f2a47567b.mp4') }}">
-                        </video> --}}
+                    <img src="{{ asset('/public/assets/Section5.jpg') }}" class="w-100 h-100">
+                   
                 </div>
 
             </div>
@@ -3578,11 +3576,11 @@
                 <div class="col-md-6 col-xl-7 d-flex justify-content-center about-image-main" style="gap: 1rem">
                     <div class="col-6 about-img about_us_img1 p-md-0 pr-0">
                         <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                            src="{{ asset('public/assets/courses-2.jpg') }}" class="img-fluid w-100">
+                            src="{{ asset('public/assets/About-Section 7.jpg') }}" class="img-fluid w-100 shadow">
                     </div>
                     <div class="col-6 about-img about_us_img2 p-md-0 pl-0">
                         <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                            src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid w-100">
+                            src="{{ asset('public/assets/About-Section7.jpg') }}" class="img-fluid w-100 shadow">
                     </div>
                 </div>
             </div>

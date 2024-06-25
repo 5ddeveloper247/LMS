@@ -672,7 +672,7 @@
 
                     <div class="col-lg-9 offset-1">
                         <div class="breadcam_wrap">&nbsp;
-                            <h5 class="text-white custom-heading">Program Details</h5>
+                            <h5 class="text-white custom-heading">Resource Center</h5>
                         </div>
                     </div>
                 </div>
@@ -1432,83 +1432,64 @@
                                 </div>
                             @endforelse
                         </div>
-                    </div>
-                        <div class="custom_section_color rounded_section mb-1 p-2">
-                            <h5 class="font-weight-bold custom_heading_1">Start Your Application:</h5>
-                            <p class="my-1 program-span"><i class="fa fa-calendar-days"></i>&nbsp;&nbsp; Current Cohort End :
-                                @if (isset($program_detail->currentPlan[0]))
-                                    {{-- <br class="mt-2"> --}}
-                                    <span class="font-weight-bold">
-                                        {{ \Carbon\Carbon::parse($program_detail->currentPlan[0]->edate)->format('d M Y') }}</span>
-                                @else
-                                    <span class="font-weight-bold">Not Given</span>
-                                @endif
-                            </p>
-                            <p class="my-1 program-span"><i class="fa fa-calendar-days"></i>&nbsp;&nbsp; Next Cohort Start :
-                                @if (isset($program_detail->nextPlans[0]))
-                                    {{-- <br class="mt-2"> --}}
-                                    <span
-                                        class="font-weight-bold">{{ \Carbon\Carbon::parse($program_detail->nextPlans[0]->sdate)->format('d M Y') }}</span>
-                                @else
-                                    <span class="font-weight-bold">Not Given</span>
-                                @endif
-                            </p>
-                            @if (isset($program_detail->programPlans))
-                                <div class="row mt-3 text-center">
-                                    @if (!Auth::user())
-                                        <div class="col-12">
-                                            <a href="{{ route('buyNow', ['id' => $program_detail->id, 'plan_id' => $program_detail->currentProgramPlan[0]->id]) }}"
-                                                class="theme_btn small_btn4 px-2 pt-1 pb-2">Apply
-                                                Now</a>
+                        <div class="row mx-0 mt-2">
+                            @forelse($recent_program as  $program)
+                                <div class="col-xl-5 col-lg-5 col-md-6 col-4 cus-mb-5 pl-0 pr-2">
+                                    <a href="{{ route('programs.detail', [$program->id]) }}">
+                                        <img style="object-fit: cover;" src="{{ getCourseImage($program->icon) }}"
+                                             class="img-fluid img_height">
+                                    </a>
+                                </div>
+                                <div class="col-xl-7 col-lg-7 col-md-6 col-8 p-0">
+                                    <p class="p-clamp program-span">
+                                        <a class="text-dark" href="{{ route('programs.detail', [$program->id]) }}">
+                                            {{ $program->programtitle }}</a>
+                                    </p>
+                                    <p> {{ round((strtotime($program->currentProgramPlan[0]->edate) - strtotime($program->currentProgramPlan[0]->sdate)) / 604800, 1) }}
+                                        Weeks</p>
+                                    <p class="color"> ${{ $program->currentProgramPlan[0]->amount }}</p>
+                                </div>
+                            @empty
+                                <div class="col-md-12">
+                                    <div
+                                        class="Nocouse_wizged d-flex align-items-center justify-content-center text-center">
+                                        <div class="thumb">
+                                            <img style="width: 20px"
+                                                 src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png"
+                                                 alt="">
                                         </div>
-                                    @endif
-                                    <div class="col-12 mb-1 mt-2">
-                                        <a href="{{ route('application-requirements') }}" class="program-span">Application
-                                            Requirements</a>
+                                        <h6>
+                                            {{ __('No Program Found') }}
+                                        </h6>
                                     </div>
                                 </div>
-                            @endif
+                            @endforelse
                         </div>
+                    </div>
+                  
                      
-                   
-                    <!-- <div
-                            class="custom_section_color d-lg-block d-none my-md-3 rounded_section my-2 pt-2 px-2 course_tab">
-                            <h5 class="font-weight-bold">You May also Like</h5>
-                            <div class="row mx-0 mt-2">
-                                @forelse($recent_program as  $program)
-    <div class="col-xl-5 col-lg-5 col-md-6 cus-mb-5 pl-0 pr-2">
-                                        <a href="{{ route('programs.detail', [$program->id]) }}">
-                                            <img style="object-fit: cover;" src="{{ getCourseImage($program->icon) }}"
-                                                 class="img-fluid">
-                                        </a>
-                                    </div>
-                                    <div class="col-xl-7 col-lg-7 col-md-6 p-0">
-                                        <p class="p-clamp program-span">
-                                            <a class="text-dark" href="{{ route('programs.detail', [$program->id]) }}">
-                                                {{ $program->programtitle }}</a>
-                                        </p>
-                                        <p> {{ round((strtotime($program->currentProgramPlan[0]->edate) - strtotime($program->currentProgramPlan[0]->sdate)) / 604800, 1) }}
-                                            Weeks</p>
-                                        <p class="color"> ${{ $program->currentProgramPlan[0]->amount }}</p>
-                                    </div>
-                            @empty
-                                    <div class="col-md-12">
-                                        <div
-                                            class="Nocouse_wizged d-flex align-items-center justify-content-center text-center">
-                                            <div class="thumb">
-                                                <img style="width: 20px"
-                                                     src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png"
-                                                     alt="">
-                                            </div>
-                                            <h6>
-                                                {{ __('No Program Found') }}
-                                            </h6>
-                                        </div>
-                                    </div>
-    @endforelse
+                   <div class="prog_blk mt-4" style="background-image: url({{ asset('public/assets/c1.jpg') }})";>
+                    <div class="txt">
+                        <div class="rating_star">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                
+                            <h5 class="text-white">Paula Martin </h5>
+
+                            <h5 class="text-white">
+
+                            </h5>
+                            <p class="paragraph_custom_height text-white">
+                            </p>
                             </div>
-                        </div> -->
-                 
+                        </div>
+                    </div>
+                   </div>
+                  
 
                     @if ($program_detail->review_id != '0' && !empty($program_detail->review()))
                         @if (!empty($program_detail->review()->first()))
@@ -1551,7 +1532,7 @@
                             </div>
                         @endif
                     @endif
-
+{{-- socail media section --}}
                     <div class="custom_section_color rounded_section my-4 p-3">
                         <h5 class="font-weight-bold custom_heading_1 mt-2">Social Links:</h5>
                         <div class="row my-md-4">

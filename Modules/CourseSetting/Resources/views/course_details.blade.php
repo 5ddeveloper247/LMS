@@ -360,6 +360,7 @@
                                                                     box-shadow: 0px 10px 15px rgb(236 208 244 / 30%);
                                                                     border-radius: 50px;
                                                                 }
+                                                                
                                                             </style>
                                                             <hr>
                                                             <div class="row d-flex">

@@ -200,10 +200,6 @@
         transform: translateY(0);
         transition: all 2s ease;
     }
-    /* .custom_shadow:hover {
-     border: 1px solid rgb(255, 255, 255);
-       } */
-
     .custom_shadow {
         border: 1px solid rgb(255, 255, 255);
         box-shadow: 0 3px 20px rgb(0 0 0 / 5%);
@@ -514,6 +510,9 @@
     }
 
     @media (max-width: 576px) {
+        .fw-light{
+            margin-top: 10px;
+        }
         .small_gap {
             gap: .2rem;
         }
@@ -523,6 +522,7 @@
             display: flex;
             justify-content: center;
             margin: auto;
+            text-align: center;
         }
 
         .inner-white-point-of-bar {
@@ -608,10 +608,11 @@
 
         .mr_our_process {
             margin-right: 0px !important;
+            margin-left: 10px !important;
         }
 
         .ml_our_process {
-            margin-left: 0px !important;
+            margin-left: 10px !important;
         }
     }
 
@@ -711,7 +712,7 @@
             <div class="breadcrumb_area position-relative">
                 <div class="w-100 h-100 position-absolute bottom-0 left-0">
                     <img alt="Banner Image" class="w-100 h-100 img-cover"
-                        src="{{ asset('public/assets/page-title-apply.jpg') }}">
+                        src="{{ asset('public/assets/Application Req.jpg') }}">
                 </div>
                 <div class="col-lg-9 col-10 offset-1">
                     <div class="breadcam_wrap">
@@ -753,7 +754,7 @@
                         <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2>
                         <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                            <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
+                            <p class="fw-light text-sm-end">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
                                 <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round"
@@ -839,7 +840,7 @@
                                     </path>
                                 </g>
                             </svg>
-                            <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
+                            <p class="fw-light">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
                                 sed quia consequuntur magni res.</p>
                         </div>
                     </div>
@@ -857,7 +858,7 @@
                         <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2>
                         <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                            <p class="fw-light text-end m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
+                            <p class="fw-light text-sm-end">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
                                 fugit, sed quia consequuntur magni res.</p>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                 height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
@@ -906,7 +907,7 @@
                                     </path>
                                 </g>
                             </svg>
-                            <p class="fw-light m-0">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
+                            <p class="fw-light">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
                                 sed quia consequuntur magni res.</p>
                         </div>
                     </div>
@@ -1177,7 +1178,7 @@
 
                 $(".owl-carousel").owlCarousel({
                     loop: true,
-                    autoplay: true,
+                    autoplay: false,
                     autoplayTimeout: 8000,
                     // navigation : true,
 

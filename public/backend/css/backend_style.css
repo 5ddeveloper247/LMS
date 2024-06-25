@@ -2529,12 +2529,16 @@ body.login .footer_area a {
         margin-left: 0
     }
     #sidebar {
-        min-width: 40%;
-        max-width: 40%;
-        margin-left: -50%
+        min-width: 45%;
+        max-width: 45%;
+        margin-left: -45%
     }
     #sidebar .sidebar-header {
     padding: 26px 5px 26px 26px !important;
+}
+#sidebar .large_logo{
+    width: 175px;
+    margin: auto;
 }
 }
 
@@ -11742,7 +11746,9 @@ table.dataTable thead .sorting_desc:after {
 }
 .primary_file_uploader input::placeholder {
     color: var(--system_secendory_color);
-    width: 70px;
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .primary_file_uploader input:placeholder-shown{
     text-overflow: ellipsis;
