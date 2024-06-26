@@ -144,11 +144,6 @@
 
         }
 
-        .custom_height_2 {
-            height: 71vh !important;
-            width: 100%;
-        }
-
         @media only screen and (min-width: 501px) and (max-width: 767px) {
             .btn_responsive {
                 font-size: 13px;
@@ -158,7 +153,6 @@
                 height: 21rem;
                 overflow: auto;
             }
-
         }
 
         @media only screen and (min-width:1450px) {
@@ -228,30 +222,30 @@
                 <div class=" d-flex align-items-center col-md-6 col-12 px-lg-5 px-3" data-aos="fade-left"
                     data-aos-delay="500">
                     <div class="pl-md-5 pt-3 pt-md-0">
-                        <div class="custom_height_2 overflow-auto hide-scrollbar">
-                        <h2 class="custom_small_heading mt-2 mt-lg-0 font-weight-bold">
+                        <div class="custom_height_2 overflow-auto hide-scrollbar d-flex flex-column justify-content-center">
+                        <h2 class="custom_small_heading mt-2 mt-lg-0 font-weight-bold mb-md-4 mb-2">
                             Why Join Merkaii Xcellence Prep?
                         </h2>
-                        <p class="text-justify shadow-p right-divv">
+                        <p class="text-justify shadow-p right-divv mb-md-4 mb-2">
                             As a faculty member at Merkaii Xcellence Prep, you will have the opportunity to:
                         </p>
-                        <p><span class="font-weight-bold">Shape the Future of Healthcare:</span> You will play a vital role in educating the 
+                        <p class="mb-2"><span class="font-weight-bold">Shape the Future of Healthcare:</span> You will play a vital role in educating the 
                             next generation of medical professionals who will define the future of 
                             healthcare.
                         </p>
-                        <p><span class="font-weight-bold">Work with a Collaborative and Passionate Team:</span> Our faculty is 
+                        <p class="mb-2"><span class="font-weight-bold">Work with a Collaborative and Passionate Team:</span> Our faculty is 
                             comprised of experienced and dedicated educators who are passionate about 
                             sharing their knowledge and expertise.
                         </p>
-                        <p><span class="font-weight-bold">Be at the Forefront of Medical Education:</span> We are constantly innovating 
+                        <p class="mb-2"><span class="font-weight-bold">Be at the Forefront of Medical Education:</span> We are constantly innovating 
                             and developing new teaching methods to ensure our students receive the best
                             possible education.
                         </p>
-                        <p><span class="font-weight-bold">Enjoy a Supportive and Rewarding Work Environment:</span> We value our 
+                        <p class="mb-2"><span class="font-weight-bold mb-2">Enjoy a Supportive and Rewarding Work Environment:</span> We value our 
                             faculty and provide them with the support and resources they need to 
                             succeed.
                         </p>
-                        <p><span class="font-weight-bold">Teacher Well-Being:</span> We believe that happy teachers are the foundation of 
+                        <p class="mb-2"><span class="font-weight-bold mb-2">Teacher Well-Being:</span> We believe that happy teachers are the foundation of 
                             successful students. By taking exceptional care of our educators, we ensure 
                             they can focus wholeheartedly on their goals, bringing passion and dedication 
                             to every lesson.
@@ -268,7 +262,7 @@
         <div class="container py-md-5 py-3">
             <div class="row mx-2 mx-xl-5">
                 <div class="col-md-12">
-                    <h2 class="custom_small_heading font-weight-bold pb-md-5 pb-3 text-center">
+                    <h2 class="custom_small_heading font-weight-bold pb-md-5 pb-3 text-center text-capitalize">
                         Merakii Tutors use Saunders and Elsevier for Tutoring</h2>
                 </div>
                 @forelse ($instructors as $instructor)
@@ -347,29 +341,29 @@
 
         <!-- becomeInsructor section  -->
         <div class="row custom_section_color mb-md-5 mb-4">
-            <div class="col-md-6 px-lg-4 mb-4 px-3 d-flex align-items-center">
-                <div class="pt-md-5 pt-3 custom-l-padd pl-sm-5 p-2" data-aos="fade-right">
-                    <h2 class="custom_small_heading font-weight-bold">
+            <div class="col-md-6 p-lg-4 px-3 d-flex align-items-center">
+                <div class="custom-l-padd pl-sm-5 p-2 custom_height_1 d-flex flex-column justify-content-center" data-aos="fade-right">
+                    <h2 class="custom_small_heading font-weight-bold tex-capitalize d-flex-flex-column justify-content-center mb-md-4 mb-3">
                         Who we are looking for
                     </h2>
-                    <p><span class="font-weight-bold">Passionate Educators:</span> We are seeking educators who are passionate about 
+                    <p class="mb-2"><span class="font-weight-bold">Passionate Educators:</span> We are seeking educators who are passionate about 
                         their field and dedicated to helping students succeed.</p>
-                    <p><span class="font-weight-bold">Strong Communication Skills:</span> The ability to communicate complex medical
+                    <p class="mb-2"><span class="font-weight-bold">Strong Communication Skills:</span> The ability to communicate complex medical
                             concepts clearly and concisely is essential.</p>
-                    <p><span class="font-weight-bold">Clinical Expertise:</span> We value educators with a strong foundation in clinical 
+                    <p class="mb-2"><span class="font-weight-bold">Clinical Expertise:</span> We value educators with a strong foundation in clinical 
                                 healthcare skills.</p>
-                    <p><span class="font-weight-bold">Commitment to Collaboration:</span> We are looking for team players who are 
+                    <p class="mb-2"><span class="font-weight-bold">Commitment to Collaboration:</span> We are looking for team players who are 
                                     excited to collaborate with colleagues to create a dynamic learning 
                                     environment.</p>
                     <br>
-                    <p>If you are a highly motivated and experienced educator who is passionate about 
+                    <p class="mb-2">If you are a highly motivated and experienced educator who is passionate about 
                         making a difference in the future of healthcare education, we encourage you to 
                         apply. Merkaii Xcellence Prep offers a competitive salary and benefits package, as 
                         well as the opportunity to work in a rewarding student and staff-centered 
                         environment.</p>
                     @if (!auth()->check())
                         <button
-                            class="border-purple text-purple font-weight-bold hit btn_responsive mt-3 px-2 px-md-3 py-2 openModal">
+                            class="border-purple text-purple font-weight-bold hit btn_responsive mt-3 px-2 px-md-3 py-2 openModal" style="width: fit-content;">
                             Become
                             an
                             Instructor
@@ -378,8 +372,8 @@
                 </div>
             </div>
             <div class="col-md-6 px-0" data-aos="fade-left">
-                <div>
-                    <img src="{{ asset('public/assets/Instructor2.jpg') }}" class="custom_height_2">
+                <div class="">
+                    <img src="{{ asset('public/assets/Instructor2.jpg') }}" class="h-100 w-100">
                 </div>
             </div>
         </div>

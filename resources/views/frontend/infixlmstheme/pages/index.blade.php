@@ -1086,6 +1086,8 @@
         background-image: url("{{ asset('public/assets/Section9-.jpg') }}");
         height: auto;
         background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
     .flowdiv {
@@ -1617,8 +1619,15 @@
     .about-img {
         height: 100%;
         width: 250px;
+        scale: 1;
+        overflow: hidden;
+        border-radius: 20px;
     }
 
+.about-img:hover img{
+    scale: 1.2;
+    transition: all 2s;
+}
     .at_merakii {
         font-size: 1.8rem;
     }

@@ -9264,6 +9264,10 @@ input[type="number"] {
 }
 
 @media only screen and (min-width: 1440px) {
+    .custom_height_1,
+    .custom_height_2 {
+        height: 580px !important;
+    }
     .top_right_btn {
         right: 5% !important;
     }
@@ -16403,6 +16407,12 @@ body {
 }
 .custom_list_style li{
     list-style: none;
+}
+.custom_height_2, .custom_height_1 {
+    height: 420px;
+    overflow: auto;
+    scrollbar-width: none;
+    width: 100%;
 }
 @media only screen and (max-width: 377px) {
     .course__play_warp .course__play_list {

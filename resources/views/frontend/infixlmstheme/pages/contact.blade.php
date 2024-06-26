@@ -420,10 +420,6 @@
             transform: translateY(-50%);
         }
 
-        .custom-padding {
-            padding: 30px 0;
-        }
-
         @media only screen and (max-width: 768px) {
 
             .dataflow h2,
@@ -537,10 +533,6 @@
 
             .selectProgram {
                 margin: 0 0 40px;
-            }
-
-            .custom-padding {
-                padding: 80px !important;
             }
         }
 
@@ -734,7 +726,7 @@
         </div>
     </div>
 
-    <div class="container custom-padding px-lg-5 px-2" id="contact-form-ankar">
+    <div class="container custom-padding p-lg-5 p-3" id="contact-form-ankar">
         <div class="row px-xl-5 px-2">
             {{-- <div class="col-md-12 mx-1">
                 <div class="row">

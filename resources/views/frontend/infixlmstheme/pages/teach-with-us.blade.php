@@ -267,11 +267,6 @@
         box-shadow: 0px 20px 13px -27px !important;
     }
 
-    .custom_height_1,
-    .custom_height_2 {
-        height: 420px;
-    }
-
     .custom-heading {
         font-size: 60px;
     }
@@ -424,11 +419,6 @@
 
     @media only screen and (max-width: 767px) {
 
-        .custom_height_1,
-        .custom_height_2 {
-            height: 300px !important;
-        }
-
         .fw-light {
             margin-top: 10px;
         }
@@ -500,11 +490,6 @@
     @media only screen and (min-width: 1650px) {
         .section__title {
             height: auto !important;
-        }
-
-        .custom_height_1,
-        .custom_height_2 {
-            height: 580px !important;
         }
 
         .hit {
@@ -596,9 +581,8 @@
 
             <div class="row py-md-5 px-xl-5 py-4 px-3">
                 <div class="col-md-12 text-center">
-                    <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3"> What We Offer You to Shape the Future of Healthcare
-                        Education
-                        Become a changemaker in healthcare education.</h2>
+                    <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3 text-capitalize"> What We Offer You to Shape the Future of Healthcare
+                        Education.</h2>
                 </div>
                 <div class="col-md-6 col-12 px-md-2" data-aos="fade-right">
                     <img src="{{ asset('public/assets/Teach1.jpg') }}" class="custom_height_1 w-100"
@@ -607,28 +591,30 @@
 
                 <div class="col-md-6 col-12 my-auto px-md-1" data-aos="fade-left" data-aos-delay="500">
                     <div class="px-xl-3 pt-4 pt-md-0">
-                        <div class="custom_height_2 overflow-auto hide-scrollbar">
-                            <h5 class="custom_text_small font-weight-bold">
+                        <div class="custom_height_2 overflow-auto hide-scrollbar d-flex flex-column justify-content-center text-justify">
+                            <h5 class="custom_text_small font-weight-bold text-capitalize mb-3">Become a changemaker in healthcare education</h5>
+                            <h5 class="custom_text_small font-weight-bold text-capitalize mb-3">
                                 Merkaii Xcellence Prep offers
-                                a platform designed to empower passionate educators like you. Here's how
+                                a platform designed to empower passionate educators like you
                             </h5>
-                            <p class="text-justify"><span class="font-weight-bold">Be Your Own Curriculum Boss: </span> and
+                            <h5 class="custom_text_small font-weight-bold text-capitalize mb-md-4 mb-3">Here's how</h5>
+                            <p class="mb-2"><span class="font-weight-bold">Be Your Own Curriculum Boss: </span> and
                                 publish the course you envision,
                                 using your preferred teaching methods and content. You have complete
                                 control over the material you deliver.</span></p>
-                            <p class="text-justify"><span class="font-weight-bold">Share Your Passion, Amplify Your
+                            <p class="mb-2"><span class="font-weight-bold">Share Your Passion, Amplify Your
                                     Impact:</span> Our platform empowers you to
                                 teach the subjects you're most passionate about. Share your knowledge and
                                 inspire the next generation of healthcare professionals.</span></p>
-                            <p class="text-justify"><span class="font-weight-bold">Build a Thriving Community:</span>
+                            <p class="mb-2"><span class="font-weight-bold">Build a Thriving Community:</span>
                                 Collaborate and share knowledge with a
                                 network of passionate educators and eager learners.</span></p>
-                            <p class="text-justify"><span class="font-weight-bold">Monetize Your Expertise:</span> Sharpen
+                            <p class="mb-2"><span class="font-weight-bold">Monetize Your Expertise:</span> Sharpen
                                 your skills by developing and delivering
                                 courses. You earn directly for each student you enrolled, creating a rewarding
                                 financial return.
                                 </span></p>
-                            <p class="text-justify"><span class="font-weight-bold">
+                            <p class="mb-2"><span class="font-weight-bold">
                                     Freedom and Flexibility:</span> Design your course schedule and tailor your
                                 teaching approach to achieve a healthy work-life balance.
                                 </span></p>
@@ -640,9 +626,9 @@
         </div>
         <!-- <x-about-page-gallery :about="$about" /> -->
         {{-- custom component made by arsam --}}
-        <div class="about_gallery_area px-md-5 pb-3 pb-md-5">
+        <div class="about_gallery_area pb-3 pb-md-5">
             <div class="container px-lg-5">
-                <div class="row align-items-center gallery_area_row">
+                <div class="row align-items-center gallery_area_row px-lg-5">
                     <div class="col-lg-5 col-md-6">
                         <div class="section__title">
                             <h2 class="custom_small_heading mb-4 font-weight-bold">Our Resources Your Guide to Instructor
@@ -653,7 +639,7 @@
                                 why we provide a comprehensive suite of resources and support to help you create,
                                 launch, and grow your courses.</p>
                             <div class="d-flex mt-3">
-                                <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
+                                <img src="{{ asset('public/assets/course.png') }}"
                                     style="height: 50px">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
                                     <h5 class="custom_text_small font-weight-bold">Course Creation Made Easy</h5>
@@ -662,7 +648,7 @@
                                 </div>
                             </div>
                             <div class="d-flex mt-3">
-                                <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
+                                <img src="{{ asset('public/assets/organization.png') }}"
                                     style="height: 50px">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
                                     <h5 class="custom_text_small font-weight-bold">Stay Organized</h5>
@@ -673,7 +659,7 @@
                             </div>
                             {{-- 3 --}}
                             <div class="d-flex mt-3">
-                                <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
+                                <img src="{{ asset('public/assets/team.png') }}"
                                     style="height: 50px">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
                                     <h5 class="custom_text_small font-weight-bold">Dedicated Support Team</h5>
@@ -684,7 +670,7 @@
                             </div>
                             {{-- 4 --}}
                             <div class="d-flex mt-3">
-                                <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
+                                <img src="{{ asset('public/assets/marketing.png') }}"
                                     style="height: 50px">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
                                     <h5 class="custom_text_small font-weight-bold">Marketing and Promotion Tools</h5>
@@ -921,7 +907,7 @@
         {{-- slider timeline --}}
         <div class="our-process-section-container bg mt-3">
             <div class="our-process-section-wrapper px-sm-3 px-2 py-lg-5 py-4">
-                <h2 class="custom_small_heading font-weight-bold text-center mb-3 mb-md-4">The How to Begin the Independent Educator Journey</h2>
+                <h2 class="custom_small_heading font-weight-bold text-center mb-3 mb-md-4 text-capitalize">The How to Begin the Independent Educator Journey</h2>
                 <div class="w-100 d-flex justify-content-start">
                     <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right"
                         data-aos-duration="1000">
@@ -933,12 +919,13 @@
                                 <p class="fw-light text-md-end">Sign up for a Teacher's Plan that best suits your needs and curriculum goals. We 
                                     offer various options to give you the flexibility, resources and control you deserve to
                                     thrive.</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
+                                    <img src="{{ asset('public/assets/register.png') }}" style="height: 35px; width: 35px;">
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                     viewBox="0 0 24 24">
                                     <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round"
                                         stroke-linejoin="round" stroke-width="2"
                                         d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
-                                </svg>
+                                </svg> --}}
                             </div>
                         </div>
                         <div class="side-bar-for-process-section">
@@ -958,7 +945,7 @@
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 02</h2> --}}
                             <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Develop Your Curriculum</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                     height="50px" x="0px" y="0px" viewBox="0 0 50 50"
                                     style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                     <g>
@@ -1017,7 +1004,8 @@
                                             d="M15.8,33.8h-5c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8h5c0.5,0,0.8-0.4,0.8-0.8C16.7,34.2,16.3,33.8,15.8,33.8z">
                                         </path>
                                     </g>
-                                </svg>
+                                </svg> --}}
+                                <img src="{{ asset('public/assets/curriculumn.png') }}" style="height: 35px;width: 35px;">
                                 <p class="fw-light">Craft your compelling curriculum! Outline your course content, including learning 
                                     objectives, lesson structure, assignments, and assessments. Identify the valuable 
                                     skills and knowledge you’ll impart to your students.</p>
@@ -1041,7 +1029,8 @@
                                 <p class="fw-light text-md-end">Share your expertise through engaging video lectures. Merkaii Xcellence Prep 
                                     provides all the tools you need to record high-quality videos from the comfort of 
                                     your own space.</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
+                                    <img src="{{ asset('public/assets/video.png') }}" style="height: 35px; width: 35px;">
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                     height="50px" x="0px" y="0px" viewBox="0 0 50 50"
                                     style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                     <g>
@@ -1049,7 +1038,7 @@
                                             d="M21.5,0c-1.9,0-3.5,1.2-4.2,2.8h-5c-0.6,0-1.2,0.5-1.2,1.1v1.7H6.5C4.6,5.7,3,7.2,3,9.1v37.5C3,48.5,4.6,50,6.5,50h25.5  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H6.5c-0.7,0-1.2-0.5-1.2-1.1V9.1C5.3,8.4,5.8,8,6.5,8h4.6v1.7H8.2  c0,0-0.1,0-0.1,0c-0.6,0.1-1.1,0.5-1,1.1v34.1c0,0.6,0.5,1.1,1.2,1.1h26.6c0.6,0,1.2-0.5,1.2-1.1V38c0.2,0,0.4,0,0.6,0  c0.4,0,0.8,0,1.2-0.1v8.6c0,0.6-0.5,1.1-1.2,1.1c-0.6,0-1.2,0.5-1.2,1.1c0,0.6,0.5,1.1,1.1,1.2c0,0,0,0,0,0c1.9,0,3.5-1.5,3.5-3.4  v-9.1c0.1,0,0.3-0.1,0.4-0.1l4.4,7c0.3,0.5,1.1,0.7,1.6,0.4c0.5-0.3,0.7-1,0.4-1.6l0,0l-4.3-6.9c2.7-1.8,4.5-4.9,4.5-8.4  c0-4.4-2.9-8.2-6.9-9.6V9.1c0-1.9-1.6-3.4-3.5-3.4h-4.6V4c0-0.6-0.5-1.1-1.2-1.1h-5C25,1.2,23.4,0,21.5,0z M21.5,2.3  c1.2,0,2.1,0.8,2.3,1.9c0.1,0.5,0.6,0.9,1.1,0.9h4.7v4.5H13.4V5.1h4.7c0.6,0,1-0.4,1.1-0.9C19.4,3.1,20.4,2.3,21.5,2.3z M31.9,8  h4.6c0.7,0,1.2,0.5,1.2,1.1v8.6c-0.4,0-0.8-0.1-1.2-0.1c-0.2,0-0.4,0-0.6,0v-6.9c0-0.6-0.5-1.1-1.2-1.1h-2.9V8z M9.4,11.9h24.3V18  c-4.3,1.2-7.5,5.2-7.5,9.8s3.2,8.6,7.5,9.8v6.1H9.4V11.9z M12.7,17.6c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8C12.8,17.6,12.8,17.6,12.7,17.6z M36.6,19.9c4.5,0,8.1,3.5,8.1,8  s-3.6,8-8.1,8s-8.1-3.5-8.1-8S32.1,19.9,36.6,19.9z M12.7,23.3c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1c0,0,0,0,0,0h9.3  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,23.3,12.8,23.3,12.7,23.3z M12.7,29c-0.6,0-1.1,0.6-1.1,1.2  c0,0.6,0.6,1.1,1.2,1.1h9.3c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,29,12.8,29,12.7,29z M12.7,34.7  c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8  C12.8,34.7,12.8,34.7,12.7,34.7z">
                                         </path>
                                     </g>
-                                </svg>
+                                </svg> --}}
                             </div>
                         </div>
                         <div class="side-bar-for-process-section">
@@ -1067,7 +1056,8 @@
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 04</h2> --}}
                             <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Launch Your Course</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
+                                <img src="{{ asset('public/assets/launch-course.png') }}" style="height: 35px; width: 35px;">
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                     fill="var(--system_primery_color)" x="0px" y="0px" viewBox="0 0 50 48"
                                     style="enable-background:new 0 0 50 48;" xml:space="preserve">
                                     <g>
@@ -1087,7 +1077,7 @@
                                             d="M35.9,43.3c-1.3,0-2.3,1.1-2.3,2.4c0,1.3,1,2.4,2.3,2.4s2.3-1.1,2.3-2.4C38.3,44.3,37.2,43.3,35.9,43.3z M35.9,46.4  c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8s0.8,0.4,0.8,0.8S36.4,46.4,35.9,46.4z">
                                         </path>
                                     </g>
-                                </svg>
+                                </svg> --}}
                                 <p class="fw-light">Once everything is polished, launch your course and start inspiring future 
                                     healthcare professionals! Merkaii Xcellence Prep handles the marketing and student
                                     enrollment, so you can focus on what you do best – teaching.</p>
@@ -1210,7 +1200,7 @@
                                 class="col-sm-6 col-lg-4 d-flex justify-content-center justify-content-center d-flex mb-3">
                                 <div class="card custom_card_plan shadow">
                                     <div class="card-body">
-                                        <h5 class="custom_text_small price-card__plan--v2 {{ $heading }}">
+                                        <h5 class="custom_text_small price-card__plan--v2 mb-2 {{ $heading }}">
                                             {{ $package->title ?? 'Coming Soon' }}</h5>
                                         <p class="mb-4 pricing-para">{{ $package->description ?? 'Coming Soon' }}</p>
 
