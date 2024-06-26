@@ -77,6 +77,23 @@
                                                 <div class="col-xl-12">
                                                     <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
+                                                               for="">{{ __('Name') }}</label>
+                                                        <input name="name" id="name"
+                                                               class="primary_input_field name {{ @$errors->has('name') ? ' is-invalid' : '' }}"
+                                                               placeholder="{{ __('Page Name') }}"
+                                                               type="text"
+                                                               value="{{(isset($slider) && $slider->name != null) ? $slider->name : old('name')}}" {{$errors->has('name') ? 'autofocus' : ''}}>
+                                                        @if ($errors->has('name'))
+                                                            <span class="invalid-feedback d-block mb-10"
+                                                                  role="alert">
+                                                            <strong>{{ @$errors->first('name') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    <div class="primary_input mb-25">
+                                                        <label class="primary_input_label"
                                                                for="">{{ __('common.Title') }}</label>
                                                         <input name="title" id="title"
                                                                class="primary_input_field name {{ @$errors->has('title') ? ' is-invalid' : '' }}"
@@ -372,21 +389,22 @@
                                             <th scope="col">{{ __('courses.Course') }}</th>
                                         @endif
                                         @if(!isModuleActive('Org'))
+                                            <th scope="col">{{ __('Page Name') }}</th>
                                             <th scope="col">{{ __('common.Title') }}</th>
                                             <th scope="col">{{ __('common.Sub Title') }}</th>
                                         @endif
                                         <th scope="col">{{ __('common.Image') }}</th>
                                         @if(!isModuleActive('Org'))
-                                            <th scope="col">{{ __('common.Type') }}(1)</th>
+                                            {{-- <th scope="col">{{ __('common.Type') }}(1)</th> --}}
 
-                                            <th scope="col">{{ __('frontendmanage.Button Title') }}(1)</th>
-                                            <th scope="col">{{ __('frontendmanage.Button Link') }}(1)</th>
-                                            <th scope="col">{{ __('frontendmanage.Button Image') }}(1)</th>
+                                            <th scope="col">{{ __('frontendmanage.Button Title') }}</th>
+                                            <th scope="col">{{ __('frontendmanage.Button Link') }}</th>
+                                            {{-- <th scope="col">{{ __('frontendmanage.Button Image') }}</th> --}}
 
-                                            <th scope="col">{{ __('common.Type') }}(2)</th>
+                                            {{-- <th scope="col">{{ __('common.Type') }}(2)</th>
                                             <th scope="col">{{ __('frontendmanage.Button Title') }}(2)</th>
                                             <th scope="col">{{ __('frontendmanage.Button Link') }}(2)</th>
-                                            <th scope="col">{{ __('frontendmanage.Button Image') }}(2)</th>
+                                            <th scope="col">{{ __('frontendmanage.Button Image') }}(2)</th> --}}
                                         @endif
                                         <th scope="col">{{ __('common.Status') }}</th>
                                         <th scope="col">{{ __('common.Action') }}</th>
@@ -397,9 +415,11 @@
                                         <tr>
                                             <th><span class="m-3">{{ $key+1 }}</span></th>
                                             @if (Settings('frontend_active_theme') == 'tvt')
+                                                <td>{{@$slider->course->name }}</td>
                                                 <td>{{@$slider->course->title }}</td>
                                             @endif
                                             @if(!isModuleActive('Org'))
+                                                <td>{{@$slider->name }}</td>
                                                 <td>{{@$slider->title }}</td>
                                                 <td>{{@$slider->sub_title }}</td>
                                             @endif
@@ -411,18 +431,18 @@
                                                 </div>
                                             </td>
                                             @if(!isModuleActive('Org'))
-                                                <td>{{@$slider->btn_type1==1?'Text':'Image' }}</td>
+                                                {{-- <td>{{@$slider->btn_type1==1?'Text':'Image' }}</td> --}}
                                                 <td>{{@$slider->btn_title1 }}</td>
                                                 <td>{{@$slider->btn_link1 }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     <div>
                                                         <img style="max-width: 70px"
                                                              src="{{asset(@$slider->btn_image1)}}"
                                                              alt=""
                                                              class="img img-responsive m-2">
                                                     </div>
-                                                </td>
-                                                <td>{{@$slider->btn_type2==1?'Text':'Image' }}</td>
+                                                </td> --}}
+                                                {{-- <td>{{@$slider->btn_type2==1?'Text':'Image' }}</td>
                                                 <td>{{@$slider->btn_title2 }}</td>
                                                 <td>{{@$slider->btn_link2 }}</td>
                                                 <td>
@@ -432,7 +452,7 @@
                                                              alt=""
                                                              class="img img-responsive m-2">
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                             @endif
                                             <td>
                                                 <label class="switch_toggle" for="active_checkbox{{@$slider->id }}">

@@ -40,7 +40,7 @@
 
         .theme_btn.small_btn2 {
             white-space: nowrap;
-            border-radius: 16px !important;
+            /* border-radius: 16px !important; */
         }
 
         .on_cursor:hover {
@@ -296,14 +296,14 @@
                                                 </button>
                                             </div>
 
-                                            <input type="text" class="form-control" name="query" id="search"
+                                            <input type="text" class="form-control search_courses" name="query"
                                                 placeholder="{{ __('Search') }}"
                                                 onfocus="this.placeholder = ''"
                                                 onblur="this.placeholder = '{{ __('Search') }}'">
                                         </div>
                                     </form>
                                 @endif
-                                <div id="courses_list" class="position-absolute"></div>
+                                <div class="search_courses_list position-absolute"></div>
                             </div>
                         </div>
                     </div>
@@ -320,12 +320,12 @@
                                 </div>
                             </form>
                         @endif
-                        <div id="courses_list" class="position-absolute"></div>
                     </div>
                     
-                    <div class="collapse" id="collapseExample" style="position: absolute; top:100%; left:10%; width: 80%;">
-                        <input type="text" class="form-control" name="query" id="search_input" placeholder="{{ __('Search') }}"
+                    <div class="collapse d-md-none" id="collapseExample" style="position: absolute; top:100%; left:10%; width: 80%;">
+                        <input type="text" class="form-control search_courses" name="query" id="search_input" placeholder="{{ __('Search') }}"
                                onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ __('Search') }}'" style="position:relative; top: 100%">
+                            <div class="search_courses_list position-absolute"></div>
                     </div>
                     
 
@@ -767,13 +767,4 @@
         });
     }
 </script>
-<script>
-     document.addEventListener('click', function(event) {
-        var isClickInside = document.getElementById('collapseExample').contains(event.target);
-        var isIconClick = event.target.closest('.input-group-prepend');
 
-        if (!isClickInside && !isIconClick) {
-            $('#collapseExample').collapse('hide');
-        }
-    });
-</script>

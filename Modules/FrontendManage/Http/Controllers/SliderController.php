@@ -45,6 +45,7 @@ class SliderController extends Controller
         try {
             $slider = new Slider();
             $slider->course_id = $request->course_id ?? '';
+            $slider->name = $request->name ?? '';
             $slider->title = $request->title;
             $slider->sub_title = $request->sub_title;
             $slider->route = $request->route ?? null;
@@ -113,6 +114,7 @@ class SliderController extends Controller
         try {
             $slider = Slider::find($request->id);
             $slider->course_id = $request->course_id ?? '';
+            $slider->name = $request->name ?? '';
             $slider->title = $request->title;
             $slider->sub_title = $request->sub_title;
             $slider->route = $request->route;
