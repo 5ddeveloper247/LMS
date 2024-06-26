@@ -19,7 +19,11 @@
                 </p>
                 
                 @if($btntitle!='')
+                    @if($btnlink == '' || $btnlink == '#')
                     <button class="font-weight-bold hit ml-1 bg-transparent px-2 px-md-3 py-2 text-white {{ $btnclass }}"> {{$btntitle}} </button>
+                    @else
+                    <a href="{{ $btnlink }}" class="ont-weight-bold hit ml-1 px-2 px-md-3 py-2 text-white {{ $btnclass }}">{{$btntitle}}</a>
+                    @endif
                 @endif
             </div>
         </div>

@@ -520,12 +520,13 @@
                                                 </li>
                                             @endif
                                         @endforeach
-
+                                    @guest
                                         <div class="login_btn text-center d-lg-none d-flex">
                                             <a href="{{ url('login') }}"
                                                 class="text-white login_btn_theme theme_btn small_btn2 btn_responsive_fs_67 p-2">{{ __('LogIn To Portal | Register') }}
                                             </a>
                                         </div>
+                                    @endguest
                                     @else
                                     @endif
                                     <li><a href="#"></a></li>
