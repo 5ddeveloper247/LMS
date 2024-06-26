@@ -637,8 +637,8 @@ class CourseSettingController extends Controller
 
         $code = auth()->user()->language_code;
 
-        $check_title = Course::where('title', 'LIKE', '%\"' . $request->title . '\"%')->where('id', '!=', $request->id)->count();
-        if ($check_title > 0) {
+        $check_title = Course::where('title', 'LIKE', '%\"' . $request->title . '\"%')->where('id', '!=', $request->id)->get();
+        if (count($check_title) > 0) {
             Toastr::error(trans('Course Title Must be Unique'), trans('Error'));
             return redirect()->back();
         }
@@ -884,8 +884,8 @@ class CourseSettingController extends Controller
                     $child_course->type = 4;
                     $child_course->price = null;
                     $child_course->course_code = null;
-                    $child_course->featured = 0;
-
+                    $child_course->featured = ($request->has('cna_prep_featured') && $request->cna_prep_featured == 1) ? 1 : 0;
+                    
                     if ($request->has('cna_prep_type') && $request->cna_prep_type == 1) {
 
                         if ($request->file('full_course_main_image') != "") {
@@ -915,7 +915,7 @@ class CourseSettingController extends Controller
                             $child_course1->image = $this->saveImage($request->full_course_main_image);
                         }
                         $child_course1->price = null;
-
+                        $child_course1->featured = ($request->has('cna_prep_featured') && $request->cna_prep_featured == 1) ? 1 : 0;
                         $child_course1->save();
                     } else {
 
@@ -932,7 +932,7 @@ class CourseSettingController extends Controller
                     $child_course->parent_id = $course->id;
                     $child_course->type = 5;
                     $child_course->course_code = null;
-                    $child_course->featured = 0;
+                    $child_course->featured = ($request->has('test_prep_featured') && $request->test_prep_featured == 1) ? 1 : 0;
 
                     if ($request->has('test_prep_type') && $request->test_prep_type == 1) {
 
@@ -942,7 +942,7 @@ class CourseSettingController extends Controller
                             $child_course->thumbnail = $this->saveCroppedImage($request->demand_course_thumbnail_image);
                             $child_course->image = $this->saveImage($request->demand_course_main_image);
                         }
-
+                        
                         $art = $child_course->getAttributes();
                         if (array_key_exists('id', $art)) {
                             unset($art['id']);
@@ -966,7 +966,7 @@ class CourseSettingController extends Controller
                             $child_course2->thumbnail = $this->saveCroppedImage($request->demand_course_thumbnail_image);
                             $child_course2->image = $this->saveImage($request->demand_course_main_image);
                         }
-
+                        $child_course2->featured = ($request->has('test_prep_featured') && $request->test_prep_featured == 1) ? 1 : 0;
                         $child_course2->save();
                     } else {
 
@@ -985,7 +985,7 @@ class CourseSettingController extends Controller
                     $child_course->type = 6;
                     $child_course->price = null;
                     $child_course->course_code = null;
-                    $child_course->featured = 0;
+                    $child_course->featured = ($request->has('test_prep_graded_featured') && $request->test_prep_graded_featured == 1) ? 1 : 0;
                     if ($request->has('test_prep_graded_type') && $request->test_prep_graded_type == 1) {
                         if ($request->file('live_course_main_image') != "") {
                             $child_course->thumbnail = $this->saveCroppedImage($request->live_course_thumbnail_image);
@@ -1010,6 +1010,8 @@ class CourseSettingController extends Controller
                             $child_course3->thumbnail = $this->saveCroppedImage($request->live_course_thumbnail_image);
                             $child_course3->image = $this->saveImage($request->live_course_main_image);
                         }
+                        
+                        $child_course3->featured = ($request->has('test_prep_graded_featured') && $request->test_prep_graded_featured == 1) ? 1 : 0;
                         $child_course3->price = null;
                         $child_course3->save();
                     } else {
