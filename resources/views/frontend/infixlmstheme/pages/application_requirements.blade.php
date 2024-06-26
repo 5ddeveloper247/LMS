@@ -186,8 +186,8 @@
         background: red;
     }
 
-/* for text animation */
-.hidden {
+    /* for text animation */
+    .hidden {
         opacity: 0;
         transition: all 1s;
         filter: blur(1px);
@@ -200,6 +200,7 @@
         transform: translateY(0);
         transition: all 2s ease;
     }
+
     .custom_shadow {
         border: 1px solid rgb(255, 255, 255);
         box-shadow: 0 3px 20px rgb(0 0 0 / 5%);
@@ -510,9 +511,10 @@
     }
 
     @media (max-width: 576px) {
-        .fw-light{
+        .fw-light {
             margin-top: 10px;
         }
+
         .small_gap {
             gap: .2rem;
         }
@@ -632,9 +634,11 @@
         .custom_P {
             font-size: 1.5rem;
         }
-        .small_gap{
+
+        .small_gap {
             position: relative;
         }
+
         svg {
             min-width: 20px;
             min-height: 20px;
@@ -701,9 +705,8 @@
         .our-process-section-wrapper {
             width: 90%;
         }
-      
-    }
 
+    }
 </style>
 {{-- @endsection --}}
 @section('mainContent')
@@ -731,13 +734,21 @@
         <div class="container-fluid">
             <div class="row justify-content-center text-center px-xl-4 px-md-3 ">
                 <div class="col-md-12 our_require_section">
-                    <h2 class="custom_small_heading heading mb-3 font-weight-bold">Apply Requirements</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis voluptate libero,
-                        recusandae quam voluptates quae laudantium perferendis distinctio temporibus ipsum, id
-                        ducimus dolorem vero tempore perspiciatis impedit repellat ex. Doloribus. Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Consectetur, tempore doloribus aut cumque
-                        reiciendis dolore impedit quas nostrum est nesciunt repudiandae! Eius a numquam ullam
-                        enim quae incidunt ut recusandae.</p>
+                    <h2 class="custom_small_heading heading mb-3 font-weight-bold">Welcome to Merkaii Xcellence Prep
+                        Admissions</h2>
+                    <p>At Merkaii Xcellence Prep, we are dedicated to nurturing the intellectual and
+                        personal growth of our students. Our academic review courses, live lectures, and supportive
+                        community are designed to help students reach their full potential.
+                        Whether you're a passionate learner, an aspiring leader, or a creative thinker, we
+                        invite you to join our vibrant and dynamic educational environment.
+                       
+                        This page outlines the application requirements for prospective students. Please
+                        carefully review the requirements listed below to ensure that you provide all the
+                        necessary information and documentation.
+                      
+                        Thank you for considering Merkaii Xcellence Prep as the community to help You
+                        achieve licensure success in your healthcare educational journey.
+                    </p>
                 </div>
                 <div class="col-md-12  text-center contact_btn mt-4">
                     <a href="{{ route('register') }}" class="theme_btn small_btn2 p-2">Apply Now</a>
@@ -748,14 +759,15 @@
     {{-- slider timeline --}}
     <div class="our-process-section-container bg mt-3">
         <div class="our-process-section-wrapper px-sm-3 px-2 py-lg-5 py-3">
+            <h2 class="custom_small_heading heading mb-3 font-weight-bold text-center">Embark on your healthcare education journey</h2>
             <div class="w-100 d-flex justify-content-start">
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                     <div class="padding-top-of-first-part ml_our_process">
-                        <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2>
-                        <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
+                        <h2 class="custom_small_heading carrot-orange-clr text-end ">Create an account</h2>
+                        {{-- <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5> --}}
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                            <p class="fw-light text-sm-end">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
-                                fugit, sed quia consequuntur magni res.</p>
+                            <p class="fw-light text-sm-end">Sign up for a free Merkaii Xcellence Prep account to explore
+                                the vast course catalog and personalize your learning experience.</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
                                 <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round"
                                     stroke-linejoin="round" stroke-width="2"
@@ -777,8 +789,8 @@
                 <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
                     data-aos-duration="1000">
                     <div class="d-flex flex-column align-items-start mr_our_process">
-                        <h2 class="custom_small_heading carrot-orange-clr">Step 02</h2>
-                        <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
+                        <h2 class="custom_small_heading carrot-orange-clr">Complete a quick application</h2>
+                        {{-- <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5> --}}
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                 height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
@@ -840,8 +852,9 @@
                                     </path>
                                 </g>
                             </svg>
-                            <p class="fw-light">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
-                                sed quia consequuntur magni res.</p>
+                            <p class="fw-light">Navigate to the application page and fill out 
+                                the required information, the process is simple and helps us understand your 
+                                background and goals.</p>
                         </div>
                     </div>
                     <div class="side-bar-for-process-section margin-left-minus-10">
@@ -855,11 +868,12 @@
             <div class="">
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                     <div class="d-flex flex-column align-items-end ml_our_process">
-                        <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2>
-                        <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
+                        <h2 class="custom_small_heading carrot-orange-clr">Find your Perfect Course</h2>
+                        {{-- <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5> --}}
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                            <p class="fw-light text-sm-end">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
-                                fugit, sed quia consequuntur magni res.</p>
+                            <p class="fw-light text-sm-end">After submitting your application, browse our 
+                                comprehensive course library and purchase your chosen course or program that 
+                                aligns with your aspirations using our secure payment gateway.</p>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                 height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
                                 xml:space="preserve">
@@ -883,8 +897,8 @@
                 <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
                     data-aos-duration="1000">
                     <div class="d-flex flex-column padding-btm-last-part mr_our_process">
-                        <h2 class="custom_small_heading carrot-orange-clr">Step 04</h2>
-                        <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5>
+                        <h2 class="custom_small_heading carrot-orange-clr">Enroll and get started</h2>
+                        {{-- <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5> --}}
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                 fill="var(--system_primery_color)" x="0px" y="0px" viewBox="0 0 50 48"
@@ -907,8 +921,9 @@
                                     </path>
                                 </g>
                             </svg>
-                            <p class="fw-light">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut fugit,
-                                sed quia consequuntur magni res.</p>
+                            <p class="fw-light">Once purchase is complete, you have immediate 
+                                access to all the learning materials. Get ready to gain valuable knowledge and 
+                                advance your healthcare career. Welcome aboard!</p>
                         </div>
                     </div>
                     <div class="side-bar-for-process-section margin-left-minus-10">
@@ -1143,7 +1158,7 @@
     <div class="row mb-md-5 mt-md-4 mt-2 mb-4 justify-content-center"style="background-color: #eee;">
         <div class="col-md-7 py-lg-5 px-5 px-lg-0 py-3">
             <div class="custom_fs_a d-flex justify-content-between align-items-center mx-lg-0">
-                <h2 class="custom_small_heading text-center font-weight-bold avail-ser">Focused Learning - Goals Realized
+                <h2 class="custom_small_heading text-center font-weight-bold avail-ser">FOCUSED LEARNING + DISCIPLINE - GOALS ACHIEVED
                 </h2>
                 <div class="contact_btn text-center">
                     <a href="{{ route('register') }}"class="theme_btn small_btn2 p-2">Apply Now </a>

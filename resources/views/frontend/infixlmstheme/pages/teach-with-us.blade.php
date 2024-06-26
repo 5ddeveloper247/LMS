@@ -17,6 +17,7 @@
         font-style: normal;
         font-weight: 400;
     }
+
     .modal.fade.show {
         background: rgba(3, 3, 3, 0.7) !important;
     }
@@ -278,6 +279,7 @@
     .custom_height_2 {
         height: 56vh !important;
     }
+
     .custom-heading {
         font-size: 60px;
     }
@@ -289,6 +291,7 @@
     .custom-b-padd {
         padding: 0px 40px !important;
     }
+
     /* .custom-b-padd1 {
         padding: 0px 40px !important;
     } */
@@ -384,12 +387,13 @@
     .custom_height_1 {
         height: 71vh !important;
     }
-  
-@media only screen and (max-width: 576px){
-    .fw-light{
-        margin-top: 10px;
-    }
-    .mr_our_process {
+
+    @media only screen and (max-width: 576px) {
+        .fw-light {
+            margin-top: 10px;
+        }
+
+        .mr_our_process {
             margin-right: 0px !important;
             margin-left: 10px !important;
         }
@@ -397,6 +401,7 @@
         .ml_our_process {
             margin-left: 10px !important;
         }
+
         .small_gap {
             gap: .2rem;
         }
@@ -427,17 +432,21 @@
         .gap-5 {
             gap: .4rem !important;
         }
-}
+    }
+
     @media only screen and (max-width: 767px) {
-        .text_small{
+        .text_small {
             font-size: 13px;
         }
-        .form_label{
+
+        .form_label {
             font-size: 14px !important;
         }
+
         .custom_height_2 {
             height: 44vh !important;
         }
+
         .custom_heading_1 {
             font-size: 20px;
         }
@@ -445,9 +454,11 @@
         .thumb {
             height: auto;
         }
-        .small_gap{
+
+        .small_gap {
             position: relative;
         }
+
         svg {
             min-width: 20px;
             min-height: 20px;
@@ -465,7 +476,8 @@
         .mr_our_process {
             margin-right: 50px;
         }
-        .brdr-btm-of-txt{
+
+        .brdr-btm-of-txt {
             font-size: 16px;
         }
     }
@@ -475,6 +487,7 @@
             font-size: 15px !important;
             padding: 6.5px 15px;
         }
+
         .pricing__text--12 {
             font-size: 11px !important;
         }
@@ -518,9 +531,11 @@
         .custom-b-padd {
             padding: 0px 30px !important;
         }
+
         .custom-b-padd1 {
-        padding: 0px 0px !important;
-    }
+            padding: 0px 0px !important;
+        }
+
         .modal_form {
             max-width: 1500px !important;
         }
@@ -554,7 +569,6 @@
             font-size: 16px;
         }
     }
-
 </style>
 @section('mainContent')
     {{-- @dd($courses) --}}
@@ -592,54 +606,38 @@
                     <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3">What We Offer!</h2>
                 </div>
                 <div class="col-md-6 col-12 px-2" data-aos="fade-right">
-                    <img src="{{ asset('public/assets/contact.jpg') }}" class="custom_height_1 w-100">
+                    <img src="{{ asset('public/assets/Teach1.jpg') }}" class="custom_height_1 w-100">
                 </div>
 
-                <div class="col-md-6 col-12 my-auto px-3 px-md-1" data-aos="fade-left"
-                    data-aos-delay="500">
+                <div class="col-md-6 col-12 my-auto px-3 px-md-1" data-aos="fade-left" data-aos-delay="500">
                     <div class="px-xl-3 pt-4 pt-md-0">
-                        <h2 class="custom_small_heading font-weight-bold">
-                            How to Sell as an Individual Tutors
-                        </h2>
-                        <p class="custom_height_2 overflow-auto text-justify hide-scrollbar">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat.
+                       
+                        <h5 class="custom_small_heading">
+                            <span class="font-weight-bold"> What We Offer You to Shape the Future of Healthcare Education
+                                Become a changemaker in healthcare education.</span>
+                            Merkaii Xcellence Prep offers
+                            a platform designed to empower passionate educators like you. Here's how
+                            </h5>
+                        <div class="custom_height_2 overflow-auto hide-scrollbar">
+                       
+                        <p class="text-justify"><span class="font-weight-bold">Be Your Own Curriculum Boss: </span> and publish the course you envision,
+                            using your preferred teaching methods and content. You have complete
+                            control over the material you deliver.</span></p>
+                        <p class="text-justify"><span class="font-weight-bold">Share Your Passion, Amplify Your Impact:</span> Our platform empowers you to
+                                teach the subjects you're most passionate about. Share your knowledge and
+                                inspire the next generation of healthcare professionals.</span></p>
+                        <p class="text-justify"><span class="font-weight-bold">Build a Thriving Community:</span> Collaborate and share knowledge with a
+                                network of passionate educators and eager learners.</span></p>
+                        <p class="text-justify"><span class="font-weight-bold">Monetize Your Expertise:</span> Sharpen your skills by developing and delivering
+                                courses. You earn directly for each student you enrolled, creating a rewarding
+                                financial return.
+                            </span></p>
+                        <p class="text-justify"><span class="font-weight-bold">
+                                Freedom and Flexibility:</span> Design your course schedule and tailor your
+                                teaching approach to achieve a healthy work-life balance.
+                            </span></p>
                         </p>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -651,7 +649,8 @@
                 <div class="row align-items-center gallery_area_row">
                     <div class="col-lg-5 col-md-7">
                         <div class="section__title">
-                            <h2 class="custom_small_heading mb-4 font-weight-bold">Build your own library for your career and personal growth.
+                            <h2 class="custom_small_heading mb-4 font-weight-bold">Build your own library for your career
+                                and personal growth.
                             </h2>
                             <p class="mb-4">Our goal is to learn the next generation of creative professionals for a
                                 future in any industry. We offer course in most demanded industries. Whether begin to your
@@ -807,106 +806,110 @@
         </div>
 
         <!-- <div class="container custom-padd">
-                        <div class="row px-md-5 px-1">
-                            <div class="col-md-12 text-center">
-                                <h2 class="font-weight-bold custom_heading_1 my-4">How To Use</h2>
-                            </div>
-                            <div class="col-md-12">
-                                <nav class="nav nav-pills nav-justified mx-4 gap-40">
-                                    <button type="button" onclick="changeContent(1)" id="first_button"
-                                        class="nav-item nav-link btn_custom_border active">First
-                                        Step
-                                    </button>
-                                    <button type="button" onclick="changeContent(2)" id="second_button"
-                                        class="nav-item nav-link btn_custom_border">Second Step
-                                    </button>
-                                    <button type="button" onclick="changeContent(3)" id="third_button"
-                                        class="nav-item nav-link btn_custom_border">Third Step
-                                    </button>
-                                    <button type="button" onclick="changeContent(4)" id="fourth_button"
-                                        class="nav-item nav-link btn_custom_border">Final Step
-                                    </button>
-                                </nav>
-                            </div>
-                            <div class="col-md-12 mb-n3 px-3 pt-3" id="tab_section">
-                                <div class="custom_border_radius section_custom_border my-3 mb-3 p-3" id="first_tab">
-                                    <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">First Step</h5>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                            <div class="row px-md-5 px-1">
+                                <div class="col-md-12 text-center">
+                                    <h2 class="font-weight-bold custom_heading_1 my-4">How To Use</h2>
                                 </div>
+                                <div class="col-md-12">
+                                    <nav class="nav nav-pills nav-justified mx-4 gap-40">
+                                        <button type="button" onclick="changeContent(1)" id="first_button"
+                                            class="nav-item nav-link btn_custom_border active">First
+                                            Step
+                                        </button>
+                                        <button type="button" onclick="changeContent(2)" id="second_button"
+                                            class="nav-item nav-link btn_custom_border">Second Step
+                                        </button>
+                                        <button type="button" onclick="changeContent(3)" id="third_button"
+                                            class="nav-item nav-link btn_custom_border">Third Step
+                                        </button>
+                                        <button type="button" onclick="changeContent(4)" id="fourth_button"
+                                            class="nav-item nav-link btn_custom_border">Final Step
+                                        </button>
+                                    </nav>
+                                </div>
+                                <div class="col-md-12 mb-n3 px-3 pt-3" id="tab_section">
+                                    <div class="custom_border_radius section_custom_border my-3 mb-3 p-3" id="first_tab">
+                                        <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">First Step</h5>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                    </div>
 
-                                <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="second_tab">
-                                    <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Second Step</h5>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                </div>
+                                    <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="second_tab">
+                                        <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Second Step</h5>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                    </div>
 
-                                <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="third_tab">
-                                    <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Third Step</h5>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                </div>
+                                    <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="third_tab">
+                                        <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Third Step</h5>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                    </div>
 
-                                <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="fourth_tab">
-                                    <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Final Step</h5>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                        fugiat
-                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                    <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="fourth_tab">
+                                        <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Final Step</h5>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                            consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                            fugiat
+                                            possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> -->
+                        </div> -->
         {{-- slider timeline --}}
         <div class="our-process-section-container bg mt-3">
             <div class="our-process-section-wrapper px-sm-3 px-2 py-lg-5 py-3">
                 <div class="w-100 d-flex justify-content-start">
-                    <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right"
+                        data-aos-duration="1000">
                         <div class="padding-top-of-first-part ml_our_process">
                             <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2>
-                            <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5>
+                            <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course
+                            </h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                                <p class="fw-light text-sm-end">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
+                                <p class="fw-light text-sm-end">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit
+                                    aut
                                     fugit, sed quia consequuntur magni res.</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
+                                    viewBox="0 0 24 24">
                                     <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round"
                                         stroke-linejoin="round" stroke-width="2"
                                         d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
@@ -931,8 +934,8 @@
                             <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
-                                    height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
-                                    xml:space="preserve">
+                                    height="50px" x="0px" y="0px" viewBox="0 0 50 50"
+                                    style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                     <g>
                                         <path
                                             d="M47.1,2H2.9C1.3,2,0,3.3,0,4.9V35C0,36.7,1.3,38,2.9,38h16.6l-0.8,4.2h-3.4c-1,0-1.9,0.8-1.9,1.9v2.1c0,1,0.8,1.9,1.9,1.9  h19.6c1,0,1.9-0.8,1.9-1.9V44c0-1-0.8-1.9-1.9-1.9h-3.4L30.5,38h16.6c1.6,0,2.9-1.3,2.9-2.9V4.9C50,3.3,48.7,2,47.1,2z M2.9,3.7  h44.2c0.7,0,1.3,0.6,1.3,1.3v26.3H1.7V4.9C1.7,4.2,2.2,3.7,2.9,3.7z M35,44v2.1c0,0.1-0.1,0.2-0.2,0.2H15.2c-0.1,0-0.2-0.1-0.2-0.2  V44c0-0.1,0.1-0.2,0.2-0.2h19.6C34.9,43.8,35,43.9,35,44z M29.7,42.1h-9.3l0.8-4.2h7.6L29.7,42.1z M47.1,36.3H2.9  c-0.7,0-1.3-0.6-1.3-1.3v-2.1h46.7V35C48.3,35.7,47.8,36.3,47.1,36.3z">
@@ -998,21 +1001,23 @@
                             <div class="dot-point-side-bar-of-process-section top-1">
                                 <div class="inner-white-point-of-bar"></div>
                             </div>
-    
+
                         </div>
                     </div>
                 </div>
                 <div class="">
-                    <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right"
+                        data-aos-duration="1000">
                         <div class="d-flex flex-column align-items-end ml_our_process">
                             <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2>
                             <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                                <p class="fw-light text-end">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit aut
+                                <p class="fw-light text-sm-end">Nemo enim ipsam voluptatem quia voluptas sit atur aut odit
+                                    aut
                                     fugit, sed quia consequuntur magni res.</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
-                                    height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
-                                    xml:space="preserve">
+                                    height="50px" x="0px" y="0px" viewBox="0 0 50 50"
+                                    style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                     <g>
                                         <path
                                             d="M21.5,0c-1.9,0-3.5,1.2-4.2,2.8h-5c-0.6,0-1.2,0.5-1.2,1.1v1.7H6.5C4.6,5.7,3,7.2,3,9.1v37.5C3,48.5,4.6,50,6.5,50h25.5  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H6.5c-0.7,0-1.2-0.5-1.2-1.1V9.1C5.3,8.4,5.8,8,6.5,8h4.6v1.7H8.2  c0,0-0.1,0-0.1,0c-0.6,0.1-1.1,0.5-1,1.1v34.1c0,0.6,0.5,1.1,1.2,1.1h26.6c0.6,0,1.2-0.5,1.2-1.1V38c0.2,0,0.4,0,0.6,0  c0.4,0,0.8,0,1.2-0.1v8.6c0,0.6-0.5,1.1-1.2,1.1c-0.6,0-1.2,0.5-1.2,1.1c0,0.6,0.5,1.1,1.1,1.2c0,0,0,0,0,0c1.9,0,3.5-1.5,3.5-3.4  v-9.1c0.1,0,0.3-0.1,0.4-0.1l4.4,7c0.3,0.5,1.1,0.7,1.6,0.4c0.5-0.3,0.7-1,0.4-1.6l0,0l-4.3-6.9c2.7-1.8,4.5-4.9,4.5-8.4  c0-4.4-2.9-8.2-6.9-9.6V9.1c0-1.9-1.6-3.4-3.5-3.4h-4.6V4c0-0.6-0.5-1.1-1.2-1.1h-5C25,1.2,23.4,0,21.5,0z M21.5,2.3  c1.2,0,2.1,0.8,2.3,1.9c0.1,0.5,0.6,0.9,1.1,0.9h4.7v4.5H13.4V5.1h4.7c0.6,0,1-0.4,1.1-0.9C19.4,3.1,20.4,2.3,21.5,2.3z M31.9,8  h4.6c0.7,0,1.2,0.5,1.2,1.1v8.6c-0.4,0-0.8-0.1-1.2-0.1c-0.2,0-0.4,0-0.6,0v-6.9c0-0.6-0.5-1.1-1.2-1.1h-2.9V8z M9.4,11.9h24.3V18  c-4.3,1.2-7.5,5.2-7.5,9.8s3.2,8.6,7.5,9.8v6.1H9.4V11.9z M12.7,17.6c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8C12.8,17.6,12.8,17.6,12.7,17.6z M36.6,19.9c4.5,0,8.1,3.5,8.1,8  s-3.6,8-8.1,8s-8.1-3.5-8.1-8S32.1,19.9,36.6,19.9z M12.7,23.3c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1c0,0,0,0,0,0h9.3  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,23.3,12.8,23.3,12.7,23.3z M12.7,29c-0.6,0-1.1,0.6-1.1,1.2  c0,0.6,0.6,1.1,1.2,1.1h9.3c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,29,12.8,29,12.7,29z M12.7,34.7  c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8  C12.8,34.7,12.8,34.7,12.7,34.7z">
@@ -1025,7 +1030,7 @@
                             <div class="dot-point-side-bar-of-process-section top-1">
                                 <div class="inner-white-point-of-bar"></div>
                             </div>
-    
+
                         </div>
                     </div>
                 </div>
@@ -1068,7 +1073,7 @@
                             <div class="dot-point-side-bar-of-process-section bottom-0">
                                 <div class="inner-end-point-of-bar"></div>
                             </div>
-    
+
                         </div>
                     </div>
                 </div>
@@ -1139,14 +1144,15 @@
                 @endif
                 @if (count($courses) == 0)
                     <div class="col-lg-12">
-                        <div class="Nocouse_wizged d-flex align-items-center justify-content-center text-center mt-md-4 mt-3">
+                        <div
+                            class="Nocouse_wizged d-flex align-items-center justify-content-center text-center mt-md-4 mt-3">
                             <div class="thumb">
                                 <img style="width: 50px"
                                     src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png" alt="">
                             </div>
                             <h2 class="custom_small_heading">
                                 {{ __('No Course Found') }}
-                            </h2> 
+                            </h2>
                         </div>
                     </div>
                 @endif
@@ -1173,7 +1179,8 @@
                                     $button = 'button-tb--orange';
                                 }
                             @endphp
-                            <div class="col-sm-6 col-lg-4 d-flex justify-content-center justify-content-center d-flex mb-3">
+                            <div
+                                class="col-sm-6 col-lg-4 d-flex justify-content-center justify-content-center d-flex mb-3">
                                 <div class="card custom_card_plan shadow">
                                     <div class="card-body">
                                         <h5 class="price-card__plan--v2 {{ $heading }}">
@@ -1259,9 +1266,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="close-modal theme_btn small_btn4 px-3 py-2 closeModal" data-bs-dismiss="modal"
-                    {{-- <button type="button" class="close-modal theme_btn small_btn4 px-3 py-2 closeModal" --}}
-                        aria-label="Close">
+                    <button type="button" class="close-modal theme_btn small_btn4 px-3 py-2 closeModal"
+                        data-bs-dismiss="modal" {{-- <button type="button" class="close-modal theme_btn small_btn4 px-3 py-2 closeModal" --}} aria-label="Close">
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
@@ -1281,7 +1287,8 @@
                                     </h2>
                                 </div>
                                 <div class="col-lg-4 col-sm-6">
-                                    <label class="mb-0 mt-2 form_label">What position are you applying?<span>*</span></label>
+                                    <label class="mb-0 mt-2 form_label">What position are you
+                                        applying?<span>*</span></label>
                                     <select name="instructor_position_id"
                                         class="text_small form-select form-control @if ($errors->first('instructor_position_id')) is-invalid @endif"
                                         aria-label="Default select example" required>
@@ -1322,8 +1329,8 @@
                                 <div class="col-lg-3 col-sm-6 form_content">
                                     <label class="mb-0 mt-2 form_label">First Name<span>*</span></label>
                                     <input class="form-control @if ($errors->first('first_name')) is-invalid @endif"
-                                        type="text" placeholder="" name="first_name"
-                                        value="{{ old('first_name') }}" required>
+                                        type="text" placeholder="" name="first_name" value="{{ old('first_name') }}"
+                                        required>
                                 </div>
                                 <div class="col-lg-3 col-sm-6 form_content">
                                     <label class="mb-0 mt-2 form_label">Middle Name</label>
@@ -1334,7 +1341,8 @@
                                 <div class="col-lg-3 col-sm-6 form_content">
                                     <label class="mb-0 mt-2 form_label">Last Name<span>*</span></label>
                                     <input class="form-control @if ($errors->first('last_name')) is-invalid @endif"
-                                        type="text" placeholder="" name="last_name" value="{{ old('last_name') }}" required>
+                                        type="text" placeholder="" name="last_name" value="{{ old('last_name') }}"
+                                        required>
                                 </div>
 
                                 <div class="col-lg-3 col-sm-6 form_content">
@@ -1358,12 +1366,14 @@
                                     <label class="mb-0 mt-2 form_label">Date of Birth<span>*</span></label>
                                     <input id="datepicker"
                                         class="form-control @if ($errors->first('dob')) is-invalid @endif"
-                                        type="date" placeholder="" name="dob" value="{{ old('dob') }}" required>
+                                        type="date" placeholder="" name="dob" value="{{ old('dob') }}"
+                                        required>
                                 </div>
                                 <div class="col-lg-3 col-sm-6 form_content">
                                     <label class="mb-0 mt-2 form_label">Email<span>*</span></label>
                                     <input class="form-control @if ($errors->first('email')) is-invalid @endif"
-                                        type="text" placeholder="" name="email" value="{{ old('email') }}" required>
+                                        type="text" placeholder="" name="email" value="{{ old('email') }}"
+                                        required>
                                 </div>
                                 <div class="col-lg-3 col-sm-6 form_content">
                                     <label class="mb-0 mt-2 form_label">Phone (Home)</label>
@@ -1375,17 +1385,16 @@
                                     <label class="mb-0 mt-2 form_label">Cell<span>*</span></label>
                                     <input class="form-control @if ($errors->first('cell')) is-invalid @endif"
                                         maxlength="14" type="text" placeholder="" name="cell"
-                                        value="{{ old('cell') }}" onKeyPress="if(this.value.length==14) return false;" required>
+                                        value="{{ old('cell') }}" onKeyPress="if(this.value.length==14) return false;"
+                                        required>
                                 </div>
                                 <div class="col-lg-3 col-sm-4 form_content">
                                     <label class="mb-0 mt-2 form_label">Work</label>
-                                    <textarea name="work" class="form-control @if ($errors->first('work')) is-invalid @endif"
-                                        >{{ old('work') }}</textarea>
+                                    <textarea name="work" class="form-control @if ($errors->first('work')) is-invalid @endif">{{ old('work') }}</textarea>
                                 </div>
                                 <div class="col-lg-9 col-sm-8 form_content">
                                     <label class="mb-0 mt-2 form_label">Address<span>*</span></label>
-                                    <textarea name="address" class="form-control @if ($errors->first('address')) is-invalid @endif"
-                                        >{{ old('address') }}</textarea>
+                                    <textarea name="address" class="form-control @if ($errors->first('address')) is-invalid @endif">{{ old('address') }}</textarea>
                                 </div>
                                 <div class="col-md-12">
                                     <h2 class="custom_small_heading my-3 text-center">
@@ -1430,7 +1439,8 @@
                                 <div class="col-lg-4 col-sm-6 form_content">
                                     <label class="mb-0 mt-2 form_label">College<span>*</span></label>
                                     <input class="form-control @if ($errors->first('college')) is-invalid @endif"
-                                        type="text" placeholder="" name="college" value="{{ old('college') }}" required>
+                                        type="text" placeholder="" name="college" value="{{ old('college') }}"
+                                        required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 form_content">
                                     <label class="mb-0 mt-2 form_label">Year Attended<span>*</span></label>
@@ -1453,7 +1463,8 @@
                                 </div>
 
                                 <div class="col-lg-3 col-sm-6 form_content">
-                                    <label class="mb-0 mt-2 form_label">Trade or Correspondence School<span>*</span></label>
+                                    <label class="mb-0 mt-2 form_label">Trade or Correspondence
+                                        School<span>*</span></label>
                                     <input class="form-control @if ($errors->first('trade_school')) is-invalid @endif"
                                         type="text" placeholder="" name="trade_school"
                                         value="{{ old('trade_school') }}" required>
@@ -1527,7 +1538,8 @@
                                             value="{{ old('date_employer_end') }}">
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-sm-5 d-flex align-items-center justify-content-lg-center mt-3 gap-2">
+                                <div
+                                    class="col-lg-2 col-sm-5 d-flex align-items-center justify-content-lg-center mt-3 gap-2">
                                     <input class="@if ($errors->first('currently_employed')) is-invalid @endif" type="checkbox"
                                         id="postion" name="currently_employed"
                                         {{ old('currently_employed') ? 'checked' : '' }}>
@@ -1542,20 +1554,22 @@
                                 <div class="col-lg-4 col-sm-6 form_content">
                                     <label class="mb-0 mt-2 form_label">Upload Resume<span>*</span></label>
                                     <input class="form-control @if ($errors->first('upload_resume')) is-invalid @endif"
-                                        type="file" placeholder="" name="upload_resume" accept=".doc,.docx,.pdf" required>
+                                        type="file" placeholder="" name="upload_resume" accept=".doc,.docx,.pdf"
+                                        required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 form_content">
                                     <label class="mb-0 mt-2 form_label">Upload Coverletter<span>*</span></label>
                                     <input class="form-control @if ($errors->first('cover_letter')) is-invalid @endif"
-                                        type="file" placeholder="" name="cover_letter" accept=".doc,.docx,.pdf" required>
+                                        type="file" placeholder="" name="cover_letter" accept=".doc,.docx,.pdf"
+                                        required>
                                 </div>
                                 <div class="col-md-12 form_content">
                                     <label class="mb-0 mt-2 form_label">Address<span>*</span></label>
-                                    <textarea name="employer_address" class="form-control @if ($errors->first('employer_address')) is-invalid @endif"
-                                         required>{{ old('employer_address') }}</textarea>
+                                    <textarea name="employer_address" class="form-control @if ($errors->first('employer_address')) is-invalid @endif" required>{{ old('employer_address') }}</textarea>
                                 </div>
                                 <div class="col-md-auto ml-auto mt-3">
-                                    <button type="button" class="close-modal btn btn-secondary closeModal" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="close-modal btn btn-secondary closeModal"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn small_btn4 theme_btn">Submit</button>
                                 </div>
                             </div>
@@ -1638,7 +1652,7 @@
 
         if (window.location.hash) {
             let hash = window.location.hash;
-            if($(hash).hasClass('modal')){
+            if ($(hash).hasClass('modal')) {
 
                 $(hash).modal('show');
             }
@@ -1689,7 +1703,7 @@
         //         });
         //     });
         // }
-        $('.closeModal').on('click',function(){
+        $('.closeModal').on('click', function() {
             $(this).closest('.modal').modal('hide');
         });
         // var closeModalButtons = document.getElementsByClassName('closeModal');
