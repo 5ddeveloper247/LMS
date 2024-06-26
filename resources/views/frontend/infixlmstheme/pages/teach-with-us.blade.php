@@ -596,7 +596,9 @@
 
             <div class="row py-md-5 px-xl-5 py-4 px-3">
                 <div class="col-md-12 text-center">
-                    <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3">What We Offer!</h2>
+                    <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3"> What We Offer You to Shape the Future of Healthcare
+                        Education
+                        Become a changemaker in healthcare education.</h2>
                 </div>
                 <div class="col-md-6 col-12 px-md-2" data-aos="fade-right">
                     <img src="{{ asset('public/assets/Teach1.jpg') }}" class="custom_height_1 w-100"
@@ -606,15 +608,10 @@
                 <div class="col-md-6 col-12 my-auto px-md-1" data-aos="fade-left" data-aos-delay="500">
                     <div class="px-xl-3 pt-4 pt-md-0">
                         <div class="custom_height_2 overflow-auto hide-scrollbar">
-                            <h5 class="">
-                                <span class="font-weight-bold"> What We Offer You to Shape the Future of Healthcare
-                                    Education
-                                    Become a changemaker in healthcare education.</span>
+                            <h5 class="custom_text_small font-weight-bold">
                                 Merkaii Xcellence Prep offers
                                 a platform designed to empower passionate educators like you. Here's how
                             </h5>
-
-
                             <p class="text-justify"><span class="font-weight-bold">Be Your Own Curriculum Boss: </span> and
                                 publish the course you envision,
                                 using your preferred teaching methods and content. You have complete
@@ -659,7 +656,7 @@
                                 <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
                                     style="height: 50px">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
-                                    <h5>Course Creation Made Easy</h5>
+                                    <h5 class="custom_text_small font-weight-bold">Course Creation Made Easy</h5>
                                     <p class="pt-2"> We offer a wealth of materials to guide you
                                         through the course creation process, from initial concept to final launch.</p>
                                 </div>
@@ -668,7 +665,7 @@
                                 <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
                                     style="height: 50px">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
-                                    <h5>Stay Organized</h5>
+                                    <h5 class="custom_text_small font-weight-bold">Stay Organized</h5>
                                     <p class="pt-2">Our user-friendly instructor dashboard and curriculum pages
                                         keep everything in one place, streamlining course development and
                                         management.</p>
@@ -679,7 +676,7 @@
                                 <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
                                     style="height: 50px">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
-                                    <h5>Dedicated Support Team</h5>
+                                    <h5 class="custom_text_small font-weight-bold">Dedicated Support Team</h5>
                                     <p class="pt-2">Our knowledgeable support team is available to
                                         answer your questions, troubleshoot any challenges, and provide valuable
                                         feedback on your course materials, including test videos.</p>
@@ -690,7 +687,7 @@
                                 <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
                                     style="height: 50px">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
-                                    <h5>Marketing and Promotion Tools</h5>
+                                    <h5 class="custom_text_small font-weight-bold">Marketing and Promotion Tools</h5>
                                     <p class="pb-2">Reach a wider audience and boost enrollments
                                         with our suite of marketing tools.</p>
                                     <ul class="custom-style pl-3">
@@ -740,7 +737,7 @@
                     <div class="align-items-center d-flex flex-column">
                         <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
                             class="img-fluid" style="width: 100px;">
-                        <h5 class="font-weight-bold text-center">Teach your way</h5>
+                        <h5 class="custom_text_small font-weight-bold text-center">Teach your way</h5>
                         <p class="text-center" style="max-width: 20rem;">Publish the course you want, in the way you
                             want, and always have control of your own content.</p>
                     </div>
@@ -749,7 +746,7 @@
                     <div class="align-items-center d-flex flex-column">
                         <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-get-rewarded-v3.jpg') }}"
                             class="img-fluid" style="width: 100px;">
-                        <h5 class="font-weight-bold text-center">Inspire learners</h5>
+                        <h5 class="custom_text_small font-weight-bold text-center">Inspire learners</h5>
                         <p class="text-center" style="max-width: 21rem;">Teach what you know and help learners explore
                             their interests, gain new skills, and advance their careers.</p>
                     </div>
@@ -758,7 +755,7 @@
                     <div class="align-items-center d-flex flex-column">
                         <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-inspire-v3.jpg') }}"
                             class="img-fluid" style="width: 100px;">
-                        <h5 class="font-weight-bold text-center">Get rewarded</h5>
+                        <h5 class="custom_text_small font-weight-bold text-center">Get rewarded</h5>
                         <p class="text-center" style="max-width: 21rem;">Expand your professional network, build your
                             expertise, and earn money on each paid enrollment.</p>
                     </div>
@@ -767,7 +764,7 @@
                     <div class="align-items-center d-flex flex-column">
                         <img src="{{ asset('public/frontend/infixlmstheme/img/images/value-prop-teach-v3.jpg') }}"
                             class="img-fluid" style="width: 100px;">
-                        <h5 class="font-weight-bold text-center">Teach your way</h5>
+                        <h5 class="custom_text_small font-weight-bold text-center">Teach your way</h5>
                         <p class="text-center" style="max-width: 20rem;">Publish the course you want, in the way you
                             want, and always have control of your own content.</p>
                     </div>
@@ -787,7 +784,7 @@
                                                 class="img-fluid" style="width: 100px;">
                                         </div>
                                         <div class="my-auto">
-                                            <h5 class="font-weight-bold">
+                                            <h5 class="custom_text_small font-weight-bold">
                                                 +100 Individual Tutors
                                             </h5>
                                             <p>Publish the course you want,
@@ -802,7 +799,7 @@
                                                 class="img-fluid" style="width: 100px;">
                                         </div>
                                         <div class="my-auto">
-                                            <h5 class="font-weight-bold">
+                                            <h5 class="custom_text_small font-weight-bold">
                                                 +100 Individual Tutors
                                             </h5>
                                             <p>Publish the course you want,
@@ -930,7 +927,7 @@
                         data-aos-duration="1000">
                         <div class="padding-top-of-first-part ml_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2> --}}
-                            <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Register for a Teacher’s Plan
+                            <h5 class="custom_text_small font-weight-bold w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Register for a Teacher’s Plan
                             </h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                                 <p class="fw-light text-md-end">Sign up for a Teacher's Plan that best suits your needs and curriculum goals. We 
@@ -959,7 +956,7 @@
                         data-aos-duration="1000">
                         <div class="d-flex flex-column align-items-start mr_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 02</h2> --}}
-                            <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Develop Your Curriculum</h5>
+                            <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Develop Your Curriculum</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                     height="50px" x="0px" y="0px" viewBox="0 0 50 50"
@@ -1039,7 +1036,7 @@
                         data-aos-duration="1000">
                         <div class="d-flex flex-column align-items-end ml_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2> --}}
-                            <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Record Your Videos</h5>
+                            <h5 class="custom_text_small font-weight-bold w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Record Your Videos</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                                 <p class="fw-light text-md-end">Share your expertise through engaging video lectures. Merkaii Xcellence Prep 
                                     provides all the tools you need to record high-quality videos from the comfort of 
@@ -1068,7 +1065,7 @@
                         data-aos-duration="1000">
                         <div class="d-flex flex-column padding-btm-last-part mr_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 04</h2> --}}
-                            <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Launch Your Course</h5>
+                            <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Launch Your Course</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                     fill="var(--system_primery_color)" x="0px" y="0px" viewBox="0 0 50 48"
@@ -1132,7 +1129,7 @@
                                 <div class="card-body course_content">
                                     <a
                                         href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug) . '?courseType=' . $course->type }}">
-                                        <h5 class="noBrake" title=" {{ $course->title }}">
+                                        <h5 class="custom_text_small noBrake" title=" {{ $course->title }}">
                                             {{ $course->title }}
                                         </h5>
                                     </a>
@@ -1213,7 +1210,7 @@
                                 class="col-sm-6 col-lg-4 d-flex justify-content-center justify-content-center d-flex mb-3">
                                 <div class="card custom_card_plan shadow">
                                     <div class="card-body">
-                                        <h5 class="price-card__plan--v2 {{ $heading }}">
+                                        <h5 class="custom_text_small price-card__plan--v2 {{ $heading }}">
                                             {{ $package->title ?? 'Coming Soon' }}</h5>
                                         <p class="mb-4 pricing-para">{{ $package->description ?? 'Coming Soon' }}</p>
 
@@ -1295,7 +1292,7 @@
         <div class="modal-dialog modal-lg modal_form">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <h5 class="custom_text_small modal-title" id="exampleModalLabel"></h5>
                     <button type="button" class="close-modal theme_btn small_btn4 px-3 py-2 closeModal"
                         data-bs-dismiss="modal" {{-- <button type="button" class="close-modal theme_btn small_btn4 px-3 py-2 closeModal" --}} aria-label="Close">
                         <i class="fa fa-times"></i>

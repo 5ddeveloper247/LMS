@@ -350,9 +350,23 @@
             <div class="col-md-6 px-lg-4 mb-4 px-3 d-flex align-items-center">
                 <div class="pt-md-5 pt-3 custom-l-padd pl-sm-5 p-2" data-aos="fade-right">
                     <h2 class="custom_small_heading font-weight-bold">
-                        Lorem ipsum dolor sit amet consecter
-                        Lorem ipsum dolor sit amet consecter
+                        Who we are looking for
                     </h2>
+                    <p><span class="font-weight-bold">Passionate Educators:</span> We are seeking educators who are passionate about 
+                        their field and dedicated to helping students succeed.</p>
+                    <p><span class="font-weight-bold">Strong Communication Skills:</span> The ability to communicate complex medical
+                            concepts clearly and concisely is essential.</p>
+                    <p><span class="font-weight-bold">Clinical Expertise:</span> We value educators with a strong foundation in clinical 
+                                healthcare skills.</p>
+                    <p><span class="font-weight-bold">Commitment to Collaboration:</span> We are looking for team players who are 
+                                    excited to collaborate with colleagues to create a dynamic learning 
+                                    environment.</p>
+                    <br>
+                    <p>If you are a highly motivated and experienced educator who is passionate about 
+                        making a difference in the future of healthcare education, we encourage you to 
+                        apply. Merkaii Xcellence Prep offers a competitive salary and benefits package, as 
+                        well as the opportunity to work in a rewarding student and staff-centered 
+                        environment.</p>
                     @if (!auth()->check())
                         <button
                             class="border-purple text-purple font-weight-bold hit btn_responsive mt-3 px-2 px-md-3 py-2 openModal">

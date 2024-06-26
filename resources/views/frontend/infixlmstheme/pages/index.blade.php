@@ -1468,7 +1468,7 @@
         align-items: center;
         position: relative;
         word-wrap: break-word;
-        background-image: url({{ asset('/public/uploads/images/footerimg/Photo.png') }});
+        background-image: url('{{ asset("/public/assets/Untitled design (40).png") }}');
 
     }
 
@@ -2958,8 +2958,8 @@
                     <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
                         Licensure.</p>
                 </div>
-                <div class="row d-flex align-items-stretch pb-4 px-xl-5 animate">
-                    <div class="col-md-6 mb-2 px-md-0">
+                <div class="row d-flex align-items-stretch pb-4 px-xl-5">
+                    <div class="col-md-6 mb-2 px-md-0 hidden hidden-left">
                         <div class="custom-slider-container">
                             <button class="prev">❮</button>
                             <div class="custom-slider">
@@ -3091,7 +3091,7 @@
                     @php
 
                     @endphp
-                    <div class="col-md-6">
+                    <div class="col-md-6 hidden hidden-right">
                         <div class="row">
                             @if ($first_program)
                                 <div class="col-6 px-lg-2">
