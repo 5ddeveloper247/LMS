@@ -509,7 +509,21 @@
     .breadcam_wrap {
         max-width: unset !important;
     }
+    .hidden {
+        opacity: 0;
+        transition: all 1s;
+        filter: blur(1px);
+    }
 
+    .hidden-left {
+        transform: translateY(-100%);
+    }
+    .show {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+        transition: all 2s ease;
+    }
     @media (max-width: 576px) {
         .fw-light {
             margin-top: 10px;
@@ -732,7 +746,7 @@
 
     <section id="apply" class="p-lg-5 p-3 pt-4">
         <div class="container-fluid">
-            <div class="row justify-content-center text-center px-xl-4 px-md-3 ">
+            <div class="row justify-content-center text-center px-xl-4 px-md-3 hidden">
                 <div class="col-md-12 our_require_section">
                     <h2 class="custom_small_heading heading mb-3 font-weight-bold">Welcome to Merkaii Xcellence Prep
                         Admissions</h2>
@@ -741,14 +755,19 @@
                         community are designed to help students reach their full potential.
                         Whether you're a passionate learner, an aspiring leader, or a creative thinker, we
                         invite you to join our vibrant and dynamic educational environment.
-                       
-                        This page outlines the application requirements for prospective students. Please
+                    </p>
+                       <br>
+                    <p>
+                    This page outlines the application requirements for prospective students. Please
                         carefully review the requirements listed below to ensure that you provide all the
                         necessary information and documentation.
-                      
+                    </p>
+                      <br>
+                    <p>
                         Thank you for considering Merkaii Xcellence Prep as the community to help You
                         achieve licensure success in your healthcare educational journey.
                     </p>
+                    
                 </div>
                 <div class="col-md-12  text-center contact_btn mt-4">
                     <a href="{{ route('register') }}" class="theme_btn small_btn2 p-2">Apply Now</a>
@@ -1075,7 +1094,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 col-12 py-4 back-color small_screen_carousel">
-                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para hidden">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para hidden hidden-left">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-3
                     </h5>
@@ -1158,7 +1177,7 @@
     <div class="row mb-md-5 mt-md-4 mt-2 mb-4 justify-content-center"style="background-color: #eee;">
         <div class="col-md-7 py-lg-5 px-5 px-lg-0 py-3">
             <div class="custom_fs_a d-flex justify-content-between align-items-center mx-lg-0">
-                <h2 class="custom_small_heading text-center font-weight-bold avail-ser">FOCUSED LEARNING + DISCIPLINE - GOALS ACHIEVED
+                <h2 class="custom_small_heading text-center font-weight-bold avail-ser mb-0">FOCUSED LEARNING + DISCIPLINE - GOALS ACHIEVED
                 </h2>
                 <div class="contact_btn text-center">
                     <a href="{{ route('register') }}"class="theme_btn small_btn2 p-2">Apply Now </a>
@@ -1176,7 +1195,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+     const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                console.log(entry)
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
 
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        });
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };})
+</script>
     <script>
         (function($) {
             "use strict";

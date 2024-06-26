@@ -143,11 +143,11 @@
 
     @media only screen and (max-width: 767px) {
         .stepper_right {
-            padding-left: 20px !important;
+            padding-left: 40px !important;
         }
 
         .paddingy {
-            padding-right: 20px !important;
+            padding-right: 40px !important;
         }
 
         .slider h2::before {
@@ -185,11 +185,11 @@
             <div class="pl-0 slider d-flex flex-column align-items-md-end text-end paddingy" data-aos="fade-left"
                 data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">The Mission & Story</h2>
-                <h4>Mission Statement:</h4>
+                <h4 class="custom_text_small">Mission Statement</h4>
                 <p class="mb-3">At Merkaii Xcellence Prep, our mission is to empower aspiring healthcare
                     professionals through exceptional education and unwavering support, ensuring they
                     achieve their fullest potential in the ever-evolving world of healthcare.</p>
-                <h4>Our Story:</h4>
+                <h4 class="custom_text_small">Our Story</h4>
                 <p class="mb-3">Our journey began in 2015 with a simple yet profound goal: to create a student-
                     centered environment that fosters success in healthcare education. Over the years,
                     we've grown from a small tutoring service in the basement into a comprehensive
@@ -201,14 +201,14 @@
             </div>
             <div class="pr-0 slider slider-right stepper_right" data-aos="fade-right" data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">The Evolution & Transformation</h2>
-                <h4>Our Evolution:</h4>
+                <h4 class="custom_text_small">Our Evolution</h4>
                 <p class="mb-3">From our humble beginnings, we've continuously evolved to meet the needs of our
                     students. What started as a modest family and friends tutoring service in the
                     basement has transformed into a renowned institution known for its rigorous
                     healthcare review courses and individualized tutoring programs. We've embraced
                     new teaching methodologies, integrated cutting-edge technology, and expanded
                     our curriculum to cover the diverse and dynamic field of healthcare.</p>
-                <h4>Our “Aha!” Moment:</h4>
+                <h4 class="custom_text_small">Our “Aha!” Moment</h4>
                 <p class="mb-3">Our pivotal moment came when we realized the profound impact personalized
                     education has on family and friends’ outcomes. Witnessing this we embarked on
                     opening our services to others and observing students transform from struggling
@@ -222,7 +222,7 @@
             <div class="pl-0 slider d-flex flex-column align-items-md-end text-end paddingy" data-aos="fade-right"
                 data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">Who We Serve</h2>
-                <h4>Our Audience:</h4>
+                <h4 class="custom_text_small">Our Audience</h4>
                 <p class="mb-3"> Merkaii Xcellence Prep serves a diverse group of aspiring healthcare professionals,
                     from nursing students to future doctors, pharmacists, and allied health practitioners.
                     Our students come from various backgrounds, united by their dedication to
@@ -233,7 +233,7 @@
             </div>
             <div class="pr-0 slider slider-right stepper_right" data-aos="fade-left" data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">The Merkaii Values</h2>
-                <h4>Our Brand Values:</h4>
+                <h4 class="custom_text_small">Our Brand Values</h4>
                 <p class="mb-3"><span class="font-weight-bold">Student-Centric:</span> Our students are at the heart
                     of everything we do. Their success
                     is our success.</p>

@@ -32,8 +32,8 @@
                 <div class="col-sm-5 pr-0">
                     <div class="section__title aniamtion" id="animation-text" data-aos="fade-left"
                     data-aos-duration="2000">
-                        <h5 class="custom_small_heading mb-4 mt-4 mt-sm-0 font-weight-bold ">{{ $about->story_title }}</h5>
-                        <p class="mb-sm-4">{{ $about->story_description }}</p>
+                        <h2 class="custom_small_heading my-sm-4 my-2 font-weight-bold">{{ $about->story_title }}</h2>
+                        <p class="mb-sm-4 about_description">{!! $about->story_description !!}</p>
                     </div>
                 </div>
             </div>

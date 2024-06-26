@@ -221,32 +221,47 @@
         <!-- Main heading Section  -->
         <div class="container mt-3">
             <div class="row pt-md-5 pt-2 px-md-4">
-                <div class="col-md-6 col-12 px-0" data-aos="fade-right">
-                    <img src="{{ asset('public/assets/contact.jpg') }}" class="custom_height_1 mx-lg-5">
+                <div class="col-md-6 col-12 px-md-0" data-aos="fade-right">
+                    <img src="{{ asset('public/assets/Instructor 1.jpg') }}" class="custom_height_1 mx-lg-5">
                 </div>
 
                 <div class=" d-flex align-items-center col-md-6 col-12 px-lg-5 px-3" data-aos="fade-left"
                     data-aos-delay="500">
                     <div class="pl-md-5 pt-3 pt-md-0">
+                        <div class="custom_height_2 overflow-auto hide-scrollbar">
                         <h2 class="custom_small_heading mt-2 mt-lg-0 font-weight-bold">
-                            Lorem ipsum dolor sit amet consecter
+                            Why Join Merkaii Xcellence Prep?
                         </h2>
                         <p class="text-justify shadow-p right-divv">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor.
+                            As a faculty member at Merkaii Xcellence Prep, you will have the opportunity to:
+                        </p>
+                        <p><span class="font-weight-bold">Shape the Future of Healthcare:</span> You will play a vital role in educating the 
+                            next generation of medical professionals who will define the future of 
+                            healthcare.
+                        </p>
+                        <p><span class="font-weight-bold">Work with a Collaborative and Passionate Team:</span> Our faculty is 
+                            comprised of experienced and dedicated educators who are passionate about 
+                            sharing their knowledge and expertise.
+                        </p>
+                        <p><span class="font-weight-bold">Be at the Forefront of Medical Education:</span> We are constantly innovating 
+                            and developing new teaching methods to ensure our students receive the best
+                            possible education.
+                        </p>
+                        <p><span class="font-weight-bold">Enjoy a Supportive and Rewarding Work Environment:</span> We value our 
+                            faculty and provide them with the support and resources they need to 
+                            succeed.
+                        </p>
+                        <p><span class="font-weight-bold">Teacher Well-Being:</span> We believe that happy teachers are the foundation of 
+                            successful students. By taking exceptional care of our educators, we ensure 
+                            they can focus wholeheartedly on their goals, bringing passion and dedication 
+                            to every lesson.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+        
         <!-- profile slidder -->
 
 
@@ -333,7 +348,7 @@
         <!-- becomeInsructor section  -->
         <div class="row custom_section_color mb-md-5 mb-4">
             <div class="col-md-6 px-lg-4 mb-4 px-3 d-flex align-items-center">
-                <div class="pt-md-5 pt-3 custom-l-padd pl-sm-5 pl-3" data-aos="fade-right">
+                <div class="pt-md-5 pt-3 custom-l-padd pl-sm-5 p-2" data-aos="fade-right">
                     <h2 class="custom_small_heading font-weight-bold">
                         Lorem ipsum dolor sit amet consecter
                         Lorem ipsum dolor sit amet consecter
@@ -350,7 +365,7 @@
             </div>
             <div class="col-md-6 px-0" data-aos="fade-left">
                 <div>
-                    <img src="{{ asset('public/assets/contact.jpg') }}" class="custom_height_2">
+                    <img src="{{ asset('public/assets/Instructor2.jpg') }}" class="custom_height_2">
                 </div>
             </div>
         </div>

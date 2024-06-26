@@ -16462,8 +16462,11 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    .custom_text_small{
+        font-size: 16px;
+    }
     .about_gallery img {
-        height: 223px !important;
+        height: 200px !important;
     }
     .float {
         right: 5px;
@@ -17079,9 +17082,19 @@ body {
         display: flex;
         gap: 10px;
     }
+    .about_description{
+        height: 407px;
+        overflow: auto;
+        scrollbar-width: none;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+    .about_description{
+        height: 407px;
+        overflow: auto;
+        scrollbar-width: none;
+    }
     .course__details .course__details_title {
         justify-content: space-between;
         align-items: flex-start;
