@@ -3776,53 +3776,18 @@ input[type="number"] {
 
 .about_gallery_area .about_gallery {
     display: grid;
-    grid-template-columns: 330px 360px;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 30px;
     align-items: center;
 }
-
-@media (min-width: 1650px) {
-    .about_gallery_area .about_gallery {
-        display: grid;
-        grid-template-columns: 440px 440px !important;
-        grid-gap: 30px;
-        align-items: center;
-    }
+.about_gallery img {
+    width: 100%;
+    height: 300px;
+    object-fit: fill;
 }
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .about_gallery_area .about_gallery {
-        /* grid-template-columns: repeat(2, 1fr); */
-        grid-template-columns: auto auto !important;
-        margin-bottom: 20px;
-    }
-
-    .about_gallery_area .about_gallery .gallery_box .thumb.small_thumb {
-        margin: 30px 0 0 30px !important;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1499.98px) {
-    .about_gallery_area .about_gallery {
-        grid-template-columns: repeat(2, 1fr);
-        /* padding-right: 40px; */
-    }
-}
-
-@media (max-width: 767.98px) {
-    .about_gallery_area .about_gallery .gallery_box .thumb {
-        margin-bottom: 30px;
-    }
-}
-
-.about_gallery_area .about_gallery .gallery_box .thumb.small_thumb {
-    margin: 30px 0 0 50px;
-}
-
-@media (max-width: 767.98px) {
-    .about_gallery_area .about_gallery .gallery_box .thumb.small_thumb {
-        margin: 30px 0px 0px 30px;
-    }
+.small_thumb {
+    margin-top: 30px;
+    margin-left: 30px;
 }
 
 .counter_area {
@@ -3960,6 +3925,7 @@ input[type="number"] {
 }
 
 @media only screen and (min-width: 1800px) {
+
     .counter_area .counter_wrapper .single_counter:first-child {
         margin: 100px -165px 70px 145px !important;
     }
@@ -7694,11 +7660,6 @@ input[type="number"] {
         padding-top: 165px !important;
     }
 
-    .about_gallery_area .about_gallery {
-        grid-template-columns: auto auto !important;
-        grid-gap: 20px !important;
-    }
-
     .category_search {
         top: 28px;
         position: absolute;
@@ -9325,6 +9286,11 @@ input[type="number"] {
 }
 
 @media screen and (min-width: 1560px) {
+    .about_gallery img {
+        width: 100%;
+        height: 480px;
+        object-fit: fill;
+    }
 
     .logo_img {
         max-width: 200px;
@@ -16496,6 +16462,9 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    .about_gallery img {
+        height: 223px !important;
+    }
     .float {
         right: 5px;
     }
@@ -16693,11 +16662,6 @@ body {
 
     .icons i {
         font-size: 20px !important;
-    }
-
-    .about_gallery_area .about_gallery {
-        grid-template-columns: auto auto;
-        grid-gap: 20px;
     }
 
     .custom-heading {
