@@ -189,7 +189,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 px-0">
-                <div class="breadcrumb_area position-relative">
+                {{-- <div class="breadcrumb_area position-relative">
                     <div class="w-100 h-100 position-absolute bottom-0 left-0">
                         <img alt="Banner Image" class="w-100 h-100 img-cover"
                             src="{{ asset('public/frontend/infixlmstheme/img/images/Teacher Explaining.jpg') }}">
@@ -207,7 +207,13 @@
                             @endif
                         </div>
                     </div>
-                </div>
+                </div> --}}
+                @php
+                    $banner_title = 'Instructors';
+                    $banner_image = 'public/frontend/infixlmstheme/img/images/Teacher Explaining.jpg';
+                    $btn_title = auth()->check() ? '' : 'Become an Instructor';
+                @endphp
+                <x-breadcrumb :banner="$banner_image" :title="$banner_title" :btntitle="$btn_title" :btnclass="'btn_responsive openModal'" />
             </div>
         </div>
 

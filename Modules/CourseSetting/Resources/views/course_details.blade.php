@@ -696,7 +696,7 @@
                                                             <div class="primary_input">
                                                             <p class="primary_input_label">Featured</p>
                                                             <label class="switch_toggle" for="cna_prep_price_checkbox">
-                                                                <input type="checkbox" class="" id="cna_prep_price_checkbox" name="cna_prep_featured" @if($cna_prep_price->featured == 1) checked @endif>
+                                                                <input type="checkbox" class="" id="cna_prep_price_checkbox" name="cna_prep_featured" @if($cna_prep_price->featured == 1) checked @endif value="1">
                                                                 <i class="slider round"></i>
                                                             </label>
                                                         </div>
@@ -748,7 +748,7 @@
                                                         <div class="primary_input">
                                                             <p class="primary_input_label">Featured</p>
                                                             <label class="switch_toggle" for="test_prep_price_checkbox">
-                                                                <input type="checkbox" class="" id="test_prep_price_checkbox" name="test_prep_featured" @if($test_prep_price->featured == 1) checked @endif>
+                                                                <input type="checkbox" class="" id="test_prep_price_checkbox" name="test_prep_featured" @if($test_prep_price->featured == 1) checked @endif value="1">
                                                                 <i class="slider round"></i>
                                                             </label>
                                                         </div>
@@ -821,7 +821,7 @@
                                                         <div class="primary_input">
                                                             <p class="primary_input_label">Featured</p>
                                                             <label class="switch_toggle" for="test_prep_graded_checkbox">
-                                                                <input type="checkbox" class="" id="test_prep_graded_checkbox" name="test_prep_graded_featured" @if($test_prep_graded_price->featured == 1) checked @endif>
+                                                                <input type="checkbox" class="" id="test_prep_graded_checkbox" name="test_prep_graded_featured" @if($test_prep_graded_price->featured == 1) checked @endif value="1">
                                                                 <i class="slider round"></i>
                                                             </label>
                                                         </div>

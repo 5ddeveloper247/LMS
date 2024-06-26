@@ -1,7 +1,7 @@
 <div class="row pt-5 pb-4 g-0 mt-2">
+    @if (count($blogs)>0)
+        @foreach ($blogs as $blog)
             <div class="col-12 col-md-8 pr-0">
-              @if (count($blogs)>0)
-                  @foreach ($blogs as $blog)
                     <div class="card rounded-3 ml-xl-5 mb-4 ml-md-4" style="border-radius: 15px;">
                         <img src="{{ getBlogImage($blog->thumbnail) }}"
                             class="img-fluid custom-img" alt="" style="height:78vh !important" >
@@ -43,11 +43,7 @@
                         </div>
                     </div>
                   @endforeach
-                @else
-                  <div class="text-center">
-                    <p>No Blogs found</p>
-                  </div>
-                @endif
+                
             </div>
             <div class="col-12 col-md-4 pr-4">
                 <div class="search mr-xl-5 mr-lg-4 mr-3">
@@ -70,5 +66,12 @@
                 <x-blog-tags-widget />
                 <x-blog-category-widget />
             </div>
+            @else
+            <div class="col-12 col-md-12 pr-4">
+                <div class=" text-center w-100 card py-3 px-2">
+                <p>Stay Tuned for Exciting Updates!</p>
+                </div>
+            </div>
+            @endif
         </div>
      
