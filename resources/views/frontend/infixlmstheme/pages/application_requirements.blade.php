@@ -726,7 +726,7 @@
 @section('mainContent')
     <div class="row">
         <div class="col-md-12 px-0">
-            <div class="breadcrumb_area position-relative">
+            {{-- <div class="breadcrumb_area position-relative">
                 <div class="w-100 h-100 position-absolute bottom-0 left-0">
                     <img alt="Banner Image" class="w-100 h-100 img-cover"
                         src="{{ asset('public/assets/Application Req.jpg') }}">
@@ -739,7 +739,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+            <x-breadcrumb :title="'Apply Your Program and Courses Today'" :btnclass="'theme_btn small_btn2'"/>
         </div>
 
     </div>

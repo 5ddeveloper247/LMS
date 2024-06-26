@@ -54,11 +54,14 @@ class FrontendHomeController extends Controller
                 return DB::table('homepage_block_positions')->select(['id', 'block_name', 'order'])->orderBy('order', 'asc')->get();
             });
             $latest_programs = Program::where('status', 1)->where('featured',1)->has('currentProgramPlan')->with('currentProgramPlan')->latest()->take(6)->get();
-            $latest_courses = Course::where('price', '!=', '0.00')->where(function($query){
-                $query->whereHas('parent', function ($q) {
-                    $q->where('featured', 1);
-                })->orWhere('featured',1);
-            })->with('parent')->latest()->take(3)->get();
+            $latest_courses = Course::where('featured',1)
+            ->has('parent')
+            // ->where(function($query){
+            //     $query->whereHas('parent', function ($q) {
+            //         $q->where('featured', 1);
+            //     })->orWhere('featured',1);
+            // })
+            ->with('parent','currentCoursePlan')->latest()->take(3)->get();
             $allPrograms = Program::where('status',1)->latest()->get();
             $allCourses = Course::whereNull('parent_id')->latest()->get();
             //dd($latest_courses);

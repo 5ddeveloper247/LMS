@@ -3069,9 +3069,16 @@
                                                     @endif
                                                 </span>
                                             </div>
+                                            @php
+                                                if (isset($thiscourse->currentCoursePlan[0])) {
+                                                          $course_price = $thiscourse->currentCoursePlan[0]->amount;
+                                                      } else {
+                                                          $course_price = $thiscourse->price + $thiscourse->tax;
+                                                      }
+                                            @endphp
                                             <div class="date-overlay">
                                                 <span
-                                                    class="image-date">${{ number_format($thiscourse->price, 0) }}</span>
+                                                    class="image-date">${{ number_format($course_price, 0) }}</span>
                                             </div>
                                         </div>
                                     @endif
@@ -3094,17 +3101,32 @@
                                         {{-- <img src="https://demoapus2.com/edumy/wp-content/uploads/elementor/thumbs/1105-pe3njtkqt5gexzmb6f3gua5ab17rzk5a1ccdwchmj0.jpg"
                                     class="card-img" alt="..."> --}}
                                         <div class="card-img-overlay">
-                                            <h5 class="card-title font-weight-bold">{{ $first_program->programtitle }}
+                                            <h5 class="card-title font-weight-bold">
+                                                <a href="{{ route('programs.detail', [$first_program->id]) }}">{{ $first_program->programtitle }}</a>
                                             </h5>
                                             <div class="card-date">
                                                 <span
                                                     class="card_date_heading">${{ number_format($first_program->currentProgramPlan[0]->amount, 0) }}</span>
+                                            </div>
+                                            <div class="card-date d-none d-md-block" style="right:30px; left:unset">
+                                                <span
+                                                    class="card_date_heading">
+                                                    Program
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @endif
                             @if ($first_course)
+                            @php
+                                if (isset($first_course->currentCoursePlan[0])) {
+                                                          $course_price = $first_course->currentCoursePlan[0]->amount;
+                                                      } else {
+                                                          $course_price = $first_course->price + $first_course->tax;
+                                                      }
+                                
+                            @endphp
                                 <div class="col-6 px-lg-2">
                                     <div class="card custom-card">
                                         <img src="{{ getCourseImage($first_course->thumbnail) }}" class="card-img"
@@ -3113,11 +3135,35 @@
                                     class="card-img" alt="..."> --}}
                                         <div class="card-img-overlay">
                                             <h5 class="card-title font-weight-bold">
+                                                <a href="{{ !empty($first_course->parent_id) ? courseDetailsUrl(@$first_course->parent->id, @$first_course->type, @$first_course->parent->slug) . '?courseType=' . $first_course->type : courseDetailsUrl(@$first_course->id, @$first_course->type, @$first_course->slug) }}">
                                                 {{ !empty($first_course->parent_id) ? $first_course->parent->title : $first_course->title }}
+                                                </a>
                                             </h5>
                                             <div class="card-date">
                                                 <span
-                                                    class="card_date_heading">${{ number_format($first_course->price, 0) }}</span>
+                                                    class="card_date_heading">${{ number_format($course_price, 0) }}</span>
+                                            </div>
+                                            <div class="card-date d-none d-md-block" style="right:30px; left:unset">
+                                                <span
+                                                    class="card_date_heading">
+                                                    @if ($first_course->type == 1)
+                                                        {{ __('Course') }}
+                                                    @elseif($first_course->type == 2)
+                                                        {{ __('Big Quiz') }}
+                                                    @elseif($first_course->type == 3)
+                                                        {{ __('Individual Course') }}
+                                                    @elseif($first_course->type == 4)
+                                                        {{ __('Full Course') }}
+                                                    @elseif($first_course->type == 5)
+                                                        {{ __('Prep-Course (On-Demand)') }}
+                                                    @elseif($first_course->type == 6)
+                                                        {{ __('Prep-Course (Live)') }}
+                                                    @elseif($first_course->type == 8)
+                                                        {{ __('Repeat Course') }}
+                                                    @elseif($first_course->type == 9)
+                                                        {{ __('Tutor Course') }}
+                                                    @endif
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

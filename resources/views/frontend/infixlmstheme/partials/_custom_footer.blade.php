@@ -180,7 +180,7 @@
 <script>
     $(document).ready(function() {
 
-        $('#search').keyup(function(e) {
+        $('.search_courses').keyup(function(e) {
             // alert('working');
             if ($('#search').val() == '') {
                 $('#search_listing').remove();
@@ -196,7 +196,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    $('#courses_list').html(response);
+                    $('.search_courses_list').html(response);
                 }
             });
         });
@@ -238,6 +238,16 @@
     function informationflag($text) {
         localStorage.setItem("information", $text);
     }
+</script>
+<script>
+     document.addEventListener('click', function(event) {
+        var isClickInside = document.getElementById('collapseExample').contains(event.target);
+        var isIconClick = event.target.closest('.input-group-prepend');
+
+        if (!isClickInside && !isIconClick) {
+            $('#collapseExample').collapse('hide');
+        }
+    });
 </script>
 {{-- <div class="" style="background: black;">
     <div class="containerdoosme">

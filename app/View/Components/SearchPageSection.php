@@ -42,7 +42,8 @@ class SearchPageSection extends Component
                     break;
             }
         }else{
-            $search_type = '%';
+            $search_type = $this->request->has('search_courseType') ? $this->request->get('search_courseType') : '%';
+                //    $wildcard = $this->request->has('search_courseType') ? 'like' : 'not like';
             $wildcard = 'like';
         }
        // dd($search_type,$wildcard);
