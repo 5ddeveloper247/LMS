@@ -719,21 +719,10 @@
 @section('mainContent')
     <div class="row">
         <div class="col-md-12 px-0">
-            {{-- <div class="breadcrumb_area position-relative">
-                <div class="w-100 h-100 position-absolute bottom-0 left-0">
-                    <img alt="Banner Image" class="w-100 h-100 img-cover"
-                        src="{{ asset('public/assets/Application Req.jpg') }}">
-                </div>
-                <div class="col-lg-9 col-10 offset-1">
-                    <div class="breadcam_wrap">
-                        <h2 class="section_main_heading text-white custom-heading">Apply Your Program and Courses Today</h2>
-                        <div class="contact_btn mt-5">
-                            <a href="{{ route('register') }}" class="theme_btn small_btn2 p-2">Apply Now </a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            <x-breadcrumb :title="'Apply Your Program and Courses Today'" :btnclass="'theme_btn small_btn2'"/>
+            @php
+             $btn_title = auth()->check() ? '' : 'Apply Now';   
+            @endphp
+            <x-breadcrumb :title="'Apply Your Program and Courses Today'" :btnclass="'theme_btn small_btn2'" :btntitle="$btn_title" />
         </div>
 
     </div>
@@ -763,9 +752,11 @@
                     </p>
                     
                 </div>
+                @guest
                 <div class="col-md-12  text-center contact_btn mt-4">
-                    <a href="{{ route('register') }}" class="theme_btn small_btn2 p-2">Apply Now</a>
+                    <a href="{{ route('preRegistration') }}" class="theme_btn small_btn2 p-2">Apply Now</a>
                 </div>
+                @endguest
             </div>
         </div>
     </section>
