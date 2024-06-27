@@ -591,7 +591,7 @@
         background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#111));
         /* background: linear-gradient(transparent, #111); */
         color: #fff;
-        padding: 4rem 1.5rem 2.5rem;
+        padding: 4rem 1.5rem 1.5rem;
     }
 
     .banner_img {
@@ -639,11 +639,6 @@
         .custom_heading_1 {
             font-size: 1rem !important;
         }
-
-        .program-span {
-            font-size: 11px;
-        }
-
         .theme_btn {
             font-size: 12px !important;
         }

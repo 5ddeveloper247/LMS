@@ -836,9 +836,6 @@
 .custom_heading_1 {
        font-size: 1rem !important;
     }
-    .program-span{
-    font-size: 11px;
-}
 .theme_btn {
     font-size: 12px !important;
 }
@@ -889,7 +886,7 @@
                 @endphp
                 <!-- <div class="col-xl-9 col-lg-9 col-md-8 mt-3 px-2"> -->
                     <!-- first -->
-                    <div class="row px-xl-5 small_screen">
+                    <div class="row px-lg-5 small_screen">
                         <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12 d-flex justify-content-between">
 
                             <div class="">
@@ -918,7 +915,7 @@
                         <div class="buttons-padding d-flex mb-0" style="gap: 10px;">
                         @if (Auth::check())
                             @if ($isEnrolled  ||  isAdmin())
-                                <a href="javascript:void(0)" class="small_btn theme_btn m-1 ">Enrolled
+                                <a href="javascript:void(0)" class="small_btn theme_btn">Enrolled
                                 </a>
                             @elseif(isStudent())
                                 @if (isset($program_detail->currentProgramPlan[0]) &&

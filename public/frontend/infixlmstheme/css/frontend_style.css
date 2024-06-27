@@ -7640,11 +7640,6 @@ input[type="number"] {
         font-size: 11px !important;
     }
 
-    .breadcrumb_area {
-        min-height: 260px !important;
-        max-height: 260px !important;
-    }
-
     .small_tag_color {
         font-size: 12px !important;
     }
@@ -7656,6 +7651,11 @@ input[type="number"] {
 }
 
 @media (max-width: 575.98px) {
+    
+    .breadcrumb_area {
+        min-height: 300px !important;
+        max-height: 300px !important;
+    }
     .containerdoosme {
         padding-top: 165px !important;
     }
@@ -7751,15 +7751,6 @@ input[type="number"] {
         height: 180px;
         width: 100%;
     }
-
-    .breadcrumb_area {
-        min-height: 440px !important;
-        max-height: 440px !important;
-    }
-
-    /* .quiz_wizged {
-        width: 17rem;
-    } */
 }
 
 .header_iner .notification_wrapper ul li .notification_area .notification_body .single_nofy {
@@ -16479,6 +16470,11 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    
+    .breadcrumb_area {
+        min-height: 400px;
+        max-height: 400px;
+    }
     .custom-image-height{
         height: 350px;
     }
@@ -17164,8 +17160,8 @@ body {
     }
 
     .breadcrumb_area {
-        min-height: 500px !important;
-        max-height: 500px !important;
+        min-height: 450px !important;
+        max-height: 450px !important;
     }
 
     .breadcrumb_area2 .breadcam_wrap h3 {
