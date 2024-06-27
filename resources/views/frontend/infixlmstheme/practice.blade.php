@@ -196,7 +196,7 @@
 <section class="online-learning d-flex align-items-center justify-content-center"><div class="py-5">
     <div class="py-5">
     <h2 class="text-white text-center font-weight-bold">Start your transformation with a single click. Limited Seats Available!</h2>
-    <h2 class="text-white text-center pt-2">Get Licensure, Apply Now for Merakii College's Healthcare Programs and Courses. <br>Adult-Learner’s Success</h2>
+    <h2 class="text-white text-center pt-2">Get Licensure, Apply Now for Merkaii Xcellence College's Healthcare Programs and Courses. <br>Adult-Learner’s Success</h2>
     <div class="d-flex justify-content-center">
     <button class="btn custom-button px-lg-5 px-3 py-2 mt-5">Contact Admission Specialist</button>
     </div>

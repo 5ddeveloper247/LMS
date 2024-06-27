@@ -315,7 +315,7 @@
             <div class="col-md-7 ">
                 {{-- <div id="accountType">
                     <div class=" text-center">
-                        <h3 class="text-uppercase text_login">We are merakii </h3>
+                        <h3 class="text-uppercase text_login">We are Merkaii Xcellence </h3>
                         <h6 class="heading-login text-capitalize"> choose account type</h6>
                     </div>
                     <div class="text-center mt-mb-5 mt-4 mb-3">
@@ -352,7 +352,7 @@
 
 
 
-                <h6 class="text-center mb-4 text-capitalize heading-login hidemainContent">hello, welcome to merakii </h6>
+                <h6 class="text-center mb-4 text-capitalize heading-login hidemainContent">hello, welcome to Merkaii Xcellence </h6>
                 @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true' || saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
                 <div class="socail_links hidemainContent">
                     @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true')
@@ -428,7 +428,7 @@
 
 
                     </div>
-                    <span class="hidemainContent text-capitalize text-justify mt-3 ">By signing in you agree to merakii <a
+                    <span class="hidemainContent text-capitalize text-justify mt-3 ">By signing in you agree to Merkaii Xcellence <a
                             href="{{ route('customer-help') }}" style="color: var(--system_primery_color);">college terms & conditions |
                             privacy policy</a></span>
                     {{-- @if (saasEnv('NOCAPTCHA_FOR_LOGIN') == 'true' && saasEnv('NOCAPTCHA_IS_INVISIBLE') == 'true')

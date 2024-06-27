@@ -646,7 +646,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 program mb-3">
-                                        <span>hereby authorize Merakii College Of Health to charge my Credit or Debit
+                                        <span>hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
                                             Card for payment of Education services rendered as described on</span>
                                     </div>
                                     {{--                                    <div class="col-md-6 program mb-4" style="display: flex; align-items: baseline;"> --}}

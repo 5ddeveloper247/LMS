@@ -38,7 +38,7 @@
     <div class="login_main_info">
         <h4>
 
-            {{ $title ?? 'Welcome to Merakii College of Health' }}
+            {{ $title ?? 'Welcome to Merkaii Xcellence College of Health' }}
         </h4>
         <div class="thumb">
             <img src="{{ asset($banner ?? 'public/frontend/infixlmstheme/img/banner/global.png') }}" alt="">

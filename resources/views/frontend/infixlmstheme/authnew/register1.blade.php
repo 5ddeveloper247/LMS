@@ -337,9 +337,9 @@ canvas {
         <div class="row my-4 my-lg-5 px-xl-5">
             <!-- Left side - Registration Form -->
             <div class="col-md-8 mb-5 mb-md-0">
-                <h3 class="text-uppercase text-center text_reg">We are merakii </h3>
+                <h3 class="text-uppercase text-center text_reg">We are Merkaii Xcellence </h3>
 
-                <h6 class="text-center mb-4 text-capitalize heading-reg">hello, welcome to merakii <br><span
+                <h6 class="text-center mb-4 text-capitalize heading-reg">hello, welcome to Merkaii Xcellence <br><span
                         class="font-weight-300">please fill the form below to get started</span></h6>
 
                 <div class="timeline">

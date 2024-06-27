@@ -295,7 +295,7 @@
             <div class="col-md-7 mb-2 mb-md-0">
                 <div class="collapse show" id="optionsCollapse">
                     <div class=" text-center">
-                        <h3 class="text-uppercase text_login">We are merakii </h3>
+                        <h3 class="text-uppercase text_login">We are Merkaii Xcellence </h3>
                         <h6 class="heading-login text-capitalize"> choose account type</h6>
                     </div>
                     <div class="text-center mt-mb-5 mt-4 mb-3">
@@ -328,7 +328,7 @@
                 </div>
                 <div class="collapse" id="mainContentCollapse">
 
-                <h6 class="text-center mb-4 text-capitalize heading-login">hello, welcome to merakii </h6>
+                <h6 class="text-center mb-4 text-capitalize heading-login">hello, welcome to Merkaii Xcellence </h6>
                 @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true' || saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
                 <div class="socail_links">
                     @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true')

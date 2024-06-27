@@ -336,8 +336,8 @@ canvas {
         <div class="row my-4 my-lg-5 px-xl-5 ">
             <!-- Left side - Registration Form -->
             <div class="col-md-8">
-                <h3 class="text-uppercase text-center text_reg">We are merakii </h3>
-                <h6 class="text-center mb-4 text-capitalize heading-reg">welcome to merakii <br><span
+                <h3 class="text-uppercase text-center text_reg">We are Merkaii Xcellence </h3>
+                <h6 class="text-center mb-4 text-capitalize heading-reg">welcome to Merkaii Xcellence <br><span
                         class="font-weight-300">please fill the form below</span></h6>
                 <div class="timeline">
                     <div class="inside-line"></div>
@@ -408,7 +408,7 @@ canvas {
 
                     <div class="form-row">
                         <div class="form-group col-md-12 d-flex p-0">
-                            <p>hereby authorize Merakii College Of Health to charge my Credit or Debit Card for payment
+                            <p>hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit Card for payment
                                 of Education services rendered as described on <span class="">Date:</span>
                                 <input class="date-span " type="date" placeholder="mm/dd/yyyy" name="declaration_date"
                                     value="{{ $payment_details->declaration_date ?? old('declaration_date') }}">

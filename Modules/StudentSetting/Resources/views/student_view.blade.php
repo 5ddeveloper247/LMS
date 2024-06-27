@@ -697,7 +697,7 @@
                                                                             </div>
                                                                             <div class="col-md-12 nameda program">
                                                                                 <p>
-                                                                                    hereby authorize Merakii College Of
+                                                                                    hereby authorize Merkaii Xcellence College Of
                                                                                     Health
                                                                                     to charge my Credit
                                                                                     or
