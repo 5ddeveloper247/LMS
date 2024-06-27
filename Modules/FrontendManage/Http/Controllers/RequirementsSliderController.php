@@ -46,7 +46,7 @@ class RequirementsSliderController extends Controller
             $slider->title = $request->title;
             $slider->subtitle = $request->sub_title ?? '';
             $slider->text = $request->text ?? '';
-            $slider->color = '#996699';
+            $slider->color = $request->color ?? '#996699';
             $slider->btn_title = $request->btn_title1 ?? '';
             $slider->btn_link = $request->btn_link1 ?? '';
             $slider->btn_class = '';
@@ -88,6 +88,7 @@ class RequirementsSliderController extends Controller
             $slider->title = $request->title;
             $slider->subtitle = $request->sub_title ?? '';
             $slider->text = $request->text ?? '';
+            $slider->color = $request->color ?? '#996699';
             $slider->btn_title = $request->btn_title1 ?? '';
             $slider->btn_link = $request->btn_link1 ?? '';
 

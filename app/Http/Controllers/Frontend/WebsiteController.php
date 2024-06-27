@@ -56,6 +56,7 @@ use PDF;
 use Modules\AuthorizeNetPayment\Http\Controllers\DoAuthorizeNetPaymentController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Modules\FrontendManage\Entities\RequirementSlider;
 class WebsiteController extends Controller
 {
     public function __construct()
@@ -1942,7 +1943,8 @@ class WebsiteController extends Controller
 
     public function application_requirements()
     {
-        return view(theme('pages.application_requirements'));
+        $slider = RequirementSlider::where('status',1)->latest()->get();
+        return view(theme('pages.application_requirements'),compact('slider'));
     }
 
 
