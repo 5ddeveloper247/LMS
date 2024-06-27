@@ -1051,63 +1051,23 @@
     </section> --}}
     <div class="row featured-carousel owl-carousel m-md-0 app_require mb-3">
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
+        @foreach ($slider as $slide)
         <div class="row h-100">
-            <div class="col-sm-6 py-3 back-color small_screen_carousel">
+            <div class="col-sm-6 py-3 small_screen_carousel" style="background-color:{{$slide->color}}">
                 <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
-                        zulqarnain-test-1
+                        {{ $slide->title }}
                     </h5>
                     <p class=" px-0 px-lg-5 px-sm-3 slider_paragraph text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magni ut animi
-                        laborum quidem tempore quas sit et similique? Magni officiis dolores quam quos
-                        similique atque quidem repellat recusandae mollitia!
+                        {{ $slide->text }}
                     </p>
                 </div>
             </div>
             <div class="col-sm-6 d-flex justify-content-center align-items-center p-0 small_screen_carousel2">
-                <img src="{{ asset('public/assets/c2.jpg') }}" class="d-block img-fluid slider_img1 h-100 w-100">
+                <img src="{{ asset($slide->image) }}" class="d-block img-fluid slider_img1 h-100 w-100">
             </div>
         </div>
-        {{-- </div> --}}
-        {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
-        <div class="row h-100">
-            <div class="col-sm-6 col-12 py-3 back-color small_screen_carousel">
-                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para ">
-                    <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
-                        zulqarnain-test-2
-                    </h5>
-                    <p class="px-0 px-lg-5 px-sm-3 slider_paragraph text-white">
-                        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                        demonstrate the visual form of a document or a typeface without relying on
-                        meaningful content. Lorem ipsum may be used as a placeholder before final copy is
-                        available.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-6 d-flex justify-content-center align-items-center p-0 small_screen_carousel2">
-                <img src="{{ asset('public/assets/c3.jpg') }}" class="d-block img-fluid slider_img1 h-100 w-100">
-            </div>
-        </div>
-        {{-- </div> --}}
-        {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
-        <div class="row h-100">
-            <div class="col-sm-6 col-12 py-4 back-color small_screen_carousel">
-                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
-                    <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
-                        zulqarnain-test-3
-                    </h5>
-                    <p class="px-0 px-lg-5 px-sm-3 slider_paragraph text-white">
-                        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                        demonstrate the visual form of a document or a typeface without relying on
-                        meaningful content. Lorem ipsum may be used as a placeholder before final copy is
-                        available.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-6 d-flex justify-content-center align-items-center p-0 small_screen_carousel2">
-                <img src="{{ asset('public/assets/c1.jpg') }}" class="d-block img-fluid slider_img1 h-100 w-100">
-            </div>
-        </div>
+        @endforeach
         {{-- </div> --}}
     </div>
 
