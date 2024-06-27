@@ -375,6 +375,10 @@
             overflow: auto;
             scrollbar-width: none;
         }
+        .small_gap img{
+            height: 35px;
+            width: 35px;
+        }
     @media only screen and (max-width: 576px) {
         .mr_our_process {
             margin-right: 0px !important;
@@ -443,10 +447,9 @@
             position: relative;
         }
 
-        svg {
-            min-width: 20px;
-            min-height: 20px;
-            max-width: 20px;
+        .small_gap img {
+            width: 20px !important;
+            height: 20px !important;
             position: absolute;
             top: -28px;
             left: 50%;
@@ -463,6 +466,7 @@
 
         .brdr-btm-of-txt {
             font-size: 16px;
+            text-align: center !important;
         }
     }
 
@@ -913,13 +917,13 @@
                         data-aos-duration="1000">
                         <div class="padding-top-of-first-part ml_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2> --}}
-                            <h5 class="custom_text_small font-weight-bold w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Register for a Teacher’s Plan
+                            <h5 class="custom_text_small font-weight-bold w-100 text-md-end brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">Register for a Teacher’s Plan
                             </h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                                <p class="fw-light text-md-end">Sign up for a Teacher's Plan that best suits your needs and curriculum goals. We 
+                                <p class="fw-light text-md-end mt-2 mt-md-0">Sign up for a Teacher's Plan that best suits your needs and curriculum goals. We 
                                     offer various options to give you the flexibility, resources and control you deserve to
                                     thrive.</p>
-                                    <img src="{{ asset('public/assets/register.png') }}" style="height: 35px; width: 35px;">
+                                    <img src="{{ asset('public/assets/register.png') }}">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                     viewBox="0 0 24 24">
                                     <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round"
@@ -943,7 +947,7 @@
                         data-aos-duration="1000">
                         <div class="d-flex flex-column align-items-start mr_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 02</h2> --}}
-                            <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Develop Your Curriculum</h5>
+                            <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">Develop Your Curriculum</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                     height="50px" x="0px" y="0px" viewBox="0 0 50 50"
@@ -1005,8 +1009,8 @@
                                         </path>
                                     </g>
                                 </svg> --}}
-                                <img src="{{ asset('public/assets/curriculumn.png') }}" style="height: 35px;width: 35px;">
-                                <p class="fw-light">Craft your compelling curriculum! Outline your course content, including learning 
+                                <img src="{{ asset('public/assets/curriculumn.png') }}">
+                                <p class="fw-light mt-2 mt-md-0">Craft your compelling curriculum! Outline your course content, including learning 
                                     objectives, lesson structure, assignments, and assessments. Identify the valuable 
                                     skills and knowledge you’ll impart to your students.</p>
                             </div>
@@ -1024,12 +1028,12 @@
                         data-aos-duration="1000">
                         <div class="d-flex flex-column align-items-end ml_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2> --}}
-                            <h5 class="custom_text_small font-weight-bold w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Record Your Videos</h5>
+                            <h5 class="custom_text_small font-weight-bold w-100 text-md-end brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">Record Your Videos</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                                <p class="fw-light text-md-end">Share your expertise through engaging video lectures. Merkaii Xcellence Prep 
+                                <p class="fw-light text-md-end mt-2 mt-md-0">Share your expertise through engaging video lectures. Merkaii Xcellence Prep 
                                     provides all the tools you need to record high-quality videos from the comfort of 
                                     your own space.</p>
-                                    <img src="{{ asset('public/assets/video.png') }}" style="height: 35px; width: 35px;">
+                                    <img src="{{ asset('public/assets/video.png') }}">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                     height="50px" x="0px" y="0px" viewBox="0 0 50 50"
                                     style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -1054,9 +1058,9 @@
                         data-aos-duration="1000">
                         <div class="d-flex flex-column padding-btm-last-part mr_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 04</h2> --}}
-                            <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Launch Your Course</h5>
+                            <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">Launch Your Course</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                                <img src="{{ asset('public/assets/launch-course.png') }}" style="height: 35px; width: 35px;">
+                                <img src="{{ asset('public/assets/launch-course.png') }}">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                     fill="var(--system_primery_color)" x="0px" y="0px" viewBox="0 0 50 48"
                                     style="enable-background:new 0 0 50 48;" xml:space="preserve">
@@ -1078,7 +1082,7 @@
                                         </path>
                                     </g>
                                 </svg> --}}
-                                <p class="fw-light">Once everything is polished, launch your course and start inspiring future 
+                                <p class="fw-light mt-2 mt-md-0">Once everything is polished, launch your course and start inspiring future 
                                     healthcare professionals! Merkaii Xcellence Prep handles the marketing and student
                                     enrollment, so you can focus on what you do best – teaching.</p>
                             </div>
