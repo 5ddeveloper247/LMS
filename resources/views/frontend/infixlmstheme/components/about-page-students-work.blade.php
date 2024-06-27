@@ -2,13 +2,10 @@
 <style>
     .card-container {
         position: relative;
-        /* padding: 30px 0; */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        /* height: 80vh; */
-        /* background-color: #FAE6FA; */
         background-image: url({{ asset('/public/uploads/images/footerimg/testimonial.jpg') }});
         background-repeat: no-repeat;
         background-position: center;
@@ -24,7 +21,6 @@
     .slick-slider {
         width: 100%;
         max-width: 100%;
-        /* transition-duration: 0ms; */
         transition: all 0.3s linear 0s;
     }
 
@@ -196,7 +192,7 @@
 
         <div class="slick-slider" id="student-work-slider">
             @foreach ($testimonials as $item)
-            <div class="slide d-flex">
+            <div class="slide">
 
                 <div class="row px-lg-5 px-2 justify-content-center elem pb-5">
 
@@ -291,38 +287,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 
-{{-- <script>
-    document.querySelectorAll(".slide").forEach(function(slide) {
-        var elems = slide.querySelectorAll(".elem");
-        elems.forEach(function(elem) {
-            var contents = elem.querySelectorAll(".elem-content");
-            var index = 0;
-            var animating = false;
-            elem.addEventListener("click", function() {
-                if (!animating) {
-                    animating = true;
-                    gsap.to(contents[index], {
-                        top: "-=100%",
-                        duration: 1,
-                        ease: Expo.easeInOut,
-                        onComplete: function() {
-                            gsap.set(this._targets, {
-                                top: "100%"
-                            });
-                            animating = false;
-                        }
-                    });
-                    index === contents.length - 1 ? (index = 0) : index++;
-                    gsap.to(contents[index], {
-                        top: "-=100%",
-                        duration: 1,
-                        ease: Expo.easeInOut
-                    });
-                }
-            });
-        });
-    });
-</script> --}}
+
 
 <script>
 $(document).ready(function() {

@@ -1086,6 +1086,8 @@
         background-image: url("{{ asset('public/assets/Section9-.jpg') }}");
         height: auto;
         background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
     .flowdiv {
@@ -1468,7 +1470,7 @@
         align-items: center;
         position: relative;
         word-wrap: break-word;
-        background-image: url({{ asset('/public/uploads/images/footerimg/Photo.png') }});
+        background-image: url('{{ asset("/public/assets/Untitled design (40).png") }}');
 
     }
 
@@ -1617,8 +1619,15 @@
     .about-img {
         height: 100%;
         width: 250px;
+        scale: 1;
+        overflow: hidden;
+        border-radius: 20px;
     }
 
+.about-img:hover img{
+    scale: 1.2;
+    transition: all 2s;
+}
     .at_merakii {
         font-size: 1.8rem;
     }
@@ -2958,8 +2967,8 @@
                     <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
                         Licensure.</p>
                 </div>
-                <div class="row d-flex align-items-stretch pb-4 px-xl-5 animate">
-                    <div class="col-md-6 mb-2 px-md-0">
+                <div class="row d-flex align-items-stretch pb-4 px-xl-5">
+                    <div class="col-md-6 mb-2 px-md-0 hidden hidden-left">
                         <div class="custom-slider-container">
                             <button class="prev">❮</button>
                             <div class="custom-slider">
@@ -3091,7 +3100,7 @@
                     @php
 
                     @endphp
-                    <div class="col-md-6">
+                    <div class="col-md-6 hidden hidden-right">
                         <div class="row">
                             @if ($first_program)
                                 <div class="col-6 px-lg-2">

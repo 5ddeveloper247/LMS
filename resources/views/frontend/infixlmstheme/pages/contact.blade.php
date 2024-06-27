@@ -335,7 +335,6 @@
 
         .formdokana input.form-control-text {
             background-color: transparent;
-            /* border: 1px solid #e1e1e1; */
             border-radius: 0;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -346,7 +345,6 @@
             line-height: calc(50px - (12px * 2) - 2px);
             margin: 0 0 16px;
             outline: 0;
-            /* padding: 12px 16px; */
             position: relative;
             width: 100%;
             -webkit-appearance: none;
@@ -378,16 +376,21 @@
             margin: 60px auto !important;
         }
 
-        .dataflow {
+        .data-flow {
             height: 100%;
             background-color: #0079a8;
             position: relative;
             display: flex;
+            align-items: center;
+        }
+        .dataflow {
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            padding: 2rem 3rem;
+            overflow: auto;
+            scrollbar-width: none;
+            height: 300px;
         }
 
         .dataflow-p::-webkit-scrollbar {
@@ -416,13 +419,15 @@
             top: 50%;
             transform: translateY(-50%);
         }
-        .custom-padding {
-            padding: 30px 0;
-        }
+
         @media only screen and (max-width: 768px) {
-            .dataflow h2, .wpb_wrapper_h, .data h2{
+
+            .dataflow h2,
+            .wpb_wrapper_h,
+            .data h2 {
                 font-size: 18px !important;
             }
+
             .flowdiv {
                 height: 340px;
                 padding: 0px;
@@ -431,9 +436,13 @@
             }
 
             .dataflow {
-                max-height: 340px;
-                padding: 2rem 0.5rem;
+                height: 280px !important;
             }
+            .flowdiv-dataflow img{
+            width: 35px;
+            height: 35px;
+        }
+
             .dataflow-p {
                 line-height: normal;
                 overflow: auto;
@@ -450,6 +459,7 @@
                 padding: 4rem 0rem;
                 margin-bottom: 4rem;
             }
+
             .banner-img {
                 height: 60vh !important;
             }
@@ -459,7 +469,7 @@
 
             .dataflow {
                 max-height: 300px !important;
-                padding: 1rem 1rem;
+                /* padding: 1rem 1rem; */
             }
 
             .dataflow-p {
@@ -469,15 +479,22 @@
             .dataflow h2 {
                 font-size: 25px;
             }
-            .dataflow h2, .wpb_wrapper_h, .data h2{
+
+            .dataflow h2,
+            .wpb_wrapper_h,
+            .data h2 {
                 font-size: 1.6rem !important;
             }
         }
 
         @media only screen and (min-width: 1025px) and (max-width:1279px) {
-            .dataflow h2, .wpb_wrapper_h, .data h2{
+
+            .dataflow h2,
+            .wpb_wrapper_h,
+            .data h2 {
                 font-size: 1.6rem !important;
             }
+
             .dataflow {
                 max-height: 300px !important;
             }
@@ -487,9 +504,9 @@
             }
         }
 
-        @media only screen and (min-width: 1650px) {
+        @media only screen and (min-width: 1500px) {
             .dataflow {
-                height: 500px !important;
+                height: 400px !important;
             }
 
             .formdokana input[type=text] {
@@ -517,105 +534,100 @@
             .selectProgram {
                 margin: 0 0 40px;
             }
-
-            .custom-padding {
-                padding: 80px !important;
-            }
         }
 
 
 
         /* @media only screen and (min-width: 1281px){
-                                            .dataflow {height: 335px !important;}
-                                        } */
+                                                    .dataflow {height: 335px !important;}
+                                                } */
 
 
 
 
         /* meadi queries for 67% */
         /* @media (width > 1650px) {
-                                                                            .breadcrumb_area .breadcam_wrap h3 {
-                                                                                font-size: 100px !important;
-                                                                                font-weight: 900;
-                                                                                line-height: 76px;
-                                                                                color: #fff;
-                                                                            }
+                                                                                    .breadcrumb_area .breadcam_wrap h3 {
+                                                                                        font-size: 100px !important;
+                                                                                        font-weight: 900;
+                                                                                        line-height: 76px;
+                                                                                        color: #fff;
+                                                                                    }
 
-                                                                            h5 {
-                                                                                font-size: 27px !important;
-                                                                                line-height: 25px;
-                                                                            }
+                                                                                    h5 {
+                                                                                        font-size: 27px !important;
+                                                                                        line-height: 25px;
+                                                                                    }
 
-                                                                            h4 {
-                                                                                font-size: 32px !important;
-                                                                                line-height: 25px;
-                                                                            }
+                                                                                    h4 {
+                                                                                        font-size: 32px !important;
+                                                                                        line-height: 25px;
+                                                                                    }
 
-                                                                            .select2-container .select2-selection--single {
-                                                                                height: 67px !important;
-                                                                                border: 1px solid #e1e1e1 !important;
+                                                                                    .select2-container .select2-selection--single {
+                                                                                        height: 67px !important;
+                                                                                        border: 1px solid #e1e1e1 !important;
 
-                                                                            }
+                                                                                    }
 
-                                                                            .select2-container--default .select2-selection--single .select2-selection__rendered {
-                                                                                color: #444;
-                                                                                line-height: 61px !important;
-                                                                            }
+                                                                                    .select2-container--default .select2-selection--single .select2-selection__rendered {
+                                                                                        color: #444;
+                                                                                        line-height: 61px !important;
+                                                                                    }
 
-                                                                            .select2-container--default .select2-selection--single .select2-selection__arrow {
-                                                                                height: 35px !important;
+                                                                                    .select2-container--default .select2-selection--single .select2-selection__arrow {
+                                                                                        height: 35px !important;
 
-                                                                            }
+                                                                                    }
 
-                                                                            .select2 .select2-container .select2-container--default {
-                                                                                width: 100% !important;
-                                                                            }
+                                                                                    .select2 .select2-container .select2-container--default {
+                                                                                        width: 100% !important;
+                                                                                    }
 
-                                                                            .form-control {
-                                                                                display: block;
-                                                                                width: 100%;
-                                                                                height: calc(2.5em + 0.75rem + 2px) !important;
-                                                                                padding: 0.375rem 0.75rem;
-                                                                                font-size: 1.4rem !important;
-                                                                                font-weight: 400;
-                                                                                line-height: 1.5;
-                                                                                color: #495057;
-                                                                                background-color: #fff;
-                                                                                background-clip: padding-box;
-                                                                                border: 1px solid #ced4da;
-                                                                                border-radius: 0.25rem;
-                                                                                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-                                                                            }
+                                                                                    .form-control {
+                                                                                        display: block;
+                                                                                        width: 100%;
+                                                                                        height: calc(2.5em + 0.75rem + 2px) !important;
+                                                                                        padding: 0.375rem 0.75rem;
+                                                                                        font-size: 1.4rem !important;
+                                                                                        font-weight: 400;
+                                                                                        line-height: 1.5;
+                                                                                        color: #495057;
+                                                                                        background-color: #fff;
+                                                                                        background-clip: padding-box;
+                                                                                        border: 1px solid #ced4da;
+                                                                                        border-radius: 0.25rem;
+                                                                                        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                                                                                    }
 
-                                                                            .ankar a {
-                                                                                font-size: 21px !important;
-                                                                                line-height:  !important 36px;
-                                                                            }
+                                                                                    .ankar a {
+                                                                                        font-size: 21px !important;
+                                                                                        line-height:  !important 36px;
+                                                                                    }
 
-                                                                            input,
-                                                                            input::placeholder {
-                                                                                font: 1.25rem/3 sans-serif;
-                                                                            }
+                                                                                    input,
+                                                                                    input::placeholder {
+                                                                                        font: 1.25rem/3 sans-serif;
+                                                                                    }
 
-                                                                            .eltdf-eh-item-inner {
-                                                                                height: 550px !important;
-                                                                            }
+                                                                                    .eltdf-eh-item-inner {
+                                                                                        height: 550px !important;
+                                                                                    }
 
-                                                                            .dataflow {
-                                                                                height: 550px !important;
-                                                                            }
+                                                                                    .dataflow {
+                                                                                        height: 550px !important;
+                                                                                    }
 
-                                                                            .theme_btn {
-                                                                                font-size: 23px !important;
-                                                                            }
-                                                                        } */
+                                                                                    .theme_btn {
+                                                                                        font-size: 23px !important;
+                                                                                    }
+                                                                                } */
 
         @media only screen and (min-width: 1800px) {
+            .dataflow {
+                height: 400px !important;
+            }
 
-            /* .banner-img {
-                    min-height: 815px;
-                    max-height: 815px;
-                } */
             .formdokana input.form-control-text {
                 font-size: 20px;
             }
@@ -714,7 +726,7 @@
         </div>
     </div>
 
-    <div class="container custom-padding px-lg-5 px-2" id="contact-form-ankar">
+    <div class="container custom-padding p-lg-5 p-3" id="contact-form-ankar">
         <div class="row px-xl-5 px-2">
             {{-- <div class="col-md-12 mx-1">
                 <div class="row">
@@ -742,7 +754,11 @@
                         <i class="fi fi-br-phone-call"></i>
                         <span class="locaton"> 863-250-8764 | 347-525-1736</span>
                     </a><br />
+                    <a class="iconsdo">
+                        <i class="fi fi-br-envelope"></i>
 
+                        <span class="locaton">contact@merkaiixcelprep.com</span>
+                    </a><br />
                     <a class="iconsdo">
                         <i class="fi fi-rs-clock-three"></i>
                         <span class="locaton"> Mon - Thur: 8:30 AM - 7:00 PM</span>
@@ -849,21 +865,21 @@
                 <div class="row "> --}}
             <div class="col-md-12 flowdiv">
                 <div class="row m-0" style="">
-                    <div class="col-6 p-0 " data-aos="fade-right">
-                        <div class="dataflow text-white">
-                            <h2 class="mx-2 mx-md-3 pt-2">Ut enim ad minim veniam, quis nos trud exercita ion</h2>
-                            <p class="mx-2 my-2 text-white dataflow-p">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit.
-                                Doloremque, eveniet deleniti atque dicta ullam officia rerum. Non iure quos sint deserunt
-                                sed officia sequi assumenda eos repellendus expedita? Quasi veritatis tenetur, fugiat quis
-                                numquam maxime voluptate praesentium dolores amet nemo ipsum soluta unde quam suscipit.
-                                Rerum nobis amet voluptatem eos.</p>
-                            <img src="{{ asset('public/assets/left-arrow-64.png') }}" height="50" class="lia"
-                                style="position:absolute;right: -12px;">
+                    <div class="col-6 p-0 flowdiv-dataflow" data-aos="fade-right">
+                        <div class="data-flow p-3 p-md-5">
+                            <div class="dataflow text-white">
+                                <h2 class="custom_small_heading mx-2 mx-md-3 pt-2">Achieve More</h2>
+                                <p class="mx-2 my-2 text-white dataflow-p">Elevate your educational experience with our
+                                    dynamic lectures,
+                                    review courses and programs. Apply today and let Merkaii Xcellence Prep be the
+                                    foundation of your success.</p>
+                            </div>
                         </div>
+                        <img src="{{ asset('public/assets/left-arrow-64.png') }}" height="50" class="lia"
+                            style="position:absolute;right: -12px;">
                     </div>
                     <!-- <div class="col-sm-6 ankar col-md-6 p-0" >
-                                                                                                                                                                                     </div> -->
+                                                                                                                                                                                             </div> -->
                     <div class="col-6 ankar p-0" data-aos="fade-left">
                         <div class="eltdf-eh-item eltdf-background-arrow-left changeborder p-2 p-sm-4"
                             style="background: white;">
@@ -883,7 +899,8 @@
                                             <p role="status" aria-live="polite" aria-atomic="true"></p>
                                             <ul></ul>
                                         </div>
-                                        <form action="{{ route('contactLogin') }}" method="POST" class="wpcf7-form init demo">
+                                        <form action="{{ route('contactLogin') }}" method="POST"
+                                            class="wpcf7-form init demo">
                                             @csrf
                                             <div class="eltdf-contact-form-7-widget">
                                                 <span class="wpcf7-form-control-wrap " data-name="your-email"><input
@@ -900,7 +917,7 @@
                                                     class="has-spinner small_btn theme_btn wpcf7-form-control wpcf7-submit mt-4"><span
                                                     class="wpcf7-spinner"></span> --}}
                                                 <button type="submit" class="theme_btn small_btn5 text-center p-2">
-                                                    {{ __('common.Login') }}</button>
+                                                    {{ __('Apply') }}</button>
                                             </div>
                                             <div class="wpcf7-response-output" aria-hidden="true"></div>
                                         </form>
