@@ -186,21 +186,6 @@
         background: red;
     }
 
-    /* for text animation */
-    .hidden {
-        opacity: 0;
-        transition: all 1s;
-        filter: blur(1px);
-        transform: translateY(-100%);
-    }
-
-    .show {
-        opacity: 1;
-        filter: blur(0);
-        transform: translateY(0);
-        transition: all 2s ease;
-    }
-
     .custom_shadow {
         border: 1px solid rgb(255, 255, 255);
         box-shadow: 0 3px 20px rgb(0 0 0 / 5%);
@@ -509,20 +494,24 @@
     .breadcam_wrap {
         max-width: unset !important;
     }
-    .hidden {
+
+    .hidden-left {
         opacity: 0;
         transition: all 1s;
         filter: blur(1px);
+        transform: scale(0.5);
     }
 
-    .hidden-left {
-        transform: translateY(-100%);
-    }
-    .show {
+    .text-show {
         opacity: 1;
         filter: blur(0);
-        transform: translateY(0);
+        transform: scale(1);
         transition: all 2s ease;
+    }
+
+    .small_gap img{
+        height: 35px;
+        width: 35px;
     }
     @media (max-width: 576px) {
         .fw-light {
@@ -531,6 +520,7 @@
 
         .small_gap {
             gap: .2rem;
+            position: relative;
         }
 
         .carrot-orange-clr,
@@ -633,8 +623,12 @@
     }
 
     @media (max-width: 768px) {
+        .carrot-orange-clr{
+            text-align: center;
+        }
         .brdr-btm-of-txt {
             font-size: 16px !important;
+            text-align: center;
         }
 
         .toggle {
@@ -653,10 +647,9 @@
             position: relative;
         }
 
-        svg {
-            min-width: 20px;
-            min-height: 20px;
-            max-width: 20px;
+        .small_gap img {
+            width: 20px !important;
+            height: 20px !important;
             position: absolute;
             top: -28px;
             left: 50%;
@@ -664,11 +657,11 @@
         }
 
         .ml_our_process {
-            margin-left: 50px;
+            margin-left: 20px;
         }
 
         .mr_our_process {
-            margin-right: 50px;
+            margin-right: 20px;
         }
     }
 
@@ -747,7 +740,7 @@
 
     <section id="apply" class="p-lg-5 p-3 pt-4">
         <div class="container-fluid">
-            <div class="row justify-content-center text-center px-xl-4 px-md-3 hidden">
+            <div class="row justify-content-center text-center px-xl-4 px-md-3 hidden-left">
                 <div class="col-md-12 our_require_section">
                     <h2 class="custom_small_heading heading mb-3 font-weight-bold">Welcome to Merkaii Xcellence Prep
                         Admissions</h2>
@@ -783,16 +776,17 @@
             <div class="w-100 d-flex justify-content-start">
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                     <div class="padding-top-of-first-part ml_our_process">
-                        <h2 class="custom_small_heading carrot-orange-clr text-end ">Create an account</h2>
-                        {{-- <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Search for your course </h5> --}}
+                        {{-- <h5 class="custom_small_heading carrot-orange-clr text-center text-md-end mb-5 mb-md-0">Step 1</h5> --}}
+                        <h5 class="w-100 text-md-end brdr-btm-of-txt fw-medium pb-3 mb-5 mb-md-0">Create an account</h5>
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                            <p class="fw-light text-sm-end">Sign up for a free Merkaii Xcellence Prep account to explore
+                            <p class="fw-light text-md-end mt-2 mt-md-0">Sign up for a free Merkaii Xcellence Prep account to explore
                                 the vast course catalog and personalize your learning experience.</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
+                                <img src="{{ asset('public/assets/create-account.png') }}">
+                            {{-- <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">
                                 <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round"
                                     stroke-linejoin="round" stroke-width="2"
                                     d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9" />
-                            </svg>
+                            </svg> --}}
                         </div>
                     </div>
                     <div class="side-bar-for-process-section">
@@ -809,10 +803,11 @@
                 <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
                     data-aos-duration="1000">
                     <div class="d-flex flex-column align-items-start mr_our_process">
-                        <h2 class="custom_small_heading carrot-orange-clr">Complete a quick application</h2>
-                        {{-- <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Take a Simple Lesson </h5> --}}
+                        {{-- <h5 class="custom_small_heading carrot-orange-clr mb-5 mb-md-0">Step 2</h5> --}}
+                        <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-5 mb-md-0">Complete a quick application</h5>
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
+                            <img src="{{ asset('public/assets/application.png') }}">
+                            {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                 height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
                                 xml:space="preserve">
                                 <g>
@@ -871,8 +866,8 @@
                                         d="M15.8,33.8h-5c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8h5c0.5,0,0.8-0.4,0.8-0.8C16.7,34.2,16.3,33.8,15.8,33.8z">
                                     </path>
                                 </g>
-                            </svg>
-                            <p class="fw-light">Navigate to the application page and fill out 
+                            </svg> --}}
+                            <p class="fw-light mt-2 mt-sm-0">Navigate to the application page and fill out 
                                 the required information, the process is simple and helps us understand your 
                                 background and goals.</p>
                         </div>
@@ -888,13 +883,14 @@
             <div class="">
                 <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right" data-aos-duration="1000">
                     <div class="d-flex flex-column align-items-end ml_our_process">
-                        <h2 class="custom_small_heading carrot-orange-clr">Find your Perfect Course</h2>
-                        {{-- <h5 class="w-100 text-sm-end brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Preview Of Syllabus</h5> --}}
+                        {{-- <h5 class="custom_small_heading carrot-orange-clr mb-5 mb-md-0">Step 3</h5> --}}
+                        <h5 class="w-100 text-md-end brdr-btm-of-txt fw-medium pb-3 mb-5 mb-md-0">Find your Perfect Course</h5>
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                            <p class="fw-light text-sm-end">After submitting your application, browse our 
+                            <p class="fw-light text-md-end mt-2 mt-md-0">After submitting your application, browse our 
                                 comprehensive course library and purchase your chosen course or program that 
                                 aligns with your aspirations using our secure payment gateway.</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
+                                <img src="{{ asset('public/assets/perfect-course.png') }}">
+                            {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                 height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
                                 xml:space="preserve">
                                 <g>
@@ -902,7 +898,7 @@
                                         d="M21.5,0c-1.9,0-3.5,1.2-4.2,2.8h-5c-0.6,0-1.2,0.5-1.2,1.1v1.7H6.5C4.6,5.7,3,7.2,3,9.1v37.5C3,48.5,4.6,50,6.5,50h25.5  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H6.5c-0.7,0-1.2-0.5-1.2-1.1V9.1C5.3,8.4,5.8,8,6.5,8h4.6v1.7H8.2  c0,0-0.1,0-0.1,0c-0.6,0.1-1.1,0.5-1,1.1v34.1c0,0.6,0.5,1.1,1.2,1.1h26.6c0.6,0,1.2-0.5,1.2-1.1V38c0.2,0,0.4,0,0.6,0  c0.4,0,0.8,0,1.2-0.1v8.6c0,0.6-0.5,1.1-1.2,1.1c-0.6,0-1.2,0.5-1.2,1.1c0,0.6,0.5,1.1,1.1,1.2c0,0,0,0,0,0c1.9,0,3.5-1.5,3.5-3.4  v-9.1c0.1,0,0.3-0.1,0.4-0.1l4.4,7c0.3,0.5,1.1,0.7,1.6,0.4c0.5-0.3,0.7-1,0.4-1.6l0,0l-4.3-6.9c2.7-1.8,4.5-4.9,4.5-8.4  c0-4.4-2.9-8.2-6.9-9.6V9.1c0-1.9-1.6-3.4-3.5-3.4h-4.6V4c0-0.6-0.5-1.1-1.2-1.1h-5C25,1.2,23.4,0,21.5,0z M21.5,2.3  c1.2,0,2.1,0.8,2.3,1.9c0.1,0.5,0.6,0.9,1.1,0.9h4.7v4.5H13.4V5.1h4.7c0.6,0,1-0.4,1.1-0.9C19.4,3.1,20.4,2.3,21.5,2.3z M31.9,8  h4.6c0.7,0,1.2,0.5,1.2,1.1v8.6c-0.4,0-0.8-0.1-1.2-0.1c-0.2,0-0.4,0-0.6,0v-6.9c0-0.6-0.5-1.1-1.2-1.1h-2.9V8z M9.4,11.9h24.3V18  c-4.3,1.2-7.5,5.2-7.5,9.8s3.2,8.6,7.5,9.8v6.1H9.4V11.9z M12.7,17.6c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8C12.8,17.6,12.8,17.6,12.7,17.6z M36.6,19.9c4.5,0,8.1,3.5,8.1,8  s-3.6,8-8.1,8s-8.1-3.5-8.1-8S32.1,19.9,36.6,19.9z M12.7,23.3c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1c0,0,0,0,0,0h9.3  c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,23.3,12.8,23.3,12.7,23.3z M12.7,29c-0.6,0-1.1,0.6-1.1,1.2  c0,0.6,0.6,1.1,1.2,1.1h9.3c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0h-9.3C12.8,29,12.8,29,12.7,29z M12.7,34.7  c-0.6,0-1.1,0.6-1.1,1.2c0,0.6,0.6,1.1,1.2,1.1h12.7c0.6,0,1.2-0.5,1.2-1.1c0-0.6-0.5-1.1-1.1-1.2c0,0,0,0,0,0H12.8  C12.8,34.7,12.8,34.7,12.7,34.7z">
                                     </path>
                                 </g>
-                            </svg>
+                            </svg> --}}
                         </div>
                     </div>
                     <div class="side-bar-for-process-section">
@@ -917,10 +913,11 @@
                 <div class="our-process-section-part d-flex flex-row-reverse gap-5 w-50" data-aos="fade-left"
                     data-aos-duration="1000">
                     <div class="d-flex flex-column padding-btm-last-part mr_our_process">
-                        <h2 class="custom_small_heading carrot-orange-clr">Enroll and get started</h2>
-                        {{-- <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-3 m-0">Purchase the Course</h5> --}}
+                        {{-- <h2 class="custom_small_heading carrot-orange-clr mb-5 mb-md-0">Step 4</h2> --}}
+                        <h5 class="w-100 brdr-btm-of-txt fw-medium pb-3 mb-5 mb-md-0">Enroll and get started</h5>
                         <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
+                            <img src="{{ asset('public/assets/enroll.png') }}">
+                            {{-- <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                 fill="var(--system_primery_color)" x="0px" y="0px" viewBox="0 0 50 48"
                                 style="enable-background:new 0 0 50 48;" xml:space="preserve">
                                 <g>
@@ -940,8 +937,8 @@
                                         d="M35.9,43.3c-1.3,0-2.3,1.1-2.3,2.4c0,1.3,1,2.4,2.3,2.4s2.3-1.1,2.3-2.4C38.3,44.3,37.2,43.3,35.9,43.3z M35.9,46.4  c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8s0.8,0.4,0.8,0.8S36.4,46.4,35.9,46.4z">
                                     </path>
                                 </g>
-                            </svg>
-                            <p class="fw-light">Once purchase is complete, you have immediate 
+                            </svg> --}}
+                            <p class="fw-light mt-2 mt-md-0">Once purchase is complete, you have immediate 
                                 access to all the learning materials. Get ready to gain valuable knowledge and 
                                 advance your healthcare career. Welcome aboard!</p>
                         </div>
@@ -1056,7 +1053,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 py-3 back-color small_screen_carousel">
-                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para hidden">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-1
                     </h5>
@@ -1075,7 +1072,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 col-12 py-3 back-color small_screen_carousel">
-                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para hidden">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para ">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-2
                     </h5>
@@ -1095,7 +1092,7 @@
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         <div class="row h-100">
             <div class="col-sm-6 col-12 py-4 back-color small_screen_carousel">
-                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para hidden hidden-left">
+                <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         zulqarnain-test-3
                     </h5>
@@ -1116,7 +1113,7 @@
 
     <div class="row justify-content-center pt-lg-5 pt-3">
         <div class="col-12 col-md-7 text-center text-lg-left">
-            <h2 class="custom_small_heading heading font-weight-bold">Required Application Documents</h2>
+            <h2 class="custom_small_heading heading font-weight-bold text-capitalize">required application documents for remedial</h2>
         </div>
         <div class="col-md-7 col-10 mt-3">
             <div class="boxaccordion mt-2">
@@ -1196,19 +1193,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script>
-     const observer = new IntersectionObserver((entries) => {
+  {{-- first section --}}
+  <script>
+         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 console.log(entry)
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
+                    entry.target.classList.add('text-show');
 
                 } else {
-                    entry.target.classList.remove('show');
+                    entry.target.classList.remove('text-show');
                 }
             });
         });
-        const hiddenElements = document.querySelectorAll('.hidden');
+        const hiddenElements = document.querySelectorAll('.hidden-left');
         hiddenElements.forEach((el) => observer.observe(el));
         document.addEventListener('DOMContentLoaded', function() {
             const options = {
@@ -1216,7 +1214,8 @@
                 rootMargin: '0px',
                 threshold: 0.5
             };})
-</script>
+    </script>
+
     <script>
         (function($) {
             "use strict";
@@ -1412,22 +1411,7 @@
         }
         //]]>
     </script>
-    {{-- for text animation --}}
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                console.log(entry)
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-
-                } else {
-                    entry.target.classList.remove('show');
-                }
-            });
-        });
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
-    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
