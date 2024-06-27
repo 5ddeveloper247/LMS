@@ -25,7 +25,7 @@
                                         @endif</h3>
                                     @if(isset($slider))
 
-                                        <a href="{{route('frontend.sliders.index')}}"
+                                        <a href="{{route('frontend.requirements_slider.index')}}"
                                            class="primary-btn small fix-gr-bg ml-3 "
                                            style="position: absolute;  right: 0;   margin-right: 15px;"
                                            title="{{__('coupons.Add')}}">+ </a>
@@ -88,11 +88,9 @@
                                                     <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
                                                                for="">{{ __('Slider Text') }}</label>
-                                                        <input name="text" id="text"
+                                                        <textarea name="text" id="text"
                                                                class="primary_input_field name {{ @$errors->has('text') ? ' is-invalid' : '' }}"
-                                                               placeholder="{{ __('Slider Text') }}"
-                                                               type="text"
-                                                               value="{{(isset($slider) && $slider->text != null)?$slider->text:old('route')}}" {{$errors->has('text') ? 'autofocus' : ''}}>
+                                                               placeholder="{{ __('Slider Text') }}">{{(isset($slider) && $slider->text != null)?$slider->text:old('text')}}</textarea>
                                                         @if ($errors->has('text'))
                                                             <span class="invalid-feedback d-block mb-10"
                                                                   role="alert">
@@ -101,11 +99,28 @@
                                                         @endif
                                                     </div>
                                                 </div>
+                                            <div class="col-xl-12">
+                                                    <div class="primary_input mb-25">
+                                                        <label class="primary_input_label"
+                                                               for="">{{ __('Slider Color') }}</label>
+                                                        <input name="color" id="color"
+                                                               class="primary_input_field name {{ @$errors->has('color') ? ' is-invalid' : '' }}"
+                                                               placeholder="{{ __('frontendmanage.Sub Title') }}"
+                                                               type="color"
+                                                               value="{{isset($slider)?$slider->color:old('color','#ffffff')}}" {{$errors->has('color') ? 'autofocus' : ''}}>
+                                                        @if ($errors->has('color'))
+                                                            <span class="invalid-feedback d-block mb-10"
+                                                                  role="alert">
+                                                            <strong>{{ @$errors->first('color') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                             <div class="col-lg-12">
                                                 <div class="primary_input mb-25">
                                                     <label class="primary_input_label"
                                                            for="">{{__('frontendmanage.Image')}}*
-                                                        <small>({{__('common.Recommended Size')}} 1920x900)</small>
+                                                        <small>({{__('common.Recommended Size')}} 780×800)</small>
                                                     </label>
                                                     <div class="primary_file_uploader">
                                                         <input class="primary-input filePlaceholder" type="text"
