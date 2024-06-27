@@ -11,7 +11,7 @@
                             Passion into Profession 
                         </h2>
                         <p class="mb-4 text-white ">
-                            Invest in Yourself: Enroll in an Affordable Healthcare Program at Merakii 
+                            Invest in Yourself: Enroll in an Affordable Healthcare Program at Merkaii Xcellence
                             College
                             {{-- {{ @$homeContent->instructor_sub_title }} --}}
                         </p>

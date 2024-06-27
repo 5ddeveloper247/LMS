@@ -1628,7 +1628,7 @@
     scale: 1.2;
     transition: all 2s;
 }
-    .at_merakii {
+    .at_Merkaii Xcellence {
         font-size: 1.8rem;
     }
 
@@ -1753,8 +1753,8 @@
             justify-content: center;
         }
 
-        .at_merakii,
-        .at_merakii span {
+        .at_Merkaii Xcellence,
+        .at_Merkaii Xcellence span {
             text-align: center;
         }
 
@@ -1894,8 +1894,8 @@
             max-height: 450px;
         }
 
-        .at_merakii,
-        .at_merakii span {
+        .at_Merkaii Xcellence,
+        .at_Merkaii Xcellence span {
             text-align: center;
             white-space: nowrap;
         }
@@ -3611,16 +3611,16 @@
                     class="col-md-6 col-xl-5 about_us_height d-flex justify-content-center align-items-center px-lg-2 mb-3 mb-md-0">
                     <div class="about_us_p">
                         <i class="fa-regular fa-lightbulb fa-2x " style="color: var(--system_primery_color);"></i>
-                        <h2 class="custom_small_heading font-weight-bold mb-4 at_merakii">AT MERAKII</h2>
-                        <h2 class="custom_small_heading font-weight-bold mb-4 at_merakii">WE ARE ADULT LEARNER-CENTRIC <br>
+                        <h2 class="custom_small_heading font-weight-bold mb-4 at_Merkaii Xcellence">AT Merkaii Xcellence</h2>
+                        <h2 class="custom_small_heading font-weight-bold mb-4 at_Merkaii Xcellence">WE ARE ADULT LEARNER-CENTRIC <br>
                             <span class="d-flex justify-content-center ml_span">and</span>EDUCATION IS FOR
                             EVERYONE
                         </h2>
                         <p class="mb-4 custom_paragraph">
-                            At Merakii, we believe education is the key to unlocking potential, and that's why we
+                            At Merkaii Xcellence, we believe education is the key to unlocking potential, and that's why we
                             offer a variety of programs designed to fit diverse student body and learning styles. We
                             offer accessible learning pathways to fuel your passion for healthcare, regardless of
-                            background, experience, or location. Merakii fosters a vibrant and supportive global
+                            background, experience, or location. Merkaii Xcellence fosters a vibrant and supportive global
                             community where <span class="font-weight-bold">everyone can learn, grow, and achieve
                                 their healthcare goals.</span>
                         </p>
@@ -3713,7 +3713,7 @@
                 Limited Seats Available!</h2>
             <p class="text-white text-center py-4">Get Licensure, <a href="{{ url('pre-registration') }}"><span
                         class="font-weight-bold text-white">Apply Now
-                    </span></a> Merakii College's Healthcare Programs and Courses. <br>Adult-Learner’s Success</p>
+                    </span></a> Merkaii Xcellence College's Healthcare Programs and Courses. <br>Adult-Learner’s Success</p>
             <div class="d-flex justify-content-center mt-2">
                 <a href="{{ url('contact#contact-form-ankar') }}"><button
                         class="custom-button-call-to-action px-4 py-2">Contact Admission Specialist</button></a>
@@ -3727,11 +3727,11 @@
                 <!-- 1st -->
                 <div class="col-lg-4 col-sm-12 for-main px-lg-2 mb-3 mb-md-0">
                     <div>
-                        <label class="for-label">Why Attend Merakii</label>
+                        <label class="for-label">Why Attend Merkaii Xcellence</label>
                         <h2 class="custom_small_heading for-bold font-weight-bold">Unbound Learning: Your Healthcare
                             Education, Anywhere
                         </h2>
-                        <p class="for-para custom_paragraph mb-2">At Merakii, we understand that life doesn't always
+                        <p class="for-para custom_paragraph mb-2">At Merkaii Xcellence, we understand that life doesn't always
                             stop
                             for education. That's why we offer a
                             truly flexible learning experience that fits your schedule and lifestyle. Study on your
@@ -3856,7 +3856,7 @@
                             <div class="for-border ml-4">
 
                                 <h5 class="for-label1 font-weight-bold">Flexible Learning Options</h5>
-                                <p class="for-para custom_paragraph pr-2">Merakii offers a blend of online and in-person
+                                <p class="for-para custom_paragraph pr-2">Merkaii Xcellence offers a blend of online and in-person
                                     classes, allowing you to learn at your own pace and convenience.</p>
 
                             </div>
@@ -3960,7 +3960,7 @@
                             <div class="for-border ml-4">
 
                                 <h5 class="for-label1 font-weight-bold">Student-Centered Approach</h5>
-                                <p class="for-para custom_paragraph pr-2">Your success is our priority. Merakii's
+                                <p class="for-para custom_paragraph pr-2">Your success is our priority. Merkaii Xcellence
                                     instruction
                                     prioritize individual needs and learning styles, ensuring you get the most out of
                                     your educational experience.</p>
@@ -4087,7 +4087,7 @@
 
                                 <h5 class="for-label1 font-weight-bold">Supportive Services</h5>
                                 <p class="for-para custom_paragraph pr-2">Juggling work, studies, and personal life can be
-                                    demanding. Merakii provide academic advisors, mentors, and support services
+                                    demanding. Merkaii Xcellence provide academic advisors, mentors, and support services
                                     to help you navigate your program and succeed.</p>
                             </div>
                         </div>
@@ -4178,7 +4178,7 @@
                             <div class="for-border ml-4">
                                 <h5 class="for-label1 font-weight-bold">Evening and Weekend Courses</h5>
                                 <p class="for-para custom_paragraph pr-2">Daytime obligations shouldn't hinder your
-                                    education. Merakii cater to working adults by providing classes outside of
+                                    education. Merkaii Xcellence cater to working adults by providing classes outside of
                                     regular business hours.</p>
 
                             </div>
@@ -5313,7 +5313,7 @@
                                 <div class="text-video-overlay" >
 
                                   <div class="d-flex text-center overlay-heading1">
-                                    <h2 class="font-weight-bold text-white">Take a Tour of Merakii</h2>
+                                    <h2 class="font-weight-bold text-white">Take a Tour of Merkaii Xcellence</h2>
                                   </div>
                                 </div>
                                 <div class="video-controls">
@@ -5338,7 +5338,7 @@
                                     </div>
                                     <div class="text-video-overlay bottom-center">
                                         <div class="d-flex text-center overlay-heading1">
-                                            <h2 class="font-weight-bold text-white">Take a Tour of Merakii</h2>
+                                            <h2 class="font-weight-bold text-white">Take a Tour of Merkaii Xcellence</h2>
                                         </div>
                                     </div>
                                     <div class="video-controls">
@@ -5536,7 +5536,7 @@
                                         <h2 class="custom_heading_1 font-weight-bold">
                                             Popular Events and News</h2>
                                         <p class="custom_paragraph font-weight-bold">
-                                            Be in the Know: What’s happening at Merakii?
+                                            Be in the Know: What’s happening at Merkaii Xcellence?
                                         </p>
                                         <p>Connect and Engage for all news and events from the desk of ThaRakii </p>
                                     </div>
@@ -5792,7 +5792,7 @@
                                             <div class="cta_service_info txt py-3">
                                                 <h2 class="custom_small_heading mb-4">Become a MCInstructor | Tutor</h2>
                                                 <p class="mb-4"> Make a difference in the lives of future generations:
-                                                    Merakii seeks
+                                                    Merkaii Xcellence  seeks
                                                     passionate
                                                     educators. Our students come from a variety of backgrounds, and so can
                                                     you. Share
@@ -5948,7 +5948,7 @@
                                                     <h2 class="custom_small_heading mb-4">Expand Your Reach to Global
                                                         Adult Learners</h2>
                                                     <p class="mb-4 text-white"> Fuel your passion for Teaching and join
-                                                        Merakii's vibrant
+                                                        Merkaii Xcellence vibrant
                                                         community of
                                                         Educators. Our diverse student body welcomes instructors from all
                                                         walks of life.

@@ -131,12 +131,6 @@
             background: rgba(3, 3, 3, 0.7) !important;
         }
 
-        .custom_height_1 {
-            height: 71vh !important;
-            width: 100%;
-            border-radius: 25px;
-        }
-
         .right-divv {
             max-height: 56vh !important;
             overflow-y: auto;
@@ -216,17 +210,20 @@
         <div class="container mt-3">
             <div class="row pt-md-5 pt-2 px-md-4">
                 <div class="col-md-6 col-12 px-md-0" data-aos="fade-right">
-                    <img src="{{ asset('public/assets/Instructor 1.jpg') }}" class="custom_height_1 mx-lg-5">
+                    <div class="custom_height_1 mx-lg-5">
+                        <img src="{{ asset('public/assets/Instructor 1.jpg') }}" class="w-100 h-100">
+                    </div>
+                   
                 </div>
 
                 <div class=" d-flex align-items-center col-md-6 col-12 px-lg-5 px-3" data-aos="fade-left"
                     data-aos-delay="500">
-                    <div class="pl-md-5 pt-3 pt-md-0">
-                        <div class="custom_height_2 overflow-auto hide-scrollbar d-flex flex-column justify-content-center">
-                        <h2 class="custom_small_heading mt-2 mt-lg-0 font-weight-bold mb-md-4 mb-2">
+                    <div class="pl-lg-5 pl-md-3 pt-3 pt-md-0">
+                        <div class="custom_height_2">
+                        <h2 class="custom_small_heading mt-2 mt-lg-0 font-weight-bold mb-lg-4 mb-2">
                             Why Join Merkaii Xcellence Prep?
                         </h2>
-                        <p class="text-justify shadow-p right-divv mb-md-4 mb-2">
+                        <p class="text-justify shadow-p right-divv mb-lg-4 mb-2">
                             As a faculty member at Merkaii Xcellence Prep, you will have the opportunity to:
                         </p>
                         <p class="mb-2"><span class="font-weight-bold">Shape the Future of Healthcare:</span> You will play a vital role in educating the 
@@ -263,7 +260,7 @@
             <div class="row mx-2 mx-xl-5">
                 <div class="col-md-12">
                     <h2 class="custom_small_heading font-weight-bold pb-md-5 pb-3 text-center text-capitalize">
-                        Merakii Tutors use Saunders and Elsevier for Tutoring</h2>
+                        Merkaii Xcellence Tutors use Saunders and Elsevier for Tutoring</h2>
                 </div>
                 @forelse ($instructors as $instructor)
                     <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 d-flex justify-content-center">
@@ -341,9 +338,9 @@
 
         <!-- becomeInsructor section  -->
         <div class="row custom_section_color mb-md-5 mb-4">
-            <div class="col-md-6 p-lg-4 px-3 d-flex align-items-center">
-                <div class="custom-l-padd pl-sm-5 p-2 custom_height_1 d-flex flex-column justify-content-center" data-aos="fade-right">
-                    <h2 class="custom_small_heading font-weight-bold tex-capitalize d-flex-flex-column justify-content-center mb-md-4 mb-3">
+            <div class="col-md-6 p-lg-4 pt-2 pb-4 px-3 d-flex align-items-center">
+                <div class="custom-l-padd pl-sm-5 p-2 custom_height_2" data-aos="fade-right">
+                    <h2 class="custom_small_heading font-weight-bold text-capitalize d-flex-flex-column justify-content-center mb-md-4 mb-3">
                         Who we are looking for
                     </h2>
                     <p class="mb-2"><span class="font-weight-bold">Passionate Educators:</span> We are seeking educators who are passionate about 
@@ -372,7 +369,7 @@
                 </div>
             </div>
             <div class="col-md-6 px-0" data-aos="fade-left">
-                <div class="">
+                <div class="custom-image-height">
                     <img src="{{ asset('public/assets/Instructor2.jpg') }}" class="h-100 w-100">
                 </div>
             </div>

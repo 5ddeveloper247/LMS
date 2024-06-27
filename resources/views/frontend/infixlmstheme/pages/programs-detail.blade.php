@@ -877,7 +877,7 @@
         </div>
 
 
-        <div class="container pt-md-5 pt-3">
+        <div class="container pt-md-5 pt-4">
             <!-- <div class="px-xl-5 row px-1"> -->
                 @php
                     $count_enrolled = 0;
@@ -915,7 +915,7 @@
 
 
                         <!-- <div class="row"> -->
-                        <div class="buttons-padding d-flex " style="gap: 10px;">
+                        <div class="buttons-padding d-flex mb-0" style="gap: 10px;">
                         @if (Auth::check())
                             @if ($isEnrolled  ||  isAdmin())
                                 <a href="javascript:void(0)" class="small_btn theme_btn m-1 ">Enrolled

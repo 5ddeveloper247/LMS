@@ -158,7 +158,7 @@ padding-bottom: 30px;">
                         Real Student Voices and Success Stories
                     </h2>
                     <p class="custom_paragraph font-weight-bold">
-                        Hear from Our Thriving Graduates, Discover the Transformative Power of a Merakii Education and the Achievement of their Healthcare goals
+                        Hear from Our Thriving Graduates, Discover the Transformative Power of a Merkaii Xcellence Education and the Achievement of their Healthcare goals
                     </p>
                     <p>"Student Success Stories: Hear from Our Thriving Graduates!" </p>
                 </div>

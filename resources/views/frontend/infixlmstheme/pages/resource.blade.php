@@ -680,7 +680,7 @@
         </div>
 
 
-        <div class="container pt-md-5 pt-3">
+        <div class="container pt-md-5 pt-4">
             <!-- <div class="px-xl-5 row px-1"> -->
             @php
                 $count_enrolled = 0;

@@ -3783,7 +3783,7 @@ input[type="number"] {
 .about_gallery img {
     width: 100%;
     height: 300px;
-    object-fit: fill;
+    object-fit: cover;
 }
 .small_thumb {
     margin-top: 30px;
@@ -16408,11 +16408,18 @@ body {
 .custom_list_style li{
     list-style: none;
 }
-.custom_height_2, .custom_height_1 {
+.custom_height_2 {
     height: 420px;
     overflow: auto;
     scrollbar-width: none;
     width: 100%;
+}
+.custom_height_1{
+    width: 100%;
+    border-radius: 20px;
+    height: 420px;
+    overflow: auto;
+    scrollbar-width: none;
 }
 @media only screen and (max-width: 377px) {
     .course__play_warp .course__play_list {
@@ -16472,6 +16479,20 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    .custom-image-height{
+        height: 350px;
+    }
+    .custom_height_1, .custom_height_2{
+        height: 350px !important;
+    }
+
+    .about_gallery_area .about_gallery{
+        gap: 15px !important;
+    }
+    .small_thumb{
+        margin-left: 15px !important;
+        margin-top: 15px !important;
+    }
     .custom_text_small{
         font-size: 16px;
     }
@@ -17333,6 +17354,11 @@ body {
 }
 
 @media only screen and (min-width: 1281px) {
+    .custom_height_2{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
 
     .footer-img {
         min-width: 380px;

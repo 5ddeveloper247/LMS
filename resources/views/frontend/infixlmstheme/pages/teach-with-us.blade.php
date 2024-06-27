@@ -379,6 +379,9 @@
             height: 35px;
             width: 35px;
         }
+        .gallery_image{
+            height: 50px;
+        }
     @media only screen and (max-width: 576px) {
         .mr_our_process {
             margin-right: 0px !important;
@@ -422,7 +425,9 @@
     }
 
     @media only screen and (max-width: 767px) {
-
+        .gallery_image{
+            height: 30px !important;
+        }
         .fw-light {
             margin-top: 10px;
         }
@@ -589,19 +594,21 @@
                         Education.</h2>
                 </div>
                 <div class="col-md-6 col-12 px-md-2" data-aos="fade-right">
-                    <img src="{{ asset('public/assets/Teach1.jpg') }}" class="custom_height_1 w-100"
+                    <div class="custom_height_1">
+                        <img src="{{ asset('public/assets/Teach1.jpg') }}" class="h-100 w-100"
                         style=" border-radius: 25px;">
+                    </div>
+                  
                 </div>
 
-                <div class="col-md-6 col-12 my-auto px-md-1" data-aos="fade-left" data-aos-delay="500">
-                    <div class="px-xl-3 pt-4 pt-md-0">
-                        <div class="custom_height_2 overflow-auto hide-scrollbar d-flex flex-column justify-content-center text-justify">
+                <div class="col-md-6 col-12 my-auto px-lg-1" data-aos="fade-left" data-aos-delay="500">
+                    <div class="px-xl-3 pt-4 pt-md-0 custom_height_2">
                             <h5 class="custom_text_small font-weight-bold text-capitalize mb-3">Become a changemaker in healthcare education</h5>
                             <h5 class="custom_text_small font-weight-bold text-capitalize mb-3">
                                 Merkaii Xcellence Prep offers
                                 a platform designed to empower passionate educators like you
                             </h5>
-                            <h5 class="custom_text_small font-weight-bold text-capitalize mb-md-4 mb-3">Here's how</h5>
+                            <h5 class="custom_text_small font-weight-bold text-capitalize mb-lg-4 mb-3">Here's how</h5>
                             <p class="mb-2"><span class="font-weight-bold">Be Your Own Curriculum Boss: </span> and
                                 publish the course you envision,
                                 using your preferred teaching methods and content. You have complete
@@ -624,7 +631,6 @@
                                 </span></p>
                             </p>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -632,7 +638,7 @@
         {{-- custom component made by arsam --}}
         <div class="about_gallery_area pb-3 pb-md-5">
             <div class="container px-lg-5">
-                <div class="row align-items-center gallery_area_row px-lg-5">
+                <div class="row align-items-center gallery_area_row px-xl-5 px-3">
                     <div class="col-lg-5 col-md-6">
                         <div class="section__title">
                             <h2 class="custom_small_heading mb-4 font-weight-bold">Our Resources Your Guide to Instructor
@@ -642,18 +648,16 @@
                                 That's
                                 why we provide a comprehensive suite of resources and support to help you create,
                                 launch, and grow your courses.</p>
-                            <div class="d-flex mt-3">
-                                <img src="{{ asset('public/assets/course.png') }}"
-                                    style="height: 50px">
+                            <div class="d-flex mt-3" style="gap: 10px">
+                                <img src="{{ asset('public/assets/course.png') }}" class="gallery_image">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
                                     <h5 class="custom_text_small font-weight-bold">Course Creation Made Easy</h5>
                                     <p class="pt-2"> We offer a wealth of materials to guide you
                                         through the course creation process, from initial concept to final launch.</p>
                                 </div>
                             </div>
-                            <div class="d-flex mt-3">
-                                <img src="{{ asset('public/assets/organization.png') }}"
-                                    style="height: 50px">
+                            <div class="d-flex mt-3" style="gap: 10px">
+                                <img src="{{ asset('public/assets/organization.png') }}" class="gallery_image">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
                                     <h5 class="custom_text_small font-weight-bold">Stay Organized</h5>
                                     <p class="pt-2">Our user-friendly instructor dashboard and curriculum pages
@@ -662,9 +666,8 @@
                                 </div>
                             </div>
                             {{-- 3 --}}
-                            <div class="d-flex mt-3">
-                                <img src="{{ asset('public/assets/team.png') }}"
-                                    style="height: 50px">
+                            <div class="d-flex mt-3" style="gap: 10px">
+                                <img src="{{ asset('public/assets/team.png') }}" class="gallery_image">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
                                     <h5 class="custom_text_small font-weight-bold">Dedicated Support Team</h5>
                                     <p class="pt-2">Our knowledgeable support team is available to
@@ -673,9 +676,8 @@
                                 </div>
                             </div>
                             {{-- 4 --}}
-                            <div class="d-flex mt-3">
-                                <img src="{{ asset('public/assets/marketing.png') }}"
-                                    style="height: 50px">
+                            <div class="d-flex mt-3" style="gap: 10px">
+                                <img src="{{ asset('public/assets/marketing.png') }}" class="gallery_image">
                                 <div class="d-flex flex-column px-md-2 px-xl-4">
                                     <h5 class="custom_text_small font-weight-bold">Marketing and Promotion Tools</h5>
                                     <p class="pb-2">Reach a wider audience and boost enrollments
@@ -695,14 +697,14 @@
                     </div>
                     <div class="col-lg-7 col-md-6 mt-3 mt-md-0">
                         <div class="row about_gallery">
-                            <div class="col p-md-0 pr-0">
+                            <div class="col p-0">
                                 <div class="gallery_box">
                                     <div class="thumb">
                                         <img src="{{ asset('public/assets/Teach2.jpg') }}" alt="">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col pl-0">
+                            <div class="col p-0">
                                 <div class="gallery_box">
                                     <div class="thumb">
                                         <img src="{{ asset('public/assets/Teach3.jpg') }}" alt="">
@@ -1183,7 +1185,7 @@
             {{-- @dd(count($packages)) --}}
             @if (count($packages))
                 <div class="container custom-b-padd1 mb-4 mb-md-5" id="package_prices">
-                    <div class="row justify-content-center px-xl-5">
+                    <div class="row justify-content-center px-xl-5 px-3">
                         <div class="col-md-12 text-center">
                             <h2 class="font-weight-bold custom_heading_1 mb-4 mb-md-5">Check Out Our Pricings</h2>
                         </div>

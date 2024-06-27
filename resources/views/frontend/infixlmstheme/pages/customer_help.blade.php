@@ -466,7 +466,7 @@
                             <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-5" id="v-pills-messages"
                                 role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <p>
-                                    Merakii College of Health are committed to providing a website that is accessible to
+                                    Merkaii Xcellence College of Health are committed to providing a website that is accessible to
                                     all audiences, regardless of technology or ability. As part of this, Fenty Beauty+ Fenty
                                     Skin aim to substantially conform to applicable guidelines, including WCAG 2.1 at levels
                                     A and AA. If you experience any difficulty in accessing any part of this website, please
