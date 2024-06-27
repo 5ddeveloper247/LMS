@@ -20,13 +20,9 @@
             background-color: var(--system_primery_color);
         }
 
-        /* .login_btn a:focus {
-            color: #eee !important;
-        } */
-
         .login_btn a:hover {
-            color: var(--system_primery_color);
-            background-color: #fff;
+            color: var(--system_primery_color) !important;
+            background-color: #fff !important;
         }
 
         .fa-lg {
@@ -115,6 +111,12 @@
                 margin: 0px 0px 0px 18px;
                 font-weight: 500;
                 width: fit-content;
+                border-radius: 16px !important;
+            }
+            .login_btn a:hover{
+                color: var(--system_primery_color) !important;
+                background-color: #fff !important;
+                border: 2px solid var(--system_primery_color) !important;
             }
 
             .search-column {
@@ -184,10 +186,15 @@
         }
 
         @media only screen and (min-width: 769px) and (max-width:992px) {
+         
+            .login_btn a:hover{
+                color: var(--system_primery_color) !important;
+                background-color: #fff !important;
+                border: 2px solid var(--system_primery_color) !important;
+            }
             .login_btn {
                 display: flex;
                 font-family: Jost, sans-serif;
-                /* padding: 6.5px 20px !important; */
                 margin: 0px 0px 0px 18px;
                 font-weight: 500;
                 width: fit-content;
@@ -523,7 +530,11 @@
                                     @guest
                                         <div class="login_btn text-center d-lg-none d-flex">
                                             <a href="{{ url('login') }}"
-                                                class="text-white login_btn_theme theme_btn small_btn2 btn_responsive_fs_67 p-2">{{ __('LogIn To Portal | Register') }}
+                                                class="text-white">{{ __('LogIn To Portal') }}
+                                            </a>
+                                            <a href="{{ url('pre-registration') }}"
+                                                        class="text-white"
+                                                        style="gap: 5px;">{{ __('Apply Now') }}
                                             </a>
                                         </div>
                                     @endguest
