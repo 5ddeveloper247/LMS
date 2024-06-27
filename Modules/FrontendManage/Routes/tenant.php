@@ -16,6 +16,13 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
     Route::get('/sliders/setting', 'SliderController@setting')->name('sliders.setting');
     Route::post('/sliders/setting', 'SliderController@settingSubmit');
 
+//sliders
+    Route::resource('/requirements_slider', 'RequirementsSliderController')->except('show', 'update', 'destroy');
+    Route::post('/requirements_slider/update', 'RequirementsSliderController@update')->name('requirements_slider.update');
+    Route::get('/requirements_slider/destroy/{id}', 'RequirementsSliderController@destroy')->name('requirements_slider.destroy');
+    Route::get('/requirements_slider/setting', 'RequirementsSliderController@setting')->name('requirements_slider.setting');
+    Route::post('/requirements_slider/setting', 'RequirementsSliderController@settingSubmit');
+
 
     Route::resource('/why', 'WhyController')->except('show', 'update', 'destroy');
     Route::post('/why/update', 'WhyController@update')->name('why.update');

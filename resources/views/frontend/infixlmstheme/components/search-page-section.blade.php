@@ -215,21 +215,25 @@
             <div class="d-flex flex-column align-content-start px-md-5 px-2">
                 <div class="col-12 mt-3">
                     <small class="alert alert-info p-0 d-none" id="priceMsg">Min price must be less then max price</small>
-                    <label for="program_price">Price (<span id="minPrice">0</span> to <span id="maxPrice">{{programFilterMaxPrice()}}</span>)</label>
+                    <label for="program_price">Price (<span id="minPrice">{{ request()->has('search_minPrize') ? request()->input('search_minPrize') : 0 }}</span> to <span id="maxPrice">{{ request()->has('search_maxPrize') ? request()->input('search_maxPrize') : programFilterMaxPrice() }}</span>)</label>
                     <div class="d-flex flex-column">
                         <h6 class="mb-0">Min</h6>
                         <div class="align-items-center d-flex flex-row-reverse gap-2">
-                            <p id="price_range_min" class="font-weight-bold">{{ request()->has('filter') ? request()->input('program_price_min',0) : 0 }}</p>
-                            <input type="range" min="0" max="{{ programFilterMaxPrice() }}" step="1" name="program_price_min" class="form-control accent-color p-0" id="program_price_min" value="{{ request()->has('filter') ? request()->input('program_price_min',0) : 0 }}">
+                            <p id="price_range_min" class="font-weight-bold">{{ request()->has('search_minPrize') ? request()->input('search_minPrize') : 0 }}</p>
+                            <input type="range" min="0" max="{{ programFilterMaxPrice() }}" step="1" name="program_price_min" 
+                            class="form-control accent-color p-0" id="program_price_min" 
+                            value="{{ request()->has('search_minPrize') ? request()->input('search_minPrize') : 0 }}">
                         </div>
                         <h6 class="mb-0">Max</h6>
                         <div class="align-items-center d-flex flex-row-reverse gap-2">
-                            <p id="price_range_max" class="font-weight-bold">{{ request()->has('filter') ? request()->input('program_price_max',0) : 0 }}</p>
-                            <input type="range" min="0" max="{{ programFilterMaxPrice() }}" step="1" name="program_price_max" class="form-control accent-color p-0" id="program_price_max" value="{{ request()->has('filter') ? request()->input('program_price_max',0) : 0 }}">
+                            <p id="price_range_max" class="font-weight-bold">{{ request()->has('search_maxPrize') ? request()->input('search_maxPrize') : programFilterMaxPrice() }}</p>
+                            <input type="range" min="0" max="{{ programFilterMaxPrice() }}" step="1" name="program_price_max" 
+                            class="form-control accent-color p-0" id="program_price_max" 
+                            value="{{ request()->has('search_maxPrize') ? request()->input('search_maxPrize') : programFilterMaxPrice() }}">
                         </div>
                         <p class="text-center mb-0 mt-4">
                             <a href="{{ route('programs') }}" class="theme_btn small_btn2 p-2">Clear</a>
-                            <button type="submit" class="theme_btn small_btn2 p-2">Submit</button>
+                            <button type="button" class="theme_btn small_btn2 p-2" id="priceRangeBtn">Submit</button>
                         </p>
                     </div>
                 </div>
@@ -408,17 +412,18 @@
     //         button.classList.add('active');
     //     });
     // });
+    
     $('#program_price_max, #program_price_min').on('change',function(e){
         let max = $('#program_price_max').val();
         let min = $('#program_price_min').val();
-        console.log(min,max);
-        if(min>max){
-            e.preventDefault();
-            $('#priceMsg').removeClass('d-none');
-        }else{
             $('#minPrice').text(min);
             $('#maxPrice').text(max);
+        if(min>max){
+            $('#priceRangeBtn').prop('disabled',true);
+            $('#priceMsg').removeClass('d-none');
+        }else{
             $('#priceMsg').addClass('d-none');
+            $('#priceRangeBtn').prop('disabled',false);
         }
     });
     $('input[name="search_type"]').on('change',function(){
@@ -437,6 +442,15 @@
         let value = $('#search_query').val();
         let url = new URL(window.location.href);
         url.searchParams.set('query', value);
+        window.location.href = url.toString();
+    });
+    $('#priceRangeBtn').on('click',function(){
+        console.log('test');
+        let min = $('#program_price_min').val();
+        let max = $('#program_price_max').val();
+        let url = new URL(window.location.href);
+        url.searchParams.set('search_minPrize', min);
+        url.searchParams.set('search_maxPrize', max);
         window.location.href = url.toString();
     });
     $(document).on('click', '#filter-type', function() {

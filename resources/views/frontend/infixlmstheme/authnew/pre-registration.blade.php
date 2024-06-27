@@ -293,7 +293,40 @@
     <div class="container custom-bg px-xl-5 my-md-5 my-3">
         <div class="row px-xl-5 px-md-2">
             <div class="col-md-7 mb-2 mb-md-0">
+                <div class="collapse show" id="optionsCollapse">
+                    <div class=" text-center">
+                        <h3 class="text-uppercase text_login">We are merakii </h3>
+                        <h6 class="heading-login text-capitalize"> choose account type</h6>
+                    </div>
+                    <div class="text-center mt-mb-5 mt-4 mb-3">
+                        <div class="row ">
 
+                            <div class="col-md-4 mb-2 px-sm-1 px-md-2 d-flex justify-content-center align-items-center">
+                                <a href="javascript:void(0)" class="btn content_btn" id="showMainContent"
+                                    style="    display: flex;
+              justify-content: center;
+              align-items: center;">MC
+                                    Students</a>
+                            </div>
+
+                            <div class="col-md-4 mb-2 px-sm-1 px-md-2 d-flex justify-content-center align-items-center">
+                                <a href="{{ url('instructors#becomeAnInstructor') }}" class="btn content_btn"
+                                    style="    display: flex;
+              justify-content: center;
+              align-items: center;">MC
+                                    Instructor & <br> Tutors</a>
+                            </div>
+
+                            <div class="col-md-4 mb-2 px-sm-1 px-md-2 d-flex justify-content-center align-items-center">
+                                <a href="{{ url('teach-with-us#sellWithUs') }}" class="btn content_btn"style="    display: flex;
+                  justify-content: center;
+                  align-items: center;">Sell with <br>Us Instructors</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="mainContentCollapse">
 
                 <h6 class="text-center mb-4 text-capitalize heading-login">hello, welcome to merakii </h6>
                 @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true' || saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
@@ -401,7 +434,7 @@
                             id="myButton" style="color: var(--system_primery_color);">Login</a></label>
 
                 </div>
-
+            </div>
             </div>
             <div class="col-md-5 d-none d-md-block pr-0">
                 <div class="img-fluid reg_img  mb-4 ">
@@ -418,8 +451,13 @@
 
 
 
-
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('#showMainContent').on('click',function(){
+            $('#optionsCollapse').collapse('hide');
+            $('#mainContentCollapse').collapse('show');
+        });
+    </script>
 
     @include(theme('partials._custom_footer'))
 

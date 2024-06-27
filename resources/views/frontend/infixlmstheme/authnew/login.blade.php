@@ -313,7 +313,7 @@
     <div class="container custom-bg px-lg-5 my-md-5 my-3">
         <div class="row pt-2 px-lg-5">
             <div class="col-md-7 ">
-                <div id="accountType">
+                {{-- <div id="accountType">
                     <div class=" text-center">
                         <h3 class="text-uppercase text_login">We are merakii </h3>
                         <h6 class="heading-login text-capitalize"> choose account type</h6>
@@ -348,7 +348,7 @@
 
                     <a href="#" class="btn btn-sm btn_back" id="showAllPage">Go back</a>
 
-                </div>
+                </div> --}}
 
 
 
@@ -456,8 +456,8 @@
                 @if (Settings('student_reg') == 1 && saasPlanCheck('student') == false)
                     <div class="col-md-12 px-0 hidemainContent mb-2 mb-md-0">
 
-                        <label class="">Don't have an Account Yet ? <a href="#" class="text-capitalize"
-                                id="myButton" style="color: var(--system_primery_color);">Create an
+                        <label class="">Don't have an Account Yet ? <a href="{{ route('preRegistration') }}" class="text-capitalize"
+                                style="color: var(--system_primery_color);">Create an
                                 account</a></label>
 
                     </div>
@@ -496,17 +496,17 @@
 
 
     <script>
-        document.getElementById("myButton").onclick = function(e) {
-            e.preventDefault();
-            $('#accountType').show();
-            $('.hidemainContent').hide();
+        // document.getElementById("myButton").onclick = function(e) {
+        //     e.preventDefault();
+        //     $('#accountType').show();
+        //     $('.hidemainContent').hide();
 
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+        //     window.scrollTo({
+        //         top: 0,
+        //         behavior: 'smooth'
+        //     });
 
-        };
+        // };
     </script>
 
     <script>
