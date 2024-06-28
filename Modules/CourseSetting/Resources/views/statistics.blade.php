@@ -170,7 +170,7 @@
                         <div class="QA_table">
                             <!-- table-responsive -->
                             <div class="">
-                                <table id="" class="table coursesList">
+                                <table id="" class="table coursesList tabel-responsive">
                                     <thead>
                                     <tr>
                                         <th scope="col">{{__('SL')}}</th>
@@ -208,7 +208,7 @@
                         <div class="QA_table">
                             <!-- table-responsive -->
                             <div class="">
-                                <table id="" class="table quizList">
+                                <table id="" class="table quizList table-responsive">
                                     <thead>
                                     <tr>
                                         <th scope="col">{{__('SL')}}</th>

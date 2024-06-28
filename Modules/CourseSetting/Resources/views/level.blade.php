@@ -123,7 +123,7 @@
                         <div class="QA_table">
                             <!-- table-responsive -->
                             <div class="">
-                                <table id="lms_table" class="table-data table">
+                                <table id="lms_table" class="table-data table table-responsive">
                                     <thead>
                                         <tr>
                                             <th scope="col">{{ __('common.SL') }}</th>

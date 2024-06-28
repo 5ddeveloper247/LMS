@@ -34,7 +34,7 @@
                     <div class="QA_table">
                         <!-- table-responsive -->
                         <div class="table-responsive">
-                            <table class="table-bordered table">
+                            <table class="table-bordered table table-responsive">
                                 <thead>
                                     <tr>
                                         <th class="" style="padding:unset !important;text-align:center;">

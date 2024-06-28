@@ -316,7 +316,7 @@
                                 </div>
                                 <div class="QA_section QA_section_heading_custom check_box_table">
                                     <div class="QA_table ">
-                                        <table class="table Crm_table_active">
+                                        <table class="table Crm_table_active table-responsive">
                                             <thead>
                                             <tr>
                                                 <th scope="col">{{__('common.Document Title')}}</th>
@@ -462,7 +462,7 @@
                                 <div class="white-box">
                                     <div class="QA_section QA_section_heading_custom check_box_table">
                                         <div class="QA_table ">
-                                            <table class="table Crm_table_active">
+                                            <table class="table Crm_table_active table-responsive">
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">{{__('leave.Leave')}} {{__('leave.Type')}}</th>
@@ -568,7 +568,7 @@
                                 <div class="white-box">
                                     <div class="QA_section QA_section_heading_custom check_box_table">
                                         <div class="QA_table ">
-                                            <table class="table Crm_table_active">
+                                            <table class="table Crm_table_active table-responsive">
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">{{ __('common.ID') }}</th>
@@ -666,7 +666,7 @@
                                                         class="ti-pen"></i>{{__('report.Print')}}</a></li>
                                         </ul>
                                         <div class="QA_table ">
-                                            <table class="table">
+                                            <table class="table table-responsive">
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">{{ __('account.Date') }}</th>

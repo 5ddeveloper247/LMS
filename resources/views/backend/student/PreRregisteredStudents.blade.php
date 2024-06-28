@@ -10,7 +10,7 @@
     {!! generateBreadcrumb() !!}
     <div class="QA_section QA_section_heading_custom check_box_table">
       <div class="QA_table">
-        <table id="lms_table" class="classList table">
+        <table id="lms_table" class="classList table table-responsive">
             <thead>
                 <tr>
                     <th scope="col">{{ __('common.SL') }}</th>

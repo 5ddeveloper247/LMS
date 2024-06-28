@@ -105,7 +105,7 @@
 
                             <div class="">
 
-                                <table id="lms_table" class="classList table">
+                                <table id="lms_table" class="classList table table-responsive">
 
                                     <thead>
 
