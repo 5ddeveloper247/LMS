@@ -601,7 +601,6 @@
             bottom: 30%;
             min-height: 330px !important;
             max-height: 330px !important;
-            object-fit: cover;
         }
 
         .cont1domgdo_para {
@@ -1044,10 +1043,10 @@
 
 
     </section> --}}
-    <div class="row featured-carousel owl-carousel m-md-0 app_require mb-3">
+    <div class="featured-carousel owl-carousel m-md-0 app_require mb-3">
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         @foreach ($slider as $slide)
-        <div class="row h-100">
+        <div class="d-flex h-100">
             <div class="col-sm-6 py-3 small_screen_carousel" style="background-color:{{$slide->color}}">
                 <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">

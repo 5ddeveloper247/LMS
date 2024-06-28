@@ -2,7 +2,7 @@
     <div class="QA_table">
         <!-- table-responsive -->
         <div class="">
-            <table id="lms_table" class="table Crm_table_active3">
+            <table id="lms_table" class="table Crm_table_active3 table-responsive">
                 <thead>
                 @if(session()->has('message-success-delete') != "" ||
                 session()->get('message-danger-delete') != "")

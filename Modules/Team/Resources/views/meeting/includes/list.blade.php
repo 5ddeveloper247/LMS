@@ -7,7 +7,7 @@
         <div class="QA_table ">
 
             <div class="">
-                <table id="lms_table" class="table Crm_table_active3">
+                <table id="lms_table" class="table Crm_table_active3 table-responsive">
                     <thead>
                     <tr>
                     <tr>

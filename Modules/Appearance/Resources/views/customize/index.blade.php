@@ -28,7 +28,7 @@
                 <div class="QA_table ">
                     <!-- table-responsive -->
                     <div class="">
-                        <table class="table Crm_table_active3">
+                        <table class="table Crm_table_active3 table-responsive">
                             <thead>
                             <tr>
                                 <th scope="col">{{__('common.Title')}}</th>

@@ -50,7 +50,7 @@
             <div class="QA_section QA_section_heading_custom check_box_table">
                 <div class="QA_table table-responsive">
 
-                    <table id="lms_table" class="table Crm_table_active3">
+                    <table id="lms_table" class="table Crm_table_active3 table-responsive">
                         <thead>
                         <tr>
                             <th>{{__('common.SL')}} </th>

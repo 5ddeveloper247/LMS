@@ -282,7 +282,7 @@
     }
 @media only screen and (max-width: 540px){
     .controlSize2 {
-            height: 350px !important;
+            height: 220px !important;
         }
 }
 
@@ -682,7 +682,7 @@
                         <h5 class="f_w_700">Tutor Rating</h5>
 
                     </div>
-                    <div class="course_feedback p-3" style="background:#eee; min-height:24vh; align-items:center;">
+                    <div class="course_feedback p-3 mb-2" style="background:#eee; min-height:24vh;">
                         <div class="course_feedback_left">
                             <label class="f_w_400">{{ $tutor->name }}</label>
                             <h5 class="h-font">{{ $tutor->total_tutor_rating }}</h5>

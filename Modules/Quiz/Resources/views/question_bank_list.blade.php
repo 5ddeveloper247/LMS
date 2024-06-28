@@ -53,7 +53,7 @@
                         <div class="QA_table">
 
                             <div class="">
-                                <table id="lms_table" class="Crm_table_active3 quiz-bank-checkbox table">
+                                <table id="lms_table" class="Crm_table_active3 quiz-bank-checkbox table table-responsive">
                                     <thead>
 
                                         <tr>

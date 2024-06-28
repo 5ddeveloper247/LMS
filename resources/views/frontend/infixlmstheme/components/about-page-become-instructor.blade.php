@@ -29,7 +29,7 @@
     <div class="service_cta_area p-lg-5 p-3">
         <div class="container center-content-about mb-3">
             {{-- <div class="border_top_1px"></div> --}}
-            <div class="service_cta_row row px-xl-3 d-flex align-items-center justify-content-center" id="service_cta_row">
+            <div class="service_cta_row row px-xl-3 d-flex justify-content-center" id="service_cta_row">
                 <div class="col-lg-4 col-md-6">
                     <div class="single_cta_service single_cta1">
                         <div class="thumb">

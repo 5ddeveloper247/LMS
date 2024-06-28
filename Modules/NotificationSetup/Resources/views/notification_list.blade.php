@@ -33,7 +33,7 @@
 
 
                             <div class="">
-                                <table class="table Crm_table_active3">
+                                <table class="table Crm_table_active3 table-responsive">
                                     <thead>
                                     <tr>
                                         <th>{{__('frontendmanage.Notification')}}</th>

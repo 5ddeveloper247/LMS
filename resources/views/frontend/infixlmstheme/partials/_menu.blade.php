@@ -113,6 +113,9 @@
                 width: fit-content;
                 border-radius: 16px !important;
             }
+            .login_btn a{
+                padding: 7px !important
+            }
             .login_btn a:hover{
                 color: var(--system_primery_color) !important;
                 background-color: #fff !important;
@@ -199,11 +202,15 @@
                 font-weight: 500;
                 width: fit-content;
             }
+            .login_btn a{
+                padding: 7px !important
+            }
         }
 
         @media only screen and (min-width: 769px) and (max-width: 1100px) {
             .login_btn a {
                 font-size: 11px !important;
+               
             }
 
             .fa-user {

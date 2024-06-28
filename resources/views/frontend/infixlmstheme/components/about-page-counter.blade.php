@@ -15,7 +15,7 @@
    <section class="aboutPage-sec3">
     <div class="counter_area d-flex align-items-center my-lg-5 px-xl-5 ">
         <div class="container center-content-about">
-            <div class="row counter_area_row px-lg-3">
+            <div class="row counter_area_row px-3 px-sm-0 px-lg-4">
                 <div class="col-lg-6 d-flex align-items-center">
                     <div class="counter_wrapper mb-3 mb-lg-0">
                         <div class="single_counter">

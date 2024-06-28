@@ -16,7 +16,7 @@
                 <div class="QA_table">
                     <!-- table-responsive -->
                     <div class="">
-                        <table id="lms_table" class="Crm_table_active3 table">
+                        <table id="lms_table" class="Crm_table_active3 table table-responsive">
                             <thead>
                                 <tr>
                                     <th scope="col">{{ __('courses.Course Title') }}</th>

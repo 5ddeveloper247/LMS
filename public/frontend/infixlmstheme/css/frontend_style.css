@@ -1873,6 +1873,19 @@ label {
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
+    .counter_area .counter_wrapper .single_counter:first-child {
+        margin: 30px -0px 15px 145px !important;
+    }
+
+    .counter_area .counter_wrapper .single_counter:nth-child(2) {
+        margin: 0 -04px 15px 100px !important;
+    }
+    .counter_area .counter_wrapper .single_counter:nth-child(3) {
+        margin: 0 0px 30px 48px !important;
+    }
+    .counter_area .counter_wrapper .single_counter:nth-child(4) {
+        margin: 0px 0px 30px 0px !important;
+    }
     .header_area {
         padding: 2px 0;
     }
@@ -3845,22 +3858,6 @@ input[type="number"] {
         font-size: 2rem !important;
         min-width: 100px !important;
     }
-
-    .counter_area .counter_wrapper .single_counter:first-child {
-        margin: 30px -108px 15px 145px !important;
-    }
-
-    .counter_area .counter_wrapper .single_counter:nth-child(2) {
-        margin: 0 -80px 15px 100px !important;
-    }
-
-    .counter_area .counter_wrapper .single_counter:nth-child(3) {
-        margin: 0 -53px 15px 48px !important;
-    }
-
-    .counter_area .counter_wrapper .single_counter:nth-child(4) {
-        margin: 0px -31px 15px 0px !important;
-    }
 }
 
 .counter_area .counter_wrapper .single_counter:not(:last-child) {
@@ -4775,11 +4772,6 @@ input[type="number"] {
     margin-bottom: 0;
 }
 
-@media (max-width: 767.98px) {
-    .lms_tab_content {
-        /* margin-bottom: 45px; */
-    }
-}
 
 @media (min-width: 1500px) {
     .lms_tab_content {
@@ -4791,9 +4783,6 @@ input[type="number"] {
     margin-bottom: 54px;
 }
 
-.lms_tab_content .course_overview_description .single_overview:last-child {
-    /* margin-bottom: 25px; */
-}
 
 .lms_tab_content .course_overview_description .single_overview .theme_border {
     margin-bottom: 24px;
@@ -4846,7 +4835,7 @@ input[type="number"] {
 
 @media (max-width: 767.98px) {
     .lms_tab_content .instractor_details_wrapper .instractor_details_inner {
-        grid-template-columns: auto;
+        grid-template-columns: auto auto;
         grid-gap: 30px;
         margin-bottom: 30px;
     }
@@ -16437,7 +16426,11 @@ body {
         height: 44px !important;
     }
 }
-
+@media only screen and (max-width: 565px){
+    .lms_tab_content .instractor_details_wrapper .instractor_details_inner {
+        grid-template-columns: auto auto !important;
+    }
+}
 @media only screen and (min-width: 378px) and (max-width: 640px) {
     .course__play_warp .course__play_list {
         min-height: calc(100vh - 300px) !important;
@@ -17196,14 +17189,6 @@ body {
 
     .custom-heading {
         font-size: 30px !important;
-    }
-
-    .counter_area .counter_wrapper .single_counter:first-child {
-        margin: 30px -55px 15px 145px !important;
-    }
-
-    .counter_area .counter_wrapper .single_counter:nth-child(2) {
-        margin: 0 -54px 15px 100px !important;
     }
 
     .containerdoosme {

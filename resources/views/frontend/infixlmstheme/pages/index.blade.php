@@ -1019,7 +1019,7 @@
         right: 0;
         top: 0;
         bottom: 0;
-        background-color: #00000050;
+        background-color: #0000007a;
     }
 
     .main_bannar .main_banner-section>h1 {
@@ -1628,7 +1628,7 @@
     scale: 1.2;
     transition: all 2s;
 }
-    .at_Merkaii Xcellence {
+    .at_Merkaii {
         font-size: 1.8rem;
     }
 
@@ -1753,8 +1753,8 @@
             justify-content: center;
         }
 
-        .at_Merkaii Xcellence,
-        .at_Merkaii Xcellence span {
+        .at_Merkaii,
+        .at_Merkaii span {
             text-align: center;
         }
 
@@ -1769,7 +1769,7 @@
         .percent-h,
         .for-label1,
         .heading-responsive-style,
-        .content-features2-hh {
+        .content-features2-hh, .card-title {
             font-size: 16px !important;
         }
 
@@ -1894,8 +1894,8 @@
             max-height: 450px;
         }
 
-        .at_Merkaii Xcellence,
-        .at_Merkaii Xcellence span {
+        .at_Merkaii,
+        .at_Merkaii span {
             text-align: center;
             white-space: nowrap;
         }
@@ -3611,8 +3611,8 @@
                     class="col-md-6 col-xl-5 about_us_height d-flex justify-content-center align-items-center px-lg-2 mb-3 mb-md-0">
                     <div class="about_us_p">
                         <i class="fa-regular fa-lightbulb fa-2x " style="color: var(--system_primery_color);"></i>
-                        <h2 class="custom_small_heading font-weight-bold mb-4 at_Merkaii Xcellence">AT Merkaii Xcellence</h2>
-                        <h2 class="custom_small_heading font-weight-bold mb-4 at_Merkaii Xcellence">WE ARE ADULT LEARNER-CENTRIC <br>
+                        <h2 class="custom_small_heading font-weight-bold mb-4 at_Merkaii">AT Merkaii Xcellence</h2>
+                        <h2 class="custom_small_heading font-weight-bold mb-4 at_Merkaii">WE ARE ADULT LEARNER-CENTRIC <br>
                             <span class="d-flex justify-content-center ml_span">and</span>EDUCATION IS FOR
                             EVERYONE
                         </h2>
@@ -3629,13 +3629,13 @@
                 </div>
 
                 <div class="col-md-6 col-xl-7 d-flex justify-content-center about-image-main" style="gap: 1rem">
-                    <div class="col-6 about-img about_us_img1 p-md-0 pr-0">
+                    <div class="col-6 about-img about_us_img1 p-md-0 pr-0 shadow">
                         <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                            src="{{ asset('public/assets/About-Section 7.jpg') }}" class="img-fluid w-100 shadow">
+                            src="{{ asset('public/assets/Untitled-2 (4).png') }}" class="img-fluid w-100">
                     </div>
-                    <div class="col-6 about-img about_us_img2 p-md-0 pl-0">
+                    <div class="col-6 about-img about_us_img2 p-md-0 pl-0 shadow">
                         <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                            src="{{ asset('public/assets/About-Section7.jpg') }}" class="img-fluid w-100 shadow">
+                            src="{{ asset('public/assets/About-Section7.jpg') }}" class="img-fluid w-100">
                     </div>
                 </div>
             </div>
@@ -5352,7 +5352,7 @@
                             <div class="col-lg-4 col-md-5 mt-4 mt-md-0 px-md-2">
                                 <div class=" shadow_ist d-flex flex-column align-items-center"
                                     style="background-color: #b2dfcc">
-                                    <h2 class="section-header font-weight-bold my-2" style=" padding: 1rem;">ASK US
+                                    <h2 class="section-header font-weight-bold my-md-2 m-0 p-3">ASK US
                                         ANYTHING: FAQs</h2>
                                     <div class="accordion p-sm-3 p-2">
 

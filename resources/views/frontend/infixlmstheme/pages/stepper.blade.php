@@ -83,6 +83,9 @@
     }
 
     @media only screen and (max-width: 576px) {
+        .stepper_right, .paddingy {
+            padding-left: 0px !important;
+        }
         .stepper_row {
             flex-direction: column;
         }
@@ -143,7 +146,7 @@
 
     @media only screen and (max-width: 767px) {
         .stepper_right {
-            padding-left: 40px !important;
+            padding-left: 40px;
         }
 
         .paddingy {

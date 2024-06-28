@@ -36,7 +36,7 @@
                         <div class="QA_table ">
                             <!-- table-responsive -->
                             <div class="">
-                                <table id="faq_table" class="table Crm_table_active3 ">
+                                <table id="faq_table" class="table Crm_table_active3 table-responsive ">
                                     <thead>
                                     <tr>
                                         <th>#</th>

@@ -53,7 +53,7 @@
                             <!-- table-responsive -->
                             <div class="">
 
-                                <table class="Crm_table_active3 table">
+                                <table class="Crm_table_active3 table table-responsive">
                                     <thead>
                                         <tr>
                                             <th scope="col">{{ __('common.SL') }}</th>

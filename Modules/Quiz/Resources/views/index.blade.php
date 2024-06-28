@@ -100,7 +100,7 @@
                         <div class="QA_table">
                             <!-- table-responsive -->
                             <div class="">
-                                <table id="que_table" class="Crm_table_active3 table">
+                                <table id="que_table" class="Crm_table_active3 table table-responsive">
                                     <thead>
                                         <tr>
                                             <th scope="col">{{ __('common.SL') }}</th>

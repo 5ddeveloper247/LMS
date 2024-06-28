@@ -118,15 +118,12 @@
             height: 270px;
         }
     }
-
-    @media only screen (max-width:1200px) {
-        .about-pagination {
-            bottom: 8%;
-            left: 50%;
-        }
-
+@media only screen and (min-width: 769px) and (max-width: 1200px){
+    .about-pagination {
+        bottom: 8% !important;
+        left: 51% !important;
     }
-
+}
     @media only screen and (min-width: 1350px) {
         .about-pagination {
             left: 42.5%;

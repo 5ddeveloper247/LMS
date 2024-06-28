@@ -1492,18 +1492,18 @@
                             @if (count($courses->unique('user_id')))
                                 @foreach ($courses->unique('user_id') as $course)
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 col-sm-6">
                                             <div class="thumb">
                                                 <img class="w-100" style="border-radius:25px;"
                                                      src="{{ getInstructorImage($course->user->image) }}" alt="">
                                             </div>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-8 col-sm-6">
                                             <div class="instractor_details_info">
                                                 <a
                                                     href="javascript:void(0)">
                                                     {{-- href="{{ route('instructorDetails', [$course->user->id, $course->user->name]) }}"> --}}
-                                                    <h5 class="font_22 f_w_700">{{ $course->user->name }}</h5>
+                                                    <h5 class="font_22 f_w_700 mt-2 mt-md-0">{{ $course->user->name }}</h5>
                                                 </a>
                                                 <h5> {{ $course->user->headline }}</h5>
                                                 <div class="ins_details">

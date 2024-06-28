@@ -92,7 +92,7 @@
                                 <div class="QA_table ">
                                     <!-- table-responsive -->
                                     <div class="mt-30">
-                                        <table class="table Crm_table_active3">
+                                        <table class="table Crm_table_active3 table-responsive">
                                             <thead>
                                             @include('backend.partials.alertMessagePageLevelAll')
                                             <tr>

@@ -98,7 +98,7 @@
                                             @csrf
                                             <input type="hidden" name="role_id" value="2">
                                             <div class="QA_table ">
-                                                <table class="Crm_table_active3">
+                                                <table class="Crm_table_active3 table-responsive">
                                                     <thead>
                                                     <tr>
                                                         <th scope="col">{{ __('common.Name') }}</th>
@@ -165,7 +165,7 @@
                                             <div class="QA_table ">
 
                                                 <!-- table-responsive -->
-                                                <table class="Crm_table_active3">
+                                                <table class="Crm_table_active3 table-responsive">
                                                     <thead>
                                                     <tr>
                                                         <th scope="col">{{ __('common.Name') }}</th>
@@ -230,7 +230,7 @@
                                                 <input type="hidden" name="role_id" value="4">
                                                 <div class="QA_table ">
                                                     <!-- table-responsive -->
-                                                    <table class="Crm_table_active3">
+                                                    <table class="Crm_table_active3 table-responsive">
                                                         <thead>
                                                         <tr>
                                                             <th scope="col">{{ __('common.Name') }}</th>

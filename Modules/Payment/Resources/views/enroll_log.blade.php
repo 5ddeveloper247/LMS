@@ -105,7 +105,7 @@
                 <div class="QA_table ">
 
 
-                    <table id="lms_table" class="table Crm_table_active3">
+                    <table id="lms_table" class="table Crm_table_active3 table-responsive">
                         <thead>
                         <tr>
                             <th scope="col">{{__('report.Purchase ID')}}</th>

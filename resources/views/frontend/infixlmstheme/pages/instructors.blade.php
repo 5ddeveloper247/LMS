@@ -142,11 +142,6 @@
             .btn_responsive {
                 font-size: 13px;
             }
-
-            .shadow-p {
-                height: 21rem;
-                overflow: auto;
-            }
         }
 
         @media only screen and (min-width:1450px) {
@@ -257,7 +252,7 @@
 
 
         <div class="container py-md-5 py-3">
-            <div class="row mx-2 mx-xl-5">
+            <div class="row mx-xl-5">
                 <div class="col-md-12">
                     <h2 class="custom_small_heading font-weight-bold pb-md-5 pb-3 text-center text-capitalize">
                         Merkaii Xcellence Tutors use Saunders and Elsevier for Tutoring</h2>

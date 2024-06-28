@@ -153,7 +153,7 @@
                         <div class="QA_table ">
                             <!-- table-responsive -->
                             <div class="">
-                                <table id="social_table" class="table Crm_table_active3">
+                                <table id="social_table" class="table Crm_table_active3 table-responsive">
                                     <thead>
                                     <tr>
                                         <th scope="col">{{ __('common.SL') }}</th>
