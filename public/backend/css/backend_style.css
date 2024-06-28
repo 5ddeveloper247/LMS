@@ -8828,7 +8828,7 @@ table.dataTable {
     box-shadow: none !important
 }
 .table-responsive{
-    scrollbar-width: thin;
+    scrollbar-width: thin !important;
 }
 
 .QA_section .QA_table .table {

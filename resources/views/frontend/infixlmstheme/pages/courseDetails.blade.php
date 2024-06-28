@@ -28,7 +28,7 @@
     .table-responsive {
 
         overflow-x: clip !important;
-
+       scrollbar-width: thin;
     }
 
     .theme_color2 {

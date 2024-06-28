@@ -2,7 +2,7 @@
 <div class="mt_30">
 
     <nav class="preview_menu_wrapper">
-        <ul id="previewMenu">
+        <ul id="previewMenu" class="custom_list_style p-0">
 
             @if(isset($sections))
                 @foreach($sections as $section)
