@@ -358,7 +358,7 @@ $clover = DB::table('clover_details')->first();
                                                    <div class="single_lists" id="couponBox"
                                                         style="display: {{$checkout->discount ==0?'block':'none'}}">
 
-                                                       <div class="coupon_wrapper align-items-start">
+                                                       <div class="coupon_wrapper align-items-center">
                                                            <input type="hidden" id="total"
                                                                   value="{{isset($totalSum)?$totalSum:0}}">
 

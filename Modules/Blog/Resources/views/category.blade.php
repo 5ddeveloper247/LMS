@@ -160,7 +160,7 @@
                             <h3 class="mb-0">{{__('courses.Category List')}}</h3>
                         </div>
                     </div>
-                    <div class="  QA_section QA_section_heading_custom check_box_table">
+                    <div class="QA_section QA_section_heading_custom check_box_table">
                         <div class="QA_table ">
                             <!-- table-responsive -->
                             <div class="">

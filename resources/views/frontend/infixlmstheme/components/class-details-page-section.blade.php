@@ -392,7 +392,7 @@
                                     <!-- content  -->
                                     <h5 class="font_22 f_w_700 mb_20">{{ __('Class Schedule') }}</h5>
 
-                                    <div class="single_description mb_25">
+                                    <div class="single_description">
 
                                         {{-- @dd('kamran') --}}
                                         @if ($course->class->host == 'BBB')
@@ -444,7 +444,7 @@
                                                             @if (@$meeting->isRunning())
                                                                 <a target="_blank"
                                                                     href="{{ route('classStart', [$course->slug, 'BBB', $meeting->id]) }}"
-                                                                    class="theme_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                    class="theme_btn small_btn2 height_50 p-3 text-center">
                                                                     {{ __('common.Watch Now') }}
                                                                 </a>
                                                             @else
@@ -456,12 +456,12 @@
                                                                 @endphp
                                                                 @if ($isWaiting)
                                                                     <span
-                                                                        class="theme_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                        class="theme_btn small_btn2 height_50 p-3 text-center">
                                                                         {{ __('frontend.Waiting') }}
                                                                     </span>
                                                                 @else
                                                                     <span
-                                                                        class="theme_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                        class="theme_btn small_btn2 height_50 p-3 text-center">
                                                                         {{ __('frontend.Closed') }}
                                                                     </span>
                                                                 @endif
@@ -530,7 +530,7 @@
 
                                                                 <a target="_blank"
                                                                     href="{{ route('classStart', [$course->slug, 'Jitsi', $meeting->id]) }}"
-                                                                    class="theme_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                    class="theme_btn small_btn2 height_50 p-3 text-center">
                                                                     {{ __('common.Watch Now') }}
                                                                 </a>
                                                             @else
@@ -542,12 +542,12 @@
                                                                 @endphp
                                                                 @if ($isWaiting)
                                                                     <span
-                                                                        class="theme_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                        class="theme_btn small_btn2 height_50 p-3 text-center">
                                                                         {{ __('frontend.Waiting') }}
                                                                     </span>
                                                                 @else
                                                                     <span
-                                                                        class="theme_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                        class="theme_btn small_btn2 height_50 p-3 text-center">
                                                                         {{ __('frontend.Closed') }}
                                                                     </span>
                                                                 @endif
@@ -650,7 +650,7 @@
                                                         @if ($currClassStatus == 'started')
                                                             <a target="_blank"
                                                                 href="{{ route('classStart', [$course->slug, 'Zoom', $meeting->id]) }}"
-                                                                class="theme_btn small_btn2 d-block height_50 text-center">
+                                                                class="theme_btn small_btn2 height_50 text-center">
                                                                 {{ __('common.Watch Now') }}
                                                             </a>
                                                         @elseif ($currClassStatus == 'waiting')
@@ -749,7 +749,7 @@
                                                           @if ($currClassStatus == 'started')
                                                               <a target="_blank"
                                                                   href="{{ route('classStart', [$course->slug, 'Team', $meeting->id]) }}"
-                                                                  class="theme_btn small_btn2 d-block height_50 p-3 text-center">
+                                                                  class="theme_btn small_btn2 height_50 p-3 text-center">
                                                                   {{ __('common.Watch Now') }}
                                                               </a>
                                                           @elseif ($currClassStatus == 'waiting')

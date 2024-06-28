@@ -8996,7 +8996,9 @@ input[type="number"] {
 .account_profile_wrapper .privacy_permission .single_privacy_permission .permission_text .permission_content p br {
     display: inline-block;
 }
-
+.table-responsive{
+    scrollbar-width: thin;
+}
 @media only screen and (min-width: 700px) {
     .header_area .main_menu ul li a {
         font-size: 11px;
@@ -9112,9 +9114,9 @@ input[type="number"] {
 }
 
 @media only screen and (min-width: 1200px) {
-    .theme_select {
+    /* .theme_select {
         width: 50% !important;
-    }
+    } */
 
     .slicknav_nav .slicknav_row,
     .slicknav_nav a {
@@ -16428,7 +16430,7 @@ body {
 }
 @media only screen and (max-width: 565px){
     .lms_tab_content .instractor_details_wrapper .instractor_details_inner {
-        grid-template-columns: auto auto !important;
+        grid-template-columns: auto !important;
     }
 }
 @media only screen and (min-width: 378px) and (max-width: 640px) {
@@ -16727,6 +16729,9 @@ body {
     .theme_btn {
         font-size: 12px;
         white-space: nowrap;
+        padding: 4px 10px !important;
+    }
+    .theme_line_btn{
         padding: 4px 10px !important;
     }
 

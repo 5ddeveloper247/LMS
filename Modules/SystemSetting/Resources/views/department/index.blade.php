@@ -15,7 +15,7 @@
                     <div class="box_header common_table_header">
                         <div class="main-title d-md-flex">
                             <h3 class="mb-0 mr-30 mb_xs_15px mb_sm_20px">{{ __('leave.Department') }} {{ __('common.List')  }}</h3>
-                            <ul class="d-flex">
+                            <ul class="d-flex custom_list_style p-0">
                                 <li>
                                     <button class="primary-btn radius_30px mr-10 fix-gr-bg"
                                             onclick="createModalShow()"><i
