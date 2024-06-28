@@ -445,7 +445,7 @@ canvas {
                         <div class="form-group col-md-12">
                           
                             <input type="file" id="canvasFileInput" name="signature-img" required style="display:none">
-                            <label for="canvasFileInput" class="btn btn_login w-100 mt-2">Upload Signature</label>
+                            <label for="canvasFileInput" class="btn btn_login w-100 mt-2 d-flex- justify-content-center align-items-center">Upload Signature</label>
 
                         </div>
                     </div>

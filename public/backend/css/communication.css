@@ -271,7 +271,8 @@
 
 .messages_chat {
     max-height: 725px;
-    overflow-y: scroll
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 .search_input{
     width: 100%;

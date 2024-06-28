@@ -28,7 +28,6 @@
             height: 38px;
             font-size: 16px;
             background: var(--system_primery_color);
-            border-radius: 5px;
             font-family: Source Sans Pro, sans-serif;
             color: #fff;
             font-weight: 600;
@@ -36,6 +35,7 @@
             text-transform: capitalize;
             display: inline-block;
             line-height: 1;
+            border-radius: 16px;
         }
 
         .btn_login:hover {
