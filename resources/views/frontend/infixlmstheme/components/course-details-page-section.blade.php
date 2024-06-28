@@ -2,7 +2,7 @@
 
     <input type="hidden" value="{{ asset('/') }}" id="baseUrl">
     <!-- course_details::start  -->
-    <div class="course__details p-md-5 p-3">
+    <div class="course__details p-md-5 p-4">
         <div class="container px-lg-0">
             @php
                 if (!empty($request->courseType) && count($course->children)) {
@@ -1369,7 +1369,7 @@
                                 @endif
                             @endif
                             @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
-                            <p class="font_14 f_w_500 mb_30 text-center"></p>
+                            <p class="font_14 f_w_500 mb-md-4 mb-3 text-center"></p>
                             <h5 class="small_heading f_w_700 mb_10 course-span">{{ __('frontend.This course includes') }}:</h5>
                             <ul class="course_includes">
                                 @if(request()->has('courseType') && request()->courseType !=9)

@@ -327,6 +327,8 @@
         outline: none;
         cursor: pointer;
         padding: 10px 0;
+        gap: 10px;
+        text-align: left;
     }
 
     .content {
@@ -634,7 +636,9 @@
         .toggle {
             font-size: 16px;
         }
-
+        .wrapper {
+        padding: 10px 15px !important;
+    }
         .custom_h1 {
             font-size: calc(2.4rem + 1vmin) !important;
         }
@@ -1062,21 +1066,21 @@
         {{-- </div> --}}
     </div>
 
-    <div class="row justify-content-center pt-lg-5 pt-3">
+    <div class="row justify-content-center pt-lg-5 pt-4">
         <div class="col-12 col-md-7 text-center text-lg-left">
-            <h2 class="custom_small_heading heading font-weight-bold text-capitalize">required application documents for remedial</h2>
+            <h2 class="custom_small_heading heading font-weight-bold text-capitalize text-center mb-0">required application documents for remedial</h2>
         </div>
         <div class="col-md-7 col-10 mt-3">
             <div class="boxaccordion mt-2">
                 <div class="containerwidth">
                     <div class="wrapper">
-                        <button class="toggle">lpn card<i class="fas fa-plus icon"></i></button>
+                        <button class="toggle">Complete Main Application<i class="fas fa-plus icon"></i></button>
                         <div class="content">
                             <p>hduahdu</p>
                         </div>
                     </div>
                     <div class="wrapper">
-                        <button class="toggle">Ten (10) Panel Drug Test<i class="fas fa-plus icon"></i></button>
+                        <button class="toggle">Signed Enrollment Acknowledgement Declaration form<i class="fas fa-plus icon"></i></button>
                         <div class="content">
                             <p>The 10-panel drug test screens for the five of the most frequently misused prescription
                                 drugs
@@ -1084,19 +1088,61 @@
                         </div>
                     </div>
                     <div class="wrapper">
-                        <button class="toggle">Proof of Professional License: RN.<i class="fas fa-plus icon"></i></button>
+                        <button class="toggle">Letter from Board of Nursing<i class="fas fa-plus icon"></i></button>
+                        <div class="content">
+                            <p>Professional Trade License for Entrance in BSN program.</p>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <button class="toggle">Copy of Driver’s License / SS# Card<i class="fas fa-plus icon"></i></button>
+                        <div class="content">
+                            <p> Professionally - Who You are and why Nursing.</p>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <button class="toggle">Current Physical Exam (less than 1-Year)<i class="fas fa-plus icon"></i></button>
+                        <div class="content">
+                            <p>Professional Trade License for Entrance in BSN program.</p>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <button class="toggle">Proof of Vaccinations – MMR (Titer), Tetanus, Tdap, Varicella<i class="fas fa-plus icon"></i></button>
+                        <div class="content">
+                            <p>Professional Trade License for Entrance in BSN program.</p>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <button class="toggle">Proof of Hepatitis B or Decline Waiver Form<i class="fas fa-plus icon"></i></button>
+                        <div class="content">
+                            <p>Professional Trade License for Entrance in BSN program.</p>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <button class="toggle">10 Panel Drug Test<i class="fas fa-plus icon"></i></button>
+                        <div class="content">
+                            <p>Professional Trade License for Entrance in BSN program.</p>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <button class="toggle">Current PPD Results<i class="fas fa-plus icon"></i></button>
+                        <div class="content">
+                            <p>Professional Trade License for Entrance in BSN program.</p>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <button class="toggle">BLS or CPR Card<i class="fas fa-plus icon"></i></button>
                         <div class="content">
                             <p>Professional Trade License for Entrance in BSN program.</p>
                         </div>
                     </div>
                     <div class="wrapper mb-lg-5 mb-3">
-                        <button class="toggle">Essay – Tell us about You<i class="fas fa-plus icon"></i></button>
+                        <button class="toggle">Proof of Health Insurance for Clinical<i class="fas fa-plus icon"></i></button>
                         <div class="content">
-                            <p> Professionally - Who You are and why Nursing.</p>
+                            <p>Professional Trade License for Entrance in BSN program.</p>
                         </div>
                     </div>
-                    <div class="mb-lg-5 mb-3">
-                        <h2 class="custom_small_heading heading text-center text-lg-left text-sm font-weight-bold">Most
+                    <div class="mb-3">
+                        <h2 class="custom_small_heading heading text-center font-weight-bold mb-0">Most
                             Asked Questions
                         </h2>
                     </div>
@@ -1123,18 +1169,19 @@
 
         </div>
     </div>
-    <div class="row mb-md-5 mt-md-4 mt-2 mb-4 justify-content-center"style="background-color: #eee;">
-        <div class="col-md-7 py-lg-5 px-5 px-lg-0 py-3">
-            <div class="custom_fs_a d-flex justify-content-between align-items-center mx-lg-0">
-                <h2 class="custom_small_heading text-center font-weight-bold avail-ser mb-0">FOCUSED LEARNING + DISCIPLINE - GOALS ACHIEVED
-                </h2>
-                <div class="contact_btn text-center">
-                    <a href="{{ route('register') }}"class="theme_btn small_btn2 p-2">Apply Now </a>
-                </div>
+<div class="container-fluid p-0 mt-md-4 mt-2" style="background-color: #eee;">
+        <div class="row mb-md-5 mb-4 justify-content-center px-4 px-sm-5 px-md-0">
+            <div class="col-md-7 py-lg-5 px-lg-0 py-3">
+                <div class="custom_fs_a d-flex justify-content-between align-items-start mx-lg-0 px-sm-4 px-md-0" style="gap: 10px;">
+                    <h2 class="custom_small_heading text-center font-weight-bold avail-ser mb-0">FOCUSED LEARNING + DISCIPLINE - GOALS ACHIEVED
+                    </h2>
+                    <div class="contact_btn text-center">
+                        <a href="{{ route('register') }}"class="theme_btn small_btn2 p-2">Apply Now </a>
+                    </div>
             </div>
         </div>
-
     </div>
+</div>
 
 
     @include(theme('partials._custom_footer'))
