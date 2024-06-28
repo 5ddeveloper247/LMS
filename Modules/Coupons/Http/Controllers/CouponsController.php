@@ -251,7 +251,15 @@ class CouponsController extends Controller
             $coupon->end_date = date('Y-m-d', strtotime($request->end_date));
 
             $coupon->save();
+            $coupon_user = User::find($request->coupon_user_id);
+            if ($request->coupon_user_id && $coupon_user) {
+            $shortCodes = [
+                    'time' => \Illuminate\Support\Carbon::now()->format('d-M-Y ,H:i A'),
+                    'user' => $coupon_user->name
+                ];
 
+                send_email($coupon_user, 'Coupon_Issued', $shortCodes);
+            }
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->back();
 
@@ -352,7 +360,7 @@ class CouponsController extends Controller
             $category_id = $request->category_id;
             $subcategory_id = $request->subcategory_id;
             if (Auth::user()->role_id == 1) {
-                $query = Course::select('id', 'title');
+                $query = Course::select('id', 'title','type');
                 if ($category_id) {
                     $query->where('category_id', $category_id);
                 }
@@ -365,9 +373,11 @@ class CouponsController extends Controller
             }
             $courses = [];
             foreach ($subcategories as $key => $subcategory) {
-                $title = $subcategory->parent->title;
+                $title = $subcategory->parent->title ?? $subcategory->title;
+                $title = json_decode($title);
                 $courses[$key] = $subcategory;
-                $courses[$key]->title2 = $title;
+                $courses[$key]->title2 = $title->en;
+                $courses[$key]->type = $subcategory->type;
             }
 
             return response()->json([$courses]);
