@@ -8,7 +8,7 @@
                     <div class="row"> -->
                         <div class="col-12">
                             <div class="box_header d-flex align-items-center justify-content-between flex-wrap">
-                                <div class="d-flex justify-content-between w-100 align-items-center mb-3 mb-md-5 px-4 px-sm-0">
+                                <div class="d-flex justify-content-between w-100 align-items-center mb-3 mb-md-5">
                                     <h5 class="custom_small_heading f_w_700 ">
                                         {{ $total > 1 ? $total . ' Prep-Course' : $total . ' Prep-Course' }}
                                         {{ __(' Found') }}</h5>

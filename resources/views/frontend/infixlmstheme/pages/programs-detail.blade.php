@@ -1494,7 +1494,7 @@
                                     <div class="row">
                                         <div class="col-md-4 col-sm-6">
                                             <div class="thumb">
-                                                <img class="w-100" style="border-radius:25px;"
+                                                <img class="w-100 h-100" style="border-radius:25px;"
                                                      src="{{ getInstructorImage($course->user->image) }}" alt="">
                                             </div>
                                         </div>

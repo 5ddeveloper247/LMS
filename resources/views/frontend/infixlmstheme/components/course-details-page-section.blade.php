@@ -264,7 +264,7 @@
             <div class="row px-lg-5 small_screen course_padding">
                 <div class="col-lg-9 col-md-8 col-12">
                     
-                    <div class="course_tabs w-100 mb-3">
+                    <div class="course_tabs w-100 mb-3 px-md-2">
                         <div class="events_wrapper">
                             <div class="eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
                             </div>
@@ -430,6 +430,7 @@
                                                                 {{ count($chapter->lessons) }}
                                                                 {{ __('frontend.Lectures') }}</span>
                                                         </button>
+                                                        
                                                     </h5>
                                                 </div>
                                                 <div class="course_collapse collapse" id="collapse{{ $chapter->id }}"
@@ -878,7 +879,7 @@
                                 </div>
                                 <div class="instractor_details_inner">
                                     <div class="thumb">
-                                        <img class="w-100" style="border-radius:25px;"
+                                        <img class="w-100 h-100" style="border-radius:25px;"
                                             src="{{ getInstructorImage(@$course->user->image) }}" alt="">
                                     </div>
                                     <div class="instractor_details_info">

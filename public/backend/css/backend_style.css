@@ -1743,7 +1743,10 @@ button:focus {
         padding: 15px
     }
 }
-
+ul{
+    list-style: none;
+    padding: 0px;
+}
 .main-title h3 {
     color: var(--system_secendory_color);
     line-height: 1
@@ -2529,9 +2532,9 @@ body.login .footer_area a {
         margin-left: 0
     }
     #sidebar {
-        min-width: 45%;
-        max-width: 45%;
-        margin-left: -45%
+        min-width: 42%;
+        max-width: 42%;
+        margin-left: -42%
     }
     #sidebar .sidebar-header {
     padding: 26px 5px 26px 26px !important;
@@ -4791,9 +4794,29 @@ body.client.color {
         margin-left: -65%;
     }
     .sidebar #sidebar_menu li a{
-        padding: 9px !important;
+        padding: 9px 21px 9px 9px !important;
     }
 }
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .primary_file_uploader .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .primary_file_uploader:hover .tooltiptext {
+    visibility: visible;
+  }
 
 #sidebar.active {
     z-index: 99999
