@@ -12,7 +12,7 @@
                         <div class="main-title d-md-flex">
                             <h3 class="mb-0 mr-30 mb_xs_15px mb_sm_20px">{{__('setting.Error Log')}}</h3>
 
-                            <ul class="d-flex">
+                            <ul class="d-flex custom_list_style p-0">
                                 <li><a class="primary-btn radius_30px mr-10 fix-gr-bg" href="#" data-toggle="modal"
                                        id="emptyTable"
                                        data-target="#emptyTableModel"><i

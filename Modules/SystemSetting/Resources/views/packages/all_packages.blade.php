@@ -44,7 +44,7 @@
                             <h3 class="mr-30 mb_xs_15px mb_sm_20px mb-0">
                                 {{ $title ?? 'Package Pricing' }}
                             </h3>
-                            <ul class="d-flex">
+                            <ul class="d-flex custom_list_style p-0">
                                 @if (isAdmin() && $total_packages < 3)
                                     <li>
                                         <a class="primary-btn radius_30px fix-gr-bg mr-10" href="{{ route('addPackage') }}">

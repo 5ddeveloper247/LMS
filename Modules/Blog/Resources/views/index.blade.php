@@ -75,7 +75,7 @@
                             <!-- table-responsive -->
                             <div class="">
 
-                                <table id="lms_table" class="table Crm_table_active_blog">
+                                <table id="lms_table" class="table Crm_table_active_blog table-responsive">
                                     <thead>
                                     <tr>
                                         <th scope="col"> {{__('blog.SL')}}</th>

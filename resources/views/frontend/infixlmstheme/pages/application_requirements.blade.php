@@ -515,6 +515,9 @@
         height: 35px;
         width: 35px;
     }
+    .small_screen_carousel2 img{
+        object-fit: cover;
+    }
     @media (max-width: 576px) {
         .fw-light {
             margin-top: 10px;

@@ -21,8 +21,8 @@
                         @else
                             <div class="row">
                                 <div class="col-xl-12">
-                                    <div class="table-responsive">
-                                        <table class="custom_table3 table">
+                                    <div class="">
+                                        <table class="custom_table3 table table-responsive">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">{{ __('common.SL') }}</th>
