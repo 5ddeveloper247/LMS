@@ -4839,6 +4839,9 @@ input[type="number"] {
         grid-gap: 30px;
         margin-bottom: 30px;
     }
+    .instractor_details_inner .thumb{
+        height: 300px !important;
+    }
 }
 
 .lms_tab_content .instractor_details_wrapper .instractor_details_inner .instractor_details_info h4 {
@@ -7609,7 +7612,10 @@ input[type="number"] {
     }
 
     .theme_btn {
-        font-size: 10px !important;
+        font-size: 11px !important;
+    }
+    .theme_according .card .card-header h5 button span{
+        font-size: 12px !important;
     }
 
     .theme_btn.small_btn {
@@ -11750,7 +11756,10 @@ footer .social-network a {
     font-weight: 400;
     margin-right: 10px;
 }
-
+ul{
+    list-style: none;
+    padding: 0px !important;
+}
 @media (max-width: 575.98px) {
     .theme_according .card .card-header h5 button span.course_number {
         display: block;
@@ -11790,6 +11799,9 @@ footer .social-network a {
         flex-wrap: wrap;
         font-size: 16px;
         padding: 12.3px 16px;
+        display: flex;
+        justify-content: flex-start !important;
+        gap: 12px;
     }
 }
 

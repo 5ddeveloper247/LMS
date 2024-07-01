@@ -117,6 +117,14 @@
             min-height: 270px;
             height: 270px;
         }
+        .about_custom_paragraph{
+            height: 150px;
+            overflow: auto;
+            scrollbar-width: none;
+        }
+        .slide p{
+            align-items: baseline !important;
+        }
     }
 @media only screen and (min-width: 769px) and (max-width: 1200px){
     .about-pagination {
@@ -161,7 +169,7 @@
     }
 </style>
 
-<section class="card-container my-3">
+<section class="sec-6 card-container my-3">
 
     <div class="container student_container pb-4 pb-lg-0 ">
 
@@ -191,7 +199,7 @@
             @foreach ($testimonials as $item)
             <div class="slide">
 
-                <div class="row px-lg-5 px-2 justify-content-center elem pb-5">
+                <div class="row px-lg-5 px-2 justify-content-center elem pb-md-5">
 
                     <div class="col-md-6 aboutus-img">
 
@@ -201,7 +209,7 @@
 
                     <div class="col-md-6 pl-lg-5 elem-content d-flex flex-column justify-content-center pb-3 pb-lg-0">
 
-                        <p class="custom_paragraph my-5">{{ $item->body }}</p>
+                        <p class="about_custom_paragraph my-md-5 my-3">{{ $item->body }}</p>
 
                         <h6 class="text-capitalize">{{ $item->author }} - {{ $item->profession }}</h6>
 
@@ -289,7 +297,7 @@
 <script>
 $(document).ready(function() {
     $('.slick-slider').slick({
-        autoplay: true,
+        // autoplay: true,
         autoplaySpeed: 2000,
         dots: true,
         appendDots: $('.about-pagination'),

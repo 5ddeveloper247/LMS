@@ -80,14 +80,6 @@
         text-align: justify;
     }
 
-    .p {
-        color: #444;
-        font-family: "Open Sans", sans-serif;
-        font-size: 15px;
-        font-weight: 300;
-        line-height: 24px;
-    }
-
     .span::before {
         content: "\f007";
         font-family: "Font Awesome 5 Free";
@@ -1000,7 +992,7 @@
                                                             <div class="row">
                                                                 <div class="col-xl-12">
                                                                     <div class="">
-                                                                        <table class="custom_table3 table table-responsive">
+                                                                        <table class="custom_table3 table">
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th scope="col">

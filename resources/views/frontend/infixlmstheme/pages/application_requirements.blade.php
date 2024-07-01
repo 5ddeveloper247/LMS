@@ -1070,7 +1070,7 @@
 
     <div class="row justify-content-center pt-lg-5 pt-4">
         <div class="col-12 col-md-7 text-center text-lg-left">
-            <h2 class="custom_small_heading heading font-weight-bold text-capitalize text-center mb-0">required application documents for remedial</h2>
+            <h2 class="custom_small_heading heading font-weight-bold text-capitalize text-center mb-0 px-4 px-md-0">required application documents for remedial</h2>
         </div>
         <div class="col-md-7 col-10 mt-3">
             <div class="boxaccordion mt-2">

@@ -881,6 +881,7 @@
         margin: 0px 0px 13px 0px;
         border: 1px solid black;
         border-radius: 16px;
+        padding: 0.5rem 1.5rem;
     }
 
     .Faq-btn:hover {
@@ -1538,6 +1539,7 @@
         border: none;
         cursor: pointer;
         border: 2px solid white;
+        padding: 0.5rem 1.5rem;
     }
 
     .content-features-btn:hover {
@@ -1633,7 +1635,7 @@
     }
 
     @media only screen and (max-width: 575px) {
-
+      
         .for-focus {
             width: 73px !important;
         }
@@ -1727,6 +1729,18 @@
     }
 
     @media only screen and (max-width: 768px) {
+        .about-img{
+            height: 300px;
+        }
+        .content-features-btn{
+            padding: 4px 9px !important;
+        }
+        .custom-button-call-to-action{
+            padding: 4px 9px !important
+        }
+        .Faq-btn{
+            padding: 4px 9px !important;
+        }
         .for-main-2nd {
             gap: 3rem;
         }
@@ -1739,11 +1753,12 @@
             height: 250px;
             overflow: hidden;
         }
-
-        .custom-slider-container {
-            height: 343px !important;
+        .custom-slide img{
+            height: 350px !important;
         }
-
+        .custom-card img{
+            height: 260px !important;
+        }
         .percent-video {
             height: 390px !important;
         }
@@ -1785,10 +1800,6 @@
 
         #program_desc {
             font-size: 15px !important;
-        }
-
-        .custom-card img {
-            height: 320px;
         }
 
         button.prev {
@@ -1886,6 +1897,12 @@
     }
 
     @media only screen and (min-width: 769px) and (max-width: 1023px) {
+        .custom-slide img{
+            height: 390px !important;
+        }
+        .custom-card img{
+            height: 390px !important;
+        }
         .heading-responsive-style {
             font-size: 18px !important;
         }
@@ -1924,7 +1941,8 @@
         }
 
         .about-img {
-            width: 260px;
+            /* width: 260px; */
+            max-height: 250px !important;
         }
 
         .about_us {
@@ -2168,6 +2186,12 @@
     }
 
     @media only screen and (min-width: 1650px) {
+        .custom-slide img{
+            height: 600px !important;
+        }
+        .custom-card img{
+            height: 600px !important;
+        }
 
         .logos {
             min-width: 125rem !important;
@@ -2558,7 +2582,7 @@
 
     .custom-slide img {
         width: 100%;
-        height: 70vh;
+        height: 450px;
         filter: brightness(70%);
         border-radius: 10px;
         transition: transform 0.6s ease;
@@ -2667,7 +2691,7 @@
     .custom-card img {
         filter: brightness(70%);
         border-radius: 10px;
-        height: 70vh;
+        height: 450px;
         transition: transform 0.6s ease;
     }
 
@@ -2750,6 +2774,7 @@
         color: white !important;
         background-color: transparent !important;
         transition: all 0.3s ease;
+        padding: 0.5rem 1.5rem;
         /* Smooth transition for hover effect */
     }
 
@@ -2876,7 +2901,7 @@
                             <p class="content-features-p">We understand that life doesn't always stop for education. That's
                                 why we offer a truly
                                 affordable and flexible learning experience that fits your schedule and lifestyle.</p>
-                            <a href="{{ route('about') }}"><button class="content-features-btn py-2 px-4">How it
+                            <a href="{{ route('about') }}"><button class="content-features-btn">How it
                                     Works</button></a>
                         </div>
                     </div>
@@ -2967,7 +2992,7 @@
                     <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
                         Licensure.</p>
                 </div>
-                <div class="row d-flex align-items-stretch pb-4 px-xl-5">
+                <div class="row d-flex align-items-stretch pb-3 pb-md-0 px-xl-5">
                     <div class="col-md-6 mb-2 px-md-0 hidden hidden-left">
                         <div class="custom-slider-container">
                             <button class="prev">❮</button>
@@ -3604,11 +3629,11 @@
 
     {{-- Map aboutus --}}
 
-    <section class="sec-7 mb-lg-4 mb-3">
+    <section class="sec-7">
         <div class="container p-lg-5 py-3">
             <div class="row about_us px-xl-5 justify-content-between">
                 <div
-                    class="col-md-6 col-xl-5 about_us_height d-flex justify-content-center align-items-center px-lg-2 mb-3 mb-md-0">
+                    class="col-md-6 col-xl-5 about_us_height d-flex justify-content-center align-items-center mb-3 mb-md-0">
                     <div class="about_us_p">
                         <i class="fa-regular fa-lightbulb fa-2x " style="color: var(--system_primery_color);"></i>
                         <h2 class="custom_small_heading font-weight-bold mb-4 at_Merkaii">AT Merkaii Xcellence</h2>
@@ -3628,14 +3653,18 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-7 d-flex justify-content-center about-image-main" style="gap: 1rem">
-                    <div class="col-6 about-img about_us_img1 p-md-0 pr-0 shadow">
+                <div class="col-md-6 col-xl-7 d-flex flex-md-column flex-lg-row justify-content-center about-image-main" style="gap: 1rem">
+                    <div class="col-6 col-md-11 col-lg-6 p-0  about-img about_us_img1 shadow">
+                     
                         <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                            src="{{ asset('public/assets/Untitled-2 (4).png') }}" class="img-fluid w-100">
+                        src="{{ asset('public/assets/Untitled-2 (4).png') }}" class="img-fluid w-100">
+                  
                     </div>
-                    <div class="col-6 about-img about_us_img2 p-md-0 pl-0 shadow">
-                        <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
+                    <div class="col-6 col-md-11 col-lg-6 p-md-0 pl-0 about-img about_us_img2 shadow">
+                       
+                            <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
                             src="{{ asset('public/assets/About-Section7.jpg') }}" class="img-fluid w-100">
+                     
                     </div>
                 </div>
             </div>
@@ -3716,7 +3745,7 @@
                     </span></a> Merkaii Xcellence College's Healthcare Programs and Courses. <br>Adult-Learner’s Success</p>
             <div class="d-flex justify-content-center mt-2">
                 <a href="{{ url('contact#contact-form-ankar') }}"><button
-                        class="custom-button-call-to-action px-4 py-2">Contact Admission Specialist</button></a>
+                        class="custom-button-call-to-action">Contact Admission Specialist</button></a>
             </div>
         </div>
     </section>
@@ -5383,7 +5412,7 @@
                                         @endforeach
                                     </div>
                                     <a href="{{ route('customer-help') }}#faq" onclick="informationflag('faq')"
-                                        class="m-md-3 m-2"> <button class="Faq-btn py-2 px-4">More FAQS</button></a>
+                                        class="m-md-3 m-2"> <button class="Faq-btn">More FAQS</button></a>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-12 custom_section_color shadow_row custom_paragraph d-none"

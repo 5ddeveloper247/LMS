@@ -586,23 +586,23 @@
                 <x-breadcrumb :banner="$banner_image" :title="$banner_title" :btntitle="$btn_title" :btnclass="'hit openModal'" />
             </div>
         </div>
-        <div class="container px-lg-5">
+        <div class="container px-lg-5 teach_offer">
 
             <div class="row py-md-5 px-xl-5 py-4 px-3">
                 <div class="col-md-12 text-center">
                     <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3 text-capitalize"> What We Offer You to Shape the Future of Healthcare
                         Education.</h2>
                 </div>
-                <div class="col-md-6 col-12 px-md-2" data-aos="fade-right">
-                    <div class="custom_height_1">
+                <div class="col-md-6 col-12 px-md-2 teach_offer1" data-aos="fade-right">
+                    <div class="custom_height_1 pb-4 pb-md-0">
                         <img src="{{ asset('public/assets/Teach1.jpg') }}" class="h-100 w-100"
                         style=" border-radius: 25px;">
                     </div>
                   
                 </div>
 
-                <div class="col-md-6 col-12 my-auto px-lg-1" data-aos="fade-left" data-aos-delay="500">
-                    <div class="px-xl-3 pt-4 pt-md-0 custom_height_2">
+                <div class="col-md-6 col-12 my-auto px-lg-1 teach_offer2" data-aos="fade-left" data-aos-delay="500">
+                    <div class="px-xl-3 custom_height_2">
                             <h5 class="custom_text_small font-weight-bold text-capitalize mb-3">Become a changemaker in healthcare education</h5>
                             <h5 class="custom_text_small font-weight-bold text-capitalize mb-3">
                                 Merkaii Xcellence Prep offers
@@ -636,7 +636,7 @@
         </div>
         <!-- <x-about-page-gallery :about="$about" /> -->
         {{-- custom component made by arsam --}}
-        <div class="about_gallery_area pb-3 pb-md-5">
+        <div class="about_gallery_area pb-3 pb-md-5 mt-lg-3">
             <div class="container px-lg-5">
                 <div class="row align-items-center gallery_area_row px-xl-5 px-3">
                     <div class="col-lg-5 col-md-6">
@@ -695,7 +695,7 @@
                             </div> --}}
                         </div>
                     </div>
-                    <div class="col-lg-7 col-md-6 mt-3 mt-md-0">
+                    <div class="col-lg-7 col-md-6 mt-4 mt-md-0">
                         <div class="row about_gallery">
                             <div class="col p-0">
                                 <div class="gallery_box">
