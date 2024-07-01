@@ -22,7 +22,8 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
     Route::get('/requirements_slider/destroy/{id}', 'RequirementsSliderController@destroy')->name('requirements_slider.destroy');
     Route::get('/requirements_slider/setting', 'RequirementsSliderController@setting')->name('requirements_slider.setting');
     Route::post('/requirements_slider/setting', 'RequirementsSliderController@settingSubmit');
-//sliders
+    
+//resource center
     Route::resource('/resource_center', 'ResourceController')->except('show', 'update', 'destroy');
     Route::post('/resource_center/update', 'ResourceController@update')->name('resource_center.update');
     Route::get('/resource_center/destroy/{id}', 'ResourceController@destroy')->name('resource_center.destroy');

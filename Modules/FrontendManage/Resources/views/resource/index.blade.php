@@ -2,7 +2,7 @@
 
 @section('table')
     @php
-        $table_name='requirement_slides';
+        $table_name='resource_tabs';
     @endphp
     {{$table_name}}
 @stop
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="white-box ">
-                                    <form action="{{route('frontend.requirements_slider.store') }}" method="POST"
+                                    <form action="{{route('frontend.resource_center.setting') }}" method="POST"
                                           id="coupon-form"
                                           name="coupon-form" enctype="multipart/form-data">
                                         @csrf
@@ -38,7 +38,7 @@
                                             <div class="col-lg-">
                                                 <div class="primary_input mb-25">
                                                     <label class="primary_input_label"
-                                                           for="">{{__('frontendmanage.Image')}}*
+                                                           for="">Sidebar {{__('frontendmanage.Image')}}*
                                                         <small>({{__('common.Recommended Size')}} 780×800)</small>
                                                     </label>
                                                     <div class="primary_file_uploader">
@@ -63,11 +63,7 @@
                                                     <button type="submit" class="primary-btn semi_large fix-gr-bg"
                                                             id="save_button_parent">
                                                         <i class="ti-check"></i>
-                                                        @if(!isset($slider))
                                                             {{ __('common.Save') }}
-                                                        @else
-                                                            {{ __('common.Update') }}
-                                                        @endif
                                                     </button>
                                                 </div>
                                             </div>
@@ -89,11 +85,6 @@
                                     <tr>
                                         <th scope="col">{{ __('common.SL') }}</th>
                                             <th scope="col">{{ __('common.Title') }}</th>
-                                            <th scope="col">{{ __('common.Sub Title') }}</th>
-                                        <th scope="col">{{ __('common.Image') }}</th>
-
-                                            <th scope="col">{{ __('frontendmanage.Button Title') }}</th>
-                                            <th scope="col">{{ __('frontendmanage.Button Link') }}</th>
                                        
                                         <th scope="col">{{ __('common.Status') }}</th>
                                         <th scope="col">{{ __('common.Action') }}</th>
@@ -104,16 +95,6 @@
                                         <tr>
                                             <th><span class="m-3">{{ $key+1 }}</span></th>
                                                 <td>{{@$slider->title }}</td>
-                                                <td>{{@$slider->sub_title }}</td>
-                                            <td>
-                                                <div>
-                                                    <img style="max-width: 100px" src="{{asset(@$slider->image)}}"
-                                                         alt=""
-                                                         class="img img-responsive m-2">
-                                                </div>
-                                            </td>
-                                                <td>{{@$slider->btn_title }}</td>
-                                                <td>{{@$slider->btn_link }}</td>
                                             <td>
                                                 <label class="switch_toggle" for="active_checkbox{{@$slider->id }}">
                                                     <input type="checkbox" class="status_enable_disable"
@@ -136,10 +117,10 @@
                                                          aria-labelledby="dropdownMenu2">
 
                                                         <a class="dropdown-item edit_brand"
-                                                           href="{{route('frontend.requirements_slider.edit',$slider->id)}}">{{__('common.Edit')}}</a>
+                                                           href="{{route('frontend.resource_center.edit',$slider->id)}}">{{__('common.Edit')}}</a>
 
 
-                                                        <a onclick="confirm_modal('{{route('frontend.requirements_slider.destroy', $slider->id)}}');"
+                                                        <a onclick="confirm_modal('{{route('frontend.resource_center.destroy', $slider->id)}}');"
                                                            class="dropdown-item edit_brand">{{__('common.Delete')}}</a>
 
                                                     </div>
