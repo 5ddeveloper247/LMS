@@ -262,6 +262,25 @@ class CertificateController extends Controller
 
             $certificate = Certificate::find($id);
             $certificate->for_course = 1;
+            $certificate->for_program = 0;
+            $certificate->for_quiz = 0;
+            $certificate->for_class = 0;
+            $certificate->save();
+            Toastr::success(trans('certificate.Certificate for Course Selected Successfully'), trans('common.Success'));
+            return back();
+        } catch (\Exception $e) {
+            GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
+        }
+    }
+    public function programCertificate($id)
+    {
+        try {
+
+            Certificate::where('for_program', 1)->update(['for_program' => 0]);
+
+            $certificate = Certificate::find($id);
+            $certificate->for_program = 1;
+            $certificate->for_course = 0;
             $certificate->for_quiz = 0;
             $certificate->for_class = 0;
             $certificate->save();
@@ -280,6 +299,7 @@ class CertificateController extends Controller
                 $q->whereNull('type');
             })->find($id);
             $certificate->for_quiz = 1;
+            $certificate->for_program = 0;
             $certificate->for_course = 0;
             $certificate->for_class = 0;
             $certificate->save();
@@ -296,6 +316,7 @@ class CertificateController extends Controller
             Certificate::where('for_class', 1)->update(['for_class' => 0]);
             $certificate = Certificate::find($id);
             $certificate->for_quiz = 0;
+            $certificate->for_program = 0;
             $certificate->for_course = 0;
             $certificate->for_class = 1;
             $certificate->save();
@@ -464,8 +485,9 @@ class CertificateController extends Controller
             if (!empty($request->body)) {
                 $body = $request->body;
             } elseif (!empty($id)) {
-                if (isset($request->user) & isset($request->course)) {
+                if (isset($request->user) & (isset($request->course) || isset($request->program))) {
                     $body = $certificate->body;
+                    $certificate_title = $request->course ? $request->course->title : $request->program->programtitle;
                     $body = str_replace("[name]", $request->user->name, $body);
                     $body = str_replace("[course]", $request->course->title, $body);
                 } else {
@@ -623,7 +645,7 @@ class CertificateController extends Controller
             if (isset($request->name)) {
                 $name = $request->name;
             } elseif (isset($certificate->name)) {
-                if (isset($request->user) & isset($request->course)) {
+                if (isset($request->user) && (isset($request->course) || isset($request->program))) {
                     $studentName = $request->user->name;
                 }
                 $name = $certificate->name;

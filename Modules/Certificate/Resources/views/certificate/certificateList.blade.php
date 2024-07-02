@@ -45,6 +45,8 @@
                                     {{__('certificate.Quiz')}}
                                 @elseif($certificate->for_class == 1)
                                     {{__('certificate.Live Class')}}
+                                @elseif($certificate->for_program == 1)
+                                    {{__('Program')}}
                                 @elseif(isModuleActive('CPD') && $certificate->for_cpd==1 )
                                     {{__('cpd.CPD')}}
                                 @elseif(isModuleActive('Membership') && $certificate->is_membership==1 )
@@ -94,6 +96,12 @@
                                                    href="#">{{__('certificate.Make Default')}}
                                                     ({{__('certificate.Course')}})</a>
                                             @endif
+                                            @if($certificate->for_program == 0)
+                                                <a class="dropdown-item" data-toggle="modal"
+                                                   data-target="#program_certificate{{$certificate->id}}"
+                                                   href="#">{{__('certificate.Make Default')}}
+                                                    ({{__('Program')}})</a>
+                                            @endif
                                             @if($certificate->for_quiz == 0)
                                                 <a class="dropdown-item" data-toggle="modal"
                                                    data-target="#quiz_certificate{{$certificate->id}}"
@@ -113,6 +121,12 @@
                                                data-target="#course_certificate{{$certificate->id}}"
                                                href="#">{{__('certificate.Make Default')}}
                                                 ({{__('certificate.Course')}})</a>
+                                        @endif
+                                        @if($certificate->for_program == 0)
+                                            <a class="dropdown-item" data-toggle="modal"
+                                                data-target="#program_certificate{{$certificate->id}}"
+                                                href="#">{{__('certificate.Make Default')}}
+                                                ({{__('Program')}})</a>
                                         @endif
                                         @if($certificate->for_quiz == 0)
                                             <a class="dropdown-item" data-toggle="modal"
@@ -184,6 +198,31 @@
                                         <button type="button" class="primary-btn tr-bg"
                                                 data-dismiss="modal">{{__('common.Cancel')}}</button>
                                         {{ Form::open(['route' => array('course.certificate.update',$certificate->id), 'method' => 'post', 'enctype' => 'multipart/form-data']) }}
+                                        <button class="primary-btn fix-gr-bg"
+                                                type="submit">{{__('certificate.Make Default')}}</button>
+                                        {{ Form::close() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade admin-query"
+                         id="program_certificate{{$certificate->id}}">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{__('Default for Program')}}</h4>
+                                    <button type="button" class="close" data-dismiss="modal"><i
+                                            class="ti-close "></i></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center">
+                                        <h4> {{__('certificate.Are you sure')}}?</h4>
+                                    </div>
+                                    <div class="mt-40 d-flex justify-content-between">
+                                        <button type="button" class="primary-btn tr-bg"
+                                                data-dismiss="modal">{{__('common.Cancel')}}</button>
+                                        {{ Form::open(['route' => array('program.certificate.update',$certificate->id), 'method' => 'post', 'enctype' => 'multipart/form-data']) }}
                                         <button class="primary-btn fix-gr-bg"
                                                 type="submit">{{__('certificate.Make Default')}}</button>
                                         {{ Form::close() }}

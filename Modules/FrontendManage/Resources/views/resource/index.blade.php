@@ -31,24 +31,33 @@
                                         @csrf
                                         
                                         <div class="row justify-content-center">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-7">
                                                 <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
-                                                               for="">{{ __('Slider Text') }}</label>
-                                                        <textarea name="text" id="text"
-                                                               class="primary_input_field name {{ @$errors->has('text') ? ' is-invalid' : '' }}"
-                                                               placeholder="{{ __('Slider Text') }}">{{(isset($slider) && $slider->text != null)?$slider->text:old('text')}}</textarea>
-                                                        @if ($errors->has('text'))
+                                                               for="">Image Heading</label>
+                                                        <input type="text" name="image_heading" id="image_heading"
+                                                               class="primary_input_field name {{ @$errors->has('image_heading') ? ' is-invalid' : '' }}"
+                                                               value="{{Settings('resource_center_image_heading') ?? old('image_heading')}}">
+                                                        @if ($errors->has('image_heading'))
                                                             <span class="invalid-feedback d-block mb-10"
                                                                   role="alert">
-                                                            <strong>{{ @$errors->first('text') }}</strong>
+                                                            <strong>{{ @$errors->first('image_heading') }}</strong>
                                                         </span>
                                                         @endif
                                                     </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-6">
+                                                <div class="primary_input mb-25">
+                                                        <label class="primary_input_label"
+                                                               for="">Image Text</label>
+                                                        <input type="text" name="image_text" id="image_text"
+                                                               class="primary_input_field name {{ @$errors->has('image_text') ? ' is-invalid' : '' }}"
+                                                               value="{{Settings('resource_center_image_text') ?? old('image_text')}}">
+                                                        @if ($errors->has('image_text'))
+                                                            <span class="invalid-feedback d-block mb-10"
+                                                                  role="alert">
+                                                            <strong>{{ @$errors->first('image_text') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                    </div>
                                                 <div class="primary_input mb-25">
                                                     <label class="primary_input_label"
                                                            for="">Sidebar {{__('frontendmanage.Image')}}*
@@ -56,17 +65,23 @@
                                                     </label>
                                                     <div class="primary_file_uploader">
                                                         <input class="primary-input filePlaceholder" type="text"
-                                                               readonly="" {{ $errors->has('image') ? ' autofocus' : '' }}>
+                                                               readonly="" {{ $errors->has('sidebar_image') ? ' autofocus' : '' }}>
                                                         <button class="" type="button">
                                                             <label class="primary-btn small fix-gr-bg"
                                                                    for="document_file1">{{__('common.Browse')}}</label>
                                                             <input type="file"
-                                                                   class="d-none fileUpload" name="image"
+                                                                   class="d-none fileUpload" name="sidebar_image"
                                                                    id="document_file1">
                                                         </button>
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if(Settings('resource_center_sidebar_image'))
+                                                <div class="col-lg-3">
+                                                    <img src="{{asset(Settings('resource_center_sidebar_image'))}}" class="img-fluid">
+                                                </div>
+                                            @endif
+                                            
                                         </div>
                                                 
                                         <div class="row justify-content-center">

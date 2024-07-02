@@ -651,7 +651,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 px-0">
-                <div class="breadcrumb_area position-relative">
+                {{-- <div class="breadcrumb_area position-relative">
                     <div class="w-100 h-100 position-absolute bottom-0 left-0">
                         <img alt="Banner Image" class="w-100 h-100 banner_img "
                             src="{{ asset('public/frontend/infixlmstheme/img/images/courses-4.jpg') }}">
@@ -662,24 +662,13 @@
                             <h5 class="text-white custom-heading">Resource Center</h5>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+                <x-breadcrumb :title="'Resource Center'" />
             </div>
         </div>
-
+    </div>
 
         <div class="container pt-md-5 pt-4">
-            <!-- <div class="px-xl-5 row px-1"> -->
-            @php
-                $count_enrolled = 0;
-                if (isset($program_detail->currentProgramPlan[0])) {
-                    $count_enrolled = \Modules\CourseSetting\Entities\CourseEnrolled::where(
-                        'program_id',
-                        $program_detail->id,
-                    )
-                        ->where('plan_id', $program_detail->currentProgramPlan[0]->id)
-                        ->count();
-                }
-            @endphp
             <!-- <div class="col-xl-9 col-lg-9 col-md-8 mt-3 px-2"> -->
            
           
@@ -830,214 +819,41 @@
                         </div>
                     </div>
                   
-                     
-                   <div class="prog_blk mt-4" style="background-image: url({{ asset('public/assets/c1.jpg') }})";>
+                    @if(Settings('resource_center_sidebar_image'))
+                   <div class="prog_blk mt-4" style="background-image: url({{ asset(Settings('resource_center_sidebar_image')) }})";>
                     <div class="txt">
                         <div class="rating_star">
                             <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
                                 
-                            <h5 class="text-white">Paula Martin </h5>
-
-                            <h5 class="text-white">
-
-                            </h5>
+                            <h5 class="text-white">{{Settings('resource_center_image_heading') ?? ''}}</h5>
                             <p class="paragraph_custom_height text-white">
+                                {{Settings('resource_center_image_text') ?? ''}}
                             </p>
                             </div>
                         </div>
                     </div>
                    </div>
-                  
+                  @endif
 
-                    @if ($program_detail->review_id != '0' && !empty($program_detail->review()))
-                        @if (!empty($program_detail->review()->first()))
-
-                            <div class="prog_blk mt-4"
-                                style="background-image: url({{ !empty($program_detail->review()->first()->user()) ? asset($program_detail->review()->first()->user()->first()->image) : asset('public/assets/c1.jpg') }})">
-                                <div class="txt">
-                                    {{--                                @dd($program_detail->review()->first()->course()) --}}
-                                    <h6>
-                                        <div class="rating_star">
-                                            <div class="stars">
-                                                @php
-                                                    $main_stars = $program_detail->review()->first()->star;
-                                                    $stars = intval($program_detail->review()->first()->star);
-                                                @endphp
-                                                @for ($i = 0; $i < $stars; $i++)
-                                                    <i class="fas fa-star"></i>
-                                                @endfor
-                                                @if ($main_stars > $stars)
-                                                    <i class="fas fa-star-half"></i>
-                                                @endif
-                                                @if ($main_stars == 0)
-                                                    @for ($i = 0; $i < 5; $i++)
-                                                        <i class="far fa-star"></i>
-                                                    @endfor
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </h6>
-                                    <h5 class="text-white">
-                                        {{ $program_detail->review()->first()->user()->first()->name }} </h5>
-
-                                    <h5 class="text-white">
-                                        {{ !empty($program_detail->review()->first()->course()) ? $program_detail->review()->first()->course()->first()->title : '' }}
-                                    </h5>
-                                    <p class="paragraph_custom_height text-white">
-                                        {{ $program_detail->review()->first()->comment }}
-                                    </p>
-                                </div>
-                            </div>
-                        @endif
-                    @endif
+                    
 {{-- socail media section --}}
                     <div class="custom_section_color rounded_section my-4 p-3">
                         <h5 class="font-weight-bold custom_heading_1 mt-2">Social Links:</h5>
-                        <div class="row my-md-4">
+                        <div class="row my-md-4 justify-content-center">
+                            @foreach($socials as $social)
                             <div class="col-auto">
-                                <div class="instabox">
-                                    <a target="_blank" href="https://www.facebook.com/merakiicollege"
-                                        {{-- href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}"> --}} <i class="fa-brands fa-square-facebook"
-                                        style="color: #395799;font-size: 50px;"></i>
+                                <div class="instabox mt-1">
+                                    <a target="_blank" href="{{$social->link}}"> <i class="{{ $social->icon }}"
+                                        style="color: {{ $social->color }};font-size: 25px;"></i>
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <div class="instabox mt-1"
-                                    style="
-                                background: #000;
-                                border-radius: 6px;
-                                width: 46px;
-                                height: 44px;
-                            ">
-                                    <a target="_blank" href="https://www.tiktok.com/@merakiinursing"
-                                        {{-- href="https://twitter.com/intent/tweet?text={{ $program_detail->programtitle }}&amp;url={{ URL::current() }}"> --}} <i class="fa-brands fa-tiktok mt-2 px-1"
-                                        style="color: #fff;font-size: 27px;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <div class="instabox">
-                                    <a target="_blank"
-                                        href="https://pinterest.com/pin/create/link/?url={{ URL::current() }}&amp;description={{ $program_detail->programtitle }}">
-                                        <i class="fa-brands fa-square-youtube" style="color: red;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <div class="instabox">
-                                    <a target="_blank" href="https://www.instagram.com/merakiinursing/"
-                                        {{-- href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ URL::current() }}&amp;title={{ $program_detail->programtitle }}&amp;summary={{ $program_detail->programtitle }}"> --}} <i class="fa fa-instagram-square"
-                                        style="color: var(--system_primery_color);font-size: 50px;"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 </div>
                 </div>
-            </div>
-
-            <!-- 3rdend -->
-            <!-- 4thstart -->
-            <!-- <div class="row px-xl-5 my-4">
-                                <div class="col-12">
-                                    <div class="boxaccordion mt-2 mb-5">
-                                        <h5 class="font-weight-bold custom_heading_1 mb-4">FAQs</h5>
-                                        @forelse ($faqs as $faq)
-    <div class="containerwidth">
-                                                <div class="wrapper shadow">
-                                                    <button class="toggle">
-                                                        <div class="text-left">
-                                                            <h6  style=" color: var(--system_secendory_color);"
-                                                                class="font-weight-bold program-span custom_heading_1">
-                                                                <i class="fa fa-angle-right font-weight-bold"
-                                                                   style="color: #ff7600;"></i>
-                                                                {{ @$faq->question }}
-                                                            </h6>
-                                                        </div>
-                                                        <i class="fas fa-plus icon"></i>
-                                                    </button>
-                                                    <div class="content">
-                                                        <p>
-                                                            {!! @$faq->answer !!}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    @empty
-                                            No FAQs Found
-    @endforelse
-                                    </div>
-                                </div>
-                            </div> -->
-        </div>
-        <!-- 4thend -->
-        <div class="row custom_slick_slider_02 d-lg-none d-none mx-0 my-3 mb-4 text-center">
-            @forelse($recent_program as  $program)
-                <div class="px-2">
-                    <div class="card rounded-0 shadow">
-                        <div class="card-header p-0">
-                            <a href="{{ route('programs.detail', [$program->id]) }}">
-                                <img style="" src="{{ getCourseImage($program->icon) }}" class="img-fluid w-100">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="font-weight-bold custom_heading_1">
-                                <a href="{{ route('programs.detail', [$program->id]) }}">
-                                    @if (Str::length($program->programtitle) > 25)
-                                        {{ Str::limit($program->programtitle, 25, '...') }}
-                                    @else
-                                        {{ Str::limit($program->programtitle, 25) }}
-                                    @endif
-                                </a>
-                            </h5>
-                            <p class="pb-1">
-                                @if (Str::length($program->subtitle) > 25)
-                                    {{ Str::limit($program->subtitle, 25, '...') }}
-                                @else
-                                    {{ $program->subtitle }}
-                                @endif
-                            </p>
-                            <div class="row justify-content-between pt-1">
-                                <div class="col-auto">
-                                    <small>
-                                        <i class="fas fa-clock"></i>
-                                        {{ round((strtotime($program->currentProgramPlan[0]->edate) - strtotime($program->currentProgramPlan[0]->sdate)) / 604800, 1) }}
-                                        Weeks
-                                    </small>
-                                </div>
-                                <div class="font-weight-bold col-auto custom_heading_1">
-                                    <small class="font-weight-bold">
-                                        ${{ $program->currentProgramPlan[0]->amount }}
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @empty
-                <div class="col-md-12 my-3">
-                    <div class="Nocouse_wizged d-flex align-items-center justify-content-center text-center">
-                        <div class="thumb">
-                            <img style="width: 20px"
-                                src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png" alt="">
-                        </div>
-                        <h6>
-                            {{ __('No Program Found') }}
-                        </h6>
-                    </div>
-                </div>
-            @endforelse
-        </div>
-    </div>
-    </div>
     @include(theme('partials._custom_footer'))
 
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
