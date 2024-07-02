@@ -17776,3 +17776,12 @@ div.dt-buttons {
         border-radius: 20px !important;
     }
 } */
+
+
+/* CKEditor 5 Styles */
+:root{
+    --ck-border-radius: 10px;
+}
+.ck-editor__editable {
+    min-height: 300px;
+}
