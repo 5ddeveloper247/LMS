@@ -1620,7 +1620,7 @@
     /* logos section end */
     .about-img {
         height: 100%;
-        width: 250px;
+        /* width: 250px; */
         scale: 1;
         overflow: hidden;
         border-radius: 20px;
@@ -1983,9 +1983,7 @@
     }
 
     @media only screen and (min-width: 1024px) and (max-width: 1279px) {
-        .about-img {
-            width: 295px;
-        }
+   
 
         .about_us {
             height: auto !important;
@@ -2073,11 +2071,6 @@
         .about_us {
             height: 80%;
         }
-
-        .about-img {
-            width: 350px !important;
-        }
-
         .main-content-feature {
             height: 81vh;
             overflow: auto;
@@ -2124,9 +2117,13 @@
         .flowdiv {
             padding: 5rem 3rem !important;
         }
+        .about-img {
+    height: 588px !important;
+}
     }
 
     @media only screen and (min-width: 1560px) {
+
         .main-content-feature {
             align-items: center
         }
@@ -2312,8 +2309,7 @@
         }
 
         .about-img {
-            /* height: 565px !important; */
-            width: 450px !important;
+            height: 760px !important;
         }
 
         .logo-text {
@@ -3657,7 +3653,7 @@
                     <div class="col-6 col-md-11 col-lg-6 p-0  about-img about_us_img1 shadow">
                      
                         <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                        src="{{ asset('public/assets/Untitled-2 (4).png') }}" class="img-fluid w-100">
+                        src="{{ asset('public/assets/Untitled-1.png') }}" class="img-fluid w-100">
                   
                     </div>
                     <div class="col-6 col-md-11 col-lg-6 p-md-0 pl-0 about-img about_us_img2 shadow">
