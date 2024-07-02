@@ -1292,7 +1292,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-4 col-12 pb- py-sm-0">
                      @if($course->type != '7')
                      @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
-                    <div class="custom_section_color rounded_section p-2 img_round " style="background-color: #eee; ">
+                    <div class="custom_section_color rounded_section p-2 img_round mb-md-4 mb-2" style="background-color: #eee; ">
                         <h5 class="font-weight-bold custom_heading_1 small_heading">Start Your Application:</h5>
                         <p class="my-1 program-span"><i class="fa fa-calendar-days"></i>&nbsp;&nbsp; Current Cohort
                             End :

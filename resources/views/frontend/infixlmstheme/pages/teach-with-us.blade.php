@@ -444,10 +444,6 @@
             font-size: 20px;
         }
 
-        .thumb {
-            height: auto;
-        }
-
         .small_gap {
             position: relative;
         }
@@ -495,11 +491,12 @@
     .pricing-para {
         min-height: 10vh;
     }
-
-    @media only screen and (min-width: 1650px) {
-        .section__title {
+@media only screen and (min-width: 1530px){
+    .section__title {
             height: auto !important;
         }
+}
+    @media only screen and (min-width: 1650px) {
 
         .hit {
             font-size: 18px !important;
@@ -695,22 +692,22 @@
                             </div> --}}
                         </div>
                     </div>
-                    <div class="col-lg-7 col-md-6 mt-4 mt-md-0">
-                        <div class="row about_gallery">
+                    <div class="col-lg-7 col-md-6 mt-4 mt-md-0 px-2">
+                        <div class="about_gallery">
                             <div class="col p-0">
                                 <div class="gallery_box">
-                                    <div class="thumb">
-                                        <img src="{{ asset('public/assets/Teach2.jpg') }}" alt="">
+                                    <div class="thumb image_thumb">
+                                        <img src="{{ asset('public/assets/newTeach.png') }}" alt="" class="w-100">
                                     </div>
                                 </div>
                             </div>
                             <div class="col p-0">
                                 <div class="gallery_box">
-                                    <div class="thumb">
-                                        <img src="{{ asset('public/assets/Teach3.jpg') }}" alt="">
+                                    <div class="thumb image_thumb">
+                                        <img src="{{ asset('public/assets/newteach1.png') }}" alt="" class="w-100">
                                     </div>
-                                    <div class="thumb small_thumb">
-                                        <img src="{{ asset('public/assets/Teach4.jpg') }}" alt="">
+                                    <div class="thumb image_thumb small_thumb">
+                                        <img src="{{ asset('public/assets/newteach3.png') }}" alt="" class="w-100">
                                     </div>
                                 </div>
                             </div>
