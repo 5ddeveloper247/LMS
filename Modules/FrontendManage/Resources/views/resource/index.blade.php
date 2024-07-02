@@ -20,26 +20,39 @@
                                 <div class="main-title d-md-flex mb-0">
                                     <h3 class="mb-0 mr-30 mb_xs_15px mb_sm_20px">
                                             {{__('Resource Center') }}</h3>
-
-                                        <a href="{{route('frontend.requirements_slider.index')}}"
-                                           class="primary-btn small fix-gr-bg ml-3 "
-                                           style="position: absolute;  right: 0;   margin-right: 15px;"
-                                           title="{{__('coupons.Add Resource Tab')}}">+ </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="white-box ">
+                    <div class="white-box mb-3">
                                     <form action="{{route('frontend.resource_center.setting') }}" method="POST"
                                           id="coupon-form"
                                           name="coupon-form" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="row">
-                                            <div class="col-lg-">
+                                        
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-6">
+                                                <div class="primary_input mb-25">
+                                                        <label class="primary_input_label"
+                                                               for="">{{ __('Slider Text') }}</label>
+                                                        <textarea name="text" id="text"
+                                                               class="primary_input_field name {{ @$errors->has('text') ? ' is-invalid' : '' }}"
+                                                               placeholder="{{ __('Slider Text') }}">{{(isset($slider) && $slider->text != null)?$slider->text:old('text')}}</textarea>
+                                                        @if ($errors->has('text'))
+                                                            <span class="invalid-feedback d-block mb-10"
+                                                                  role="alert">
+                                                            <strong>{{ @$errors->first('text') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-6">
                                                 <div class="primary_input mb-25">
                                                     <label class="primary_input_label"
                                                            for="">Sidebar {{__('frontendmanage.Image')}}*
-                                                        <small>({{__('common.Recommended Size')}} 780×800)</small>
+                                                        <small>({{__('common.Recommended Size')}} 780×900)</small>
                                                     </label>
                                                     <div class="primary_file_uploader">
                                                         <input class="primary-input filePlaceholder" type="text"
@@ -54,10 +67,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
+                                        </div>
                                                 
-
+                                        <div class="row justify-content-center">
                                             <div class="col-lg-12 text-center">
                                                 <div class="d-flex justify-content-center pt_20">
                                                     <button type="submit" class="primary-btn semi_large fix-gr-bg"
@@ -72,8 +84,11 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="main-title">
-                        <h3 class="mb-20">{{__('frontendmanage.Slider List')}}</h3>
+                    <div class="main-title d-md-flex mb-20">
+                        <h3>{{__('Tabs List')}}</h3>
+                         <a href="{{route('frontend.resource_center.create')}}"
+                                           class="primary-btn small fix-gr-bg ml-3 "
+                                           title="{{__('coupons.Add Resource Tab')}}">Add Resource Tab</a>
                     </div>
 
                     <div class="QA_section QA_section_heading_custom check_box_table">
@@ -85,7 +100,8 @@
                                     <tr>
                                         <th scope="col">{{ __('common.SL') }}</th>
                                             <th scope="col">{{ __('common.Title') }}</th>
-                                       
+                                            <th scope="col">{{ __('Slug') }}</th>
+                                        
                                         <th scope="col">{{ __('common.Status') }}</th>
                                         <th scope="col">{{ __('common.Action') }}</th>
                                     </tr>
@@ -94,7 +110,8 @@
                                     @foreach($sliders as $key => $slider)
                                         <tr>
                                             <th><span class="m-3">{{ $key+1 }}</span></th>
-                                                <td>{{@$slider->title }}</td>
+                                                <td>{{@$slider->name }}</td>
+                                                <td>{{@$slider->slug }}</td>
                                             <td>
                                                 <label class="switch_toggle" for="active_checkbox{{@$slider->id }}">
                                                     <input type="checkbox" class="status_enable_disable"
@@ -150,7 +167,7 @@
 @endsection
 @push('scripts')
     <script>
-
+        var recordsTotal;
         $("input[name='btn_type1']").change(function () {
             var type = $("input[name='btn_type1']:checked").val();
             if (type == 0) {
@@ -178,6 +195,102 @@
             $("input[name='btn_type2']").trigger('change');
         });
 
+        var course_seq_url = '{{ route('frontend.resource_center.changeTabSeq') }}';
 
+        // $('#lms_table tbody').sortable({
+
+        //     update: function (event, ui) {
+
+        //         // Get the sorted row IDs
+
+
+
+        //         var page_length = parseInt($('.dataTable_select>.list>li.selected').data('value'));
+
+        //         var current_page = parseInt($('.paginate_button.current').text());
+
+        //         //
+
+        //         var postion_for_text = (current_page * page_length) - page_length; //asc
+
+        //         var postion_for = recordsTotal - (postion_for_text); // dsec
+
+
+
+
+
+        //         $('#lms_table tbody tr').each(function (index, element) {
+
+        //             var rowData = datatable.row(index).data();
+
+
+
+        //             order.push({
+
+        //                 id: $(this).attr('data-course_id'),
+
+        //                 new_position: postion_for,
+
+        //             });
+
+        //             $(this).children().first().text(postion_for_text += 1);
+
+        //             $(this).data('seq_no', postion_for);
+
+
+
+        //             postion_for = postion_for - 1;
+
+
+
+
+
+        //         });
+
+        //         // console.log(postion_for, order, page_length, current_page);
+
+
+
+        //         $.ajax({
+
+        //             // type: "POST",
+
+        //             method: 'POST',
+
+        //             url: course_seq_url,
+
+        //             dataType: 'json',
+
+        //             contentType: 'application/json',
+
+        //             data: JSON.stringify({
+
+        //                 order: order
+
+        //             }),
+
+        //             dataType: "json",
+
+        //             processData: false,
+
+        //             contentType: false,
+
+        //             success: function (response) {
+
+        //                 if (response == 200) {
+
+        //                     toastr.success('Order Successfully Changed !', 'Success');
+
+        //                     order = [];
+
+        //                 }
+
+        //             }
+
+        //         });
+
+        //     },
+
+        // });
     </script>
 @endpush

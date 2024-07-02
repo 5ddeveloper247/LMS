@@ -14,6 +14,7 @@ use Modules\FrontendManage\Entities\HeaderMenu;
 use Modules\StudentSetting\Entities\Program;
 use Modules\FrontendManage\Entities\FrontPage;
 use Modules\CourseSetting\Entities\CourseReveiw;
+use Modules\FrontendManage\Entities\ResourceTab;
 use Modules\FrontendManage\Entities\HomePageFaq;
 use Modules\SystemSetting\Entities\Testimonial;
 
@@ -161,7 +162,7 @@ class FrontendHomeController extends Controller
         $program_detail = Program::where('id', 1)->with(['programPlans.programPalnDetail', 'currentPlan', 'nextPlans', 'currentProgramPlan' => function ($q) {
             $q->with(['initialProgramPalnDetail', 'programPalnDetail']);
         }])->first();
-
+        $tabs = ResourceTab::where('status',1)->oldest()->get();
         // $next_plan = Program::where('id', $id)->with('programPlans')->first();
         //        program enroll check
         $is_allow = false;

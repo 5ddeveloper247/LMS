@@ -28,6 +28,10 @@ class ResourceController extends Controller
         }
     }
 
+    public function create(){
+        return view('frontendmanage::resource.add');
+    }
+
 
     public function store(Request $request)
     {
@@ -36,24 +40,15 @@ class ResourceController extends Controller
             return redirect()->back();
         }
         $rules = [
-            'title' => 'required',
-            'image' => 'required',
+            'name' => 'required',
         ];
         $this->validate($request, $rules, validationMessage($rules));
 
         try {
-            $slider = new RequirementSlider();
-            $slider->title = $request->title;
-            $slider->subtitle = $request->sub_title ?? '';
-            $slider->text = $request->text ?? '';
-            $slider->color = $request->color ?? '#996699';
-            $slider->btn_title = $request->btn_title1 ?? '';
-            $slider->btn_link = $request->btn_link1 ?? '';
-            $slider->btn_class = '';
+            $slider = new ResourceTab();
+            $slider->name = $request->name;
+            $slider->content = $request->content ?? '';
             $slider->status = 1;
-            if ($request->has('image')) {
-                $slider->image = $this->saveImage($request->image);
-            }
             $slider->save();
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
@@ -67,10 +62,10 @@ class ResourceController extends Controller
     public function edit($id)
     {
         try {
-            $sliders = ResourceTab::all();
-            $slider = ResourceTab::findOrFail($id);
+           // $sliders = ResourceTab::all();
+            $tab = ResourceTab::findOrFail($id);
             $data = [];
-            return view('frontendmanage::resource.add', $data, compact('sliders', 'slider'));
+            return view('frontendmanage::resource.add', $data, compact('tab'));
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -85,16 +80,8 @@ class ResourceController extends Controller
 
         try {
             $slider = ResourceTab::find($request->id);
-            $slider->title = $request->title;
-            $slider->subtitle = $request->sub_title ?? '';
-            $slider->text = $request->text ?? '';
-            $slider->color = $request->color ?? '#996699';
-            $slider->btn_title = $request->btn_title1 ?? '';
-            $slider->btn_link = $request->btn_link1 ?? '';
-
-            if ($request->has('image')) {
-                $slider->image = $this->saveImage($request->image);
-            }
+            $slider->name = $request->name;
+            $slider->content = $request->content ?? '';
             $slider->save();
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->back();
@@ -132,5 +119,22 @@ class ResourceController extends Controller
         UpdateGeneralSetting('slider_transition_time', $request->slider_transition_time ?? 5);
         Toastr::success(trans('common.Operation successful'), trans('common.Success'));
         return redirect()->back();
+    }
+
+    public function changeTabSequence()
+    {
+        $payload = json_decode(file_get_contents('php://input'), true);
+        $order = $payload['order'];
+
+        foreach ($order as $item) {
+            $id = $item['id'];
+            $course_new_seq = ResourceTab::find($id);
+            $course_new_seq->pos = $item['new_position'];
+            $course_new_seq->save();
+
+            ResourceTab::where('id', $id)->update(['pos' => $item['new_position']]);
+        }
+
+        return response()->json(200);
     }
 }
