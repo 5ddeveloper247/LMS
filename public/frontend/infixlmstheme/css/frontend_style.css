@@ -1880,12 +1880,15 @@ label {
     .counter_area .counter_wrapper .single_counter:nth-child(2) {
         margin: 0 -04px 15px 100px !important;
     }
+
     .counter_area .counter_wrapper .single_counter:nth-child(3) {
         margin: 0 0px 30px 48px !important;
     }
+
     .counter_area .counter_wrapper .single_counter:nth-child(4) {
         margin: 0px 0px 30px 0px !important;
     }
+
     .header_area {
         padding: 2px 0;
     }
@@ -4835,7 +4838,8 @@ input[type="number"] {
         grid-gap: 30px;
         margin-bottom: 30px;
     }
-    .instractor_details_inner .thumb{
+
+    .instractor_details_inner .thumb {
         height: 300px !important;
     }
 }
@@ -7610,7 +7614,8 @@ input[type="number"] {
     .theme_btn {
         font-size: 11px !important;
     }
-    .theme_according .card .card-header h5 button span{
+
+    .theme_according .card .card-header h5 button span {
         font-size: 12px !important;
     }
 
@@ -7642,11 +7647,12 @@ input[type="number"] {
 }
 
 @media (max-width: 575.98px) {
-    
+
     .breadcrumb_area {
         min-height: 300px !important;
         max-height: 300px !important;
     }
+
     .containerdoosme {
         padding-top: 165px !important;
     }
@@ -8998,9 +9004,11 @@ input[type="number"] {
 .account_profile_wrapper .privacy_permission .single_privacy_permission .permission_text .permission_content p br {
     display: inline-block;
 }
-.table-responsive{
+
+.table-responsive {
     scrollbar-width: thin;
 }
+
 @media only screen and (min-width: 700px) {
     .header_area .main_menu ul li a {
         font-size: 11px;
@@ -9219,7 +9227,23 @@ input[type="number"] {
     }
 
     .header_area .main_menu ul li a {
-        font-size: 14px;
+        font-size: 14px !important;
+    }
+
+    .expore p {
+        font-size: 14px !important;
+    }
+
+    .footerbox1 p {
+        font-size: 14px !important;
+    }
+
+    .footerbox1 span {
+        font-size: 14px !important;
+    }
+
+    .fs-responsive {
+        font-size: 14px !important;
     }
 
     .login_btn a {
@@ -9248,10 +9272,12 @@ input[type="number"] {
 }
 
 @media only screen and (min-width: 1440px) {
+
     .custom_height_1,
     .custom_height_2 {
         height: 580px !important;
     }
+
     .top_right_btn {
         right: 5% !important;
     }
@@ -9274,6 +9300,9 @@ input[type="number"] {
 }
 
 @media screen and (min-width: 1560px) {
+    .image_thumb {
+        height: 500px !important;
+    }
 
     .logo_img {
         max-width: 200px;
@@ -11747,10 +11776,12 @@ footer .social-network a {
     font-weight: 400;
     margin-right: 10px;
 }
-ul{
+
+ul {
     list-style: none;
     padding: 0px !important;
 }
+
 @media (max-width: 575.98px) {
     .theme_according .card .card-header h5 button span.course_number {
         display: block;
@@ -15727,6 +15758,20 @@ body {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .image_thumb {
+        height: 250px !important;
+    }
+    .small_thumb {
+        margin-top: 15px !important;
+        margin-left: 0px !important;
+    }
+    .about_gallery_area .about_gallery {
+        grid-template-columns: auto !important;
+        grid-gap: 15px !important;
+    }
+    .section__title {
+        height: 780px !important;
+    }
     .header_iner {
         padding: 12px 30px;
         height: auto;
@@ -16390,22 +16435,35 @@ body {
 .form_content textarea {
     height: 150px;
 }
-.custom_list_style li{
+
+.custom_list_style li {
     list-style: none;
 }
+
 .custom_height_2 {
     height: 420px;
     overflow: auto;
     scrollbar-width: none;
     width: 100%;
 }
-.custom_height_1{
+
+.custom_height_1 {
     width: 100%;
     border-radius: 20px;
     height: 420px;
     overflow: auto;
     scrollbar-width: none;
 }
+
+.image_thumb {
+    height: 350px;
+}
+
+.image_thumb img {
+    height: 100%;
+    object-fit: cover;
+}
+
 @media only screen and (max-width: 377px) {
     .course__play_warp .course__play_list {
         min-height: calc(100vh - 300px) !important;
@@ -16431,11 +16489,13 @@ body {
         height: 44px !important;
     }
 }
-@media only screen and (max-width: 565px){
+
+@media only screen and (max-width: 565px) {
     .lms_tab_content .instractor_details_wrapper .instractor_details_inner {
         grid-template-columns: auto !important;
     }
 }
+
 @media only screen and (min-width: 378px) and (max-width: 640px) {
     .course__play_warp .course__play_list {
         min-height: calc(100vh - 300px) !important;
@@ -16468,26 +16528,31 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
-    
+
     .breadcrumb_area {
         min-height: 400px;
         max-height: 400px;
     }
-    .custom-image-height{
+
+    .custom-image-height {
         height: 350px;
     }
-    .custom_height_1, .custom_height_2{
+
+    .custom_height_1,
+    .custom_height_2 {
         height: 350px !important;
     }
 
-    .about_gallery_area .about_gallery{
+    .about_gallery_area .about_gallery {
         gap: 15px !important;
     }
-    .small_thumb{
+
+    .small_thumb {
         margin-left: 15px !important;
         margin-top: 15px !important;
     }
-    .custom_text_small{
+
+    .custom_text_small {
         font-size: 16px;
     }
 
@@ -16632,11 +16697,6 @@ body {
         height: 200px;
     }
 
-    .image_thumb img {
-        height: 100%;
-        object-fit: cover;
-    }
-
     .containerdoosme {
         padding-top: 100px;
     }
@@ -16733,7 +16793,8 @@ body {
         white-space: nowrap;
         padding: 4px 10px !important;
     }
-    .theme_line_btn{
+
+    .theme_line_btn {
         padding: 4px 10px !important;
     }
 
@@ -17109,7 +17170,8 @@ body {
         display: flex;
         gap: 10px;
     }
-    .about_description{
+
+    .about_description {
         height: 407px;
         overflow: auto;
         scrollbar-width: none;
@@ -17117,21 +17179,13 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .image_thumb{
-        height: 250px !important;
-    }
-    .image_thumb img{
-        height: 100%;
-        object-fit: cover;
-    }
-    .about_gallery_area .about_gallery {
-        grid-gap: 15px !important;
-    }
-    .about_description{
+
+    .about_description {
         height: 407px;
         overflow: auto;
         scrollbar-width: none;
     }
+
     .course__details .course__details_title {
         justify-content: space-between;
         align-items: flex-start;
@@ -17352,7 +17406,7 @@ body {
 }
 
 @media only screen and (min-width: 1281px) {
-    .custom_height_2{
+    .custom_height_2 {
         display: flex;
         justify-content: center;
         flex-direction: column;
