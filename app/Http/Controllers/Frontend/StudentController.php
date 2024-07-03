@@ -928,6 +928,117 @@ class StudentController extends Controller
         }
     }
 
+    
+public function getProgramCertificate($id, $slug, Request $request)
+    {
+        if($request->has('program')){
+            $program = Program::findOrFail($id);
+            $certificate = Certificate::where('for_program', 1)->first();
+            $course = false;
+        }else{
+            $course = Course::findOrFail($id);
+            $program = false;
+            if (!empty($course->certificate_id)) {
+                $certificate = Certificate::find($course->certificate_id);
+            } else {
+                if ($course->type == 1) {
+                    $certificate = Certificate::where('for_course', 1)->first();
+                } elseif ($course->type == 2) {
+                    $certificate = Certificate::where('for_quiz', 1)->first();
+                } elseif ($course->type == 3) {
+                    $certificate = Certificate::where('for_class', 1)->first();
+                } else {
+                    $certificate = null;
+                }
+            }
+        }
+        if (!$certificate) {
+            Toastr::error(trans('certificate.Right Now You Cannot Download The Certificate'));
+            return back();
+        }
+
+        if (!$course->isLoginUserEnrolled && $course) {
+            Toastr::error(trans('certificate.You Are Not Already Enrolled This course. Please Enroll It First'));
+            return back();
+        }
+        if ($course->type == 1 && $course) {
+            $percentage = round($course->userTotalPercentage(Auth::id(), $course->id));
+            if ($percentage < 100) {
+                Toastr::error(trans('certificate.Please Complete The Course First'));
+                return back();
+            }
+        } 
+        if ($program) {
+            $percentage = round($program->userTotalPercentage(Auth::id(), $program->id));
+            if ($percentage < 100) {
+                Toastr::error(trans('certificate.Please Complete The Program First'));
+                return back();
+            }
+        } 
+        if ($course->type == 2 && $course) {
+            $quiz = QuizTest::where('course_id', $course->id)->where('pass', 1)->first();
+            if (!$quiz) {
+                Toastr::error(trans('certificate.You must pass the quiz'));
+                return back();
+            }
+        }
+            $certificateCanDownload = false;
+            $totalClass = $course ? $course->class->total_class : 0;
+            $completeClass = $course ? ClassComplete::where('course_id', $course->id)->where('class_id', $course->class->id)->count() : 0;
+            if ($totalClass == $completeClass && $course) {
+                $hasCertificate = $course->certificate_id;
+                if (!empty($hasCertificate)) {
+                    $certificate = Certificate::find($hasCertificate);
+                    if ($certificate) {
+                        $certificateCanDownload = true;
+                    }
+                } else {
+                    $certificate = Certificate::where('for_class', 1)->first();
+                    if ($certificate) {
+                        $certificateCanDownload = true;
+                    }
+                }
+            }
+            if (!$certificateCanDownload && $course) {
+                Toastr::error(trans('certificate.You must attend live class'));
+                return back();
+            }
+
+
+        $title = $course ? "{$course->slug}-certificate-for-" . Auth::user()->name . ".jpg" : "{$program->programtitle}-certificate-for-" . Auth::user()->name . ".jpg";
+
+        $downloadFile = new CertificateController();
+        $websiteController = new WebsiteController();
+        try {
+            $certificate_record = $course ? $websiteController->getCertificateRecord($course->id) : $certificate;
+
+            $request->certificate_id = $certificate_record->certificate_id ?? $certificate_record->id;
+            $request->course = $course;
+            $request->program = $program;
+            $request->user = Auth::user();
+            $certificate = $downloadFile->makeCertificate($certificate->id, $request)['image'] ?? '';
+
+
+            if (Settings('frontend_active_theme') == 'tvt' && empty(\request('download'))) {
+                $url = $certificate->encode('data-url');
+                return view(theme('pages.certificate-preview'), compact('url', 'course'));
+            }
+
+
+            $certificate->encode('jpg');
+            $headers = [
+                'Content-Type' => 'image/jpeg',
+                'Content-Disposition' => 'attachment; filename=' . $title,
+            ];
+
+            return response()->stream(function () use ($certificate) {
+                echo $certificate;
+            }, 200, $headers);
+        } catch (\Exception $e) {
+            GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
+        }
+    }
+
     public function getCertificate($id, $slug, Request $request)
     {
         $course = Course::findOrFail($id);

@@ -1496,7 +1496,7 @@ if (!function_exists('socialIconList')) {
             'fa-youtube',
             'fa-vimeo',
             'fa-reddit',
-
+            'fa-tiktok'
         ];
         $str = '';
         foreach ($list as $class) {

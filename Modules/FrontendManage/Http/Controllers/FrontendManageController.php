@@ -865,6 +865,7 @@ class FrontendManageController extends Controller
             $social_link->icon = $request->icon;
             $social_link->name = $request->name;
             $social_link->link = $request->btn_link;
+            $social_link->color = $request->color ?? '#000000';
             $social_link->order = 0;
             $social_link->status = $request->status;
             $social_link->save();
@@ -899,6 +900,7 @@ class FrontendManageController extends Controller
             $social_link->icon = $request->icon;
             $social_link->name = $request->name;
             $social_link->link = $request->btn_link;
+            if($request->color){$social_link->color = $request->color;}
             $social_link->status = $request->status;
             $social_link->save();
 

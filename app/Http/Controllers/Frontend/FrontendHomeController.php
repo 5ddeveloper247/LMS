@@ -17,6 +17,7 @@ use Modules\CourseSetting\Entities\CourseReveiw;
 use Modules\FrontendManage\Entities\ResourceTab;
 use Modules\FrontendManage\Entities\HomePageFaq;
 use Modules\SystemSetting\Entities\Testimonial;
+use Modules\SystemSetting\Entities\SocialLink;
 
 
 class FrontendHomeController extends Controller
@@ -159,29 +160,18 @@ class FrontendHomeController extends Controller
     }
     public function resource()
     {
-        $program_detail = Program::where('id', 1)->with(['programPlans.programPalnDetail', 'currentPlan', 'nextPlans', 'currentProgramPlan' => function ($q) {
-            $q->with(['initialProgramPalnDetail', 'programPalnDetail']);
-        }])->first();
         $tabs = ResourceTab::where('status',1)->oldest()->get();
-        // $next_plan = Program::where('id', $id)->with('programPlans')->first();
-        //        program enroll check
         $is_allow = false;
         //        $course_count = 2;
         $isEnrolled = false;
-        // if (isset($program_detail->currentProgramPlan[0])) {
-        //     if (Auth::check() && $program_detail->isLoginUserEnrolled) {
-        //         $is_allow = true;
-        //         //                $course_count = 6;
-        //         $isEnrolled = true;
-        //     }
-        // }
 
 
         //        program faqs
-        $faqs = HomePageFaq::whereIn('id', json_decode($program_detail->faqs) ?? [])->orderBy('order', 'desc')->where('status', 1)->get();
-
+        $faqs = HomePageFaq::where('status', 1)->orderBy('order','desc')->take(10)->get();
+        // $faqs = HomePageFaq::whereIn('id', json_decode($program_detail->faqs) ?? [])->orderBy('order', 'desc')->where('status', 1)->get();
+        $socials = SocialLink::where('status',1)->orderBy('order','desc')->get();
         //        program course
-        $courses = Course::whereIn('id', json_decode($program_detail->allcourses) ?? [])->with('enrollUsers', 'user', 'user.courses', 'user.courses.enrollUsers', 'user.courses.lessons', 'chapters.lessons', 'enrolls', 'lessons', 'reviews', 'chapters', 'activeReviews')->orderBy('created_at', 'DESC')->get();
+        $courses = Course::whereNull('parent_id')->with('enrollUsers', 'user', 'user.courses', 'user.courses.enrollUsers', 'user.courses.lessons', 'chapters.lessons', 'enrolls', 'lessons', 'reviews', 'chapters', 'activeReviews')->take(3)->orderBy('created_at', 'DESC')->get();
         //      resent progrm
         $recent_program = Program::where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->inRandomOrder()->take(3)->get();
         return view(theme('pages.resource'),get_defined_vars());

@@ -106,17 +106,14 @@ class ResourceController extends Controller
 
     public function settingSubmit(Request $request)
     {
-        if (hasDynamicPage()) {
-            if ($request->slider_banner != null) {
-                UpdateHomeContent('slider_banner', $this->saveImage($request->slider_banner));
+        // dd($request);
+            if ($request->hasFile('sidebar_image')) {
+                UpdateGeneralSetting('resource_center_sidebar_image', $this->saveImage($request->sidebar_image));
             }
 
-            UpdateHomeContent('show_menu_search_box', $request->show_menu_search_box == 1 ? 1 : 0);
-            UpdateHomeContent('show_banner_search_box', $request->show_banner_search_box == 1 ? 1 : 0);
 
-        }
-
-        UpdateGeneralSetting('slider_transition_time', $request->slider_transition_time ?? 5);
+        UpdateGeneralSetting('resource_center_image_heading', $request->image_heading ?? '');
+        UpdateGeneralSetting('resource_center_image_text', $request->image_text ?? '');
         Toastr::success(trans('common.Operation successful'), trans('common.Success'));
         return redirect()->back();
     }

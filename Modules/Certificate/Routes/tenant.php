@@ -6,6 +6,7 @@ Route::prefix('certificate')->middleware('auth')->group(function () {
     Route::resource('certificate', 'CertificateController')->except('update')->middleware('RoutePermissionCheck:certificate.index');
     Route::post('certificate-update/{id}', 'CertificateController@update')->name('certificate.update')->middleware('RoutePermissionCheck:certificate.edit');
     Route::post('certificate-course/{id}', 'CertificateController@courseCertificate')->name('course.certificate.update')->middleware('RoutePermissionCheck:certificate.index');
+    Route::post('certificate-program/{id}', 'CertificateController@programCertificate')->name('program.certificate.update')->middleware('RoutePermissionCheck:certificate.index');
     Route::post('certificate-quiz/{id}', 'CertificateController@quizCertificate')->name('quiz.certificate.update')->middleware('RoutePermissionCheck:certificate.index');
     Route::post('certificate-class/{id}', 'CertificateController@classCertificate')->name('class.certificate.update')->middleware('RoutePermissionCheck:certificate.index');
     Route::post('get-fonts/variant', 'CertificateController@getVariants')->name('get.fonts.variant');

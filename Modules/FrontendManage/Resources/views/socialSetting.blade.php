@@ -103,6 +103,23 @@
                                                 <div class="col-xl-12">
                                                     <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
+                                                               for="">{{ __('Social Color') }} <strong
+                                                                class="text-danger">*</strong></label>
+                                                        <input name="color" id="btn_link"
+                                                               class="primary_input_field name {{ @$errors->has('color') ? ' is-invalid' : '' }}"
+                                                               placeholder="{{ __('Social Color') }}"
+                                                               type="color"
+                                                               value="{{isset($edit)?$edit->color:old('color')}}">
+                                                        @if ($errors->has('color'))
+                                                            <span class="invalid-feedback d-block mb-10" role="alert">
+                                            <strong>{{ @$errors->first('color') }}</strong>
+                                        </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    <div class="primary_input mb-25">
+                                                        <label class="primary_input_label"
                                                                for="">{{ __('common.Status') }}</label>
                                                         <select
                                                             class="primary_select mb-25  {{ @$errors->has('status') ? ' is-invalid' : '' }}"
@@ -170,7 +187,7 @@
                                     @foreach($data['social_links'] as $key => $item)
                                         <tr data-item="{{$item->id}}" data-seq_no="{{$item->order}}">
                                             <th>{{ $key+1 }}</th>
-                                            <td><i class="{{@$item->icon}}"></i></td>
+                                            <td><i class="{{@$item->icon}}" style="color:{{@$item->color}}"></i></td>
                                             <td>{{ $item->link }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>
