@@ -343,7 +343,7 @@ class RegisterController extends Controller
         abort_if(saasPlanCheck('student'), 404);
 
         if (!session()->has('user')) {
-            return redirect()->to(route('register'));
+            return redirect()->back();
         }
         $user = session()->get('user');
         $userSetting = session()->get('userSetting');
@@ -351,9 +351,17 @@ class RegisterController extends Controller
         $page = LoginPage::getData();
 
         $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
-        $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
-        $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
-        $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+        $user_declaration_exists = UserDeclaration::where('user_id', Auth::user()->id)->exists();
+
+        if (!$user_setting_exists) {
+                  Toastr::error('Please complete your Registration', 'Error');
+                  return redirect()->to(route('register'));
+              }
+
+            if (!$user_declaration_exists) {
+                  Toastr::error('Please complete your Registration !', 'Error');
+                  return redirect()->to(route('register.declaration'));
+              }
 
         return view(theme('authnew.register4'), get_defined_vars());
         // return view(theme('authnew.register4'), compact('page', 'user', 'userSetting', 'payment_details'));
@@ -370,9 +378,11 @@ class RegisterController extends Controller
       $userDeclaration = UserDeclaration::where('user_id',Auth::user()->id)->first();
       $page = LoginPage::getData();
       $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
-      $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
-      $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
-      $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+
+      if (!$user_setting_exists) {
+                  Toastr::error('Please complete your Registration', 'Error');
+                  return redirect()->to(route('register'));
+              }
 
       return view(theme('authnew.register3'), get_defined_vars());
       // return view(theme('authnew.register3'), compact('user','page','userSetting','userDeclaration'));
@@ -504,6 +514,12 @@ class RegisterController extends Controller
       ];
       $this->validate($request, $rules, validationMessage($rules));
 
+        $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+        if (!$user_setting_exists) {
+            Toastr::error('Please fill this form first.', 'Error');
+            return redirect()->to(route('register'));
+        }
+
       if($request->hasFile('signature-img')){
        $file = $request->file('signature-img');
        $filename = $request->student_name.'_'.$request->user_id.'.'.$file->clientExtension();
@@ -550,6 +566,17 @@ class RegisterController extends Controller
         // ];
         // $this->validate($request, $rules, validationMessage($rules));
 
+        $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+        $user_declaration_exists = UserDeclaration::where('user_id', Auth::user()->id)->exists();
+        if (!$user_setting_exists) {
+                  Toastr::error('Please fill this form first.', 'Error');
+                  return redirect()->to(route('register'));
+              }
+        if (!$user_declaration_exists) {
+                  Toastr::error('Please fill this form first.', 'Error');
+                  return redirect()->to(route('register'));
+              }
+
         $AuthorzIationAgreement = UserAuthorzIationAgreement::where('user_id', $request->user_id);
         if (!$AuthorzIationAgreement->count()) {
             $AuthorzIationAgreement = new UserAuthorzIationAgreement;
@@ -583,6 +610,40 @@ class RegisterController extends Controller
     public function RegisterFormPayCreate(Request $request)
     {
 // dd($request);
+        $rules = [
+            'cardHolder' => 'required',
+            'cardNumber' => 'required',
+            'expiryDate' => 'required',
+            'cvv' => 'required|numeric',
+            'user_id' => 'required',
+            'amount' => 'required',
+            // 'accept' => 'accepted'
+        ];
+        $this->validate($request, $rules, validationMessage($rules));
+
+        if(!$request->has('accept')){
+            Toastr::error('Terms & Condition must be accepted.', 'Error');
+                  return redirect()->back();
+        }
+
+        $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+        $user_declaration_exists = UserDeclaration::where('user_id', Auth::user()->id)->exists();
+        $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
+
+        if (!$user_setting_exists) {
+                  Toastr::error('Please fill this form first.', 'Error');
+                  return redirect()->to(route('register'));
+              }
+        if (!$user_declaration_exists) {
+                  Toastr::error('Please fill this form first.', 'Error');
+                  return redirect()->to(route('register'));
+              }
+        if (!$user_agreement_exists) {
+                  Toastr::error('Please fill this form first.', 'Error');
+                  // Toastr::error('Please Complete Your Registration Process !', 'Error');
+                  return redirect()->to(route('register.3'));
+              }
+        
 
         try {
             $authorize = new DoAuthorizeNetPaymentController();
@@ -710,8 +771,8 @@ class RegisterController extends Controller
     //   $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
       $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
       $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
-    //   session()->put('user', Auth::user());
-    //   session()->put('userSetting', UserSetting::where('user_id', Auth::user()->id)->first());
+      session()->put('user', Auth::user());
+      session()->put('userSetting', UserSetting::where('user_id', Auth::user()->id)->first());
 
     //   if (!$user_setting_exists) {
     //       Toastr::error('Please Complete Your Registration Process !', 'Error');

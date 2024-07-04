@@ -80,8 +80,8 @@ class PreRegistrationController extends Controller{
         'type' => 'student',
     ];
     send_email($newuser,'Pre_Register_Student',$codes);
-    Toastr::success('Signup successfull', 'Success');
-    return redirect('/');
+    Toastr::success('Signup successfull. Please complete the registration.', 'Success');
+    return redirect()->route('register');
   }
 
 

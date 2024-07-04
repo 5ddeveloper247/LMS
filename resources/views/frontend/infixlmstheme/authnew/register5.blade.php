@@ -125,7 +125,8 @@
         }
 
         input:focus~.floating-label-outside,
-        input:valid~.floating-label-outside {
+        input:valid~.floating-label-outside,
+        input:disabled~.floating-label-outside {
             top: -10px;
             opacity: 1;
             font-size: 15px;
@@ -135,7 +136,8 @@
         }
 
         input:focus~.floating-label-outside,
-        input:not(:focus):valid~.floating-label-outside {
+        input:not(:focus):valid~.floating-label-outside,
+        input:disabled~.floating-label-outside {
             left: 40px
         }
 
@@ -311,8 +313,8 @@
                             <div class="dott ">1</div>
                             <div class="dott ">2 </div>
                             <div class="dott">3</div>
-                            <div class="dott">4 </div>
-                            <div class="dott active">5</div>
+                            <div class="dott active">4 </div>
+                            {{-- <div class="dott active">5</div> --}}
                             <div class="dott">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </div>
@@ -369,11 +371,18 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <div class="position-relative mt-4">
                                 <input type="text" class="outside"name="cvv" id="cvv" required />
                                 <span class="floating-label-outside">CVV</span>
                                 <i class="bi bi-credit-card-2-front input-icon-outside"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="position-relative mt-4">
+                                <input type="text" class="outside" disabled value="100" />
+                                <span class="floating-label-outside">Amount</span>
+                                <i class="bi bi-cash-stack input-icon-outside"></i>
                             </div>
                         </div>
                     </div>
@@ -388,7 +397,7 @@
                                         </small>
                             </div>
                             <div class="d-flex mt-2">
-                                <input type="checkbox"><p class="px-1">I HAVE READ AND FULLY UNDERSTAND AND AGREE WITH ALL OF THE ABOVE TERMS.</p></div>
+                                <input type="checkbox" name="accept" id="accept"><p class="px-1">I HAVE READ AND FULLY UNDERSTAND AND AGREE WITH ALL OF THE ABOVE TERMS.</p></div>
                         </div>
 
                     </div>
@@ -463,6 +472,11 @@
         var expirationDate = $('#expiryDate').val();
         var cvv = $('#cvv').val();
       
+        if(!$("#accept").is(':checked')){
+            toastr.error('Terms & Conditions must be accepted.');
+            return false;
+        }
+
         if (cardholderName === '' || cardNumber === '' || expirationDate === '' || cvv === '' ) {
             alert('All fields are required');
         } 

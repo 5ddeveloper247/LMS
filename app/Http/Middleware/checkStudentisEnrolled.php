@@ -50,7 +50,7 @@ class checkStudentisEnrolled
               if (!$user_agreement_exists) {
                   Toastr::error('To buy this program / course, you need to get enrolled to school by filling up the Enrolement Forms', 'Error');
                   // Toastr::error('Please Complete Your Registration Process !', 'Error');
-                  return redirect()->to(route('register.2'));
+                  return redirect()->to(route('register.3'));
               }
 
               

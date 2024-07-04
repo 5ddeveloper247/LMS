@@ -349,7 +349,7 @@ canvas {
                     <div class="dott ">2 </div>
                     <div class="dott">3</div>
                     <div class="dott">4 </div>
-                    <div class="dott">5</div>
+                    {{-- <div class="dott">5</div> --}}
                     <div class="dott">
                         <i class="fa fa-check" aria-hidden="true"></i>
                     </div>
