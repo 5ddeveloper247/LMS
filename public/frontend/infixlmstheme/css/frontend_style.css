@@ -15769,9 +15769,7 @@ body {
         grid-template-columns: auto !important;
         grid-gap: 15px !important;
     }
-    .section__title {
-        height: 780px !important;
-    }
+ 
     .header_iner {
         padding: 12px 30px;
         height: auto;
@@ -17172,7 +17170,7 @@ body {
     }
 
     .about_description {
-        height: 407px;
+        height: 370px;
         overflow: auto;
         scrollbar-width: none;
     }
@@ -17181,7 +17179,7 @@ body {
 @media (min-width: 768px) and (max-width: 1024px) {
 
     .about_description {
-        height: 407px;
+        height: 700px;
         overflow: auto;
         scrollbar-width: none;
     }

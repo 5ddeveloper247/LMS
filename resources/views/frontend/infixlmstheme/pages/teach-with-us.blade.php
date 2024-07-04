@@ -472,6 +472,9 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1023px) {
+        .section__title {
+        height: 780px !important;
+    }
 
         .button-tb {
             font-size: 15px !important;

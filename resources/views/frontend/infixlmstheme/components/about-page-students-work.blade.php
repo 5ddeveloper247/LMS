@@ -180,7 +180,7 @@
                 </h2>
                 <p class="custom_paragraph font-weight-bold">
 
-                    Hear from Our Thriving Graduates, and the Achievement of their Healthcare goals.
+                    Hear from Our Thriving Students, and the Achievement of their Healthcare goals.
                 </p>
                 {{-- <p class="custom_paragraph">"Student Success Stories: Hear from Our Thriving Graduates!" </p> --}}
             </div>

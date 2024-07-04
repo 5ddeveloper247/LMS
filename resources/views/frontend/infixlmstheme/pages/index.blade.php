@@ -1010,7 +1010,7 @@
         height: 100%;
         position: relative;
         padding-left: 30px;
-        min-height: 90vh;
+        /* min-height: 90vh; */
     }
 
     .main_bannar::before {
@@ -1730,6 +1730,21 @@
     }
 
     @media only screen and (max-width: 768px) {
+        .date-overlay{
+            right: 10px !important;
+        }
+        .category{
+            left: 10px !important;
+        }
+        .card-date{
+            left: 10px !important;
+        }
+        .card-date2{
+            right: 10px !important;
+        }
+        .card_date_heading{
+            padding: 5px !important;
+        }
         .about-img {
             height: 300px;
         }
@@ -1755,7 +1770,7 @@
         }
 
         .random_program_data_1 {
-            height: 250px;
+            height: 270px;
             overflow: hidden;
         }
 
@@ -1906,6 +1921,15 @@
     }
 
     @media only screen and (min-width: 769px) and (max-width: 1023px) {
+        .card-date{
+            left: 5px !important;
+        }
+        .card-date2{
+            right: 5px !important;
+        }
+        .card_date_heading{
+            padding: 5px !important;
+        }
         .custom-slide img {
             height: 390px !important;
         }
@@ -1947,12 +1971,7 @@
             font-size: 1.5rem !important;
         }
 
-        /* .for-border {
-            min-height: 210px !important;
-        } */
-
         .about-img {
-            /* width: 260px; */
             max-height: 250px !important;
         }
 
@@ -1995,7 +2014,12 @@
 
     @media only screen and (min-width: 1024px) and (max-width: 1279px) {
 
-
+        .card-date{
+            left: 10px !important;
+        }
+        .card-date2{
+            right: 10px !important;
+        }
         .about_us {
             height: auto !important;
         }
@@ -2741,6 +2765,12 @@
         left: 30px;
         font-size: 12.5px;
     }
+    .card-date2{
+        position: absolute;
+        top: 35px;
+        right: 30px;
+        font-size: 12.5px;
+    }
 
     .card_date_heading {
         background-color: white;
@@ -2884,7 +2914,7 @@
                         <div class="col-6 height-card random_program_data_1 px-0">
                             {{-- <div class=""> --}}
                             <img src="{{ asset('/public/assets/lms/homepage-leftimg.png') }}" alt=""
-                                class="w-100 h-100 imgcls object-fit-cover img-fluid height-card" style="">
+                                class="w-100 h-100 imgcls img-fluid" style="object-fit: cover;">
                             {{-- </div> --}}
                         </div>
                     </div>
@@ -3140,7 +3170,7 @@
                     <div class="col-md-6 hidden hidden-right">
                         <div class="row">
                             @if ($first_program)
-                                <div class="col-6 px-lg-2">
+                                <div class="col-6 px-md-2">
                                     <div class="card custom-card">
                                         <img src="{{ getCourseImage($first_program->icon) }}" class="card-img"
                                             alt="...">
@@ -3151,15 +3181,17 @@
                                                 <a
                                                     href="{{ route('programs.detail', [$first_program->id]) }}">{{ $first_program->programtitle }}</a>
                                             </h5>
+                                           <div class="d-flex justify-content-between" style="gap: 10px">
                                             <div class="card-date">
                                                 <span
                                                     class="card_date_heading">${{ number_format($first_program->currentProgramPlan[0]->amount, 0) }}</span>
                                             </div>
-                                            <div class="card-date d-none d-md-block" style="right:30px; left:unset">
+                                            <div class="card-date2">
                                                 <span class="card_date_heading">
                                                     Program
                                                 </span>
                                             </div>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
@@ -3173,7 +3205,7 @@
                                     }
 
                                 @endphp
-                                <div class="col-6 px-lg-2">
+                                <div class="col-6 px-md-2">
                                     <div class="card custom-card">
                                         <img src="{{ getCourseImage($first_course->thumbnail) }}" class="card-img"
                                             alt="...">
@@ -3186,11 +3218,12 @@
                                                     {{ !empty($first_course->parent_id) ? $first_course->parent->title : $first_course->title }}
                                                 </a>
                                             </h5>
+                                           <div class="d-flex justify-content-between" style="gap: 10px">
                                             <div class="card-date">
                                                 <span
                                                     class="card_date_heading">${{ number_format($course_price, 0) }}</span>
                                             </div>
-                                            <div class="card-date d-none d-md-block" style="right:30px; left:unset">
+                                            <div class="card-date2">
                                                 <span class="card_date_heading">
                                                     @if ($first_course->type == 1)
                                                         {{ __('Course') }}
@@ -3211,6 +3244,7 @@
                                                     @endif
                                                 </span>
                                             </div>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
@@ -3655,7 +3689,7 @@
                         </h2>
                         <p class="mb-4 custom_paragraph">
                             At Merkaii Xcellence, we believe education is the key to unlocking potential, and that's why we
-                            offer a variety of programs designed to fit diverse student body and learning styles. We
+                            offer a variety of prep courses designed to fit diverse student body and learning styles. We
                             offer accessible learning pathways to fuel your passion for healthcare, regardless of
                             background, experience, or location. Merkaii Xcellence fosters a vibrant and supportive global
                             community where <span class="font-weight-bold">everyone can learn, grow, and achieve
@@ -3749,13 +3783,14 @@
 
     <section class="sec-8 online-learning d-flex align-items-center justify-content-center my-3">
         <div class="animate">
+            <h2 class="custom_small_heading text-white text-center font-weight-bold mb-4">ADULT-LEARNER'S SUCCESS</h2>
             <h2 class="custom_small_heading text-white text-center font-weight-bold text-capitalize">Start your
                 transformation with a
                 single click.
-                Limited Seats Available!</h2>
-            <p class="text-white text-center py-4">Get Licensure, <a href="{{ url('pre-registration') }}"><span
+                LIMITED SEATS AVAILABLE!</h2>
+            <p class="text-white text-center my-4">Prepare for Licensure: <a href="{{ url('pre-registration') }}"><span
                         class="font-weight-bold text-white">Apply Now
-                    </span></a> Merkaii Xcellence College's Healthcare Programs and Courses. <br>Adult-Learner’s Success</p>
+                    </span></a> Merkaii Xcellence Healthcare Remedial Program and Prep Courses</p>
             <div class="d-flex justify-content-center mt-2">
                 <a href="{{ url('contact#contact-form-ankar') }}"><button class="custom-button-call-to-action">Contact
                         Admission Specialist</button></a>

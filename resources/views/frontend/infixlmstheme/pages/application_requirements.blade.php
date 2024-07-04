@@ -1046,11 +1046,11 @@
 
 
     </section> --}}
-    <div class="featured-carousel owl-carousel m-md-0 app_require mb-3" id="multiscroll">
+    <div class="featured-carousel owl-carousel m-md-0 app_require mb-3">
         {{-- <div class="col-md-12 col-12 cont1doimgdo p-0"> --}}
         @foreach ($slider as $slide)
         <div class="d-flex h-100">
-            <div class="col-sm-6 py-3 small_screen_carousel " style="background-color:{{$slide->color}}">
+            <div class="col-sm-6 py-3 small_screen_carousel" style="background-color:{{$slide->color}}">
                 <div class="pt-sm-4 mx-md-5 mx-3 cont1domgdo_para">
                     <h5 class="slider_heading_h1 font-weight-bold pt-sm-5 px-0 px-lg-5 px-sm-3 text-white">
                         {{ $slide->title }}
@@ -1269,18 +1269,6 @@
             //     });
         });
 
-          $(document).ready(function () {
-            $('#multiscroll').multiscroll({
-                css3: true,
-                navigation: false,
-                loopBottom: true,
-                loopTop: true
-            });
-            function scrollMe() {
-                $.fn.multiscroll.moveSectionDown();
-            }
-            setInterval(scrollMe, 5000);
-        });
     </script>
     <script>
         $(document).ready(function() {

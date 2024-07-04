@@ -83,14 +83,18 @@
                         <h5>
                             Support | Services
                         </h5>
-                        <p><a href="{{ route('customer-help') }}"
+                        {{-- <p><a href="{{ route('customer-help') }}"
                                 onclick="informationflag('Certificate Verification')" style="color:inherit;">
                                 Certificate Verification</a></p>
-                        <p><a href="#" style="color:inherit;">Campus Tour</a></p>
+                        <p><a href="#" style="color:inherit;">Campus Tour</a></p> --}}
+                        <p><a href="{{ route('blogs') }}" style="color:inherit;">News | Events</a></p>
                         <p><a href="{{ route('customer-help') }}" onclick="informationflag('Help and Support')"
                                 style="color:inherit;">Help &
                                 Support</a></p>
-                        <p><a href="{{ route('blogs') }}" style="color:inherit;">News | Events</a></p>
+                        <p><a href="" style="color:inherit;">Resource Center</a></p>
+                        <p><a href="" style="color:inherit;">NCLEX Practice Questions</a></p>
+                        <p><a href="" style="color:inherit;">Next Gen NCLEX Questions</a></p>
+                       
 
 
 

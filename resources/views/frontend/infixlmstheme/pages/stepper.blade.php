@@ -32,10 +32,12 @@
     }
 
     .image {
-        height: 385px;
+        /* height: 385px; */
         width: 100%;
     }
-
+    .image img{
+        object-fit: cover;
+    }
     .slider h2 {
         position: relative;
     }
@@ -100,7 +102,7 @@
             padding-right: 20px !important;
             border-right: none !important;
             text-align: left !important;
-            margin-bottom: 20px;
+            /* margin-bottom: 10px; */
         }
 
         .slider h2 {
@@ -125,10 +127,10 @@
             content: "";
             position: absolute;
             left: 50%;
-            bottom: -60px;
+            bottom: -50px;
             transform: translateX(-50%);
             width: 2px;
-            height: 60px;
+            height: 50px;
             background-color: #ccc;
         }
 
@@ -136,21 +138,20 @@
             content: "";
             position: absolute;
             left: 50%;
-            bottom: -60px;
+            bottom: -50px;
             transform: translateX(-50%);
             width: 2px;
-            height: 60px;
+            height: 50px;
             background-color: #ccc;
+        }
+        .image img{
+            /* object-fit: fill !important; */
         }
     }
 
     @media only screen and (max-width: 767px) {
         .stepper_right {
             padding-left: 40px;
-        }
-
-        .paddingy {
-            padding-right: 40px !important;
         }
 
         .slider h2::before {
@@ -163,17 +164,21 @@
         }
 
         .image {
-            height: 300px !important;
+            /* height: 200px !important; */
         }
     }
-
+@media only screen and (min-width: 768px) and (max-width: 991px){
+    .image {
+    /* height: 280px !important; */
+}
+}
     @media only screen and (min-width: 1800px) {
         .row-padding {
             padding: 0px 70px !important;
         }
 
         .image {
-            height: 500px !important;
+            /* height: 500px !important; */
             width: 100%;
         }
     }
@@ -182,7 +187,7 @@
 </style>
 
 
-<div class="custom-padding px-md-5 mb-md-5 mb-3">
+<div class="custom-padding px-md-5 mb-md-5 mb-4">
     <div class="container center-content-about px-0">
         <div class="row stepper_row px-xl-5 px-lg-4 px-3 row-padding">
             <div class="pl-0 slider d-flex flex-column align-items-md-end text-end paddingy" data-aos="fade-left"
@@ -199,8 +204,8 @@
                     education hub, offering specialized review courses, personalized tutoring, and in-
                     depth exam reviews. Our commitment to excellence and our passion for student
                     success have driven us every step of the way.</p>
-                <div class="image"><img src="{{ asset('/public/assets/lms/about-slider1.jpg') }}"
-                        class="w-100 h-100" style="object-fit: cover;"></div>
+                <div class="image"><img src="{{ asset('/public/assets/lms/newabout-slider1.png') }}"
+                        class="w-100"></div>
             </div>
             <div class="pr-0 slider slider-right stepper_right" data-aos="fade-right" data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">The Evolution & Transformation</h2>
@@ -217,8 +222,8 @@
                     opening our services to others and observing students transform from struggling
                     learners into confident, competent healthcare professionals. This has become our
                     cornerstone approach in offering tailored education and one-on-one support.</p>
-                <div class="image"><img src="{{ asset('/public/assets/lms/about-slider2.jpg') }}"
-                        class="w-100 h-100" style="object-fit: cover;"></div>
+                <div class="image"><img src="{{ asset('/public/assets/lms/newabout-slider2.png') }}"
+                        class="w-100"></div>
             </div>
         </div>
         <div class="row stepper_row px-xl-5 px-lg-4 px-3 row-padding">
@@ -231,8 +236,8 @@
                     Our students come from various backgrounds, united by their dedication to
                     healthcare and their desire to excel. We are here to guide them, support them, and
                     celebrate their achievements along the way.</p>
-                <div class="image"><img src="{{ asset('/public/assets/lms/about-slider3.jpg') }}"
-                        class="w-100 h-100" style="object-fit: cover;"></div>
+                <div class="image"><img src="{{ asset('/public/assets/lms/output_image.jpeg') }}"
+                        class="w-100"></div>
             </div>
             <div class="pr-0 slider slider-right stepper_right" data-aos="fade-left" data-aos-duration="1000">
                 <h2 class="custom_small_heading font-weight-bold">The Merkaii Values</h2>
@@ -257,8 +262,8 @@
                     successful students. By taking exceptional care of our educators, we ensure they
                     can focus wholeheartedly on their goals, bringing passion and dedication to every
                     lesson.</p>
-                <div class="image"><img src="{{ asset('/public/assets/lms/about-slider4.jpg') }}"
-                        class="w-100 h-100" style="object-fit: cover;"></div>
+                <div class="image"><img src="{{ asset('/public/assets/lms/newabout-slider4.png') }}"
+                        class="w-100"></div>
             </div>
         </div>
     </div>
