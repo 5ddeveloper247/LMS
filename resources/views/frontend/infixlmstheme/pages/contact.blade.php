@@ -740,7 +740,7 @@
                     {{-- <div class="separator my-3"></div> --}}
                     <p class="pb-4 pt-3">
                         MCOH is an inclusive and equitable enviroment that provides educational
-                        oppturities for anyone seeking update their skill being a new career path and
+                        opportunities for anyone seeking update their skill being a new career path and
                         enhance professional Skills
                     </p>
 
