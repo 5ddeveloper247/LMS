@@ -460,7 +460,7 @@
                                                     (!auth()->check() && in_array('notauth', array_values($permissions))))
                                                 <li
                                                     class="@if ($menu->mega_menu == 1) position-static @else @if ($menu->show == 1) right_control_submenu @endif @endif">
-                                                    @if ($menu->element_id != 0)
+                                                    @if ($menu->element_id == null || $menu->element_id != 0)
                                                         <a @if ($menu->is_newtab == 1) target="_blank" @endif
                                                             href="{{ getMenuLink($menu) }}">
                                                             {{ $menu->title }}</a>
