@@ -2022,8 +2022,8 @@ label {
 }
 
 .header_area .main_menu ul li a.active,
-.header_area .main_menu ul li a:hover {
-    color: var(--menu_hover_text);
+.header_area .main_menu ul li a:hover,.header_area .main_menu ul li a:focus {
+    color: var(--menu_hover_text) !important;
 }
 
 
