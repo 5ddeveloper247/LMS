@@ -371,7 +371,7 @@
         list-style: circle !important;
     }
     .section__title {
-            height: 620px;
+            height: 700px;
             overflow: auto;
             scrollbar-width: none;
         }
@@ -491,12 +491,11 @@
     .pricing-para {
         min-height: 10vh;
     }
-@media only screen and (min-width: 1530px){
-    .section__title {
+
+    @media only screen and (min-width: 1650px) {
+        .section__title {
             height: auto !important;
         }
-}
-    @media only screen and (min-width: 1650px) {
 
         .hit {
             font-size: 18px !important;
@@ -588,7 +587,7 @@
             <div class="row py-md-5 px-xl-5 py-4 px-3">
                 <div class="col-md-12 text-center">
                     <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3 text-capitalize"> What We Offer You to Shape the Future of Healthcare
-                        Education.</h2>
+                        Education</h2>
                 </div>
                 <div class="col-md-6 col-12 px-md-2 teach_offer1" data-aos="fade-right">
                     <div class="custom_height_1 pb-4 pb-md-0">
@@ -600,8 +599,8 @@
 
                 <div class="col-md-6 col-12 my-auto px-lg-1 teach_offer2" data-aos="fade-left" data-aos-delay="500">
                     <div class="px-xl-3 custom_height_2">
-                            <h5 class="custom_text_small font-weight-bold text-capitalize mb-3">Become a changemaker in healthcare education</h5>
-                            <h5 class="custom_text_small font-weight-bold text-capitalize mb-3">
+                            <h5 class="custom_text_small font-weight-bold text-capitalize">Become a changemaker in healthcare education</h5>
+                            <h5 class="custom_text_small font-weight-bold text-capitalize">
                                 Merkaii Xcellence Prep offers
                                 a platform designed to empower passionate educators like you
                             </h5>
@@ -636,7 +635,7 @@
         <div class="about_gallery_area pb-3 pb-md-5 mt-lg-3">
             <div class="container px-lg-5">
                 <div class="row align-items-center gallery_area_row px-xl-5 px-3">
-                    <div class="col-lg-5 col-md-6">
+                    <div class="col-lg-5 col-md-7">
                         <div class="section__title">
                             <h2 class="custom_small_heading mb-4 font-weight-bold">Our Resources Your Guide to Instructor
                                 Success.
@@ -692,22 +691,22 @@
                             </div> --}}
                         </div>
                     </div>
-                    <div class="col-lg-7 col-md-6 mt-4 mt-md-0 px-2">
+                    <div class="col-lg-7 col-md-5 mt-4 mt-md-0 px-2">
                         <div class="about_gallery">
                             <div class="col p-0">
                                 <div class="gallery_box">
                                     <div class="thumb image_thumb">
-                                        <img src="{{ asset('public/assets/newTeach.png') }}" alt="" class="w-100">
+                                        <img src="{{ asset('public/assets/Teach2.jpg') }}" alt="" class="w-100">
                                     </div>
                                 </div>
                             </div>
                             <div class="col p-0">
                                 <div class="gallery_box">
                                     <div class="thumb image_thumb">
-                                        <img src="{{ asset('public/assets/newteach1.png') }}" alt="" class="w-100">
+                                        <img src="{{ asset('public/assets/Teach3.jpg') }}" alt="" class="w-100">
                                     </div>
                                     <div class="thumb image_thumb small_thumb">
-                                        <img src="{{ asset('public/assets/newteach3.png') }}" alt="" class="w-100">
+                                        <img src="{{ asset('public/assets/Teach4.jpg') }}" alt="" class="w-100">
                                     </div>
                                 </div>
                             </div>

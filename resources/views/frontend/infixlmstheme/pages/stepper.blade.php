@@ -199,7 +199,7 @@
                     education hub, offering specialized review courses, personalized tutoring, and in-
                     depth exam reviews. Our commitment to excellence and our passion for student
                     success have driven us every step of the way.</p>
-                <div class="image"><img src="{{ asset('/public/uploads/images/footerimg/image1.jpg') }}"
+                <div class="image"><img src="{{ asset('/public/assets/lms/about-slider1.jpg') }}"
                         class="w-100 h-100" style="object-fit: cover;"></div>
             </div>
             <div class="pr-0 slider slider-right stepper_right" data-aos="fade-right" data-aos-duration="1000">
@@ -217,7 +217,7 @@
                     opening our services to others and observing students transform from struggling
                     learners into confident, competent healthcare professionals. This has become our
                     cornerstone approach in offering tailored education and one-on-one support.</p>
-                <div class="image"><img src="{{ asset('/public/uploads/images/footerimg/image1.jpg') }}"
+                <div class="image"><img src="{{ asset('/public/assets/lms/about-slider2.jpg') }}"
                         class="w-100 h-100" style="object-fit: cover;"></div>
             </div>
         </div>
@@ -231,7 +231,7 @@
                     Our students come from various backgrounds, united by their dedication to
                     healthcare and their desire to excel. We are here to guide them, support them, and
                     celebrate their achievements along the way.</p>
-                <div class="image"><img src="{{ asset('/public/uploads/images/footerimg/image1.jpg') }}"
+                <div class="image"><img src="{{ asset('/public/assets/lms/about-slider3.jpg') }}"
                         class="w-100 h-100" style="object-fit: cover;"></div>
             </div>
             <div class="pr-0 slider slider-right stepper_right" data-aos="fade-left" data-aos-duration="1000">
@@ -257,7 +257,7 @@
                     successful students. By taking exceptional care of our educators, we ensure they
                     can focus wholeheartedly on their goals, bringing passion and dedication to every
                     lesson.</p>
-                <div class="image"><img src="{{ asset('/public/uploads/images/footerimg/image1.jpg') }}"
+                <div class="image"><img src="{{ asset('/public/assets/lms/about-slider4.jpg') }}"
                         class="w-100 h-100" style="object-fit: cover;"></div>
             </div>
         </div>
