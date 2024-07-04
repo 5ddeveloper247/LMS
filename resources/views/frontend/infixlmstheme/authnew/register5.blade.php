@@ -332,9 +332,7 @@
                         <div class="col-md-12 my-3">
                             <h6 class="mt-5">Payment $100</h6>
                         </div>
-
                     </div>
-
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <div class="position-relative mt-4">
@@ -378,6 +376,21 @@
                                 <i class="bi bi-credit-card-2-front input-icon-outside"></i>
                             </div>
                         </div>
+                    </div>
+{{--                     
+                    </div> --}}
+                    <div class="form-row p-4 border border-dark rounded">
+                        <div class="col-md-12">
+                            <div class="d-flex flex-row">
+                            <small class="mb-0 ml-2 agree_checkbox_p">I <b>{{ $user->name }}</b> hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
+                                            Card for payment of Education services rendered as described on <b>Date: {{ Carbon\Carbon::now()->format(Settings('active_date_format')) }}</b>.<br>
+                                            I <b>{{ $user->name }}</b> agree, in all cases, to pay the Credit or Debit Card amount for the full payment of Education services rendered as described above.
+                                        </small>
+                            </div>
+                            <div class="d-flex mt-2">
+                                <input type="checkbox"><p class="px-1">I HAVE READ AND FULLY UNDERSTAND AND AGREE WITH ALL OF THE ABOVE TERMS.</p></div>
+                        </div>
+
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn_login mt-3" id="pay-button">Pay Now</button>

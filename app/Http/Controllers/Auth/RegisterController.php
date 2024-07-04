@@ -81,7 +81,7 @@ class RegisterController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|unique:users',
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'password' => ['string', 'min:8', 'confirmed'],
                 'g-recaptcha-response' => 'required|captcha'
             ];
         } else {
@@ -89,7 +89,7 @@ class RegisterController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'phone' => 'nullable|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:14',
                 'email' => 'required|string|email|max:255',
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'password' => ['string', 'min:8', 'confirmed'],
                 'f_name' => 'required',
                 'l_name' => 'required',
                 'dob' => 'required',
@@ -297,7 +297,7 @@ class RegisterController extends Controller
         abort_if(saasPlanCheck('student'), 404);
         $page = LoginPage::getData();
         $custom_field = StudentCustomField::getData();
-        $user = session()->has('user') ? session()->get('user') : '';
+        $user = session()->has('user') ? session()->get('user') : Auth::user();
         $userSetting = session()->has('userSetting') ? session()->get('userSetting') : '';
         $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
         $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
@@ -367,7 +367,7 @@ class RegisterController extends Controller
       }
       $user = session()->get('user');
       $userSetting = session()->get('userSetting');
-      $userDeclaration = session()->has('enrollment_declaration') ? session()->get('enrollment_declaration') : '';
+      $userDeclaration = UserDeclaration::where('user_id',Auth::user()->id)->first();
       $page = LoginPage::getData();
       $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
       $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
@@ -390,7 +390,7 @@ class RegisterController extends Controller
 
         try {
 
-            $user = session()->get('user');
+            $user = session()->get('user') ?? Auth::user();
             $page = LoginPage::getData();
             // dd(get_defined_vars());
             return view(theme('authnew.register5'), get_defined_vars());
@@ -523,7 +523,8 @@ class RegisterController extends Controller
       $userDeclaration->user_id = $request->user_id;
       $userDeclaration->save();
       session()->put('enrollment_declaration', $request->input());
-      return redirect()->to(route('register.3'));
+      Toastr::success('Pre Registration Successfull.', 'Success');
+      return redirect()->to(route('studentDashboard'));
     }
 
     public function RegisterForm3Create(Request $request)
@@ -705,24 +706,24 @@ class RegisterController extends Controller
     }
 
     public function student_enroll(){
-      $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
-      $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
+    //   $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+    //   $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
       $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
       $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
-      session()->put('user', Auth::user());
-      session()->put('userSetting', UserSetting::where('user_id', Auth::user()->id)->first());
+    //   session()->put('user', Auth::user());
+    //   session()->put('userSetting', UserSetting::where('user_id', Auth::user()->id)->first());
 
-      if (!$user_setting_exists) {
-          Toastr::error('Please Complete Your Registration Process !', 'Error');
-          return redirect()->to(route('register'));
-      }
+    //   if (!$user_setting_exists) {
+    //       Toastr::error('Please Complete Your Registration Process !', 'Error');
+    //       return redirect()->to(route('register'));
+    //   }
 
       session()->put('payment_details', UserApplication::where('user_id', Auth::user()->id)->first());
 
-      if (!$user_application_exists) {
-          Toastr::error('Please Complete Your Registration Process !', 'Error');
-          return redirect()->to(route('register.2'));
-      }
+    //   if (!$user_application_exists) {
+    //       Toastr::error('Please Complete Your Registration Process !', 'Error');
+    //       return redirect()->to(route('register.2'));
+    //   }
 
       if (!$user_agreement_exists) {
           Toastr::error('Please Download Authorization Agreement !', 'Error');
@@ -733,6 +734,8 @@ class RegisterController extends Controller
           Toastr::error('Please Make Your Payment First !', 'Error');
           return redirect()->to(route('register.pay'));
       }
+      Toastr::success('Your enrollment has been completed !', 'Success');
+      return redirect()->back();
     }
 
     public function register(Request $request)
@@ -804,7 +807,7 @@ class RegisterController extends Controller
         }
 
         session()->put(['user' => $user]);
-        return redirect()->to(route('register.2'));
+        return redirect()->to(route('register.declaration'));
 
 
         //        if (isModuleActive('LmsSaasMD') && !empty($user->institute) && $user->institute->status == 0) {

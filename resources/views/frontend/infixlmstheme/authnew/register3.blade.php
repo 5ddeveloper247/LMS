@@ -482,7 +482,7 @@ canvas {
     <script>
         document.getElementById("back-button").onclick = function() {
 
-            window.location.href = "{{route('register.2')}}";
+            window.location.href = "{{route('register')}}";
         };
         // document.getElementById("next-button").onclick = function () {
 

@@ -546,7 +546,7 @@ canvas {
                             </div>
                         </div>
                     </div>
-                    <div class="form-row">
+                    {{-- <div class="form-row">
                         <div class="form-group col-md-6">
                             <div class="position-relative mt-4 @if ($errors->first('password')) is-invalid @endif">
                                 <input id="password1" type="password" name="password" value="{{ old('password') }}"
@@ -563,7 +563,7 @@ canvas {
                                 <i id="icon2" class="bi bi-unlock input-icon-outside"></i>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <div class="position-relative mt-4 @if ($errors->first('mailing_address')) is-invalid @endif">
