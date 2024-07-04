@@ -130,9 +130,21 @@
         }
 
         .mintban {
-            background-image: url("{{ asset('public/assets/bgpicture.jpg') }}");
+            background-image: url("{{ asset('public/assets/Section9.jpg') }}");
             height: auto;
             background-size: cover;
+            background-position: left;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .contact-overlay {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            right: 0;
+            background-color: #2525259e;
         }
 
         .flowdiv {
@@ -383,6 +395,7 @@
             display: flex;
             align-items: center;
         }
+
         .dataflow {
             display: flex;
             flex-direction: column;
@@ -438,10 +451,11 @@
             .dataflow {
                 height: 280px !important;
             }
-            .flowdiv-dataflow img{
-            width: 35px;
-            height: 35px;
-        }
+
+            .flowdiv-dataflow img {
+                width: 35px;
+                height: 35px;
+            }
 
             .dataflow-p {
                 line-height: normal;
@@ -539,89 +553,89 @@
 
 
         /* @media only screen and (min-width: 1281px){
-                                                    .dataflow {height: 335px !important;}
-                                                } */
+                                                        .dataflow {height: 335px !important;}
+                                                    } */
 
 
 
 
         /* meadi queries for 67% */
         /* @media (width > 1650px) {
-                                                                                    .breadcrumb_area .breadcam_wrap h3 {
-                                                                                        font-size: 100px !important;
-                                                                                        font-weight: 900;
-                                                                                        line-height: 76px;
-                                                                                        color: #fff;
-                                                                                    }
+                                                                                        .breadcrumb_area .breadcam_wrap h3 {
+                                                                                            font-size: 100px !important;
+                                                                                            font-weight: 900;
+                                                                                            line-height: 76px;
+                                                                                            color: #fff;
+                                                                                        }
 
-                                                                                    h5 {
-                                                                                        font-size: 27px !important;
-                                                                                        line-height: 25px;
-                                                                                    }
+                                                                                        h5 {
+                                                                                            font-size: 27px !important;
+                                                                                            line-height: 25px;
+                                                                                        }
 
-                                                                                    h4 {
-                                                                                        font-size: 32px !important;
-                                                                                        line-height: 25px;
-                                                                                    }
+                                                                                        h4 {
+                                                                                            font-size: 32px !important;
+                                                                                            line-height: 25px;
+                                                                                        }
 
-                                                                                    .select2-container .select2-selection--single {
-                                                                                        height: 67px !important;
-                                                                                        border: 1px solid #e1e1e1 !important;
+                                                                                        .select2-container .select2-selection--single {
+                                                                                            height: 67px !important;
+                                                                                            border: 1px solid #e1e1e1 !important;
 
-                                                                                    }
+                                                                                        }
 
-                                                                                    .select2-container--default .select2-selection--single .select2-selection__rendered {
-                                                                                        color: #444;
-                                                                                        line-height: 61px !important;
-                                                                                    }
+                                                                                        .select2-container--default .select2-selection--single .select2-selection__rendered {
+                                                                                            color: #444;
+                                                                                            line-height: 61px !important;
+                                                                                        }
 
-                                                                                    .select2-container--default .select2-selection--single .select2-selection__arrow {
-                                                                                        height: 35px !important;
+                                                                                        .select2-container--default .select2-selection--single .select2-selection__arrow {
+                                                                                            height: 35px !important;
 
-                                                                                    }
+                                                                                        }
 
-                                                                                    .select2 .select2-container .select2-container--default {
-                                                                                        width: 100% !important;
-                                                                                    }
+                                                                                        .select2 .select2-container .select2-container--default {
+                                                                                            width: 100% !important;
+                                                                                        }
 
-                                                                                    .form-control {
-                                                                                        display: block;
-                                                                                        width: 100%;
-                                                                                        height: calc(2.5em + 0.75rem + 2px) !important;
-                                                                                        padding: 0.375rem 0.75rem;
-                                                                                        font-size: 1.4rem !important;
-                                                                                        font-weight: 400;
-                                                                                        line-height: 1.5;
-                                                                                        color: #495057;
-                                                                                        background-color: #fff;
-                                                                                        background-clip: padding-box;
-                                                                                        border: 1px solid #ced4da;
-                                                                                        border-radius: 0.25rem;
-                                                                                        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-                                                                                    }
+                                                                                        .form-control {
+                                                                                            display: block;
+                                                                                            width: 100%;
+                                                                                            height: calc(2.5em + 0.75rem + 2px) !important;
+                                                                                            padding: 0.375rem 0.75rem;
+                                                                                            font-size: 1.4rem !important;
+                                                                                            font-weight: 400;
+                                                                                            line-height: 1.5;
+                                                                                            color: #495057;
+                                                                                            background-color: #fff;
+                                                                                            background-clip: padding-box;
+                                                                                            border: 1px solid #ced4da;
+                                                                                            border-radius: 0.25rem;
+                                                                                            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                                                                                        }
 
-                                                                                    .ankar a {
-                                                                                        font-size: 21px !important;
-                                                                                        line-height:  !important 36px;
-                                                                                    }
+                                                                                        .ankar a {
+                                                                                            font-size: 21px !important;
+                                                                                            line-height:  !important 36px;
+                                                                                        }
 
-                                                                                    input,
-                                                                                    input::placeholder {
-                                                                                        font: 1.25rem/3 sans-serif;
-                                                                                    }
+                                                                                        input,
+                                                                                        input::placeholder {
+                                                                                            font: 1.25rem/3 sans-serif;
+                                                                                        }
 
-                                                                                    .eltdf-eh-item-inner {
-                                                                                        height: 550px !important;
-                                                                                    }
+                                                                                        .eltdf-eh-item-inner {
+                                                                                            height: 550px !important;
+                                                                                        }
 
-                                                                                    .dataflow {
-                                                                                        height: 550px !important;
-                                                                                    }
+                                                                                        .dataflow {
+                                                                                            height: 550px !important;
+                                                                                        }
 
-                                                                                    .theme_btn {
-                                                                                        font-size: 23px !important;
-                                                                                    }
-                                                                                } */
+                                                                                        .theme_btn {
+                                                                                            font-size: 23px !important;
+                                                                                        }
+                                                                                    } */
 
         @media only screen and (min-width: 1800px) {
             .dataflow {
@@ -860,6 +874,7 @@
     {{-- </div> --}}
     {{-- apply now Section  --}}
     <div class="contain mintban mb-5">
+        <div class="contact-overlay"></div>
         <div class="row">
             {{-- <div class="col-md-12 mb-5">
                 <div class="row "> --}}
@@ -879,7 +894,7 @@
                             style="position:absolute;right: -12px;">
                     </div>
                     <!-- <div class="col-sm-6 ankar col-md-6 p-0" >
-                                                                                                                                                                                             </div> -->
+                                                                                                                                                                                                 </div> -->
                     <div class="col-6 ankar p-0" data-aos="fade-left">
                         <div class="eltdf-eh-item eltdf-background-arrow-left changeborder p-2 p-sm-4"
                             style="background: white;">

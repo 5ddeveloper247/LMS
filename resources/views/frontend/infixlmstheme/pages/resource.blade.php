@@ -842,9 +842,9 @@
                         <div class="row my-md-4 justify-content-center">
                             @foreach($socials as $social)
                             <div class="col-auto">
-                                <div class="instabox mt-1">
+                                <div class="instabox mt-1 p-2 rounded" style="background-color:{{ $social->color }}; ">
                                     <a target="_blank" href="{{$social->link}}"> <i class="{{ $social->icon }}"
-                                        style="color: {{ $social->color }};font-size: 25px;"></i>
+                                        style="color:white;font-size: 30px;"></i>
                                     </a>
                                 </div>
                             </div>
