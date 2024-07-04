@@ -21,7 +21,7 @@
     }
 
     .custom_student_btn {
-        background: linear-gradient(90deg, var(--system_secondory_color), var(--footer_background_color) 51%, var(--system_secondory_color));
+        background: linear-gradient(90deg, var(--system_secendory_color), var(--footer_background_color) 51%, var(--system_secendory_color));
         color: #fff;
         background-size: 200% auto;
         transition: all 0.4s ease 0s;

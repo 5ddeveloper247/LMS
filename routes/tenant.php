@@ -233,6 +233,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['student']], function 
     Route::get('checkout', 'StudentController@CheckOut')->name('CheckOut')->middleware('UserAgreementCheck');
     Route::get('remove-profile-pic', 'StudentController@removeProfilePic')->name('removeProfilePic');
     Route::get('course-certificate/{id}/{slug}', 'StudentController@getCertificate')->name('getCertificate');
+    Route::get('program-certificate/{id}/{slug}', 'StudentController@getProgramCertificate')->name('getProgramCertificate');
     Route::post('/submitReview', 'StudentController@submitReview')->name('submitReview');
     Route::post('/submitTutorReview', 'StudentController@submitTutorReview')->name('submitTutorReview');
 

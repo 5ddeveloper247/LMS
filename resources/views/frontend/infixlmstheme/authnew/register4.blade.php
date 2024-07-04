@@ -189,7 +189,7 @@
                     @endif
             </div>
             <div class="col-md-12 text-center mt-4 d-flex justify-content-center align-items-center gap-2">
-                <a href="{{ route('register.declaration') }}" class="btn btn_login d-flex justify-content-center align-items-center" id="back-button">Back Page</button>
+                {{-- <a href="{{ route('register.declaration') }}" class="btn btn_login d-flex justify-content-center align-items-center" id="back-button">Back Page</button> --}}
                     @if (\App\Models\UserAuthorzIationAgreement::where('user_id', $user->id)->exists())
                         <a href="{{ route('register.pay') }}" class="btn btn_login d-flex justify-content-center align-items-center">
                             Next Page</a>

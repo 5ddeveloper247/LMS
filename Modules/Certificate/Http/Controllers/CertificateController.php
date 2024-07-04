@@ -489,7 +489,7 @@ class CertificateController extends Controller
                     $body = $certificate->body;
                     $certificate_title = $request->course ? $request->course->title : $request->program->programtitle;
                     $body = str_replace("[name]", $request->user->name, $body);
-                    $body = str_replace("[course]", $request->course->title, $body);
+                    $body = str_replace("[course]", $certificate_title, $body);
                 } else {
                     $body = $certificate->body ?? '';
                 }
@@ -1121,10 +1121,9 @@ class CertificateController extends Controller
             $data['image'] = $img;
             $data['height'] = $height;
             $data['width'] = $width;
-
             return $data;
         } catch (\Exception $e) {
-            return null;
+            return $e;
         }
     }
 

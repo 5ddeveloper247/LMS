@@ -10,6 +10,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\UserSetting;
+use App\Models\UserDeclaration;
 
 class StudentMiddleware
 {
@@ -40,6 +42,18 @@ class StudentMiddleware
                         : Redirect::route('verification.notice');
                 }
             }
+            $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
+            $user_agreement_exists = UserDeclaration::where('user_id', Auth::user()->id)->exists();
+
+            if (!$user_setting_exists) {
+                  Toastr::error('Please complete your Registration', 'Error');
+                  return redirect()->to(route('register'));
+              }
+
+            if (!$user_agreement_exists) {
+                  Toastr::error('Please complete your Registration !', 'Error');
+                  return redirect()->to(route('register.declaration'));
+              }
             return $next($request);
         } elseif (Auth::check() && (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)) {
 

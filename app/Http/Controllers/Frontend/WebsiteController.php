@@ -2745,6 +2745,45 @@ class WebsiteController extends Controller
             return null;
         }
     }
+    public function getProgramCertificateRecord($program_id)
+    {
+
+        try {
+            $certificate = Certificate::where('for_program', 1)->first();
+            if ($certificate) {
+                $certificate_record = CertificateRecord::where('student_id', Auth::user()->id)->where('program_id', $program_id)->first();
+                if (!$certificate_record) {
+                    checkGamification('each_certificate', 'certification');
+
+                    $certificate_record = new CertificateRecord();
+                    $certificate_record->certificate_id = $this->generateUniqueCode();
+                    $certificate_record->student_id = Auth::user()->id;
+                    $certificate_record->program_id = $program_id;
+                    $certificate_record->created_by = Auth::user()->id;
+
+                    $certificate_record->save();
+                }
+
+                if (isModuleActive('Org')) {
+
+                    request()->certificate_id = $certificate_record->certificate_id;
+                    request()->course = $course;
+                    request()->user = Auth::user();
+                    $downloadFile = new CertificateController();
+                    $certificate = $downloadFile->makeCertificate($certificate->id, request())['image'] ?? '';
+
+                    $certificate->encode('jpg');
+
+                    $certificate->save('public/certificate/' . $certificate_record->id . '.jpg');
+                }
+                return $certificate_record;
+            } else {
+                return null;
+            }
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
 
 
     public function subscriptionCourses()
