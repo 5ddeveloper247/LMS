@@ -1148,15 +1148,15 @@
                             Asked Questions
                         </h2>
                     </div>
+                    @foreach ($faqs as $thisfaq)
                     <div class="wrapper">
-                        <button class="toggle">Does FAQs Scheme Help Us to Rank our Site in Top Position?<i
+                        <button class="toggle">{{$thisfaq->question}}<i
                                 class="fas fa-plus icon"></i></button>
                         <div class="content">
-                            <p> Yes, Frequently Asked Questions scheme will make your website more popular and increase
-                                your
-                                search engine ranking position.</p>
+                            <p>{{ $thisfaq->answer }}</p>
                         </div>
                     </div>
+                    @endforeach
                     <div class="wrapper">
                         <button class="toggle">Does FAQs Scheme Help Us to Rank our Site in Top Position?<i
                                 class="fas fa-plus icon"></i></button>

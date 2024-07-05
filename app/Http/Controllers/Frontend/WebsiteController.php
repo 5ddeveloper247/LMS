@@ -1943,8 +1943,9 @@ class WebsiteController extends Controller
 
     public function application_requirements()
     {
+        $faqs = HomePageFaq::where('status', 1)->orderBy('order','desc')->take(10)->get();   
         $slider = RequirementSlider::where('status',1)->latest()->get();
-        return view(theme('pages.application_requirements'),compact('slider'));
+        return view(theme('pages.application_requirements'),get_defined_vars());
     }
 
 

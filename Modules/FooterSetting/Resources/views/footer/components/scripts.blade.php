@@ -403,14 +403,14 @@
                 update: function (event, ui) {
                     // Get the sorted row IDs
 
-                    var page_length = parseInt($('#section-one .dataTable_select>.list>li.selected').data('value'));
-                    var current_page = parseInt($('#section-one .paginate_button.current').text());
+                    var page_length = parseInt($('#section-two .dataTable_select>.list>li.selected').data('value'));
+                    var current_page = parseInt($('#section-two .paginate_button.current').text());
                     //
                     var postion_for_text = (current_page * page_length) - page_length; //asc
                     var postion_for = recordsTotal - (postion_for_text); // dsec
 
 
-                    $('#footer-section-1 tbody tr').each(function (index, element) {
+                    $('#footer-section-2 tbody tr').each(function (index, element) {
                         //var rowData = datatable.row(index).data();
 
                         order.push({
@@ -450,14 +450,14 @@
                 update: function (event, ui) {
                     // Get the sorted row IDs
 
-                    var page_length = parseInt($('#section-one .dataTable_select>.list>li.selected').data('value'));
-                    var current_page = parseInt($('#section-one .paginate_button.current').text());
+                    var page_length = parseInt($('#section-three .dataTable_select>.list>li.selected').data('value'));
+                    var current_page = parseInt($('#section-three .paginate_button.current').text());
                     //
                     var postion_for_text = (current_page * page_length) - page_length; //asc
                     var postion_for = recordsTotal - (postion_for_text); // dsec
 
 
-                    $('#footer-section-1 tbody tr').each(function (index, element) {
+                    $('#footer-section-3 tbody tr').each(function (index, element) {
                         //var rowData = datatable.row(index).data();
 
                         order.push({
@@ -497,14 +497,14 @@
                 update: function (event, ui) {
                     // Get the sorted row IDs
 
-                    var page_length = parseInt($('#section-one .dataTable_select>.list>li.selected').data('value'));
-                    var current_page = parseInt($('#section-one .paginate_button.current').text());
+                    var page_length = parseInt($('#section-four .dataTable_select>.list>li.selected').data('value'));
+                    var current_page = parseInt($('#section-four .paginate_button.current').text());
                     //
                     var postion_for_text = (current_page * page_length) - page_length; //asc
                     var postion_for = recordsTotal - (postion_for_text); // dsec
 
 
-                    $('#footer-section-1 tbody tr').each(function (index, element) {
+                    $('#footer-section-4 tbody tr').each(function (index, element) {
                         //var rowData = datatable.row(index).data();
 
                         order.push({

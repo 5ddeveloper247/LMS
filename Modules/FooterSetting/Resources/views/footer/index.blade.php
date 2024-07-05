@@ -558,7 +558,7 @@
                                                class="primary-btn addWidget small fix-gr-bg mb-2">{{__('footer.Add New Page')}}</a>
 
                                         @endif
-                                        <div class="QA_section QA_section_heading_custom check_box_table">
+                                        <div class="QA_section QA_section_heading_custom check_box_table" id="section-two">
                                             <div class="QA_table">
                                                 <!-- table-responsive -->
                                                 <div class="">
@@ -727,7 +727,7 @@
                                                class="primary-btn addWidget small fix-gr-bg mb-2">{{__('footer.Add New Page')}}</a>
 
                                         @endif
-                                        <div class="QA_section QA_section_heading_custom check_box_table">
+                                        <div class="QA_section QA_section_heading_custom check_box_table" id="section-three">
                                             <div class="QA_table">
                                                 <!-- table-responsive -->
                                                 <div class="">
@@ -888,7 +888,7 @@
                                                 <a href="#" data-type="4"
                                                    class="primary-btn addWidget small fix-gr-bg mb-2">{{__('footer.Add New Page')}}</a>
                                             @endif
-                                            <div class="QA_section QA_section_heading_custom check_box_table">
+                                            <div class="QA_section QA_section_heading_custom check_box_table" id="section-four">
                                                 <div class="QA_table">
                                                     <!-- table-responsive -->
                                                     <div class="">
