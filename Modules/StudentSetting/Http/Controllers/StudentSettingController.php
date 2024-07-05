@@ -928,7 +928,6 @@ class StudentSettingController extends Controller
 
         $program = Program::find($program_id);
         $query = $program->enrollUsers;
-
         return Datatables::of($query)
             ->addIndexColumn()
             ->addColumn('image', function ($query) {
@@ -975,10 +974,16 @@ class StudentSettingController extends Controller
 
                 return $view;
             })->addColumn('notify_user', function ($query) use ($program) {
+                $program_enroll = CourseEnrolled::where('user_id',$query->id)->where('program_id',$program->id)->first();
                 if (round($program->userTotalPercentage($query->id, $program->id)) < 100) {
                     $link = '<a class="" href="' . route('program.programStudentNotify', [$program->id, $query->id]) . '" data-id="' . $query->id . '" type="button">Notify</a>';
+                    
                 } else {
-                    $link = '';
+                    if($program_enroll && $program_enroll->certificate_access == 0){
+                    $link = '<a href = "'.route('course.generateCertificate',[$query->id]).'">Generate Certificate</a>';
+                    }else{
+                        $link = '';
+                    }
                 }
                 return $link;
             })->rawColumns(['status', 'progressbar', 'image', 'notify_user', 'action', 'student_name'])
