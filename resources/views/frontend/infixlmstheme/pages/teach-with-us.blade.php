@@ -77,11 +77,11 @@
         border: 2px solid #dee2e6;
     }
 
-    .hit:hover {
+    /* .hit:hover {
         background-color: white !important;
         color: #000 !important;
         border-color: white !important;
-    }
+    } */
 
     .price-card__price--v2 {
         color: #1a0027;
