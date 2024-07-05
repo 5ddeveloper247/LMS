@@ -7,9 +7,10 @@
                        INVEST IN YOURSELF
                             {{-- {{ @$homeContent->instructor_title }} --}}
                         </h2>
-                        <h2 class="custom_small_heading large_title text-white mb-4 font-weight-bold " >Explore Our Healthcare Adult Prep Courses and 
-                            FLBON Remedial Program (Accepted by Hawaii, texas, and other States)
+                        <h2 class="custom_small_heading large_title text-white mb-4 font-weight-bold" >Explore Our Healthcare Prep Courses and 
+                            Programs
                         </h2>
+                        <h2 class="custom_small_heading large_title text-white mb-4 font-weight-bold">Failed NCLEX Approved Remedial Program (Accepted by Several States)</h2>
                         <p class="mb-4 text-white ">
                             Enroll in our Affordable Review Courses
                             {{-- {{ @$homeContent->instructor_sub_title }} --}}

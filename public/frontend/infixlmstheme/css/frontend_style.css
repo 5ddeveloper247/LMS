@@ -2084,7 +2084,11 @@ label {
     top: 80px;
     width: max-content;
 }
-
+.about_page-description{
+    height: 725px;
+    overflow: auto;
+    scrollbar-width: none;
+}
 @media (max-width: 767.98px) {
     .header_area .contact_wrap {
         margin-left: 0;
