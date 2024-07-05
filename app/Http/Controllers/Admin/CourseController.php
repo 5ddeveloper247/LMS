@@ -303,6 +303,13 @@ class CourseController extends Controller
             $enrolled->certificate_access = 1;
             $enrolled->save();
 
+        $shortCodes = [
+                'title' => $enrolled->course ? $enrolled->course->title : $enrolled->program->programtitle,
+                'type' => $enrolled->course ? 'course' : 'program',
+                'student_name' => $enrolled->user->name,
+            ];
+        send_email($enrolled->user, 'certificate_generated', $shortCodes);
+
         Toastr::success(trans('Certificate has been generated.'), trans('common.Success'));
                 return redirect()->back();
         }

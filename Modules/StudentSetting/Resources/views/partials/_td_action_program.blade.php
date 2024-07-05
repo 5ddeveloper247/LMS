@@ -22,5 +22,9 @@
                     data-id="{{$query['id']}}"
                     type="button">{{trans('common.Delete')}}
             </a>
+            <a href="{{ route('program.enrolled_students' , [$query['id'] ]) }}"
+                class="dropdown-item"
+                >Students
+            </a>
     </div>
 </div>
