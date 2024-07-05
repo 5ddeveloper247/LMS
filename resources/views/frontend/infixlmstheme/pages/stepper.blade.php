@@ -204,7 +204,7 @@
                     education hub, offering specialized review courses, personalized tutoring, and in-
                     depth exam reviews. Our commitment to excellence and our passion for student
                     success have driven us every step of the way.</p>
-                <div class="image"><img src="{{ asset('/public/assets/lms/newabout-slider1.png') }}"
+                <div class="image"><img src="{{ asset('/public/assets/lms/newabout-slider4.png') }}"
                         class="w-100"></div>
             </div>
             <div class="pr-0 slider slider-right stepper_right" data-aos="fade-right" data-aos-duration="1000">
@@ -262,7 +262,7 @@
                     successful students. By taking exceptional care of our educators, we ensure they
                     can focus wholeheartedly on their goals, bringing passion and dedication to every
                     lesson.</p>
-                <div class="image"><img src="{{ asset('/public/assets/lms/newabout-slider4.png') }}"
+                <div class="image"><img src="{{ asset('/public/assets/lms/newabout-slider1.png') }}"
                         class="w-100"></div>
             </div>
         </div>

@@ -19,9 +19,9 @@
             
             @if($btntitle!='')
                 @if($btnlink == '' || $btnlink == '#')
-                <button class="font-weight-bold hit ml-1 bg-transparent px-2 px-md-3 py-2 text-white {{ $btnclass }}"> {{$btntitle}} </button>
+                <button class="font-weight-bold hit ml-1 px-2 px-md-3 py-2 bread_crumbs {{ $btnclass }}"> {{$btntitle}} </button>
                 @else
-                <a href="{{ $btnlink }}" class="ont-weight-bold hit ml-1 px-2 px-md-3 py-2 mt-md-4 mt-2 text-white {{ $btnclass }}">{{$btntitle}}</a>
+                <a href="{{ $btnlink }}" class="font-weight-bold hit ml-1 px-2 px-md-3 py-2 mt-md-4 mt-2 bread_crumbs {{ $btnclass }}">{{$btntitle}}</a>
                 @endif
             @endif
         </div>

@@ -30,7 +30,7 @@
                 <div class="col-sm-7 custom_footer_btn " style="">
                     <h4 class="text-capitalize custom_footer_text" style=" ">
                         Don't Miss Out!<br>
-                        Exclusive Offers & Latest Programs<br>
+                        Exclusive Offers & Latest Healthcare Courses<br>
                         Join the Adult Learner's Community Today!</h4>
                     <div class="container-footer mb-2">
                         <form action="{{ route('subscribe') }}" class="form" method="POST">

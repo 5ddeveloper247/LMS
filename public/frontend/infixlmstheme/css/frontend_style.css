@@ -2084,7 +2084,20 @@ label {
     top: 80px;
     width: max-content;
 }
-
+.about_page-description{
+    height: 725px;
+    overflow: auto;
+    scrollbar-width: none;
+}
+.bread_crumbs{
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+.bread_crumbs:hover{
+    background-color: var(--system_primery_color);
+    border-color: var(--system_primery_color);
+}
 @media (max-width: 767.98px) {
     .header_area .contact_wrap {
         margin-left: 0;
