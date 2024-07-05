@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Modules\FooterSetting\Http\Requests\FooterWidgetRequest;
 use Modules\FooterSetting\Services\FooterSettingService;
 use Modules\FooterSetting\Services\FooterWidgetService;
+use Modules\FooterSetting\Entities\FooterWidget;
 use Modules\FrontendManage\Entities\FrontPage;
 use Modules\Setting\Model\GeneralSetting;
 
@@ -199,5 +200,25 @@ class FooterSettingController extends Controller
     {
         Session::put('footer_tab', $id);
         return 'done';
+    }
+
+    public function changeFooterWidgetOrder()
+    {
+
+        $payload = json_decode(file_get_contents('php://input'), true);
+        $order = $payload['order'];
+
+        foreach ($order as $item) {
+            $id = $item['id'];
+            $chapter = FooterWidget::find($id);
+            if ($chapter) {
+                $chapter->pos = $item['new_position'];
+                $chapter->save();
+            }
+
+        }
+
+        return response()->json(200);
+
     }
 }

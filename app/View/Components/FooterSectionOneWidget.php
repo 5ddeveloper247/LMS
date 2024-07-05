@@ -16,7 +16,7 @@ class FooterSectionOneWidget extends Component
     {
         
         $sectionWidget = FooterWidget::where('status', 1)->where('section', '1')
-        ->with('frontpage')
+        ->with('frontpage')->orderBy('pos','DESC')
         ->get();
 
         return view(theme('components.footer-section-one-widget'), compact('sectionWidget'));

@@ -16,7 +16,7 @@ class FooterSectionWidgets extends Component
     {
         $sectionWidgetsData = Cache::rememberForever('sectionWidgets_' . app()->getLocale() . SaasDomain(), function () {
             return FooterWidget::where('status', 1)
-                ->with('frontpage')
+                ->with('frontpage')->orderBy('pos','DESC')
                 ->get();
         });
 

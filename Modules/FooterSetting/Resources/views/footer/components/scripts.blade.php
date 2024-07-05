@@ -342,6 +342,203 @@
             $('#deleteBtn').attr('href', route)
         }
 
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        let order = [];
+        var recordsTotal = '{{ count($SectionOnePages) }}';
+        let course_seq_url = '{{route("footerSetting.footer.changeFooterWidgetOrder")}}';
+        // let course_seq_url = '{{url("social-links/changeOrder")}}';
+        $('#footer-section-1 tbody').sortable({
+                cursor: "move",
+                update: function (event, ui) {
+                    // Get the sorted row IDs
+
+                    var page_length = parseInt($('#section-one .dataTable_select>.list>li.selected').data('value'));
+                    var current_page = parseInt($('#section-one .paginate_button.current').text());
+                    //
+                    var postion_for_text = (current_page * page_length) - page_length; //asc
+                    var postion_for = recordsTotal - (postion_for_text); // dsec
+
+
+                    $('#footer-section-1 tbody tr').each(function (index, element) {
+                        //var rowData = datatable.row(index).data();
+
+                        order.push({
+                            id: $(this).attr('data-item'),
+                            new_position: postion_for,
+                        });
+
+                        $(this).data('seq_no', postion_for);
+
+                        postion_for = postion_for - 1;
+
+                    });
+
+                    $.ajax({
+                        // type: "POST",
+                        method: 'POST',
+                        url: course_seq_url,
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            order: order
+                        }),
+                        dataType: "json",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response == 200) {
+                                toastr.success('Order Successfully Changed !', 'Success');
+                                order = [];
+                            }
+                        }
+                    });
+                },
+            });
+        $('#footer-section-2 tbody').sortable({
+                cursor: "move",
+                update: function (event, ui) {
+                    // Get the sorted row IDs
+
+                    var page_length = parseInt($('#section-one .dataTable_select>.list>li.selected').data('value'));
+                    var current_page = parseInt($('#section-one .paginate_button.current').text());
+                    //
+                    var postion_for_text = (current_page * page_length) - page_length; //asc
+                    var postion_for = recordsTotal - (postion_for_text); // dsec
+
+
+                    $('#footer-section-1 tbody tr').each(function (index, element) {
+                        //var rowData = datatable.row(index).data();
+
+                        order.push({
+                            id: $(this).attr('data-item'),
+                            new_position: postion_for,
+                        });
+
+                        $(this).data('seq_no', postion_for);
+
+                        postion_for = postion_for - 1;
+
+                    });
+
+                    $.ajax({
+                        // type: "POST",
+                        method: 'POST',
+                        url: course_seq_url,
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            order: order
+                        }),
+                        dataType: "json",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response == 200) {
+                                toastr.success('Order Successfully Changed !', 'Success');
+                                order = [];
+                            }
+                        }
+                    });
+                },
+            });
+        $('#footer-section-3 tbody').sortable({
+                cursor: "move",
+                update: function (event, ui) {
+                    // Get the sorted row IDs
+
+                    var page_length = parseInt($('#section-one .dataTable_select>.list>li.selected').data('value'));
+                    var current_page = parseInt($('#section-one .paginate_button.current').text());
+                    //
+                    var postion_for_text = (current_page * page_length) - page_length; //asc
+                    var postion_for = recordsTotal - (postion_for_text); // dsec
+
+
+                    $('#footer-section-1 tbody tr').each(function (index, element) {
+                        //var rowData = datatable.row(index).data();
+
+                        order.push({
+                            id: $(this).attr('data-item'),
+                            new_position: postion_for,
+                        });
+
+                        $(this).data('seq_no', postion_for);
+
+                        postion_for = postion_for - 1;
+
+                    });
+
+                    $.ajax({
+                        // type: "POST",
+                        method: 'POST',
+                        url: course_seq_url,
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            order: order
+                        }),
+                        dataType: "json",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response == 200) {
+                                toastr.success('Order Successfully Changed !', 'Success');
+                                order = [];
+                            }
+                        }
+                    });
+                },
+            });
+        $('#footer-section-4 tbody').sortable({
+                cursor: "move",
+                update: function (event, ui) {
+                    // Get the sorted row IDs
+
+                    var page_length = parseInt($('#section-one .dataTable_select>.list>li.selected').data('value'));
+                    var current_page = parseInt($('#section-one .paginate_button.current').text());
+                    //
+                    var postion_for_text = (current_page * page_length) - page_length; //asc
+                    var postion_for = recordsTotal - (postion_for_text); // dsec
+
+
+                    $('#footer-section-1 tbody tr').each(function (index, element) {
+                        //var rowData = datatable.row(index).data();
+
+                        order.push({
+                            id: $(this).attr('data-item'),
+                            new_position: postion_for,
+                        });
+
+                        $(this).data('seq_no', postion_for);
+
+                        postion_for = postion_for - 1;
+
+                    });
+
+                    $.ajax({
+                        // type: "POST",
+                        method: 'POST',
+                        url: course_seq_url,
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            order: order
+                        }),
+                        dataType: "json",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response == 200) {
+                                toastr.success('Order Successfully Changed !', 'Success');
+                                order = [];
+                            }
+                        }
+                    });
+                },
+            });
 
     </script>
 @endpush

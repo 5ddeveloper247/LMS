@@ -387,11 +387,11 @@
                                                class="primary-btn addWidget small fix-gr-bg mb-2">{{__('footer.Add New Page')}}</a>
 
                                         @endif
-                                        <div class="QA_section QA_section_heading_custom check_box_table">
+                                        <div class="QA_section QA_section_heading_custom check_box_table" id="section-one">
                                             <div class="QA_table">
                                                 <!-- table-responsive -->
                                                 <div class="">
-                                                    <table class="table Crm_table_active3 table-responsive">
+                                                    <table class="table Crm_table_active3 table-responsive" id="footer-section-1">
                                                         <thead>
                                                         <tr>
                                                             <th scope="col">{{ __('common.SL') }}</th>
@@ -402,7 +402,7 @@
                                                         </thead>
                                                         <tbody>
                                                         @foreach($SectionOnePages as $key => $page)
-                                                            <tr>
+                                                            <tr data-item="{{$page->id}}" data-seq_no="{{$page->pos}}">
                                                                 <td>{{$key +1}}</td>
                                                                 <td>{{$page->name}}</td>
                                                                 <td>
@@ -562,7 +562,7 @@
                                             <div class="QA_table">
                                                 <!-- table-responsive -->
                                                 <div class="">
-                                                    <table class="table Crm_table_active3 table-responsive">
+                                                    <table class="table Crm_table_active3 table-responsive " id="footer-section-2">
                                                         <thead>
                                                         <tr>
                                                             <th scope="col">{{ __('common.SL') }}</th>
@@ -573,7 +573,7 @@
                                                         </thead>
                                                         <tbody>
                                                         @foreach($SectionTwoPages as $key => $page)
-                                                            <tr>
+                                                            <tr data-item="{{$page->id}}" data-seq_no="{{$page->pos}}">
                                                                 <td>{{$key +1}}</td>
                                                                 <td>{{$page->name}}</td>
                                                                 <td>
@@ -731,7 +731,7 @@
                                             <div class="QA_table">
                                                 <!-- table-responsive -->
                                                 <div class="">
-                                                    <table class="table Crm_table_active3 table-responsive">
+                                                    <table class="table Crm_table_active3 table-responsive" id="footer-section-3">
                                                         <thead>
                                                         <tr>
                                                             <th scope="col">{{ __('common.SL') }}</th>
@@ -742,7 +742,7 @@
                                                         </thead>
                                                         <tbody>
                                                         @foreach($SectionThreePages as $key=> $page)
-                                                            <tr>
+                                                            <tr data-item="{{$page->id}}" data-seq_no="{{$page->pos}}">
                                                                 <td>{{$key +1}}</td>
                                                                 <td>{{$page->name}}</td>
                                                                 <td>
@@ -892,7 +892,7 @@
                                                 <div class="QA_table">
                                                     <!-- table-responsive -->
                                                     <div class="">
-                                                        <table class="table Crm_table_active3 table-responsive">
+                                                        <table class="table Crm_table_active3 table-responsive" id="footer-section-4">
                                                             <thead>
                                                             <tr>
                                                                 <th scope="col">{{ __('common.SL') }}</th>
@@ -903,7 +903,7 @@
                                                             </thead>
                                                             <tbody>
                                                             @foreach($SectionFourPages as $key=> $page)
-                                                                <tr>
+                                                                <tr data-item="{{$page->id}}" data-seq_no="{{$page->pos}}">
                                                                     <td>{{$key +1}}</td>
                                                                     <td>{{$page->name}}</td>
                                                                     <td>

@@ -24,22 +24,22 @@ class FooterWidgetRepository
 
     public function getAllCompany()
     {
-        return $this->widget::where('section', '1')->orderBy('id', 'ASC')->get();
+        return $this->widget::where('section', '1')->orderBy('pos', 'DESC')->get();
     }
 
     public function getAllAccount()
     {
-        return $this->widget::where('section', '2')->orderBy('id', 'ASC')->get();
+        return $this->widget::where('section', '2')->orderBy('pos', 'DESC')->get();
     }
 
     public function getAllService()
     {
-        return $this->widget::where('section', '3')->orderBy('id', 'ASC')->get();
+        return $this->widget::where('section', '3')->orderBy('pos', 'DESC')->get();
     }
 
     public function getAllAbout()
     {
-        return $this->widget::where('section', '4')->orderBy('id', 'ASC')->get();
+        return $this->widget::where('section', '4')->orderBy('pos', 'DESC')->get();
     }
 
 
