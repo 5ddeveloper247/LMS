@@ -302,10 +302,11 @@ class CourseController extends Controller
         if($enrolled){
             $enrolled->certificate_access = 1;
             $enrolled->save();
-
+            $title = $enrolled->course_id == null ? $enrolled->program->programtitle : $enrolled->course->title;
+            $type = $enrolled->course_id == null ? 'program' : 'course';
         $shortCodes = [
-                'title' => $enrolled->course ? $enrolled->course->title : $enrolled->program->programtitle,
-                'type' => $enrolled->course ? 'course' : 'program',
+                'course' => $title,
+                'type' => $type,
                 'student_name' => $enrolled->user->name,
             ];
         send_email($enrolled->user, 'certificate_generated', $shortCodes);
