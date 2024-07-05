@@ -91,7 +91,7 @@
                         <p><a href="{{ route('customer-help') }}" onclick="informationflag('Help and Support')"
                                 style="color:inherit;">Help &
                                 Support</a></p>
-                        <p><a href="" style="color:inherit;">Resource Center</a></p>
+                        <p><a href="{{ route('resource') }}" style="color:inherit;">Resource Center</a></p>
                         <p><a href="" style="color:inherit;">NCLEX Practice Questions</a></p>
                         <p><a href="" style="color:inherit;">Next Gen NCLEX Questions</a></p>
                        
