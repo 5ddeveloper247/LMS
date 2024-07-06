@@ -1153,7 +1153,7 @@
                         <button class="toggle">{{$thisfaq->question}}<i
                                 class="fas fa-plus icon"></i></button>
                         <div class="content">
-                            <p>{{ $thisfaq->answer }}</p>
+                            <p>{!! strip_tags($thisfaq->answer) !!}</p>
                         </div>
                     </div>
                     @endforeach
