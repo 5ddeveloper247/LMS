@@ -1157,15 +1157,6 @@
                         </div>
                     </div>
                     @endforeach
-                    <div class="wrapper">
-                        <button class="toggle">Does FAQs Scheme Help Us to Rank our Site in Top Position?<i
-                                class="fas fa-plus icon"></i></button>
-                        <div class="content">
-                            <p> Yes, Frequently Asked Questions scheme will make your website more popular and increase
-                                your
-                                search engine ranking position.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
 

@@ -196,7 +196,7 @@
                     $banner_image = 'public/frontend/infixlmstheme/img/images/Teacher Explaining.jpg';
                     $btn_title = auth()->check() ? '' : 'Become an Instructor';
                 @endphp
-                <x-breadcrumb :banner="$banner_image" :title="$banner_title" :btntitle="$btn_title" :btnclass="'btn_responsive openModal'" />
+                <x-breadcrumb :banner="$banner_image" :title="$banner_title" :btntitle="$btn_title" :btnclass="'openModal'" />
             </div>
         </div>
 

@@ -70,7 +70,7 @@
         display: inline !important;
     }
 
-    .hit {
+    /* .hit {
         font-size: 12.5px;
         border-radius: 16px;
         font-weight: 700;
