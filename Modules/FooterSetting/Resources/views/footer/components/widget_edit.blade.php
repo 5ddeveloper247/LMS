@@ -57,12 +57,12 @@
                                     <option data-display="{{__('footer.Widget Title')}}- *" value="">
                                         --{{__('footer.Widget Title')}}--
                                     </option>
-                                    <option value="1">{{ Settings('footer_section_one_title') }}</option>
-                                    <option value="2">{{ Settings('footer_section_two_title') }}</option>
-                                    <option value="3">{{ Settings('footer_section_three_title') }}</option>
-                                    @if(Settings('frontend_active_theme')=='tvt')
+                                    <option value="1">{{ footerSettings('footer_section_one_title') }}</option>
+                                    <option value="2">{{ footerSettings('footer_section_two_title') }}</option>
+                                    <option value="3">{{ footerSettings('footer_section_three_title') }}</option>
+                                    {{-- @if(Settings('frontend_active_theme')=='tvt')
                                         <option value="4">{{ Settings('footer_section_four_title') }}</option>
-                                    @endif
+                                    @endif --}}
                                 </select>
                                 <span class="focus-border"></span>
                             </div>

@@ -14,14 +14,9 @@ class FooterSectionTwoWidget extends Component
 
     public function render()
     {
-        $sectionWidgetsData = Cache::rememberForever('sectionWidgets_' . app()->getLocale() . SaasDomain(), function () {
-            return FooterWidget::where('status', 1)
-                ->with('frontpage')->orderBy('pos','DESC')
-                ->get();
-        });
-
-      //  $sectionWidget = $sectionWidgetsData->where('section', '1');
-        $sectionWidget = $sectionWidgetsData->where('section', '2');
+        $sectionWidget = FooterWidget::where('status', 1)->where('section', '2')
+        ->with('frontpage')->orderBy('pos','DESC')
+        ->get();
 
         return view(theme('components.footer-section-two-widget'), compact('sectionWidget'));
     }

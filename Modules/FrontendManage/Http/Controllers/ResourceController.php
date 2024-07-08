@@ -35,10 +35,6 @@ class ResourceController extends Controller
 
     public function store(Request $request)
     {
-
-        if (demoCheck()) {
-            return redirect()->back();
-        }
         $rules = [
             'name' => 'required',
         ];
@@ -52,7 +48,8 @@ class ResourceController extends Controller
             $slider->save();
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-            return redirect()->back();
+            return redirect()->route('frontend.resource_center.index');
+            // return redirect()->back();
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -73,10 +70,6 @@ class ResourceController extends Controller
 
     public function update(Request $request)
     {
-        if (demoCheck()) {
-            return redirect()->back();
-        }
-
 
         try {
             $slider = ResourceTab::find($request->id);
@@ -84,7 +77,8 @@ class ResourceController extends Controller
             $slider->content = $request->content ?? '';
             $slider->save();
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-            return redirect()->back();
+            return redirect()->route('frontend.resource_center.index');
+            // return redirect()->back();
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -92,9 +86,6 @@ class ResourceController extends Controller
 
     public function destroy($id)
     {
-        if (demoCheck()) {
-            return redirect()->back();
-        }
         try {
             ResourceTab::destroy($id);
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
