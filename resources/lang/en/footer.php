@@ -14,7 +14,7 @@ return [
     'Widget' => 'Widget',
     'Page Name' => 'Page Name',
     'Edit Link' => 'Edit Link',
-    'Widget Title' => 'Widget Title',
+    'Widget Title' => 'Footer Section',
     'Add Link' => 'Add Link',
     'Select Page' => 'Select Page',
     'Are you sure' => 'Are you sure',

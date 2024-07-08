@@ -487,6 +487,20 @@
                     previewsInData: true,
                     removeProviders: [ 'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook' ],
                 },
+                        fontSize: {
+                            options: [
+                                9,
+                                11,
+                                13,
+                                'default',
+                                17,
+                                19,
+                                21
+                            ]
+                        },
+                        fontFamily: {
+                            options: customFontFam
+                        },
                 toolbar: {
 			items: [
 				'heading',

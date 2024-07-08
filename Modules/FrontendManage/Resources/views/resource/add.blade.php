@@ -108,6 +108,9 @@
 @endsection
 @push('js')
 <script>
+    var customFontFam = ['Arial', 'Helvetica', 'Cavolini', 'Jost', 'Impact', 'Tahoma', 'Verdana',
+                'Garamond', 'Georgia', 'monospace', 'fantasy', 'Papyrus', 'Poppins'
+            ];
     $('.custom_summernote').each(function (){
                 var elId = $(this).attr('id');
                 ClassicEditor
@@ -118,6 +121,20 @@
                 mediaEmbed : {
                     previewsInData: true,
                     removeProviders: [ 'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook' ],
+                },
+                fontSize: {
+                    options: [
+                        9,
+                        11,
+                        13,
+                        'default',
+                        17,
+                        19,
+                        21
+                    ]
+                },
+                fontFamily: {
+                    options: customFontFam
                 },
                 toolbar: {
 			items: [
