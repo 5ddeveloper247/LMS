@@ -10,18 +10,19 @@
 
     <div class="col-lg-10 offset-1">
         <div class="breadcam_wrap pr-5">
-            <h1 class="custom-heading">
+            <h1 class="custom-heading mb-0">
                 {{ @$title }}
             </h1>
-            <p class="text-light">
+            @if($sub_title && $sub_title != '')
+            <p class="text-light mt-2">
                 {{ @$sub_title }}
             </p>
-            
+            @endif
             @if($btntitle!='')
                 @if($btnlink == '' || $btnlink == '#')
-                <button class="font-weight-bold hit ml-1 px-2 px-md-3 py-2 theme_btn {{ $btnclass }}"> {{$btntitle}} </button>
+                <button class="font-weight-bold hit ml-1 px-2 px-md-3 py-2 theme_btn mt-md-4 mt-3 {{ $btnclass }}"> {{$btntitle}} </button>
                 @else
-                <a href="{{ $btnlink }}" class="font-weight-bold hit ml-1 px-2 px-md-3 py-2 theme_btn {{ $btnclass }}">{{$btntitle}}</a>
+                <a href="{{ $btnlink }}" class="font-weight-bold hit ml-1 px-2 px-md-3 py-2 theme_btn mt-md-4 mt-3 {{ $btnclass }}">{{$btntitle}}</a>
                 @endif
             @endif
         </div>
