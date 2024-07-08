@@ -2816,12 +2816,10 @@
                         <div class="main_banner-section cus-padding">
 
                             <h1 class="hero-section-main-heading">
-                                BECOME A LICENSED HEALTHCARE PROFESSIONAL
+                               PASS YOUR EXAMS - BECOME A LICENSED HEALTHCARE PROFESSIONAL
                             </h1>
-                            <p class="mt-4 hero-section-p mb-5"> <span class="font-weight-bold">Adult Learners: </span> Your
-                                Guide to Choosing the <span class="font-weight-bold">Perfect Prep Course</span> to Help
-                                <span class="font-weight-bold">ACE</span> the NCLEX, CPT, CPhT, CMA, or other Healthcare
-                                Licensing Exam on the <span class="font-weight-bold"> First Try!</span>
+                            <p class="mt-4 hero-section-p mb-5"> <span class="font-weight-bold">Adult Learners, </span> discover the ultimate roadmap for selecting preparatory courses to conquer exams such as the Nursing School, <span class="font-weight-bold"> NCLEX, CPT, CPhT, CPC, CMA </span> and various general licensures.
+                               
                             </p>
 
                             @guest
