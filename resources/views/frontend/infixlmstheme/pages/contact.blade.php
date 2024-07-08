@@ -665,32 +665,18 @@
             }
         }
     </style>
-    {{-- <div class="mainbanner custom_banner_height">
-        <div class="boxbanner containerdoosme py-5 p-5">
-            <h1 class="pt-5 text-white mt-5">Contact Us</h1>
-        </div>
-    </div> --}}
 
-    <!-- <div class="row"> -->
-    <!-- <div class="col-md-12"> -->
-    <section class="d-flex">
+    <div class="row">
+    <div class="col-md-12">
+    {{-- <section class="d-flex">
         <div class="banner-img">
             <img src="{{ asset('/public/uploads/images/footerimg/WE ARE HERE TO LISTEN (3).png') }}" class="h-100 w-100">
             <div>
-    </section>
-    {{-- <div class="breadcrumb_area position-relative">
-        <div class="w-100 h-100 position-absolute bottom-0 left-0">
-            <img alt="Banner Image" class="w-100 h-100 img-cover" src="{{ asset('public/assets/contact.jpg') }}">
-        </div>
-        <div class="col-lg-9 offset-1">
-            <div class="breadcam_wrap">
-                <h3 class="text-white custom-heading">Contact Us</h3>
-            </div>
-        </div>
-    </div> --}}
-    <!-- </div> -->
+    </section> --}}
+    <x-breadcrumb />
+    </div>
 
-    <!-- </div> -->
+    </div>
 
 
     <div class="container-fluid doosme p-0">
