@@ -1878,46 +1878,15 @@
                     <div class="custom_section_color rounded_section my-4 p-3">
                         <h5 class="font-weight-bold custom_heading_1 mt-2">Social Links:</h5>
                         <div class="row my-md-4">
-                            <div class="col-auto">
-                                <div class="instabox">
-                                    <a target="_blank" href="https://www.facebook.com/merakiicollege"
-                                    {{-- href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}"> --}}
-                                    <i class="fa-brands fa-square-facebook"
-                                       style="color: #395799;font-size: 50px;"></i>
+                            @foreach($socials as $social)
+                            <div class="col-auto py-2">
+                                <div class="instabox mt-1 p-2 rounded" style="background-color:{{ $social->color }}; ">
+                                    <a target="_blank" href="{{$social->link}}"> <i class="{{ $social->icon }}"
+                                        style="color:white;font-size: 30px;"></i>
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <div class="instabox mt-1"
-                                     style="
-                                background: #000;
-                                border-radius: 6px;
-                                width: 46px;
-                                height: 44px;
-                            ">
-                                    <a target="_blank"
-                                       href="https://www.tiktok.com/@merakiinursing" {{-- href="https://twitter.com/intent/tweet?text={{ $program_detail->programtitle }}&amp;url={{ URL::current() }}"> --}}
-                                    <i class="fa-brands fa-tiktok mt-2 px-1" style="color: #fff;font-size: 27px;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <div class="instabox">
-                                    <a target="_blank"
-                                       href="https://pinterest.com/pin/create/link/?url={{ URL::current() }}&amp;description={{ $program_detail->programtitle }}">
-                                        <i class="fa-brands fa-square-youtube" style="color: red;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <div class="instabox">
-                                    <a target="_blank" href="https://www.instagram.com/merakiinursing/"
-                                    {{-- href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ URL::current() }}&amp;title={{ $program_detail->programtitle }}&amp;summary={{ $program_detail->programtitle }}"> --}}
-                                    <i class="fa fa-instagram-square"
-                                       style="color: var(--system_primery_color);font-size: 50px;"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

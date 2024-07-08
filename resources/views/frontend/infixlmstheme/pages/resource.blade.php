@@ -839,9 +839,9 @@
 {{-- socail media section --}}
                     <div class="custom_section_color rounded_section my-4 p-3">
                         <h5 class="font-weight-bold custom_heading_1 mt-2">Social Links:</h5>
-                        <div class="row my-md-4 justify-content-center">
+                        <div class="row my-md-4">
                             @foreach($socials as $social)
-                            <div class="col-auto">
+                            <div class="col-auto py-2">
                                 <div class="instabox mt-1 p-2 rounded" style="background-color:{{ $social->color }}; ">
                                     <a target="_blank" href="{{$social->link}}"> <i class="{{ $social->icon }}"
                                         style="color:white;font-size: 30px;"></i>

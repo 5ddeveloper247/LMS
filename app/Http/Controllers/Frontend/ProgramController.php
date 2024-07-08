@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\StudentSetting\Entities\Program;
 use Modules\FrontendManage\Entities\HomePageFaq;
 use Modules\CourseSetting\Entities\Course;
+use Modules\SystemSetting\Entities\SocialLink;
 
 class ProgramController extends Controller
 {
@@ -75,7 +76,7 @@ class ProgramController extends Controller
                 $isEnrolled = true;
             }
         }
-
+        $socials = SocialLink::where('status',1)->orderBy('order','desc')->get();
 
         //        program faqs
         $faqs = HomePageFaq::whereIn('id', json_decode($program_detail->faqs) ?? [])->orderBy('order', 'desc')->where('status', 1)->get();
