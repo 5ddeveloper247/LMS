@@ -126,7 +126,7 @@
             align-items: baseline !important;
         }
     }
-@media only screen and (min-width: 769px) and (max-width: 1200px){
+@media only screen and (min-width: 768px) and (max-width: 1200px){
     .about-pagination {
         bottom: 8% !important;
         left: 51% !important;

@@ -63,7 +63,7 @@
                                                 href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug . '?courseType=' . $course->type) }}">
                                                 <div class="thumb rounded-card-img">
                                                     <img src="{{ getCourseImage($course->thumbnail) }}" alt=""
-                                                        class="img-fluid w-100 img-thumb" style="min-height: 45vh;">
+                                                        class="img-fluid w-100 img-thumb course-page-img" >
                                                     <x-price-tag :price="$course->price + $course->tax" :discount="$course->discount_price" />
                                                     <span class="quiz_tag">{{ __('Big Quiz') }}</span>
                                                 </div>
@@ -118,7 +118,7 @@
                                                     <div class="thumb rounded-card-img">
 
                                                         <img src="{{ getCourseImage($course->thumbnail) }}"
-                                                            class="img-fluid w-100 rounded-card-img img-thumb" alt="" style="min-height:45vh">
+                                                            class="img-fluid w-100 rounded-card-img img-thumb course-page-img" alt="">
 
                                                         <x-price-tag :price="$course->price + $course->tax" :discount="$course->discount_price" />
                                                         <span class="quiz_tag">{{ __('Repeat Course') }}</span>
@@ -181,7 +181,7 @@
 
                                                 <div class="thumb rounded-card-img">
                                                     <img src="{{ getCourseImage($course->thumbnail) }}"
-                                                        class="img-fluid w-100 h-100 rounded-card-img img-thumb" alt="" style="min-height:45vh">
+                                                        class="img-fluid w-100 h-100 rounded-card-img img-thumb course-page-img" alt="" >
                                                     @php
                                                       if (isset($course->currentCoursePlan[0])) {
                                                           $price = $course->currentCoursePlan[0]->amount;
