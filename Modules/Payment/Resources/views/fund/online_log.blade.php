@@ -119,43 +119,41 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            Checkout Amount
+                            In Amount
                         </h5>
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            @if (!empty($onlineLogs) && $onlineLogs != '0')
-                                {{ getPriceFormat($onlineLogs) }}
+                            @if (!empty($inOnlineLogs) && $inOnlineLogs != '0')
+                                {{ getPriceFormat($inOnlineLogs) }}
                             @endif
-                        </h5>
-                    </div>
-                    {{-- <div class="col-xl-6 col-md-6 col-lg-6">
-                        <h5>
-                            Individual Courses Revenue
                         </h5>
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            @if (!empty($admin_revenue) && $admin_revenue != '0')
-                                {{ getPriceFormat($admin_revenue) }}
+                            Out Amount
+                        </h5>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-lg-6">
+                        <h5>
+                            @if (!empty($outOnlineLogs) && $outOnlineLogs != '0')
+                                {{ getPriceFormat($outOnlineLogs) }}
                             @endif
                         </h5>
-                    </div> --}}
+                    </div>
                     <div class="col-12">
                         <hr class="border-secondary">
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            Total
+                            Total Balance
                         </h5>
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            @if (!empty($onlineLogs) && $onlineLogs != '0')
                             {{-- @if (!empty($admin_revenue) && $admin_revenue != '0' && !empty($onlineLogs) && $onlineLogs != '0') --}}
-                                {{ getPriceFormat($onlineLogs) }}
+                                {{ getPriceFormat($inOnlineLogs - $outOnlineLogs) }}
                                 {{-- {{ getPriceFormat($onlineLogs + $admin_revenue) }} --}}
-                            @endif
                         </h5>
                     </div>
                 </div>

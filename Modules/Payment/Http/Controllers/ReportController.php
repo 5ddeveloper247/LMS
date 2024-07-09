@@ -50,7 +50,10 @@ class ReportController extends Controller
                 ->groupBy('type')
                 ->get();
 
-            $onlineLogs = Checkout::where('payment_method', '!=', 'Offline Payment')->whereNotNull('payment_method')
+            // $onlineLogs = Checkout::where('payment_method', '!=', 'Offline Payment')->whereNotNull('payment_method')
+            $inOnlineLogs = Checkout::whereNotNull('payment_method')->where('checkout_type','In')
+                ->sum('price');
+            $outOnlineLogs = Checkout::whereNotNull('payment_method')->where('checkout_type','Out')
                 ->sum('price');
 
             $admin_revenue = User::where('role_id', Auth::user()->role_id)
