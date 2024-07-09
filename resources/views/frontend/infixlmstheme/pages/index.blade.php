@@ -2868,7 +2868,7 @@
                             <div class="col-6 px-0">
                                 <div class="first_div random_program_data_1 height-card">
                                     <img id="program_icon" src="{{ $random_program->icon }}"
-                                        class="w-100 h-100 imgcls img-fluid height-card">
+                                        class="w-100 imgcls img-fluid height-card">
                                 </div>
                             </div>
                             <div class="col-6 small_section_bg_color">
