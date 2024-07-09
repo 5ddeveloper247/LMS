@@ -13,7 +13,7 @@
     <section class="admin-visitor-area up_st_admin_visitor">
         <div class="container-fluid p-0">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3 @if(!isset($slider)) d-none @endif">
                     <div class="row justify-content-center">
                         <div class="col-12">
                             <div class="box_header common_table_header">
@@ -28,7 +28,7 @@
                                         <a href="{{route('frontend.sliders.index')}}"
                                            class="primary-btn small fix-gr-bg ml-3 "
                                            style="position: absolute;  right: 0;   margin-right: 15px;"
-                                           title="{{__('coupons.Add')}}">+ </a>
+                                           title="{{__('coupons.Add')}}"><i class="ti-arrow-left"></i></a>
 
                                     @endif
                                 </div>
@@ -114,7 +114,7 @@
                                                         <label class="primary_input_label"
                                                                for="">{{ __('common.Sub Title') }}</label>
                                                         <input name="sub_title" id="sub_title"
-                                                               class="primary_input_field name {{ @$errors->has('sub_title') ? ' is-invalid' : '' }}"
+                                                               class="primary_input_field name {{ @$errors->has('sub_title') ? ' is-invalid' : '' }}" maxlength="130"
                                                                placeholder="{{ __('frontendmanage.Sub Title') }}"
                                                                type="text"
                                                                value="{{isset($slider)?$slider->sub_title:old('sub_title')}}" {{$errors->has('sub_title') ? 'autofocus' : ''}}>
@@ -127,7 +127,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="col-xl-12">
+                                            <div class="col-xl-12 @if(isset($slider)) d-none @endif">
                                                     <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
                                                                for="">{{ __('Route Name') }}</label>
@@ -164,8 +164,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @if(!isModuleActive('Org'))
-                                                <div class="col-xl-12">
+                                                {{-- <div class="col-xl-12">
                                                     <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
                                                                for="">{{ __('frontendmanage.Button Type') }}
@@ -199,7 +198,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
 
                                                 <div class="col-xl-12" id="btn_title1">
@@ -222,7 +221,7 @@
                                                 </div>
 
 
-                                                <div class="col-xl-12" id="btn_image1">
+                                                {{-- <div class="col-xl-12" id="btn_image1">
                                                     <label class="primary_input_label"
                                                            for="">{{ __('frontendmanage.Button Image') }}
                                                         (1)</label>
@@ -238,7 +237,7 @@
                                                                    id="btn_image_1">
                                                         </button>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
 
                                                 <div class="col-xl-12">
@@ -261,100 +260,6 @@
                                                 </div>
 
 
-                                                <div class="col-xl-12">
-                                                    <div class="primary_input mb-25">
-                                                        <label class="primary_input_label"
-                                                               for="">{{ __('frontendmanage.Button Type') }}
-                                                            (2)</label>
-                                                        <div class="row">
-                                                            <div class="col-md-4 mb-25">
-                                                                <label class="primary_checkbox d-flex mr-12 "
-                                                                       for="btn_type21">
-                                                                    <input type="radio"
-                                                                           class="common-radio "
-                                                                           id="btn_type21"
-                                                                           name="btn_type2"
-                                                                           {{isset($slider)?$slider->btn_type2==1?'checked':'':'checked'}}
-                                                                           value="1">
-                                                                    <span
-                                                                        class="checkmark mr-2"></span> {{__('common.Text')}}
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-md-4 mb-25">
-                                                                <label class="primary_checkbox d-flex mr-12 "
-                                                                       for="btn_type22">
-                                                                    <input type="radio"
-                                                                           class="common-radio "
-                                                                           id="btn_type22"
-                                                                           name="btn_type2"
-                                                                           {{isset($slider)?$slider->btn_type2==0?'checked':'':''}}
-                                                                           value="0">
-                                                                    <span
-                                                                        class="checkmark mr-2"></span> {{__('common.Image')}}
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xl-12" id="btn_title2">
-                                                    <div class="primary_input mb-25">
-                                                        <label class="primary_input_label"
-                                                               for="">{{ __('frontendmanage.Button Title') }}
-                                                            (2)</label>
-                                                        <input name="btn_title2" id="btn_title2"
-                                                               class="primary_input_field name {{ @$errors->has('btn_title2') ? ' is-invalid' : '' }}"
-                                                               placeholder="{{ __('frontendmanage.Button Title') }}"
-                                                               type="text"
-                                                               value="{{isset($slider)?$slider->btn_title2:old('btn_title2')}}" {{$errors->has('btn_title2') ? 'autofocus' : ''}}>
-                                                        @if ($errors->has('btn_title2'))
-                                                            <span class="invalid-feedback d-block mb-10"
-                                                                  role="alert">
-                                                            <strong>{{ @$errors->first('btn_title2') }}</strong>
-                                                        </span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xl-12" id="btn_image2">
-                                                    <label class="primary_input_label"
-                                                           for="">{{ __('frontendmanage.Button Image') }}
-                                                        (2)</label>
-                                                    <div class="primary_file_uploader mb-25">
-                                                        <input class="primary-input filePlaceholder" type="text"
-                                                               placeholder="{{isset($slider) && $slider->btn_image2 ? showPicName($slider->btn_image2) :__('virtual-class.Browse Image file')}}"
-                                                               readonly="" {{ $errors->has('image') ? ' autofocus' : '' }}>
-                                                        <button class="" type="button">
-                                                            <label class="primary-btn small fix-gr-bg"
-                                                                   for="btn_image_2">{{__('common.Browse')}}</label>
-                                                            <input type="file"
-                                                                   class="d-none fileUpload" name="btn_image2"
-                                                                   id="btn_image_2">
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xl-12">
-                                                    <div class="primary_input mb-25">
-                                                        <label class="primary_input_label"
-                                                               for="">{{ __('frontendmanage.Button Link') }}
-                                                            (2)</label>
-                                                        <input name="btn_link2" id="btn_link2"
-                                                               class="primary_input_field name {{ @$errors->has('btn_link2') ? ' is-invalid' : '' }}"
-                                                               placeholder="{{ __('frontendmanage.Button Link') }}"
-                                                               type="text"
-                                                               value="{{isset($slider)?$slider->btn_link2:old('btn_link2')}}" {{$errors->has('btn_link2') ? 'autofocus' : ''}}>
-                                                        @if ($errors->has('btn_link2'))
-                                                            <span class="invalid-feedback d-block mb-10"
-                                                                  role="alert">
-                                                            <strong>{{ @$errors->first('btn_link2') }}</strong>
-                                                        </span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            @endif
-
-
                                             <div class="col-lg-12 text-center">
                                                 <div class="d-flex justify-content-center pt_20">
                                                     <button type="submit" class="primary-btn semi_large fix-gr-bg"
@@ -372,7 +277,7 @@
                                     </form>
                     </div>
                 </div>
-                <div class="col-lg-9 ">
+                <div class="@if(!isset($slider)) col-lg-12 @else col-lg-9 @endif">
                     <div class="main-title">
                         <h3 class="mb-20">{{__('frontendmanage.Slider List')}}</h3>
                     </div>

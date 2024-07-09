@@ -33,12 +33,9 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
-
-        if (demoCheck()) {
-            return redirect()->back();
-        }
         $rules = [
             'image' => 'required',
+            'sub_title' => 'nullable|string|max:130'
         ];
         $this->validate($request, $rules, validationMessage($rules));
 
@@ -59,30 +56,15 @@ class SliderController extends Controller
             if ($request->has('image')) {
                 $slider->image = $this->saveImage($request->image);
             }
-
-            if ($request->has('btn_image1')) {
-                $slider->btn_image1 = $this->saveImage($request->btn_image1);
-            }
-
-            if ($request->has('btn_image2')) {
-                $slider->btn_image2 = $this->saveImage($request->btn_image2);
-            }
-
-            if ($request->btn_type1 == 1) {
-                $slider->btn_type1 = 1;
-            } else {
                 $slider->btn_type1 = 0;
-            }
+            
 
-            if ($request->btn_type2 == 1) {
-                $slider->btn_type2 = 1;
-            } else {
                 $slider->btn_type2 = 0;
-            }
+            
             $slider->save();
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-            return redirect()->back();
+            return redirect()->route('frontend.sliders.index');
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -106,9 +88,11 @@ class SliderController extends Controller
 
     public function update(Request $request)
     {
-        if (demoCheck()) {
-            return redirect()->back();
-        }
+        
+        $rules = [
+            'sub_title' => 'nullable|string|max:130'
+        ];
+        $this->validate($request, $rules, validationMessage($rules));
 
 
         try {
@@ -117,40 +101,15 @@ class SliderController extends Controller
             $slider->name = $request->name ?? '';
             $slider->title = $request->title;
             $slider->sub_title = $request->sub_title;
-            $slider->route = $request->route;
             $slider->btn_title1 = $request->btn_title1;
             $slider->btn_link1 = $request->btn_link1;
-
-
-            $slider->btn_title2 = $request->btn_title2;
-            $slider->btn_link2 = $request->btn_link2;
 
             if ($request->has('image')) {
                 $slider->image = $this->saveImage($request->image);
             }
-
-            if ($request->has('btn_image1')) {
-                $slider->btn_image1 = $this->saveImage($request->btn_image1);
-            }
-
-            if ($request->has('btn_image2')) {
-                $slider->btn_image2 = $this->saveImage($request->btn_image2);
-            }
-
-            if ($request->btn_type1 == 1) {
-                $slider->btn_type1 = 1;
-            } else {
-                $slider->btn_type1 = 0;
-            }
-
-            if ($request->btn_type2 == 1) {
-                $slider->btn_type2 = 1;
-            } else {
-                $slider->btn_type2 = 0;
-            }
             $slider->save();
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-            return redirect()->back();
+            return redirect()->route('frontend.sliders.index');
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -158,9 +117,6 @@ class SliderController extends Controller
 
     public function destroy($id)
     {
-        if (demoCheck()) {
-            return redirect()->back();
-        }
         try {
             Slider::destroy($id);
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));

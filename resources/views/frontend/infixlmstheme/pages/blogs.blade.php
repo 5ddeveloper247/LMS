@@ -209,7 +209,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 px-0">
-                <div class="breadcrumb_area position-relative">
+                {{-- <div class="breadcrumb_area position-relative">
                     <div class="w-100 h-100 position-absolute bottom-0 left-0">
                         <img alt="Banner Image" class="w-100 h-100 img-cover"
                             src="{{ asset('public/frontend/infixlmstheme/img/images/courses-4.jpg') }}">
@@ -219,7 +219,8 @@
                             <h3 class="text-white custom-heading">Blogs</h3>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+                <x-breadcrumb />
             </div>
         </div>
     </div>

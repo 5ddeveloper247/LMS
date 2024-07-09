@@ -8,7 +8,7 @@
 @endphp
 <div class="breadcrumb_area bradcam_bg_2" @if($banner != null) style="background-image: url('{{ asset(@$banner) }}')" @endif>
 
-    <div class="col-lg-10 offset-1">
+    <div class="col-lg-6 offset-1">
         <div class="breadcam_wrap pr-5">
             <h1 class="custom-heading mb-0">
                 {{ @$title }}
