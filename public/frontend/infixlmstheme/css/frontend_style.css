@@ -2402,7 +2402,9 @@ input[type="number"] {
     padding-top: 234px;
     padding-bottom: 336px;
 }
-
+.course-page-img{
+    min-height: 45vh;
+}
 @media (max-width: 767.98px) {
     .banner_area {
         padding-top: 80px;
@@ -16530,6 +16532,9 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+    .course-page-img{
+        min-height: auto !important;
+    }
 
     .breadcrumb_area {
         min-height: 400px;
@@ -17181,6 +17186,9 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+    .course-page-img{
+        min-height: auto !important;
+    }
     .cta_area{
         height: 400px !important;
         padding: 20px 0px !important;
