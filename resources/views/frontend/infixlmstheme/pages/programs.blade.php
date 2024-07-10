@@ -176,9 +176,9 @@
     }
 
     @media only screen and (min-width: 1600px) {
-        .img-cover {
+        /* .img-cover {
             min-height: 45vh !important;
-        }
+        } */
 
         /* .paragraph_custom_height {
         display: -webkit-box;

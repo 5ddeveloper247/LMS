@@ -2,8 +2,8 @@
         <div class="cta_area d-flex justify-content-center my-3" style="background-image: url('{{ asset(@$homeContent->instructor_banner) }}')">
             <div class="row justify-content-center align-items-center w-100 cta_area-row">
                 <div class="mx-auto">
-                    <div class="section__title text-white text-center" id="section__title" style="margin: 0px 10%">
-                        <h2 class="custom_small_heading large_title text-white mb-lg-4 mb-2 font-weight-bold " >
+                    <div class="section__title text-white text-center px-5" id="section__title">
+                        <h2 class="custom_small_heading large_title text-white mb-lg-4 mb-2 font-weight-bold">
                        INVEST IN YOURSELF
                             {{-- {{ @$homeContent->instructor_title }} --}}
                         </h2>

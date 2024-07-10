@@ -181,7 +181,7 @@
 
                                                 <div class="thumb rounded-card-img">
                                                     <img src="{{ getCourseImage($course->thumbnail) }}"
-                                                        class="img-fluid w-100 h-100 rounded-card-img img-thumb course-page-img" alt="" >
+                                                        class="img-fluid w-100 rounded-card-img img-thumb course-page-img" alt="" >
                                                     @php
                                                       if (isset($course->currentCoursePlan[0])) {
                                                           $price = $course->currentCoursePlan[0]->amount;

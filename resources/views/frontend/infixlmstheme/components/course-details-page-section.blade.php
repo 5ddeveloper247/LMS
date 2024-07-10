@@ -157,7 +157,7 @@
         <div class="container px-lg-0">
             <div class="row my-sm-4 my-2 px-lg-5 small_screen course_padding">
 
-                <div class="col-lg-9 col-md-8 col-sm-7 mb-2 mb-sm-0">
+                <div class="col-lg-9 col-md-8 col-sm-7 mb-2 mb-sm-0 course_main_image">
                     @if ($course->image == '')
 
                         <div class="video_screen @if ($course->host != 'ImagePreview' && $course->host != '') theme__overlay @endif mb-4">
@@ -192,21 +192,21 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-5 py-sm-0 py-3">
-                    <div class="custom_section_color img_round course_tab px-2 pt-2" style="background-color: #eee;">
+                <div class="col-lg-3 col-md-4 col-sm-5 py-sm-0 py-3 course_main_text">
+                    <div class="custom_section_color img_round course_tab px-2 pt-2 course_main_section" style="background-color: #eee;">
                         <h5 class="font-weight-bold mt-1 course-span custom_heading_1 small_heading">You May also Like</h5>
                         <div class="row mx-0">
                             @if (isset($recent_courses))
                                 @forelse($recent_courses as  $recent_course)
-                                    <div class="col-xl-5 col-lg-5 col-md-6 col-4 mb-3 pl-0 pr-2">
+                                    <div class="col-xl-5 col-lg-5 col-md-6 col-4 mb-3 pl-0 pr-2 course_tabs_section">
                                         <a
                                             href="{{ !empty($recent_course->parent_id) ? courseDetailsUrl(@$recent_course->parent->id, @$recent_course->type, @$recent_course->parent->slug) . '?courseType=' . $recent_course->type : courseDetailsUrl(@$recent_course->id, @$recent_course->type, @$recent_course->slug) }}">
                                             <img style="" src="{{ getCourseImage($recent_course->thumbnail) }}"
-                                                class="img-fluid">
+                                                class="img-fluid h-100">
                                         </a>
                                     </div>
-                                    <div class="col-lg-7 col-md-6 col-8 p-clamp0 p-0">
-                                        <p class="p-clamp ">
+                                    <div class="col-lg-7 col-md-6 col-8 p-clamp0 p-0 course_tabs_section">
+                                        <p class="p-clamp">
                                             <a class="text-dark course-span"
                                                 href="{{ !empty($recent_course->parent_id) ? courseDetailsUrl(@$recent_course->parent->id, @$recent_course->type, @$recent_course->parent->slug) . '?courseType=' . $recent_course->type : courseDetailsUrl(@$recent_course->id, @$recent_course->type, @$recent_course->slug) }}">
                                                 {{ !empty($recent_course->parent_id) ? $recent_course->parent->title : $recent_course->title }}</a>
