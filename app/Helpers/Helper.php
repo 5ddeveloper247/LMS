@@ -55,7 +55,7 @@ use Modules\SystemSetting\Entities\EmailSetting;
 use Modules\SystemSetting\Entities\EmailTemplate;
 use App\Models\UserSetting;
 use App\Models\CloverPayment;
-use App\Models\UserApplication;
+use App\Models\UserDeclaration;
 use App\Models\UserAuthorzIationAgreement;
 
 
@@ -107,11 +107,11 @@ if(!function_exists('check_enrolled')){
   function check_enrolled(){
     $response = true;
     $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
-    $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
+    $user_declaration_exists = UserDeclaration::where('user_id', Auth::user()->id)->exists();
     $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
     $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
     if(!$user_setting_exists ||
-        !$user_application_exists ||
+        !$user_declaration_exists ||
         !$user_agreement_exists ||
         !$user_payment_exists){
           $response = false;

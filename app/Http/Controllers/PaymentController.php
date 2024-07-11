@@ -219,7 +219,7 @@ class PaymentController extends Controller
             'amount' => 'required | gt:0'
         ]);
 
-
+        
 
         if ($validator->fails()) {
             Toastr::error('Please fill all the required fields', trans('common.Failed'));
@@ -228,7 +228,10 @@ class PaymentController extends Controller
         }
 
         else{
-
+            if(!$request->has('accept')){
+            Toastr::error('Terms & Conditions must be accepted.', 'Error');
+                  return redirect()->back();
+        }
         // $clover = new CloverController();
         // $paymentResponse = $clover->makePayment($request, 'pay', true, null, true);
         $authorize = new DoAuthorizeNetPaymentController();

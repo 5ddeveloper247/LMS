@@ -119,25 +119,24 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            In Amount
+                            Checkout Amount
                         </h5>
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            @if (!empty($inOnlineLogs) && $inOnlineLogs != '0')
-                                {{ getPriceFormat($inOnlineLogs) }}
+                            @if (!empty($onlineLogs) && $onlineLogs != '0')
+                                {{ getPriceFormat($onlineLogs) }}
                             @endif
                         </h5>
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            Out Amount
-                        </h5>
+                            Fund Deductions                        </h5>
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
-                            @if (!empty($outOnlineLogs) && $outOnlineLogs != '0')
-                                {{ getPriceFormat($outOnlineLogs) }}
+                            @if (!empty($offlinepayments) && $offlinepayments != '0')
+                                {{ getPriceFormat($offlinepayments) }}
                             @endif
                         </h5>
                     </div>
@@ -151,9 +150,11 @@
                     </div>
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <h5>
+                            @if (!empty($onlineLogs) && $onlineLogs != '0')
                             {{-- @if (!empty($admin_revenue) && $admin_revenue != '0' && !empty($onlineLogs) && $onlineLogs != '0') --}}
-                                {{ getPriceFormat($inOnlineLogs - $outOnlineLogs) }}
+                                {{ getPriceFormat($onlineLogs - $offlinepayments) }}
                                 {{-- {{ getPriceFormat($onlineLogs + $admin_revenue) }} --}}
+                            @endif
                         </h5>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ use Modules\Payment\Entities\Checkout;
 use Modules\Payment\Entities\Withdraw;
 use Modules\CourseSetting\Entities\Course;
 use Modules\PaymentMethodSetting\Entities\PaymentMethod;
+use Modules\OfflinePayment\Entities\OfflinePayment;
 
 
 class ReportController extends Controller
@@ -50,11 +51,12 @@ class ReportController extends Controller
                 ->groupBy('type')
                 ->get();
 
-            // $onlineLogs = Checkout::where('payment_method', '!=', 'Offline Payment')->whereNotNull('payment_method')
-            $inOnlineLogs = Checkout::whereNotNull('payment_method')->where('checkout_type','In')
+            $onlineLogs = Checkout::where('payment_method', '!=', 'Offline Payment')->whereNotNull('payment_method')
                 ->sum('price');
-            $outOnlineLogs = Checkout::whereNotNull('payment_method')->where('checkout_type','Out')
-                ->sum('price');
+
+            $offlineout = OfflinePayment::where('type','Add')->sum('amount');
+            $offlinein = OfflinePayment::where('type','Deduct')->sum('amount');
+            $offlinepayments = $offlineout - $offlinein;
 
             $admin_revenue = User::where('role_id', Auth::user()->role_id)
                 ->sum('balance');

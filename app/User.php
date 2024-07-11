@@ -54,6 +54,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Organization\Entities\OrganizationEmployee;
 use Modules\Affiliate\Entities\AffiliateReferralPayment;
 use Modules\SystemSetting\Entities\TutorHiring;
+use App\Models\CloverPayment;
 
 //class User extends Authenticatable
 class User extends Authenticatable implements MustVerifyEmail
@@ -121,6 +122,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function userSetting(){
 
       return $this->hasOne(UserSetting::class, 'user_id');
+    }
+
+    public function registrationPaid(){
+
+      return $this->hasOne(CloverPayment::class, 'user_id')->where('type','student_register');
     }
 
 

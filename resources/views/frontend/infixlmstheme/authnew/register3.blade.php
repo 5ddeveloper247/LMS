@@ -112,7 +112,7 @@
             z-index: 2
         }
 
-        input:focus~.floating-label-outside input:not(:focus):valid~.floating-label-outside {
+        input[type="date"]~.floating-label-outside, input:focus~.floating-label-outside input:not(:focus):valid~.floating-label-outside {
             top: 12px;
             left: 40px;
             font-size: 15px;
@@ -120,6 +120,7 @@
             font-weight: 400
         }
 
+        input[type="date"]~.floating-label-outside,
         input:focus~.floating-label-outside,
         input:valid~.floating-label-outside {
             top: -10px;
@@ -130,6 +131,8 @@
             padding: 0px 5px;
         }
 
+        
+        input[type="date"]~.floating-label-outside,
         input:focus~.floating-label-outside,
         input:not(:focus):valid~.floating-label-outside {
             left: 40px
