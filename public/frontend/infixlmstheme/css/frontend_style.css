@@ -4843,7 +4843,12 @@ input[type="number"] {
     grid-gap: 60px;
     margin-bottom: 35px;
 }
-
+.instractor_details_inner .thumb {
+    height: 350px !important;
+}
+.instructor_tab .thumb{
+    height: 350px !important;
+}
 @media (max-width: 767.98px) {
     .lms_tab_content .instractor_details_wrapper .instractor_details_inner {
         grid-template-columns: auto auto;
@@ -4852,6 +4857,9 @@ input[type="number"] {
     }
 
     .instractor_details_inner .thumb {
+        height: 300px !important;
+    }
+    .instructor_tab .thumb{
         height: 300px !important;
     }
 }
@@ -7199,11 +7207,6 @@ input[type="number"] {
     }
 }
 
-/* .checkout_wrapper .billing_details_wrapper {
-    padding: 40px 60px 20px 40px;
-} */
-
-
 @media (min-width: 992px) and (max-width: 1199.98px) {
 
     .coupon_wrapper {
@@ -7617,7 +7620,9 @@ input[type="number"] {
     border-bottom: 0;
     border-right: 0;
 }
-
+.cta_area_section{
+    margin: 0px 10px;
+}
 @media only screen and (max-width: 349px) {
     .quiz_wizged {
         width: 14rem !important;
@@ -9212,14 +9217,23 @@ input[type="number"] {
 }
 
 @media only screen and (min-width: 1350px) {
+    .custom-image-height {
+        height: 626px !important;
+    }
+    .program_image {
+        height: 600px !important;
+    }
+    .program_tab {
+    height: 600px  !important;
+}
     .course_tabs_section{
         height: 150px !important;
     }
 
-    .course_main_image{
+    .course_detail_image{
         height: 600px !important;
     }
-    .course_main_text{
+    .course_main_section{
         height: 600px !important;
     }
     .couse_wizged .thumb {
@@ -9318,6 +9332,12 @@ input[type="number"] {
 }
 
 @media screen and (min-width: 1560px) {
+    .program_image {
+        height: 710px !important;
+    }
+    .program_tab {
+    height: 710px  !important;
+}
     .image_thumb {
         height: 500px !important;
     }
@@ -9382,10 +9402,10 @@ input[type="number"] {
     .course_tabs_section{
         height: 200px !important;
     }
-    .course_main_image{
+    .course_detail_image{
         height: 710px !important;
     }
-    .course_main_text{
+    .course_main_section{
         height: 710px !important;
     }
 
@@ -16477,11 +16497,11 @@ body {
     height: 100%;
     object-fit: cover;
 }
-.course_main_image{
+.course_detail_image{
     height: 485px;
     overflow: hidden;
 }
-.course_main_text{
+.course_main_section{
     height: 485px;
     overflow: hidden;
     scrollbar-width: none;
@@ -16492,8 +16512,22 @@ body {
 }
 .course_tabs_section{
     height: 100px;
-    overflow: auto;
+    overflow: hidden;
     scrollbar-width: none;
+}
+.program_image {
+    border-radius: 10px !important;
+    height: 485px;
+    overflow: hidden;
+}
+.program_tab {
+height: 485px;
+overflow: hidden;
+border-radius: 10px;
+}
+.custom-image-height {
+    height: 485px;
+    overflow: hidden;
 }
 @media only screen and (max-width: 377px) {
     .course__play_warp .course__play_list {
@@ -16559,7 +16593,10 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
-    .course_main_image{
+    .about_page-description{
+        height: auto !important;
+    }
+    .course_detailimage{
         height: 340px !important;
     }
     .course_main_text{
@@ -16668,9 +16705,11 @@ body {
     }
 
     .course_detail_image {
-        min-height: 350px;
+        height: 380px !important;
     }
-
+    .course_main_section{
+        height: 380px !important;
+    }
     .close-modal {
         font-size: 12px;
         padding: 4px 10px !important;
@@ -17216,13 +17255,32 @@ body {
         overflow: auto;
         scrollbar-width: none;
     }
+    .program_image {
+        height: 300px !important;
+    }
+    .program_tab {
+    height: 300px  !important;
+}
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .course_main_image{
-        height: 400px !important;
+    .program_image {
+        height: 360px !important;
     }
-    .course_main_text{
+    .program_tab {
+    height: 360px  !important;
+}
+    .instractor_details_inner .thumb{
+        height: 300px !important;
+    }
+    .instructor_tab .thumb{
+        height: 300px !important;
+    }
+    .course_detail_image{
+        height: 400px !important;
+        overflow: hidden;
+    }
+    .course_main_section{
         height: 400px !important;
     }
     .image_thumb {
@@ -17379,10 +17437,10 @@ body {
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1200px) {
-    .course_main_image{
+    .course_detail_image{
         height: 400px !important;
     }
-    .course_main_text{
+    .course_main_section{
         height: 400px !important;
     }
     .image_thumb {

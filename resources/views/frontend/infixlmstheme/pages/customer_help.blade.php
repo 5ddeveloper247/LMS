@@ -218,12 +218,12 @@
                                     <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Help and Support')">Help and Support</span></a>
 
-                                <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-settings-tab-3"
+                                {{-- <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-settings-tab-3"
                                     data-toggle="pill" href="#v-pills-settings" role="tab"
                                     aria-controls="v-pills-settings" aria-selected="false">
                                     <i class="fa fa-arrow-right mr-2"></i>
                                     <span class="text_small font-weight-bold small text-uppercase"
-                                        onclick="changeTab('Certificate Verification')">Certificate Verification</span></a>
+                                        onclick="changeTab('Certificate Verification')">Certificate Verification</span></a> --}}
 
                                 {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-4" data-toggle="pill" href="#ship"
                             role="tab" aria-controls="ship" aria-selected="false">
@@ -246,12 +246,12 @@
                                     <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Faqs')">Faq's</span></a>
 
-                                <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="tab-8" data-toggle="pill"
+                                {{-- <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="tab-8" data-toggle="pill"
                                     href="#resource-center" role="tab" aria-controls="resource-center"
                                     aria-selected="false">
                                     <i class="fa fa-arrow-right mr-2"></i>
                                     <span class="text_small font-weight-bold small text-uppercase"
-                                        onclick="changeTab('Resource center')">Resource center</span></a>
+                                        onclick="changeTab('Resource center')">Resource center</span></a> --}}
                             </div>
                             <div class="eventsIcon d-md-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
                         </div>
@@ -476,7 +476,7 @@
                                 </p>
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-settings"
+                            {{-- <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-settings"
                                 role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                 <h5>About this cookie policy</h5>
                                 <p>
@@ -545,7 +545,7 @@
                                     like language preferences so that you have a better and efficient experience on future
                                     visits to the website.
                                 </p>
-                            </div>
+                            </div> --}}
 
                             {{-- <div class="tab-pane fade shadow rounded bg-white p-5" id=ship role="tabpanel"
                             aria-labelledby="tab-4">
@@ -714,7 +714,7 @@
                                 </p> --}}
                             </div>
                             {{-- resourse center --}}
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-3" id="resource-center"
+                            {{-- <div class="tab-pane fade rounded bg-white p-4 shadow mb-3" id="resource-center"
                                 role="tabpanel" aria-labelledby="tab-8">
                                 <h5>FOR Resource Center</h5>
                                 <h6>DOMESTIC CUSTOMERS</h6>
@@ -739,7 +739,7 @@
                                     6 days a week (Sunday - Friday) and are ready to help. Please allow 24 hours to receive
                                     a response.
                                 </p>
-                            </div>
+                            </div> --}}
                         </div>
 
                     </div>

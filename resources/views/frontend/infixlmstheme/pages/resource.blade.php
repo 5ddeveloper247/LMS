@@ -516,7 +516,13 @@
 
     .program_image {
         border-radius: 10px !important;
-        height: 100%;
+        height: 485px;
+        overflow: hidden;
+    }
+    .program_tab {
+        height: 485px !important;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
     .amount_total {
@@ -588,11 +594,6 @@
 
     .banner_img {
         object-fit: fill !important;
-    }
-
-    .program_tab {
-        /* height: 100% !important; */
-        border-radius: 10px;
     }
 
     @media only screen and (max-width: 576px) {
@@ -749,7 +750,7 @@
                 </div>
                 <!-- 3rdmid -->
                 <div class="col-xl-3 col-lg-3 col-md-4 col-12">
-                    <div class="custom_section_color d-lg-block d-nonerounded_section pt-2 px-2 program_tab mb-3">
+                    <div class="custom_section_color rounded_section pt-2 px-2 program_tab mb-3">
                         <h5 class="font-weight-bold custom_heading_1">This Program includes:</h5>
                         <div class="row mx-0 mt-2">
                             @forelse($recent_program as  $program)
