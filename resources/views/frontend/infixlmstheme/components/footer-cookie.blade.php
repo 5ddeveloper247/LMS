@@ -18,7 +18,7 @@
         <div class="theme_cookies" style="display: none">
             <div class="theme_cookies_info flex-fill">
                 <div class="icon">
-                    <img src="{{asset(@$cookie->image)}}" alt="" class="h-100 w-100">
+                    <img src="{{asset(@$cookie->image)}}" alt="" class="h-100">
                     {{-- <img src="{{ asset('/public/uploads/images/footerimg/cookiess.png') }}"> --}}
                 </div>
                 <p>{!! @$cookie->details !!}</p>

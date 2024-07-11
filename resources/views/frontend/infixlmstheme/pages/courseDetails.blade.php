@@ -79,10 +79,7 @@
         overflow: hidden;
 
     }
-    .p-clamp0{
-        height: 21vh;
-        overflow: auto;
-    }
+   
     
     .course_tab{
         height: 100%;
@@ -98,19 +95,7 @@
     .course_image{
         height: 100% !important;
     }
-    @media only screen and (max-width: 1200px){
-        .program-span{
-            
-        }
-    }
 
-   @media only screen and (min-width: 1200px){
-
-    .p-clamp0 {
-    height: 8rem;
-}
-
-   }
  
 @media only screen and (min-width: 2560px) {
    
