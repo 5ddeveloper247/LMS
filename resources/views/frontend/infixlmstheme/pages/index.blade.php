@@ -5496,7 +5496,7 @@
                         </div> --}}
                             <div class="col-lg-8 col-md-7 shadow_row video-h-cls pr-xl-5 pl-lg-0 pr-lg-3">
                                 <div class="video-container">
-                                    <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
+                                    <video id="myVideo" class=" w-100" style="object-fit: cover">
                                         <source
                                             src="{{ asset('/public/uploads/images/footerimg/ezgif-2-78802b2d5b.mp4') }}">
                                     </video>

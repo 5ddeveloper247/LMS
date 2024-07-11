@@ -2015,6 +2015,7 @@ label {
     text-transform: capitalize;
     font-family: Jost, sans-serif;
     padding: 20px 0 20px;
+    text-decoration: none;
 }
 
 .header_area .main_menu .menu_dropdown ul li a {
@@ -7229,7 +7230,7 @@ input[type="number"] {
 
 .checkout_wrapper .order_wrapper .ordered_products .single_ordered_product .product_name .thumb {
     width: 140px;
-    height: 80px;
+    height: 100px;
     margin-right: 20px;
 }
 
@@ -13091,6 +13092,9 @@ body {
 
 .translator-switch .nice-select-search-box {
     display: none;
+}
+.nice-select .option{
+    margin-bottom: 10px !important;
 }
 
 .translator-switch .nice-select .list {
