@@ -825,11 +825,11 @@ class StudentSettingController extends Controller
         }
 
         if($type == 'enrolled'){
-          $query->has('userSetting');
+          $query->has('registrationPaid');
         }
 
         if($type == 'non-enrolled'){
-          $query->doesntHave('userSetting');
+          $query->doesntHave('registrationPaid');
         }
 
         return Datatables::of($query)

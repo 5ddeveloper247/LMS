@@ -90,7 +90,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('free-course', 'CourseController@freeCourses')->name('freeCourses');
 
     Route::get('classes', 'ClassController@classes')->name('classes');
-    Route::get('class-details/{slug}', 'ClassController@classDetails')->name('classDetails')->middleware('UserAgreementCheck');
+    Route::get('class-details/{slug}', 'ClassController@classDetails')->name('classDetails');
     Route::get('class-start/{slug}/{host}/{meeting_id}', 'ClassController@classStart')->name('classStart');
 
     Route::get('programs', 'ProgramController@programs')->name('programs')->middleware('HeaderMenuPermissions');;
@@ -195,11 +195,11 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['student']], function 
     Route::get('my-program-payment-plan/{program_id}', 'StudentController@myProgramPaymentPlan')->name('my.program.payment.plan');
     Route::get('my-payment-plan-installment/{installment_id}', 'StudentController@myPaymentPlanInstallment')->name('my.payment.plan.installment');
     Route::post('my-payment-plan-installment-payment', 'StudentController@myPaymentPlanInstallmentPayment')->name('my.payment.plan.installment.payment');
-    Route::get('my-classes', 'StudentController@myCourses')->name('myClasses')->middleware('UserAgreementCheck');
-    Route::get('my-online-course', 'StudentController@myCourses')->name('myOnlineCourse')->middleware('UserAgreementCheck');
-    Route::get('my-offline-course', 'StudentController@myCourses')->name('myOfflineCourse')->middleware('UserAgreementCheck');
-    Route::get('my-prep-Course', 'StudentController@myCourses')->name('myQuizzes')->middleware('UserAgreementCheck');
-    Route::get('my-tutors', 'TutorController@myTutors')->name('myTutors')->middleware('UserAgreementCheck')->middleware('UserAgreementCheck');
+    Route::get('my-classes', 'StudentController@myCourses')->name('myClasses');
+    Route::get('my-online-course', 'StudentController@myCourses')->name('myOnlineCourse');
+    Route::get('my-offline-course', 'StudentController@myCourses')->name('myOfflineCourse');
+    Route::get('my-prep-Course', 'StudentController@myCourses')->name('myQuizzes');
+    Route::get('my-tutors', 'TutorController@myTutors')->name('myTutors');
     Route::get('cancel-request/{id}', 'TutorController@cancelRequest')->name('cancel-request');
 
     Route::post('tutorReview', 'TutorController@tutorReview')->name('tutorReview');

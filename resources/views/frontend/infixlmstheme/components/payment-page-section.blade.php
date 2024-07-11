@@ -40,7 +40,6 @@
             @if (isModuleActive('Invoice'))
                 @includeIf('invoice::billing')
             @endif
-
             <div class="select_payment_method">
                 @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible">
@@ -122,6 +121,23 @@
                                         readonly>
 
                                 </div>
+                            </div>
+                            
+                            <div class="form-row p-4 border border-dark rounded">
+                                <div class="col-md-12">
+                                    <div class="d-flex flex-column">
+                                    <p class="mb-0"><b>Terms & Conditions</b></p>
+                                    <small class="mb-0 ml-2 agree_checkbox_p">I <b>{{ auth()->user()->name }}</b> hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
+                                                    Card for payment of Education services rendered as described on <b>Date: {{ Carbon\Carbon::now()->format(Settings('active_date_format')) }}</b>.<br>
+                                                    I <b>{{ auth()->user()->name }}</b> agree, in all cases, to pay the Credit or Debit Card amount for the full payment of Education services rendered as described above.
+                                                </small>
+                                    </div>
+                                    <div class="d-flex mt-2">
+                                        <input type="checkbox" name="accept" id="accept"><p class="px-1 mb-0">I HAVE READ AND FULLY UNDERSTAND AND AGREE WITH ALL OF THE ABOVE TERMS.</p></div>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
                                 <button
                                     class="theme_btn text-white mt-4 w-100 "style="display: block;"
                                     type="submit">Pay now</button>

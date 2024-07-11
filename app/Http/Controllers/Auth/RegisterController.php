@@ -370,19 +370,19 @@ class RegisterController extends Controller
     public function RegisterDeclaration(){
       abort_if(!Settings('student_reg'), 404);
       abort_if(saasPlanCheck('student'), 404);
-      if (!session()->has('user')) {
-          return redirect()->to(route('register'));
-      }
-      $user = session()->get('user');
-      $userSetting = session()->get('userSetting');
+    //   if (!session()->has('user')) {
+    //       return redirect()->to(route('register'));
+    //   }
+      $user = Auth::user();
       $userDeclaration = UserDeclaration::where('user_id',Auth::user()->id)->first();
       $page = LoginPage::getData();
       $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
-
+      
       if (!$user_setting_exists) {
-                  Toastr::error('Please complete your Registration', 'Error');
-                  return redirect()->to(route('register'));
-              }
+          Toastr::error('Please complete your Registration', 'Error');
+          return redirect()->to(route('register'));
+        }
+        $userSetting = UserSetting::where('user_id', Auth::user()->id)->first();
 
       return view(theme('authnew.register3'), get_defined_vars());
       // return view(theme('authnew.register3'), compact('user','page','userSetting','userDeclaration'));
