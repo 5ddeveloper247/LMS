@@ -1,6 +1,6 @@
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" --}}
+        {{-- integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
 
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -127,7 +127,7 @@
                                 <div class="col-md-12">
                                     <div class="d-flex flex-column">
                                     <p class="mb-0"><b>Terms & Conditions</b></p>
-                                    <small class="mb-0 ml-2 agree_checkbox_p">I <b>{{ auth()->user()->name }}</b> hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
+                                    <small class="mb-0 agree_checkbox_p">I <b>{{ auth()->user()->name }}</b> hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
                                                     Card for payment of Education services rendered as described on <b>Date: {{ Carbon\Carbon::now()->format(Settings('active_date_format')) }}</b>.<br>
                                                     I <b>{{ auth()->user()->name }}</b> agree, in all cases, to pay the Credit or Debit Card amount for the full payment of Education services rendered as described above.
                                                 </small>

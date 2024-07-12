@@ -348,7 +348,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-
+       
         // Start
         // By Kamran, on 4 july 2023
         $userData = User::where('email', $request->email)->select('id', 'role_id')->first();
@@ -386,7 +386,6 @@ class LoginController extends Controller
 
 
         if ($this->attemptLogin($request)) {
-
             if (Auth::user()->status == 0) {
                 Auth::logout();
                 Toastr::error('Your account has been disabled !', 'Failed');

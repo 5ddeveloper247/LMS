@@ -205,10 +205,27 @@
                                                 </div>
                                             </div>
                                           
-        
+                                            <div class="form-row p-2 border border-dark rounded">
+                                                <div class="col-md-12">
+                                                    <div class="d-flex flex-column">
+                                                    <p class="mb-0"><b>Terms & Conditions</b></p>
+                                                    <small class="mb-0 agree_checkbox_p">I <b>{{ auth()->user()->name }}</b> hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
+                                                                    Card for payment of Education services rendered as described on <b>Date: {{ Carbon\Carbon::now()->format(Settings('active_date_format')) }}</b>.<br>
+                                                                    I <b>{{ auth()->user()->name }}</b> agree, in all cases, to pay the Credit or Debit Card amount for the full payment of Education services rendered as described above.
+                                                                </small>
+                                                    </div>
+                                                    <div class="d-flex mt-2">
+                                                        <input type="checkbox" name="accept" id="accept"><p class="px-1 mb-0">I HAVE READ AND FULLY UNDERSTAND AND AGREE WITH ALL OF THE ABOVE TERMS.</p></div>
+                                                </div>
+
+                                            </div>
                                             <div id="card-response" role="alert"></div>
-                                            
-                                                    <button id="paybtn" class="small_btn4 theme_btn">Pay Now</button>
+                                            <div class="form-row text-center">
+                                                <button id="paybtn"
+                                                    class="theme_btn text-white my-4 mx-auto "style="display: block;"
+                                                    type="submit">Pay now</button>
+
+                                            </div>
 
 
                                            

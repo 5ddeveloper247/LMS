@@ -149,7 +149,7 @@
             <div class="col-xl-12 mb-5 text-center">
                 <h3 class="font-weight-bold">Please Add Your Card Details</h3>
             </div>
-            <div class="col-xl-4">
+            <div class="col-xl-6">
                 <h3 class="font-weight-bold mb-3">@lang($lang)</h3>
                 @if ($errors->first('Error'))
                     <span class="text-danger" role="alert">{{ $errors->first('Error') }}</span>
@@ -195,10 +195,28 @@
                         </div>
                     </div>
                   
+                    <div class="form-row p-2 border border-dark rounded">
+                                <div class="col-md-12">
+                                    <div class="d-flex flex-column">
+                                    <p class="mb-0"><b>Terms & Conditions</b></p>
+                                    <small class="mb-0 agree_checkbox_p">I <b>{{ auth()->user()->name }}</b> hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
+                                                    Card for payment of Education services rendered as described on <b>Date: {{ Carbon\Carbon::now()->format(Settings('active_date_format')) }}</b>.<br>
+                                                    I <b>{{ auth()->user()->name }}</b> agree, in all cases, to pay the Credit or Debit Card amount for the full payment of Education services rendered as described above.
+                                                </small>
+                                    </div>
+                                    <div class="d-flex mt-2">
+                                        <input type="checkbox" name="accept" id="accept"><p class="px-1 mb-0">I HAVE READ AND FULLY UNDERSTAND AND AGREE WITH ALL OF THE ABOVE TERMS.</p></div>
+                                </div>
 
+                            </div>
                     <div id="card-response" role="alert"></div>
                     
-                            <button class="small_btn4 theme_btn mt-2">Pay Now</button>
+                            <div class="form-row text-center">
+                                <button
+                                    class="theme_btn text-white my-4 mx-auto "style="display: block;"
+                                    type="submit">Pay now</button>
+
+                            </div>
                 </form>
             </div>
             <div class="col-xl-4">

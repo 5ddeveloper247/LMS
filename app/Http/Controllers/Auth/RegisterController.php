@@ -539,8 +539,8 @@ class RegisterController extends Controller
       $userDeclaration->user_id = $request->user_id;
       $userDeclaration->save();
       session()->put('enrollment_declaration', $request->input());
-      Toastr::success('Pre Registration Successfull.', 'Success');
-      return redirect()->to(route('studentDashboard'));
+      Toastr::success('Pre Registration Successfull. Now you can proceed with buying courses', 'Success');
+      return redirect()->intended(route('studentDashboard'));
     }
 
     public function RegisterForm3Create(Request $request)
@@ -806,7 +806,6 @@ class RegisterController extends Controller
             ini_set('max_execution_time', 10000);
         }
         //for student
-
         if (isset($request->f_name) && isset($request->l_name)) {
             $name = $request->f_name . ' ' . $request->l_name;
             $request->request->add(['name' => $name]);
@@ -869,47 +868,5 @@ class RegisterController extends Controller
 
         session()->put(['user' => $user]);
         return redirect()->to(route('register.declaration'));
-
-
-        //        if (isModuleActive('LmsSaasMD') && !empty($user->institute) && $user->institute->status == 0) {
-        //            $maintain = collect();
-        //            $maintain->maintenance_title = trans('saas.View Title');
-        //            $maintain->maintenance_sub_title = trans('saas.View Sub Title');
-        //            $maintain->maintenance_banner = HomeContents('maintenance_banner');
-        //            return new response(view(theme('pages.maintenance'), compact('maintain')));
-        //        }
-        //        if (isModuleActive('LmsSaasMD') && !empty($user->institute) && $user->institute->domain != SaasDomain()) {
-        //            if ($user->lms_id != 1) {
-        //                $token = md5(uniqid());
-        //                Storage::put($token, $request->email . '|' . $request->password);
-        //                $url = 'http://' . $user->institute->domain . '.' . config('app.short_url') . '/login?token=' . $token;
-        //                return redirect()->to($url);
-        //            }
-        //        }
-        //        if (isModuleActive('LmsSaas') && !empty($user->institute) && $user->institute->domain != SaasDomain()) {
-        //            if ($user->lms_id != 1) {
-        //                $token = md5(uniqid());
-        //                Storage::put($token, $request->email . '|' . $request->password);
-        //                $url = 'http://' . $user->institute->domain . '.' . config('app.short_url') . '/login?token=' . $token;
-        //                return redirect()->to($url);
-        //            }
-        //        }
-        //
-        //        event(new Registered($user));
-        //
-        //        $this->guard()->login($user);
-        //        if ($user->role_id == 3) {
-        //            $loginController = new LoginController();
-        //            $loginController->multipleLogin($request);
-        //        }
-
-
-        //        if ($response = $this->registered($request, $user)) {
-        //            return $response;
-        //        }
-        //
-        //        return $request->wantsJson()
-        //            ? new JsonResponse([], 201)
-        //            : redirect($this->redirectPath());
     }
 }

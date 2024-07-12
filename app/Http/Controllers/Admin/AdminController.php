@@ -23,6 +23,7 @@ use Modules\CourseSetting\Entities\CourseEnrolled;
 use Modules\Payment\Entities\InstructorTotalPayout;
 use Modules\Subscription\Entities\SubscriptionCourse;
 use Modules\Subscription\Entities\SubscriptionCheckout;
+use Modules\Payment\Entities\StudentProgramPaymentPlans;
 use App\Models\PreRegistration;
 
 class AdminController extends Controller
@@ -558,9 +559,6 @@ class AdminController extends Controller
 
     public function enrollDelete($id, Request $request)
     {
-        if (demoCheck()) {
-            return redirect()->back();
-        }
         if (isset($request->cancel)) {
             $deleteEnroll = $enroll = CourseCanceled::with('course', 'user')->findOrFail($id);
         } else {
@@ -585,7 +583,7 @@ class AdminController extends Controller
             }
         }
         if(!empty($enroll->program_id)){
-          $deletePlan = StudentProgramPaymentPlans::where('program_id', $enroll->$program_id)->where('user_id', $enroll->user_id)->where('plan_id', $enroll->plan_id)->delete();
+          $deletePlan = StudentProgramPaymentPlans::where('program_id', $enroll->program_id)->where('user_id', $enroll->user_id)->where('plan_id', $enroll->plan_id)->delete();
         }
         $deleteEnroll->delete();
         if (UserEmailNotificationSetup($act, $enroll->user)) {

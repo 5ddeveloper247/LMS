@@ -582,7 +582,7 @@
                     $banner_image = 'public/frontend/infixlmstheme/img/images/courses-4.jpg';
                     $btn_title = auth()->check() ? '' : 'Sell With Us';
                 @endphp
-                <x-breadcrumb :banner="$banner_image" :title="$banner_title" :btntitle="$btn_title" :btnclass="'hit openModal'" />
+                <x-breadcrumb :btntitle="$btn_title" :btnclass="'hit openModal'" />
             </div>
         </div>
         <div class="container px-lg-5 teach_offer">

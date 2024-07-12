@@ -112,7 +112,7 @@
                                                 <div class="col-xl-12">
                                                     <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
-                                                               for="">{{ __('common.Sub Title') }}</label>
+                                                               for="">{{ __('common.Sub Title') }} <small>(Max Length: 130)</small></label>
                                                         <input name="sub_title" id="sub_title"
                                                                class="primary_input_field name {{ @$errors->has('sub_title') ? ' is-invalid' : '' }}" maxlength="130"
                                                                placeholder="{{ __('frontendmanage.Sub Title') }}"

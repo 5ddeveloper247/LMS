@@ -3068,6 +3068,10 @@ class WebsiteController extends Controller
 
     public function packageBuyingCreate(Request $request)
     {
+        if(!$request->has('accept')){
+            Toastr::error('Terms & Conditions must be accepted.', 'Error');
+                  return redirect()->back();
+        }
         try {
                  $AuthorizeObj = new DoAuthorizeNetPaymentController();
                //$result=$clover->makePayment($request, $request->type, false, null, true);
