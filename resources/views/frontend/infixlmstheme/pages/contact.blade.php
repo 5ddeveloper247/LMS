@@ -144,7 +144,7 @@
             width: 100%;
             left: 0;
             right: 0;
-            background-color: #2525259e;
+            background-color: #2525255e;
         }
 
         .flowdiv {

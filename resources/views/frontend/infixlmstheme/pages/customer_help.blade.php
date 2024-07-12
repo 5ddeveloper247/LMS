@@ -172,7 +172,7 @@
             </div>
         </section>
         <!-- Demo header-->
-        <section class="header mb-2 mt-md-5 mt-4">
+        <section class="header mb-4 mb-md-5 mt-md-5 mt-4">
             <div class="container px-md-5">
                 <div class="row px-1 px-xl-5 px-md-2">
 
@@ -218,12 +218,12 @@
                                     <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Help and Support')">Help and Support</span></a>
 
-                                <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-settings-tab-3"
+                                {{-- <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="v-pills-settings-tab-3"
                                     data-toggle="pill" href="#v-pills-settings" role="tab"
                                     aria-controls="v-pills-settings" aria-selected="false">
                                     <i class="fa fa-arrow-right mr-2"></i>
                                     <span class="text_small font-weight-bold small text-uppercase"
-                                        onclick="changeTab('Certificate Verification')">Certificate Verification</span></a>
+                                        onclick="changeTab('Certificate Verification')">Certificate Verification</span></a> --}}
 
                                 {{-- <a class="nav-link mb-3 p-3 shadow" id="tab-4" data-toggle="pill" href="#ship"
                             role="tab" aria-controls="ship" aria-selected="false">
@@ -246,12 +246,12 @@
                                     <span class="text_small font-weight-bold small text-uppercase"
                                         onclick="changeTab('Faqs')">Faq's</span></a>
 
-                                <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="tab-8" data-toggle="pill"
+                                {{-- <a class="nav-link mb-md-3 p-md-3 p-2 shadow main-items" id="tab-8" data-toggle="pill"
                                     href="#resource-center" role="tab" aria-controls="resource-center"
                                     aria-selected="false">
                                     <i class="fa fa-arrow-right mr-2"></i>
                                     <span class="text_small font-weight-bold small text-uppercase"
-                                        onclick="changeTab('Resource center')">Resource center</span></a>
+                                        onclick="changeTab('Resource center')">Resource center</span></a> --}}
                             </div>
                             <div class="eventsIcon d-md-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
                         </div>
@@ -262,7 +262,7 @@
                         <h1 class="customer d-none invisible">test</h1>
                         <!-- Tabs content -->
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-5" id="customer" role="tabpanel"
+                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="customer" role="tabpanel"
                                 aria-labelledby="tab-8">
                                 <h5>FOR ASSISTANCE</h5>
                                 <h6>DOMESTIC CUSTOMERS</h6>
@@ -289,7 +289,7 @@
                                 </p>
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-lg-5" id="contact" role="tabpanel"
+                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="contact" role="tabpanel"
                                 aria-labelledby="tab-9">
                                 <h5>WE’RE HERE FOR YOU!</h5>
                                 <p>
@@ -302,7 +302,7 @@
                             </div>
 
 
-                            <div class="tab-pane fade show active rounded bg-white p-3 p-lg-5 shadow mb-lg-5" id="v-pills-home"
+                            <div class="tab-pane fade show active rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-home"
                                 role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 <h5> SCOPE</h5>
                                 <p>The business relationships between Barbara Sturm Molecular Cosmetics GmbH - hereinafter
@@ -373,7 +373,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-5" id="v-pills-profile"
+                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-profile"
                                 role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                 <p>
                                     Barbara Sturm Molecular Cosmetics collects and uses your personal data exclusively in
@@ -463,7 +463,7 @@
                                 </p>
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-5" id="v-pills-messages"
+                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-messages"
                                 role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <p>
                                     Merkaii Xcellence College of Health are committed to providing a website that is accessible to
@@ -476,7 +476,7 @@
                                 </p>
                             </div>
 
-                            <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-5" id="v-pills-settings"
+                            {{-- <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-settings"
                                 role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                 <h5>About this cookie policy</h5>
                                 <p>
@@ -545,7 +545,7 @@
                                     like language preferences so that you have a better and efficient experience on future
                                     visits to the website.
                                 </p>
-                            </div>
+                            </div> --}}
 
                             {{-- <div class="tab-pane fade shadow rounded bg-white p-5" id=ship role="tabpanel"
                             aria-labelledby="tab-4">
@@ -642,7 +642,7 @@
                                     style="color:white">Login</a></button>
 
                         </div> --}}
-                            <div class="tab-pane fade p-lg-5 rounded bg-white p-3 shadow mb-lg-5" id="faq"
+                            <div class="tab-pane fade p-lg-5 rounded bg-white p-3 shadow mb-3" id="faq"
                                 role="tabpanel" aria-labelledby="tab-7">
                                 <h5>Frequently Asked Questions</h5>
                                 <div class="col-12 mt-3 px-0">
@@ -714,7 +714,7 @@
                                 </p> --}}
                             </div>
                             {{-- resourse center --}}
-                            <div class="tab-pane fade rounded bg-white p-4 shadow mb-md-5 mb-4" id="resource-center"
+                            {{-- <div class="tab-pane fade rounded bg-white p-4 shadow mb-3" id="resource-center"
                                 role="tabpanel" aria-labelledby="tab-8">
                                 <h5>FOR Resource Center</h5>
                                 <h6>DOMESTIC CUSTOMERS</h6>
@@ -739,7 +739,7 @@
                                     6 days a week (Sunday - Friday) and are ready to help. Please allow 24 hours to receive
                                     a response.
                                 </p>
-                            </div>
+                            </div> --}}
                         </div>
 
                     </div>

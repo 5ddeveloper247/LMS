@@ -115,10 +115,7 @@
             padding-right: 60px;
         }
 
-        /* .custom-l-padd {
-                    padding: 0 0 0 60px;
-                } */
-
+   
         .custom-padd {
             padding-left: 60px;
         }
@@ -137,6 +134,10 @@
             scrollbar-width: none;
 
         }
+        .instructor-image{
+            height: 310px;
+             object-fit:cover;
+        }
 
         @media only screen and (min-width: 501px) and (max-width: 767px) {
             .btn_responsive {
@@ -152,6 +153,10 @@
         }
 
         @media only screen and (min-width: 1800px) {
+            .instructor-image{
+            height: 420px !important;
+             object-fit:cover;
+        }
             .thumb-height {
                 height: 400px !important;
                 object-fit: cover;
@@ -263,7 +268,7 @@
                             <div class="card-header rounded-card-header p-0">
                                 <a href="{{ route('tutorDetails', [$instructor->id, Str::slug($instructor->name, '-')]) }}">
                                     <img src="{{ getInstructorImage($instructor->image) }}" alt="Avatar"
-                                        class="img-fluid w-100 rounded-card-img" style="height: 52vh; object-fit:cover;">
+                                        class="img-fluid w-100 rounded-card-img instructor_image">
                                 </a>
                             </div>
                             <div class="card-body row">

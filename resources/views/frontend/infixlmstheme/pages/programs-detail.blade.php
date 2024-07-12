@@ -414,18 +414,6 @@
         font-size: 35px;
     }
 
-    /* .expore h5 {
-                    font-weight: 700;
-                    color: white;
-                    font-size: 24px;
-                } */
-
-    /* .footerbox1 h5 {
-                    font-weight: 700;
-                    color: white;
-                    font-size: 24px;
-                } */
-
     .footerbox h5 {
         font-weight: 400;
     }
@@ -448,49 +436,6 @@
         border-radius: 10px
     }
 
-    /* .footerbox1 p {
-                    line-height: 30px !important;
-                    font-size: 17px !important;
-                    color: white;
-                    cursor: pointer;
-                    transition: 1s;
-                }
-
-                .footerbox1 p:hover {
-                    line-height: 30px !important;
-                    font-size: 17px !important;
-                    color: #5600;
-                    text-decoration: underline;
-                }
-
-                .expore p {
-                    line-height: 30px !important;
-                    font-size: 17px !important;
-                    color: white;
-                    cursor: pointer !important;
-                    transition: 1s;
-                }
-
-                .expore p:hover {
-                    line-height: 30px !important;
-                    font-size: 17px !important;
-                    color: #ff5600;
-                    text-decoration: underline;
-                }
-
-                .icons i {
-                    font-size: 12px;
-                    padding: 3px;
-                    cursor: pointer;
-                }
-
-                .icons i:hover {
-                    color: #ff1949;
-
-                    font-size: 12px;
-                    padding: 3px;
-                } */
-
     .fonts {
         font-size: 17px;
         font-weight: 400;
@@ -502,10 +447,6 @@
         border-radius: 10px !important;
         object-fit : cover;
     }
-
-    /* .footercolor {
-                    background: #252525;
-                } */
 
 
     .accordion .card:first-of-type {
@@ -622,8 +563,6 @@
         padding: 10px 20px;
         margin-bottom: 20px;
         border-radius: 5px;
-        /* -webkit-box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2);
-        box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2); */
     }
 
     .toggle,
@@ -663,12 +602,6 @@
         -o-transition: all 1s;
         transition: all 1s;
     }
-
-    .program_image {
-        border-radius: 10px !important;
-        height: 100%;
-    }
-
     .amount_total {
         justify-content: center;
         display: flex;
@@ -676,9 +609,7 @@
         text-align: right
     }
 
-    @media (width < 576px
-
-    ) {
+    @media (width < 576px ) {
         .custom_heading_1 {
             font-size: 1rem;
         }
@@ -690,8 +621,6 @@
             gap: 2px;
         }
     }
-
-
     .p-clamp {
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -711,66 +640,6 @@
         overflow: hidden;
     }
 
-    /* @media (width > 1650px) {
-
-         {
-            margin-top: 43px !important;
-        }
-
-        .image_responsive {
-            margin-top: 0px;
-        }
-
-        .breadcrumb_area .breadcam_wrap h5 {
-            font-size: 100px !important;
-            font-weight: 900;
-            line-height: 76px;
-            color: #fff;
-        }
-
-
-        p {
-            font-size: 1.5rem !important;
-            line-height: 1.2 !important;
-        }
-
-        h5 {
-            font-size: 27px !important;
-            line-height: 25px;
-        }
-
-        h5 {
-            font-size: 32px !important;
-            line-height: 25px;
-        }
-
-        span {
-            font-size: 1.5rem !important;
-
-
-        }
-
-        .lms_tabmenu li a {
-            font-size: 26px !important;
-        }
-
-        .table.custom_table3 tbody tr td,
-        .table.custom_table3 thead tr th {
-            font-size: 24px !important;
-        }
-
-        .theme_btn {
-            font-size: 23px !important;
-        }
-
-        .image_responsive {
-            padding-top: 17px;
-        }
-
-    } */
-    /* .prog_blk {
-        padding-bottom: 60vh !important;
-    } */
 
     .prog_blk {
         position: relative;
@@ -800,10 +669,7 @@
 .banner_img{
     object-fit: fill !important;
 }
-.program_tab {
-    height: 100% !important;
-    border-radius: 10px;
-}
+
 
 @media only screen and (max-width: 576px){
     .small_screen {
@@ -992,7 +858,7 @@
                     </div>
 
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12">
-                    <div class="custom_section_color d-lg-block d-nonerounded_section pt-2 px-2 program_tab">
+                    <div class="custom_section_color rounded_section pt-2 px-2 program_tab">
                         <h5 class="font-weight-bold custom_heading_1">You May also Like</h5>
                         <div class="row mx-0 mt-2">
                             @forelse($recent_program as  $program)
@@ -1492,19 +1358,19 @@
                             @if (count($courses->unique('user_id')))
                                 @foreach ($courses->unique('user_id') as $course)
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-6">
+                                        <div class="col-xl-5 col-sm-6">
                                             <div class="thumb">
                                                 <img class="w-100 h-100" style="border-radius:25px;"
                                                      src="{{ getInstructorImage($course->user->image) }}" alt="">
                                             </div>
                                         </div>
-                                        <div class="col-md-8 col-sm-6">
+                                        <div class="col-xl-7 col-sm-6">
                                             <div class="instractor_details_info">
-                                                <a
-                                                    href="javascript:void(0)">
+                                                {{-- <a
+                                                    href="javascript:void(0)"></a> --}}
                                                     {{-- href="{{ route('instructorDetails', [$course->user->id, $course->user->name]) }}"> --}}
                                                     <h5 class="font_22 f_w_700 mt-2 mt-md-0">{{ $course->user->name }}</h5>
-                                                </a>
+                                                
                                                 <h5> {{ $course->user->headline }}</h5>
                                                 <div class="ins_details">
                                                     <p> {{ $course->user->short_details }}</p>
@@ -1614,7 +1480,7 @@
 
                                                     </div>
                                                 @elseif ($course->type == 4 || $course->type == 5 || $course->type == 6 || $course->type == 7)
-                                                    <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mb-md-4 mb-3">
+                                                    <div class="col-sm-6 col-lg-4 d-flex justify-content-center mb-md-4 mb-3">
                                                         <div class="quiz_wizged card rounded-card shadow">
                                                             <a
                                                                 href="{{ !empty($course->parent_id) ? courseDetailsUrl(@$course->parent->id, @$course->type, @$course->parent->slug) . '?courseType=' . $course->type : courseDetailsUrl(@$course->id, @$course->type, @$course->slug) }}">

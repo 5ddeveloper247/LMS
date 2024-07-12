@@ -15,6 +15,7 @@
     /* line-height: 1; */
     text-align: center;
     padding: 0.5rem;
+    white-space: nowrap;
 }
 
 
