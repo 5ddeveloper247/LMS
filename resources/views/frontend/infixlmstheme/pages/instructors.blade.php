@@ -256,7 +256,7 @@
         <!-- profile slidder -->
 
 
-        <div class="container py-md-5 py-3">
+        <div class="container pt-md-5 pb-md-4 py-3">
             <div class="row mx-xl-5">
                 <div class="col-md-12">
                     <h2 class="custom_small_heading font-weight-bold pb-md-5 pb-3 text-center text-capitalize">
@@ -339,7 +339,7 @@
         <!-- becomeInsructor section  -->
         <div class="row custom_section_color mb-md-5 mb-4">
             <div class="col-md-6 p-lg-4 pt-2 pb-4 px-3 d-flex align-items-center">
-                <div class="custom-l-padd pl-sm-5 p-2 custom_height_2" data-aos="fade-right">
+                <div class="custom-l-padd pl-sm-5 p-2 custom_height_instructor" data-aos="fade-right">
                     <h2 class="custom_small_heading font-weight-bold text-capitalize d-flex-flex-column justify-content-center mb-md-4 mb-3">
                         Who we are looking for
                     </h2>
