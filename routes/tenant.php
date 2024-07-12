@@ -71,7 +71,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('customer-help', 'WebsiteController@customerHelp')->name('customer-help');
     Route::get('calendar-view', 'WebsiteController@calendarView')->name('calendar-view');
 
-    Route::get('instructors', 'InstructorController@instructors')->name('instructors')->middleware('HeaderMenuPermissions');;
+    Route::get('instructors', 'InstructorController@instructors')->name('instructors')->middleware('HeaderMenuPermissions');
     Route::get('become-instructor', 'InstructorController@becomeInstructor')->name('becomeInstructor');
     Route::get('instructorDetails/{id}/{name}', 'InstructorController@instructorDetails')->name('instructorDetails');
 
@@ -83,7 +83,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 
 
 
-    Route::get('courses', 'CourseController@courses')->name('courses')->middleware('HeaderMenuPermissions');;
+    Route::get('courses', 'CourseController@courses')->name('courses')->middleware('HeaderMenuPermissions');
     Route::get('offer', 'CourseController@offer')->name('offer');
     Route::get('courses-details/{slug}', 'CourseController@courseDetails')->name('courseDetailsView');
 
@@ -93,7 +93,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('class-details/{slug}', 'ClassController@classDetails')->name('classDetails');
     Route::get('class-start/{slug}/{host}/{meeting_id}', 'ClassController@classStart')->name('classStart');
 
-    Route::get('programs', 'ProgramController@programs')->name('programs')->middleware('HeaderMenuPermissions');;
+    Route::get('programs', 'ProgramController@programs')->name('programs')->middleware('HeaderMenuPermissions');
     Route::get('program-detail/{id}', 'ProgramController@programsDetail')->name('programs.detail');
 
     Route::get('teach-with-us', 'WebsiteController@teachWithUs')->name('teachWithUs')->middleware('HeaderMenuPermissions');
@@ -105,7 +105,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('tutor-withdraw', 'WebsiteController@tutorRevenue')->name('tutorRevenue');
     Route::post('tutor-withdraw-create', 'WebsiteController@tutorRevenueWithdraw')->name('tutorRevenueWithdraw');
 
-    Route::get('prep-courses', 'QuizController@quizzes')->name('quizzes')->middleware('HeaderMenuPermissions');;
+    Route::get('prep-courses', 'QuizController@quizzes')->name('quizzes')->middleware('HeaderMenuPermissions');
     Route::get('quiz-details/{slug}', 'QuizController@quizDetails')->name('quizDetailsView');
     Route::get('quizStart/{id}/{quiz_id}/{slug}', 'QuizController@quizStart')->name('quizStart');
     Route::post('quizSubmit', 'QuizController@quizSubmit')->name('quizSubmit');

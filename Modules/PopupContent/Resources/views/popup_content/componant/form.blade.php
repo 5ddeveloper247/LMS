@@ -60,7 +60,7 @@
         @endforeach
     </div>
     <div class="row">
-        <div class="col-xl-6 ">
+        <div class="col-xl-4 ">
             <div class="primary_input mb-25">
                 <div class="row">
                     <div class="col-md-12 mb-3">
@@ -100,7 +100,7 @@
             </div>
         </div>
 
-        <div class="col-xl-6">
+        <div class="col-xl-4">
             <div class="primary_input mb-25">
                 <label class="primary_input_label" for="">{{ __('common.Link') }} </label>
                 <input name="link" class="primary_input_field" placeholder="-" type="url"
@@ -108,7 +108,13 @@
             </div>
             <span class="text-danger" id="btn_txt_error"></span>
         </div>
-
+        <div class="col-xl-4">
+            <div class="primary_input mb-25">
+                <label for="bg_color" class="primary_input_label">Background Color</label>
+                <input name="bg_color" class="primary_input_field" type="color"
+                       value="{{ old('bg_color') ? old('bg_color') : $popup->bg_color }}">
+            </div>
+        </div>
         <div class="col-xl-6">
             <div class="primary_input mb-25">
                 <label class="mb-2 mr-30">{{ __('common.Image') }}<small>(598 × 816)px</small></label>

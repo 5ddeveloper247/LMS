@@ -121,7 +121,7 @@
         <div class="modal fade" id="exampleModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg popup-dialog" role="document">
-                <div class="modal-content rounded-0">
+                <div class="modal-content rounded-0" style="background-color:{{$popup->bg_color}}">
                     <div class="modal-header">
                         {{-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> --}}
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

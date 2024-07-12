@@ -69,7 +69,7 @@
                                                                 {{ __('blog.Description') }}
 
                                                             </label>
-                                                            <textarea class="custom_summernote" name="description" id="" cols="30"
+                                                            <textarea class="custom_summernote" name="description" id="description" cols="30"
                                                                 rows="10">{{ old('description') }}</textarea>
                                                         </div>
                                                     </div>
@@ -293,35 +293,132 @@
         // Image Cropper Start
         $(document).ready(function() {
 
-            // Summer Note
-            $('.custom_summernote').summernote({
-                fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
-                codeviewFilter: true,
-                codeviewIframeFilter: true,
-                toolbar: [
-                   // ['style', ['style']],
-                    
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['style','ul', 'ol']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen']],
-                    
-                ],
-                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
-                callbacks: {
-                    onPaste: function (e) {
-                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                        e.preventDefault();
-                        document.execCommand('insertText', false, bufferText);
-                    }
+            var customFontFam = ['Arial','Helvetica','Cavolini','Jost','Impact','Tahoma','Verdana','Garamond','Georgia','monospace','fantasy','Papyrus','Poppins'];
+            
+            $('.custom_summernote').each(function (){
+                var elId = $(this).attr('id');
+                ClassicEditor
+                .create( document.getElementById(elId),{
+                    ckfinder: {
+                        uploadUrl: "{{ route('ckeditor.upload',['_token' => csrf_token()]) }}",
+                    },
+                mediaEmbed : {
+                    previewsInData: true,
+                    removeProviders: [ 'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook' ],
                 },
-                height: 188,
-                tooltip: true
+                        fontSize: {
+                            options: [
+                                9,
+                                11,
+                                13,
+                                'default',
+                                17,
+                                19,
+                                21
+                            ]
+                        },
+                        fontFamily: {
+                            options: customFontFam
+                        },
+                toolbar: {
+			items: [
+				'heading',
+				'|',
+				'bold',
+				'italic',
+				'link',
+				'bulletedList',
+				'numberedList',
+				'|',
+				'blockQuote',
+				'fontFamily',
+				'fontSize',
+				'fontColor',
+				'alignment',
+				'outdent',
+				'indent',
+				'|',
+				'insertTable',
+				'imageInsert',
+			//	'imageUpload',
+				'mediaEmbed',
+			//	'CKFinder',
+			//	'codeBlock',
+				'|',
+				'undo',
+				'redo'
+			]
+		},
+		language: 'en',
+		image: {
+			toolbar: [
+				'imageTextAlternative',
+				'toggleImageCaption',
+				'imageStyle:inline',
+				'imageStyle:block',
+				'imageStyle:side'
+			],
+            insert: {
+                // This is the default configuration, you do not need to provide
+                // this configuration key if the list content and order reflects your needs.
+                integrations: [ 'upload', 'url' ]
+            }
+		},
+		table: {
+			contentToolbar: [
+				'tableColumn',
+				'tableRow',
+				'mergeTableCells'
+			]
+		}
+                } )
+                .then(editor => {
+                    // Save the editor instance to use it later
+                    window.editor = editor;
+
+                    // Listen to the change:data event
+                    editor.model.document.on('change:data', () => {
+                        // Get the editor content
+                        const editorData = editor.getData();
+                        // Update the textarea with the editor content
+                        // document.querySelector('#editor').value = editorData;
+                        $(this).val(editorData);
+                    });
+                })
+                .catch( error => {
+                    console.error( error );
+                });
             });
+
+            // Summer Note
+            // $('.custom_summernote').summernote({
+            //     fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20'],
+            //     codeviewFilter: true,
+            //     codeviewIframeFilter: true,
+            //     toolbar: [
+            //        // ['style', ['style']],
+                    
+            //         ['font', ['bold', 'underline', 'clear']],
+            //         ['fontname', ['fontname']],
+            //         ['fontsize', ['fontsize']],
+            //         ['color', ['color']],
+            //         ['para', ['style','ul', 'ol']],
+            //         ['table', ['table']],
+            //         ['insert', ['link', 'picture', 'video']],
+            //         ['view', ['fullscreen']],
+                    
+            //     ],
+            //     styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+            //     callbacks: {
+            //         onPaste: function (e) {
+            //             var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+            //             e.preventDefault();
+            //             document.execCommand('insertText', false, bufferText);
+            //         }
+            //     },
+            //     height: 188,
+            //     tooltip: true
+            // });
 
             // 1st Cropper
             var _URL1 = window.URL || window.webkitURL;

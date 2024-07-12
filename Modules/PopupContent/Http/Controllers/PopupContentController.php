@@ -37,6 +37,7 @@ class PopupContentController extends Controller
             $popup->title = $request->title;
             $popup->btn_txt = $request->btn_txt;
             $popup->link = $request->link;
+            $popup->bg_color = $request->bg_color;
             $popup->status = $request->status;
 
             $popup->message = $request->message;
