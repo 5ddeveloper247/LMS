@@ -127,10 +127,10 @@
             content: "";
             position: absolute;
             left: 50%;
-            bottom: -50px;
+            bottom: -30px;
             transform: translateX(-50%);
             width: 2px;
-            height: 50px;
+            height: 30px;
             background-color: #ccc;
         }
 
@@ -138,10 +138,10 @@
             content: "";
             position: absolute;
             left: 50%;
-            bottom: -50px;
+            bottom: -30px;
             transform: translateX(-50%);
             width: 2px;
-            height: 50px;
+            height: 30px;
             background-color: #ccc;
         }
         .image img{
@@ -152,6 +152,9 @@
     @media only screen and (max-width: 767px) {
         .stepper_right {
             padding-left: 40px;
+        }
+        .paddingy{
+            padding-right: 40px;
         }
 
         .slider h2::before {

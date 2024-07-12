@@ -266,7 +266,7 @@
                     
                     <div class="course_tabs w-100 mb-3 px-md-2">
                         <div class="events_wrapper">
-                            <div class="eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
+                            <div class="pre-eventsIcon eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
                             </div>
                         <ul class="d-flex lms_tabmenu nav w-100 text-center"
                             id="myTab" role="tablist">
@@ -325,7 +325,7 @@
                             @endif
 
                         </ul>
-                        <div class="eventsIcon d-xl-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
+                        <div class="pre-eventsIcon eventsIcon d-xl-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
                     </div>
                     </div>
 
@@ -933,7 +933,7 @@
                                         }
                                         $c_slug = ($c->parent) ? $c->parent->slug : $c->slug;
                                     @endphp
-                                        <div class="col-sm-6 col-lg-4 d-flex justify-content-center mb-3">
+                                        <div class="col-sm-6 col-xl-4 d-flex justify-content-center mb-3">
                                             <div class="card quiz_wizged rounded-card shadow">
                                                 <div class="rounded-card-img thumb">
 
@@ -1005,7 +1005,7 @@
                                                             @endif
                                                         @endguest
                                                     </div>
-                                                    <div class="course_less_students d-flex justify-content-between ">
+                                                    <div class="course_less_students d-flex justify-content-between course_detail_items" >
                                                         <a href="#"> <i class="ti-agenda course-span"></i>
                                                             {{ count($c->parent->lessons) }}
                                                             {{ __('frontend.Lessons') }}</a>

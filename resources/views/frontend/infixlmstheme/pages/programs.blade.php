@@ -282,7 +282,7 @@
                 </div>
                 @if (isset($programs))
                     @foreach ($programs as $program)
-                        <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mb-md-4 mb-3">
+                        <div class="col-sm-6 col-lg-4 col-xl-3 d-flex justify-content-center mb-md-4 mb-3">
                             <div class="quiz_wizged card rounded-card shadow w-100">
                                 <div class="thumb rounded-card-img">
                                     <a href="{{ route('programs.detail', [$program->id]) }}"><img
