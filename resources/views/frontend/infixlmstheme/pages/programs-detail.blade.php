@@ -902,7 +902,7 @@
                         <div class="col-xl-9 col-lg-9 col-md-8 col-12">
                         <div class="course_tabs">
                             <div class="events_wrapper">
-                                <div class="eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
+                                <div class="pre-eventsIcon eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
                                 </div>
                         <ul class="d-flex lms_tabmenu nav w-100 text-center"
                             style="
@@ -929,7 +929,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="eventsIcon d-xl-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
+                        <div class="pre-eventsIcon eventsIcon d-xl-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
                     </div>
                     </div>
                     <hr>

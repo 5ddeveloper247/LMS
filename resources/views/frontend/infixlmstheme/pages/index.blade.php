@@ -461,9 +461,9 @@
     }
 
     .news-events-tabs-section .news-events-tab .tab-content {
-        height: 500px;
+        max-height: 500px;
         overscroll-behavior: inherit;
-        overflow-y: scroll;
+        overflow-y: auto;
         margin-top: 15px;
     }
 
@@ -483,14 +483,10 @@
         position: relative;
     }
 
-    .news-events-tabs-section .news-events-tab .single-notice:first-child {
-        /* border-top: 1px solid #ddd8f9; */
-    }
-
     .news-events-tabs-section .news-events-tab .single-notice {
         border-bottom: 1px solid #ddd8f9;
         padding: 25px 0;
-        margin-right: 40px;
+        margin-right: 10px;
     }
 
     .news-events-tabs-section .news-events-tab .single-notice-item {
@@ -2033,10 +2029,6 @@
             min-height: auto !important;
         }
 
-        .rts-section a {
-            font-size: 14px;
-        }
-
     }
 
     @media (min-width: 768px) {
@@ -2049,6 +2041,12 @@
     }
 
     @media only screen and (max-width: 767.5px) {
+        .rts-section a {
+            font-size: 14px;
+        }
+        .event-date span{
+            font-size: 13px !important;
+        }
         .video-container {
             height: 450px !important;
         }
@@ -2164,7 +2162,7 @@
         .for-label1,
         .heading-responsive-style,
         .content-features2-hh,
-        .card-title {
+        .card-title, .rts-section-title, .event-title, .rts-section-title {
             font-size: 16px !important;
         }
 
@@ -2304,6 +2302,10 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1023px) {
+        .content-features-btn, .custom-button-call-to-action, .Faq-btn{
+            font-size: 14px !important;
+            padding: .2rem .6rem !important;
+        }
         .video-container {
             height: 470px !important;
         }
@@ -2317,7 +2319,7 @@
         }
 
         .for-border {
-            min-height: 296px !important;
+            min-height: 260px !important;
         }
 
         .about_us_image {
@@ -2415,6 +2417,9 @@
     }
 
     @media only screen and (min-width: 1024px) and (max-width: 1279px) {
+        .about_us_img2, .about_us_img1{
+            height: 450px;
+        }
         .video-container {
             height: 500px !important;
         }
@@ -3841,7 +3846,7 @@
 
                 <div class="col-md-6 col-xl-7 d-flex flex-md-column flex-lg-row justify-content-center about-image-main"
                     style="gap: 1rem">
-                    <div class="col-6 col-md-11 col-lg-6 p-0  about-img about_us_img1 shadow">
+                    <div class="col-6 col-md-11 col-lg-6 p-0 about-img about_us_img1 shadow">
 
                         <img src="{{ asset('public/assets/Untitled-1.png') }}" class="w-100 about_us_image">
 
@@ -5753,7 +5758,7 @@
                             <div class="row px-xl-5">
                                 <div class="col-md-12">
                                     <div class="pb-lg-5 pb-4 text-center ">
-                                        <h2 class="custom_heading_1 font-weight-bold">
+                                        <h2 class="custom_small_heading custom_heading_1 font-weight-bold">
                                             Popular Events and News</h2>
                                         <p class="custom_paragraph font-weight-bold">
                                             Be in the Know: What’s happening at Merkaii Xcellence?
@@ -6923,7 +6928,7 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         const tabsBox = document.querySelector(".news-events-navtabs"),
             allTabs = tabsBox.querySelectorAll(".nav-item"),
             arroweventsIcons = document.querySelectorAll(".eventsIcon i");
@@ -6959,7 +6964,53 @@
         });
 
         tabsBox.addEventListener("scroll", handleeventsIcons);
-    </script>
+    </script> --}}
+
+
+
+<script>
+       $(document).ready(function() {
+    const $tabsBox = $(".news-events-navtabs"),
+        $allTabs = $tabsBox.find(".nav-item"),
+        $arrowEventsIcons = $(".eventsIcon i");
+
+    const handleEventsIcons = () => {
+        let maxScrollableWidth = $tabsBox[0].scrollWidth - $tabsBox[0].clientWidth;
+        if (maxScrollableWidth <= 0) {
+            // Hide both arrows if there's no overflow
+            $arrowEventsIcons.parent().css("display", "none");
+        } else {
+            // Handle visibility based on scroll position
+            $arrowEventsIcons.eq(0).parent().css("display", $tabsBox.scrollLeft() <= 0 ? "none" : "flex");
+            $arrowEventsIcons.eq(1).parent().css("display", maxScrollableWidth - $tabsBox.scrollLeft() <= 1 ? "none" : "flex");
+        }
+    };
+
+    // Initial check
+    handleEventsIcons();
+
+    $arrowEventsIcons.on("click", function() {
+        if ($(this).attr("id") === "left") {
+            $tabsBox.animate({
+                scrollLeft: "-=340"
+            }, 400);
+        } else {
+            $tabsBox.animate({
+                scrollLeft: "+=340"
+            }, 400);
+        }
+    });
+
+    $allTabs.on("click", function() {
+        $tabsBox.find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    $tabsBox.on("scroll", handleEventsIcons);
+    $(window).on("resize", handleEventsIcons); // Check on resize as well
+});
+
+</script>
     </body>
 
 @endsection

@@ -218,7 +218,7 @@
                         <div class="{{ onlySubscription() ? 'col-xl-12 col-lg-12' : 'col-xl-8 col-lg-8' }}">
                             <div class="course_tabs w-100 text-center mb-md-5 mb-3">
                                 <div class="events_wrapper">
-                                    <div class="eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
+                                    <div class="pre-eventsIcon eventsIcon d-xl-none"><i id="left" class="fa-solid fa-angle-left"></i>
                                     </div>
                                 <ul class="d-flex w-100 nav lms_tabmenu text-center" id="myTab"
                                     role="tablist">
@@ -252,7 +252,7 @@
                                         </li>
                                     @endif
                                 </ul>
-                                <div class="eventsIcon d-xl-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
+                                <div class="pre-eventsIcon eventsIcon d-xl-none"><i id="right" class="fa-solid fa-angle-right"></i></div>
                             </div>
                             </div>
 

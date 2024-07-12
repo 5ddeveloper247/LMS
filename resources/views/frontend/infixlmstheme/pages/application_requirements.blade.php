@@ -115,7 +115,7 @@
     }
 
     .app_require {
-        height: calc(100vh - 150px);
+        height: fit-content;
         overflow: hidden;
     }
 
@@ -675,10 +675,20 @@
     #loom-companion-mv3 #shadow-host-companion {
         padding: 0 !important;
     }
+    .small_screen_carousel {
+           
+            max-height: 440px;
+            min-height: 440px;
+        }
 
+        .small_screen_carousel2 {
+       
+            min-height: 440px !important;
+            max-height: 440px !important;
+        }
     @media only screen and (max-width: 1200px) {
         .app_require {
-            height: calc(100vh - 80px);
+            /* height: calc(100vh - 80px); */
         }
     }
 

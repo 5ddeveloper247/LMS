@@ -124,11 +124,6 @@
             text-align: justify;
             margin-top: 3px;
         }
-
-        .footercolor {
-            /* background: #252525; */
-        }
-
         .mintban {
             background-image: url("{{ asset('public/assets/Section9.jpg') }}");
             height: auto;
@@ -143,7 +138,7 @@
             height: 100%;
             width: 100%;
             left: 0;
-            right: 0;
+            top: 0;
             background-color: #2525255e;
         }
 
@@ -432,7 +427,9 @@
             top: 50%;
             transform: translateY(-50%);
         }
-
+.map iframe{
+    height: 500px;
+}
         @media only screen and (max-width: 768px) {
 
             .dataflow h2,
@@ -467,11 +464,7 @@
             }
 
             .mintban {
-                background-image: url("{{ asset('public/assets/bgpicture.jpg') }}");
-                height: auto;
-                background-size: cover;
                 padding: 4rem 0rem;
-                margin-bottom: 4rem;
             }
 
             .banner-img {
@@ -519,6 +512,9 @@
         }
 
         @media only screen and (min-width: 1500px) {
+            .map iframe {
+    height: 600px !important;
+}
             .dataflow {
                 height: 400px !important;
             }
@@ -552,92 +548,10 @@
 
 
 
-        /* @media only screen and (min-width: 1281px){
-                                                        .dataflow {height: 335px !important;}
-                                                    } */
-
-
-
-
-        /* meadi queries for 67% */
-        /* @media (width > 1650px) {
-                                                                                        .breadcrumb_area .breadcam_wrap h3 {
-                                                                                            font-size: 100px !important;
-                                                                                            font-weight: 900;
-                                                                                            line-height: 76px;
-                                                                                            color: #fff;
-                                                                                        }
-
-                                                                                        h5 {
-                                                                                            font-size: 27px !important;
-                                                                                            line-height: 25px;
-                                                                                        }
-
-                                                                                        h4 {
-                                                                                            font-size: 32px !important;
-                                                                                            line-height: 25px;
-                                                                                        }
-
-                                                                                        .select2-container .select2-selection--single {
-                                                                                            height: 67px !important;
-                                                                                            border: 1px solid #e1e1e1 !important;
-
-                                                                                        }
-
-                                                                                        .select2-container--default .select2-selection--single .select2-selection__rendered {
-                                                                                            color: #444;
-                                                                                            line-height: 61px !important;
-                                                                                        }
-
-                                                                                        .select2-container--default .select2-selection--single .select2-selection__arrow {
-                                                                                            height: 35px !important;
-
-                                                                                        }
-
-                                                                                        .select2 .select2-container .select2-container--default {
-                                                                                            width: 100% !important;
-                                                                                        }
-
-                                                                                        .form-control {
-                                                                                            display: block;
-                                                                                            width: 100%;
-                                                                                            height: calc(2.5em + 0.75rem + 2px) !important;
-                                                                                            padding: 0.375rem 0.75rem;
-                                                                                            font-size: 1.4rem !important;
-                                                                                            font-weight: 400;
-                                                                                            line-height: 1.5;
-                                                                                            color: #495057;
-                                                                                            background-color: #fff;
-                                                                                            background-clip: padding-box;
-                                                                                            border: 1px solid #ced4da;
-                                                                                            border-radius: 0.25rem;
-                                                                                            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-                                                                                        }
-
-                                                                                        .ankar a {
-                                                                                            font-size: 21px !important;
-                                                                                            line-height:  !important 36px;
-                                                                                        }
-
-                                                                                        input,
-                                                                                        input::placeholder {
-                                                                                            font: 1.25rem/3 sans-serif;
-                                                                                        }
-
-                                                                                        .eltdf-eh-item-inner {
-                                                                                            height: 550px !important;
-                                                                                        }
-
-                                                                                        .dataflow {
-                                                                                            height: 550px !important;
-                                                                                        }
-
-                                                                                        .theme_btn {
-                                                                                            font-size: 23px !important;
-                                                                                        }
-                                                                                    } */
-
         @media only screen and (min-width: 1800px) {
+            .map iframe {
+    height: 750px !important;
+}
             .dataflow {
                 height: 400px !important;
             }
@@ -689,7 +603,7 @@
                 <div class="map m-1">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5753.884181787861!2d-81.95946927069843!3d28.0388028608652!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88dd38ca4722ecc9%3A0x10d88b4491e12478!2s501%20Florida%20Ave%20S%2C%20Lakeland%2C%20FL%2033801%2C%20USA!5e0!3m2!1sen!2s!4v1705573853815!5m2!1sen!2s"
-                        width="100%" style="border: 0; height:83vh" allowfullscreen="" loading="lazy"
+                        width="100%" style="border: 0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
@@ -859,69 +773,71 @@
     </div>
     {{-- </div> --}}
     {{-- apply now Section  --}}
-    <div class="contain mintban mb-5">
-        <div class="contact-overlay"></div>
-        <div class="row">
-            {{-- <div class="col-md-12 mb-5">
-                <div class="row "> --}}
-            <div class="col-md-12 flowdiv">
-                <div class="row m-0" style="">
-                    <div class="col-6 p-0 flowdiv-dataflow" data-aos="fade-right">
-                        <div class="data-flow p-3 p-md-5">
-                            <div class="dataflow text-white">
-                                <h2 class="custom_small_heading mx-2 mx-md-3 pt-2">Achieve More</h2>
-                                <p class="mx-2 my-2 text-white dataflow-p">Elevate your educational experience with our
-                                    dynamic lectures,
-                                    review courses and programs. Apply today and let Merkaii Xcellence Prep be the
-                                    foundation of your success.</p>
+  <section class="contact_section mb-md-5 mb-4">
+    <div class="contain mintban">
+            <div class="contact-overlay"></div>
+            <div class="row">
+                {{-- <div class="col-md-12 mb-5">
+                    <div class="row "> --}}
+                <div class="col-md-12 flowdiv">
+                    <div class="row m-0" style="">
+                        <div class="col-6 p-0 flowdiv-dataflow" data-aos="fade-right">
+                            <div class="data-flow p-3 p-md-5">
+                                <div class="dataflow text-white">
+                                    <h2 class="custom_small_heading mx-2 mx-md-3 pt-2">Achieve More</h2>
+                                    <p class="mx-2 my-2 text-white dataflow-p">Elevate your educational experience with our
+                                        dynamic lectures,
+                                        review courses and programs. Apply today and let Merkaii Xcellence Prep be the
+                                        foundation of your success.</p>
+                                </div>
                             </div>
+                            <img src="{{ asset('public/assets/left-arrow-64.png') }}" height="50" class="lia"
+                                style="position:absolute;right: -12px;">
                         </div>
-                        <img src="{{ asset('public/assets/left-arrow-64.png') }}" height="50" class="lia"
-                            style="position:absolute;right: -12px;">
-                    </div>
-                    <!-- <div class="col-sm-6 ankar col-md-6 p-0" >
-                                                                                                                                                                                                 </div> -->
-                    <div class="col-6 ankar p-0" data-aos="fade-left">
-                        <div class="eltdf-eh-item eltdf-background-arrow-left changeborder p-2 p-sm-4"
-                            style="background: white;">
-                            <!-- <div class="eltdf-eh-item eltdf-background-arrow-left" style="/* visibility: hidden; */border-color: #ffffff;/* display: none; */background-color: #ffffff;background-image: url(https://academist.qodeinteractive.com/wp-content/uploads/2018/07/Form-background-img.jpg)" data-item-class="eltdf-eh-custom-5500" data-769-1024="15% 10% 6% 10%" data-681-768="10% 15% 5% 15%" data-680="0% 20px 0% 20px"> -->
-                            <div class="eltdf-eh-item-inner pt-2 mx-2">
-                                <div class="eltdf-eh-item-content eltdf-eh-custom-5500 mx-sm-2 mx-md-3" style="">
-                                    <div class="wpb_text_column wpb_content_element">
-                                        <div class="wpb_wrapper">
-                                            <h2 class="wpb_wrapper_h"style="font-weight: bold;">Apply Now</h2>
-                                        </div>
-                                    </div>
-                                    <div class="vc_empty_space" style="height: 25px"><span
-                                            class="vc_empty_space_inner"></span></div>
-                                    <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
-                                        dir="ltr">
-                                        <div class="screen-reader-response">
-                                            <p role="status" aria-live="polite" aria-atomic="true"></p>
-                                            <ul></ul>
-                                        </div>
-                                        <form action="{{ route('contactLogin') }}" method="POST"
-                                            class="wpcf7-form init demo">
-                                            @csrf
-                                            <div class="eltdf-contact-form-7-widget">
-                                                <span class="wpcf7-form-control-wrap " data-name="your-email"><input
-                                                        type="email" name="email" value="{{ old('email') }}"
-                                                        size="40"
-                                                        class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email w-100"
-                                                        required placeholder="Email"></span><br>
-                                                <span class="wpcf7-form-control-wrap w-100" data-name="your-tel"><input
-                                                        type="password" name="password" value="{{ old('password') }}"
-                                                        size="40"
-                                                        class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel w-100"
-                                                        required placeholder="Password"></span><br>
-                                                {{-- <input type="submit" value="Get it now"
-                                                    class="has-spinner small_btn theme_btn wpcf7-form-control wpcf7-submit mt-4"><span
-                                                    class="wpcf7-spinner"></span> --}}
-                                                <button type="submit" class="theme_btn small_btn5 text-center p-2">
-                                                    {{ __('Apply') }}</button>
+                        <!-- <div class="col-sm-6 ankar col-md-6 p-0" >
+                                                                                                                                                                                                     </div> -->
+                        <div class="col-6 ankar p-0" data-aos="fade-left">
+                            <div class="eltdf-eh-item eltdf-background-arrow-left changeborder p-2 p-sm-4"
+                                style="background: white;">
+                                <!-- <div class="eltdf-eh-item eltdf-background-arrow-left" style="/* visibility: hidden; */border-color: #ffffff;/* display: none; */background-color: #ffffff;background-image: url(https://academist.qodeinteractive.com/wp-content/uploads/2018/07/Form-background-img.jpg)" data-item-class="eltdf-eh-custom-5500" data-769-1024="15% 10% 6% 10%" data-681-768="10% 15% 5% 15%" data-680="0% 20px 0% 20px"> -->
+                                <div class="eltdf-eh-item-inner pt-2 mx-2">
+                                    <div class="eltdf-eh-item-content eltdf-eh-custom-5500 mx-sm-2 mx-md-3" style="">
+                                        <div class="wpb_text_column wpb_content_element">
+                                            <div class="wpb_wrapper">
+                                                <h2 class="wpb_wrapper_h"style="font-weight: bold;">Apply Now</h2>
                                             </div>
-                                            <div class="wpcf7-response-output" aria-hidden="true"></div>
-                                        </form>
+                                        </div>
+                                        <div class="vc_empty_space" style="height: 25px"><span
+                                                class="vc_empty_space_inner"></span></div>
+                                        <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
+                                            dir="ltr">
+                                            <div class="screen-reader-response">
+                                                <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                                <ul></ul>
+                                            </div>
+                                            <form action="{{ route('contactLogin') }}" method="POST"
+                                                class="wpcf7-form init demo">
+                                                @csrf
+                                                <div class="eltdf-contact-form-7-widget">
+                                                    <span class="wpcf7-form-control-wrap " data-name="your-email"><input
+                                                            type="email" name="email" value="{{ old('email') }}"
+                                                            size="40"
+                                                            class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email w-100"
+                                                            required placeholder="Email"></span><br>
+                                                    <span class="wpcf7-form-control-wrap w-100" data-name="your-tel"><input
+                                                            type="password" name="password" value="{{ old('password') }}"
+                                                            size="40"
+                                                            class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel w-100"
+                                                            required placeholder="Password"></span><br>
+                                                    {{-- <input type="submit" value="Get it now"
+                                                        class="has-spinner small_btn theme_btn wpcf7-form-control wpcf7-submit mt-4"><span
+                                                        class="wpcf7-spinner"></span> --}}
+                                                    <button type="submit" class="theme_btn small_btn5 text-center p-2">
+                                                        {{ __('Apply') }}</button>
+                                                </div>
+                                                <div class="wpcf7-response-output" aria-hidden="true"></div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -929,10 +845,11 @@
                     </div>
                 </div>
             </div>
+            {{-- </div> --}}
+            {{-- </div> --}}
         </div>
-        {{-- </div> --}}
-        {{-- </div> --}}
-    </div>
+    
+  </section>
     {{-- footer Section  --}}
     @include(theme('partials._custom_footer'))
 @endsection

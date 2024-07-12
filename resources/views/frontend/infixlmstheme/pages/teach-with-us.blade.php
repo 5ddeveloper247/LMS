@@ -70,19 +70,6 @@
         display: inline !important;
     }
 
-    /* .hit {
-        font-size: 12.5px;
-        border-radius: 16px;
-        font-weight: 700;
-        border: 2px solid #dee2e6;
-    }
-
-    /* .hit:hover {
-        background-color: white !important;
-        color: #000 !important;
-        border-color: white !important;
-    } */
-
     .price-card__price--v2 {
         color: #1a0027;
         font-size: 40px;
@@ -370,19 +357,23 @@
     .custom-style li {
         list-style: circle !important;
     }
-    .section__title {
-            height: 700px;
-            overflow: auto;
-            scrollbar-width: none;
-        }
-        .small_gap img{
-            height: 35px;
-            width: 35px;
-        }
-        .gallery_image{
-            height: 50px;
-        }
+
+    .small_gap img {
+        height: 35px;
+        width: 35px;
+    }
+
+    .gallery_image {
+        height: 50px;
+    }
+
+    .pricing-para {
+        min-height: 80px;
+    }
     @media only screen and (max-width: 576px) {
+        .pricing-para {
+            min-height: 80px !important;
+        }
         .mr_our_process {
             margin-right: 0px !important;
             margin-left: 10px !important;
@@ -391,11 +382,9 @@
         .ml_our_process {
             margin-left: 10px !important;
         }
-
         .small_gap {
             gap: .2rem;
         }
-
         .carrot-orange-clr,
         .brdr-btm-of-txt {
             display: flex;
@@ -425,9 +414,14 @@
     }
 
     @media only screen and (max-width: 767px) {
-        .gallery_image{
+        .pricing-para {
+            min-height: 130px;
+        }
+
+        .gallery_image {
             height: 30px !important;
         }
+
         .fw-light {
             margin-top: 10px;
         }
@@ -472,10 +466,6 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1023px) {
-        .section__title {
-        height: 780px !important;
-    }
-
         .button-tb {
             font-size: 15px !important;
             padding: 6.5px 15px;
@@ -488,17 +478,9 @@
         .button-tb.button-tb--cta.is--pricing {
             height: 45px;
         }
-
-    }
-
-    .pricing-para {
-        min-height: 10vh;
     }
 
     @media only screen and (min-width: 1650px) {
-        .section__title {
-            height: auto !important;
-        }
 
         .hit {
             font-size: 18px !important;
@@ -589,47 +571,49 @@
 
             <div class="row py-md-5 px-xl-5 py-4 px-3">
                 <div class="col-md-12 text-center">
-                    <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3 text-capitalize"> What We Offer You to Shape the Future of Healthcare
+                    <h2 class="font-weight-bold custom_heading_1 mb-md-5 mb-3 text-capitalize"> What We Offer You to Shape
+                        the Future of Healthcare
                         Education</h2>
                 </div>
                 <div class="col-md-6 col-12 px-md-2 teach_offer1" data-aos="fade-right">
                     <div class="custom_height_1 pb-4 pb-md-0">
                         <img src="{{ asset('public/assets/Teach1.jpg') }}" class="h-100 w-100"
-                        style=" border-radius: 25px;">
+                            style=" border-radius: 25px;">
                     </div>
-                  
+
                 </div>
 
                 <div class="col-md-6 col-12 my-auto px-lg-1 teach_offer2" data-aos="fade-left" data-aos-delay="500">
                     <div class="px-xl-3 custom_height_2">
-                            <h5 class="custom_text_small font-weight-bold text-capitalize">Become a changemaker in healthcare education</h5>
-                            <h5 class="custom_text_small font-weight-bold text-capitalize">
-                                Merkaii Xcellence Prep offers
-                                a platform designed to empower passionate educators like you
-                            </h5>
-                            <h5 class="custom_text_small font-weight-bold text-capitalize mb-lg-4 mb-3">Here's how</h5>
-                            <p class="mb-2"><span class="font-weight-bold">Be Your Own Curriculum Boss: </span> and
-                                publish the course you envision,
-                                using your preferred teaching methods and content. You have complete
-                                control over the material you deliver.</span></p>
-                            <p class="mb-2"><span class="font-weight-bold">Share Your Passion, Amplify Your
-                                    Impact:</span> Our platform empowers you to
-                                teach the subjects you're most passionate about. Share your knowledge and
-                                inspire the next generation of healthcare professionals.</span></p>
-                            <p class="mb-2"><span class="font-weight-bold">Build a Thriving Community:</span>
-                                Collaborate and share knowledge with a
-                                network of passionate educators and eager learners.</span></p>
-                            <p class="mb-2"><span class="font-weight-bold">Monetize Your Expertise:</span> Sharpen
-                                your skills by developing and delivering
-                                courses. You earn directly for each student you enrolled, creating a rewarding
-                                financial return.
-                                </span></p>
-                            <p class="mb-2"><span class="font-weight-bold">
-                                    Freedom and Flexibility:</span> Design your course schedule and tailor your
-                                teaching approach to achieve a healthy work-life balance.
-                                </span></p>
-                            </p>
-                        </div>
+                        <h5 class="custom_text_small font-weight-bold text-capitalize">Become a changemaker in healthcare
+                            education</h5>
+                        <h5 class="custom_text_small font-weight-bold text-capitalize">
+                            Merkaii Xcellence Prep offers
+                            a platform designed to empower passionate educators like you
+                        </h5>
+                        <h5 class="custom_text_small font-weight-bold text-capitalize mb-lg-4 mb-3">Here's how</h5>
+                        <p class="mb-2"><span class="font-weight-bold">Be Your Own Curriculum Boss: </span> and
+                            publish the course you envision,
+                            using your preferred teaching methods and content. You have complete
+                            control over the material you deliver.</span></p>
+                        <p class="mb-2"><span class="font-weight-bold">Share Your Passion, Amplify Your
+                                Impact:</span> Our platform empowers you to
+                            teach the subjects you're most passionate about. Share your knowledge and
+                            inspire the next generation of healthcare professionals.</span></p>
+                        <p class="mb-2"><span class="font-weight-bold">Build a Thriving Community:</span>
+                            Collaborate and share knowledge with a
+                            network of passionate educators and eager learners.</span></p>
+                        <p class="mb-2"><span class="font-weight-bold">Monetize Your Expertise:</span> Sharpen
+                            your skills by developing and delivering
+                            courses. You earn directly for each student you enrolled, creating a rewarding
+                            financial return.
+                            </span></p>
+                        <p class="mb-2"><span class="font-weight-bold">
+                                Freedom and Flexibility:</span> Design your course schedule and tailor your
+                            teaching approach to achieve a healthy work-life balance.
+                            </span></p>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -639,7 +623,7 @@
             <div class="container px-lg-5">
                 <div class="row align-items-center gallery_area_row px-xl-5 px-3">
                     <div class="col-lg-5 col-md-7">
-                        <div class="section__title">
+                        <div class="section__title teach_section">
                             <h2 class="custom_small_heading mb-4 font-weight-bold">Our Resources Your Guide to Instructor
                                 Success.
                             </h2>
@@ -821,110 +805,114 @@
         </div>
 
         <!-- <div class="container custom-padd">
-                                    <div class="row px-md-5 px-1">
-                                        <div class="col-md-12 text-center">
-                                            <h2 class="font-weight-bold custom_heading_1 my-4">How To Use</h2>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <nav class="nav nav-pills nav-justified mx-4 gap-40">
-                                                <button type="button" onclick="changeContent(1)" id="first_button"
-                                                    class="nav-item nav-link btn_custom_border active">First
-                                                    Step
-                                                </button>
-                                                <button type="button" onclick="changeContent(2)" id="second_button"
-                                                    class="nav-item nav-link btn_custom_border">Second Step
-                                                </button>
-                                                <button type="button" onclick="changeContent(3)" id="third_button"
-                                                    class="nav-item nav-link btn_custom_border">Third Step
-                                                </button>
-                                                <button type="button" onclick="changeContent(4)" id="fourth_button"
-                                                    class="nav-item nav-link btn_custom_border">Final Step
-                                                </button>
-                                            </nav>
-                                        </div>
-                                        <div class="col-md-12 mb-n3 px-3 pt-3" id="tab_section">
-                                            <div class="custom_border_radius section_custom_border my-3 mb-3 p-3" id="first_tab">
-                                                <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">First Step</h5>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                        <div class="row px-md-5 px-1">
+                                            <div class="col-md-12 text-center">
+                                                <h2 class="font-weight-bold custom_heading_1 my-4">How To Use</h2>
                                             </div>
+                                            <div class="col-md-12">
+                                                <nav class="nav nav-pills nav-justified mx-4 gap-40">
+                                                    <button type="button" onclick="changeContent(1)" id="first_button"
+                                                        class="nav-item nav-link btn_custom_border active">First
+                                                        Step
+                                                    </button>
+                                                    <button type="button" onclick="changeContent(2)" id="second_button"
+                                                        class="nav-item nav-link btn_custom_border">Second Step
+                                                    </button>
+                                                    <button type="button" onclick="changeContent(3)" id="third_button"
+                                                        class="nav-item nav-link btn_custom_border">Third Step
+                                                    </button>
+                                                    <button type="button" onclick="changeContent(4)" id="fourth_button"
+                                                        class="nav-item nav-link btn_custom_border">Final Step
+                                                    </button>
+                                                </nav>
+                                            </div>
+                                            <div class="col-md-12 mb-n3 px-3 pt-3" id="tab_section">
+                                                <div class="custom_border_radius section_custom_border my-3 mb-3 p-3" id="first_tab">
+                                                    <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">First Step</h5>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                </div>
 
-                                            <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="second_tab">
-                                                <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Second Step</h5>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                            </div>
+                                                <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="second_tab">
+                                                    <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Second Step</h5>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                </div>
 
-                                            <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="third_tab">
-                                                <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Third Step</h5>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                            </div>
+                                                <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="third_tab">
+                                                    <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Third Step</h5>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                </div>
 
-                                            <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="fourth_tab">
-                                                <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Final Step</h5>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
-                                                    consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
-                                                    fugiat
-                                                    possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                <div class="custom_border_radius section_custom_border d-none my-3 mb-3 p-3" id="fourth_tab">
+                                                    <h5 class="font-weight-bold custom_heading_1 mb-3 text-center">Final Step</h5>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In dignissimos, quod, vitae,
+                                                        consequatur dolores dolorum cum cumque ratione quaerat consequuntur non officia deleniti
+                                                        fugiat
+                                                        possimus at dolore quisquam velit ad officiis? Sequi?</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div> -->
+                                    </div> -->
         {{-- slider timeline --}}
         <div class="our-process-section-container bg mt-3">
             <div class="our-process-section-wrapper px-sm-3 px-2 py-lg-5 py-4">
-                <h2 class="custom_small_heading font-weight-bold text-center mb-3 mb-md-4 text-capitalize">The How to Begin the Independent Educator Journey</h2>
+                <h2 class="custom_small_heading font-weight-bold text-center mb-3 mb-md-4 text-capitalize">The How to Begin
+                    the Independent Educator Journey</h2>
                 <div class="w-100 d-flex justify-content-start">
                     <div class="our-process-section-part d-flex gap-5 w-50" data-aos="fade-right"
                         data-aos-duration="1000">
                         <div class="padding-top-of-first-part ml_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr text-end ">Step 01</h2> --}}
-                            <h5 class="custom_text_small font-weight-bold w-100 text-md-end brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">Register for a Teacher’s Plan
+                            <h5
+                                class="custom_text_small font-weight-bold w-100 text-md-end brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">
+                                Register for a Teacher’s Plan
                             </h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                                <p class="fw-light text-md-end mt-2 mt-md-0">Sign up for a Teacher's Plan that best suits your needs and curriculum goals. We 
+                                <p class="fw-light text-md-end mt-2 mt-md-0">Sign up for a Teacher's Plan that best suits
+                                    your needs and curriculum goals. We
                                     offer various options to give you the flexibility, resources and control you deserve to
                                     thrive.</p>
-                                    <img src="{{ asset('public/assets/register.png') }}">
+                                <img src="{{ asset('public/assets/register.png') }}">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                                     viewBox="0 0 24 24">
                                     <path fill="none" stroke="var(--system_primery_color)" stroke-linecap="round"
@@ -948,7 +936,9 @@
                         data-aos-duration="1000">
                         <div class="d-flex flex-column align-items-start mr_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 02</h2> --}}
-                            <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">Develop Your Curriculum</h5>
+                            <h5
+                                class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">
+                                Develop Your Curriculum</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                     height="50px" x="0px" y="0px" viewBox="0 0 50 50"
@@ -1011,8 +1001,9 @@
                                     </g>
                                 </svg> --}}
                                 <img src="{{ asset('public/assets/curriculumn.png') }}">
-                                <p class="fw-light mt-2 mt-md-0">Craft your compelling curriculum! Outline your course content, including learning 
-                                    objectives, lesson structure, assignments, and assessments. Identify the valuable 
+                                <p class="fw-light mt-2 mt-md-0">Craft your compelling curriculum! Outline your course
+                                    content, including learning
+                                    objectives, lesson structure, assignments, and assessments. Identify the valuable
                                     skills and knowledge you’ll impart to your students.</p>
                             </div>
                         </div>
@@ -1029,12 +1020,15 @@
                         data-aos-duration="1000">
                         <div class="d-flex flex-column align-items-end ml_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 03</h2> --}}
-                            <h5 class="custom_text_small font-weight-bold w-100 text-md-end brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">Record Your Videos</h5>
+                            <h5
+                                class="custom_text_small font-weight-bold w-100 text-md-end brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">
+                                Record Your Videos</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
-                                <p class="fw-light text-md-end mt-2 mt-md-0">Share your expertise through engaging video lectures. Merkaii Xcellence Prep 
-                                    provides all the tools you need to record high-quality videos from the comfort of 
+                                <p class="fw-light text-md-end mt-2 mt-md-0">Share your expertise through engaging video
+                                    lectures. Merkaii Xcellence Prep
+                                    provides all the tools you need to record high-quality videos from the comfort of
                                     your own space.</p>
-                                    <img src="{{ asset('public/assets/video.png') }}">
+                                <img src="{{ asset('public/assets/video.png') }}">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="var(--system_primery_color)" width="50px"
                                     height="50px" x="0px" y="0px" viewBox="0 0 50 50"
                                     style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -1059,7 +1053,9 @@
                         data-aos-duration="1000">
                         <div class="d-flex flex-column padding-btm-last-part mr_our_process">
                             {{-- <h2 class="custom_small_heading carrot-orange-clr">Step 04</h2> --}}
-                            <h5 class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">Launch Your Course</h5>
+                            <h5
+                                class="custom_text_small font-weight-bold w-100 brdr-btm-of-txt fw-medium pb-3 mb-md-0 mb-5">
+                                Launch Your Course</h5>
                             <div class="d-flex align-items-center gap-sm-3 pb-3 small_gap">
                                 <img src="{{ asset('public/assets/launch-course.png') }}">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
@@ -1083,7 +1079,8 @@
                                         </path>
                                     </g>
                                 </svg> --}}
-                                <p class="fw-light mt-2 mt-md-0">Once everything is polished, launch your course and start inspiring future 
+                                <p class="fw-light mt-2 mt-md-0">Once everything is polished, launch your course and start
+                                    inspiring future
                                     healthcare professionals! Merkaii Xcellence Prep handles the marketing and student
                                     enrollment, so you can focus on what you do best – teaching.</p>
                             </div>
