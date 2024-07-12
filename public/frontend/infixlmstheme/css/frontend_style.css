@@ -1462,12 +1462,6 @@ label {
     }
 }
 
-@media (max-width: 1200px) {
-    [class*="hero-ani-"] {
-        display: none !important;
-    }
-}
-
 .amination_custom {
     -webkit-animation: jumping 9s ease-in-out 2s infinite alternate;
     animation: jumping 9s ease-in-out 2s infinite alternate;
@@ -9026,646 +9020,6 @@ input[type="number"] {
     scrollbar-width: thin;
 }
 
-@media only screen and (min-width: 700px) {
-    .header_area .main_menu ul li a {
-        font-size: 11px;
-        margin: 0 5px !important;
-    }
-
-    .theme_btn {
-        font-size: 14px;
-    }
-
-    .theme_search_field button {
-        font-size: 14px;
-    }
-
-    .main_menu {
-        display: none !important;
-    }
-
-    .theme_search_field {
-        height: 33px;
-        width: 200px;
-    }
-
-    .theme_search_field input {
-        font-size: 14px;
-        height: 28px !important;
-    }
-
-    .theme_search_field input::placeholder {
-        font-size: 14px;
-    }
-
-    .profile_info span {
-        font-size: 14px;
-    }
-
-    .image_size {
-        height: 85px;
-    }
-
-    #back-top {
-        bottom: 13px;
-    }
-}
-
-@media only screen and (min-width: 993px) {
-
-    .main_menu {
-        display: flex !important;
-    }
-
-    .header_area .main_menu ul li a {
-        font-size: 10px;
-        margin: 0 5px !important;
-    }
-
-    .theme_btn {
-        font-size: 13px;
-    }
-
-    .image_size {
-        height: 90px;
-    }
-
-    .theme_search_field {
-        width: 175px;
-        height: 30px;
-    }
-
-    .theme_search_field input {
-        font-size: 12px;
-        height: 26px !important;
-    }
-
-    .theme_search_field input::placeholder {
-        font-size: 12px;
-    }
-
-    .theme_search_field button {
-        font-size: 12px;
-    }
-
-    .profile_info span {
-        font-size: 12px;
-    }
-}
-
-@media only screen and (min-width:1025px) {
-    .theme_btn {
-        font-size: 12.5px !important;
-    }
-
-    .close-modal {
-        font-size: 12.5px !important;
-    }
-
-    .breadcrumb_area {
-        min-height: 502px !important;
-        max-height: 502px !important;
-    }
-}
-
-@media screen and (min-width: 1230px) {
-    .modal_form {
-        min-width: 1000px !important;
-    }
-}
-
-@media (min-width: 1200px) and (max-width: 1250.98px) {
-    .account_profile_wrapper .privacy_permission .single_privacy_permission .permission_text .permission_content p br {
-        display: none;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .slicknav_nav .slicknav_row,
-    .slicknav_nav a {
-        height: 90vh;
-        overflow: hidden;
-        overflow-y: auto;
-    }
-
-    .container {
-        max-width: 1440px;
-    }
-
-    .account_main_content {
-        padding: 100px 40px 150px;
-    }
-
-    .xl_mb_60 {
-        margin-bottom: 60px;
-    }
-
-    .header_area .main_menu ul li a {
-        font-size: 12px;
-        margin: 0 6px !important;
-    }
-
-    .theme_btn {
-        font-size: 12.5px !important;
-    }
-
-    .theme_btn_mini {
-        font-size: 12.5px !important;
-    }
-
-    .close-modal {
-        font-size: 12.5px !important;
-    }
-
-    .theme_line_btn {
-        font-size: 12.5px !important;
-    }
-
-    .reward-leader .nav-link {
-        font-size: 12.5px !important;
-    }
-
-    .btn_login {
-        font-size: 12.5px !important;
-    }
-
-    .theme_search_field {
-        width: 196px !important;
-        height: 34px;
-    }
-
-    .theme_search_field button {
-        font-size: 12px;
-    }
-
-    .theme_search_field input {
-        font-size: 12.5px;
-        height: 35px !important;
-    }
-
-    .theme_search_field input::placeholder {
-        font-size: 12.5px;
-    }
-
-    .profile_info span {
-        font-size: 12.5px;
-    }
-
-    #back-top {
-        bottom: 15px;
-    }
-}
-
-@media only screen and (min-width: 1350px) {
-    .custom-image-height {
-        height: 626px !important;
-    }
-    .program_image {
-        height: 600px !important;
-    }
-    .program_tab {
-    height: 600px  !important;
-}
-    .course_tabs_section{
-        height: 150px !important;
-    }
-
-    .course_detail_image{
-        height: 600px !important;
-    }
-    .course_main_section{
-        height: 600px !important;
-    }
-    .couse_wizged .thumb {
-        height: 500px !important;
-    }
-
-    .breadcrumb_area {
-        min-height: 557px !important;
-        max-height: 557px !important;
-    }
-
-    .text-light {
-        font-size: 24px;
-    }
-
-    .logo_img {
-        max-height: 100px;
-    }
-
-    .image_size {
-        height: 100px !important;
-
-    }
-
-    .header_area .main_menu ul li a {
-        font-size: 14px !important;
-    }
-
-    .expore p {
-        font-size: 14px !important;
-    }
-
-    .footerbox1 p {
-        font-size: 14px !important;
-    }
-
-    .footerbox1 span {
-        font-size: 14px !important;
-    }
-
-    .fs-responsive {
-        font-size: 14px !important;
-    }
-
-    .login_btn a {
-        font-size: 15px !important;
-    }
-
-    .theme_btn {
-        font-size: 15px;
-    }
-
-    .theme_btn_mini {
-        font-size: 15px;
-    }
-
-    .card-modal {
-        font-size: 15px;
-    }
-
-    .theme_search_field button {
-        font-size: 18px;
-    }
-
-    .profile_info span {
-        font-size: 15px;
-    }
-}
-
-@media only screen and (min-width: 1440px) {
-
-    .custom_height_1,
-    .custom_height_2 {
-        height: 580px !important;
-    }
-
-    .top_right_btn {
-        right: 5% !important;
-    }
-
-    .image_size {
-
-        height: 100px !important;
-
-    }
-
-    #back-top {
-        bottom: 20px;
-    }
-
-    .service_cta_area .single_cta_service {
-        height: 45vh;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-@media screen and (min-width: 1560px) {
-    .program_image {
-        height: 710px !important;
-    }
-    .program_tab {
-    height: 710px  !important;
-}
-    .image_thumb {
-        height: 500px !important;
-    }
-
-    .logo_img {
-        max-width: 200px;
-        max-height: 120px;
-    }
-
-    .image_size {
-
-        height: 120px !important;
-    }
-
-    .theme_search_field input {
-        font-size: 19px !important;
-    }
-
-    .theme_search_field input::placeholder {
-        font-size: 19px !important;
-    }
-
-    .theme_search_field {
-        height: 40px !important;
-        width: 16rem !important;
-    }
-
-    .header_area .main_menu ul li a {
-        font-size: 18px;
-    }
-
-    .theme_btn {
-        font-size: 19px;
-    }
-
-    .theme_btn_mini {
-        font-size: 19px;
-    }
-
-    .profile_info span {
-        font-size: 19px;
-    }
-
-    /* .header_area .main_menu {
-        margin-left: 405px !important;
-    } */
-}
-
-@media (min-width: 1600px) {
-    .account_main_content {
-        padding: 100px 150px 150px 105px;
-    }
-
-    .breadcrumb_area {
-        min-height: 620px !important;
-        max-height: 620px !important;
-    }
-
-}
-
-@media (min-width: 1650px) {
-    .course_tabs_section{
-        height: 200px !important;
-    }
-    .course_detail_image{
-        height: 710px !important;
-    }
-    .course_main_section{
-        height: 710px !important;
-    }
-
-    .price-card__plan--v2 {
-        color: #17171a;
-        letter-spacing: -.04em;
-        min-height: 0vh !important;
-        margin-bottom: 0;
-        margin-right: 12px;
-        font-size: 40px;
-        font-weight: 800;
-        line-height: 110%;
-    }
-
-    .breadcrumb_area {
-        min-height: 720px !important;
-        max-height: 720px !important;
-    }
-
-    .image_size {
-        height: 120px !important;
-    }
-
-    .header_area .main_menu ul li a {
-        margin: 0 7px !important;
-        font-size: 18px;
-    }
-
-    .theme_btn {
-        font-size: 18px;
-    }
-
-    .theme_line_btn {
-        font-size: 18px !important;
-    }
-
-    .btn_login {
-        font-size: 18px !important;
-    }
-
-    .theme_search_field {
-        height: 40px !important;
-        /* width: 250px !important; */
-    }
-
-    #courses_list {
-        top: 92px;
-
-    }
-
-    .theme_search_field input {
-        font-size: 18px;
-
-    }
-
-    .theme_search_field input::placeholder {
-        font-size: 18px;
-    }
-
-    .profile_info span {
-        font-size: 18px;
-    }
-}
-
-@media only screen and (min-width: 1800px) {
-
-    .prep-course-padding {
-        padding: 0px 20px !important;
-    }
-
-    .custom_card_plan {
-        max-width: 500px;
-    }
-
-    .reward-leader .nav-link {
-        border-radius: 20px !important;
-        font-size: 18px !important;
-    }
-
-    .theme_btn {
-        border-radius: 20px !important;
-    }
-
-    .theme_btn_mini {
-        border-radius: 20px !important;
-        font-size: 18px !important;
-    }
-
-    .close-modal {
-        border-radius: 20px !important;
-    }
-
-    /* .counter-image{
-        margin-bottom: 15px !important;
-    } */
-    .counter_area_row {
-        padding: 0px 28px !important;
-    }
-
-    .gallery_area_row {
-        padding: 0px 20px !important;
-    }
-
-    .breadcrumb_area {
-        min-height: 815px !important;
-        max-height: 815px !important;
-    }
-
-    h5 {
-        font-size: 25px;
-    }
-
-    p {
-        font-size: 20px;
-    }
-
-    .counter_area {
-        height: 85vh;
-    }
-
-    .account_main_content {
-        padding: 100px 360px 150px 105px;
-    }
-
-    .section__title h3.large_title {
-        font-size: 60px;
-    }
-
-    .section__title p {
-        font-size: 20px;
-    }
-
-}
-
-@media (min-width: 1850px) {
-
-    .dashboard_main_wrapper .main_content_iner.main_content_padding {
-        padding: 81px 361px 57px 135px;
-    }
-
-    .purchase_history_wrapper {
-        padding: 60px 60px 0px 60px;
-    }
-
-    .theme_search_field {
-        /* width: 16rem !important; */
-        height: 40px !important;
-    }
-
-    .theme_search_field input {
-        font-size: 18px !important;
-    }
-
-    .theme_search_field input::placeholder {
-        font-size: 18px !important;
-    }
-
-    #courses_list {
-        top: 103px;
-        width: auto;
-    }
-
-    .theme_btn,
-    .googleLoginBtn,
-    .facebookLoginBtn {
-        padding: 13px 10px;
-    }
-
-    .logo_img {
-        max-width: 140px;
-        max-height: 125px;
-    }
-
-    .image_size {
-        height: 115px !important;
-    }
-
-    .header_area .main_menu ul li a {
-        margin: 0 9px !important;
-        font-size: 18px !important;
-    }
-
-    .theme_btn {
-        font-size: 18px !important;
-    }
-
-    .close-modal {
-        font-size: 18px !important;
-    }
-}
-
-@media only screen and (min-width: 1960px) {
-
-    /* .theme_search_field {
-            width: 21rem !important;
-            height: 45px !important;
-        } */
-
-    /* .theme_search_field input {
-            font-size: 25px !important;
-        } */
-    /* .theme_search_field input::placeholder{
-            font-size: 25px !important;
-        }    */
-    #courses_list {
-        top: 125px;
-    }
-
-
-}
-
-@media only screen and (min-width: 2560px) {
-    .breadcrumb_area {
-        min-height: 970px !important;
-        max-height: 970px !important;
-    }
-
-    .logo_img {
-        max-width: 200px;
-        max-height: 200px;
-    }
-
-    .image_size {
-
-        height: 150px !important;
-    }
-
-    .header_area .main_menu ul li a {
-        font-size: 20px !important;
-    }
-
-    .theme_search_field button {
-        font-size: 30px;
-    }
-
-    .theme_search_field input {
-        font-size: 20px !important;
-    }
-
-    .theme_search_field input::placeholder {
-        font-size: 20px !important;
-    }
-
-    .theme_search_field {
-        width: 18rem !important;
-        height: 55px !important;
-    }
-
-    .theme_btn,
-    .googleLoginBtn,
-    .facebookLoginBtn {
-        padding: 18px 12px;
-    }
-
-    #back-top {
-        bottom: 20px;
-    }
-
-}
-
 .bradcam_bg_1 {
     background-image: url(../img/banner/bradcam_bg_1.jpg);
 }
@@ -14447,18 +13801,6 @@ body {
     object-fit: fill;
 }
 
-/*!*leaderboard point start*!*/
-
-/*!* width *!*/
-
-/*!* Track *!*/
-
-/*!* Handle *!*/
-@media (min-width: 1200px) {
-    .dashboard_main_wrapper .main_content_iner.main_content_padding {
-        padding: 45px 30px;
-    }
-}
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .dashboard_main_wrapper .main_content_iner.main_content_padding {
@@ -15793,9 +15135,9 @@ body {
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 991.79px) {
     .image_thumb {
-        height: 250px !important;
+        height: 200px !important;
     }
     .small_thumb {
         margin-top: 15px !important;
@@ -16148,11 +15490,7 @@ body {
 
 /* media queries for header */
 
-@media (width > 1650px) {
-    .btn_responsive_fs_67 {
-        font-size: 1.2vw !important;
-    }
-}
+
 
 @media (width > 1800px) {
     .container {
@@ -16612,12 +15950,12 @@ border-radius: 10px;
     }
 
     .custom-image-height {
-        height: 350px;
+        height: 390px;
     }
 
     .custom_height_1,
     .custom_height_2 {
-        height: 350px !important;
+        height: 360px !important;
     }
 
     .about_gallery_area .about_gallery {
@@ -16662,7 +16000,6 @@ border-radius: 10px;
 
     .course_fullview_wrapper .course__play_warp {
         width: 50% !important;
-        /* transform: translateX(100%) !important; */
         position: absolute;
     }
 
@@ -17264,6 +16601,12 @@ border-radius: 10px;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+    .custom-image-height {
+        height: 400px !important;
+    }
+    .custom_height_2 {
+        height: 353px !important;
+    }
     .program_image {
         height: 360px !important;
     }
@@ -17284,9 +16627,11 @@ border-radius: 10px;
         height: 400px !important;
     }
     .image_thumb {
-        height: 300px !important;
+        height: 260px !important;
     }
-    
+    .gallery_image {
+        height: 34px !important;
+    }
     .theme_cookies {
         left: 50px;
         right: 50px;
@@ -17437,6 +16782,12 @@ border-radius: 10px;
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1200px) {
+    .custom-image-height {
+        height: 390px !important;
+    }
+    .custom_height_2 {
+        height: 342px !important;
+    }
     .course_detail_image{
         height: 400px !important;
     }
@@ -17473,6 +16824,32 @@ border-radius: 10px;
     }
 }
 
+
+
+@media only screen and (min-width: 1281px) {
+    .custom_height_2 {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .footer-img {
+        min-width: 380px;
+        max-width: 380px;
+        height: 280px;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .container-sub {
+        max-width: 1300px;
+    }
+
+    .container-sub {
+        padding: 0px 70px;
+    }
+
+}
 @media (width > 1650px) {
     .expore p {
         font-size: 18px !important;
@@ -17493,7 +16870,9 @@ border-radius: 10px;
         font-size: 18px !important;
         line-height: 35px !important;
     }
-
+    .footerbox1 span{
+        font-size: 18px !important;
+    }
     .fs-responsive {
         font-size: 18px !important;
         line-height: 38px !important;
@@ -17531,40 +16910,635 @@ border-radius: 10px;
         font-weight: 400;
         line-height: 1.5;
     }
+    .btn_responsive_fs_67 {
+        font-size: 1.2vw !important;
+    }
+}
+@media only screen and (min-width: 700px) {
+    .header_area .main_menu ul li a {
+        font-size: 11px;
+        margin: 0 5px !important;
+    }
+
+    .theme_btn {
+        font-size: 14px;
+    }
+
+    .theme_search_field button {
+        font-size: 14px;
+    }
+
+    .main_menu {
+        display: none !important;
+    }
+
+    .theme_search_field {
+        height: 33px;
+        width: 200px;
+    }
+
+    .theme_search_field input {
+        font-size: 14px;
+        height: 28px !important;
+    }
+
+    .theme_search_field input::placeholder {
+        font-size: 14px;
+    }
+
+    .profile_info span {
+        font-size: 14px;
+    }
+
+    .image_size {
+        height: 85px;
+    }
+
+    #back-top {
+        bottom: 13px;
+    }
 }
 
-@media only screen and (min-width: 1281px) {
+@media only screen and (min-width: 993px) {
+
+    .main_menu {
+        display: flex !important;
+    }
+
+    .header_area .main_menu ul li a {
+        font-size: 10px;
+        margin: 0 5px !important;
+    }
+
+    .theme_btn {
+        font-size: 13px;
+    }
+
+    .image_size {
+        height: 90px;
+    }
+
+    .theme_search_field {
+        width: 175px;
+        height: 30px;
+    }
+
+    .theme_search_field input {
+        font-size: 12px;
+        height: 26px !important;
+    }
+
+    .theme_search_field input::placeholder {
+        font-size: 12px;
+    }
+
+    .theme_search_field button {
+        font-size: 12px;
+    }
+
+    .profile_info span {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width:1025px) {
+    .theme_btn {
+        font-size: 12.5px !important;
+    }
+
+    .close-modal {
+        font-size: 12.5px !important;
+    }
+
+    .breadcrumb_area {
+        min-height: 502px !important;
+        max-height: 502px !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .dashboard_main_wrapper .main_content_iner.main_content_padding {
+        padding: 45px 30px;
+    }
+    [class*="hero-ani-"] {
+        display: none !important;
+    }
+    .slicknav_nav .slicknav_row,
+    .slicknav_nav a {
+        height: 90vh;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+
+    .container {
+        max-width: 1440px;
+    }
+
+    .account_main_content {
+        padding: 100px 40px 150px;
+    }
+
+    .xl_mb_60 {
+        margin-bottom: 60px;
+    }
+
+    .header_area .main_menu ul li a {
+        font-size: 12px;
+        margin: 0 6px !important;
+    }
+
+    .theme_btn {
+        font-size: 12.5px !important;
+    }
+
+    .theme_btn_mini {
+        font-size: 12.5px !important;
+    }
+
+    .close-modal {
+        font-size: 12.5px !important;
+    }
+
+    .theme_line_btn {
+        font-size: 12.5px !important;
+    }
+
+    .reward-leader .nav-link {
+        font-size: 12.5px !important;
+    }
+
+    .btn_login {
+        font-size: 12.5px !important;
+    }
+
+    .theme_search_field {
+        width: 196px !important;
+        height: 34px;
+    }
+
+    .theme_search_field button {
+        font-size: 12px;
+    }
+
+    .theme_search_field input {
+        font-size: 12.5px;
+        height: 35px !important;
+    }
+
+    .theme_search_field input::placeholder {
+        font-size: 12.5px;
+    }
+
+    .profile_info span {
+        font-size: 12.5px;
+    }
+
+    #back-top {
+        bottom: 15px;
+    }
+}
+
+@media screen and (min-width: 1230px) {
+    .modal_form {
+        min-width: 1000px !important;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1250.98px) {
+    .account_profile_wrapper .privacy_permission .single_privacy_permission .permission_text .permission_content p br {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1350px) {
+    .custom-image-height {
+        height: 626px !important;
+    }
+    .program_image {
+        height: 600px !important;
+    }
+    .program_tab {
+    height: 600px  !important;
+}
+    .course_tabs_section{
+        height: 150px !important;
+    }
+
+    .course_detail_image{
+        height: 600px !important;
+    }
+    .course_main_section{
+        height: 600px !important;
+    }
+    .couse_wizged .thumb {
+        height: 500px !important;
+    }
+
+    .breadcrumb_area {
+        min-height: 557px !important;
+        max-height: 557px !important;
+    }
+
+    .text-light {
+        font-size: 24px;
+    }
+
+    .logo_img {
+        max-height: 100px;
+    }
+
+    .image_size {
+        height: 100px !important;
+
+    }
+
+    .header_area .main_menu ul li a {
+        font-size: 14px !important;
+    }
+
+    .expore p {
+        font-size: 14px !important;
+    }
+
+    .footerbox1 p {
+        font-size: 14px !important;
+    }
+
+    .footerbox1 span {
+        font-size: 14px !important;
+    }
+
+    .fs-responsive {
+        font-size: 14px !important;
+    }
+
+    .login_btn a {
+        font-size: 15px !important;
+    }
+
+    .theme_btn {
+        font-size: 15px;
+    }
+
+    .theme_btn_mini {
+        font-size: 15px;
+    }
+
+    .card-modal {
+        font-size: 15px;
+    }
+
+    .theme_search_field button {
+        font-size: 18px;
+    }
+
+    .profile_info span {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+
+    .custom_height_1,
     .custom_height_2 {
-        display: flex;
+        height: 580px !important;
+    }
+
+    .top_right_btn {
+        right: 5% !important;
+    }
+
+    .image_size {
+
+        height: 100px !important;
+
+    }
+
+    #back-top {
+        bottom: 20px;
+    }
+
+    .service_cta_area .single_cta_service {
+        height: 45vh;
         justify-content: center;
-        flex-direction: column;
-    }
-
-    .footer-img {
-        min-width: 380px;
-        max-width: 380px;
-        height: 280px;
+        align-items: center;
     }
 }
 
-@media only screen and (min-width: 1400px) {
-    .container-sub {
-        max-width: 1300px;
+@media screen and (min-width: 1560px) {
+    .program_image {
+        height: 710px !important;
+    }
+    .program_tab {
+    height: 710px  !important;
+}
+    .image_thumb {
+        height: 500px !important;
     }
 
-    .container-sub {
-        padding: 0px 70px;
-        /* top: 160px; */
+    .logo_img {
+        max-width: 200px;
+        max-height: 120px;
+    }
+
+    .image_size {
+
+        height: 120px !important;
+    }
+
+    .theme_search_field input {
+        font-size: 19px !important;
+    }
+
+    .theme_search_field input::placeholder {
+        font-size: 19px !important;
+    }
+
+    .theme_search_field {
+        height: 40px !important;
+        width: 16rem !important;
+    }
+
+    .header_area .main_menu ul li a {
+        font-size: 18px;
+    }
+
+    .theme_btn {
+        font-size: 19px;
+    }
+
+    .theme_btn_mini {
+        font-size: 19px;
+    }
+
+    .profile_info span {
+        font-size: 19px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .account_main_content {
+        padding: 100px 150px 150px 105px;
+    }
+
+    .breadcrumb_area {
+        min-height: 620px !important;
+        max-height: 620px !important;
     }
 
 }
 
-@media only screen and (min-width: 1850px) {
+@media (min-width: 1650px) {
+    .instructor_tab .thumb {
+        height: 525px !important;
+    }
+    .course_tabs_section{
+        height: 200px !important;
+    }
+    .course_detail_image{
+        height: 710px !important;
+    }
+    .course_main_section{
+        height: 710px !important;
+    }
+
+    .price-card__plan--v2 {
+        color: #17171a;
+        letter-spacing: -.04em;
+        min-height: 0vh !important;
+        margin-bottom: 0;
+        margin-right: 12px;
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 110%;
+    }
+
+    .breadcrumb_area {
+        min-height: 720px !important;
+        max-height: 720px !important;
+    }
+
+    .image_size {
+        height: 120px !important;
+    }
+
+    .header_area .main_menu ul li a {
+        margin: 0 7px !important;
+        font-size: 18px;
+    }
+
+    .theme_btn {
+        font-size: 18px;
+    }
+
+    .theme_line_btn {
+        font-size: 18px !important;
+    }
+
+    .btn_login {
+        font-size: 18px !important;
+    }
+
+    .theme_search_field {
+        height: 40px !important;
+        /* width: 250px !important; */
+    }
+
+    #courses_list {
+        top: 92px;
+
+    }
+
+    .theme_search_field input {
+        font-size: 18px;
+
+    }
+
+    .theme_search_field input::placeholder {
+        font-size: 18px;
+    }
+
+    .profile_info span {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+
+    .prep-course-padding {
+        padding: 0px 20px !important;
+    }
+
+    .custom_card_plan {
+        max-width: 500px;
+    }
+
+    .reward-leader .nav-link {
+        border-radius: 20px !important;
+        font-size: 18px !important;
+    }
+
+    .theme_btn {
+        border-radius: 20px !important;
+    }
+
+    .theme_btn_mini {
+        border-radius: 20px !important;
+        font-size: 18px !important;
+    }
+
+    .close-modal {
+        border-radius: 20px !important;
+    }
+    .counter_area_row {
+        padding: 0px 28px !important;
+    }
+
+    .gallery_area_row {
+        padding: 0px 20px !important;
+    }
+
+    .breadcrumb_area {
+        min-height: 815px !important;
+        max-height: 815px !important;
+    }
+
+    h5 {
+        font-size: 25px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    .counter_area {
+        height: 85vh;
+    }
+
+    .account_main_content {
+        padding: 100px 360px 150px 105px;
+    }
+
+    .section__title h3.large_title {
+        font-size: 60px;
+    }
+
+    .section__title p {
+        font-size: 20px;
+    }
+
+}
+
+@media (min-width: 1850px) {
+
+    .dashboard_main_wrapper .main_content_iner.main_content_padding {
+        padding: 81px 361px 57px 135px;
+    }
+
+    .purchase_history_wrapper {
+        padding: 60px 60px 0px 60px;
+    }
+
+    .theme_search_field {
+        /* width: 16rem !important; */
+        height: 40px !important;
+    }
+
+    .theme_search_field input {
+        font-size: 18px !important;
+    }
+
+    .theme_search_field input::placeholder {
+        font-size: 18px !important;
+    }
+
+    #courses_list {
+        top: 103px;
+        width: auto;
+    }
+
+    .theme_btn,
+    .googleLoginBtn,
+    .facebookLoginBtn {
+        padding: 13px 10px;
+    }
+
+    .logo_img {
+        max-width: 140px;
+        max-height: 125px;
+    }
+
+    .image_size {
+        height: 115px !important;
+    }
+
+    .header_area .main_menu ul li a {
+        margin: 0 9px !important;
+        font-size: 18px !important;
+    }
+
+    .theme_btn {
+        font-size: 18px !important;
+    }
+
+    .close-modal {
+        font-size: 18px !important;
+    }
     .container-sub {
         max-width: 1650px;
     }
+}
 
-    /* .container-sub {
-        top: 155px;
-    } */
+@media only screen and (min-width: 1960px) {
+    #courses_list {
+        top: 125px;
+    }
+
+}
+@media only screen and (min-width: 2560px) {
+    .breadcrumb_area {
+        min-height: 970px !important;
+        max-height: 970px !important;
+    }
+
+    .logo_img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .image_size {
+
+        height: 150px !important;
+    }
+
+    .header_area .main_menu ul li a {
+        font-size: 20px !important;
+    }
+
+    .theme_search_field button {
+        font-size: 30px;
+    }
+
+    .theme_search_field input {
+        font-size: 20px !important;
+    }
+
+    .theme_search_field input::placeholder {
+        font-size: 20px !important;
+    }
+
+    .theme_search_field {
+        width: 18rem !important;
+        height: 55px !important;
+    }
+
+    .theme_btn,
+    .googleLoginBtn,
+    .facebookLoginBtn {
+        padding: 18px 12px;
+    }
+
+    #back-top {
+        bottom: 20px;
+    }
 }
