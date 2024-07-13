@@ -545,6 +545,18 @@
                                             </a>
                                         </div>
                                     @endguest
+                                    @auth
+                                    <div class="login_btn text-center d-lg-none d-flex">
+                                        @if (Auth::user()->role_id == 3)
+                                                    <a
+                                                        href="{{ route('studentDashboard') }}">{{ __('dashboard.Dashboard') }}</a>
+                                                @else
+                                                    <a
+                                                        href="{{ route('dashboard') }}">{{ __('dashboard.Dashboard') }}</a>
+                                                @endif
+                                        <a href="{{ route('logout') }}">{{ __('frontend.Log Out') }}</a>
+                                    </div>
+                                    @endauth
                                     @else
                                     @endif
                                     <li><a href="#"></a></li>

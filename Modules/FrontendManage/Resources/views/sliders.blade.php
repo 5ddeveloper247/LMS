@@ -13,7 +13,8 @@
     <section class="admin-visitor-area up_st_admin_visitor">
         <div class="container-fluid p-0">
             <div class="row">
-                <div class="col-lg-3 @if(!isset($slider)) d-none @endif">
+                <div class="col-lg-3">
+                {{-- <div class="col-lg-3 @if(!isset($slider)) d-none @endif"> --}}
                     <div class="row justify-content-center">
                         <div class="col-12">
                             <div class="box_header common_table_header">
@@ -127,7 +128,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="col-xl-12 @if(isset($slider)) d-none @endif">
+                                            {{-- <div class="col-xl-12 @if(isset($slider)) d-none @endif">
                                                     <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
                                                                for="">{{ __('Route Name') }}</label>
@@ -143,7 +144,7 @@
                                                         </span>
                                                         @endif
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             <div class="col-lg-12">
                                                 <div class="primary_input mb-25">
                                                     <label class="primary_input_label"
@@ -201,6 +202,28 @@
                                                 </div> --}}
 
 
+                                                <div class="col-xl-12">
+                                                    <div class="primary_input mb-25">
+                                                        <label class="primary_input_label"
+                                                               for="">{{ __('Page') }}
+                                                        </label>
+                                                        <select name="page" id="page"
+                                                               class="primary_input_field name {{ @$errors->has('page') ? ' is-invalid' : '' }}">
+                                                               <option>Select a PAGE</option>
+                                                               @foreach($pages as $item)
+                                                                <option value = "{{$item->id}}" {{(isset($slider) && $slider->page_id == $item->id) ? 'selected' : ''}}>
+                                                                    {{$item->name}}
+                                                                </option>
+                                                                @endforeach
+                                                        </select>
+                                                               @if ($errors->has('page'))
+                                                            <span class="invalid-feedback d-block mb-10"
+                                                                  role="alert">
+                                                            <strong>{{ @$errors->first('page') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                                 <div class="col-xl-12" id="btn_title1">
                                                     <div class="primary_input mb-25">
                                                         <label class="primary_input_label"
@@ -277,7 +300,8 @@
                                     </form>
                     </div>
                 </div>
-                <div class="@if(!isset($slider)) col-lg-12 @else col-lg-9 @endif">
+                <div class="col-lg-9">
+                {{-- <div class="@if(!isset($slider)) col-lg-12 @else col-lg-9 @endif"> --}}
                     <div class="main-title">
                         <h3 class="mb-20">{{__('frontendmanage.Slider List')}}</h3>
                     </div>

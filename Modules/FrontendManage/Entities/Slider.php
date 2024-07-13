@@ -5,6 +5,7 @@ namespace Modules\FrontendManage\Entities;
 use App\Traits\Tenantable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\CourseSetting\Entities\Course;
+use Modules\FrontendManage\Entities\FrontPage;
 
 class Slider extends Model
 {
@@ -16,4 +17,11 @@ class Slider extends Model
     {
         return $this->belongsTo(Course::class)->withDefault();
     }
+    
+    public function page()
+    {
+        return $this->belongsTo(FrontPage::class, 'page_id');
+    }
+
+
 }

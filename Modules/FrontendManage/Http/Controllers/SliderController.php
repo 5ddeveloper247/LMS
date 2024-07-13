@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Modules\CourseSetting\Entities\Course;
 use Modules\FrontendManage\Entities\Slider;
+use Modules\FrontendManage\Entities\FrontPage;
 
 class SliderController extends Controller
 {
@@ -24,7 +25,8 @@ class SliderController extends Controller
             if (Settings('frontend_active_theme') == 'tvt') {
                 $data['courses'] = Course::select('id', 'title')->where('status', 1)->get();
             }
-            return view('frontendmanage::sliders', $data, compact('sliders'));
+            $pages=FrontPage::where('status',1)->latest()->get();
+            return view('frontendmanage::sliders', $data, compact('sliders','pages'));
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -46,6 +48,7 @@ class SliderController extends Controller
             $slider->title = $request->title;
             $slider->sub_title = $request->sub_title;
             $slider->route = $request->route ?? null;
+            $slider->page_id = $request->page ?? null;
             $slider->btn_title1 = $request->btn_title1;
             $slider->btn_link1 = $request->btn_link1;
 
@@ -80,7 +83,8 @@ class SliderController extends Controller
             if (Settings('frontend_active_theme') == 'tvt') {
                 $data['courses'] = Course::select('id', 'title')->where('status', 1)->get();
             }
-            return view('frontendmanage::sliders', $data, compact('sliders', 'slider'));
+            $pages=FrontPage::where('status',1)->latest()->get();
+            return view('frontendmanage::sliders', $data, compact('sliders', 'slider','pages'));
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -100,6 +104,7 @@ class SliderController extends Controller
             $slider->course_id = $request->course_id ?? '';
             $slider->name = $request->name ?? '';
             $slider->title = $request->title;
+            $slider->page_id = $request->page ?? null;
             $slider->sub_title = $request->sub_title;
             $slider->btn_title1 = $request->btn_title1;
             $slider->btn_link1 = $request->btn_link1;
