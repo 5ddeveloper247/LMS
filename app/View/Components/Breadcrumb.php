@@ -23,8 +23,14 @@ class Breadcrumb extends Component
 
     public function render()
     {
+        // dd(request()->path());
         $route = Route::currentRouteName();
-        $slider_info = Slider::where('route',$route)->first();
+        $slider_info = Slider::whereHas('page',function($q){
+            $url = request()->path();
+            $q->where('slug',$url)
+            ->orWhere('slug','/'.$url);
+        })->first();
+       //$slider_info = Slider::where('route',$route)->first();
         return view(theme('components.breadcrumb'),compact('slider_info'));
     }
 }

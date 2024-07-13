@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 use Spatie\Translatable\HasTranslations;
+use Modules\FrontendManage\Entities\Slider;
 
 class FrontPage extends Model
 {
@@ -41,4 +42,10 @@ class FrontPage extends Model
             }
         });
     }
+
+    public function slider()
+    {
+        return $this->hasOne(Slider::class, 'page_id');
+    }
+
 }
