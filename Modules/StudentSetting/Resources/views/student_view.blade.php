@@ -322,11 +322,11 @@
                                    role="tab" data-toggle="tab">{{ __('User Detail') }}</a>
                             </li>
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link @if (session()->get('type') == 2) active @endif"
                                    href="#indivitual_email_sms" role="tab"
                                    data-toggle="tab">{{ __('User Application') }}</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link"
                                    href="#use_enrollment_declaration" role="tab"

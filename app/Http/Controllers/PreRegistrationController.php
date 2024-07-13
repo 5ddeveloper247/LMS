@@ -128,11 +128,10 @@ public function redirectToGoogle(Request $request)
             'access_token' => $accessToken,
         ]);
         $profileData = $profileResponse->json();
-        // dd($profileData['locale']);
         $data['name'] = $profileData['name'];
         $data['email'] = $profileData['email'];
         $data['password'] = $profileData['id'];
-        $data['language'] = $profileData['locale'];
+        $data['language'] = $profileData['locale'] ?? '';
 
         $checkifRegistered = User::where('email',$data['email'])->first();
 
@@ -166,16 +165,59 @@ public function redirectToGoogle(Request $request)
               'level' => '',
           ];
           $newuser = $this->userRepository->create($userData);
+          $codes = [
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'time' => Carbon::now()->format('d-M-Y, g:i A')
+        ];
+    send_email($newuser,'Google_Pre_Registration',$codes);
+          Toastr::success('Signup successfull. Please complete the registration.', 'Success');
+          Toastr::success('Your Password has been sent to you in Email. Please don\'t share it with anyone. You may change it afterwards', 'Success');
+            Auth::login($newuser);
+            return redirect()->route('studentDashboard');
         }else{
           $newuser = $checkifRegistered;
+          $act = 'New_Student_Login';
+                $codes = [
+                    'time' => Carbon::now()->format('d-M-Y, g:i A'),
+                    'name' => $newuser->name,
+                    'type' => '',
+
+                ];
+          send_email($newuser, $act, $codes);
+          Auth::login($newuser);
+              return redirect()->intended($this->redirectPath());
         }
-        Auth::login($newuser);
-            Toastr::success('Login successfull', 'Success');
-            return redirect('/');
     }
 
 
+    public function redirectPath()
+    {
 
+        if (Auth::user()->role_id == 3) {
+            $path = route('studentDashboard');
+
+            if (Settings('customize_org_chart_branch_navigate') == 1 && Settings('org_student_special_branch') == Auth::user()->org_chart_code) {
+                if (Settings('navigate_special_branch_after_login') == 'homepage') {
+                    return url('/');
+                }
+            } else {
+                if (Settings('navigate_user_after_login') == 'homepage') {
+                    return url('/');
+                }
+            }
+        } else {
+            $path = route('dashboard');
+        }
+        if (method_exists($this, 'redirectTo')) {
+            return $this->redirectTo();
+        }
+        if (\session()->get('from_login')) {
+            return $path;
+        }
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : $path;
+    }
 
     // for facebook authentication
 

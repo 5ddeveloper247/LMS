@@ -636,7 +636,7 @@ canvas {
                                 <div id='root'></div>
                                 <div class="" style="position: absolute; bottom: 0; padding: 5px;">
                                     <input class="date-btn" type="date" id="datepicker"
-                                        value="{{date('Y-m-d')}}" />
+                                        value="{{date('Y-m-d')}}" name="student_signature_date"/>
                                 </div>
                                 <div class="sign-btn" style="position: absolute;">
                                     <input type="button" value="Reset" id="resetCanvas" class="reset-btn mx-1" />

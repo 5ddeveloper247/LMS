@@ -5778,7 +5778,7 @@
                                                             <div class="single-event-counter">
                                                                 <div class="count-number rt-clip-text"></div>
                                                             </div>
-                                                            <div class="single-event-content">
+                                                            <a href = "{{ route('blogDetails', [$thisblog->slug]) }}" class="single-event-content">
                                                                 <h5 class="event-title">{{ $thisblog->title }}</h5>
                                                                 <div class="single-event-content-meta">
                                                                     <div class="event-date">
@@ -5794,7 +5794,7 @@
                                 <span>Yarra Park, UK</span>
                             </div> --}}
                                                                 </div>
-                                                            </div>
+                                                            </a>
                                                         </li>
                                                     @endforeach
 
