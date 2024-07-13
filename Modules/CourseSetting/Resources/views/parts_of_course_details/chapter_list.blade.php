@@ -213,7 +213,7 @@
                     class="capter_body @if (isset($data['chapter_id']) && $data['chapter_id'] == $chapter->id) show @endif collapse">
                     {{-- start option head --}}
 
-                    <div class="row d-flex mt-30 pl-20">
+                    <div class="row d-flex mt-30 px-2">
                         <div class="col-lg-2">
                             <button class="primary-btn icon-only fix-gr-bg add_option_box mr-10"
                                 data-chapter="{{ $key }}" id="add_option_box{{ $key }}"><i
