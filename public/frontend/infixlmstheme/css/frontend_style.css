@@ -15876,6 +15876,11 @@ border-radius: 10px;
     height: 485px;
     overflow: hidden;
 }
+.custom_height_instructor{
+    height: 439px;
+    overflow: auto;
+    scrollbar-width: none;
+}
 .teach_section {
     height: 700px;
     overflow: auto;
@@ -16611,6 +16616,9 @@ border-radius: 10px;
     .program_tab {
     height: 300px  !important;
 }
+.custom_height_instructor{
+    height: auto !important;
+}
 }
 
 @media (min-width: 768px) and (max-width: 1024.95px) {
@@ -16623,7 +16631,7 @@ border-radius: 10px;
     .custom-image-height {
         height: 400px !important;
     }
-    .custom_height_2{
+    .custom_height_instructor{
         height: 354px !important;
     }
     .program_image {
@@ -16809,8 +16817,8 @@ border-radius: 10px;
     .custom-image-height {
         height: 390px !important;
     }
-    .custom_height_2{
-        height: 342px !important;
+    .custom_height_instructor{
+        height: 330px;
     }
     .course_detail_image{
         height: 400px !important;
@@ -17134,6 +17142,9 @@ border-radius: 10px;
 @media only screen and (min-width: 1350px) {
     .custom-image-height {
         height: 626px !important;
+    }
+    .custom_height_instructor{
+        height: auto !important;
     }
     .program_image {
         height: 600px !important;
