@@ -44,35 +44,32 @@
     @import url("https:://fonts.googleleapis.com/css2?family=Poppins&display=swap");
     @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
-    .tab-about {
+    .panel-about {
         width: 100%;
-        position: relative;
-        margin-bottom: 20px;
-        /* border-bottom: #eee;
-        color: #eee; */
+        border: 1px solid;
+        border-radius: 0.5rem 0.5rem 0 0;
     }
 
-    .tab-about input {
+    .panel-about input {
         position: absolute;
         opacity: 0;
         z-index: -1;
     }
 
-    .tab-about .tab-about-content {
+    .panel-about .panel-about-content {
         max-height: 0;
         overflow: hidden;
     }
 
-    .tab-about input:checked~.tab-about-content {
+    .panel-about input:checked~.panel-about-content {
         max-height: max-content;
-        /* color: #eee; */
     }
 
     .accordion {
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* gap: 1rem; */
+        gap: 1rem;
         border: none;
         border-radius: 1rem;
         max-height: 430px;
@@ -80,31 +77,26 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
-
     .accordion::-webkit-scrollbar {
         display: none;
     }
-
     .section-header {
         width: 100%;
         color: var(--system_secendory_color);
     }
 
-    .tab-about-wrapper {
+    .panel-about-wrapper {
         width: 100%;
-        height: 100%;
+        height: auto;
         padding: 0.5rem 0.5rem;
-        border: 1px solid;
-        border-radius: 0.5rem 0.5rem 0 0;
         transition: background-color 0.25s ease-in;
     }
 
-    .tab-about-wrapper:hover {
+    .panel-about-wrapper:hover {
         background-color: transparent;
-        /* color: #eee; */
     }
 
-    .tab-about label {
+    .panel-about label {
         width: 100%;
         display: flex;
         align-items: center;
@@ -114,7 +106,7 @@
         margin: 0px;
     }
 
-    .tab-about_label::after {
+    .panel-about_label::after {
         content: "\276F";
         width: 1em;
         height: 1em;
@@ -123,11 +115,11 @@
         transition: all 0.5s;
     }
 
-    .tab-about_label.rotate::after {
+    .panel-about_label.rotate::after {
         transform: rotate(270deg);
     }
 
-    .tab-about_content.closed+.tab-about_label::after {
+    .panel-about_content.closed+.panel-about_label::after {
         transform: rotate(0deg);
     }
 
@@ -2278,9 +2270,9 @@
         .about-img {
             max-height: 330px !important;
         }
-
+       
         .percent-video {
-            max-height: 490px !important;
+            max-height: 520px !important;
         }
 
         .percent1 {
@@ -2307,11 +2299,11 @@
             padding: .2rem .6rem !important;
         }
         .video-container {
-            height: 470px !important;
+            height: 550px !important;
         }
 
         .shadow_ist {
-            height: 470px !important;
+            height: 550px !important;
         }
 
         .percent1 {
@@ -2324,7 +2316,7 @@
 
         .about_us_image {
             object-fit: cover !important;
-            object-position: center !important;
+            object-position: top !important;
         }
 
         .online-learning {
@@ -2901,7 +2893,7 @@
             height: 835px;
         }
 
-        .tab-about label {
+        .panel-about label {
             font-size: 20px;
         }
 
@@ -5581,16 +5573,16 @@
                                         ANYTHING: FAQs</h2>
                                     <div class="accordion p-sm-3 p-2">
 
-                                        <!-- tab-about1 -->
+                                        <!-- panel-about1 -->
                                         @foreach ($faqs as $faq)
-                                            <div class="tab-about">
-                                                <div class="tab-about-wrapper">
+                                            <div class="panel-about">
+                                                <div class="panel-about-wrapper mb-2">
                                                     <input type="checkbox" name="checkbox-1"
                                                         id="cb{{ $loop->iteration }}" />
-                                                    <label for="cb{{ $loop->iteration }}" class="tab-about_label"
+                                                    <label for="cb{{ $loop->iteration }}" class="panel-about_label"
                                                         onclick="toggleAccordion('{{ $loop->iteration }}')">{{ $faq->question }}</label>
                                                     <div id="collapse_{{ $loop->iteration }}"
-                                                        class="tab-about-content accordion-body">
+                                                        class="panel-about-content accordion-body">
                                                         {{-- <p class="text-white">{{ strip_tags($faq->answer) }}</p> --}}
                                                         <p class="">
                                                             @php
@@ -6681,11 +6673,11 @@
             var content = document.getElementById('collapse_' + id);
             var isOpen = content.style.maxHeight !== '0px' && content.style.maxHeight !== '';
             // Close all other tabs
-            var allContents = document.querySelectorAll('.tab-about-content');
+            var allContents = document.querySelectorAll('.panel-about-content');
             allContents.forEach(function(item) {
                 if (item.id !== 'collapse_' + id) {
                     item.style.maxHeight = '0';
-                    var label = item.parentElement.querySelector('.tab-about_label');
+                    var label = item.parentElement.querySelector('.panel-about_label');
                     label.classList.remove('rotate');
                 }
             });
@@ -6695,7 +6687,7 @@
             } else {
                 // Close the clicked tab
                 content.style.maxHeight = '0';
-                var label = content.parentElement.querySelector('.tab-about_label');
+                var label = content.parentElement.querySelector('.panel-about_label');
                 label.classList.remove('rotate');
             }
         }

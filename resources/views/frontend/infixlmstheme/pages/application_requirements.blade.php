@@ -15,7 +15,7 @@
 
 <style>
     /* slider timeline */
-    .fw-medium {
+    /* .fw-medium {
         font-weight: 500;
     }
 
@@ -23,7 +23,7 @@
         color: var(--system_primery_color);
     }
 
-    .bg {
+    .slider-bg {
         background-color: #b2dfcc;
     }
 
@@ -92,7 +92,7 @@
 
     .ml_our_process {
         margin-left: 90px;
-    }
+    } */
 
     /* slider timeline-end */
     .footer .row p {
@@ -511,10 +511,10 @@
         transition: all 2s ease;
     }
 
-    .small_gap img{
+    /* .small_gap img{
         height: 35px;
         width: 35px;
-    }
+    } */
     .small_screen_carousel2 img{
         object-fit: cover;
     }
@@ -616,14 +616,14 @@
             display: none;
         }
 
-        .mr_our_process {
+        /* .mr_our_process {
             margin-right: 0px !important;
             margin-left: 10px !important;
         }
 
         .ml_our_process {
             margin-left: 10px !important;
-        }
+        } */
     }
 
     @media (max-width: 768px) {
@@ -649,7 +649,7 @@
             font-size: 1.5rem;
         }
 
-        .small_gap {
+        /* .small_gap {
             position: relative;
         }
 
@@ -660,15 +660,15 @@
             top: -28px;
             left: 50%;
             transform: translateX(-50%);
-        }
+        } */
 
-        .ml_our_process {
+        /* .ml_our_process {
             margin-left: 20px;
         }
 
         .mr_our_process {
             margin-right: 20px;
-        }
+        } */
     }
 
 
@@ -686,29 +686,24 @@
             min-height: 440px !important;
             max-height: 440px !important;
         }
-    @media only screen and (max-width: 1200px) {
-        .app_require {
-            /* height: calc(100vh - 80px); */
-        }
-    }
 
     @media only screen and (min-width: 1650px) {
-        .mr_our_process {
+        /* .mr_our_process {
             margin-right: 0px !important;
         }
 
         .ml_our_process {
             margin-left: 0px !important;
-        }
+        } */
 
-        .our-process-section-container {
+        /* .our-process-section-container {
             display: flex !important;
             justify-content: center !important;
         }
 
         .our-process-section-wrapper {
             width: 96% !important;
-        }
+        } */
     }
 
     @media only screen and (min-width: 1800px) {
@@ -719,7 +714,7 @@
         .our_require_section {
             padding: 0px 45px !important;
         }
-
+/* 
         .our-process-section-container {
             display: flex;
             justify-content: center;
@@ -727,7 +722,7 @@
 
         .our-process-section-wrapper {
             width: 90%;
-        }
+        } */
 
     }
 </style>
@@ -777,7 +772,7 @@
         </div>
     </section>
     {{-- slider timeline --}}
-    <div class="our-process-section-container bg mt-3">
+    <div class="our-process-section-container slider-bg mt-3">
         <div class="our-process-section-wrapper px-sm-3 px-2 py-lg-5 py-3">
             <h2 class="custom_small_heading heading mb-3 font-weight-bold text-center">Embark on your healthcare education journey</h2>
             <div class="w-100 d-flex justify-content-start">
