@@ -117,7 +117,7 @@
                             @if (isset($totalClasses))
                               {{-- @if(count($totalClasses) == 0) There are no Classes to show. @endif --}}
                                 @foreach ($totalClasses as $Class)
-                                    <div class="col-xl-4 col-sm-6 col-12 mx-1 my-2">
+                                    <div class="col-xl-4 col-sm-6 col-12 my-2">
                                         <div class="quiz_wizged shadow rounded p-3">
                                             <div class="thumb">
                                                 <a

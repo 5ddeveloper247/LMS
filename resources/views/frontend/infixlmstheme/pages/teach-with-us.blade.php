@@ -275,7 +275,7 @@
     }
 
     /* slider timeline */
-    .fw-medium {
+    /* .fw-medium {
         font-weight: 500;
     }
 
@@ -283,7 +283,7 @@
         color: var(--system_primery_color);
     }
 
-    .bg {
+    .slider-bg {
         background-color: #b2dfcc;
     }
 
@@ -352,15 +352,10 @@
 
     .ml_our_process {
         margin-left: 50px;
-    }
+    } */
 
     .custom-style li {
         list-style: circle !important;
-    }
-
-    .small_gap img {
-        height: 35px;
-        width: 35px;
     }
 
     .gallery_image {
@@ -374,7 +369,7 @@
         .pricing-para {
             min-height: 80px !important;
         }
-        .mr_our_process {
+        /* .mr_our_process {
             margin-right: 0px !important;
             margin-left: 10px !important;
         }
@@ -410,7 +405,7 @@
 
         .gap-5 {
             gap: .4rem !important;
-        }
+        } */
     }
 
     @media only screen and (max-width: 767px) {
@@ -438,7 +433,7 @@
             font-size: 20px;
         }
 
-        .small_gap {
+        /* .small_gap {
             position: relative;
         }
 
@@ -449,9 +444,9 @@
             top: -28px;
             left: 50%;
             transform: translateX(-50%);
-        }
+        } */
 
-        .ml_our_process {
+        /* .ml_our_process {
             margin-left: 50px;
         }
 
@@ -462,7 +457,7 @@
         .brdr-btm-of-txt {
             font-size: 16px;
             text-align: center !important;
-        }
+        } */
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -894,7 +889,7 @@
                                         </div>
                                     </div> -->
         {{-- slider timeline --}}
-        <div class="our-process-section-container bg mt-3">
+        <div class="our-process-section-container slider-bg mt-3">
             <div class="our-process-section-wrapper px-sm-3 px-2 py-lg-5 py-4">
                 <h2 class="custom_small_heading font-weight-bold text-center mb-3 mb-md-4 text-capitalize">The How to Begin
                     the Independent Educator Journey</h2>
