@@ -21,28 +21,28 @@
                         <div class="single_counter">
                             <h3><span class="">{{ $about->total_teacher }}</span></h3>
                             <div class="counter_content">
-                                <h5>{{ $about->teacher_title }}</h5>
+                                <h5 class="custom_small_heading">{{ $about->teacher_title }}</h5>
                                 <p>{{ $about->teacher_details }}</p>
                             </div>
                         </div>
                         <div class="single_counter">
                             <h3><span class="">{{ $about->total_student }}</span></h3>
                             <div class="counter_content">
-                                <h5>{{ $about->student_title }}</h5>
+                                <h5 class="custom_small_heading">{{ $about->student_title }}</h5>
                                 <p>{{ $about->student_details }}</p>
                             </div>
                         </div>
                         <div class="single_counter">
                             <h3><span class="">{{ $about->total_courses }}</span></h3>
                             <div class="counter_content">
-                                <h5>{{ $about->student_title }}</h5>
+                                <h5 class="custom_small_heading">{{ $about->student_title }}</h5>
                                 <p>{{ $about->student_details }}</p>
                             </div>
                         </div>
                         <div class="single_counter">
                             <h3><span class="">{{ $about->total_courses }}</span></h3>
                             <div class="counter_content">
-                                <h5>{{ $about->student_title }}</h5>
+                                <h5 class="custom_small_heading">{{ $about->student_title }}</h5>
                                 <p>{{ $about->student_details }}</p>
                             </div>
                         </div>

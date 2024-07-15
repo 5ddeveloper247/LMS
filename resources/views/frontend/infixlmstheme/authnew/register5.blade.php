@@ -24,12 +24,12 @@
         @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
         .reg_img {
-            /* min-height: 72vh; */
-            max-width: 100%;
             width: 100%;
+            height: 340px;
+
         }
         .reg_img img{
-            height: 90%;
+            height: 100%;
         }
 
         .btn_login {
@@ -296,6 +296,7 @@
         .is-invalid {
             border: 1px solid red;
         }
+      
     </style>
 
     <div class="container px-xl-5">
@@ -408,13 +409,16 @@
             </div>
             <!-- Right side - Image -->
             <div class="col-md-4">
-                <div class="reg_img img-fluid h-100 d-none d-md-block">
+                <div class="reg_img img-fluid d-none d-md-block mb-4">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class="mb-4 w-100" alt="Placeholder Image">
-
-                    <!-- <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg" class="reg_img h-100" alt="placeholder Image"> -->
-                    <h6 class="text-uppercase my-2">student centered expert instructors learn anywhere community</h6>
                 </div>
+                <div class="reg_img img-fluid d-none d-md-block">
+                    <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
+                        class="mb-4 w-100" alt="Placeholder Image">
+                </div>
+
+                <h6 class="text-uppercase my-2">student centered expert instructors learn anywhere community</h6>
             </div>
         </div>
     </div>

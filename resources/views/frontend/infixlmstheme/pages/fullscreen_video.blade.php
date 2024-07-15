@@ -27,22 +27,24 @@
             .mobile_progress {
                 margin: 0 !important;
             }
+            .mobile-min-height {
+                min-height: 225px !important;
+                height: 100%;
+                overflow-y: auto;
+            }
 
-            /* #video-placeholder {
-                height: 400px;
-            } */
         }
 
         .course__play_warp.courseListPlayer:before {
             background-color: transparent;
         }
 
-        @media (max-width: 767.98px) {
-            .mobile-min-height {
-                min-height: 225px !important;
-                height: 100%;
-                overflow-y: auto;
+        @media (max-width: 565.98px) {
+         
+            .small-text{
+                font-size: 12px;
             }
+          
         }
 
         #ExternalHeaderViewerChromeTopBars {
@@ -135,7 +137,7 @@
                                                 <input type="checkbox" id="autoNext" checked>
                                                 <div class="slider round"></div>
                                             </label>
-                                            <span class="text-nowrap pl-2">Auto Next</span>
+                                            <span class="small-text text-nowrap pl-2">Auto Next</span>
                                             <div class="d-flex align-items-center ml-3 pl-20 text-right">
                                                 @php
                                                     $last_key = array_key_last($lesson_ids);

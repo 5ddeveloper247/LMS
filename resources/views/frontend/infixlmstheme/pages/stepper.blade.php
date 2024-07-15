@@ -93,7 +93,7 @@
         }
 
         .paddingy {
-            padding-top: 40px !important;
+            padding-top: 20px !important;
         }
 
         .slider {

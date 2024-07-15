@@ -12124,7 +12124,7 @@ body {
 
 .top_right_btn:hover {
     opacity: 1;
-    color: #fff;
+    color: #fff !important;
     font-weight: 700;
     background: var(--system_primery_color);
 }
@@ -15852,7 +15852,7 @@ body {
 }
 .program_tab {
 height: 485px;
-overflow: hidden;
+overflow: auto;
 border-radius: 10px;
 }
 .custom-image-height {
@@ -16087,9 +16087,9 @@ border-radius: 10px;
     .course_detailimage{
         height: 340px !important;
     }
-    .course_main_text{
+    /* .course_main_text{
         height: 340px !important;
-    }
+    } */
     .course-page-img{
         min-height: auto !important;
     }
@@ -16242,7 +16242,7 @@ border-radius: 10px;
     }
 
     .counter_area .counter_wrapper .single_counter:first-child {
-        margin: 30px 0px 15px 0px !important;
+        margin: 10px 0px 15px 0px !important;
     }
 
     .counter_area .counter_wrapper .single_counter:nth-child(2) {
@@ -16254,7 +16254,7 @@ border-radius: 10px;
     }
 
     .counter_area .counter_wrapper .single_counter:nth-child(4) {
-        margin: 0px 0px 30px 0px !important;
+        margin: 0px 0px 10px 0px !important;
     }
 
     .counter_video {

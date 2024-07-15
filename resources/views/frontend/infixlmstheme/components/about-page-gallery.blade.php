@@ -32,7 +32,7 @@
                 <div class="col-lg-5 col-md-6">
                     <div class="section__title aniamtion about_page-description" id="animation-text" data-aos="fade-left"
                     data-aos-duration="2000">
-                        <h2 class="custom_small_heading my-sm-4 my-2 font-weight-bold">{{ $about->story_title }}</h2>
+                        <h2 class="custom_small_heading my-lg-4 my-2 font-weight-bold">{{ $about->story_title }}</h2>
                         <p class="mb-sm-4 about_description">{!! $about->story_description !!}</p>
                     </div>
                 </div>

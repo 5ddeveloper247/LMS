@@ -2733,7 +2733,9 @@
         .card-date {
             font-size: 18px !important;
         }
-
+        .card-date2{
+            font-size: 18px !important;
+        }
         .image-date {
             font-size: 18px !important;
         }

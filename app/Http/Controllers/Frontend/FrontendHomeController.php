@@ -177,5 +177,13 @@ class FrontendHomeController extends Controller
         return view(theme('pages.resource'),get_defined_vars());
     }
     
+    public function ourNursing(Request $request){
+        $recent_program = Program::where('status', 1)->has('currentProgramPlan')->with('currentProgramPlan')->inRandomOrder()->take(3)->get();
+        $programs = Program::orderBy('seq_no', 'asc')->where('status', 1);
+        
+
+        $programs = $programs->has('currentProgramPlan')->with(['currentProgramPlan'])->paginate(8);
+        return view(theme('pages.Our-nursing'),get_defined_vars());
+    }
 }
 

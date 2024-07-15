@@ -54,7 +54,6 @@
         }
 
         .reg_img {
-            /* min-height: 72vh; */
             max-width: 100%;
             width: 100%;
         }
@@ -469,9 +468,9 @@ canvas {
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class="w-100 mb-4 " alt="Placeholder Image">
                     {{-- <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg" class="reg_img h-100" alt="placeholder Image"> --}}
-                    <h6 class="text-uppercase mt-lg-2">student centered expert instructors learn anywhere community</h6>
+                   
                 </div>
-
+                <h6 class="text-uppercase mt-lg-2">student centered expert instructors learn anywhere community</h6>
 
             </div>
         </div>
