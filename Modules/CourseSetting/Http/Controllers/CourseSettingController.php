@@ -1504,6 +1504,11 @@ class CourseSettingController extends Controller
             return redirect()->back();
         }
 
+        if (count($course->classes) > 0) {
+                Toastr::error('This course have some ongoing classes. Please remove them first', 'Failed');
+                return back();
+            }
+
         $cna_prep_price = CourseEnrolled::where('course_type', 4)->where('course_id', $id)->count();
         if ($cna_prep_price != 0) {
             Toastr::error('Course CNA prep Already Enrolled By ' . $cna_prep_price . ' Student', trans('common.Failed'));

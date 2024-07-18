@@ -1908,8 +1908,11 @@ class WebsiteController extends Controller
     {
         try {
             $page_content = app('getHomeContent');
-            return view(theme('pages.contact'), compact('page_content'));
-        } catch (\Exception $e) {
+            $allPrograms = Program::where('status',1)->latest()->get();
+            $allCourses = Course::whereNull('parent_id')->where('type','<>',3)->latest()->get();
+            return view(theme('pages.contact'), get_defined_vars());
+        } 
+        catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
     }

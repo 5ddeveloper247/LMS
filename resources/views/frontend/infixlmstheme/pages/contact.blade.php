@@ -719,8 +719,29 @@
                                 class="form-control zip form-control-text" required>
                         </div>
                         <div class="col-sm-6 col-md-6 col-12 selectProgram">
-                            <select name="program" id="program" class="form-control" required>
-                                <option value="" selected> Select Program</option>
+                            <select name="program" id="program" class="form-control">
+                                <option value="" disabled selected>Select Course / Program</option>
+                                <optgroup label="Programs">
+                                    @if (count($allPrograms) > 0)
+                                        @foreach ($allPrograms as $thisProgram)
+                                            <option value="{{ $thisProgram->programtitle }}">
+                                                {{ $thisProgram->programtitle }}</option>
+                                        @endforeach
+                                    @else
+                                        <option disabled>-- No Program --</option>
+                                    @endif
+                                </optgroup>
+                                <optgroup label="Courses">
+                                    @if (count($allCourses) > 0)
+                                        @foreach ($allCourses as $thisCourse)
+                                            <option value="{{ $thisCourse->title }}">
+                                                {{ $thisCourse->title }}</option>
+                                        @endforeach
+                                    @else
+                                        <option disabled>-- No Course --</option>
+                                    @endif
+                                </optgroup>
+                                {{-- <option value="" selected> Select Program</option>
                                 <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
                                 <option value="Refresher-RM(Endorsement & inactive License)">
                                     Refresher-RM(Endorsement & inactive License)
@@ -729,7 +750,7 @@
                                 <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
                                     Testing)
                                 </option>
-                                <option value="Clinical-Proctor">Clinical-Proctor</option>
+                                <option value="Clinical-Proctor">Clinical-Proctor</option> --}}
 
                             </select>
                         </div>
