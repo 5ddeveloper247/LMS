@@ -1908,8 +1908,11 @@ class WebsiteController extends Controller
     {
         try {
             $page_content = app('getHomeContent');
-            return view(theme('pages.contact'), compact('page_content'));
-        } catch (\Exception $e) {
+            $allPrograms = Program::where('status',1)->latest()->get();
+            $allCourses = Course::whereNull('parent_id')->where('type','<>',3)->latest()->get();
+            return view(theme('pages.contact'), get_defined_vars());
+        } 
+        catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
     }
@@ -1986,7 +1989,7 @@ class WebsiteController extends Controller
                 'message' => 'required|string|max:255',
                 'phone' => 'required',
                 //'zip' => 'required',
-                'program' => 'required',
+                // 'program' => 'required',
                 'year' => 'required',
                 'g-recaptcha-response' => 'required|captcha'
             ];
@@ -1997,7 +2000,7 @@ class WebsiteController extends Controller
                 'message' => 'required|string|max:255',
                 'phone' => 'required',
                // 'zip' => 'required',
-                'program' => 'required',
+                // 'program' => 'required',
                 'year' => 'required'
             ];
         }
@@ -2009,7 +2012,7 @@ class WebsiteController extends Controller
         $message = $request->get('message');
         $phone = $request->get('phone');
         $zip = $request->get('zip') ?? '';
-        $program = $request->get('program');
+        $program = $request->get('program') ?? '';
         $year = $request->get('year');
 
         $save = new ContactMessage();

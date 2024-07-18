@@ -65,7 +65,7 @@ class FrontendHomeController extends Controller
             // })
             ->with('parent','currentCoursePlan')->latest()->take(3)->get();
             $allPrograms = Program::where('status',1)->latest()->get();
-            $allCourses = Course::whereNull('parent_id')->latest()->get();
+            $allCourses = Course::whereNull('parent_id')->where('type','<>',3)->latest()->get();
             //dd($latest_courses);
             $latest_blogs = Blog::where('status', 1)->with('user')->latest()->limit(10)->get();
             $featured_blogs = Blog::where('status',1)->where('featured',1)->with('user')->latest()->limit(3)->get();

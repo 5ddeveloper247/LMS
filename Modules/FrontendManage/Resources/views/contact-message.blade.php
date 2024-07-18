@@ -32,6 +32,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($messages as $key => $item)
+                                        <tr>
                                            <th>{{ $key+1 }}</th>
                                            <th> {{ $item->name }} </th> 
                                            <th> {{ $item->email }} </th> 
@@ -56,6 +57,7 @@
                                                 </div>
                                             </div>
                                             </th> 
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

@@ -475,9 +475,6 @@ class InstructorSettingController extends Controller
 
     public function destroy(Request $request)
     {
-        if (demoCheck()) {
-            return redirect()->back();
-        }
 
         $rules = [
             'id' => 'required'
