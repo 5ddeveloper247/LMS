@@ -1009,10 +1009,10 @@
         /* min-height: 90vh; */
     }
 
-    .old_row {
+    /* .old_row {
         height: 510px;
         overflow: hidden;
-    }
+    } */
 
     .main_banner_2 {
         height: 255px;
@@ -2142,9 +2142,9 @@
             height: 400px !important;
         }
 
-        .old_row {
+        /* .old_row {
             height: 400px;
-        }
+        } */
 
         .main_banner_2 {
             height: 200px !important;
@@ -2492,12 +2492,13 @@
             height: 630px !important;
         }
 
-        .old_row {
+        /* .old_row {
             height: 630px !important;
-        }
+        } */
 
         .main_banner_2 {
             height: 315px !important;
+            
         }
 
         .cta_area {
@@ -2648,9 +2649,9 @@
             height: 820px !important;
         }
 
-        .old_row {
+        /* .old_row {
             height: 820px !important;
-        }
+        } */
 
         .main_banner_2 {
             height: 410px !important;
@@ -2996,7 +2997,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 old_row pl-0">
+                <div class="col-md-4 old_row">
                     <div class="row" id="random_programs" @if (!isset($random_program)) style="height:100%" @endif>
                         @if (isset($random_program))
                             <div class="col-6 px-0 main_banner_2">

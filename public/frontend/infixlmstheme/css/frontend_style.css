@@ -7324,6 +7324,7 @@ input[type="number"] {
     width: 345px;
     z-index: 999;
     flex: 345px 0 0;
+    overflow: auto;
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -14994,6 +14995,7 @@ body {
 .sidebar_iner {
     box-shadow: 5px 30px 30px 0 rgba(0, 0, 0, 0.1);
     height: calc(100% - 50px);
+    overflow: auto;
 }
 
 .header_iner .category_search .theme_search_field {

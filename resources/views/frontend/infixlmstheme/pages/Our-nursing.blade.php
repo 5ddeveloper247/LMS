@@ -161,7 +161,7 @@
             <div class="row px-4">
                 <div class="col-12 mb-md-5 mb-4">
 
-                    <h2 class="custom_small_heading font-weight-bold custom_heading_1 text-center">Comming Soon...</h2>
+                    <h2 class="custom_small_heading font-weight-bold custom_heading_1 text-center">Something Awesome is n the Way...</h2>
 
                 </div>
             </div>
