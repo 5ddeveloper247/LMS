@@ -1986,7 +1986,7 @@ class WebsiteController extends Controller
                 'message' => 'required|string|max:255',
                 'phone' => 'required',
                 //'zip' => 'required',
-                'program' => 'required',
+                // 'program' => 'required',
                 'year' => 'required',
                 'g-recaptcha-response' => 'required|captcha'
             ];
@@ -1997,7 +1997,7 @@ class WebsiteController extends Controller
                 'message' => 'required|string|max:255',
                 'phone' => 'required',
                // 'zip' => 'required',
-                'program' => 'required',
+                // 'program' => 'required',
                 'year' => 'required'
             ];
         }
@@ -2009,7 +2009,7 @@ class WebsiteController extends Controller
         $message = $request->get('message');
         $phone = $request->get('phone');
         $zip = $request->get('zip') ?? '';
-        $program = $request->get('program');
+        $program = $request->get('program') ?? '';
         $year = $request->get('year');
 
         $save = new ContactMessage();
