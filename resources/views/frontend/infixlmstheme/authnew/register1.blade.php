@@ -33,13 +33,11 @@
         }
 
         .reg_img {
-            /* min-height: 72vh;
-            min-height: 500px; */
-            max-width: 100%;
             width: 100%;
+            height: 450px;
         }
         .reg_img img{
-            height: 45%;
+            height: 100%;
         }
 
         .larger-checkbox .form-check-input {
@@ -156,8 +154,6 @@
         }
 
         .btn_login {
-            /* width: 135px;
-            height: 38px; */
             font-size: 16px;
             background: var(--system_primery_color);
             border-radius: 16px;
@@ -189,9 +185,6 @@
 #root {
 	height: 100%;
 	width: 100%;
-	/* max-width: 1200px;
-	max-height: 130px; */
-	/* margin: 0 auto; */
 }
 
 canvas {
@@ -306,11 +299,6 @@ canvas {
                 font-size: 13px;
             }
 
-            /* .reg_img {
-                max-height: 420px;
-                max-width: 375px;
-            } */
-
             .data {
                 margin-top: 10px;
             }
@@ -323,10 +311,9 @@ canvas {
         }
 
         @media only screen and (min-width: 1800px) {
-            /* .reg_img {
-                max-height: 495px;
-                max-width: 100%;
-            } */
+            .reg_img {
+                height: 640px !important;
+            }
             .btn_login{
                 border-radius: 20px !important;
             }
@@ -656,25 +643,21 @@ canvas {
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn_login mt-4" id="next-button">Next Page</button>
+                        <button type="submit" class="btn btn_login mt-2" id="next-button">Next Page</button>
                     </div>
                 </form>
             </div>
             <!-- Right side - Image -->
             <div class="col-md-4 px-0">
-                <div class="reg_img img-fluid d-none d-md-block h-100">
+                <div class="reg_img img-fluid d-none d-md-block  mb-4">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
-                        class="w-100 mb-4" alt="Placeholder Image">
-                    <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
-                        class="w-100 mb-4  d-xxl-none" alt="Placeholder Image">
-
-                    <h6 class="text-uppercase">student centered expert instructors learn anywhere community</h6>
+                        class="w-100" alt="Placeholder Image">
                 </div>
-
-                {{-- <div class="data mt-4">
-                    <h6 class="login-txt">You have already an account? <span class="login-span"
-                            id="myButton">Login</span></h6>
-                </div> --}}
+                <div class="reg_img img-fluid d-none d-md-block  mb-4">
+                    <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
+                        class="w-100" alt="Placeholder Image">
+                </div>
+                <h6 class="text-uppercase my-3">student centered expert instructors learn anywhere community</h6>
             </div>
         </div>
     </div>

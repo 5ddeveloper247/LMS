@@ -3,7 +3,7 @@
     <input type="hidden" value="{{ asset('/') }}" id="baseUrl">
     <!-- course_details::start  -->
     <div class="course__details p-md-5 p-4">
-        <div class="container px-lg-0">
+        <div class="container px-0">
             @php
                 if (!empty($request->courseType) && count($course->children)) {
                     foreach ($course->children as $child) {
@@ -154,7 +154,7 @@
         </div>
         <!-- firstend -->
         <!-- 2ndstart -->
-        <div class="container px-lg-0">
+        <div class="container px-0">
             <div class="row my-sm-4 my-2 px-lg-5 small_screen course_padding">
 
                 <div class="col-lg-9 col-md-8 col-sm-7 mb-2 mb-sm-0 course_main_image">
@@ -260,7 +260,7 @@
         <!-- 3rdstart -->
 
         <!-- <div class="col-12"> -->
-        <div class="container px-lg-0">
+        <div class="container px-0">
             <div class="row px-lg-5 small_screen course_padding">
                 <div class="col-lg-9 col-md-8 col-12">
                     

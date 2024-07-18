@@ -173,7 +173,7 @@
 
     <div class="container student_container pb-4 pb-lg-0 ">
 
-        <div class="row justify-content-center align-items-center flex-column mx-md-5 mx-3 mt-5 mb-3">
+        <div class="row justify-content-center align-items-center flex-column mx-md-5 mx-3 mt-md-5 my-3">
             <div class="text-center">
                 <h2 class="custom_small_heading custom_heading_1 font-weight-bold">
                     Real Student Voices and Success Stories

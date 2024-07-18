@@ -20,9 +20,6 @@
         color: white;
         padding-top: 8rem !important;
     }
-.program-span{
-    font-size: 13px;
-}
     .mainbanner {
         background-image: url("{{ asset('public/frontend/infixlmstheme/img/images/courses-4.jpg') }}");
         height: 530px;
@@ -610,10 +607,6 @@
     }
 
     @media (width < 576px ) {
-        .custom_heading_1 {
-            font-size: 1rem;
-        }
-
         .amount_total {
             justify-content: center;
             display: flex;
@@ -689,9 +682,7 @@
      max-height: 10rem;
      height: 100%;
 }
-.custom_heading_1 {
-       font-size: 1rem !important;
-    }
+
 .span_h{
     font-size:12px !important;
 }
@@ -756,7 +747,7 @@
                         <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-12 d-flex justify-content-between">
 
                             <div class="">
-                                <h5 class="font-weight-bold custom_heading_1 mt-1">
+                                <h5 class="custom_small_heading font-weight-bold custom_heading_1 mt-1">
                                     {{ $program_detail->programtitle }}
                                 </h5>
                                 <span class="mt-4 program-span" style="font-weight:400;">{{ $program_detail->subtitle }}</span>
@@ -765,7 +756,7 @@
                         <div class="d-flex flex-column justify-content-between">
                             <div class="amount_total">
                                 @if (isset($program_detail->currentProgramPlan[0]))
-                                    <h4 class="color font-weight-bold custom_heading_1 "
+                                    <h4 class="color custom_small_heading font-weight-bold custom_heading_1 "
                                           style="margin-left: 6px;">
                                         ${{ $program_detail->currentProgramPlan[0]->amount }}
                                     </h4>
@@ -824,7 +815,7 @@
                     <!-- </div> -->
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12 ">
                     <div class="custom_section_color rounded_section p-2" style="height: auto;">
-                        <h5 class="font-weight-bold custom_heading_1">This Program includes:
+                        <h5 class="custom_small_heading font-weight-bold custom_heading_1">This Program includes:
                         </h5>
                         <span class="program-span"><i class="fa fa-book-open"></i>&nbsp;&nbsp; Courses |
                             {{ count(json_decode($program_detail->allcourses)) }}
@@ -859,7 +850,7 @@
 
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-12">
                     <div class="custom_section_color rounded_section pt-2 px-2 program_tab">
-                        <h5 class="font-weight-bold custom_heading_1">You May also Like</h5>
+                        <h5 class="custom_small_heading font-weight-bold custom_heading_1">You May also Like</h5>
                         <div class="row mx-0 mt-2">
                             @forelse($recent_program as  $program)
                                 <div class="col-xl-5 col-lg-5 col-md-6 col-4 cus-mb-5 pl-0 pr-2">
@@ -938,7 +929,7 @@
                              aria-labelledby="Overview-tab">
                             <div class="desc">
                                 @if ($program_detail->discription)
-                                    <h5 class="font-weight-bold custom_heading_1 mb-3"> Program Description</h5>
+                                    <h5 class="custom_small_heading font-weight-bold custom_heading_1 mb-3"> Program Description</h5>
                                     <div class="row">
                                     	<div class="col-12">
                                          	<div class="table-responsive" style="overflow:hidden;">
@@ -951,7 +942,7 @@
                                     <hr>
                                 @endif
                                 @if ($program_detail->outcome)
-                                    <h5 class="font-weight-bold custom_heading_1 my-3">Program Outcome</h5>
+                                    <h5 class="custom_small_heading font-weight-bold custom_heading_1 my-3">Program Outcome</h5>
                                     <div class="row">
                                     	<div class="col-12">
                                          	<div class="table-responsive" style="overflow:hidden;">
@@ -964,7 +955,7 @@
                                     <hr>
                                 @endif
                                 @if ($program_detail->requirement)
-                                    <h5 class="font-weight-bold custom_heading_1 my-3">Program Requirement</h5>
+                                    <h5 class="custom_small_heading font-weight-bold custom_heading_1 my-3">Program Requirement</h5>
                                     <div class="row">
                                     	<div class="col-12">
                                          	<div class="table-responsive" style="overflow:hidden;">
@@ -1579,7 +1570,7 @@
                     </div>
                 </div>
                 <div class="boxaccordion mt-4 mb-4">
-                                    <h5 class="font-weight-bold custom_heading_1 mb-4">FAQs</h5>
+                                    <h5 class="custom_small_heading font-weight-bold custom_heading_1 mb-4">FAQs</h5>
                                     @forelse ($faqs as $faq)
                                         <div class="containerwidth">
                                             <div class="wrapper shadow">
@@ -1609,7 +1600,7 @@
                        <!-- 3rdmid -->
                 <div class="col-xl-3 col-lg-3 col-md-4 col-12">
                     <div class=" custom_section_color rounded_section mb-4 p-2" style="height: auto;">
-                        <h5 class="font-weight-bold custom_heading_1">This Program includes:
+                        <h5 class="custom_small_heading font-weight-bold custom_heading_1">This Program includes:
                         </h5>
                         <span class="program-span"><i class="fa fa-book-open"></i>&nbsp;&nbsp; Courses |
                             {{ count(json_decode($program_detail->allcourses)) }}
@@ -1668,7 +1659,7 @@
                         </div>
                     </div> -->
                     <div class="custom_section_color rounded_section mb-1 p-2">
-                        <h5 class="font-weight-bold custom_heading_1">Start Your Application:</h5>
+                        <h5 class="custom_small_heading font-weight-bold custom_heading_1">Start Your Application:</h5>
                         <p class="my-1 program-span"><i class="fa fa-calendar-days"></i>&nbsp;&nbsp; Current Cohort End :
                             @if (isset($program_detail->currentPlan[0]))
                                 {{-- <br class="mt-2"> --}}
@@ -1742,7 +1733,7 @@
                     @endif
 
                     <div class="custom_section_color rounded_section my-4 p-3">
-                        <h5 class="font-weight-bold custom_heading_1 mt-2">Social Links:</h5>
+                        <h5 class="custom_small_heading font-weight-bold custom_heading_1 mt-2">Social Links:</h5>
                         <div class="row my-md-4">
                             @foreach($socials as $social)
                             <div class="col-auto p-2">
@@ -1804,7 +1795,7 @@
                                 </a>
                             </div>
                             <div class="card-body">
-                                <h5 class="font-weight-bold custom_heading_1">
+                                <h5 class="custom_small_heading font-weight-bold custom_heading_1">
                                     <a href="{{ route('programs.detail', [$program->id]) }}">
                                         @if (Str::length($program->programtitle) > 25)
                                             {{ Str::limit($program->programtitle, 25, '...') }}
@@ -1828,7 +1819,7 @@
                                             Weeks
                                         </small>
                                     </div>
-                                    <div class="font-weight-bold col-auto custom_heading_1">
+                                    <div class="custom_small_heading font-weight-bold col-auto custom_heading_1">
                                         <small class="font-weight-bold">
                                             ${{ $program->currentProgramPlan[0]->amount }}
                                         </small>

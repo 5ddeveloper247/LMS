@@ -54,12 +54,11 @@
         }
 
         .reg_img {
-            /* min-height: 72vh; */
-            max-width: 100%;
+            height: 430px;
             width: 100%;
         }
         .reg_img img{
-            height: 45%;
+            height: 100%;
         }
 
         .larger-checkbox .form-check-input {
@@ -288,7 +287,6 @@ canvas {
             .form-group {
                 font-size: 14px;
             }
-
         }
 
         @media only screen and (min-width: 769px) and (max-width: 1024px) {
@@ -300,10 +298,15 @@ canvas {
             .btn_login {
                 font-size: 14px;
             }
-
-         
         }
-
+        @media only screen and (min-width: 1800px) {
+            .reg_img {
+            height: 620px;
+        }
+            .btn_login{
+                border-radius: 20px !important;
+            }
+        }
     </style>
 
 
@@ -455,24 +458,27 @@ canvas {
 
 
                     <div class="text-center">
-                        <button type="button" class="btn btn_login mt-4" id="back-button">Back Page</button>
-                        <button type="submit" class="btn btn_login mt-4" id="next-button">Next Page</button>
+                        <button type="button" class="btn btn_login mt-2" id="back-button">Back Page</button>
+                        <button type="submit" class="btn btn_login mt-2" id="next-button">Next Page</button>
                     </div>
                 </form>
 
             </div>
             <!-- Right side - Image -->
             <div class="col-md-4">
-                <div class="reg_img img-fluid h-100 d-none d-md-block">
+                <div class="reg_img img-fluid d-none d-md-block  mb-4">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
-                        class=" mb-4 w-100" alt="Placeholder Image">
-                    <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
-                        class="w-100 mb-4 " alt="Placeholder Image">
-                    {{-- <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg" class="reg_img h-100" alt="placeholder Image"> --}}
-                    <h6 class="text-uppercase mt-lg-2">student centered expert instructors learn anywhere community</h6>
+                        class="w-100" alt="Placeholder Image">
                 </div>
-
-
+                <div class="reg_img img-fluid d-none d-md-block  mb-4">
+                    <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
+                        class="w-100" alt="Placeholder Image">
+                </div>
+                <div class="reg_img img-fluid d-none d-md-block  mb-4">
+                    <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
+                        class="w-100" alt="Placeholder Image">
+                </div>
+                <h6 class="text-uppercase my-3">student centered expert instructors learn anywhere community</h6>
             </div>
         </div>
     </div>

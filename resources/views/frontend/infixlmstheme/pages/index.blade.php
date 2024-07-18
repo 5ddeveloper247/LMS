@@ -2653,7 +2653,7 @@
         }
 
         .main_banner_2 {
-            height: 405px !important;
+            height: 410px !important;
         }
 
         .cta_area {
@@ -2733,7 +2733,9 @@
         .card-date {
             font-size: 18px !important;
         }
-
+        .card-date2{
+            font-size: 18px !important;
+        }
         .image-date {
             font-size: 18px !important;
         }

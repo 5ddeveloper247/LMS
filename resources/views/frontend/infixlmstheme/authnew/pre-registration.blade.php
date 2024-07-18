@@ -10,13 +10,14 @@
     <style>
         @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
+
         .reg_img {
             width: 100%;
-            height: 100%;
+            height: 450px;
         }
 
         .reg_img img {
-            height: 90%;
+            height: 100%;
         }
 
         .larger-checkbox .form-check-input {
@@ -173,8 +174,6 @@
         }
 
         .btn_login {
-            /* width: 135px;
-                height: 38px; */
             font-size: 16px;
             background: var(--system_primery_color);
             border-radius: 16px;
@@ -225,7 +224,7 @@
         }
 
         .googleLoginBtn {
-            background:#EA4335;
+            background: #EA4335;
             border-radius: 0;
             color: #fff !important;
             white-space: nowrap;
@@ -236,9 +235,10 @@
 
         .socail_links {
             display: flex;
-            /* display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 10px; */
+        }
+        .preReg_row{
+            display: flex;
+            align-items: center;
         }
 
         @media only screen and (max-width: 768px) {
@@ -273,15 +273,28 @@
             }
         }
 
+        @media only screen and (min-width: 1350px) {
+            .reg_img {
+                height: 550px !important;
+            }
+           
+        }
+
         @media only screen and (min-width: 1800px) {
+            .reg_img {
+                height: 640px !important;
+            }
 
             .btn_login {
                 border-radius: 20px !important;
             }
-            .googleLoginBtn, .facebookLoginBtn {
+
+            .googleLoginBtn,
+            .facebookLoginBtn {
                 font-size: 18px !important;
 
             }
+
         }
     </style>
     @php
@@ -291,7 +304,7 @@
     @endphp
 
     <div class="container custom-bg px-xl-5 my-md-5 my-3">
-        <div class="row px-xl-5 px-md-2">
+        <div class="row px-xl-5 px-md-2 preReg_row">
             <div class="col-md-7 mb-2 mb-md-0">
                 <div class="collapse show" id="optionsCollapse">
                     <div class=" text-center">
@@ -319,8 +332,8 @@
 
                             <div class="col-md-4 mb-2 px-sm-1 px-md-2 d-flex justify-content-center align-items-center">
                                 <a href="{{ url('teach-with-us#sellWithUs') }}" class="btn content_btn"style="    display: flex;
-                  justify-content: center;
-                  align-items: center;">Sell with <br>Us Instructors</a>
+                      justify-content: center;
+                      align-items: center;">Sell with <br>Us Instructors</a>
                             </div>
 
                         </div>
@@ -328,122 +341,127 @@
                 </div>
                 <div class="collapse" id="mainContentCollapse">
 
-                <h6 class="text-center mb-4 text-capitalize heading-login">hello, welcome to Merkaii Xcellence </h6>
-                @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true' || saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
-                <div class="socail_links">
-                    @if(saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true')
-                    <a href="{{ route('facebookredirect') }}" class="facebookLoginBtn text-center p-2">
-                        <i class="fab fa-facebook-f"></i>
-                        Register with Facebook</a>
-                    @endif
-                    @if(saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
-                    <a href="{{ route('googleredirect') }}" class="googleLoginBtn text-center p-2 w-100">
-                        <i class="fab fa-google"></i>
-                        Register with Google</a>
-                    @endif
-                </div>
-                <h6 class="text-center mt-4 mb-2 text-capitalize heading-login"> OR</h6>
-                @endif
-
-                <h6 class="text-center mb-4 text-capitalize heading-login"> please fill the form
-                    below to get started</h6>
-                <form action="{{ route('preRegister') }}" method="POST" id="loginForm">
-                    @csrf
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <div class="position-relative mt-4">
-                                <input type="text" value="{{ old('name') }}"
-                                    class="outside {{ $errors->has('name') ? ' border-danger' : '' }}" name="name"
-                                    required />
-                                <span class="floating-label-outside">Name</span>
-                                <i class="fa fa-id-card-o input-icon-outside"></i>
-                            </div>
-                            @if ($errors->first('name'))
-                                <span class="text-danger" role="alert">Name is required</span>
+                    <h6 class="text-center mb-4 text-capitalize heading-login">hello, welcome to Merkaii Xcellence </h6>
+                    @if (saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true' || saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
+                        <div class="socail_links">
+                            @if (saasEnv('ALLOW_FACEBOOK_LOGIN') == 'true')
+                                <a href="{{ route('facebookredirect') }}" class="facebookLoginBtn text-center p-2">
+                                    <i class="fab fa-facebook-f"></i>
+                                    Register with Facebook</a>
+                            @endif
+                            @if (saasEnv('ALLOW_GOOGLE_LOGIN') == 'true')
+                                <a href="{{ route('googleredirect') }}" class="googleLoginBtn text-center p-2 w-100">
+                                    <i class="fab fa-google"></i>
+                                    Register with Google</a>
                             @endif
                         </div>
-                        <div class="form-group col-md-12">
-                            <div class="position-relative mt-4 d-flex">
-                                <input type="email" name="email" class="outside" required value="{{ $contactLogin ? $contactLogin['email'] : old('email') }}"/>
-                                <br>
-                                <span class="floating-label-outside">Email</span>
-                                <i class="fa fa-envelope input-icon-outside"></i>
+                        <h6 class="text-center mt-4 mb-2 text-capitalize heading-login"> OR</h6>
+                    @endif
 
+                    <h6 class="text-center mb-4 text-capitalize heading-login"> please fill the form
+                        below to get started</h6>
+                    <form action="{{ route('preRegister') }}" method="POST" id="loginForm">
+                        @csrf
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="position-relative mt-4">
+                                    <input type="text" value="{{ old('name') }}"
+                                        class="outside {{ $errors->has('name') ? ' border-danger' : '' }}" name="name"
+                                        required />
+                                    <span class="floating-label-outside">Name</span>
+                                    <i class="fa fa-id-card-o input-icon-outside"></i>
+                                </div>
+                                @if ($errors->first('name'))
+                                    <span class="text-danger" role="alert">Name is required</span>
+                                @endif
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="position-relative mt-4 d-flex">
+                                    <input type="email" name="email" class="outside" required
+                                        value="{{ $contactLogin ? $contactLogin['email'] : old('email') }}" />
+                                    <br>
+                                    <span class="floating-label-outside">Email</span>
+                                    <i class="fa fa-envelope input-icon-outside"></i>
+
+
+                                </div>
+                                <div class="input-group-append">
+
+                                    @if ($errors->first('email'))
+                                        <span class="text-danger" role="alert">Email must be unique</span>
+                                    @endif
+
+                                </div>
 
                             </div>
-                            <div class="input-group-append">
 
-                                @if ($errors->first('email'))
-                                    <span class="text-danger" role="alert">Email must be unique</span>
-                                @endif
+                            <div class="form-group col-md-12">
+                                <div class="position-relative mt-4 d-flex">
+                                    <input type="password" name="password" class="outside" required minlength="8"
+                                        value="{{ $contactLogin ? $contactLogin['password'] : old('password') }}" />
+                                    <br>
+                                    <span class="floating-label-outside">Password</span>
+                                    <i id="icon1" class="bi bi-unlock input-icon-outside"></i>
+
+
+                                </div>
+                                <div class="input-group-append">
+
+                                    @if ($errors->first('password'))
+                                        <span class="text-danger" role="alert">Password and confirm password donot
+                                            match</span>
+                                    @endif
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="position-relative mt-4 d-flex">
+                                    <input type="password" name="password_confirmation" class="outside" required
+                                        minlength="8" />
+                                    <br>
+                                    <span class="floating-label-outside">Confirm Password</span>
+                                    <i id="icon2" class="bi bi-unlock input-icon-outside"></i>
+
+
+                                </div>
+                                <div class="input-group-append">
+
+                                    @if ($errors->first('password'))
+                                        <span class="text-danger" role="alert">Password and confirm password donot
+                                            match</span>
+                                    @endif
+
+                                </div>
 
                             </div>
 
                         </div>
 
-                        <div class="form-group col-md-12">
-                            <div class="position-relative mt-4 d-flex">
-                                <input type="password" name="password" class="outside" required minlength="8" value="{{ $contactLogin ? $contactLogin['password'] : old('password') }}"/>
-                                <br>
-                                <span class="floating-label-outside">Password</span>
-                                <i id="icon1" class="bi bi-unlock input-icon-outside"></i>
+                        <div class="text-center mt-4 mb-4 mb-md-0">
 
-
-                            </div>
-                            <div class="input-group-append">
-
-                                @if ($errors->first('password'))
-                                    <span class="text-danger" role="alert">Password and confirm password donot
-                                        match</span>
-                                @endif
-                            </div>
-
+                            <button type="submit" class="btn btn_login">Register</button>
                         </div>
 
-                        <div class="form-group col-md-12">
-                            <div class="position-relative mt-4 d-flex">
-                                <input type="password" name="password_confirmation" class="outside" required minlength="8" />
-                                <br>
-                                <span class="floating-label-outside">Confirm Password</span>
-                                <i id="icon2" class="bi bi-unlock input-icon-outside"></i>
+                    </form>
+                    <div class="col-md-12 px-0 mb-md-0">
 
-
-                            </div>
-                            <div class="input-group-append">
-
-                                @if ($errors->first('password'))
-                                    <span class="text-danger" role="alert">Password and confirm password donot
-                                        match</span>
-                                @endif
-
-                            </div>
-
-                        </div>
+                        <label class="">Already have an Account? <a href="{{ route('login') }}"
+                                class="text-capitalize" id="myButton"
+                                style="color: var(--system_primery_color);">Login</a></label>
 
                     </div>
-
-                    <div class="text-center mt-4 mb-4 mb-md-0">
-
-                        <button type="submit" class="btn btn_login">Register</button>
-                    </div>
-
-                </form>
-                <div class="col-md-12 px-0 mb-md-0">
-
-                    <label class="">Already have an Account? <a href="{{ route('login') }}" class="text-capitalize"
-                            id="myButton" style="color: var(--system_primery_color);">Login</a></label>
-
                 </div>
             </div>
-            </div>
             <div class="col-md-5 d-none d-md-block pr-0">
-                <div class="img-fluid reg_img  mb-4 ">
+                <div class="img-fluid reg_img mb-4">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class=" w-100" alt="Placeholder Image">
 
                     <!-- <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg" class="reg_img" alt="placeholder Image"> -->
-                    <h6 class="text-capitalize my-md-3">student centered expert instructors learn anywhere community</h6>
+                 
                 </div>
+                <h6 class="text-capitalize mb-0">student centered expert instructors Empower anywhere community</h6>
             </div>
         </div>
     </div>
@@ -453,7 +471,7 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script>
-        $('#showMainContent').on('click',function(){
+        $('#showMainContent').on('click', function() {
             $('#optionsCollapse').collapse('hide');
             $('#mainContentCollapse').collapse('show');
         });

@@ -21,10 +21,6 @@
         padding-top: 8rem !important;
     }
 
-    .program-span {
-        font-size: 13px;
-    }
-
     .mainbanner {
         background-image: url("{{ asset('public/frontend/infixlmstheme/img/images/courses-4.jpg') }}");
         height: 530px;
@@ -522,7 +518,7 @@
     .program_tab {
         height: 485px !important;
         border-radius: 10px;
-        overflow: hidden;
+        overflow: auto;
     }
 
     .amount_total {
@@ -722,7 +718,7 @@
                         @endforeach
                     </div>
                     <div class="boxaccordion mt-4 mb-4">
-                        <h5 class="font-weight-bold custom_heading_1 mb-4">FAQs</h5>
+                        <h5 class="custom_small_heading font-weight-bold custom_heading_1 mb-4">FAQs</h5>
                         @forelse ($faqs as $faq)
                             <div class="containerwidth">
                                 <div class="wrapper shadow">
@@ -751,7 +747,7 @@
                 <!-- 3rdmid -->
                 <div class="col-xl-3 col-lg-3 col-md-4 col-12">
                     <div class="custom_section_color rounded_section pt-2 px-2 program_tab mb-3">
-                        <h5 class="font-weight-bold custom_heading_1">This Program includes:</h5>
+                        <h5 class="custom_small_heading font-weight-bold custom_heading_1">This Program includes:</h5>
                         <div class="row mx-0 mt-2">
                             @forelse($recent_program as  $program)
                                 <div class="col-xl-5 col-lg-5 col-md-6 col-4 cus-mb-5 pl-0 pr-2">
@@ -839,7 +835,7 @@
                     
 {{-- socail media section --}}
                     <div class="custom_section_color rounded_section my-4 p-3">
-                        <h5 class="font-weight-bold custom_heading_1 mt-2">Social Links:</h5>
+                        <h5 class="custom_small_heading font-weight-bold custom_heading_1 mt-2">Social Links:</h5>
                         <div class="row my-md-4">
                             @foreach($socials as $social)
                             <div class="col-auto py-2">
