@@ -19,7 +19,9 @@
         .preloader {
             display: none;
         }
-
+        /* .form-group input{
+            width: 100%
+        } */
         .text_reg {
             font-size: 30px;
             font-weight: 900;
@@ -74,8 +76,7 @@
             border-top-left-radius: .25rem;
             border-bottom-left-radius: .25rem;
             box-sizing: border-box;
-            /* margin-bottom: -1px; */
-            padding: .375rem 45px;
+            padding: .375rem 10px .375rem 45px;
             position: relative;
             z-index: 1;
             height: calc(1.5em + .75rem + 2px);
@@ -274,8 +275,6 @@ canvas {
             }
 
             .btn_login {
-                /* width: 92px; */
-                /* height: 38px; */
                 font-size: 12px;
                 text-align: center;
             }
@@ -323,7 +322,7 @@ canvas {
     <div class="container px-xl-5">
         <div class="row my-4 my-lg-5 px-xl-5">
             <!-- Left side - Registration Form -->
-            <div class="col-md-8">
+            <div class="col-lg-7">
                 <h3 class="text-uppercase text-center text_reg">We are Merkaii Xcellence </h3>
 
                 <h6 class="text-center mb-4 text-capitalize heading-reg">hello, welcome to Merkaii Xcellence <br><span
@@ -648,12 +647,12 @@ canvas {
                 </form>
             </div>
             <!-- Right side - Image -->
-            <div class="col-md-4 px-0">
-                <div class="reg_img img-fluid d-none d-md-block  mb-4">
+            <div class="col-lg-5 px-0 d-none d-lg-block">
+                <div class="reg_img img-fluid mb-4">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class="w-100" alt="Placeholder Image">
                 </div>
-                <div class="reg_img img-fluid d-none d-md-block  mb-4">
+                <div class="reg_img img-fluid mb-4">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class="w-100" alt="Placeholder Image">
                 </div>

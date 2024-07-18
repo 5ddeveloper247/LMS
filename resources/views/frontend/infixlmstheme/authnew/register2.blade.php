@@ -99,7 +99,7 @@
             border-bottom-left-radius: .25rem;
             box-sizing: border-box;
             margin-bottom: -1px;
-            padding: .375rem 45px;
+            padding: .375rem 10px .375rem 45px;
             position: relative;
             z-index: 1;
             height: calc(1.5em + .75rem + 2px);
@@ -322,7 +322,7 @@ canvas {
     <div class="container px-xl-5">
         <div class="row my-4 my-lg-5 px-xl-5 ">
             <!-- Left side - Registration Form -->
-            <div class="col-md-8">
+            <div class="col-lg-7">
                 <h3 class="text-uppercase text-center text_reg">We are Merkaii Xcellence </h3>
                 <h6 class="text-center mb-4 text-capitalize heading-reg">welcome to Merkaii Xcellence <br><span
                         class="font-weight-300">please fill the form below</span></h6>
@@ -642,12 +642,12 @@ canvas {
                 </form>
             </div>
             <!-- Right side - Image -->
-            <div class="col-md-4 pr-0 ">
-                <div class="img-fluid reg_img d-none d-md-block mb-4">
+            <div class="col-lg-5 pr-0 d-none d-lg-block">
+                <div class="img-fluid reg_img mb-4">
                     <img src="{{asset('public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg')}}"
                         class="w-100" alt="Placeholder Image">
                 </div>
-                <div class="img-fluid reg_img d-none d-md-block  mb-4">
+                <div class="img-fluid reg_img mb-4">
                     <img src="{{asset('public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg')}}"
                         class="w-100" alt="Placeholder Image">
                 </div>

@@ -100,7 +100,7 @@
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             margin-bottom: -1px;
-            padding: .375rem 45px;
+            padding: .375rem 10px .375rem 45px;
             -webkit-appearance: none;
             -moz-appearance: none;
             position: relative;
@@ -303,7 +303,7 @@
         <input type="hidden" name="id" id="accesskey" value="{{ $pakms ?? null }}">
         <div class="row my-4 my-lg-5 px-xl-5">
             <!-- Left side - Registration Form -->
-            <div class="col-md-8 mt-4">
+            <div class="col-lg-7 mt-4">
                 <h3 class="text-uppercase text-center text_reg">We are Merkaii Xcellence </h3>
 
                 <h6 class="text-center mb-4 text-capitalize heading-reg">welcome to Merkaii Xcellence <br><span
@@ -408,12 +408,12 @@
                 </form>
             </div>
             <!-- Right side - Image -->
-            <div class="col-md-4">
-                <div class="reg_img img-fluid d-none d-md-block mb-4">
+            <div class="col-lg-5 d-none d-lg-block ">
+                <div class="reg_img img-fluid mb-4">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class="mb-4 w-100" alt="Placeholder Image">
                 </div>
-                <div class="reg_img img-fluid d-none d-md-block">
+                <div class="reg_img img-fluid">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class="mb-4 w-100" alt="Placeholder Image">
                 </div>

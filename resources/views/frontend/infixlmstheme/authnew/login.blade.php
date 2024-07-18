@@ -58,7 +58,7 @@
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             margin-bottom: -1px;
-            padding: .375rem 45px;
+            padding: .375rem 10px .375rem 45px;
             -webkit-appearance: none;
             -moz-appearance: none;
             position: relative;
@@ -307,7 +307,7 @@
 
     <div class="container custom-bg px-lg-5 my-md-5 my-3">
         <div class="row pt-2 px-lg-5">
-            <div class="col-md-7 ">
+            <div class="col-lg-7">
                 {{-- <div id="accountType">
                     <div class=" text-center">
                         <h3 class="text-uppercase text_login">We are Merkaii Xcellence </h3>
@@ -475,7 +475,7 @@
                     </div>
                 @endif
             </div>
-            <div class="hidemainContent col-md-5 d-none d-md-block pr-0">
+            <div class="hidemainContent col-lg-5 d-none d-lg-block pr-0">
                 <div class="img-fluid reg_img">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class=" w-100" alt="Placeholder Image">
