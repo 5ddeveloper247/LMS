@@ -60,12 +60,11 @@
         }
 
         .reg_img {
-            /* min-height: 72vh; */
-             max-width: 100%;
+            height: 450px;
             width: 100%;
         }
         .reg_img img{
-            height: 30%;
+            height: 100%;
         }
 
         .larger-checkbox .form-check-input {
@@ -200,13 +199,9 @@
 #root {
 	height: 100%;
 	width: 100%;
-	/* max-width: 1200px;
-	max-height: 130px; */
-	/* margin: 0 auto; */
 }
 
 canvas {
-	/* width: 100%; */
 	height: 100%;
 }
 
@@ -310,20 +305,12 @@ canvas {
             .btn_login {
                 font-size: 14px;
             }
-
-            /* .reg_img {
-                max-height: 440px;
-                max-width: 100%;
-                width: 100%;
-                height: 100%;
-            } */
         }
 
         @media only screen and (min-width: 1800px) {
-            /* .reg_img {
-                max-height: 657px;
-                max-width: 100%;
-            } */
+            .reg_img {
+            height: 640px;
+        }
             .btn_login{
                 border-radius: 20px !important;
             }
@@ -649,23 +636,22 @@ canvas {
                     </div>
 
                     <div class="text-center">
-                        <button type="button" class="btn btn_login mt-4" id="back-button">Back Page</button>
-                        <button type="submit" class="btn btn_login mt-4" id="next-button">Next Page</button>
+                        <button type="button" class="btn btn_login mt-2" id="back-button">Back Page</button>
+                        <button type="submit" class="btn btn_login mt-2" id="next-button">Next Page</button>
                     </div>
                 </form>
             </div>
             <!-- Right side - Image -->
             <div class="col-md-4 pr-0 ">
-                <div class="img-fluid reg_img d-none d-md-block h-100">
-                    
+                <div class="img-fluid reg_img d-none d-md-block mb-4">
                     <img src="{{asset('public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg')}}"
-                        class="w-100 mb-4" alt="Placeholder Image">
-                    <img src="{{asset('public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg')}}"
-                        class="w-100 mb-4" alt="placeholder Image">
-                    {{-- <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
-                        class="w-100" alt="placeholder Image"> --}}
-                    <h6 class="text-uppercase mt-lg-2">student centered expert instructors learn anywhere community</h6>
+                        class="w-100" alt="Placeholder Image">
                 </div>
+                <div class="img-fluid reg_img d-none d-md-block  mb-4">
+                    <img src="{{asset('public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg')}}"
+                        class="w-100" alt="Placeholder Image">
+                </div>
+                <h6 class="text-uppercase my-3">student centered expert instructors learn anywhere community</h6>
 
             </div>
         </div>

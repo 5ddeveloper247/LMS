@@ -2653,7 +2653,7 @@
         }
 
         .main_banner_2 {
-            height: 405px !important;
+            height: 410px !important;
         }
 
         .cta_area {

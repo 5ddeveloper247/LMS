@@ -236,6 +236,10 @@
         .socail_links {
             display: flex;
         }
+        .preReg_row{
+            display: flex;
+            align-items: center;
+        }
 
         @media only screen and (max-width: 768px) {
 
@@ -300,7 +304,7 @@
     @endphp
 
     <div class="container custom-bg px-xl-5 my-md-5 my-3">
-        <div class="row px-xl-5 px-md-2">
+        <div class="row px-xl-5 px-md-2 preReg_row">
             <div class="col-md-7 mb-2 mb-md-0">
                 <div class="collapse show" id="optionsCollapse">
                     <div class=" text-center">
@@ -457,7 +461,7 @@
                     <!-- <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg" class="reg_img" alt="placeholder Image"> -->
                  
                 </div>
-                <h6 class="text-capitalize mb-0">student centered expert instructors learn anywhere community</h6>
+                <h6 class="text-capitalize mb-0">student centered expert instructors Empower anywhere community</h6>
             </div>
         </div>
     </div>

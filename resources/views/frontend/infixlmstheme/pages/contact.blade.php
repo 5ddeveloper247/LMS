@@ -801,14 +801,14 @@
                                 style="background: white;">
                                 <!-- <div class="eltdf-eh-item eltdf-background-arrow-left" style="/* visibility: hidden; */border-color: #ffffff;/* display: none; */background-color: #ffffff;background-image: url(https://academist.qodeinteractive.com/wp-content/uploads/2018/07/Form-background-img.jpg)" data-item-class="eltdf-eh-custom-5500" data-769-1024="15% 10% 6% 10%" data-681-768="10% 15% 5% 15%" data-680="0% 20px 0% 20px"> -->
                                 <div class="eltdf-eh-item-inner pt-2 mx-2">
-                                    <div class="eltdf-eh-item-content eltdf-eh-custom-5500 mx-sm-2 mx-md-3" style="">
-                                        <div class="wpb_text_column wpb_content_element">
+                                    <div class="eltdf-eh-item-content eltdf-eh-custom-5500 mx-sm-2 mx-md-3 text-center" style="">
+                                        <div class="wpb_text_column wpb_content_element text-center">
                                             <div class="wpb_wrapper">
                                                 <h2 class="wpb_wrapper_h"style="font-weight: bold;">Apply Now</h2>
                                             </div>
                                         </div>
-                                        <div class="vc_empty_space" style="height: 25px"><span
-                                                class="vc_empty_space_inner"></span></div>
+                                        {{-- <div class="vc_empty_space" style="height: 25px"><span
+                                                class="vc_empty_space_inner"></span></div> --}}
                                         <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
                                             dir="ltr">
                                             <div class="screen-reader-response">

@@ -11,15 +11,13 @@
         @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
         .reg_img {
-            /* min-height: 83vh; */
             max-width: 100%;
             width: 100%;
-            height: 100%;
-            /* max-height: 83vh; */
+            height: 450px;
         }
 
         .reg_img img {
-            height: 90%;
+            height: 100%;
         }
 
         .larger-checkbox .form-check-input {
@@ -176,8 +174,6 @@
         }
 
         .btn_login {
-            /* width: 135px;
-        height: 38px; */
             font-size: 16px;
             background: var(--system_primery_color);
             border-radius: 16px;
@@ -187,7 +183,6 @@
             border: 2px solid transparent;
             text-transform: capitalize;
             display: inline-block;
-            /* line-height: 1; */
             padding: 0.5rem 1.5rem;
         }
 
@@ -239,9 +234,6 @@
 
         .socail_links {
             display: flex;
-            /* display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 10px; */
         }
 
         @media only screen and (max-width: 768px) {
@@ -288,6 +280,9 @@
             .googleLoginBtn, .facebookLoginBtn {
                 font-size: 18px !important;
 
+            }
+            .reg_img {
+                height: 640px !important;
             }
         }
 
@@ -456,7 +451,7 @@
                 @if (Settings('student_reg') == 1 && saasPlanCheck('student') == false)
                     <div class="col-md-12 px-0 hidemainContent mb-2 mb-md-0">
 
-                        <label class="">Don't have an Account Yet ? <a href="{{ route('preRegistration') }}" class="text-capitalize"
+                        <label class="mb-0">Don't have an Account Yet ? <a href="{{ route('preRegistration') }}" class="text-capitalize"
                                 style="color: var(--system_primery_color);">Create an
                                 account</a></label>
 
@@ -481,33 +476,16 @@
                 @endif
             </div>
             <div class="hidemainContent col-md-5 d-none d-md-block pr-0">
-                <div class="img-fluid reg_img mb-4">
+                <div class="img-fluid reg_img">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class=" w-100" alt="Placeholder Image">
-
-                    <!-- <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg" class="reg_img" alt="placeholder Image"> -->
-                    <h6 class="hidemainContent text-capitalize my-md-3">student centered expert instructors learn anywhere
-                        community</h6>
                 </div>
+                <h6 class="hidemainContent text-capitalize my-md-3">student centered | expert instructors | Empower | Thrive | Advance</h6>
             </div>
         </div>
     </div>
 
 
-
-    <script>
-        // document.getElementById("myButton").onclick = function(e) {
-        //     e.preventDefault();
-        //     $('#accountType').show();
-        //     $('.hidemainContent').hide();
-
-        //     window.scrollTo({
-        //         top: 0,
-        //         behavior: 'smooth'
-        //     });
-
-        // };
-    </script>
 
     <script>
         $('#accountType').hide();
