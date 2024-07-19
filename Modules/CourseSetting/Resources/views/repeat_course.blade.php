@@ -89,9 +89,9 @@
 
         .permission_header {
             padding: 12px 10px;
-            background-image: -moz-linear-gradient(0deg, ##0079a8 0%, #a235ec 70%, #996699 100%);
-            background-image: -webkit-linear-gradient(0deg, ##0079a8 0%, #a235ec 70%, #996699 100%);
-            background-image: -ms-linear-gradient(0deg, ##0079a8 0%, #a235ec 70%, #996699 100%);
+            background-image: -moz-linear-gradient(0deg, #0079a8 0%, #a235ec 70%, #996699 100%) !important;
+            background-image: -webkit-linear-gradient(0deg, #0079a8 0%, #a235ec 70%, #996699 100%) !important;
+            background-image: -ms-linear-gradient(0deg, #0079a8 0%, #a235ec 70%, #996699 100%) !important;
         }
 
         .course_body {
