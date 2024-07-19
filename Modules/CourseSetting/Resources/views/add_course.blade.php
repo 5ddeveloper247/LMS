@@ -253,7 +253,17 @@
                                     placeholder="-" type="text" value="{{ old('cna_prep_price') }}" id="cna_prep_price">
                             </div>
                         </div> --}}
-                        <div class="col-xl-10 d-none cna_prep_type">
+                        <div
+                            class="col-xl-2 full_course_image cna_prep_type text-center d-none">
+                                <div class="primary_input">
+                                <p class="primary_input_label">Featured</p>
+                                <label class="switch_toggle" for="cna_prep_price_checkbox">
+                                    <input type="checkbox" class="" id="cna_prep_price_checkbox" name="cna_prep_featured" value="1">
+                                    <i class="slider round"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 d-none cna_prep_type">
                             <div class="primary_input">
                                 <label class="primary_input_label"
                                     for="">{{ __('Image (RECOMMENDED DIMENSIONS: 1170X600)') }}</label>
@@ -278,7 +288,17 @@
                         </div>
 
                         {{-- Prep Course (on-demand) --}}
-                        <div class="col-xl-4 d-none test_prep_type">
+                        <div
+                            class="col-xl-2 test_prep_type text-center d-none">
+                            <div class="primary_input">
+                                <p class="primary_input_label">Featured</p>
+                                <label class="switch_toggle" for="test_prep_price_checkbox">
+                                    <input type="checkbox" class="" id="test_prep_price_checkbox" name="test_prep_featured" value="1">
+                                    <i class="slider round"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 d-none test_prep_type">
                             <div class="primary_input mb-25">
                                 <label class="primary_input_label"
                                     for="">{{ __('Prep-Course Price(On-Demand)') }}</label>
@@ -287,7 +307,7 @@
                                     id="test_prep_price">
                             </div>
                         </div>
-                        <div class="col-xl-6 test_prep_type d-none">
+                        <div class="col-xl-5 test_prep_type d-none">
                             <div class="primary_input">
                                 <label class="primary_input_label"
                                     for="">{{ __('Image (RECOMMENDED DIMENSIONS: 1170X600)') }}</label>
@@ -322,7 +342,17 @@
                                     id="test_prep_graded_price">
                             </div>
                         </div> --}}
-                        <div class="col-xl-10 test_prep_graded_type d-none">
+                        <div
+                            class="col-xl-2 prep_course_live_image d-none test_prep_graded_type text-center">
+                            <div class="primary_input">
+                                <p class="primary_input_label">Featured</p>
+                                <label class="switch_toggle" for="test_prep_graded_checkbox">
+                                    <input type="checkbox" class="" id="test_prep_graded_checkbox" name="test_prep_graded_featured" value="1">
+                                    <i class="slider round"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 test_prep_graded_type d-none">
                             <div class="primary_input">
                                 <label class="primary_input_label"
                                     for="">{{ __('Image (RECOMMENDED DIMENSIONS: 1170X600)') }}</label>
@@ -490,7 +520,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xl-6 {{ $d_none }}">
+                        {{-- <div class="col-xl-6 {{ $d_none }}">
                             <label>Featured</label>
                             <div class="d-flex py-3">
                                 <label class="primary_checkbox d-flex nowrap mr-5" for="featuredYes">
@@ -506,7 +536,7 @@
                                 <span class="checkmark mr-2"></span>
                                 {{ __('No') }}</label>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
 

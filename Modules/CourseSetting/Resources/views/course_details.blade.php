@@ -1060,7 +1060,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-6">
+                                                    {{-- <div class="col-xl-6">
                                                         <label>Featured</label>
                                                         <div class="d-flex py-3">
                                                             <label class="primary_checkbox d-flex nowrap mr-5"
@@ -1078,7 +1078,7 @@
                                                                 <span class="checkmark mr-2"></span>
                                                                 {{ __('No') }}</label>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <input type="hidden" name="id" class="course_id"
                                                     value="{{ @$course->id }}">

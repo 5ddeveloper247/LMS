@@ -83,6 +83,7 @@ class StaffController extends Controller
                         $data = Arr::add($data, 'avatar', $this->saveAvatar($data['photo']));
                         $user->image = $data['avatar'];
                     }
+                    
                     $user->password = Hash::make($data['password']);
                     $user->email_verified_at = now();
                     $user->save();
@@ -108,6 +109,10 @@ class StaffController extends Controller
 
                     if (is_null($data['leave_applicable_date'])){
                         $data['leave_applicable_date'] = now();
+                    }
+                    if (isset($data['signature_photo'])) {
+                        $signature_path = $this->saveImage($data['signature_photo']);
+                        $staff->signature_photo = $signature_path;
                     }
                     $staff->date_of_birth = Carbon::parse($data['date_of_birth'])->format('Y-m-d');
                     $staff->leave_applicable_date = Carbon::parse($data['leave_applicable_date'])->format('Y-m-d');
@@ -563,7 +568,10 @@ class StaffController extends Controller
                     $data['date_of_birth'] = now();
                 }
 
-
+                if (isset($data['signature_photo'])) {
+                        $signature_path = $this->saveImage($data['signature_photo']);
+                        $staff->signature_photo = $signature_path;
+                    }
                 $data['leave_applicable_date'] = now();
 
                 $staff->date_of_birth = Carbon::parse($data['date_of_birth'])->format('Y-m-d');

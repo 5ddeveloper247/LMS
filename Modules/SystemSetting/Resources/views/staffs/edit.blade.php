@@ -175,12 +175,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="@if($staff->signature_photo) col-lg-4 @else col-lg-6 @endif">
                                     <div class="primary_input mb-15">
                                         <label class="primary_input_label" for="">{{ __('common.Signature') }}</label>
                                         <div class="primary_file_uploader">
                                             <input class="primary-input" type="text" id="placeholderFileOneName"
-                                                   placeholder="Browse file" readonly="">
+                                                   placeholder="Browse file" readonly="" @if($staff->signature_photo) value="{{showPicName($staff->signature_photo)}}" @endif>
                                             <button class="" type="button">
                                                 <label class="primary-btn small fix-gr-bg"
                                                        for="document_file_2">{{ __('common.Browse') }}</label>
@@ -193,7 +193,13 @@
 
                                     </div>
                                 </div>
-
+                                @if($staff->signature_photo)
+                                <div class="col-lg-2">
+                                    <div class="primary_input mb-15">
+                                        <img src="{{asset($staff->signature_photo)}}" class="img-fluid" alt="">
+                                    </div>
+                                </div>
+                                @endif
                                 <div class="col-xl-12 mt-5 bank_info_div">
                                     <div class="main-title d-flex">
                                         <h3 class="mb-0 mr-30">{{ __('common.Bank Info') }}</h3>

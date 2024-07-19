@@ -250,7 +250,7 @@
                         <h2 class="fw-bold opacity-75">
                             {{ $blog->title }}
                         </h2>
-                        <div>
+                        <div class="ck-content">
                             {{-- @dd($blog->getTranslation('description','en')) --}}
                         {{-- {!! stripslashes($blog->getTranslation('description','en')) !!} --}}
                         {!! str_replace('\\','',$blog->getTranslation('description','en')) !!}
