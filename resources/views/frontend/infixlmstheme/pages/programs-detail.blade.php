@@ -932,7 +932,7 @@
                                     <h5 class="custom_small_heading font-weight-bold custom_heading_1 mb-3"> Program Description</h5>
                                     <div class="row">
                                     	<div class="col-12">
-                                         	<div class="table-responsive" style="overflow:hidden;">
+                                         	<div class="table-responsive ck-content" style="overflow:hidden;">
                                              	{{-- <iframe id="iframeDesc" style="border:unset;width:100%;"></iframe> --}}
                                                 {!! $program_detail->discription !!}
                                       		</div>
@@ -945,7 +945,7 @@
                                     <h5 class="custom_small_heading font-weight-bold custom_heading_1 my-3">Program Outcome</h5>
                                     <div class="row">
                                     	<div class="col-12">
-                                         	<div class="table-responsive" style="overflow:hidden;">
+                                         	<div class="table-responsive ck-content" style="overflow:hidden;">
                                              	{{-- <iframe id="iframeOutcome" style="border:unset;width:100%;"></iframe> --}}
                                                 {!! $program_detail->outcome !!}
                                       		</div>
@@ -958,7 +958,7 @@
                                     <h5 class="custom_small_heading font-weight-bold custom_heading_1 my-3">Program Requirement</h5>
                                     <div class="row">
                                     	<div class="col-12">
-                                         	<div class="table-responsive" style="overflow:hidden;">
+                                         	<div class="table-responsive ck-content" style="overflow:hidden;">
                                              	{{-- <iframe id="iframeReq" style="border:unset;width:100%;"></iframe> --}}
                                                 {!! $program_detail->requirement !!}
                                       		</div>

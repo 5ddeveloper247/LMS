@@ -13,6 +13,7 @@ use Modules\CourseSetting\Entities\TimeTableList;
 use Modules\Payment\Entities\Cart;
 use Modules\Payment\Entities\PaymentPlans;
 use Modules\StudentSetting\Entities\BookmarkCourse;
+use Modules\SystemSetting\Entities\SocialLink;
 
 class CourseDeatilsPageSection extends Component
 {
@@ -154,7 +155,7 @@ class CourseDeatilsPageSection extends Component
 
         $recent_courses = Course::where('status', 1)->whereIn('type', [2, 4, 5, 6, 7, 8])->where('price', '!=', '0.00')
         ->orderByRaw("FIELD(category_id, ".$courseCategoryId.") DESC")->inRandomOrder()->take(3)->get();
-
+        $socials = SocialLink::where('status',1)->orderBy('order','desc')->get();
         return view(theme('components.course-details-page-section'), get_defined_vars());
     }
 }
