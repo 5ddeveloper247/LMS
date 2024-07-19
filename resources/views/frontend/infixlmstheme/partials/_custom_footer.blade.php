@@ -177,6 +177,7 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('public/vendor/ckeditor5/build/ckeditor.js') }}"></script>
 <script>
     $(document).ready(function() {
 

@@ -342,7 +342,7 @@
                                         <div class="theme_border"></div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive ckdtext">
+                                                <div class="table-responsive ckdtext ck-content">
                                                     {{-- <iframe id="iframeAbout" style="border:unset;"></iframe> --}}
                                                     {!! $course->about !!}
                                                 </div>
@@ -357,7 +357,7 @@
                                         <div class="theme_border"></div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive ckdtext">
+                                                <div class="table-responsive ckdtext ck-content">
                                                     {{-- <iframe id="iframeOutcome" style="border:unset;"></iframe> --}}
                                                     {!! $course->outcomes !!}
 
@@ -372,7 +372,7 @@
                                         <div class="theme_border"></div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive ckdtext">
+                                                <div class="table-responsive ckdtext ck-content">
                                                     {{-- <iframe id="iframeRequirements"
                                                                 style="border:unset;"></iframe> --}}
                                                     {!! $course->requirements !!}
@@ -382,8 +382,9 @@
                                         </div>
                                        
                                     @endif
-                                    @if (!Settings('hide_social_share_btn') == '1')
-                                        <div class="social_btns">
+                                    {{-- @if (!Settings('hide_social_share_btn') == '1') --}}
+                                    
+                                        {{-- <div class="social_btns">
                                             <a target="_blank" href="https://www.facebook.com/merakiicollege"
                                                 class="fb_bg social_btn theme_btn"> <i class="fab fa-facebook-f"></i>
                                                 {{ __('frontend.Facebook') }} </a>
@@ -402,8 +403,8 @@
                                                 <i class="fa-brands fa-instagram"></i>
                                                 Instagram
                                             </a>
-                                        </div>
-                                    @endif
+                                        </div> --}}
+                                    {{-- @endif --}}
                                 </div>
                             </div>
                         </div>
@@ -1420,7 +1421,20 @@
                             </ul>
                             @endif
                         </div>
-
+                        <div class="custom_section_color img_round course_tab px-2 pt-2">
+                                        <h5 class="custom_small_heading font-weight-bold custom_heading_1 mt-2">Social Links:</h5>
+                                        <div class="row my-md-4">
+                                            @foreach($socials as $social)
+                                            <div class="col-auto p-2">
+                                                <div class="instabox mt-1 p-2 rounded" style="background-color:{{ $social->color }}; ">
+                                                    <a target="_blank" href="{{$social->link}}"> <i class="{{ $social->icon }}"
+                                                        style="color:white;font-size: 30px;"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
                         @if ($course->review_id != '0' && !empty($course->review()))
                             @if (!empty($course->review()->first()))
 
