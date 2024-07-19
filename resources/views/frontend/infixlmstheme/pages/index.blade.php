@@ -537,7 +537,7 @@
     select:focus~.floating-label-outside select:not(:focus):valid~.floating-label-outside {
         top: 15px;
         left: 40px;
-        font-size: 15px;
+        font-size: 14px;
         opacity: 1;
         font-weight: 400
     }
@@ -548,7 +548,7 @@
     select:valid~.floating-label-outside {
         top: -10px;
         opacity: 1;
-        font-size: 15px;
+        font-size: 14px;
         color: #727272;
         background-color: #eee;
         padding: 0px 5px;
@@ -1119,13 +1119,13 @@
     }
 
     .custom_form {
-        height: 600px;
+        height: 615px;
         border-radius: 20px;
         overflow: hidden;
     }
 
     .dataflow {
-        height: 600px;
+        height: 615px;
         background-color: var(--system_secendory_color);
         position: relative;
         border-radius: 20px;
@@ -1133,7 +1133,7 @@
     }
 
     .ankar_eltdf {
-        height: 600px;
+        height: 615px;
         overflow: hidden;
         border-radius: 20px;
         display: flex;
