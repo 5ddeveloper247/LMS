@@ -58,7 +58,7 @@
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             margin-bottom: -1px;
-            padding: .375rem 45px;
+            padding: .375rem 10px .375rem 45px;
             -webkit-appearance: none;
             -moz-appearance: none;
             position: relative;
@@ -305,7 +305,7 @@
 
     <div class="container custom-bg px-xl-5 my-md-5 my-3">
         <div class="row px-xl-5 px-md-2 preReg_row">
-            <div class="col-md-7 mb-2 mb-md-0">
+            <div class="col-lg-7 mb-2 mb-md-0">
                 <div class="collapse show" id="optionsCollapse">
                     <div class=" text-center">
                         <h3 class="text-uppercase text_login">We are Merkaii Xcellence </h3>
@@ -438,7 +438,7 @@
 
                         </div>
 
-                        <div class="text-center mt-4 mb-4 mb-md-0">
+                        <div class="text-center mt-4 mb-4">
 
                             <button type="submit" class="btn btn_login">Register</button>
                         </div>
@@ -453,13 +453,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 d-none d-md-block pr-0">
+            <div class="col-lg-5 d-none d-lg-block pr-0">
                 <div class="img-fluid reg_img mb-4">
                     <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg"
                         class=" w-100" alt="Placeholder Image">
-
-                    <!-- <img src="https://mchnursing.com/lms/public/uploads/main/images/03-10-2023/651ba7a5d35a5.jpeg" class="reg_img" alt="placeholder Image"> -->
-                 
                 </div>
                 <h6 class="text-capitalize mb-0">student centered expert instructors Empower anywhere community</h6>
             </div>
