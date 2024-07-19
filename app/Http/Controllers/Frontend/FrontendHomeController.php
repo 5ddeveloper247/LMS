@@ -58,6 +58,10 @@ class FrontendHomeController extends Controller
             $latest_programs = Program::where('status', 1)->where('featured',1)->has('currentProgramPlan')->with('currentProgramPlan')->latest()->take(6)->get();
             $latest_courses = Course::where('featured',1)
             ->has('parent')
+            ->where(function($query){
+                $query->whereNotIn('type',[4,6])
+                    ->orHas('currentCoursePlan');
+            })
             // ->where(function($query){
             //     $query->whereHas('parent', function ($q) {
             //         $q->where('featured', 1);

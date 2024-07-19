@@ -538,7 +538,7 @@ class CourseSettingController extends Controller
                     $child_course->price = '';
                     $child_course->thumbnail = $this->saveCroppedImage($request->full_course_thumbnail_image);
                     $child_course->image = $this->saveImage($request->full_course_main_image);
-
+                    $child_course->featured = ($request->has('cna_prep_featured') && $request->cna_prep_featured == 1) ? 1 : 0;
                     $child_course->parent_id = $course->id;
                     $art = $child_course->getAttributes();
                     if (array_key_exists('id', $art)) {
@@ -558,7 +558,7 @@ class CourseSettingController extends Controller
                     $child_course->price = $request->test_prep_price;
                     $child_course->thumbnail = $this->saveCroppedImage($request->demand_course_thumbnail_image);
                     $child_course->image = $this->saveImage($request->demand_course_main_image);
-
+                    $child_course->featured = ($request->has('test_prep_featured') && $request->test_prep_featured == 1) ? 1 : 0;
                     $child_course->parent_id = $course->id;
                     $art = $child_course->getAttributes();
                     if (array_key_exists('id', $art)) {
@@ -578,7 +578,7 @@ class CourseSettingController extends Controller
                     $child_course->price = '';
                     $child_course->thumbnail = $this->saveCroppedImage($request->live_course_thumbnail_image);
                     $child_course->image = $this->saveImage($request->live_course_main_image);
-
+                    $child_course->featured = ($request->has('test_prep_graded_featured') && $request->test_prep_graded_featured == 1) ? 1 : 0;
                     $child_course->parent_id = $course->id;
                     $art = $child_course->getAttributes();
                     if (array_key_exists('id', $art)) {
@@ -2166,6 +2166,9 @@ class CourseSettingController extends Controller
             $course = $parent_course->getAttributes();
             if (array_key_exists('id', $course)) {
                 unset($course['id']);
+            }
+            if (array_key_exists('course_code', $course)) {
+                unset($course['course_code']);
             }
             if (array_key_exists('updated_at', $course)) {
                 unset($course['updated_at']);

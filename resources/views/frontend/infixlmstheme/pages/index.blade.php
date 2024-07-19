@@ -3038,7 +3038,7 @@
                         @endif
                         <div class="col-6 @if(!isset($random_program)) col-md-12 order-md-2 @endif random_program_data_2 height-card main_banner_2">
                             <div class="d-flex flex-column h-100 justify-content-center py-3 py-md-0 pl-md-2 pl-4 text-center align-items-center">
-                                <h5 class="font-weight-bold custom_heading_2 heading-responsive-style mb-4">
+                                <h5 class="font-weight-bold custom_heading_2 heading-responsive-style mb-4" @if(!isset($random_program)) style="font-size:1.8rem" @endif>
                                     Accelerate Your Future
                                     <br>
                                     Learn New Things

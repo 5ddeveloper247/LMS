@@ -28,7 +28,7 @@
 
                         <label>{{__('quiz.Chapter')}} {{__('common.Name')}}
 
-                            <span>*</span><small>(Max: 25 characters)</small></label>
+                            <span>*</span><small>(Max: 150 characters)</small></label>
 
                         <input
 
@@ -38,7 +38,7 @@
 
                             autocomplete="off" required
 
-                            value="{{isset($editChapter)? $editChapter->name:''}}" maxlength="25">
+                            value="{{isset($editChapter)? $editChapter->name:''}}" maxlength="150">
 
                         <input type="hidden" name="chapter"
 
