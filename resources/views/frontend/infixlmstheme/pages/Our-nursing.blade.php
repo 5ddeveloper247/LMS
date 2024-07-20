@@ -45,54 +45,11 @@
         border-top-right-radius: 25px !important;
     }
 
-    .bs-canvas-overlay {
-        opacity: 0.85;
-        z-index: 1000;
-    }
-
-    .bs-canvas {
-        top: 0;
-        z-index: 1000;
-        overflow-x: hidden;
-        overflow-y: auto;
-        padding: 140px 30px 40px 40px;
-        width: 330px;
-        transition: margin .4s ease-out;
-        -webkit-transition: margin .4s ease-out;
-        -moz-transition: margin .4s ease-out;
-        -ms-transition: margin .4s ease-out;
-    }
-
     .thumb_heading {
         white-space: nowrap;
         width: auto;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-
-    @media (max-width: 1600px) {
-        .bs-canvas {
-            top: 0;
-            z-index: 1000;
-            overflow-x: hidden;
-            overflow-y: auto;
-            padding: 105px 30px 40px 40px;
-            width: 330px;
-            transition: margin .4s ease-out;
-            -webkit-transition: margin .4s ease-out;
-            -moz-transition: margin .4s ease-out;
-            -ms-transition: margin .4s ease-out;
-        }
-    }
-
-    .bs-canvas-left {
-        left: 0;
-        margin-left: -330px;
-    }
-
-    .bs-canvas-right {
-        right: 0;
-        margin-right: -330px;
     }
 
     .accent-color {
@@ -103,49 +60,12 @@
         object-fit: fill;
     }
 
-    #filter_btn {
-        color: #ff7600 !important;
-    }
-
-    @media only screen and (max-width: 358px) {
-
-        .course-small {
-            font-size: 12px !important;
-        }
-
-        .filter_btn {
-            font-size: 12px !important;
-        }
-
-    }
-
-    @media only screen and (min-width: 359px)and (max-width: 769px) {
-
-        h2,
-        h3 {
-            font-size: 17px !important;
-        }
-
-        .filter_btn {
-            font-size: 14px !important;
-        }
-
-        .course-small {
-            font-size: 13px !important;
-        }
-    }
-
-    @media only screen and (min-width: 1800px) {
-
-
-        .course-small {
-            display: flex !important;
-            justify-content: space-between;
-        }
-    }
-
     .img-cover {
         min-height: auto !important;
+    }
+    .our_nursing_h{
+        font-family: Monospace;
+        box-shadow: 0px 16px 35px 2px  rgb(153, 102, 153, 0.63)!important;
     }
 </style>
 
@@ -157,11 +77,11 @@
                 <x-breadcrumb :title="'Nursing School'" />
             </div>
         </div>
-        <div class="container custom-padd px-lg-5 pt-md-5 pt-4">
+        <div class="container custom-padd px-lg-5 py-md-5 py-4">
             <div class="row px-4">
-                <div class="col-12 mb-md-5 mb-4">
+                <div class="col-12 my-md-5 my-4">
 
-                    <h2 class="custom_small_heading font-weight-bold custom_heading_1 text-center">Something Awesome is n the Way...</h2>
+                    <h2 class="custom_small_heading our_nursing_h font-weight-bold text-center">Something Awesome is on the Way...</h2>
 
                 </div>
             </div>
@@ -174,128 +94,5 @@
 
     @include(theme('partials._custom_footer'))
     <script src="{{ asset('public/assets/slick/slick.js') }}" type="text/javascript" charset="utf-8"></script>
-    <script>
-        $(document).ready(function() {
-
-            $(document).on('click', '.pull-bs-canvas-left', function() {
-                $('body').prepend(
-                    '<div class="bs-canvas-overlay bg-dark position-fixed w-100 h-100"></div>');
-                console.log(this);
-                if ($(this).hasClass('pull-bs-canvas-right'))
-                    $('.bs-canvas-right').addClass('mr-0');
-                else
-                    $('.bs-canvas-left').addClass('ml-0');
-                return false;
-            });
-
-            $(document).on('click', '.bs-canvas-close, .bs-canvas-overlay', function() {
-                var elm = $(this).hasClass('bs-canvas-close') ? $(this).closest('.bs-canvas') : $(
-                    '.bs-canvas');
-                elm.removeClass('mr-0 ml-0');
-                $('.bs-canvas-overlay').remove();
-                return false;
-            });
-
-            $('#program_title').keyup(function(event) {
-                var value = $(this).val();
-                localStorage.setItem("is_program_page", 1);
-
-
-
-                $.ajax({
-                    type: "GET",
-                    url: "{{ route('search') }}",
-                    data: {
-                        'name': value
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        $('#program_list').html(response);
-                    }
-                });
-            });
-
-
-
-            $('#program_price_max,#program_price_min,#program_duration_min,#program_duration_max').on('change',
-                function(event) {
-                    event.preventDefault();
-                    if (parseInt($('#program_price_min').val()) > parseInt($('#program_price_max').val())) {
-                        toastr.error("Min price must be less then max price", "Error");
-                        return false;
-                    }
-
-                });
-
-        });
-        a = 1;
-
-        function togglefn() {
-            if (a == 1) {
-
-                current = document.querySelector(".title_des");
-                next = current.nextElementSibling;
-                next.style.height = "auto";
-                a = 2;
-            } else {
-                a = 1;
-                current = document.querySelector(".title_des");
-                next = current.nextElementSibling;
-                next.style.height = "80px";
-            }
-        }
-    </script>
-    <script>
-        $('.custom_slick_slider_02').slick({
-            // dots: true,
-            lazyLoad: 'ondemand',
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            infinite: true,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            responsive: [{
-                    breakpoint: 992,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        slidesToShow: 2
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        slidesToShow: 2
-                    }
-                },
-                {
-                    breakpoint: 576,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        slidesToShow: 1
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        slidesToShow: 1
-                    }
-                },
-                {
-                    breakpoint: 320,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 1
-                    }
-                }
-            ]
-        });
-    </script>
+  
 @endsection

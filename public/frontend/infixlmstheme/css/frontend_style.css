@@ -10428,6 +10428,7 @@ input[type="number"] {
     position: fixed;
     width: calc((100% - 340px));
     height: calc((100vh - 125px));
+    /* overflow: auto; */
 }
 
 .course_fullview_wrapper .video_iframe {
