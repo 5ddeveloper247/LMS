@@ -290,18 +290,24 @@
                 });
             });
 
-            $('#submit_form').on('click', function() {
+            $('#submit_form').on('click', function(e) {
+                e.preventDefault();
                 var course_plan_form = $('#course_plan_form');
                 var check_box = course_plan_form.find('.child_course');
-
+                var check_box_checked = 0;
                 check_box.each(function() {
-                    if (!check_box.is(':checked')) {
-                        toastr.error('Please Select at least one Course', 'Error');
-                        return false;
-                    } else {
-                        course_plan_form.submit();
-                    }
+                    if (check_box.is(':checked')) {
+                        check_box_checked = 1;
+                    } 
                 });
+                console.log(check_box_checked);
+                if(check_box_checked == 0){
+
+                    toastr.error('Please Select at least one Course', 'Error');
+                }else{
+
+                    course_plan_form.submit();
+                }
 
 
             });

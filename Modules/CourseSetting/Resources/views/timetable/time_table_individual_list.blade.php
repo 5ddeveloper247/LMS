@@ -175,34 +175,12 @@
             var comment = $(el).attr('data-comment');
             var selectedContenttxt = '';
             $('#date').val(date);
-            //             $('#Instructor_id').val(Instructor_id);
-            //             $('#Instructor_id').niceSelect('update');
-
-            //             if (content != '') {
-            //                 var contentArray = JSON.parse(content);
-            //                 $('.infix_ul_lists').find('li').removeClass('selected');
-            //                 $.each(contentArray, function(index, value) {
-            //                     var checkbox = $('.infix_ul_lists').find('li input[value="' + value + '"]');
-            //                     if (checkbox.length) {
-            //                         checkbox.prop('checked', true);
-            //                         checkbox.closest('li').addClass('selected');
-            //                         // console.log('selected: ' + value);
-            //                     }
-            //                     selectedContenttxt = selectedContenttxt == '' ? value : selectedContenttxt+', '+value;
-            //                 });
-
-            //                	$('#ms-list-1').find('span').first().text(selectedContenttxt);
-            //                 $('#content').val(contentArray);
-            //                 $('#content').niceSelect('update');
-            //             } else {
-            //                 $('.infix_ul_lists').find('li').removeClass('selected');
-            //             }
 
             $("#document_file_thumb-1").val('');
             $("#input-1").val(image);
 
-            $('#comment').summernote('code', comment);
-            //             $('#comment').val(comment);
+           // $('#comment').summernote('code', comment);
+                         $('#comment').val(comment);
             $('#time_table_id').val(id);
             $('#addTimeTableModel').modal('show');
         }
@@ -216,9 +194,9 @@
                 // let image = $('#document_file_thumb-1')[0].files[0] != undefined ? $(
                 //     '#document_file_thumb-1')[0].files[0] : $("#input-1").val();
                 let image = form.find('#document_file_thumb-1');
-                let comment = form.find('#comment').summernote('code');
+                let comment = form.find('#comment');
 
-                if (image.val() == '' || comment == '') {
+                if (image.val() == '' || comment.val() == '') {
                     toastr.error('Please Fill All Fields!', 'Error');
                     return false;
                 }
