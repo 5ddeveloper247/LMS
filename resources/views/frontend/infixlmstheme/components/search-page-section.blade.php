@@ -253,7 +253,8 @@
                     <h5 class="small_heading text-center">
                         @if ($request->has('query'))
                         {{ __('courses.Search result for') }}
-                        <span class="font-weight-bold">"{{ $request->get('query') }}"</span>{{ ' out of ' . $total_programs . ' Program(s)' }}<br style="line-break: auto">
+                        <span class="font-weight-bold">"{{ $request->get('query') }}"</span>{{ ' out of ' . count($all_programs) . ' Program(s)' }}<br style="line-break: auto">
+                        {{-- <span class="font-weight-bold">"{{ $request->get('query') }}"</span>{{ ' out of ' . $total_programs . ' Program(s)' }}<br style="line-break: auto"> --}}
                         @if ($all_programs->count() == 0)
                         <span class="subtitle">
                             {{ __('0 Program(s) available') }}</span>
@@ -267,37 +268,55 @@
                 @if (isset($all_programs))
                 @foreach ($all_programs as $program)
                 @php
-                 switch ($program->type) {
-                    case 'program':
-                        $url_link = route('programs.detail', [$program->programName->id]);
-                        $course_image = getCourseImage($program->programName->icon);
-                        $course_title = $program->programName->programtitle;
-                        $course_description = $program->programName->discription;
-                        $classes = count(json_decode($program->programName->allcourses)).' Courses';
+                if($program->has('current_program_plan')){
+                        $url_link = route('programs.detail', [$program->get('id')]);
+                        $course_image = getCourseImage($program->get('icon'));
+                        $course_title = $program->get('programtitle');
+                        $course_description = $program->get('discription');
+                        $classes = count(json_decode($program->get('allcourses'))).' Courses';
                         $course_type = 'Program';
-                        
-                        break;
-                    case 'full_course':
-                        $url_link = route('courseDetailsView', ['slug' => $program->courses->parent->slug, 'courseType' => 4]);
-                        $course_image = getCourseImage($program->courses->thumbnail);
-                        $course_title = $program->courses->parent->title;
-                        $course_description = $program->courses->parent->about;
-                        $classes = count($program->courses->parent->lessons).' Lessons';
+                        $price = $program->get('current_program_plan')[0]['amount'];
+                }else{
+                    $url_link = route('courseDetailsView', ['slug' => $program->get('parent')['slug'] ?? $program->get('slug'), 'courseType' => 4]);
+                        $course_image = getCourseImage($program->get('thumbnail'));
+                        $course_title = $program->get('parent') ? $program->get('parent')['title']['en'] : $program->get('title')['en'];
+                        $course_description = $program->get('parent') ? $program->get('parent')['about']['en'] : $program->get('about')['en'];
+                        $classes = 0;
+                        // $classes = count($program->courses->parent->lessons).' Lessons';
                         $course_type = 'Full Course';
-                        break;
-                        case 'prep_course_live':
-                        $url_link = route('courseDetailsView', ['slug' => $program->courses->parent->slug, 'courseType' => 6]);
-                        $course_image = getCourseImage($program->courses->thumbnail);
-                        $course_title = $program->courses->parent->title;
-                        $course_description = $program->courses->parent->about;
-                        $classes = count($program->courses->parent->lessons).' Lessons';
-                        $course_type = 'Prep Course (Live)';
-                        break;
+                        $price = $program->get('current_course_plan') ? $program->get('current_course_plan')[0]['amount'] : $program->get('price');
+                }
+                //  switch ($program->type) {
+                //     case 'program':
+                //         $url_link = route('programs.detail', [$program->programName->id]);
+                //         $course_image = getCourseImage($program->programName->icon);
+                //         $course_title = $program->programName->programtitle;
+                //         $course_description = $program->programName->discription;
+                //         $classes = count(json_decode($program->programName->allcourses)).' Courses';
+                //         $course_type = 'Program';
+                        
+                //         break;
+                //     case 'full_course':
+                //         $url_link = route('courseDetailsView', ['slug' => $program->courses->parent->slug, 'courseType' => 4]);
+                //         $course_image = getCourseImage($program->courses->thumbnail);
+                //         $course_title = $program->courses->parent->title;
+                //         $course_description = $program->courses->parent->about;
+                //         $classes = count($program->courses->parent->lessons).' Lessons';
+                //         $course_type = 'Full Course';
+                //         break;
+                //         case 'prep_course_live':
+                //         $url_link = route('courseDetailsView', ['slug' => $program->courses->parent->slug, 'courseType' => 6]);
+                //         $course_image = getCourseImage($program->courses->thumbnail);
+                //         $course_title = $program->courses->parent->title;
+                //         $course_description = $program->courses->parent->about;
+                //         $classes = count($program->courses->parent->lessons).' Lessons';
+                //         $course_type = 'Prep Course (Live)';
+                //         break;
                     
-                    default:
-                        # code...
-                        break;
-                 }
+                //     default:
+                //         # code...
+                //         break;
+                //  }
                  $subtitle = '';   
                 @endphp
                 <div class="col-xl-3 col-lg-4 col-sm-6 d-flex justify-content-center mb-3">
@@ -306,7 +325,8 @@
                                     <a href="{{ $url_link }}"><img src="{{ $course_image }}" class="img-fluid img-cover w-100 rounded-card-img">
                                         <div class="prise_tag font-weight-bold col-auto p-0">
                                             <small class="font-weight-bold">
-                                                ${{ $program->amount }}
+                                                ${{ $price }}
+                                                {{-- ${{ $program->amount }} --}}
                                                 {{-- ${{ $program->currentProgramPlan[0]->amount }} --}}
                                             </small>
                                         </div>
@@ -329,7 +349,7 @@
                                 @if (Str::length($subtitle) > 25)
                                 {{ Str::limit($subtitle, 25, '...') }}
                                 @else
-                                {{ $program->subtitle }}
+                                {{ $subtitle }}
                                 @endif
                             </h6>
                             <p class="paragraph_custom_height ml-auto ">
@@ -351,8 +371,8 @@
                                 </div>
                                 <div class="col-auto p-0">
                                     <small>
-                                        <i class="fas fa-clock"></i>
-                                        {{ round((strtotime($program->edate) - strtotime($program->sdate)) / 604800, 1) }}
+                                        <i class="fas fa-clock"></i> -
+                                        {{-- {{ round((strtotime($program->edate) - strtotime($program->sdate)) / 604800, 1) }} --}}
                                         {{-- {{ round((strtotime($program->currentProgramPlan[0]->edate) - strtotime($program->currentProgramPlan[0]->sdate)) / 604800, 1) }} --}}
                                         Weeks
                                     </small>
@@ -380,11 +400,13 @@
                     </div>
                 </div>
                 @endif
-                <div class="col-md-12 @if (count($all_programs) != 0) my-md-3 pb-3 @endif">
+
+                {{-- <div class="col-md-12 @if (count($all_programs) != 0) my-md-3 pb-3 @endif">
                     @if (count($all_programs) != 0)
                     {{ $all_programs->appends(Request::all())->links() }}
                     @endif
-                </div>
+                </div> --}}
+
                 {{-- <div class="col-lg-4 col-xl-3"> --}}
                 {{-- <x-class-page-section-sidebar :level="$level" :type="$type" :categories="$categories"
                         :category="$category" :languages="$languages" :language="$language" :mode="$mode" /> --}}

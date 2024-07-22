@@ -183,6 +183,7 @@
     if(isset($duration)){
         $course['duration']=$duration;
         $course['totalseats'] = $coursePlan;   
+        $course['futurePlan'] = $futurePlan;   
     }
     @endphp
 

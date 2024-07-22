@@ -199,9 +199,9 @@
                                 <div class="col-md-12">
                                     <div class="d-flex flex-column">
                                     <p class="mb-0"><b>Terms & Conditions</b></p>
-                                    <small class="mb-0 agree_checkbox_p">I <b>{{ auth()->user()->name }}</b> hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
+                                    <small class="mb-0 agree_checkbox_p">I <b>{{ $tutor->name }}</b> hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
                                                     Card for payment of Education services rendered as described on <b>Date: {{ Carbon\Carbon::now()->format(Settings('active_date_format')) }}</b>.<br>
-                                                    I <b>{{ auth()->user()->name }}</b> agree, in all cases, to pay the Credit or Debit Card amount for the full payment of Education services rendered as described above.
+                                                    I <b>{{ $tutor->name }}</b> agree, in all cases, to pay the Credit or Debit Card amount for the full payment of Education services rendered as described above.
                                                 </small>
                                     </div>
                                     <div class="d-flex mt-2">

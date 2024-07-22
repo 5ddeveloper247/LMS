@@ -26,6 +26,11 @@ class Program extends Model
         ]);
     }
 
+    public function getUserAttribute()
+    {
+        return $this->user();
+    }
+
     public function review()
     {
         return $this->belongsTo(CourseReveiw::class, 'review_id', 'id');

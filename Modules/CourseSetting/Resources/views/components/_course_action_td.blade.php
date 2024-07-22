@@ -9,7 +9,11 @@
     @endphp
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
         @if ($query->type != 'full_course' || $query->type != 'prep_course_live')
-            <a target="_blank" href="{{ route('courseDetailsView',['slug' =>  $courseslug]) }}"
+            @php
+                $route = ($query->type == 2) ? 'quizDetailsView' : 'courseDetailsView';
+                $route_params = ($query->type == 1) ? ['slug' =>  $courseslug] : ['slug' =>  $courseslug, 'courseType' => $query->type];
+            @endphp
+            <a target="_blank" href="{{ route($route,$route_params) }}"
             {{-- <a target="_blank" href="{{ courseDetailsUrl($query->courses->id, $query->courses->type, $query->courses->slug) }}" --}}
                 class="dropdown-item">
                 {{ trans('courses.Frontend View') }}</a>

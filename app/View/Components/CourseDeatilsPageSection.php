@@ -48,7 +48,6 @@ class CourseDeatilsPageSection extends Component
         } else {
             $isBookmarked = true;
         }
-
         $is_cart = 0;
         //        if (Auth::check()) {
         //            $cart = Cart::where('user_id', Auth::id());
@@ -153,7 +152,10 @@ class CourseDeatilsPageSection extends Component
 
         $program_plan = PaymentPlans::where('parent_id', $this->request->program_id)->where('type', 'program')->first();
 
-        $recent_courses = Course::where('status', 1)->whereIn('type', [2, 4, 5, 6, 7, 8])->where('price', '!=', '0.00')
+        $recent_courses = Course::where('id','<>',$this->course->id)->where('status', 1)->whereIn('type', [2, 4, 5, 6, 7, 8])->where(function($q){
+            $q->where('price', '!=', '0.00')
+            ->orHas('currentCoursePlan');
+        })->with('currentCoursePlan')
         ->orderByRaw("FIELD(category_id, ".$courseCategoryId.") DESC")->inRandomOrder()->take(3)->get();
         $socials = SocialLink::where('status',1)->orderBy('order','desc')->get();
         return view(theme('components.course-details-page-section'), get_defined_vars());

@@ -78,8 +78,17 @@ class CourseController extends Controller
 
             $plan = PaymentPlans::where('parent_id', $course['id'])->get();
             $coursePlan = PaymentPlans:: whereIn('parent_id', $idArray)->where(function ($q) {
-                $q->where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'));
-            })->first();
+                $q->where(function($q){
+                    $q->where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'))
+                    ->orWhere('sdate','>=',date('Y-m-d'));
+                });
+            })
+            ->orderBy('sdate','ASC')
+            ->first();
+            $futurePlan = PaymentPlans:: whereIn('parent_id', $idArray)
+            ->where('sdate','>',date('Y-m-d'))
+            ->orderBy('sdate','ASC')
+            ->first();
             // if($request->has('courseType') && in_array($request->get('courseType'),[4,6])){
             //     switch ($request->get('coursetype')) {
             //         case 6:
@@ -192,7 +201,7 @@ class CourseController extends Controller
                 return \redirect()->to(courseDetailsUrl($course->id, $course->type, $course->slug));
             } else {
                 if(isset($duration)){
-                    return view(theme('pages.courseDetails'), compact('request', 'course', 'isEnrolled', 'duration','coursePlan'));
+                    return view(theme('pages.courseDetails'), compact('request', 'course', 'isEnrolled', 'duration','coursePlan','futurePlan'));
                 }
                 else{
                     return view(theme('pages.courseDetails'), compact('request', 'course', 'isEnrolled'));

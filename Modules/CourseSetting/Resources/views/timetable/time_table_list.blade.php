@@ -148,7 +148,7 @@
                             <div class="primary_input mb-25">
                                 <label class="primary_input_label" for="">{{ __('Comment') }} <strong
                                         class="text-danger">*</strong></label>
-                                <textarea class="primary-input primary_input_field form-control lms_summernote"
+                                <textarea class="primary-input primary_input_field form-control"
                                     {{ $errors->first('comment') ? 'autofocus' : '' }} name="comment" rows="4" id="comment"
                                     style="border-radius:10px; padding:10px;" required>{{ old('comment') }}</textarea>
                             </div>
@@ -207,8 +207,8 @@
             } else {
                 $('.infix_ul_lists').find('li').removeClass('selected');
             }
-            $('#comment').summernote('code', comment);
-            //             $('#comment').val(comment);
+            // $('#comment').summernote('code', comment);
+                        $('#comment').val(comment);
 
             $('#time_table_id').val(id);
             $('#addTimeTableModel').modal('show');

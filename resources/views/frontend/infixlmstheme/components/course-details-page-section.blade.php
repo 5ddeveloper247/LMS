@@ -109,7 +109,8 @@
                             @if(request()->has('courseType') && in_array(request()->get('courseType'),[4,6]))
                             <br class="mt-2">
                             <span class="program-span"><i class="fas fa-user"></i>&nbsp;&nbsp; Enrolled |
-                                {{ $course->total_enrolled }}
+                                {{ count($course->enrolls->where('course_type',request()->get('courseType'))) }}
+                                {{-- {{ $course->total_enrolled }} --}}
                                 Students
                             </span>
                             <br class="mt-2">
@@ -118,10 +119,10 @@
                                     0
                                 @else
                                     {{-- {{ $course->totalseats - $course->total_enrolled }} --}}
-                                    @if ($course->totalseats->no_of_students - $course->total_enrolled <= 0)
+                                    @if ($course->totalseats->no_of_students - count($course->enrolls->where('course_type',request()->get('courseType'))) <= 0)
                                         {{ '0' }}
                                     @else
-                                        {{ $course->totalseats->no_of_students - $course->total_enrolled }}
+                                        {{ $course->totalseats->no_of_students - count($course->enrolls->where('course_type',request()->get('courseType'))) }}
                                     @endif
 
                                 @endif
@@ -198,6 +199,9 @@
                         <div class="row mx-0">
                             @if (isset($recent_courses))
                                 @forelse($recent_courses as  $recent_course)
+                                @php
+                                 $recent_price = $recent_course->currentCoursePlan[0]->amount ?? $recent_course->price + $recent_course->tax;
+                                @endphp
                                     <div class="col-xl-5 col-lg-5 col-md-6 col-4 mb-3 pl-0 pr-2 course_tabs_section">
                                         <a
                                             href="{{ !empty($recent_course->parent_id) ? courseDetailsUrl(@$recent_course->parent->id, @$recent_course->type, @$recent_course->parent->slug) . '?courseType=' . $recent_course->type : courseDetailsUrl(@$recent_course->id, @$recent_course->type, @$recent_course->slug) }}">
@@ -212,7 +216,7 @@
                                                 {{ !empty($recent_course->parent_id) ? $recent_course->parent->title : $recent_course->title }}</a>
                                         </p>
                                         <p class="course-span" style="color: #ff6700;">
-                                            {{ getPriceFormat($recent_course->price + $recent_course->tax) }}</p>
+                                            {{ getPriceFormat($recent_price) }}</p>
 
                                         @if ($recent_course->type == 2)
                                             <p class="color course-span">{{ __('Big Quiz') }}</p>
@@ -989,7 +993,7 @@
                                                             <span>{{ $c->totalReview }}/5</span>
                                                             <i class="fas fa-star"></i>
                                                         </div>
-                                                        @auth()
+                                                        {{-- @auth()
                                                             @if (!$c->isLoginUserEnrolled && !$c->isLoginUserCart)
                                                                 <a href="#" class="cart_store"
                                                                     data-id="{{ $c->id }}">
@@ -1004,7 +1008,7 @@
                                                                     <i class="fas fa-shopping-cart"></i>
                                                                 </a>
                                                             @endif
-                                                        @endguest
+                                                        @endguest --}}
                                                     </div>
                                                     <div class="course_less_students d-flex justify-content-between course_detail_items" >
                                                         <a href="#"> <i class="ti-agenda course-span"></i>
@@ -1299,8 +1303,8 @@
                             End :
 
                             {{-- <br class="mt-2"> --}}
+                            @if ($course->totalseats && !\Carbon\Carbon::parse($course->totalseats->sdate)->isFuture())
                             <span class="font-weight-bold">
-                                @if ($course->totalseats)
                                     {{ \Carbon\Carbon::parse($course->totalseats->edate)->format('d M Y') }}
                             </span>
                         @else
@@ -1313,15 +1317,14 @@
                             :
 
                             {{-- <br class="mt-2"> --}}
-
-
+                            @if ($course->futurePlan)
                             <span class="font-weight-bold">
-                                {{-- @if ($course->totalseats->edate)
-                                   {{ \Carbon\Carbon::parse($course->totalseats->edate)->format('d M Y') }}</span>
+                                    {{ \Carbon\Carbon::parse($course->futurePlan->sdate)->format('d M Y') }}
+                            </span>
+                             @else
 
-                                   @else --}}
                                 <span class="font-weight-bold">Not Given</span>
-                                {{-- @endif --}}
+                                @endif
 
                         </p>
 

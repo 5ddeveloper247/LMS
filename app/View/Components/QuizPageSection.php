@@ -120,26 +120,52 @@ class QuizPageSection extends Component
         // }else{
         //   $included_types = [2,  5, 7, 8];
         // }
-
-        $query->where(function ($q) {
-          if(isset($this->request->tutor_courses)){
-            $q->where('type',9)->where('price','<>','0.00');
+        $max_price = $query->whereIn('type',[2,4,5,6,7,8])->get()->max(function ($query) {
+          if(!$query->price){
+            return $query->currentCoursePlan[0]->amount;
           }else{
-            $q->where(function ($q) {
-
-              $q->whereIn('type', [2, 4, 5, 6, 7])->where('price', '!=', '0.00');
-            //  $q->whereIn('type', [2,  5, 7, 8])->where('price', '!=', '0.00');
-              $q->orWhere(function($q){
-                $q->where('type','=',8)
-                ->where('price', '!=', '0.00')
-                ->where('start_date','<=',Carbon::now()->format('Y-m-d'))
-                ->where('end_date','>=',Carbon::now()->format('Y-m-d'));
-              });
-            })->orWhere(function ($q) {
-              $q->has('currentCoursePlan');
-            });
+            return $query->price;
           }
-        })->where('status', 1);
+        });
+        if(isset($this->request->tutor_courses)){
+            $typeset = [9];
+        }else{
+
+            $typeset = $this->request->filter_by_course_type ?? [2,4,5,6,7,8];
+        }
+        // if(isset($this->request->filter_by_course_type)){
+        //   $query->whereIn('type',$this->request->filter_by_course_type);
+        // }
+        // else{
+        // $query->where(function ($q) {
+        //   if(isset($this->request->tutor_courses)){
+        //     $q->where('type',9)->where('price','<>','0.00');
+        //   }else{
+            
+            $query->where(function ($q) use ($typeset) {
+                $q->whereIn('type', $typeset)
+                ->where(function($q){
+                    $q->where('price', '!=', '0.00')
+                    ->orHas('currentCoursePlan');
+                });
+              
+            //   ->where('price', '!=', '0.00');
+            // //  $q->whereIn('type', [2,  5, 7, 8])->where('price', '!=', '0.00');
+            //   $q->orWhere(function($q){
+            //     $q->where('type','=',8)
+            //     ->where('price', '!=', '0.00')
+            //     ->where('start_date','<=',Carbon::now()->format('Y-m-d'))
+            //     ->where('end_date','>=',Carbon::now()->format('Y-m-d'));
+            //   })
+            //   ->orWhere(function ($q) {
+            //     $q->whereIn('type',[4,6])
+            //     ->has('currentCoursePlan');
+            // });
+            // });
+        //   }
+        });
+    // }   
+        $query->where('status', 1);
 
         $order = $this->request->order;
 
@@ -173,30 +199,32 @@ class QuizPageSection extends Component
             }
         }
       //  $max_price = $query->max('price');
-        $max_price = $query->get()->max(function ($query) {
-          if(!$query->price){
-            return $query->currentCoursePlan[0]->amount;
-          }else{
-            return $query->price;
-          }
-        });
+        // $max_price = $query->get()->max(function ($query) {
+        //   if(!$query->price){
+        //     return $query->currentCoursePlan[0]->amount;
+        //   }else{
+        //     return $query->price;
+        //   }
+        // });
         if(isset($this->request->filter_search_by) && !empty($this->request->filter_search_by)){
           $query->where('title','LIKE','%'.$this->request->filter_search_by.'%');
         }
-        if(isset($this->request->filter_by_course_type)){
-          $query->whereIn('type',$this->request->filter_by_course_type);
-        }
+        // if(isset($this->request->filter_by_course_type)){
+        //   $query->whereIn('type',$this->request->filter_by_course_type);
+        // }
         if(isset($this->request->filter_by_price_max) && isset($this->request->filter_by_price_min)){
           $filter_max_price = floatval($this->request->filter_by_price_max);
           $filter_min_price = floatval($this->request->filter_by_price_min);
+          $query->where(function($query) use ($filter_min_price,$filter_max_price){
           $query->whereBetween('price',[$filter_min_price,$filter_max_price])->orWhere(function($query) use ($filter_min_price,$filter_max_price){
             $query->whereNull('price')
             ->whereHas('currentCoursePlan',function($query) use ($filter_min_price,$filter_max_price){
               $query->whereBetween('amount',[$filter_min_price,$filter_max_price]);
             });
           });
+          });
         }
-       //dd($query->toSql(),$query->getBindings());
+        // dd($query->toSql(),$query->getBindings());
         $courses = $query->paginate(8);
         $total = $courses->total();
         $levels = CourseLevel::select('id', 'title')->where('status', 1)->get();
