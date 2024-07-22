@@ -2080,54 +2080,68 @@ class WebsiteController extends Controller
 
             if ($request->ajax()) {
                 $search = $request->name;
-                // $query = Program::orderBy('seq_no', 'asc')
-                //     ->where('status', 1)
-                //     ->has('currentProgramPlan')
-                //     ->with('currentProgramPlan')
-                //     ->where('programtitle', 'LIKE', "%{$search}%")
-                //     ->get();
 
-                $query = PaymentPlans::where('sdate', '<=', date('Y-m-d'))->where('edate', '>=', date('Y-m-d'))
-                        ->whereHas('courses', function ($query) use ($search) {
-                            $query->where('title', 'like', '%'.$search.'%');
-                        })
-                        ->orWhereHas('programName', function ($query) use ($search) {
-                            $query->where('programtitle', 'like', '%'.$search.'%');
-                        })
-                        ->with('courses','programName')
-                        ->where('status', 1)->latest()->get();
+                $courses = Course::orderBy('total_enrolled', 'desc')->where(function($q){
+                    $q->where('price', '!=', '0.00')
+                    ->orHas('currentCoursePlan');
+                })->where('title','LIKE','%'.$search.'%')
+                    ->with('user', 'parent','currentCoursePlan','enrolls', 'comments', 'reviews', 'lessons', 'activeReviews', 'enrollUsers', 'class', 'cartUsers', 'quiz', 'quiz.assign', 'courseLevel')->get();
+                $program = Program::where('programtitle','LIKE','%'.$search.'%')->orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('user','currentProgramPlan')->get();
+                
+            
+                $coursesArray = $courses->toArray();
+                $programArray = $program->toArray();
+
+                $mergedArray = array_merge($coursesArray, $programArray);
+
+                // Optionally, convert back to a collection if needed
+                // $mergedCollection = collect($mergedArray)->orderBy('created_at','DESC');
+                $mergedCollection = collect($mergedArray)->map(function ($item) {
+                    return collect($item);
+                })->sortByDesc('created_at')->values();
+
+                $query = $mergedCollection;
                 // dd($query);
                 $search_output = '';
                 if (count($query) > 0) {
                     $search_output = '<ul id="search_listing" class="list-group" style="display:block;position:relative; z-index:1">';
                     foreach ($query as $item) {
-                        switch ($item->type) {
-                            case 'program':
-                                $search_output .= '<li class="list-group-item on_cursor"><a class="text-dark" href="'.route('programs.detail',[$item->parent_id]).'">' . $item->programName->programtitle . ' <small>(Program)</small></a></li>';
-                                // $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->programName->programtitle . '\',\''.$item->type.'\')"><a href="'.route('programs.detail',[$item->id]).'">' . $item->programName->programtitle . '</li>';
-                                break;
-                                
-                                default:
-                                    switch ($item->type) {
-                                        case 'prep_course_live':
-                                            $courseType = 6;
-                                            $courseTypeName = 'Prep Course - Live';
-                                            break;
-                                        case 'full_course':
-                                            $courseType = 4;
-                                            $courseTypeName = 'Full Course';
-                                            break;
-                                        
-                                        default:
-                                            $courseType = 1;
-                                            $courseTypeName = 'Course';
-                                            break;
-                                    }
-                                $search_output .= '<li class="list-group-item on_cursor"><a class="text-dark" href="'.route('courseDetailsView',['slug' => $item->courses->parent->slug,'courseType' => $courseType]).'">' . $item->courses->parent->title . ' <small>('.$courseTypeName.')</small></a></li>';
-                                // $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->courses->parent->title . '\',\''.$item->type.'\')"><a href="'.route('courseDetailsView',['slug' => $item->parent->slug,'courseType' => $courseType]).'">' . $item->courses->parent->title . '</li>';
-                                
-                                break;
+                        if($item->has('current_program_plan')){
+                            $detailUrl = route('programs.detail',[$item->get('id')]);
+                            $title = $item->get('programtitle');
+                            $type = 'Program';
+                        }else{
+                            $detailUrl = route('courseDetailsView', ['slug' => $item->get('parent')['slug'] ?? $item->get('slug'), 'courseType' => $item->get('type')]);
+                            $title = $item->get('parent') ? $item->get('parent')['title']['en'] : $item->get('title')['en'];
+                            $type = 'Course';
                         }
+                        // switch ($item->type) {
+                        //     case 'program':
+                                $search_output .= '<li class="list-group-item on_cursor"><a class="text-dark" href="'.$detailUrl.'">' . $title . ' <small>('.$type.')</small></a></li>';
+                                // $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->programName->programtitle . '\',\''.$item->type.'\')"><a href="'.route('programs.detail',[$item->id]).'">' . $item->programName->programtitle . '</li>';
+                        //         break;
+                                
+                        //         default:
+                        //             switch ($item->type) {
+                        //                 case 'prep_course_live':
+                        //                     $courseType = 6;
+                        //                     $courseTypeName = 'Prep Course - Live';
+                        //                     break;
+                        //                 case 'full_course':
+                        //                     $courseType = 4;
+                        //                     $courseTypeName = 'Full Course';
+                        //                     break;
+                                        
+                        //                 default:
+                        //                     $courseType = 1;
+                        //                     $courseTypeName = 'Course';
+                        //                     break;
+                        //             }
+                        //         $search_output .= '<li class="list-group-item on_cursor"><a class="text-dark" href="'.route('courseDetailsView',['slug' => $item->courses->parent->slug,'courseType' => $courseType]).'">' . $item->courses->parent->title . ' <small>('.$courseTypeName.')</small></a></li>';
+                        //         // $search_output .= '<li class="list-group-item on_cursor" onclick="selectedSearch(\'' . $item->courses->parent->title . '\',\''.$item->type.'\')"><a href="'.route('courseDetailsView',['slug' => $item->parent->slug,'courseType' => $courseType]).'">' . $item->courses->parent->title . '</li>';
+                                
+                        //         break;
+                        // }
                     }
                     $search_output .= '</ul>';
                 } else {

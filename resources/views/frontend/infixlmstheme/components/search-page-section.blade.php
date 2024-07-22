@@ -277,13 +277,44 @@
                         $course_type = 'Program';
                         $price = $program->get('current_program_plan')[0]['amount'];
                 }else{
-                    $url_link = route('courseDetailsView', ['slug' => $program->get('parent')['slug'] ?? $program->get('slug'), 'courseType' => 4]);
+                    $url_link = route('courseDetailsView', ['slug' => $program->get('parent')['slug'] ?? $program->get('slug'), 'courseType' => $program->get('type')]);
                         $course_image = getCourseImage($program->get('thumbnail'));
                         $course_title = $program->get('parent') ? $program->get('parent')['title']['en'] : $program->get('title')['en'];
                         $course_description = $program->get('parent') ? $program->get('parent')['about']['en'] : $program->get('about')['en'];
                         $classes = 0;
+
+                        switch ($program->get('type')) {
+                            case 2:
+                                $course_type = 'Big Quiz';
+                                break;
+                            case 3:
+                                $course_type = 'Classes';
+                                break;
+                            case 4:
+                                $course_type = 'Full Course';
+                                break;
+                            case 5:
+                                $course_type = 'Prep Course (On-Demand)';
+                                break;
+                            case 6:
+                                $course_type = 'Prep Course (Live)';
+                                break;
+                            case 7:
+                                $course_type = 'Time Table';
+                                break;
+                            case 8:
+                                $course_type = 'Repeat Course';
+                                break;
+                            case 9:
+                                $course_type = 'Individual Course';
+                                break;
+                            
+                            default:
+                                $course_type = 'Course';
+                                break;
+                        }
                         // $classes = count($program->courses->parent->lessons).' Lessons';
-                        $course_type = 'Full Course';
+                        // $course_type = 'Full Course';
                         $price = $program->get('current_course_plan') ? $program->get('current_course_plan')[0]['amount'] : $program->get('price');
                 }
                 //  switch ($program->type) {

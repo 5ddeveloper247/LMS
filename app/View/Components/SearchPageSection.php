@@ -28,18 +28,53 @@ class SearchPageSection extends Component
     public function render()
     {
         try {
-        
-        $courses = Course::orderBy('total_enrolled', 'desc')->where(function($q){
+        $search = $this->request->has('query') ? '%'.$this->request->get('query').'%' : '%'; 
+        $courses = Course::where('title','LIKE',$search)
+                ->orderBy('total_enrolled', 'desc')->where(function($q){
                     $q->where('price', '!=', '0.00')
                     ->orHas('currentCoursePlan');
                 })
-            ->with('user', 'parent','currentCoursePlan','enrolls', 'comments', 'reviews', 'lessons', 'activeReviews', 'enrollUsers', 'class', 'cartUsers', 'quiz', 'quiz.assign', 'courseLevel')->get();
-        $program = Program::orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('user','currentProgramPlan')->get();
+            ->with('user', 'parent','currentCoursePlan','enrolls', 'comments', 'reviews', 'lessons', 'activeReviews', 'enrollUsers', 'class', 'cartUsers', 'quiz', 'quiz.assign', 'courseLevel');
+        $program = Program::where('programtitle','LIKE',$search)->orderBy('seq_no', 'asc')->where('status', 1)->has('currentProgramPlan')->with('user','currentProgramPlan');
         
+        if($this->request->has('search_type') && $this->request->get('search_type') != 'course'){
+            $courses = $courses->take(0);
+        }
+
+        if($this->request->has('search_type') && $this->request->get('search_type') != 'program'){
+            $program = $program->take(0);
+        }
+
+        if($this->request->has('search_courseType')){
+            $program=$program->take(0);
+            switch ($this->request->get('search_courseType')) {
+                case 'big_quiz':
+                    $type = 2;
+                    break;
+                case 'full_course':
+                    $type = 4;
+                    break;
+                case 'prep_course_ondemand':
+                    $type = 5;
+                    break;
+                case 'prep_course_live':
+                    $type = 6;
+                    break;
+                case 'repeat_course':
+                    $type = 7;
+                    break;
+                
+                default:
+                    $type = 0;
+                    break;
+            }
+            $courses = $courses->where('type',$type);
+        }
+
        // $query = $courses->merge($program);
         // $courses->push($program);
-        $coursesArray = $courses->toArray();
-        $programArray = $program->toArray();
+        $coursesArray = $courses->get()->toArray();
+        $programArray = $program->get()->toArray();
 
         $mergedArray = array_merge($coursesArray, $programArray);
 
