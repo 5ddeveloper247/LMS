@@ -215,21 +215,21 @@
             <div class="d-flex flex-column align-content-start px-md-5 px-2">
                 <div class="col-12 mt-3">
                     <small class="alert alert-info p-0 d-none" id="priceMsg">Min price must be less then max price</small>
-                    <label for="program_price">Price (<span id="minPrice">{{ request()->has('search_minPrize') ? request()->input('search_minPrize') : 0 }}</span> to <span id="maxPrice">{{ request()->has('search_maxPrize') ? request()->input('search_maxPrize') : programFilterMaxPrice() }}</span>)</label>
+                    <label for="program_price">Price (<span id="minPrice">{{ request()->has('search_minPrize') ? request()->input('search_minPrize') : 0 }}</span> to <span id="maxPrice">{{ request()->has('search_maxPrize') ? request()->input('search_maxPrize') : $total_max_price }}</span>)</label>
                     <div class="d-flex flex-column">
                         <h6 class="mb-0">Min</h6>
                         <div class="align-items-center d-flex flex-row-reverse gap-2">
                             <p id="price_range_min" class="font-weight-bold">{{ request()->has('search_minPrize') ? request()->input('search_minPrize') : 0 }}</p>
-                            <input type="range" min="0" max="{{ programFilterMaxPrice() }}" step="1" name="program_price_min" 
+                            <input type="range" min="0" max="{{ $total_max_price }}" step="1" name="program_price_min" 
                             class="form-control accent-color p-0" id="program_price_min" 
                             value="{{ request()->has('search_minPrize') ? request()->input('search_minPrize') : 0 }}">
                         </div>
                         <h6 class="mb-0">Max</h6>
                         <div class="align-items-center d-flex flex-row-reverse gap-2">
-                            <p id="price_range_max" class="font-weight-bold">{{ request()->has('search_maxPrize') ? request()->input('search_maxPrize') : programFilterMaxPrice() }}</p>
-                            <input type="range" min="0" max="{{ programFilterMaxPrice() }}" step="1" name="program_price_max" 
+                            <p id="price_range_max" class="font-weight-bold">{{ $total_max_price }}</p>
+                            <input type="range" min="0" max="{{ $total_max_price }}" step="1" name="program_price_max" 
                             class="form-control accent-color p-0" id="program_price_max" 
-                            value="{{ request()->has('search_maxPrize') ? request()->input('search_maxPrize') : programFilterMaxPrice() }}">
+                            value="{{ request()->has('search_maxPrize') ? request()->input('search_maxPrize') : $total_max_price }}">
                         </div>
                         <p class="text-center mb-0 mt-4">
                             <a href="{{ route('programs') }}" class="theme_btn small_btn2 p-2">Clear</a>
@@ -469,6 +469,8 @@
     $('#program_price_max, #program_price_min').on('change',function(e){
         let max = $('#program_price_max').val();
         let min = $('#program_price_min').val();
+            $('#price_range_min').text(min);
+            $('#price_range_max').text(max);
             $('#minPrice').text(min);
             $('#maxPrice').text(max);
         if(min>max){

@@ -39,6 +39,7 @@
                                             <th scope="col">{{ __('common.Image') }}</th>
                                             <th scope="col">{{ __('common.Name') }}</th>
                                             <th scope="col">{{ __('common.Email') }}</th>
+                                            <th scope="col">{{ __('Course Type') }}</th>
                                             <th scope="col">{{ __('common.Progress') }}</th>
                                             <th scope="col">{{ __('common.Action') }}</th>
                                         </tr>
@@ -145,6 +146,10 @@
                 {
                     data: 'email',
                     name: 'email'
+                },
+                {
+                    data: 'courseType',
+                    name: 'courseType'
                 },
                 {
                     data: 'progressbar',

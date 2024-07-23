@@ -30,7 +30,7 @@ class SearchPageSection extends Component
         try {
         $search = $this->request->has('query') ? '%'.$this->request->get('query').'%' : '%'; 
         $courses = Course::where('title','LIKE',$search)
-                ->orderBy('total_enrolled', 'desc')->where(function($q){
+                ->where('status', 1)->where(function($q){
                     $q->where('price', '!=', '0.00')
                     ->orHas('currentCoursePlan');
                 })
@@ -60,8 +60,11 @@ class SearchPageSection extends Component
                 case 'prep_course_live':
                     $type = 6;
                     break;
-                case 'repeat_course':
+                case 'time_table':
                     $type = 7;
+                    break;
+                case 'repeat_course':
+                    $type = 8;
                     break;
                 
                 default:
@@ -71,6 +74,37 @@ class SearchPageSection extends Component
             $courses = $courses->where('type',$type);
         }
 
+        $course_max_price = Course::where('status', 1)->where(function($q){
+                    $q->where('price', '!=', '0.00')
+                    ->orHas('currentCoursePlan');
+                })->get()->max(function ($query) {
+          if(!$query->price){
+            return $query->currentCoursePlan[0]->amount;
+          }else{
+            return $query->price;
+          }
+        });
+        $program_max_price = Program::where('status', 1)->has('currentProgramPlan')->get()->max(function($query){
+            return $query->currentProgramPlan[0]->amount;
+        });
+        $total_max_price = ($course_max_price > $program_max_price) ? $course_max_price : $program_max_price;
+        
+        $max_price = $this->request->has('search_maxPrize') ? $this->request->get('search_maxPrize') : $total_max_price;
+        $min_price = $this->request->has('search_minPrize') ? $this->request->get('search_minPrize') : 0;
+        
+
+        $courses= $courses->where(function($q) use ($max_price,$min_price){
+            $q->whereHas('currentCoursePlan',function($q) use ($max_price,$min_price){
+                $q->whereBetween('amount',[$min_price,$max_price]);
+            })
+            ->orWhere(function($q) use ($min_price,$max_price){
+                $q->where('price','<>','0.00')
+                ->whereBetween('price',[$min_price,$max_price]);
+            });
+        });
+        $program = $program->whereHas('currentProgramPlan',function($q) use ($min_price,$max_price){
+            $q->whereBetween('amount',[$min_price,$max_price]);
+        });
        // $query = $courses->merge($program);
         // $courses->push($program);
         $coursesArray = $courses->get()->toArray();

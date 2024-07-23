@@ -145,6 +145,40 @@ class CourseInvitationController extends Controller
                 return $query->user->phone;
 
             })
+            ->editColumn('courseType', function ($query) {
+                switch ($query->course_type) {
+                    case 2:
+                        $type = 'Big Quiz';
+                        break;
+                    case 3:
+                        $type = 'Classes';
+                        break;
+                    case 4:
+                        $type = 'Full Course';
+                        break;
+                    case 5:
+                        $type = 'Prep Course (On-Demand)';
+                        break;
+                    case 6:
+                        $type = 'Prep Course (Live)';
+                        break;
+                    case 7:
+                        $type = 'Time Table';
+                        break;
+                    case 8:
+                        $type = 'Repeat Course';
+                        break;
+                    case 9:
+                        $type = 'Individual Course';
+                        break;
+                    
+                    default:
+                        $type = 'Course';
+                        break;
+                }
+                return $type;
+
+            })
             ->addColumn('progressbar', function ($query) use ($course) {
                 return "  <div class='progress_percent flex-fill text-right'>
                                                     <div class='progress theme_progressBar '>
