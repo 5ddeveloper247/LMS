@@ -72,7 +72,7 @@
                                     <!-- table-responsive -->
 
                                     <div class="">
-                                        <table id="lms_table" class="Crm_table_active3 table table-responsive">
+                                        <table id="lms_table" class="Crm_table_active3 table">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">{{ __('common.SL') }}</th>
@@ -136,7 +136,7 @@
                                     <!-- table-responsive -->
 
                                     <div class="">
-                                        <table id="lms_table2" class="Crm_table_active3 table table-responsive">
+                                        <table id="lms_table2" class="Crm_table_active3 table">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">{{ __('common.SL') }}</th>
@@ -193,7 +193,7 @@
                                     <div class="primary_input mb-35">
                                         <label class="primary_input_label"
                                             for="">{{ __('instructor.About') }}</label>
-                                        <textarea class="lms_summernote" name="about" id="addAbout" cols="30" rows="10">{{ old('about') }}</textarea>
+                                        <textarea class="primary_input_field h-auto" name="about" id="addAbout" cols="30" rows="10">{{ old('about') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -409,7 +409,7 @@
                                     <div class="primary_input mb-35">
                                         <label class="primary_input_label"
                                             for="">{{ __('instructor.About') }}</label>
-                                        <textarea class="lms_summernote" name="about" id="instructorAbout" cols="30" rows="10">{{ old('about') }}</textarea>
+                                        <textarea class="primary_input_field h-auto" name="about" id="instructorAbout" cols="30" rows="10">{{ old('about') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -806,17 +806,9 @@
         });
     </script>
     @if ($errors->any())
-        @if (session()->has('type'))
-            @if (session()->get('type') == 'tutor')
                 <script>
                     $('#editInstructor').modal('show');
                 </script>
-            @else
-                <script>
-                    $('#editInstructor').modal('show');
-                </script>
-            @endif
-        @endif
         @if (Session::has('hours_id'))
             <script>
                 $('#setHoursInstructor').modal('show');

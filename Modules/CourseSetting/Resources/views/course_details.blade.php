@@ -244,7 +244,11 @@
                             }
                         @endphp
                     @endif
-
+                    @php
+                        if(routeIs('CourseChapterShow')){
+                            $type = 'courses';
+                        }
+                    @endphp
                     <div class="row pt-0">
                         <ul class="nav nav-tabs no-bottom-border mt-sm-md-20 mb-10 ml-3" role="tablist">
                             @if ($course->type == 1 || $course->type == 9)

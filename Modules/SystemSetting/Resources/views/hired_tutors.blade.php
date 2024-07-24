@@ -23,9 +23,7 @@
 
 
                         </div>
-                        @if (Auth::user()->role_id == 2)
                             <a href="{{ route('tutor.slots') }}" class="primary-btn fix-gr-bg">Set Hours</a>
-                        @endif
                     </div>
                 </div>
                 <div class="col-lg-12">

@@ -226,7 +226,16 @@ class VirtualClassController extends Controller
             if($program){
                 $programcourses = json_decode($program->allcourses);
                 
-                $programconflict = VirtualClass::whereIn('course_id',$programcourses)
+                $programconflict = VirtualClass::whereHas('program',function($q) use ($programcourses){
+                    if(count($programcourses)>0){
+                        $q->where('allcourses', 'like',  '%"' . $programcourses[0] .'"%');
+                    }
+                    if(count($programcourses)>1){
+                        for ($i = 1; $i < count($programcourses); $i++){
+                            $q->orwhere('allcourses', 'like',  '%' . $programcourses[$i] .'%');
+                        }
+                    }
+                })
                     ->where(function ($query) use ($requestStartTime, $requestEndTime) {
                         $query->where('time', '<=', $requestEndTime)
                             ->where('end_time', '>=', $requestStartTime);
@@ -239,7 +248,7 @@ class VirtualClassController extends Controller
 
                 if($programconflict > 0){
                     $arrRes['done'] = false;
-                    $arrRes['error'] = 'You have same Program conflicting with each other. Please choose another Date/Time';
+                    $arrRes['error'] = 'You have other Programs having courses which are conflicting with each other. Please choose another Date/Time';
                     return response()->json($arrRes);
                     die();
                 }
@@ -302,14 +311,23 @@ class VirtualClassController extends Controller
                 // ->whereTime('start_time', '<=', $end_time)
                 //     ->whereTime('end_time', '>=', $start_time);
             })
-            ->count();
-            if($checkslot>0){
+            ->first();
+        if($checkslot){
+        if(count($checkslot->slotHiring)>0){
               $arrRes['done'] = false;
               $arrRes['error'] = 'This instructor has a tutor slot reserved for given time. Please choose another time.';
             //  $arrRes['error'] = $checkslot->toSql();
               return response()->json($arrRes);
               die();
+            }else{
+                $updateSlot = TutorSlote::find($checkslot->id);
+                $updateSlot->start_time = null;
+                $updateSlot->end_time = null;
+                $updateSlot->date = null;
+                $updateSlot->save();
             }
+            
+        }
           $checkConflict = VirtualClass::where('user_id',$assign_instructor)
           //->where('course_id','<>',$courseId)
           ->where('id','<>',$class_id)
@@ -336,7 +354,7 @@ class VirtualClassController extends Controller
                 $conflict->time != $requestStartTime || 
                 $conflict->end_time != $requestEndTime ||
                 $conflictTypes[0] == $courseType[0]){
-              $msg = 'This Instructor is already booked on given time. Please choose another time.';
+              $msg = 'This Instructor already has other classes on given time. Please choose another time.';
             //  $msg = $conflict->course_id.' '.$courseId.' '.$conflict->start_date.' '.$requestStartDate.' '.$conflict->end_date.' '.$conflict->time.' '.$conflict->end_time;
               $arrRes['done'] = false;
               $arrRes['error'] = $msg;

@@ -35,7 +35,8 @@ $(document).on("click", ".editInstructor", function () {
             $("#instructorName").val(instructor.name);
             $("#instructorGender").val(instructor.gender);
             $("#instructorGender").niceSelect("update");
-            $("#instructorAbout").summernote("code", instructor.about);
+            // $("#instructorAbout").summernote("code", instructor.about);
+            $('#instructorAbout').val(instructor.about);
             $("#instructorDob").val(instructor.dob);
             $("#instructorPhone").val(instructor.phone);
             $("#instructorEmail").val(instructor.email);

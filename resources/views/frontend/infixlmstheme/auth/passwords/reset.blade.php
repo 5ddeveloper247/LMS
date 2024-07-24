@@ -46,7 +46,7 @@
                                     </span>
                                 </div>
                                 <input type="email" value="{{ old('email') }}"
-                                    class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                    class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" required
                                     placeholder="{{ __('common.Enter Email') }}" name="email" aria-label="Username"
                                     aria-describedby="basic-addon3">
                             </div>
@@ -61,7 +61,7 @@
                                     </span>
                                 </div>
                                 <input type="password" placeholder="Enter  Password" name="password" class="form-control"
-                                    value="" aria-label="Username" aria-describedby="basic-addon3">
+                                    value="" aria-label="Username" aria-describedby="basic-addon3" minlength="8">
 
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                     </span>
                                 </div>
                                 <input type="password" placeholder="Enter Confirm Password" name="password_confirmation"
-                                    class="form-control" value="" aria-label="Username"
+                                    class="form-control" value="" aria-label="Username" minlength="8"
                                     aria-describedby="basic-addon3">
 
                             </div>

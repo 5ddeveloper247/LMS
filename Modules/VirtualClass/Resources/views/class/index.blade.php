@@ -297,7 +297,7 @@
 
 	                                                    <?php
 	                                                    	$course_types = (isset($class->course_types) && $class->course_types) != null ? json_decode($class->course_types): [] ;
-	                                                		$program_types = (isset($class->program_types) && $class->program_types == "true" )  ? 'program' : '' ;
+	                                                		$program_types = (isset($class->program_types) && $class->program_id != null )  ? 'program' : '' ;
 														?>
 
                                                         @if (isset($courseTypes))

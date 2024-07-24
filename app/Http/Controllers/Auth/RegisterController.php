@@ -540,7 +540,7 @@ class RegisterController extends Controller
       $userDeclaration->save();
       session()->put('enrollment_declaration', $request->input());
       Toastr::success('Pre Registration Successfull. Now you can proceed with buying courses', 'Success');
-      return redirect()->intended(route('studentDashboard'));
+      return redirect()->to(route('studentDashboard'));
     }
 
     public function RegisterForm3Create(Request $request)

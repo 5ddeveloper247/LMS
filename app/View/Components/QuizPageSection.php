@@ -120,13 +120,7 @@ class QuizPageSection extends Component
         // }else{
         //   $included_types = [2,  5, 7, 8];
         // }
-        $max_price = $query->whereIn('type',[2,4,5,6,7,8])->get()->max(function ($query) {
-          if(!$query->price){
-            return $query->currentCoursePlan[0]->amount;
-          }else{
-            return $query->price;
-          }
-        });
+        
         if(isset($this->request->tutor_courses)){
             $typeset = [9];
         }else{
@@ -166,7 +160,14 @@ class QuizPageSection extends Component
         });
     // }   
         $query->where('status', 1);
-
+        $q1 = $query;
+        $max_price = $q1->get()->max(function ($query) {
+          if(!$query->price){
+            return $query->currentCoursePlan[0]->amount;
+          }else{
+            return $query->price;
+          }
+        });
         $order = $this->request->order;
 
         if (currentTheme() == 'wetech') {

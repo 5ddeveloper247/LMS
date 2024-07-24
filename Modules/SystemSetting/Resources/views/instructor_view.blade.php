@@ -23,7 +23,6 @@
 @endphp
 @section('mainContent')
     {!! generateBreadcrumb() !!}
-
     <section class="admin-visitor-area student-details">
         <div class="container-fluid p-0">
             <div class="row">
@@ -266,7 +265,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label>Phone No*</label>
-                                <input class="form-control" type="number" placeholder="" name="Teach_phone"
+                                <input class="form-control" type="text" placeholder="" name="Teach_phone"
                                     value="{{ $instructors_teaching_experience->phone }}" readonly>
                             </div>
                             <div class="col-md-4">

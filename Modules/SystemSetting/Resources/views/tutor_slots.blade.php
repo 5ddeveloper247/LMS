@@ -34,14 +34,16 @@
                             </div>
                             <div class="col-lg-12 mt-20">
                                 <div class="search_course_btn">
-                                {{-- <div class="search_course_btn {{ $today_slots == 0 ? 'd-none' : '' }}"> --}}
+                                    @if(auth()->user()->role_id == 2 && auth()->user()->total_hours)
                                     <button type="button" class="primary-btn radius_30px fix-gr-bg mr-10"
                                         onclick="setTutorSlotDate();">{{ __('SET SLOTS') }} </button>
+                                    @endif
                                 </div>
-                                <p class="d-none">Once You Are Assigned Hours, <span
-                                {{-- <p class="{{ $today_slots > 0 ? 'd-none' : '' }}">Once You Are Assigned Hours, <span --}}
+                                @if(auth()->user()->role_id == 2 && auth()->user()->total_hours == null)
+                                <p>Once You Are Assigned Hours, <span
                                         class="font-weight-bold">SET SLOTS</span> Button Will
                                     Appear</p>
+                                @endif
                             </div>
                         </div>
                     </div>

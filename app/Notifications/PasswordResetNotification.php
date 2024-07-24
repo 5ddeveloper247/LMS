@@ -51,11 +51,12 @@ class PasswordResetNotification extends ResetPassword
         $tamplate = EmailTemplate::where('act', 'Reset_Password')->first();
         $subject = $tamplate->subj;
         $body = $tamplate->email_body;
-
-
+        
+        
         $key = ['http://{{reset_link}}', '{{reset_link}}', '{{app_name}}'];
         $value = [route('password.reset', $this->token), route('password.reset', $this->token), Settings('site_title')];
         $body = str_replace($key, $value, $body);
+        $body = shortcode_replacer('{{footer}}', Settings('email_template'), $body);
 
         $config = EmailSetting::where('active_status', 1)->first();
         if ($config && $config->email_engine_type == 'sendgrid') {
