@@ -310,21 +310,23 @@ class VirtualClassController extends Controller
                 ->whereRaw("STR_TO_DATE(end_time, '%h:%i %p') >= ?", [$requestStartTime]);
                 // ->whereTime('start_time', '<=', $end_time)
                 //     ->whereTime('end_time', '>=', $start_time);
-            })
-            ->first();
-        if($checkslot){
-        if(count($checkslot->slotHiring)>0){
-              $arrRes['done'] = false;
-              $arrRes['error'] = 'This instructor has a tutor slot reserved for given time. Please choose another time.';
-            //  $arrRes['error'] = $checkslot->toSql();
-              return response()->json($arrRes);
-              die();
-            }else{
-                $updateSlot = TutorSlote::find($checkslot->id);
-                $updateSlot->start_time = null;
-                $updateSlot->end_time = null;
-                $updateSlot->date = null;
-                $updateSlot->save();
+            })->with('slotHiring')
+            ->get();
+        if(count($checkslot)>0){
+            foreach ($checkslot as $slot) {
+                if($slot->slotHiring && count($slot->slotHiring)>0){
+                $arrRes['done'] = false;
+                $arrRes['error'] = 'This instructor has a tutor slot reserved for given time. Please choose another time.';
+                //  $arrRes['error'] = $checkslot->toSql();
+                return response()->json($arrRes);
+                die();
+                }else{
+                    $updateSlot = TutorSlote::find($slot->id);
+                    $updateSlot->start_time = null;
+                    $updateSlot->end_time = null;
+                    $updateSlot->date = null;
+                    $updateSlot->save();
+                }
             }
             
         }

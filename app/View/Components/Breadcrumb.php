@@ -29,7 +29,9 @@ class Breadcrumb extends Component
             $url = request()->path();
             $q->where('slug',$url)
             ->orWhere('slug','/'.$url);
-        })->first();
+        })
+        ->where('status',1)
+        ->first();
        //$slider_info = Slider::where('route',$route)->first();
         return view(theme('components.breadcrumb'),compact('slider_info'));
     }

@@ -3028,7 +3028,7 @@
                                             @endif
                                         </p>
                                         <h5 class="px-2 px-xl-4 pt-2 text-white" id="program_cost">
-                                            ${{ $random_program->totalcost }}
+                                            ${{ $random_program->currentProgramPlan[0]->amount }}
                                         </h5>
                                     </a>
                                 </div>

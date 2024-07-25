@@ -128,23 +128,6 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            {{-- <div class="col-xl-12 @if(isset($slider)) d-none @endif">
-                                                    <div class="primary_input mb-25">
-                                                        <label class="primary_input_label"
-                                                               for="">{{ __('Route Name') }}</label>
-                                                        <input name="route" id="route"
-                                                               class="primary_input_field name {{ @$errors->has('route') ? ' is-invalid' : '' }}"
-                                                               placeholder="{{ __('Route') }}"
-                                                               type="text"
-                                                               value="{{(isset($slider) && $slider->route != null)?$slider->route:old('route')}}" {{$errors->has('route') ? 'autofocus' : ''}}>
-                                                        @if ($errors->has('route'))
-                                                            <span class="invalid-feedback d-block mb-10"
-                                                                  role="alert">
-                                                            <strong>{{ @$errors->first('route') }}</strong>
-                                                        </span>
-                                                        @endif
-                                                    </div>
-                                                </div> --}}
                                             <div class="col-lg-12">
                                                 <div class="primary_input mb-25">
                                                     <label class="primary_input_label"
@@ -208,7 +191,7 @@
                                                                for="">{{ __('Page') }}
                                                         </label>
                                                         <select name="page" id="page"
-                                                               class="primary_input_field name {{ @$errors->has('page') ? ' is-invalid' : '' }}">
+                                                               class="primary_select name {{ @$errors->has('page') ? ' is-invalid' : '' }}">
                                                                <option>Select a PAGE</option>
                                                                @foreach($pages as $item)
                                                                 <option value = "{{$item->id}}" {{(isset($slider) && $slider->page_id == $item->id) ? 'selected' : ''}}>

@@ -47,7 +47,7 @@
                                             <label class="primary_input_label" for="">Program Title <small>(Max size
                                                     100 Characters)</small> *</label>
                                             <input class="primary_input_field @if($errors->has('title')) border-danger @endif" name="ProgramTitle" placeholder="-"
-                                                id="addTitle" maxlength="30" type="text"
+                                                id="addTitle" maxlength="100" type="text"
                                                 {{ $errors->has('title') ? 'autofocus' : '' }}
                                                 value="{{ old('ProgramTitle') }}" maxlength="100" required>
                                         </div>
@@ -56,11 +56,11 @@
                                         <div class="primary_input mb-25">
                                             <label class="primary_input_label" for="">Program subtitle/greetings
                                                 <small>(Max size
-                                                    200 Characters)</small> *</label>
+                                                    250 Characters)</small> *</label>
                                             <input class="primary_input_field @if($errors->first('subtitle')) border-danger @endif" name="subtitle" placeholder="-"
                                                 id="subtitle" maxlength="30" type="text"
                                                 {{ $errors->has('title') ? 'autofocus' : '' }}
-                                                value="{{ old('subtitle') }}" maxlength="200" required>
+                                                value="{{ old('subtitle') }}" maxlength="250" required>
                                         </div>
                                     </div>
                                 </div>

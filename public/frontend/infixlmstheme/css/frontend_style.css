@@ -826,6 +826,15 @@ label {
     font-family: Jost, sans-serif;
 }
 
+.ck-content ul,
+.ck-content ol,
+.ckdtext ul,
+.ckdtext ol
+{
+    list-style: revert !important;
+    padding: revert !important;
+}
+
 .theme_search_field {
     background: #eee;
     height: 34px;

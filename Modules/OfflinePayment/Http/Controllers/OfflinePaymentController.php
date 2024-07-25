@@ -18,7 +18,8 @@ class OfflinePaymentController extends Controller
     {
         $instructor = User::where('role_id', 2)->get();
         $student = User::where('role_id', 3)->get();
-        return view('offlinepayment::fund.add_fund', compact('student', 'instructor'));
+        $allpayments = OfflinePayment::where('status',1)->with('user')->latest()->get();
+        return view('offlinepayment::fund.add_fund', compact('student', 'instructor','allpayments'));
     }
 
     public function FundHistory($id)

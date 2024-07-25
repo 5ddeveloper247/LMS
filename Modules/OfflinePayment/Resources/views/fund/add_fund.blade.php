@@ -15,25 +15,16 @@
                             <ul class="nav nav-tabs no-bottom-border mt_0_sm mb-20 m-0 justify-content-start"
                                 role="tablist">
                                 <li class="nav-item mb-0">
-                                    <a class="nav-link
-                                    @if(Session::has('isStudent'))
-                                    @if(!Session::get('isStudent'))
-                                        active
-                                        @endif
-                                    @else
-                                        active
-                                    @endif
-                                        " href="#group_email_sms" selectTab="G" role="tab"
+                                    <a class="nav-link active" href="#allPayments" role="tab" data-toggle="tab">
+                                        All Payments
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-0">
+                                    <a class="nav-link" href="#group_email_sms" selectTab="G" role="tab"
                                        data-toggle="tab">{{__('quiz.Instructor')}}  </a>
                                 </li>
                                 <li class="nav-item mb-0">
-                                    <a class="nav-link
- @if(Session::has('isStudent'))
-                                    @if(Session::get('isStudent'))
-                                        active
-                                        @endif
-                                    @endif
-                                        " selectTab="I" href="#indivitual_email_sms" role="tab"
+                                    <a class="nav-link" selectTab="I" href="#indivitual_email_sms" role="tab"
                                        data-toggle="tab">{{__('quiz.Student')}}</a>
                                 </li>
 
@@ -43,17 +34,79 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <input type="hidden" name="selectTab" id="selectTab">
-                                <div role="tabpanel" class="tab-pane fade   @if(Session::has('isStudent'))
-                                @if(!Session::get('isStudent'))
-                                    show    active
-@endif
-                                @else
-                                    show   active
-@endif" id="group_email_sms">
+                                <div role="tabpanel" class="tab-pane fade show active" id="allPayments">
 
                                     <div class="QA_section QA_section_heading_custom check_box_table mt-20">
-                                        <div class="QA_table ">
-                                            <table id="lms_table" class="table Crm_table_active3 table-responsive">
+                                        <div class="QA_table table-responsive">
+                                            <table id="lms_table" class="table Crm_table_active3">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>User Name</th>
+                                                    <th>User Role</th>
+                                                    <th>Amount</th>
+                                                    <th>In/Out</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($allpayments as $payment)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $payment->user->name ?? 'Deleted User' }}</td>
+                                                        <td>
+                                                            @switch($payment->role_id)
+                                                                @case(1)
+                                                                    {{__('Admin')}}
+                                                                    @break
+                                                                @case(2)
+                                                                    {{__('Instructor')}}
+                                                                    @break
+                                                                @case(3)
+                                                                    {{__('Student')}}
+                                                                    @break
+                                                                @case(9)
+                                                                    {{__('Tutor')}}
+                                                                    @break
+                                                                @default
+                                                                    {{__('LMS User')}}
+                                                            @endswitch
+                                                        </td>
+                                                        <td> {{ getPriceFormat($payment->amount) }} </td>
+                                                        <td>
+                                                            @switch($payment->type)
+                                                                @case('Add')
+                                                                    <span style="color:red">- Out</span>
+                                                                    @break
+                                                                @case('Deduct')
+                                                                    <span style="color:green">+ In</span>
+                                                                    @break
+                                                                @default
+                                                                    <span style="color:black">* Unknown</span>
+                                                            @endswitch
+                                                        </td>
+                                                        <td>
+                                                            @switch($payment->status)
+                                                                @case(1)
+                                                                    Active
+                                                                    @break
+                                                                @case(0)
+                                                                    Inactive
+                                                                    @break
+                                                            @endswitch
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="group_email_sms">
+
+                                    <div class="QA_section QA_section_heading_custom check_box_table mt-20">
+                                        <div class="QA_table table-responsive">
+                                            <table id="lms_table" class="table Crm_table_active3">
                                                 <thead>
                                                 <tr>
                                                     <th>{{__('common.Name')}}</th>
@@ -219,13 +272,7 @@
 
                                 </div>
 
-                                <div role="tabpanel" class="tab-pane fade
- @if(Session::has('isStudent'))
-                                @if(Session::get('isStudent'))
-                                    show   active
-@endif
-                                @endif
-                                    " id="indivitual_email_sms">
+                                <div role="tabpanel" class="tab-pane fade" id="indivitual_email_sms">
 
                                     <div class="QA_section QA_section_heading_custom check_box_table mt-20">
                                         <div class="QA_table ">
