@@ -445,7 +445,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="primary_input mb-25">
-                            <label class="primary_input_label" for=""><small>Slider 1 Image</small></label>
+                            <label class="primary_input_label" for="">Slider 1 Image <small>(MAX IMAGE SIZE 1MB, RECOMMENDED DIMENSIONS: 1600X600)</small></label>
                             <div class="primary_file_uploader">
                                 <input class="primary-input filePlaceholder" type="text" id="slider_1_image"
                                     placeholder="Browse Image file" readonly=""
@@ -480,7 +480,7 @@
 
                     <div class="col-md-6">
                         <div class="primary_input mb-25">
-                            <label class="primary_input_label" for="">Slider 2 Image</label>
+                            <label class="primary_input_label" for="">Slider 2 Image <small>(MAX IMAGE SIZE 1MB, RECOMMENDED DIMENSIONS: 1600X600)</small></label>
                             <div class="primary_file_uploader">
                                 <input class="primary-input filePlaceholder" type="text" id="slider_2_image"
                                     placeholder="Browse Image file" readonly=""
@@ -515,7 +515,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="primary_input mb-25">
-                            <label class="primary_input_label" for="">Slider 3 Image</label>
+                            <label class="primary_input_label" for="">Slider 3 Image <small>(MAX IMAGE SIZE 1MB, RECOMMENDED DIMENSIONS: 1600X600)</small></label>
                             <div class="primary_file_uploader">
                                 <input class="primary-input filePlaceholder" type="text" id="slider_3_image"
                                     placeholder="Browse Image file" readonly=""

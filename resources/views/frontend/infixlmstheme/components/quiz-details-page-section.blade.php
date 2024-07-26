@@ -17,76 +17,84 @@
                                     <h4 class="font-weight-bold"> {{ $course->quiz->title }}</h4>
                                 </div>
                                 <div class="quiz_test_body">
-                                    <ul class="quiz_test_info">
-                                        @if (count($preResult) != 0)
-                                            <h5 class="font-weight-bold mb-5">
-                                                {{ __('student.Congratulations! You’ve completed') }}
-                                                {{ $course->quiz->title }}</h5>
-                                        @endif
-                                        @php
-                                            $duration = 0;
-                                            $type = $course->quiz->question_time_type;
-                                            if ($type == 0) {
-                                                $duration = $course->quiz->question_time * count($course->quiz->assign);
-                                            } else {
-                                                $duration = $course->quiz->question_time;
-                                            }
-                                        @endphp
-                                        <li>
-                                            <span>{{ __('frontend.Questions') }}
-                                                <span>:</span></span><span>{{ count($course->quiz->assign) }}
-                                                {{ __('frontend.Question') }}.</span>
-                                        </li>
-                                        <li class="nowrap">
-                                            <span>{{ __('frontend.Duration') }} <span>:</span></span>
-                                            {{ MinuteFormat($duration) }}
-                                        </li>
-                                    </ul>
-                                    @if (!isInstructor() && !isTutor())
-                                        @if (Auth::check() && $isEnrolled)
-
-                                            @if ($alreadyJoin == 0 || $course->quiz->multiple_attend == 1)
-                                                <a href="{{ route('quizStart', [$course->id, $course->quiz->id, $course->title]) . '?courseType=' . $request->courseType }}"
-                                                    class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('Start Prep-Course') }}</a>
-                                            @endif
-
+                                    <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="image_responsive px-md-2">
+                                            <img src="{{ getCourseImage($course->image) }}" class="img-fluid w-100 img_round course_image"
+                                                style="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <ul class="quiz_test_info">
                                             @if (count($preResult) != 0)
-                                                <button type="button"
-                                                    class="theme_line_btn mr_15 showHistory m-auto mt-4 text-center">{{ __('frontend.View History') }}</button>
+                                                <h5 class="font-weight-bold mb-5">
+                                                    {{ __('student.Congratulations! You’ve completed') }}
+                                                    {{ $course->quiz->title }}</h5>
                                             @endif
+                                            @php
+                                                $duration = 0;
+                                                $type = $course->quiz->question_time_type;
+                                                if ($type == 0) {
+                                                    $duration = $course->quiz->question_time * count($course->quiz->assign);
+                                                } else {
+                                                    $duration = $course->quiz->question_time;
+                                                }
+                                            @endphp
+                                            <li>
+                                                <span>{{ __('frontend.Questions') }}
+                                                    <span>:</span></span><span>{{ count($course->quiz->assign) }}
+                                                    {{ __('frontend.Question') }}.</span>
+                                            </li>
+                                            <li class="nowrap">
+                                                <span>{{ __('frontend.Duration') }} <span>:</span></span>
+                                                {{ MinuteFormat($duration) }}
+                                            </li>
+                                        </ul>
+                                        @if (!isInstructor() && !isTutor())
+                                            @if (Auth::check() && $isEnrolled)
 
-                                            @if ($alreadyJoin == 1 && $certificate)
-                                                @if ($isPass == 1)
-                                                    <a href="{{ $isPass == 1 ? route('getCertificate', [$course->id, $course->title]) : '#' }}"
-                                                        class="theme_line_btn mr_15 m-auto mt-4 text-center">
-                                                        {{ __('frontend.Get Certificate') }}
-                                                    </a>
+                                                @if ($alreadyJoin == 0 || $course->quiz->multiple_attend == 1)
+                                                    <a href="{{ route('quizStart', [$course->id, $course->quiz->id, $course->title]) . '?courseType=' . $request->courseType }}"
+                                                        class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('Start Prep-Course') }}</a>
                                                 @endif
-                                            @endif
-                                        @else
-                                            @if (!onlySubscription())
-                                                @if ($isFree)
-                                                    {{--                                                @if ($is_cart == 1) --}}
-                                                    {{--                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}" --}}
-                                                    {{--                                                        class="theme_btn height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a> --}}
-                                                    {{--                                                @else --}}
-                                                    {{--                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}" --}}
-                                                    {{--                                                        class="theme_btn height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a> --}}
-                                                    {{--                                                @endif --}}
-                                                @else
-                                                    @if (Auth::check())
-                                                        <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
-                                                            class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('frontend.Buy Now') }}</a>
+
+                                                @if (count($preResult) != 0)
+                                                    <button type="button"
+                                                        class="theme_line_btn mr_15 showHistory m-auto mt-4 text-center">{{ __('frontend.View History') }}</button>
+                                                @endif
+
+                                                @if ($alreadyJoin == 1 && $certificate)
+                                                    @if ($isPass == 1)
+                                                        <a href="{{ $isPass == 1 ? route('getCertificate', [$course->id, $course->title]) : '#' }}"
+                                                            class="theme_line_btn mr_15 m-auto mt-4 text-center">
+                                                            {{ __('frontend.Get Certificate') }}
+                                                        </a>
+                                                    @endif
+                                                @endif
+                                            @else
+                                                @if (!onlySubscription())
+                                                    @if ($isFree)
+                                                        {{--                                                @if ($is_cart == 1) --}}
+                                                        {{--                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}" --}}
+                                                        {{--                                                        class="theme_btn height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a> --}}
+                                                        {{--                                                @else --}}
+                                                        {{--                                                    <a href="{{ route('addToCartQuiz', [@$course->id]) }}" --}}
+                                                        {{--                                                        class="theme_btn height_50 mb_10 text-center">{{ __('common.Add To Cart') }}</a> --}}
+                                                        {{--                                                @endif --}}
                                                     @else
-                                                        <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
-                                                            class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('frontend.Buy Now') }}</a>
+                                                        @if (Auth::check())
+                                                            <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
+                                                                class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('frontend.Buy Now') }}</a>
+                                                        @else
+                                                            <a href="{{ route('buyNowQuiz', [@$course->id]) . '?courseType=' . $request->courseType }}"
+                                                                class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('frontend.Buy Now') }}</a>
+                                                        @endif
                                                     @endif
                                                 @endif
                                             @endif
                                         @endif
-                                    @endif
-
-
+                                    </div>
+                                </div>
                                     @if (count($preResult) != 0)
                                         <div id="historyDiv" class="pt-5" style="display:none;">
                                             <table class="table-bordered table">

@@ -28,7 +28,7 @@
     }
 
     .slider:not(:last-child) {
-        border-right: 2px solid #ccc;
+        border-right: 2px solid var(--system_primery_color);
     }
 
     .image {
@@ -50,7 +50,7 @@
         transform: translate(10px, -50%);
         width: 60px;
         height: 2px;
-        background-color: #ccc;
+        background-color: var(--system_primery_color);
     }
 
     .stepper_right {
@@ -61,6 +61,8 @@
     .paddingy {
         padding-right: 70px;
         padding-top: 100px;
+        /* border-color:var(--system_primery_color); */
+
     }
 
     .slider-right h2 {
@@ -75,7 +77,7 @@
         transform: translateY(-50%);
         width: 60px;
         height: 2px;
-        background-color: #ccc;
+        background-color: var(--system_primery_color);
     }
 
     .center-content-about {

@@ -297,7 +297,7 @@
 <script>
 $(document).ready(function() {
     $('.slick-slider').slick({
-        // autoplay: true,
+        autoplay: true,
         autoplaySpeed: 2000,
         dots: true,
         appendDots: $('.about-pagination'),

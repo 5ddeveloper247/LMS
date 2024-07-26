@@ -5545,7 +5545,7 @@
                                 <div class="video-container">
                                     <video id="myVideo" class=" w-100" style="object-fit: cover">
                                         <source
-                                            src="{{ asset('/public/uploads/images/footerimg/ezgif-2-78802b2d5b.mp4') }}">
+                                            src="{{ asset('/public/uploads/images/footerimg/intro-video.mp4') }}">
                                     </video>
                                     <div class="overlay-video"></div>
                                     <div class="text-video-overlay top-center">

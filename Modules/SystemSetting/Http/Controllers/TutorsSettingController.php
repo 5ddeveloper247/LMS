@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Modules\SystemSetting\Entities\TutorHiring;
 use Modules\SystemSetting\Entities\TutorSlote;
 use Modules\VirtualClass\Entities\VirtualClass;
+use Modules\Team\Entities\TeamMeeting;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 
@@ -65,8 +66,17 @@ class TutorsSettingController extends Controller
             $date = Carbon::parse($request->date)->format('Y-m-d');
             // dd($start_time, $end_time, $date);
             //             if (!$this->checkTimeSlot(Auth::id(), $start_time, $end_time)) {
-            
-                    $user = TutorSlote::findOrFail($request->id);
+            $user = TutorSlote::findOrFail($request->id);
+            $userid = $user->instructor_id;
+            $meetingConflict = TeamMeeting::whereHas('class',function($q) use ($userid){
+                $q->where('user_id',$userid);
+            })
+            ->where(function ($query) use ($start_time, $end_time, $date) {
+                $query->where('start_time', '<=', Carbon::parse($date.' '.$end_time)->format('Y-m-d H:i:s'))
+                    ->where('end_time', '>=', Carbon::parse($date.' '.$start_time)->format('Y-m-d H:i:s'));
+            });
+          dd($meetingConflict->count());
+        //   dd($meetingConflict->toSql(),$meetingConflict->getBindings());
                     $user->start_time = $start_time;
                     $user->end_time = $end_time;
                     $user->date = $date;

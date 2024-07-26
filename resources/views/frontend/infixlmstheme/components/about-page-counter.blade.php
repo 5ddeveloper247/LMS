@@ -52,7 +52,7 @@
                     {{-- <img src="{{ asset('/public/uploads/images/footerimg/ezgif-2-78802b2d5b.mp4') }}" class="w-100 h-100"> --}}
                     <div class="counter_video">
                         <video class="counter-image h-100 w-100" autoplay loop muted style="object-fit: cover">
-                            <source src="{{ asset('/public/uploads/images/footerimg/ezgif-2-78802b2d5b.mp4') }}">
+                            <source src="{{ asset('/public/uploads/images/footerimg/intro-video.mp4') }}">
                         </video>
                     </div>
                 </div>

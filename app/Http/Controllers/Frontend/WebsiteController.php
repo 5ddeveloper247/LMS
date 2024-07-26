@@ -316,13 +316,13 @@ class WebsiteController extends Controller
             if ($request->has('program_id')) {
                 $isEnrolled = CourseEnrolled::where('program_id', $request->program_id)->where('user_id', Auth::id())->count();
                 if ($isEnrolled == 0 && $check_lesson->is_lock == 1) {
-                    Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
+                    Toastr::error(trans('common.Access Denied').' Please Login and/or buy this Course/Program to access more material.', trans('common.Failed'));
                     return redirect()->back();
                 }
             } elseif ($request->has('courseType')) {
                 $isEnrolled = CourseEnrolled::where('course_id', $course_id)->where('course_type', $request->courseType)->where('user_id', Auth::id())->count();
                 if ($isEnrolled == 0 && $check_lesson->is_lock == 1) {
-                    Toastr::error(trans('common.Access Denied'), trans('common.Failed'));
+                    Toastr::error(trans('common.Access Denied').' Please Login and/or buy this Course/Program to access more material.', trans('common.Failed'));
                     return redirect()->back();
                 }
             } else {

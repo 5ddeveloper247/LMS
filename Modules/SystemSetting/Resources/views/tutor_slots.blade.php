@@ -53,9 +53,9 @@
                     <div class="QA_section QA_section_heading_custom check_box_table">
                         <div class="QA_table">
                             <!-- table-responsive -->
-                            <div class="">
+                            <div class="table-responsive">
 
-                                <table class="Crm_table_active3 table table-responsive">
+                                <table class="Crm_table_active3 table">
                                     <thead>
                                         <tr>
                                             <th scope="col">{{ __('common.SL') }}</th>
