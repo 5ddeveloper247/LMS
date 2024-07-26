@@ -247,7 +247,7 @@
 
     </div>
     <div class="courses_area ">
-        <div class="container mb-3 mb-md-0 px-lg-5">
+        <div class="container mb-3 mb-md-5 px-lg-5">
             <div class="row px-4 px-sm-2 px-md-5">
                 <div class="col-12 mb-3 mb-md-4">
                     <h5 class="small_heading text-center">

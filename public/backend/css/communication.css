@@ -238,7 +238,6 @@
 }
 
 .messages_box_area .messages_chat .message_send_field {
-    padding-top: 50px;
     display: grid;
     grid-template-columns: auto 110px;
     grid-gap: 10px
@@ -247,7 +246,6 @@
 @media (max-width:575.98px) {
     .messages_box_area .messages_chat .message_send_field {
         grid-template-columns: 1fr;
-        /* margin-top: 20px */
     }
 }
 

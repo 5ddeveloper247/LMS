@@ -298,7 +298,7 @@
 $(document).ready(function() {
     $('.slick-slider').slick({
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 5000,
         dots: true,
         appendDots: $('.about-pagination'),
         arrows: false,

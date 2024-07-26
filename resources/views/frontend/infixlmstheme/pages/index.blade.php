@@ -864,7 +864,7 @@
     }
 
     .shadow_ist {
-        height: 636px;
+        height: 490px;
         border-radius: 20px;
         justify-content: space-between;
     }
@@ -874,7 +874,7 @@
         background: transparent;
         color: black;
         font-weight: 700;
-        margin: 0px 0px 13px 0px;
+        /* margin: 0px 0px 13px 0px; */
         border: 1px solid black;
         border-radius: 16px;
         padding: 0.5rem 1.5rem;
@@ -893,13 +893,13 @@
     .video-container {
         position: relative;
         width: 100%;
-        height: 636px;
+        height: 490px;
     }
 
     .video-container video {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: fill;
         border-radius: 20px;
     }
 
@@ -923,7 +923,7 @@
     }
 
     .bottom-center {
-        bottom: 16%;
+        bottom: 10%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -1448,10 +1448,10 @@
         clip-path: polygon(26% 0, 100% 0, 100% 100%, 0 100%);
     }
 
-    .percent-video {
+    /* .percent-video {
         padding-right: 0.3rem !important;
 
-    }
+    } */
 
     .percent-h {
         color: var(--system_secendory_color);
@@ -2410,9 +2410,9 @@
         .about_us_img2, .about_us_img1{
             height: 450px;
         }
-        .video-container {
+        /* .video-container {
             height: 500px !important;
-        }
+        } */
 
         .shadow_ist {
             height: 500px !important;
@@ -2490,9 +2490,12 @@
             height: 630px !important;
         }
 
-        /* .old_row {
+        .shadow_ist{
             height: 630px !important;
-        } */
+        }
+        .video-container {
+        height: 630px !important;
+    }
 
         .main_banner_2 {
             height: 315px !important;
@@ -2553,9 +2556,9 @@
             min-width: 100rem !important;
         }
 
-        .percent-video {
+        /* .percent-video {
             padding: 0px 25px 0px 0px !important;
-        }
+        } */
 
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             font-size: 18px;
@@ -2646,10 +2649,6 @@
         .main_bannar {
             height: 820px !important;
         }
-
-        /* .old_row {
-            height: 820px !important;
-        } */
 
         .main_banner_2 {
             height: 410px !important;
@@ -5570,7 +5569,7 @@
                             <div class="col-lg-4 col-md-5 mt-4 mt-md-0 px-md-2">
                                 <div class=" shadow_ist d-flex flex-column align-items-center"
                                     style="background-color: #b2dfcc;">
-                                    <h2 class="section-header font-weight-bold my-md-2 m-0 p-3">ASK US
+                                    <h2 class="section-header font-weight-bold m-0 p-3">ASK US
                                         ANYTHING: FAQs</h2>
                                     <div class="accordion p-sm-3 p-2">
 

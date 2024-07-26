@@ -1018,6 +1018,7 @@ label {
     color: #707070;
     font-size: 14px;
     font-weight: 500;
+    width: 60%;
 }
 
 .cs_modal .modal-body p {
@@ -1450,7 +1451,7 @@ label {
 }
 
 .section__title3.margin-50 {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 @media (max-width: 767.98px) {
@@ -3938,7 +3939,7 @@ input[type="number"] {
 @media only screen and (min-width: 1800px) {
 
     .counter_area .counter_wrapper .single_counter:first-child {
-        margin: 100px -165px 70px 145px !important;
+        margin: 50px -165px 70px 145px !important;
     }
 
     .counter_area .counter_wrapper .single_counter:nth-child(2) {
@@ -3950,7 +3951,10 @@ input[type="number"] {
     }
 
     .counter_area .counter_wrapper .single_counter:nth-child(4) {
-        margin: 0px -58px 100px 0px !important;
+        margin: 0px -58px 70px 0px !important;
+    }
+    .counter_video{
+        height: 800px !important;
     }
 }
 
@@ -11636,6 +11640,18 @@ body {
     line-height: 1;
     min-height: 65px;
     min-width: 65px;
+    max-height: 65px;
+    max-width: 65px;
+    overflow: hidden;
+}
+.couse_wizged .thumb .prise_tag,
+.quiz_wizged .thumb .prise_tag small , .couse_wizged .thumb .prise_tag,
+.quiz_wizged .thumb .prise_tag span {
+    padding: 0px 5px;
+   width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .couse_wizged .thumb .prise_tag .prev_prise,
@@ -12437,7 +12453,8 @@ body {
 }
 
 .textViewer {
-    margin-top: 50px;
+    overflow: auto;
+    margin-top: 40px;
     padding: 40px;
 }
 
@@ -15601,7 +15618,6 @@ body {
 .footerbox1 h5 {
     font-weight: 700 !important;
     color: white !important;
-    /* font-size: 18px !important; */
 }
 
 .footerbox1 p {
@@ -15637,12 +15653,9 @@ body {
     color: white !important;
     cursor: pointer !important;
     font-size: 12.5px;
-    /* font-weight: 700; */
-    /* transition: 1s; */
 }
 
 .expore p:hover {
-    line-height: 30px !important;
     color: var(--system_primery_color) !important;
     text-decoration: underline !important;
 }
@@ -15653,19 +15666,15 @@ body {
 
 .fs-responsive {
     font-size: 12.5px;
-    /* font-weight: 700; */
 }
 
 .icons i {
-    font-size: 22px !important;
-    /* padding: 11px !important; */
+    font-size: 22px;
     cursor: pointer;
 }
 
 .icons i:hover {
     color: var(--system_primery_color) !important;
-    font-size: 22px !important;
-    /* padding: 11px !important; */
 }
 
 .icons i:focus {
@@ -17031,70 +17040,7 @@ border-radius: 10px;
     }
 
 }
-@media (width > 1650px) {
-    .expore p {
-        font-size: 18px !important;
-        line-height: 35px !important;
-    }
 
-    .expore p:hover {
-        font-size: 18px !important;
-        line-height: 35px !important;
-    }
-
-    .footerbox1 p {
-        font-size: 18px !important;
-        line-height: 35px !important;
-    }
-
-    .footerbox1 p:hover {
-        font-size: 18px !important;
-        line-height: 35px !important;
-    }
-    .footerbox1 span{
-        font-size: 18px !important;
-    }
-    .fs-responsive {
-        font-size: 18px !important;
-        line-height: 38px !important;
-    }
-
-    .icons i {
-        font-size: 25px !important;
-    }
-
-    .icons i:hover {
-        font-size: 25px !important;
-    }
-
-    .expore h4 {
-        font-size: 30px !important;
-        line-height: 40px !important;
-    }
-
-
-    .footerbox1 h4 {
-        font-size: 30px !important;
-        line-height: 40px !important;
-    }
-
-    .newsletter_btn {
-        font-size: 26px !important;
-    }
-
-    .form-control_responsive {
-        display: block;
-        width: 100%;
-        height: calc(2em + 0.75rem + 2px) !important;
-        padding: 0.375rem 0.75rem;
-        font-size: 1.4rem !important;
-        font-weight: 400;
-        line-height: 1.5;
-    }
-    .btn_responsive_fs_67 {
-        font-size: 1.2vw !important;
-    }
-}
 @media only screen and (min-width: 700px) {
     .header_area .main_menu ul li a {
         font-size: 11px;
@@ -17469,6 +17415,53 @@ border-radius: 10px;
 }
 
 @media (min-width: 1650px) {
+    .expore p {
+        font-size: 18px !important;
+        line-height: 35px !important;
+    }
+    .footerbox1 p {
+        font-size: 18px !important;
+        line-height: 35px !important;
+    }
+    .footerbox1 span{
+        font-size: 18px !important;
+    }
+    .fs-responsive {
+        font-size: 18px !important;
+        line-height: 38px !important;
+    }
+
+    .icons i {
+        font-size: 25px !important;
+    }
+
+    .expore h4 {
+        font-size: 30px !important;
+        line-height: 40px !important;
+    }
+
+
+    .footerbox1 h4 {
+        font-size: 30px !important;
+        line-height: 40px !important;
+    }
+
+    .newsletter_btn {
+        font-size: 26px !important;
+    }
+
+    .form-control_responsive {
+        display: block;
+        width: 100%;
+        height: calc(2em + 0.75rem + 2px) !important;
+        padding: 0.375rem 0.75rem;
+        font-size: 1.4rem !important;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+    .btn_responsive_fs_67 {
+        font-size: 1.2vw !important;
+    }
     .teach_section {
         height: auto !important;
     }
