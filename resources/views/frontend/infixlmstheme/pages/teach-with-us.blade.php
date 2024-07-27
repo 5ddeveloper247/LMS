@@ -1157,7 +1157,7 @@
                     </div>
                 @endif
                 @if (count($courses) == 0)
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 mb-md-5 mb-4">
                         <div
                             class="Nocouse_wizged d-flex align-items-center justify-content-center text-center mt-md-4 mt-3">
                             <div class="thumb">

@@ -260,7 +260,7 @@
             @endif
             @if ($lesson->is_quiz == 1)
                 @if (count($result) != 0)
-                    <div class="quiz_score_wrapper w-100 mt_70">
+                    <div class="quiz_score_wrapper w-100 mt_70" style="height: 100%; overflow: auto;">
                         @if (!isset($_GET['done']))
                             <!-- quiz_test_header  -->
                             <div class="quiz_test_header">

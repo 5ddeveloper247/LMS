@@ -766,7 +766,7 @@
                                     <p class="color"> ${{ $program->currentProgramPlan[0]->amount }}</p>
                                 </div>
                             @empty
-                                <div class="col-md-12">
+                                <div class="col-md-12 mb-md-5 mb-4">
                                     <div
                                         class="Nocouse_wizged d-flex align-items-center justify-content-center text-center">
                                         <div class="thumb">
@@ -799,7 +799,7 @@
                                     <p class="color"> ${{ $program->currentProgramPlan[0]->amount }}</p>
                                 </div>
                             @empty
-                                <div class="col-md-12">
+                                <div class="col-md-12 mb-md-5 mb-4">
                                     <div
                                         class="Nocouse_wizged d-flex align-items-center justify-content-center text-center">
                                         <div class="thumb">
