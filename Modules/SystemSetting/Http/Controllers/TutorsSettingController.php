@@ -64,19 +64,35 @@ class TutorsSettingController extends Controller
             $start_time = Carbon::parse($request->start_time)->format('h:i a');
             $end_time = Carbon::parse($request->start_time)->addHour(1)->format('h:i a');
             $date = Carbon::parse($request->date)->format('Y-m-d');
+            $dayofWeek = Carbon::parse($request->date)->format('D');
             // dd($start_time, $end_time, $date);
             //             if (!$this->checkTimeSlot(Auth::id(), $start_time, $end_time)) {
             $user = TutorSlote::findOrFail($request->id);
             $userid = $user->instructor_id;
-            $meetingConflict = TeamMeeting::whereHas('class',function($q) use ($userid){
-                $q->where('user_id',$userid);
-            })
-            ->where(function ($query) use ($start_time, $end_time, $date) {
-                $query->where('start_time', '<=', Carbon::parse($date.' '.$end_time)->format('Y-m-d H:i:s'))
-                    ->where('end_time', '>=', Carbon::parse($date.' '.$start_time)->format('Y-m-d H:i:s'));
-            });
-          dd($meetingConflict->count());
-        //   dd($meetingConflict->toSql(),$meetingConflict->getBindings());
+            $meetingConflict = VirtualClass::where('user_id',$userid)
+                ->where('class_day',$dayofWeek)
+                ->where(function($q) use ($date){
+                    $q->where('start_date','<=',$date)
+                    ->where('end_date','>=',$date);
+                })
+                ->where(function ($query) use ($start_time, $end_time, $date) {
+                    $query->where('time', '<=', Carbon::parse($end_time)->format('Y-m-d H:i:s'))
+                    ->where('end_time', '>=', Carbon::parse($start_time)->format('Y-m-d H:i:s'));
+                })->count();
+
+                if($meetingConflict>0){
+                    Toastr::error('The slot time is conflicting with one or more of your classes. Please choose another time', trans('common.Failed'));
+                    return redirect()->back();
+                }
+            // $meetingConflict = TeamMeeting::whereHas('class',function($q) use ($userid){
+            //     $q->where('user_id',$userid);
+            // })
+            // ->where(function ($query) use ($start_time, $end_time, $date) {
+            //     $query->where('start_time', '<=', Carbon::parse($date.' '.$end_time)->format('Y-m-d H:i:s'))
+            //         ->where('end_time', '>=', Carbon::parse($date.' '.$start_time)->format('Y-m-d H:i:s'));
+            // });
+        //   dd($meetingConflict->count());
+        //   dd($dayofWeek);
                     $user->start_time = $start_time;
                     $user->end_time = $end_time;
                     $user->date = $date;
