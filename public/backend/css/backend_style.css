@@ -1816,8 +1816,9 @@ ul{
     letter-spacing: 1px;
     font-family: Poppins, sans-serif;
     font-weight: 500;
-    line-height: 40px;
-    padding: 0 20px;
+    line-height: inherit !important;
+    /* padding: 0 20px; */
+    padding: 0.5rem 1rem;
     outline: none !important;
     text-align: center;
     cursor: pointer;
@@ -1915,7 +1916,7 @@ ul{
 .primary-btn.tr-bg {
     background: transparent;
     border: 1px solid var(--footer_background_color);
-    line-height: 28px
+    /* line-height: 28px */
 }
 
 .primary-btn.bord-rad {
