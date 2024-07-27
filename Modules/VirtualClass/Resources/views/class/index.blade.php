@@ -334,7 +334,7 @@
                                                     <input {{ $errors->has('duration') ? ' autofocus' : '' }}
                                                         class="primary_input_field name{{ $errors->has('duration') ? ' is-invalid' : '' }}"
                                                         type="number" name="duration"
-                                                        value="{{ isset($class) ? $class->duration : (old('duration') != '' ? old('duration') : '') }}" @if(isset($class)) readonly @endif>
+                                                        value="{{ isset($class) ? $class->duration : (old('duration') != '' ? old('duration') : '') }}">
                                                     <span class="focus-border"></span>
 
                                                 </div>
@@ -449,7 +449,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mt-25 d-none @if (isset($class)) d-none @endif">
+                                        <div class="row mt-25 @if (isset($class)) d-none @endif">
                                             <div class="col-lg-12">
                                                 <label class="primary_input_label"
                                                     for="">{{ __('virtual-class.Type') }}</label>
@@ -528,25 +528,25 @@
                                                                         <option value="" selected>Choose Class Day
                                                                         </option>
                                                                         <option value="Mon"
-                                                                            {{ isset($class) ? ($class->class_day == 'Mon' ? 'selected' : 'disabled') : (old('days') == 'Mon' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Mon' ? 'selected' : '') : (old('days') == 'Mon' ? 'selected' : '') }}>
                                                                             Monday</option>
                                                                         <option value="Tue"
-                                                                            {{ isset($class) ? ($class->class_day == 'Tue' ? 'selected' : 'disabled') : (old('days') == 'Tue' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Tue' ? 'selected' : '') : (old('days') == 'Tue' ? 'selected' : '') }}>
                                                                             Tuesday</option>
                                                                         <option value="Wed"
-                                                                            {{ isset($class) ? ($class->class_day == 'Wed' ? 'selected' : 'disabled') : (old('days') == 'Wed' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Wed' ? 'selected' : '') : (old('days') == 'Wed' ? 'selected' : '') }}>
                                                                             Wednesday</option>
                                                                         <option value="Thu"
-                                                                            {{ isset($class) ? ($class->class_day == 'Thu' ? 'selected' : 'disabled') : (old('days') == 'Thu' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Thu' ? 'selected' : '') : (old('days') == 'Thu' ? 'selected' : '') }}>
                                                                             Thursday</option>
                                                                         <option
-                                                                            value="Fri"{{ isset($class) ? ($class->class_day == 'Fri' ? 'selected' : (old('days') == 'Fri' ? 'selected' : 'disabled')) : (old('days') == 'Fri' ? 'selected' : '') }}>
+                                                                            value="Fri"{{ isset($class) ? ($class->class_day == 'Fri' ? 'selected' : (old('days') == 'Fri' ? 'selected' : '')) : (old('days') == 'Fri' ? 'selected' : '') }}>
                                                                             Friday</option>
                                                                         <option value="Sat"
-                                                                            {{ isset($class) ? ($class->class_day == 'Sat' ? 'selected' : (old('days') == 'Sat' ? 'selected' : 'disabled')) : (old('days') == 'Sat' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Sat' ? 'selected' : (old('days') == 'Sat' ? 'selected' : '')) : (old('days') == 'Sat' ? 'selected' : '') }}>
                                                                             Saturday</option>
                                                                         <option value="Sun"
-                                                                            {{ isset($class) ? ($class->class_day == 'Sun' ? 'selected' : (old('days') == 'Sun' ? 'selected' : 'disabled')) : (old('days') == 'Sun' ? 'selected' : '') }}>
+                                                                            {{ isset($class) ? ($class->class_day == 'Sun' ? 'selected' : (old('days') == 'Sun' ? 'selected' : '')) : (old('days') == 'Sun' ? 'selected' : '') }}>
                                                                             Sunday</option>
                                                                     </select>
                                                                 </div>
@@ -595,7 +595,7 @@
                                                     <input required
                                                         class="primary-input primary_input_field time form-control{{ @$errors->has('time') ? ' is-invalid' : '' }}"
                                                         type="text" name="time"
-                                                        value="{{ isset($class) ? old('time', $class->time) : old('time') }}" @if(isset($class)) readonly @endif>
+                                                        value="{{ isset($class) ? old('time', $class->time) : old('time') }}">
 
                                                 </div>
 

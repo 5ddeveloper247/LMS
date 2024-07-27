@@ -43,6 +43,8 @@ use Modules\Zoom\Entities\ZoomMeeting;
 use Modules\Zoom\Entities\ZoomMeetingUser;
 use Modules\Zoom\Entities\ZoomSetting;
 use Modules\Team\Entities\TeamSetting;
+use Modules\Team\Entities\TeamMeeting;
+use Modules\Team\Entities\TeamMeetingUser;
 use Modules\Team\Http\Controllers\MeetingController;
 use Yajra\DataTables\Facades\DataTables;
 use Zoom;
@@ -142,7 +144,7 @@ class VirtualClassController extends Controller
         $days = isset($request->days) ? $request->days : '';
         $courseType = isset($request->courseType) ? $request->courseType : [];
         
-
+        $class_id = $request->id ?? 0;
         if ($id == '') {
             $check_title = VirtualClass::where('title', 'LIKE', '%\"' . $request->title . '\"%')->count();
         } else {
@@ -226,16 +228,17 @@ class VirtualClassController extends Controller
             if($program){
                 $programcourses = json_decode($program->allcourses);
                 
-                $programconflict = VirtualClass::whereHas('program',function($q) use ($programcourses){
-                    if(count($programcourses)>0){
-                        $q->where('allcourses', 'like',  '%"' . $programcourses[0] .'"%');
-                    }
-                    if(count($programcourses)>1){
-                        for ($i = 1; $i < count($programcourses); $i++){
-                            $q->orwhere('allcourses', 'like',  '%' . $programcourses[$i] .'%');
+                $programconflict = VirtualClass::where('id','<>',$class_id)
+                    ->whereHas('program',function($q) use ($programcourses){
+                        if(count($programcourses)>0){
+                            $q->where('allcourses', 'like',  '%"' . $programcourses[0] .'"%');
                         }
-                    }
-                })
+                        if(count($programcourses)>1){
+                            for ($i = 1; $i < count($programcourses); $i++){
+                                $q->orwhere('allcourses', 'like',  '%' . $programcourses[$i] .'%');
+                            }
+                        }
+                    })
                     ->where(function ($query) use ($requestStartTime, $requestEndTime) {
                         $query->where('time', '<=', $requestEndTime)
                             ->where('end_time', '>=', $requestStartTime);
@@ -297,9 +300,6 @@ class VirtualClassController extends Controller
             $requestEndDate = $courseplans->edate;
           }
         }
-
-        
-        $class_id = $request->id ?? 0;
 
         $checkslot = TutorSlote::where('instructor_id', $assign_instructor)->whereBetween('slot_date', [$requestStartDate,$requestEndDate])
         ->whereRaw("UPPER(DATE_FORMAT(slot_date, '%a')) = UPPER(?)", [$request->days])
@@ -1246,15 +1246,15 @@ class VirtualClassController extends Controller
                 }
                 $course->course_types = (json_encode($ctypes1) != null) ? json_encode($ctypes1) : [];
 
-                //             	if (!empty($request->assistant_instructors)) {
-                //             		$assistants = $request->assistant_instructors;
-                //             		if (($key = array_search($course->user_id, $assistants)) !== false) {
-                //             			unset($assistants[$key]);
-                //             		}
-                //             		if (!empty($assistants)) {
-                //             			$course->assistant_instructors = json_encode(array_values($assistants));
-                //             		}
-                //             	}
+                            	if (!empty($request->assistant_instructors)) {
+                            		$assistants = $request->assistant_instructors;
+                            		if (($key = array_search($course->user_id, $assistants)) !== false) {
+                            			unset($assistants[$key]);
+                            		}
+                            		if (!empty($assistants)) {
+                            			$course->assistant_instructors = json_encode(array_values($assistants));
+                            		}
+                            	}
 
                 if (isModuleActive('Org')) {
                     $course->required_type = $request->required_type;
@@ -1387,7 +1387,41 @@ class VirtualClassController extends Controller
                         }
                     }
                 }
-            } elseif ($class->host == "BBB") {
+            }
+            elseif ($class->host == "Team") {
+                $all = $class->teamMeetings;
+                foreach ($all as $team) {
+
+                    // $meeting = Zoom::meeting();
+                    // $meeting->find($team->meeting_id);
+                    // if ($meeting) {
+                    //     $meeting->delete(true);
+                    // }
+
+                    if (file_exists($team->attached_file)) {
+                        unlink($team->attached_file);
+                    }
+                    TeamMeetingUser::where('meeting_id', $team->meeting_id)->delete();
+                    $team->delete();
+                    $class->total_class = $class->total_class - 1;
+                    $class->save();
+                }
+
+
+                if ($totalClass != 0) {
+                    for (
+                        $i = 0;
+                        $i < $totalClass;
+                        $i++
+                    ) {
+                        $new_date = date('m/d/Y', strtotime($class['start_date'] . '+' . $i . ' day'));
+                        if(Carbon::parse($new_date)->is($dayofWeek)){
+                          $this->createClassWithTeam($class, $new_date, $request, null);
+                        }
+                    }
+                }
+            }
+            elseif ($class->host == "BBB") {
                 $all = $class->bbbMeetings;
                 foreach ($all as $bbb) {
                     Bigbluebutton::close(['meetingId' => $bbb->meeting_id]);
