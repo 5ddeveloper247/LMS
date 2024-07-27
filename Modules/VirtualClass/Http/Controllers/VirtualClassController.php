@@ -1140,60 +1140,69 @@ class VirtualClassController extends Controller
 
             $class->program_id = $request->programList ?? null;
             $programList = $request->programList ?? 0;
-            if($programList != 0){
-            //  $program = new Program();
-              $programplans = PaymentPlans::where(function ($q) {
-                  $q->where(function ($r){
-                    $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
-                    ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
-                  })
-                  ->orWhere('sdate', '>', date('Y-m-d'));
-              })
-              ->where('parent_id',$programList)
-              ->where('type','program')
-              ->where('status',1)->first();
-              if($programplans){
-                // Find the next Monday
-                $StartDate = $programplans->sdate;
-                // Calculate the end date (3 Mondays ahead)
-                $EndDate = $programplans->edate;
-              }
+            $StartDate = date('Y-m-d');
+            $EndDate = date('Y-m-d');
+            if ($request->type == 0) {
+                    if (!empty($request->date)) {
+                        $class->start_date = date('Y-m-d', strtotime($request->date));
+                        $class->end_date = date('Y-m-d', strtotime($request->date));
+                    }
             }else{
-              $courses_ids = Course::where('id',$request->courses)->orWhere('parent_id',$request->courses)->pluck('id')->toArray();
-              switch ($ctypes[0]) {
-                case '4':
-                  $typeSlug = 'full_course';
-                  break;
-                case '6':
-                  $typeSlug = 'prep_course_live';
-                  break;
-                case '8':
-                  $typeSlug = 'repeat';
-                  break;
+                if($programList != 0){
+                //  $program = new Program();
+                $programplans = PaymentPlans::where(function ($q) {
+                    $q->where(function ($r){
+                        $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
+                        ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
+                    })
+                    ->orWhere('sdate', '>', date('Y-m-d'));
+                })
+                ->where('parent_id',$programList)
+                ->where('type','program')
+                ->where('status',1)->first();
+                if($programplans){
+                    // Find the next Monday
+                    $StartDate = $programplans->sdate;
+                    // Calculate the end date (3 Mondays ahead)
+                    $EndDate = $programplans->edate;
+                }
+                }else{
+                $courses_ids = Course::where('id',$request->courses)->orWhere('parent_id',$request->courses)->pluck('id')->toArray();
+                switch ($ctypes[0]) {
+                    case '4':
+                    $typeSlug = 'full_course';
+                    break;
+                    case '6':
+                    $typeSlug = 'prep_course_live';
+                    break;
+                    case '8':
+                    $typeSlug = 'repeat';
+                    break;
 
-                default:
-                  $typeSlug = 'program';
-                  break;
-              }
-              $courseplans = PaymentPlans::where(function ($q) {
-                  $q->where(function ($r){
-                    $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
-                    ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
-                  })
-                  ->orWhere('sdate', '>', date('Y-m-d'));
-              })
-              ->whereIn('parent_id',$courses_ids)
-              ->where('type',$typeSlug)
-              ->where('status',1)->first();
-              if($courseplans){
-                // Find the next Monday
-                $StartDate = $courseplans->sdate;
-                // Calculate the end date (3 Mondays ahead)
-                $EndDate = $courseplans->edate;
-              }
+                    default:
+                    $typeSlug = 'program';
+                    break;
+                }
+                $courseplans = PaymentPlans::where(function ($q) {
+                    $q->where(function ($r){
+                        $r->where('sdate', '<=', Carbon::today()->format('Y-m-d'))
+                        ->where('edate', '>=', Carbon::today()->format('Y-m-d'));
+                    })
+                    ->orWhere('sdate', '>', date('Y-m-d'));
+                })
+                ->whereIn('parent_id',$courses_ids)
+                ->where('type',$typeSlug)
+                ->where('status',1)->first();
+                if($courseplans){
+                    // Find the next Monday
+                    $StartDate = $courseplans->sdate;
+                    // Calculate the end date (3 Mondays ahead)
+                    $EndDate = $courseplans->edate;
+                }
+                }
             }
-            $class->start_date = $StartDate;
-            $class->end_date = $EndDate;
+                $class->start_date = $StartDate;
+                $class->end_date = $EndDate;
             // if ($request->type == 0) {
             //     if (!empty($request->date)) {
             //         $class->start_date = date('Y-m-d', strtotime($request->date));

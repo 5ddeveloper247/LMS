@@ -557,8 +557,8 @@
                                             </div>
                                         </div>
 
-                                        <div @if (isset($class) && $class->type == 1) style="display: none" @endif
-                                            class="row mt-25 single_class d-none">
+                                        <div @if (isset($class) && $class->type == 0) style="display: block" @else style="display:none" @endif
+                                            class="row mt-25 single_class">
 
                                             <div class="col-xl-12">
                                                 <div class="primary_input">
@@ -649,7 +649,7 @@
                                         </div>
 
 
-                                        <div class="mt-25 single_class zoomSetting @if (isset($class)) d-none @endif"
+                                        <div class="mt-25 zoomSetting @if (isset($class)) d-none @endif"
                                             style="display: {{ isset($class) ? ($class->host == 'Zoom' ? 'block' : 'none') : 'block' }}">
 
                                             <div class="row d-none">
@@ -808,7 +808,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt-25 single_class bbbSetting @if (isset($class)) d-none @endif"
+                                        <div class="mt-25 bbbSetting @if (isset($class)) d-none @endif"
                                             style="display: {{ isset($class) ? ($class->host == 'BBB' ? 'block' : 'none') : 'none' }}">
                                             <div class="row">
                                                 <div class="col-lg-12">
@@ -844,7 +844,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt-25 single_class jitsiSetting @if (isset($class)) d-none @endif"
+                                        <div class="mt-25 jitsiSetting @if (isset($class)) d-none @endif"
                                             style="display: {{ isset($class) ? ($class->host == 'Jitsi' ? 'block' : 'none') : 'none' }}">
                                             <div class="row">
                                                 <div class="col-lg-12">
