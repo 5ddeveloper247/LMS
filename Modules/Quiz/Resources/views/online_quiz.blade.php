@@ -465,10 +465,9 @@
                                                         >
 
                                                         <span class="checkmark"></span>
-
-                                                        <span
-                                                            class="pl-3"> {{trans('quiz.Losing focus acceptance')}}</span>
                                                     </label>
+                                                    <label
+                                                    class="mb-0"> {{trans('quiz.Losing focus acceptance')}}</label>
 
                                                 </li>
                                             </ul>
