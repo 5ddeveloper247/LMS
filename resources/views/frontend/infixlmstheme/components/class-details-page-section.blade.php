@@ -780,7 +780,7 @@
                                         </div>
                                         <div class="instractor_details_inner">
                                             <div class="thumb">
-                                                <img class="w-100 rounded-card-img"
+                                                <img class="h-100 w-100 rounded-card-img"
                                                     src="{{ getInstructorImage(@$course->user->image) }}"
                                                     alt="">
                                             </div>
