@@ -309,9 +309,11 @@ $(document).ready(function () {
         if (type == 0) {
             $('.single_class').show();
             $('.continuous_class').hide();
+            $('#days').prop('disabled',true);
         } else {
             $('.single_class').hide();
             $('.continuous_class').show();
+            $('#days').prop('disabled', false);
         }
     })
     $(document).on('change', '.free_class', function () {

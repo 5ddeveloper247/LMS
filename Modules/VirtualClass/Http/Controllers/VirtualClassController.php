@@ -629,6 +629,7 @@ class VirtualClassController extends Controller
                 break;
             }
             $programList = $request->programList ?? 0;
+            if ($request->type == 1) {
             if($programList != 0){
             //  $program = new Program();
               $programplans = PaymentPlans::where(function ($q) {
@@ -702,25 +703,18 @@ class VirtualClassController extends Controller
             
             $class->course_types = (json_encode($ctypes) != null) ? json_encode($ctypes) : [];
             
-            if ($request->type == 1) {
+            
                 $interval = $this->dateInterval($request->start_date, $request->end_date, 1);
                 
-                //if (!empty($request->start_date)) {
-                    
-                    $class->start_date = $StartDate;
-                    //$class->start_date = date('Y-m-d', strtotime($request->start_date));
-                    //}
-                    //if (!empty($request->end_date)) {
-                        $class->end_date = $EndDate;
-                        //$class->end_date = date('Y-m-d', strtotime($request->end_date));
-                //}
                 if (!empty($request->days)) {
                     $class->class_day = $request->days;
                 }
             } else {
-                $class->start_date = date('Y-m-d', strtotime($request->date));
-                $class->end_date = date('Y-m-d', strtotime($request->date));
+                $StartDate = date('Y-m-d', strtotime($request->date));
+                $EndDate = date('Y-m-d', strtotime($request->date));
             }
+            $class->start_date = $StartDate;
+            $class->end_date = $EndDate;
             if (!empty($request->time)) {
                 $closeTime1 = Carbon::parse($request->time);
                 $time5 = $closeTime1->toTimeString();
@@ -839,7 +833,7 @@ class VirtualClassController extends Controller
                         $i++
                         ) {
                             $new_date = date('m/d/Y', strtotime($class['start_date'] . '+' . $i . ' day'));
-                    if(Carbon::parse($new_date)->is($dayofWeek)){
+                    if(Carbon::parse($new_date)->is($dayofWeek) || $request->type == 0){
                         if ($class->host == "Team") {
                             
                             $fileName = "";
@@ -1142,7 +1136,7 @@ class VirtualClassController extends Controller
             $programList = $request->programList ?? 0;
             $StartDate = date('Y-m-d');
             $EndDate = date('Y-m-d');
-            if ($request->type == 0) {
+            if ($class->type == 0) {
                     if (!empty($request->date)) {
                         $class->start_date = date('Y-m-d', strtotime($request->date));
                         $class->end_date = date('Y-m-d', strtotime($request->date));
@@ -1357,7 +1351,7 @@ class VirtualClassController extends Controller
                 break;
 
               default:
-                $dayofWeek = 'Sunday';
+                $dayofWeek = '';
                 break;
             }
 

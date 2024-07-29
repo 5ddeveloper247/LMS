@@ -828,8 +828,10 @@ label {
 
 .ck-content ul,
 .ck-content ol,
+.ck-content li,
 .ckdtext ul,
-.ckdtext ol
+.ckdtext ol,
+.ckdtext li
 {
     list-style: revert !important;
     padding: revert !important;

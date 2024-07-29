@@ -1570,7 +1570,7 @@
     	    if (isEmpty(form.find("select[name='lang_id']").val())) {
     	    	errors.push('Choose Language first.');
     	    }
-    	    if (isEmpty(form.find("select[name='days']").val())) {
+    	    if (isEmpty(form.find("select[name='days']").val()) && form.find("input[name='type']").val() == 1) {
     	    	errors.push('Choose Class Day first.');
     	    }
     	    if (isEmpty(form.find("input[name='time']").val())) {
