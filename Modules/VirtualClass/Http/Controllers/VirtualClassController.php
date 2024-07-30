@@ -142,6 +142,7 @@ class VirtualClassController extends Controller
         $duration = isset($request->duration) ? $request->duration : '';
         $assign_instructor = isset($request->assign_instructor) ? $request->assign_instructor : '';
         $days = isset($request->days) ? $request->days : '';
+        $type = isset($request->type) ? $request->type : 1;
         $courseType = isset($request->courseType) ? $request->courseType : [];
         
         $class_id = $request->id ?? 0;
@@ -194,7 +195,7 @@ class VirtualClassController extends Controller
               break;
           }
 
-          
+          if($type == 1){
           if($programList!=0){
 
 
@@ -299,6 +300,10 @@ class VirtualClassController extends Controller
             // Calculate the end date (3 Mondays ahead)
             $requestEndDate = $courseplans->edate;
           }
+        }
+        }else{
+            $requestStartDate = $request->date;
+            $requestEndDate = $request->date;
         }
 
         $checkslot = TutorSlote::where('instructor_id', $assign_instructor)->whereBetween('slot_date', [$requestStartDate,$requestEndDate])
@@ -625,7 +630,7 @@ class VirtualClassController extends Controller
                 break;
 
               default:
-                $dayofWeek = 'Sunday';
+                $dayofWeek = '';
                 break;
             }
             $programList = $request->programList ?? 0;
@@ -694,14 +699,7 @@ class VirtualClassController extends Controller
 
             // $programkeyToRemove = array_search('program', $ctypes);
          //   dd($date_today->format('Y-m-d'),$StartDate->format('Y-m-d'),$EndDate->format('Y-m-d'),$courseTotalClasses);
-         if ($ctypes != '') {
-             // unset($ctypes[$programkeyToRemove]);
-             $class->program_types = 'true';
-            } else {
-                $class->program_types = 'false';
-            }
-            
-            $class->course_types = (json_encode($ctypes) != null) ? json_encode($ctypes) : [];
+         
             
             
                 $interval = $this->dateInterval($request->start_date, $request->end_date, 1);
@@ -712,7 +710,16 @@ class VirtualClassController extends Controller
             } else {
                 $StartDate = date('Y-m-d', strtotime($request->date));
                 $EndDate = date('Y-m-d', strtotime($request->date));
+                $class->class_day = date('D', strtotime($request->date));
             }
+            if ($ctypes != '') {
+             // unset($ctypes[$programkeyToRemove]);
+             $class->program_types = 'true';
+            } else {
+                $class->program_types = 'false';
+            }
+            
+            $class->course_types = (json_encode($ctypes) != null) ? json_encode($ctypes) : [];
             $class->start_date = $StartDate;
             $class->end_date = $EndDate;
             if (!empty($request->time)) {
@@ -784,27 +791,26 @@ class VirtualClassController extends Controller
             if (!empty($request->assign_instructor)) {
                 $course->user_id = $request->assign_instructor;
             }
-                        if (!empty($request->assistant_instructors)) {
-                            $assistants = $request->assistant_instructors;
-                            if (($key = array_search($course->user_id, $assistants)) !== false) {
-                                unset($assistants[$key]);
-                            }
-                            if (!empty($assistants)) {
-                                $course->assistant_instructors = json_encode(array_values($assistants));
-                            }
-                        }
-                        $course->type = 3;
+            if (!empty($request->assistant_instructors)) {
+                $assistants = $request->assistant_instructors;
+                if (($key = array_search($course->user_id, $assistants)) !== false) {
+                    unset($assistants[$key]);
+                }
+                if (!empty($assistants)) {
+                    $course->assistant_instructors = json_encode(array_values($assistants));
+                }
+            }
+            $course->type = 3;
 
-                        $start_date = strtotime($class['start_date']);
-                        $end_date = strtotime($class['end_date']);
-                        if ($class->type == 0) {
+            $start_date = strtotime($class['start_date']);
+            $end_date = strtotime($class['end_date']);
+            if ($class->type == 0) {
                 $end_date = strtotime($class['start_date']);
             }
 
             $datediff = $end_date - $start_date;
 
             $days = ceil($datediff / (60 * 60 * 24)) + 1;
-            
             $class->duration = $request->duration;
             
             $class->total_class = $days;
@@ -832,8 +838,9 @@ class VirtualClassController extends Controller
                         $i < $days;
                         $i++
                         ) {
-                            $new_date = date('m/d/Y', strtotime($class['start_date'] . '+' . $i . ' day'));
-                    if(Carbon::parse($new_date)->is($dayofWeek) || $request->type == 0){
+                            $starting_date = ($request->type == 0) ? $request->date : $class['start_date'];
+                            $new_date = date('m/d/Y', strtotime($starting_date . '+' . $i . ' day'));
+                    if($request->type == 0 || Carbon::parse($new_date)->is($dayofWeek)){
                         if ($class->host == "Team") {
                             
                             $fileName = "";
@@ -931,23 +938,23 @@ class VirtualClassController extends Controller
                     }
                 }
 
-                if ($request['type'] || $result['type']) {
+                // if ($request['type'] || $result['type']) {
+                //     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+                //     return redirect('virtualclass/virtual-class');
+                // } 
+                // else {
 
-                    Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-                    return redirect()->back();
-                } 
-                else {
-
-                    Toastr::error($result['message'], 'Error!');
-                    return redirect()->back();
-                }
+                //     Toastr::error($result['message'], 'Error!');
+                //     return redirect()->back();
+                // }
             }
-
-            return redirect()->back();
+            Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+            return redirect('virtualclass/virtual-class');
         }
        catch (Exception $e) {
-           // Toastr::error($e->getMessage(), 'Error!');
-            Toastr::error(trans('common.Something Went Wrong'), 'Error!');
+        dd($e);
+           Toastr::error($e->getMessage(), 'Error!');
+            // Toastr::error(trans('common.Something Went Wrong'), 'Error!');
             return redirect()->back();
         }
     }
@@ -1566,7 +1573,13 @@ class VirtualClassController extends Controller
                         //                        }
                         $cls->delete();
                     }
-                } elseif ($class->host == 'Jitsi') {
+                } elseif ($class->host == 'Team') {
+                    // if (isModuleActive('Jitsi')) {
+                        $JitsiClass = TeamMeeting::where('class_id', $id)->get();
+                        $JitsiClass->each->delete();
+                    // }
+                }
+                elseif ($class->host == 'Jitsi') {
                     if (isModuleActive('Jitsi')) {
                         $JitsiClass = JitsiMeeting::where('class_id', $id)->get();
                         $JitsiClass->each->delete();
@@ -1588,7 +1601,7 @@ class VirtualClassController extends Controller
 
             Toastr::success('Class has been Deleted', 'Success!');
 
-            return redirect()->back();
+            return redirect('/virtualclass/virtual-class');
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -2299,6 +2312,18 @@ class VirtualClassController extends Controller
                     $details = $details.'<br><b>Program:</b> '.$program;
                 }
                 return $details;
+            })
+            ->addColumn('type', function ($query) {
+                
+                    switch ($query->type) {
+                        case 0:
+                            $type = 'Continuous';
+                            break;
+                        case 1:
+                            $type = 'Single';
+                            break;
+                    }
+                return $type;
             })
             ->addColumn('instructor', function ($query) {
                 if ($query->course->user) {

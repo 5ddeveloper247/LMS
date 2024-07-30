@@ -968,6 +968,7 @@
                                             <th>{{ __('Course') }}</th>
                                             {{-- <th>{{ __('Course Type') }}</th> --}}
                                             <th>{{ __('Instructor') }}</th>
+                                            <th>{{ __('Class Type') }}</th>
                                             {{-- <th>{{ __('virtual-class.Language') }}</th> --}}
                                             <th>{{ __('virtual-class.Duration') }}</th>
                                             {{-- <th>{{ __('virtual-class.Type') }}</th> --}}
@@ -1135,6 +1136,11 @@
                 //     data: 'language',
                 //     name: 'language.name'
                 // },
+                
+                {
+                    data: 'type',
+                    name: 'type'
+                },
                 {
                     data: 'duration',
                     name: 'duration'
