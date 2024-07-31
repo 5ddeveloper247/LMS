@@ -194,7 +194,8 @@
                                                     href="{{ courseDetailsUrl($course->id, $course->type, $course->slug) . '?courseType=' . $SingleCourse->course_type }}">
                                                     <div class="thumb course_student-thumb" >
                                                         <div class="thumb_inner lazy"
-                                                            data-src="{{ getCourseImage($course->thumbnail) }}">
+                                                           @if($childCourse) data-src="{{ getCourseImage($childCourse->thumbnail) }}" @else 
+                                                           data-src="{{ getCourseImage($course->thumbnail) }}" @endif>
                                                         </div>
                                                         @if ($SingleCourse->course_type == 4)
                                                             <span class="quiz_tag">{{ __('Full Course') }}</span>

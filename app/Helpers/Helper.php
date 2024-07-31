@@ -109,7 +109,7 @@ if(!function_exists('check_enrolled')){
     $user_setting_exists = UserSetting::where('user_id', Auth::user()->id)->exists();
     $user_declaration_exists = UserDeclaration::where('user_id', Auth::user()->id)->exists();
     $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
-    $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
+    $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->where('type','student_register')->exists();
     if(!$user_setting_exists ||
         !$user_declaration_exists ||
         !$user_agreement_exists ||

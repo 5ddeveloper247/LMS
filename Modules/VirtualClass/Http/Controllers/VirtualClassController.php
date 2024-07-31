@@ -952,9 +952,8 @@ class VirtualClassController extends Controller
             return redirect('virtualclass/virtual-class');
         }
        catch (Exception $e) {
-        dd($e);
-           Toastr::error($e->getMessage(), 'Error!');
-            // Toastr::error(trans('common.Something Went Wrong'), 'Error!');
+        //    Toastr::error($e->getMessage(), 'Error!');
+            Toastr::error(trans('common.Something Went Wrong'), 'Error!');
             return redirect()->back();
         }
     }
@@ -1125,7 +1124,7 @@ class VirtualClassController extends Controller
                 $class->fees = 0;
             }
 
-            $class->type = $request->type;
+            // $class->type = $request->type;
 
 
             $ctypes = isset($request->courseType) ? $request->courseType : [];
@@ -1145,8 +1144,8 @@ class VirtualClassController extends Controller
             $EndDate = date('Y-m-d');
             if ($class->type == 0) {
                     if (!empty($request->date)) {
-                        $class->start_date = date('Y-m-d', strtotime($request->date));
-                        $class->end_date = date('Y-m-d', strtotime($request->date));
+                        $StartDate = date('Y-m-d', strtotime($request->date));
+                        $EndDate = date('Y-m-d', strtotime($request->date));
                     }
             }else{
                 if($programList != 0){
@@ -1223,6 +1222,9 @@ class VirtualClassController extends Controller
             // }
                 if (!empty($request->days)) {
                     $class->class_day = $request->days;
+                }
+                if($class->type == 0){
+                    $class->class_day = date('D', strtotime($request->date));
                 }
             if (!empty($request->time)) {
 
@@ -2411,7 +2413,7 @@ class VirtualClassController extends Controller
             })
             ->addColumn('action', function ($query) {
 
-                if (permissionCheck('virtual-class.edit') && ($query->course->user_id == Auth::id() || Auth::user()->role_id == 1)) {
+                if (permissionCheck('virtual-class.edit') && (Auth::user()->role_id == 1)) {
 
                     $class_edit = '   <a class="dropdown-item edit_brand"
                                                                href="' . route('virtual-class.edit', [$query->id]) . '">' . trans('common.Edit') . '</a>';
