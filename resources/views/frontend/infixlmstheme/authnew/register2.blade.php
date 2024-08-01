@@ -395,7 +395,7 @@ canvas {
 
                     <div class="form-row">
                         <div class="form-group col-md-12 d-flex p-0">
-                            <p>hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit Card for payment
+                            <p>hereby authorize Merkaii Xcellence Prep to charge my Credit or Debit Card for payment
                                 of Education services rendered as described on <span class="">Date:</span>
                                 <input class="date-span " type="date" placeholder="mm/dd/yyyy" name="declaration_date"
                                     value="{{ $payment_details->declaration_date ?? old('declaration_date') }}">

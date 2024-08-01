@@ -250,12 +250,12 @@ class VirtualClassController extends Controller
                     })
                         ->count();
 
-                if($programconflict > 0){
-                    $arrRes['done'] = false;
-                    $arrRes['error'] = 'You have other Programs having courses which are conflicting with each other. Please choose another Date/Time';
-                    return response()->json($arrRes);
-                    die();
-                }
+                // if($programconflict > 0){
+                //     $arrRes['done'] = false;
+                //     $arrRes['error'] = 'You have other Programs having courses which are conflicting with each other. Please choose another Date/Time';
+                //     return response()->json($arrRes);
+                //     die();
+                // }
             }
           }
         }else{

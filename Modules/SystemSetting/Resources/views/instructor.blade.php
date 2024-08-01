@@ -387,7 +387,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <form action="{{ route('instructor.update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('instructor.update') }}" method="POST" enctype="multipart/form-data" id="updateInstructorForm">
                             @csrf
                             <input type="hidden" name="id" value="{{ old('id') }}" id="instructorId">
                             <input type="hidden" name="role_id" value="{{ old('role_id') }}" id="instructorRoleId">
@@ -493,14 +493,18 @@
                                                 type="text" id="instructorImage"
                                                 placeholder="{{ __('student.Browse Image file') }}" readonly=""
                                                 value="{{ old('img_name') }}">
-                                            <button onclick="destroyCropper1()" class="" type="button">
+                                            {{-- <button onclick="destroyCropper1()" class="" type="button">
                                                 <label class="primary-btn small fix-gr-bg" id="Browseeeditinstructor"
                                                     for="document_file_thumb-1">{{ __('common.Browse') }}</label>
                                                 <input type="file" class="d-none fileUpload upload-editor-1"
                                                     name="image" id="document_file_thumb-1">
                                                 <input type="hidden" name="hidden_file" id="cropper_img"
                                                     class="upload-editor-hidden-file-1">
-                                            </button>
+                                            </button> --}}
+                                        <button class="" type="button">
+                                                            <label class="primary-btn small fix-gr-bg" for="document_file1">Browse</label>
+                                                            <input type="file" class="d-none fileUpload" name="image" id="document_file1">
+                                                        </button>
                                         </div>
                                     </div>
                                 </div>
@@ -522,7 +526,7 @@
                                                 </div>
                                             </div>
                                             <input type="password" class="form-control primary_input_field"
-                                                id="password" name="password"
+                                                id="password" name="password" minlength="8"
                                                 placeholder="{{ __('common.Minimum 8 characters') }}"
                                                 {{ $errors->first('password') ? 'autofocus' : '' }}>
                                         </div>
@@ -541,7 +545,7 @@
                                                 </div>
                                             </div>
                                             <input type="password" class="form-control primary_input_field"
-                                                id="password_confirm" name="password_confirmation"
+                                                id="password_confirm" name="password_confirmation" minlength="8"
                                                 placeholder="{{ __('common.Minimum 8 characters') }}"
                                                 {{ $errors->first('password_confirmation') ? 'autofocus' : '' }}>
                                         </div>
@@ -846,6 +850,25 @@
         }
     </script>
     <script>
+        $('#updateInstructorForm').on('submit',function(e){
+            e.preventDefault();
+            var form = $(this)[0];
+           var password = $(this).find('input[name="password"]').val();
+           var password_confirm = $(this).find('input[name="password_confirmation"]').val();
+
+            if(!form.checkValidity()){
+                form.reportValidity();
+                return false;
+            }
+
+           if(password != password_confirm){
+            toastr.error('Password confirmation does not match');
+            return false;
+           }
+
+           form.submit();
+        });
+
         // Instructor Table
         let table = $('#lms_table').DataTable({
             bLengthChange: true,
@@ -1141,7 +1164,23 @@
         });
     </script>
     <script>
-    
+    document.getElementById('document_file1').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            
+            if (file) {
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    var img = document.getElementById('image_preview-1');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        });
+
+
     function formValidations(button){
 		$('.preloader').show();
 	    var errors = [];
@@ -1175,7 +1214,7 @@
 			}
 		}
 	    
-
+        
 	   	setTimeout(function(){
 	   		if (errors.length) {
 	       		console.log(errors);

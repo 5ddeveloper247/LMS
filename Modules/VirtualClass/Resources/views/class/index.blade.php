@@ -1592,7 +1592,8 @@
         	var duration = form.find("input[name='duration']").val();
         	// var courseType = form.find("select[name='courseType']").val();
         	var programList = form.find("select[name='programList']").val();
-        	var courseType = form.find("select[name='courseType[]']").val()
+        	var courseType = form.find("select[name='courseType[]']").val();
+            var type = form.find('input[name="type"]');
 
             $.ajax({
                 type: 'post',
@@ -1606,7 +1607,8 @@
                     'days': days,
                     'duration': duration,
                     'courseType':  courseType,
-                    'programList':  programList
+                    'programList':  programList,
+                    'type': type
                 },
                 success: function(data) {
 

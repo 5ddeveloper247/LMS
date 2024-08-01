@@ -392,7 +392,7 @@
                     <div class="form-row p-4 border border-dark rounded">
                         <div class="col-md-12">
                             <div class="d-flex flex-row">
-                            <small class="mb-0 ml-2 agree_checkbox_p">I <b>{{ $user->name }}</b> hereby authorize Merkaii Xcellence College Of Health to charge my Credit or Debit
+                            <small class="mb-0 ml-2 agree_checkbox_p">I <b>{{ $user->name }}</b> hereby authorize Merkaii Xcellence Prep to charge my Credit or Debit
                                             Card for payment of Education services rendered as described on <b>Date: {{ Carbon\Carbon::now()->format(Settings('active_date_format')) }}</b>.<br>
                                             I <b>{{ $user->name }}</b> agree, in all cases, to pay the Credit or Debit Card amount for the full payment of Education services rendered as described above.
                                         </small>
@@ -477,7 +477,7 @@
         var cvv = $('#cvv').val();
       
         if(!$("#accept").is(':checked')){
-            toastr.error('Terms & Conditions must be accepted.');
+            toastr.error('Terms & Conditions must be accepted.','Error');
             return false;
         }
 

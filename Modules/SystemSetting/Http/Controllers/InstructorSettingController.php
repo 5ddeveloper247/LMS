@@ -434,7 +434,7 @@ class InstructorSettingController extends Controller
 
             if ($request->file('image') != "") {
                 $file = $request->file('image');
-                $user->image = $this->saveCroppedImage($request->hidden_file);
+                $user->image = $this->saveImage($request->image);
             }
             if (isModuleActive('Appointment')) {
                 if (!$user->slug && ($request->name != $user->name)) {

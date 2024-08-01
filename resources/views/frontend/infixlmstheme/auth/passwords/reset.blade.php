@@ -27,7 +27,7 @@
                         </span>
                     @endforeach
                 @endif
-                <form action="{{ route('password.update') }}" method="POST">
+                <form action="{{ route('password.update') }}" method="POST" id="resetPasswordForm">
                     <input type="hidden" name="token" value="{{ $token }}">
                     @csrf
                     <div class="row">
@@ -96,7 +96,27 @@
         @include('frontend.infixlmstheme.auth.login_wrapper_right')
     </div>
 
+    <script>
+        $('#resetPasswordForm').on('submit',function(e){
+            e.preventDefault();
+            form = $(this)[0];
+            var password = $(this).find('input[name="password"]').val();
+           var password_confirm = $(this).find('input[name="password_confirmation"]').val();
 
+            if(!form.checkValidity()){
+                form.reportValidity();
+                return false;
+            }
+
+           if(password != password_confirm){
+            toastr.error('Password confirmation does not match');
+            return false;
+           }
+
+           form.submit();
+
+        });
+    </script>
     @include(theme('partials._custom_footer'))
 
 @endsection

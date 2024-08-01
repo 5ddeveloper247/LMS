@@ -697,8 +697,7 @@
                                                                             </div>
                                                                             <div class="col-md-12 nameda program">
                                                                                 <p>
-                                                                                    hereby authorize Merkaii Xcellence College Of
-                                                                                    Health
+                                                                                    hereby authorize Merkaii Xcellence Prep
                                                                                     to charge my Credit
                                                                                     or
                                                                                     Debit Card for payment of Education
