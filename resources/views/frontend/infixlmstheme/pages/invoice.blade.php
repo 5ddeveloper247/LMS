@@ -83,7 +83,7 @@ switch ($enroll->type) {
         <table class="table">
             <tr>
                 <td>Printed Date & Time:<br><u>{{ date('d F Y H:i a') }}</u></td>
-                <td>Student ID:<br><u>{{ $enroll->user->id }}</u></u></td>
+                <td>ID:<br><u>{{ $enroll->user->id }}</u></u></td>
                 <td>Name:<br><u>
                     @if (!empty($enroll->billing))
                         {{ @$enroll->billing->first_name }}

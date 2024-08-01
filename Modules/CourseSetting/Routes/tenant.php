@@ -125,6 +125,8 @@ Route::group(['prefix' => 'admin/course', 'middleware' => ['auth', 'admin']], fu
     Route::post('/saveAddToSale', 'CourseSettingController@saveAddToSale')->name('course.saveAddToSale');
     Route::get('/viewSaleList', 'CourseSettingController@viewSaleList')->name('course.viewSaleList');
     Route::get('/course-viewSaleListData', 'CourseSettingController@viewSaleListData')->name('viewSaleListData');
+
+    Route::post('/tutor-allow-course', 'CourseSettingController@tutor_allow_course')->name('course.tutorAllowCourse');
     Route::get('/tutor/courses', 'CourseSettingController@tutorCourseList')->name('course.tutorCourseList');
     Route::get('/tutor-course-data', 'CourseSettingController@getTutorCourseData')->name('getTutorCourseData');
     Route::get('/delete-repeat-course/{id}', 'CourseSettingController@deleteRepeatCourse')->name('deleteRepeatCourse');

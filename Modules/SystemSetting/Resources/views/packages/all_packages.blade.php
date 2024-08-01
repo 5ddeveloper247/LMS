@@ -60,8 +60,8 @@
                     <div class="QA_section QA_section_heading_custom check_box_table">
                         <div class="QA_table">
                             <!-- table-responsive -->
-                            <div class="">
-                                <table id="lms_table" class="classList table table-responsive">
+                            <div class="table-responsive">
+                                <table id="lms_table" class="classList table">
                                     <thead>
                                         <tr>
                                             <th scope="col"> {{ __('common.SL') }}</th>

@@ -246,6 +246,12 @@
                                                         href="{{ route('teachWithUs') }}#package_prices">{{ __('Upgrade') }} </a> Your
                                                     Package</p>
                                             </li>
+                                        @else
+                                            <li>
+                                                <p class="d-flex font-weight-bold align-items-center">
+                                                    You need enable only {{$allowed_courses}} allowed courses from the list below.
+                                                    As your current package allows limited number of courses.</p>
+                                            </li>
                                         @endif
                                         @endif
                                     @else
@@ -991,6 +997,7 @@
             responsive: true,
         });
 
+
         var order = [];
         var course_seq_url = '{{ route('changeCourseSeq') }}';
         $('#lms_table tbody').sortable({
@@ -1273,5 +1280,65 @@
         // table.rowReordering();
 
         $('#lms_table_info').append('<span id="add_here"> new-dynamic-text</span>');
+
+        
+
+        // $('.course_enable_disable').on('change',function(){
+        //     var id = $(this).val();
+        //     var url = '{{route("course.tutorAllowCourse")}}';
+        //     var data = {id:id};
+        //     $.ajax({
+
+        //         url: url,
+
+        //         method: 'post',
+
+        //         data: data,
+
+        //         success: function(response){
+
+        //         if(!response.allowed){
+        //             $('.course_enable_disable:not(:checked)').prop('disabled',true);
+
+        //         }else{
+        //             changeStatus(this);
+        //             $('.course_enable_disable').prop('disabled',false);
+        //         }
+
+        //         },
+
+        //         error: function(e){
+
+        //         console.log(e);
+
+        //         }
+
+        //     });
+        // });
+
+        // function changeStatus(el) {
+        //             let t = 0;
+        //             t = $(el).is(":checked") ? 1 : 0;
+        //             let e = $(el).val(),
+        //                 n = $("#url").val(),
+        //                 i = { id: e, table: $("#table_name").val(), status: t };
+        //             $.ajax({
+        //                 type: "GET",
+        //                 data: i,
+        //                 dataType: "json",
+        //                 url: n + "/status-enable-disable",
+        //                 success: function (A) {
+        //                     A.warning
+        //                         ? toastr.warning(A.warning, "Error")
+        //                         : A.success
+        //                         ? toastr.success(A.success, "Success")
+        //                         : A.error && toastr.error(A.error, "Error");
+        //                 },
+        //                 error: function (A, t, e) {
+        //                     console.log(A.responseJSON),
+        //                         toastr.error("Something went wrong!", "Falied");
+        //                 },
+        //             });
+        //         }
     </script>
 @endpush

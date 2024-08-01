@@ -1805,6 +1805,26 @@ class CourseSettingController extends Controller
             ->make(true);
     }
 
+    public function allowedCourses($id=0){
+        $course = Course::find($id);
+        if($course){
+            if($course->user->role_id == 9){
+                $total_courses = Course::where('user_id',$course->user->id)->count();
+                $current_package = PackagePurchasing::where('user_id',$course->user->id)->latest()->first();
+                if($total_courses >= $current_package->course_limit){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public function tutor_allow_course(Request $request){
+        $course_id = $request->id ?? 0;
+        $course_allowed = $this->allowedCourses($course_id);
+        return response()->json(['allowed' => $course_allowed]);
+    }
+
     public function addNewCourse()
     {
 

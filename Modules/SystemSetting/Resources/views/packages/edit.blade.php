@@ -118,9 +118,9 @@
                 <div class="col-xl-12">
                     <div class="primary_input mb-25">
                         <label class="primary_input_label" for="title">{{ __('Title') }}
-                            <small>(Max Size 30 Characters)</small> *</label>
+                            <small>(Max Size 50 Characters)</small> *</label>
                         <input type="text" name="title" id="title" placeholder="-"
-                            class="primary_input_field mb-15" maxlength="30" value="{{ $package->title ?? old('title') }}">
+                            class="primary_input_field mb-15" maxlength="50" value="{{ $package->title ?? old('title') }}">
                     </div>
                 </div>
 
@@ -155,54 +155,54 @@
                 <div class="col-xl-12">
                     <div class="primary_input mb-25">
                         <label class="primary_input_label" for="option_1">{{ __('Option 1') }}
-                            <small>(Max Size 30 Characters)</small> *</label>
+                            <small>(Max Size 100 Characters)</small> *</label>
                         <input type="text" name="option_1" id="option_1" placeholder="-"
-                            class="primary_input_field mb-15" maxlength="30"
+                            class="primary_input_field mb-15" maxlength="100"
                             value="{{ $package->option_1 ?? old('option_1') }}">
                     </div>
                 </div>
                 <div class="col-xl-12">
                     <div class="primary_input mb-25">
                         <label class="primary_input_label" for="option_2">{{ __('Option 2') }}
-                            <small>(Max Size 30 Characters)</small> *</label>
+                            <small>(Max Size 100 Characters)</small> *</label>
                         <input type="text" name="option_2" id="option_2" placeholder="-"
-                            class="primary_input_field mb-15" maxlength="30"
+                            class="primary_input_field mb-15" maxlength="100"
                             value="{{ $package->option_2 ?? old('option_2') }}">
                     </div>
                 </div>
                 <div class="col-xl-12">
                     <div class="primary_input mb-25">
                         <label class="primary_input_label" for="option_3">{{ __('Option 3') }}
-                            <small>(Max Size 30 Characters)</small> *</label>
+                            <small>(Max Size 100 Characters)</small> *</label>
                         <input type="text" name="option_3" id="option_3" placeholder="-"
-                            class="primary_input_field mb-15" maxlength="30"
+                            class="primary_input_field mb-15" maxlength="100"
                             value="{{ $package->option_3 ?? old('option_3') }}">
                     </div>
                 </div>
                 <div class="col-xl-12">
                     <div class="primary_input mb-25">
                         <label class="primary_input_label" for="option_4">{{ __('Option 4') }}
-                            <small>(Max Size 30 Characters)</small> *</label>
+                            <small>(Max Size 100 Characters)</small> *</label>
                         <input type="text" name="option_4" id="option_4" placeholder="-"
-                            class="primary_input_field mb-15" maxlength="30"
+                            class="primary_input_field mb-15" maxlength="100"
                             value="{{ $package->option_4 ?? old('option_4') }}">
                     </div>
                 </div>
                 <div class="col-xl-12">
                     <div class="primary_input mb-25">
                         <label class="primary_input_label" for="option_5">{{ __('Option 5') }}
-                            <small>(Max Size 30 Characters)</small> *</label>
+                            <small>(Max Size 100 Characters)</small> *</label>
                         <input type="text" name="option_5" id="option_5" placeholder="-"
-                            class="primary_input_field mb-15" maxlength="30"
+                            class="primary_input_field mb-15" maxlength="100"
                             value="{{ $package->option_5 ?? old('option_5') }}">
                     </div>
                 </div>
                 <div class="col-xl-12">
                     <div class="primary_input mb-35">
                         <label class="primary_input_label" for="">{{ __('Description') }}
-                            <small>(Max Size 100 Characters)</small> *</label>
+                            <small>(Max Size 200 Characters)</small> *</label>
                         <textarea class="primary_input_field" name="description" id="description" cols="30" rows="5"
-                            maxlength="100">{{ $package->description ?? old('description') }}</textarea>
+                            maxlength="200">{{ $package->description ?? old('description') }}</textarea>
                     </div>
                 </div>
                 <div class="col-lg-12 pt_15 text-center">

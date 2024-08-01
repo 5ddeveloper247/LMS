@@ -147,7 +147,7 @@
                         <select name="package_term" id="package_term" placeholder="-"
                             class="primary_input_field mb-15">
                             <option value="mo">per month</option>
-                            {{-- <option value="annum">per annum</option> --}}
+                            <option value="annum">per annum</option>
                         </select>
                     </div>
                 </div>

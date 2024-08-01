@@ -486,6 +486,7 @@
                                 </div>
                             </div>
                         @endif
+                        @if(!Auth::user()->role_id != 9)
                         <div class="col-xl-6">
                             <div class="primary_input mb-25">
                                 <label class="primary_input_label" for="assign_instructor">{{ __('SELECT REVIEW') }}
@@ -508,6 +509,7 @@
                                 </select>
                             </div>
                         </div>
+                        
                         <div class="col-xl-6 {{ $d_none }}">{{-- courseBox testPrepBox  $d_none --}}
                             <div class="primary_input mb-25">
                                 <label class="primary_input_label"
@@ -520,6 +522,7 @@
                                 </select>
                             </div>
                         </div>
+                        @endif
                         {{-- <div class="col-xl-6 {{ $d_none }}">
                             <label>Featured</label>
                             <div class="d-flex py-3">

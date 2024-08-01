@@ -3090,14 +3090,10 @@ class WebsiteController extends Controller
                   return redirect()->back();
         }
         try {
+                
                  $AuthorizeObj = new DoAuthorizeNetPaymentController();
-               //$result=$clover->makePayment($request, $request->type, false, null, true);
-              // if (true) {
-             // dd($clover->makePayment($request, $request->type, false, null, true));
              if ($AuthorizeObj->makePayment($request, $request->type, false, null, true)) {
-               // if ($clover->makePayment($request, $request->type, false, null, true)) {
                 session()->forget('user');
-               // dd($request->user_id);
                 $PackagePricing = PackagePricing::where('id', $request->package_id)->first();
                 switch ($PackagePricing->package_term) {
                     case 'annum':
@@ -3119,8 +3115,14 @@ class WebsiteController extends Controller
                 $package_purchasing->expiry_date = $expiry_date;
                 $package_purchasing->status = 1;
                 $package_purchasing->save();
+
+                $total_courses = Course::where('user_id',$request->user_id)->count();
+                if($total_courses > $PackagePricing->allowed_courses){
+                  $disable_courses = Course::where('user_id',$request->user_id)->update(['status' => 0]);
+                }
+
                 //dd(PackagePurchasing::where('user_id', $request->user_id)->count());
-                if (PackagePurchasing::where('user_id', $request->user_id)->count()) {
+                if (PackagePurchasing::where('user_id', $request->user_id)->count()>1) {
                     $last_package_id = PackagePurchasing::where('user_id', $request->user_id)->latest()->value('package_id');
                     SendGeneralEmail::dispatch(\App\Models\User::find($request->user_id), 'Tutor_Package_Upgrade', [
                         'time' => Carbon::now()->format('d-M-Y, g:i A'),

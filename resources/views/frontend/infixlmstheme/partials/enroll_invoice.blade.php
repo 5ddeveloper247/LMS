@@ -59,7 +59,7 @@
         <table class="table">
             <tr>
                 <td>Printed Date & Time:<br><u>{{ date('d F Y H:i a') }}</u></td>
-                <td>Student ID:<br><u>{{ $enroll->user->id }}</u></u></td>
+                <td>ID:<br><u>{{ $enroll->user->id }}</u></u></td>
                 <td>Name:<br><u>{{ @$enroll->user->name }}</u>
                 </td>
                 <td>Email:<br><u>{{ @$enroll->user->email }}</u></td>

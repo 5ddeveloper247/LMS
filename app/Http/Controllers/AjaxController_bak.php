@@ -66,6 +66,9 @@ class AjaxController extends Controller
 
     public function statusEnableDisable(Request $request)
     {
+        if (appMode()) {
+            return response()->json(['warning' => trans('common.For the demo version, you cannot change this')], 200);
+        }
         if (!Auth::check()) {
             return response()->json(['error' => 'Permission Denied'], 403);
         }

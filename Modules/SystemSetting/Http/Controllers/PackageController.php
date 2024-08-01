@@ -171,7 +171,7 @@ class PackageController extends Controller
         $package_pricing->option_4 = $request->option_4;
         $package_pricing->option_5 = $request->option_5;
         $package_pricing->description = $request->description;
-        $package_pricing->package_term = 'mo';
+        $package_pricing->package_term = $request->package_term;
         $package_pricing->save();
 
         Toastr::success(trans('common.Operation successful'), trans('common.Success'));

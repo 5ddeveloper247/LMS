@@ -877,11 +877,11 @@
                                                                     <label class="primary_input_label mt-1"
                                                                         for="">{{ __('Title') }}
                                                                         <small>(Max size
-                                                                            30 Characters)</small> *</label>
+                                                                            100 Characters)</small> *</label>
                                                                     </label>
                                                                     <input class="primary_input_field" name="title"
                                                                         id="addTitle" value="{{ $course->title }}"
-                                                                        placeholder="-" type="text" maxlength="30">
+                                                                        placeholder="-" type="text" maxlength="100">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1020,7 +1020,7 @@
                                                             </div>
                                                         </div>
                                                     @endif
-
+                                                    @if($course->type != 9)
                                                     <div class="col-xl-6">
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
@@ -1047,6 +1047,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                     <div class="col-xl-6">{{-- $d_none --}}
                                                         {{-- $course->type == 7 ? 'd-none' : '' --}}
                                                         <div class="primary_input mb-25">
