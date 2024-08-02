@@ -203,15 +203,15 @@ class PackageController extends Controller
         // dd($request->all());
         $request->validate(
             [
-                'title' => 'required|max:30',
+                'title' => 'required|max:50',
                 'price' => 'required',
                 'allowed_courses' => 'required',
-                'option_1' => 'required|max:30',
-                'option_2' => 'required|max:30',
-                'option_3' => 'required|max:30',
-                'option_4' => 'required|max:30',
-                'option_5' => 'required|max:30',
-                'description' => 'required|max:100',
+                'option_1' => 'required|max:100',
+                'option_2' => 'required|max:100',
+                'option_3' => 'required|max:100',
+                'option_4' => 'required|max:100',
+                'option_5' => 'required|max:100',
+                'description' => 'required|max:200',
                 'package_term' => 'required'
             ],
             [
@@ -223,7 +223,7 @@ class PackageController extends Controller
                 'option_3.required' => 'Please Enter Option 3 Option !',
                 'option_4.required' => 'Please Enter Option 4 Option !',
                 'option_5.required' => 'Please Enter Option 5 Option !',
-                'description.max' => 'Description Should Not Exceed by 100 Characters !',
+                'description.max' => 'Description Should Not Exceed by 200 Characters !',
                 'description.required' => 'Please Enter Course Description !',
             ]
         );

@@ -17786,3 +17786,17 @@ div.dt-buttons {
 .ck-editor__editable {
     min-height: 300px;
 }
+
+.ck-editor__editable ul li {
+    list-style: disc;
+}
+
+.ck-editor__editable ol li {
+    list-style: decimal;
+}
+
+.ck-editor__editable ul,
+.ck-editor__editable ol {
+    list-style: revert !important;
+    padding: revert !important;
+}

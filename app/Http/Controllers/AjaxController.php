@@ -75,10 +75,12 @@ class AjaxController extends Controller
         if($request->table == 'courses' && $request->status == 1){
             $course = Course::find($request->id);
             if($course){
-                if($course->type == 9){
+                if($course->type == '9'){
+                    
                     $total_courses = Course::where('user_id',$course->user->id)->where('status',1)->count();
                     $current_package = PackagePurchasing::where('user_id',$course->user->id)->latest()->first();
-                    if($total_courses > $current_package->course_limit){
+                    // dd(($total_courses>=$current_package->course_limit) ? );
+                    if($total_courses >= (int)$current_package->course_limit){
                         return response()->json(['error' => 'The current package does not allow more courses. Please delete or disable some course to enable this course.']);
                     }
                 }
@@ -97,9 +99,21 @@ class AjaxController extends Controller
             if ($table == "courses") {
                 DB::table($table)->where('parent_id', $id)->update(['status' => $status]);
                 $course = Course::find($id);
+                
+
+            // if($course){
+            //     // dd($course->user);
+            //     if($course->type == 9){
+            //         $total_courses = Course::where('user_id',$course->user->id)->where('status',1)->count();
+            //         $current_package = PackagePurchasing::where('user_id',$course->user->id)->latest()->first();
+            //         if($total_courses > $current_package->course_limit){
+            //             return response()->json(['error' => 'The current package does not allow more courses. Please delete or disable some course to enable this course.']);
+            //         }
+            //     }
+            // }
+
                 $course->updated_at = now();
                 $course->save();
-
 
                 // ======= For Chat Module ========
                 if (isModuleActive('Chat')) {

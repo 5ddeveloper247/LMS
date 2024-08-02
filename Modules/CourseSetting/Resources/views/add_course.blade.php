@@ -486,7 +486,7 @@
                                 </div>
                             </div>
                         @endif
-                        @if(!Auth::user()->role_id != 9)
+                        @if(Auth::user()->role_id != 9)
                         <div class="col-xl-6">
                             <div class="primary_input mb-25">
                                 <label class="primary_input_label" for="assign_instructor">{{ __('SELECT REVIEW') }}
