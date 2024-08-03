@@ -51,8 +51,8 @@
                             <img src="{{ asset(@$frontendContent->become_instructor_logo) }}" alt="">
                         </div>
                         <div class="cta_service_info">
-                            <h5 class="custom_small_heading mb-4 font-weight-bold text-dark"> Become Tutor | Mentor </h5>
-                            <p class="mb-4"> {{ @$frontendContent->become_instructor_sub_title }}
+                            <h5 class="custom_small_heading mb-4 font-weight-bold text-dark"> Become a Tutor | Mentor </h5>
+                            <p class="mb-4"> Make a lasting impact on aspiring nurses. Share your expertise, inspire students, and build a fulfilling career while helping others achieve their dreams.
                             </p>
                             <a href="{{ route('register') }}" class="theme_btn small_btn p-2">Share Knowledge</a>
                         </div>
@@ -65,8 +65,8 @@
                             <img src="{{ asset(@$frontendContent->become_instructor_logo) }}" alt="">
                         </div>
                         <div class="cta_service_info">
-                            <h5 class="custom_small_heading mb-4 font-weight-bold text-white"> Transform A Life Now</h5>
-                            <p class="mb-4 text-white"> {{ @$frontendContent->become_instructor_sub_title }}
+                            <h5 class="custom_small_heading mb-4 font-weight-bold text-white"> Healthcare Student</h5>
+                            <p class="mb-4 text-white"> Launch your healthcare career Gain the knowledge and skills you need to succeed in the dynamic healthcare industry.
                             </p>
                             <a href="{{ route('register') }}" class="theme_btn small_btn p-2">Start New Career </a>
                         </div>
