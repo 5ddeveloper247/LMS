@@ -1326,7 +1326,7 @@
 				'|',
 				'insertTable',
 				'imageInsert',
-			//	'imageUpload',
+				// 'imageUpload',
 				'mediaEmbed',
 			//	'CKFinder',
 			//	'codeBlock',
@@ -1338,8 +1338,8 @@
 		language: 'en',
 		image: {
 			toolbar: [
-				'imageTextAlternative',
-				'toggleImageCaption',
+				// 'imageTextAlternative',
+				// 'toggleImageCaption',
 				'imageStyle:inline',
 				'imageStyle:block',
 				'imageStyle:side'

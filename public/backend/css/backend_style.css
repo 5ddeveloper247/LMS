@@ -17795,6 +17795,10 @@ div.dt-buttons {
     list-style: decimal;
 }
 
+.ck-editor__editable table{
+    table-layout: fixed;
+}
+
 .ck-editor__editable ul,
 .ck-editor__editable ol {
     list-style: revert !important;

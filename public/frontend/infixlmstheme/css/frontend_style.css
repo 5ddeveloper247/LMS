@@ -826,6 +826,10 @@ label {
     font-family: Jost, sans-serif;
 }
 
+.ck-content table{
+    table-layout: fixed;
+}
+
 .ck-content ul,
 .ck-content ol,
 .ck-content li,

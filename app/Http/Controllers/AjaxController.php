@@ -80,11 +80,11 @@ class AjaxController extends Controller
                     $total_courses = Course::where('user_id',$course->user->id)->where('status',1)->count();
                     $current_package = PackagePurchasing::where('user_id',$course->user->id)->latest()->first();
                     // dd(($total_courses>=$current_package->course_limit) ? );
-                    if($current_package->expiry_date < Carbon::now()){
+                    if($current_package && $current_package->expiry_date < Carbon::today()){
                         return response()->json(['error' => 'User Package has been expired. Please upgrade the package to enable this course.']);
                     }
 
-                    if($total_courses >= (int)$current_package->course_limit){
+                    if($current_package && $total_courses >= (int)$current_package->course_limit){
                         return response()->json(['error' => 'The current package does not allow more courses. Please delete or disable some course to enable this course.']);
                     }
                 }
