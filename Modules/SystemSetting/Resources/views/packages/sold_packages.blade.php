@@ -73,12 +73,12 @@
                                     href="{{ route('teachWithUs') }}#package_prices">
                                     <i class="ti-plus"></i>{{ $button }}</a>
                             </div>
-                            @if($invoice)
+                            {{-- @if($invoice)
                             <div class="main-title d-md-flex">
                                 <a class="primary-btn radius_30px fix-gr-bg mr-10"
                                     href="{{ route('invoice',[$invoice->id]) }}">Invoice</a>
                             </div>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 @endif
@@ -100,7 +100,8 @@
                                             <th scope="col">{{ __('Expire Date') }}</th>
                                             @if (isAdmin())
                                                 <th scope="col">{{ __('common.Status') }}</th>
-                                            @endif
+                                                @endif
+                                                <th scope="col">{{ __('Invoice') }}</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -187,12 +188,17 @@
                     name: 'expiry_date',
                     searchable: false
                 },
+                
                 @if (isAdmin())
                     {
                         data: 'status',
                         name: 'status'
                     },
                 @endif
+                {
+                        data: 'invoice',
+                        name: 'invoice'
+                    },
             ],
             language: {
                 emptyTable: "{{ __('common.No data available in the table') }}",

@@ -264,6 +264,7 @@ class PackageController extends Controller
     public function getAllsoldPackages()
     {
         $query = PackagePurchasing::has('package')->with('package');
+        
         if (isTutor()) {
             $query->where('user_id', Auth::id());
         }
@@ -305,13 +306,28 @@ class PackageController extends Controller
                 return $expiry_date;
             })
             ->addColumn('status', function ($query) {
+                
                 if (isAdmin()) {
+                    
                     return view('systemsetting::partials._td_package_status', compact('query'));
                 } else {
                     return '';
                 }
             })
-            ->rawColumns(['tutor_name', 'package_name', 'price', 'status', 'course_limit'])
+            ->addColumn('invoice',function($query){
+                $createdAt = Carbon::parse($query->created_at);
+                $invoice = Checkout::where('user_id',$query->user->id)->where('type','package')->whereBetween('created_at',[$createdAt->subMinute(), $createdAt->addMinute()])->first();
+                if($invoice){
+                return '<div class="main-title d-md-flex">
+                                <a class="primary-btn radius_30px fix-gr-bg mr-10 text-white"
+                                    href="'.route('invoice',[$invoice->id]).'">Invoice</a>
+                            </div>';
+                }
+                else{
+                    return '<b>Invoice doens not exists</spanb>';
+                }
+            })
+            ->rawColumns(['tutor_name', 'package_name', 'price', 'status', 'course_limit','invoice'])
             ->make(true);
     }
 

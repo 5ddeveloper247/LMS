@@ -1047,7 +1047,6 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    @endif
                                                     <div class="col-xl-6">{{-- $d_none --}}
                                                         {{-- $course->type == 7 ? 'd-none' : '' --}}
                                                         <div class="primary_input mb-25">
@@ -1065,6 +1064,8 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    
+                                                    @endif
                                                     {{-- <div class="col-xl-6">
                                                         <label>Featured</label>
                                                         <div class="d-flex py-3">
