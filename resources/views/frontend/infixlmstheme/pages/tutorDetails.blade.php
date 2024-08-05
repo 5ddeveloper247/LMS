@@ -280,11 +280,12 @@
     .theme_color2 {
         color: var(--system_primery_color);
     }
-@media only screen and (max-width: 540px){
-    .controlSize2 {
+
+    @media only screen and (max-width: 540px) {
+        .controlSize2 {
             height: 220px !important;
         }
-}
+    }
 
     @media only screen and (max-width: 768px) {
         .controlSize2 {
@@ -388,10 +389,15 @@
     .section-margin-y {
         margin: 60px auto !important;
     }
+
     @media only screen and (min-width: 1800px) {
         .lead {
             padding: 0px 45px !important;
         }
+        
+    .controlSize2 {
+        height: 410px !important;
+    }
     }
 </style>
 {{-- @endsection --}}
@@ -618,18 +624,31 @@
             <div class="controlSize px-4 py-4 px-sm-5 hide-scrollbar">
                 <div class="lead">
                     <div class="controlSize2">
-                        <h2 class="custom_small_heading font-weight-bold text-white">New knowledge is important</h2>
-                        <p class=" text-justify text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
-                            consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor.</p>
+                        <h2 class="custom_small_heading font-weight-bold text-white mb-3">FANTASTIC OPPORTUNITY THAT CAN
+                            HELP YOU
+                            ACE YOUR NCLEX EXAM </h2>
+                        <h5 class="custom_small_heading font-weight-bold text-white mb-3">Importance of NCLEX Preparation &
+                            Why
+                            the NCLEX is Crucial</h5>
+                        <p class="text-justify text-white">As you know, passing the NCLEX is a critical step in becoming a
+                            licensed nurse. It's a challenging exam, but with the right preparation, you can conquer it.
+                        </p>
+                        <h5 class="text-white font-weight-bold mt-3">Advantages of One-on-One Tutoring</h5>
+                        <p class="text-justify text-white">Imagine having a highly experienced tutor dedicated solely to
+                            your success. Our one-on-one
+                            tutoring sessions are tailored to your specific needs and learning style. You'll build your
+                            confidence and knowledge to a level where you'll feel ready to PASS your NCLEX!</p>
+                        <h5 class="text-white font-weight-bold mt-3">How to Book a Session</h5>
+                        <p class="text-justify text-white">Booking a session is simple, but we recommend planning ahead. Try
+                            to book your session at least
+                            2-6 weeks in advance. This ensures you get the best possible slot with our tutors | mentors.
+                            Remember, we may not be able to accommodate last-minute bookings if you book less than 7-21 days
+                            in advance.</p>
+                        <h5 class="text-white font-weight-bold mt-3">What to Expect After Purchase</h5>
+                        <p class="text-justify text-white">Once you purchase a session, your tutor will reach out to you
+                            within 24-72 business hours or 2-3
+                            days to schedule your session. We are passionate about your success and will make sure you get
+                            the help to achieve your goals</p>
                     </div>
                     <p class="font-weight-bold mt-3 text-white"><a href="{{ route('instructors') }}"
                             style="color:inherit;">
@@ -644,18 +663,22 @@
             <div class="controlSize px-4 py-4 px-sm-5 hide-scrollbar">
                 <div class="lead">
                     <div class="controlSize2">
-                        <h2 class="custom_small_heading font-weight-bold">New knowledge is important</h2>
-                        <p class=" text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
-                            consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, consequuntur, voluptatem
-                            sequi optio iste molestias nihil sed dicta dignissimos fugiat neque rem
-                            Lorem ipsum dolor.</p>
+                        <h2 class="custom_small_heading font-weight-bold">As We Tutor & Mentor – We Change Lives </h2>
+                        <p class=" text-justify">Ready to make a difference? Are you a passionate nurse with a knack for
+                            teaching? Do you love helping others achieve their goals? Then you might be the perfect tutor or
+                            mentor for Merkaii Xcellence Prep! We're looking for experienced nurses who can guide our
+                            esteemed students through the complexities of nursing school and prepare them to conquer the
+                            NCLEX-RN & PN Examination. </p>
+                        <h5 class="custom_small_heading font-weight-bold mt-3">Ignite Young Minds and Nurture Future Nurses!</h5>
+                        <p>Imagine being the guiding light for aspiring nurses. Picture yourself sharing your expertise,
+                            answering questions, and watching your students grow into confident healthcare professionals. As
+                            a tutor or mentor at Merkaii Xcellence Prep, you'll have the opportunity to make a real
+                            difference in the lives of others. You'll be more than just a teacher; you'll be a mentor, a
+                            role model, and a source of inspiration. It's more than just a job; it's a chance to give back
+                            to the nursing community and leave a lasting impact.</p>
+                        <h5 class="custom_small_heading font-weight-bold mt-3">Encouraging Early Booking</h5>
+                        <p>Don't wait until the last minute. Secure your spot today and take the first step towards passing
+                            your NCLEX with flying colors!</p>
                     </div>
                     <p class="font-weight-bold mt-3"><a href="{{ route('instructors') }}" style="color:inherit;">
                             <u>All
