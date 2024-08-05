@@ -357,8 +357,8 @@
 		language: 'en',
 		image: {
 			toolbar: [
-				'imageTextAlternative',
-				'toggleImageCaption',
+				// 'imageTextAlternative',
+				// 'toggleImageCaption',
 				'imageStyle:inline',
 				'imageStyle:block',
 				'imageStyle:side'

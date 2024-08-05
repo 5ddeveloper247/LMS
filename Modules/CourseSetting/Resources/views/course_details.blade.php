@@ -519,14 +519,14 @@
                                                                         onclick="removecol()">
                                                                         <input type="radio" class="addType"
                                                                             id="type{{ @$course->id }}1" name="type"
-                                                                            value="{{ Auth::user()->role_id == 9 ? 9 : 1 }}"
+                                                                            value="{{ $course->type == 9 ? 9 : 1 }}"
                                                                             {{ @$course->type == 1 || @$course->type == 9 ? 'checked' : '' }}>
                                                                         <span
                                                                             class="checkmark mr-2"></span>{{ __('courses.Course') }}
                                                                     </label>
                                                                 </div>
-
-                                                                <div class="col-md-4 col-sm-4 mb-25 {{ $d_none }}">
+                                                                @if($course->type != 9)
+                                                                <div class="col-md-4 col-sm-4 mb-25 {{ $d_none }} @if($course->type == 0) d-none @endif">
                                                                     <label class="primary_checkbox d-flex nowrap mr-12"
                                                                         onclick="timecol()">
                                                                         <input type="radio" id="type2"
@@ -536,7 +536,8 @@
                                                                         <span class="checkmark mr-2"></span>
                                                                         {{ __('Time Table') }}</label>
                                                                 </div>
-                                                                <div class="col-md-4 col-sm-4 mb-25 {{ $d_none }}">
+                                                                
+                                                                <div class="col-md-4 col-sm-4 mb-25 {{ $d_none }} @if($course->type == 0) d-none @endif">
                                                                     <label class="primary_checkbox d-flex nowrap mr-12"
                                                                         onclick="addcol()">
                                                                         <input type="radio" class="type2 addType"
@@ -548,7 +549,6 @@
                                                                         {{ __('Big Quiz') }}
                                                                     </label>
                                                                 </div>
-
                                                                 <script>
                                                                     function addcol() {
                                                                         if ($('.type2').is(':checked')) {
@@ -588,6 +588,7 @@
                                                                         $('.cna_prep_type, .test_prep_type, .test_prep_graded_type').addClass('d-none');
                                                                     }
                                                                 </script>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -617,7 +618,7 @@
                                                             ->first();
                                                     @endphp
 
-                                                    <div class="col-xl-6 courseBox">
+                                                    <div class="col-xl-6 courseBox @if($course->type == 9) d-none @endif">
                                                         <div class="primary_input {{ $d_none }}">
                                                             <div class="row toggle_course_testPrep">
                                                                 <div class="col-md-12">
@@ -880,7 +881,8 @@
                                                                             100 Characters)</small> *</label>
                                                                     </label>
                                                                     <input class="primary_input_field" name="title"
-                                                                        id="addTitle" value="{{ $course->title }}"
+                                                                        id="addTitle" value="{{ $course->title }}" 
+                                                                        @if($course->type == 9 && $course->user_id != auth()->user()->id) readonly @endif
                                                                         placeholder="-" type="text" maxlength="100">
                                                                 </div>
                                                             </div>
@@ -895,18 +897,20 @@
                                                             </label>
                                                             <input type="text" name="course_code" id="course_code"
                                                                 placeholder="-"
+                                                                @if($course->type == 9 && $course->user_id != auth()->user()->id) readonly @endif
                                                                 class="primary_input_field active mb-15 e1"
                                                                 value="{{ $course->course_code ?? '' }}">
                                                         </div>
                                                     </div>
                                                     <div
-                                                        class="col-xl-6 courseBox {{ $d_none }} {{ $course->type == 7 ? 'd-none' : '' }}">
+                                                        class="col-xl-6 courseBox {{ $d_none }} {{ ($course->type == 7 || $course->type == 9) ? 'd-none' : '' }}">
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
                                                                 for="assistant_instructors">{{ __('Total Classes') }} *
                                                             </label>
                                                             <input type="number" name="total_courses" id="total_courses"
                                                                 placeholder="-"
+                                                                @if($course->type == 9 && $course->user_id != auth()->user()->id) readonly @endif
                                                                 class="primary_input_field active mb-15 e1"
                                                                 value="{{ $course->total_classes }}">
                                                         </div>
@@ -998,7 +1002,7 @@
                                                     </div>
 
                                                     @if (\Illuminate\Support\Facades\Auth::user()->role_id != 2 && \Illuminate\Support\Facades\Auth::user()->role_id != 9)
-                                                        <div class="col-xl-6">{{-- $d_none --}} {{-- $course->type == 7 ? 'd-none' : '' --}}
+                                                        <div class="col-xl-6 @if($course->type == 9) d-none @endif">{{-- $d_none --}} {{-- $course->type == 7 ? 'd-none' : '' --}}
                                                             <div class="primary_input mb-25">
                                                                 <label class="primary_input_label"
                                                                     for="assign_instructor">{{ __('courses.Assign Instructor') }}
@@ -1047,7 +1051,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-6">{{-- $d_none --}}
+                                                    <div class="col-xl-6 @if($course->type == 9) d-none @endif">{{-- $d_none --}}
                                                         {{-- $course->type == 7 ? 'd-none' : '' --}}
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
@@ -1066,7 +1070,8 @@
                                                     </div>
                                                     
                                                     @endif
-                                                    {{-- <div class="col-xl-6">
+                                                    @if($course->type == 9 && auth()->user()->role_id == 1)
+                                                    <div class="col-xl-6">
                                                         <label>Featured</label>
                                                         <div class="d-flex py-3">
                                                             <label class="primary_checkbox d-flex nowrap mr-5"
@@ -1084,7 +1089,8 @@
                                                                 <span class="checkmark mr-2"></span>
                                                                 {{ __('No') }}</label>
                                                         </div>
-                                                    </div> --}}
+                                                    </div>
+                                                    @endif
                                                 </div>
                                                 <input type="hidden" name="id" class="course_id"
                                                     value="{{ @$course->id }}">
@@ -1135,7 +1141,7 @@
                                                                                 {{ __('Description') }} *
                                                                             </label>
                                                                             <textarea class="custom_summernote" name="about[{{ $language->code }}]" id="addAbout-{{ $language->code }}"
-                                                                                cols="30" rows="10">{!! @$course->getTranslation('about', $language->code) !!}</textarea>
+                                                                                cols="30" rows="10" readonly>{!! @$course->getTranslation('about', $language->code) !!}</textarea>
 
                                                                         </div>
                                                                     </div>
@@ -1201,8 +1207,9 @@
                                                             </div>
                                                         @endif
 
-                                                        <div class="col-xl-6 courseBox mb-25">
+                                                        <div class="col-xl-6 courseBox mb-25" @if($course->type == 9 && $course->user_id != auth()->user()->id) style="display:none" @endif>
                                                             <select class="primary_select" name="category"
+                                                                        
                                                                 id="course_cat_id">
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('quiz.Category') }}"
@@ -1227,8 +1234,9 @@
                                                             </select>
                                                         </div>
 
-                                                        <div class="col-xl-6 courseBox mb-25" id="subCatDiv">
+                                                        <div class="col-xl-6 courseBox mb-25" id="subCatDiv" @if($course->type == 9 && $course->user_id != auth()->user()->id) style="display:none" @endif>
                                                             <select class="primary_select" name="sub_category"
+                                                                        @if($course->type == 9 && $course->user_id != auth()->user()->id) readonly @endif
                                                                 id="subcat_id">
                                                                 <option
                                                                     data-display="{{ __('common.Select') }} {{ __('courses.Sub Category') }}"
@@ -1283,6 +1291,7 @@
                                                                 <label class="primary_input_label mt-1"
                                                                     for="">{{ __('courses.Price') }}</label>
                                                                 <input accept="/^1[1-9]{9}$/" class="primary_input_field"
+                                                                @if($course->type == 9 && $course->user_id != auth()->user()->id) readonly @endif
                                                                     name="price" id="addPrice" placeholder="-"
                                                                     value="{{ @$course->price }}" type="text">
                                                             </div>
@@ -1814,7 +1823,11 @@
                                                                         readonly=""
                                                                         data-imgTitle="{{ showPicName(@$course->thumbnail) }}"
                                                                         value="{{ showPicName(@$course->thumbnail) }}">
+                                                                    @if($course->type == 9 && $course->user_id != auth()->user()->id)
+                                                                    @else
                                                                     <button onclick="destroyCropper1()" class=""
+                                                                    
+                                                                    @if($course->type == 9 && $course->user_id != auth()->user()->id) disabled @endif
                                                                         type="button">
                                                                         <label class="primary-btn small fix-gr-bg"
                                                                             id="avatar"
@@ -1823,12 +1836,14 @@
                                                                             class="d-none fileUpload upload-editor-1"
                                                                             name="parent_course_image"
                                                                             accept=".jpg, .jpeg, .png, .gif"
+                                                                            @if($course->type == 9 && $course->user_id != auth()->user()->id) readonly @endif
                                                                             id="document_file_thumb-1">
                                                                         <input type="hidden"
                                                                             name="parent_course_thumbnail_image"
                                                                             id="cropper_img"
                                                                             class="upload-editor-hidden-file-1">
                                                                     </button>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2978,8 +2993,8 @@
                         language: 'en',
                         image: {
                             toolbar: [
-                                'imageTextAlternative',
-                                'toggleImageCaption',
+                                // 'imageTextAlternative',
+                                // 'toggleImageCaption',
                                 'imageStyle:inline',
                                 'imageStyle:block',
                                 'imageStyle:side'
@@ -3002,6 +3017,9 @@
                         // Save the editor instance to use it later
                         window.editor = editor;
 
+                        @if($course->type == 9 && $course->user_id != auth()->user()->id)
+                        editor.enableReadOnlyMode('editor');
+                        @endif
                         // Listen to the change:data event
                         editor.model.document.on('change:data', () => {
                             // Get the editor content
@@ -3818,14 +3836,15 @@
                     if (isEmpty($('#total_courses').val())) {
                         errors.push("Total Classes is required");
                     }
-
-                }
-
-                if (isAdmin == '1') {
-                    if (isEmpty($('#assign_instructor').val())) {
-                        errors.push("Instructor is required");
+                    if (isAdmin == '1') {
+                        if (isEmpty($('#assign_instructor').val())) {
+                            errors.push("Instructor is required");
+                        }
                     }
+
                 }
+
+                
 
 
                 if (isEmptySummernote('#addAbout-en')) {

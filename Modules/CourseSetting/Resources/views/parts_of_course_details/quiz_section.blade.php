@@ -140,7 +140,7 @@
                                                 <input {{ $errors->has('title') ? ' autofocus' : '' }}
                                                     class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
                                                     type="text" name="title[{{ $language->code }}]"
-                                                    autocomplete="off"
+                                                    autocomplete="off" maxlength="100"
                                                     value="{{ isset($online_exam) ? $online_exam->getTranslation('title', $language->code) : '' }}">
                                                 <input type="hidden" name="id"
                                                     value="{{ isset($online_exam) ? $online_exam->id : '' }}">
@@ -153,8 +153,7 @@
                                         <div class="col-lg-12">
                                             <div class="input-effect">
                                                 <label class="primary_input_label mt-1"
-                                                    for="">{{ __('quiz.Instruction') }}
-                                                    <span>*</span></label>
+                                                    for="">{{ __('quiz.Instruction') }}</label>
                                                 <textarea {{ $errors->has('instruction') ? ' autofocus' : '' }}
                                                     class="primary_input_field name{{ $errors->has('instruction') ? ' is-invalid' : '' }}" cols="0"
                                                     rows="4" name="instruction[{{$language->code}}]">{{ isset($online_exam) ? $online_exam->getTranslation('instruction', $language->code) : '' }}</textarea>
@@ -174,7 +173,7 @@
                                         for="">{{ __('quiz.Minimum Percentage') }} *</label>
                                     <input {{ $errors->has('title') ? ' percentage' : '' }}
                                         class="primary_input_field name{{ $errors->has('percentage') ? ' is-invalid' : '' }}"
-                                        type="number" name="percentage" autocomplete="off"
+                                        type="number" name="percentage" autocomplete="off" max="100"
                                         value="{{ isset($online_exam) ? $online_exam->percentage : old('percentage') }}">
                                     <input type="hidden" name="id"
                                         value="{{ isset($group) ? $group->id : '' }}">
@@ -248,39 +247,57 @@
 
 <script>
 	function quiz_add_form(button){
-		$('.preloader').show();
-	    // var errors = [];
+        var errors = [];
 	    
-	     var form = $(button).closest("form");
-	    
-		// if (isEmpty(form.find("select[name='chapterId']").val())) {
-	    // 	errors.push('Choose Chapter first.');
-	   	// }
+        var form = $(button).closest("form");
+	    // if(!form.checkValidity()){
+        //     form.reportValidity();
+        //     return false;
+        // }
+        $('.preloader').show();
+		if (isEmpty(form.find("select[name='chapterId']").val())) {
+	    	errors.push('Choose Chapter first.');
+	   	}
 	            
-	   	// var type = form.find("input[name='type']:checked").val();
+	   	var type = form.find("input[name='type']:checked").val();
 	
-	  	// if(type == '1'){		// for existing
-	    // 	if (isEmpty(form.find("select[name='quiz']").val())) {
-	    //      	errors.push('Choose Quiz first.');
-	    //    	}
-	    //  	if (isEmpty(form.find("select[name='lock']").val())) {
-	    //     	errors.push('Choose Privacy first.');
-	    //   	}
-	  	// }
+	  	if(type == '1'){		// for existing
+	    	if (isEmpty(form.find("select[name='quiz']").val())) {
+	         	errors.push('Choose Quiz first.');
+	       	}
+	     	if (isEmpty(form.find("select[name='lock']").val())) {
+	        	errors.push('Choose Privacy first.');
+	      	}
+	  	}
 	
-	  	// if(type == '2'){		// for New
-		// 	if (isEmpty(form.find("input[name='title[en]']").val())) {
-	    //    		errors.push('Quiz Title is required.');
-	  	// 	}
+	  	if(type == '2'){		// for New
+			if (isEmpty(form.find("input[name='title[en]']").val())) {
+	       		errors.push('Quiz Title is required.');
+	  		}
+            if(form.find("input[name='title[en]']").val().length > 100){
+                errors.push('Quiz Title must be less than 100 characters.')
+            }
 		// 	if (isEmpty(form.find("input[name='instruction[en]']").val())) {
         //         console.log('empty');
 	    //      	errors.push('Instruction is required.');
 	    //   	}	
-		// 	if (isEmpty(form.find("input[name='percentage']").val())) {
-	    //     	errors.push('Percentage is required.');
-	    //   	}			
-	   	// }
-	
+			if (isEmpty(form.find("input[name='percentage']").val())) {
+	        	errors.push('Percentage is required.');
+	      	}
+            if(form.find("input[name='percentage']").val() > 100){
+                errors.push('Percentage should be less than 100');
+            }
+            			
+	   	}
+            if (errors.length) {
+                    // console.log(errors);
+                    $('.preloader').hide();
+                    $('input[type="submit"]').attr('disabled', false);
+                    $.each(errors.reverse(), function(index, item) {
+                        toastr.error(item, 'Error', 1000);
+                    });
+                    return false;
+                }
 	  	setTimeout(function() {
 	     	// if (errors.length) {
 	       	// 	console.log(errors);
@@ -302,28 +319,44 @@
 	    var form = $(button).closest("form");
 	
 	    var type = form.find("input[name='type']:checked").val();
+	  	if(type == '1'){		// for existing
+	    	if (isEmpty(form.find("select[name='quiz']").val())) {
+	         	errors.push('Choose Quiz first.');
+	       	}
+	     	if (isEmpty(form.find("select[name='lock']").val())) {
+	        	errors.push('Choose Privacy first.');
+	      	}
+	  	}
 	
-	  	// if(type == '1'){		// for existing
-	    // 	if (isEmpty(form.find("select[name='quiz']").val())) {
-	    //      	errors.push('Choose Quiz first.');
-	    //    	}
-	    //  	if (isEmpty(form.find("select[name='lock']").val())) {
-	    //     	errors.push('Choose Privacy first.');
-	    //   	}
-	  	// }
-	
-	  	// if(type == '2'){		// for New
-		// 	if (isEmpty(form.find("input[name='title[en]']").val())) {
-	    //    		errors.push('Quiz Title is required.');
-	  	// 	}
+	  	if(type == '2'){		// for New
+			if (isEmpty(form.find("input[name='title[en]']").val())) {
+	       		errors.push('Quiz Title is required.');
+	  		}
+            if(form.find("input[name='title[en]']").val().length > 100){
+                errors.push('Quiz Title must be less than 100 characters.')
+            }
 		// 	if (isEmpty(form.find("input[name='instruction[en]']").val())) {
+        //         console.log('empty');
 	    //      	errors.push('Instruction is required.');
 	    //   	}	
-		// 	if (isEmpty(form.find("input[name='percentage']").val())) {
-	    //     	errors.push('Percentage is required.');
-	    //   	}			
-	   	// }
-	
+			if (isEmpty(form.find("input[name='percentage']").val())) {
+	        	errors.push('Percentage is required.');
+	      	}
+            if(form.find("input[name='percentage']").val() > 100){
+                errors.push('Percentage should be less than 100');
+            }		
+	   	}
+
+        if (errors.length) {
+                    // console.log(errors);
+                    $('.preloader').hide();
+                    $('input[type="submit"]').attr('disabled', false);
+                    $.each(errors.reverse(), function(index, item) {
+                        toastr.error(item, 'Error', 1000);
+                    });
+                    return false;
+                }
+        
 	  	setTimeout(function() {
 	     	// if (errors.length) {
 	       	// 	console.log(errors);

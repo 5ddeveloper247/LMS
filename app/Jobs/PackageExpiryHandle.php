@@ -43,6 +43,11 @@ class PackageExpiryHandle implements ShouldQueue
             if($current_package){
                 if($current_package->expiry_date<Carbon::now()){
                     $disable = Course::where('user_id',$instructor->id)->update(['status' => 0]);
+                    $shortcodes = array(
+                        'title' => '',
+                        'date' => $current_package->expiry_date
+                    );
+                    send_email($instructor,'Tutor_Package_Expired',$shortcodes);
                 }
             }
         }

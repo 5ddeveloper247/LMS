@@ -80,7 +80,7 @@
                             <input {{ $errors->has('title') ? ' autofocus' : '' }}
                                    class="primary_input_field name{{ $errors->has('title') ? ' is-invalid' : '' }}"
                                    type="text" name="title[en]" autocomplete="off"
-                                   value="{{isset($online_exam)? $online_exam->title: old('title')}}" maxlength="100">
+                                   value="{{isset($online_exam)? $online_exam->title: old('title')}}" maxlength="100" required>
                             <input type="hidden" name="id"
                                    value="{{isset($online_exam)? $online_exam->id: ''}}">
                             <span class="focus-border"></span>
@@ -99,6 +99,7 @@
                             <input {{ $errors->has('title') ? ' percentage' : '' }}
                                    class="primary_input_field name{{ $errors->has('percentage') ? ' is-invalid' : '' }}"
                                    type="number" name="percentage" autocomplete="off"
+                                   min="0" max="100" required
                                    value="{{isset($online_exam)? $online_exam->percentage: old('percentage')}}">
                             <input type="hidden" name="id"
                                    value="{{isset($group)? $group->id: ''}}">
@@ -114,7 +115,7 @@
                 <div class="row mt-25">
                     <div class="col-lg-12">
                         <div class="input-effect">
-                            <label class="primary_input_label mt-1" for="">{{__('quiz.Instruction')}} <span>*</span></label>
+                            <label class="primary_input_label mt-1" for="">{{__('quiz.Instruction')}}</label>
                             <textarea {{ $errors->has('instruction') ? ' autofocus' : '' }}
                                       class="primary_input_field name{{ $errors->has('instruction') ? ' is-invalid' : '' }}"
                                       cols="0" rows="4"

@@ -81,10 +81,10 @@ class OnlineQuizController extends Controller
         }
         if ($request->type == 2) {
             $rules = [
-                'title.en' => 'required',
+                'title.en' => 'required|max:100',
                // 'category' => 'required',
-                'percentage' => 'required',
-                'instruction.en' => 'required'
+                'percentage' => 'required|max:100',
+                // 'instruction.en' => 'required'
             ];
             $this->validate($request, $rules, validationMessage($rules));
 
@@ -99,8 +99,13 @@ class OnlineQuizController extends Controller
                 foreach ($request->title as $key => $title) {
                     $online_exam->setTranslation('title', $key, $title);
                 }
-                foreach ($request->instruction as $key => $instruction) {
-                    $online_exam->setTranslation('instruction', $key, $instruction);
+                if($request->has('instruction')){
+                    foreach ($request->instruction as $key => $instruction) {
+                        $online_exam->setTranslation('instruction', $key, $instruction);
+                    }
+                }
+                else{
+                    $online_exam->instruction = '';
                 }
 
 
@@ -291,7 +296,7 @@ class OnlineQuizController extends Controller
                         send_mobile_notification($courseUser, $act, $codes);
                     }
                     Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-                    return redirect()->route('courseDetails', $request->course_id);
+                    return redirect()->route('courseDetails', ['id' => $request->course_id, 'type' => 'courses']);
                 }
 
                 Toastr::error('Invalid Access !', 'Failed');
@@ -310,10 +315,10 @@ class OnlineQuizController extends Controller
             return redirect()->back();
         }
         $rules = [
-            'title.en' => 'required',
+            'title.en' => 'required|max:100',
            // 'category' => 'required',
-            'percentage' => 'required',
-            'instruction.en' => 'required'
+            'percentage' => 'required|max:100',
+            // 'instruction.en' => 'required'
         ];
         $this->validate($request, $rules, validationMessage($rules));
 
@@ -328,8 +333,12 @@ class OnlineQuizController extends Controller
             foreach ((array)$request->title as $key => $title) {
                 $online_exam->setTranslation('title', $key, $title);
             }
-            foreach ((array)$request->instruction as $key => $instruction) {
+            if($request->has('instruction'))
+            {
+                foreach ((array)$request->instruction as $key => $instruction) 
+                {
                 $online_exam->setTranslation('instruction', $key, $instruction);
+                }
             }
             $online_exam->category_id = $request->category;
             $online_exam->sub_category_id = $sub;
@@ -362,9 +371,9 @@ class OnlineQuizController extends Controller
 
         $rules = [
             'title.' . $code => 'required|max:255',
-            'instruction.' . $code => 'required',
+            // 'instruction.' . $code => 'required',
             'category' => 'required',
-            'percentage' => 'required',
+            'percentage' => 'required|max:100',
         ];
         $this->validate($request, $rules, validationMessage($rules));
 
@@ -383,9 +392,14 @@ class OnlineQuizController extends Controller
             foreach ($request->title as $key => $title) {
                 $online_exam->setTranslation('title', $key, $title);
             }
-            foreach ($request->instruction as $key => $instruction) {
-                $online_exam->setTranslation('instruction', $key, $instruction);
+            if($request->has('instruction')){
+                foreach ($request->instruction as $key => $instruction) {
+                    $online_exam->setTranslation('instruction', $key, $instruction);
+                }
             }
+            else{
+                    $online_exam->instruction = '';
+                }
             $online_exam->group_id = $group;
             $online_exam->category_id = $request->category;
             $online_exam->sub_category_id = $sub;
@@ -518,9 +532,9 @@ class OnlineQuizController extends Controller
 
         $rules = [
             'title.' . $code => 'required|max:255',
-            'instruction.' . $code => 'required',
+            // 'instruction.' . $code => 'required',
             'category' => 'required',
-            'percentage' => 'required',
+            'percentage' => 'required|max:100',
         ];
 
         $this->validate($request, $rules, validationMessage($rules));
@@ -540,9 +554,14 @@ class OnlineQuizController extends Controller
             foreach ($request->title as $key => $title) {
                 $online_exam->setTranslation('title', $key, $title);
             }
-            foreach ($request->instruction as $key => $instruction) {
-                $online_exam->setTranslation('instruction', $key, $instruction);
+            if($request->has('instruction')){
+                foreach ($request->instruction as $key => $instruction) {
+                    $online_exam->setTranslation('instruction', $key, $instruction);
+                }
             }
+            else{
+                    $online_exam->instruction = '';
+                }
             $online_exam->category_id = $request->category;
             $online_exam->sub_category_id = $sub;
             $online_exam->group_id = $group;

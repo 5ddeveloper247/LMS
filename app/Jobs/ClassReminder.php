@@ -10,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Modules\VirtualClass\Entities\VirtualClass;
 use Modules\Zoom\Entities\ZoomMeeting;
+use Modules\Team\Entities\TeamMeeting;
 use Modules\CourseSetting\Entities\CourseEnrolled;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -42,20 +43,22 @@ class ClassReminder implements ShouldQueue
       ->where('class_day',$weekday)
       ->get();
       foreach ($classes_today as $class) {
-        $meeting = ZoomMeeting::where('date_of_meeting',$date_today->format('m/d/Y'))->where('class_id',$class->id)->first();
-        $shortcodes = array(
-          'course' => $class->course->slug,
-          'date' => $meeting->date_of_meeting,
-          'stime' => $class->time,
-          'etime' => $class->end_time,
-        //  'end_date' => $user->endate,
-          'link' => route('classStart', [$class->course->slug, 'Zoom', $meeting->id])
-      //    'link' => url('my-payment-plan-installment/'.$user->id.'?plan_id='.$user->plan_id)
-        );
-        $enrolled_users = CourseEnrolled::where('course_id',$class->course_id)->get();
-        foreach ($enrolled_users as $enroll) {
-          # code...
-          send_email($enroll->user,'Class_Reminder',$shortcodes);
+        $meeting = TeamMeeting::where('date_of_meeting',$date_today->format('m/d/Y'))->where('class_id',$class->id)->first();
+        if($meeting){
+          $shortcodes = array(
+            'course' => $class->course->slug,
+            'date' => $meeting->date_of_meeting,
+            'stime' => $class->time,
+            'etime' => $class->end_time,
+          //  'end_date' => $user->endate,
+            'link' => route('classStart', [$class->course->slug, 'Zoom', $meeting->id])
+        //    'link' => url('my-payment-plan-installment/'.$user->id.'?plan_id='.$user->plan_id)
+          );
+          $enrolled_users = CourseEnrolled::where('course_id',$class->course_id)->get();
+          foreach ($enrolled_users as $enroll) {
+            # code...
+            send_email($enroll->user,'Class_Reminder',$shortcodes);
+          }
         }
       }
 

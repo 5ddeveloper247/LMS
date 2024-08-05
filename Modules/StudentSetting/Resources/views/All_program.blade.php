@@ -369,7 +369,7 @@
             
             $('.custom_summernote').each(function (){
                 var elId = $(this).attr('id');
-                ClassicEditor
+                // ClassicEditor
                 .create( document.getElementById(elId),{
                     ckfinder: {
                         uploadUrl: "{{ route('ckeditor.upload',['_token' => csrf_token()]) }}",
@@ -456,8 +456,8 @@
 		language: 'en',
 		image: {
 			toolbar: [
-				'imageTextAlternative',
-				'toggleImageCaption',
+				// 'imageTextAlternative',
+				// 'toggleImageCaption',
 				'imageStyle:inline',
 				'imageStyle:block',
 				'imageStyle:side'
