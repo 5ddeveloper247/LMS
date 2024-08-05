@@ -643,7 +643,8 @@
                             <div class="primary_input mb-25">
                                 <label class="primary_input_label" for="">{{ __('courses.Price') }}</label>
                                 <input min="1" step="1" class="primary_input_field" name="price" placeholder="-" id="addPrice"
-                                    type="number" accept="/^1[1-9]{9}$/" value="{{ old('price') }}">
+                                    type="number" accept="/^1[1-9]{9}$/" value="{{ old('price') }}" 
+                                    @if(auth()->user()->role_id == 9) required @endif>
                             </div>
                         </div>
                         <div class="col-xl-6 courseBox mb_30">

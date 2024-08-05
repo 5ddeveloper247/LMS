@@ -317,13 +317,14 @@ class WebsiteController extends Controller
                 $isEnrolled = CourseEnrolled::where('program_id', $request->program_id)->where('user_id', Auth::id())->count();
                 if ($isEnrolled == 0 && $check_lesson->is_lock == 1) {
                     Toastr::error(trans('common.Access Denied').' Please Login and/or buy this Course/Program to access more material.', trans('common.Failed'));
-                    return redirect()->back();
+                    return redirect()->to(route('programs.detail',$request->program_id));
                 }
             } elseif ($request->has('courseType')) {
                 $isEnrolled = CourseEnrolled::where('course_id', $course_id)->where('course_type', $request->courseType)->where('user_id', Auth::id())->count();
+                $currentCourse = Course::find($course_id);
                 if ($isEnrolled == 0 && $check_lesson->is_lock == 1) {
                     Toastr::error(trans('common.Access Denied').' Please Login and/or buy this Course/Program to access more material.', trans('common.Failed'));
-                    return redirect()->back();
+                    return redirect()->to(route('courseDetailsView',['slug' => $currentCourse->slug, 'courseType' => $request->courseType]));
                 }
             } else {
                 $isEnrolled = true;
@@ -3119,6 +3120,7 @@ class WebsiteController extends Controller
                 $total_courses = Course::where('user_id',$request->user_id)->count();
                 if($total_courses > $PackagePricing->allowed_courses){
                   $disable_courses = Course::where('user_id',$request->user_id)->update(['status' => 0]);
+                  $allow_user_status_change = User::where('id',$request->user_id)->update(['can_change_status' => 1]);
                 }
 
                 //dd(PackagePurchasing::where('user_id', $request->user_id)->count());

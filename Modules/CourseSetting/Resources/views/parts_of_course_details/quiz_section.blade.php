@@ -346,7 +346,8 @@
                 errors.push('Percentage should be less than 100');
             }		
 	   	}
-
+        // console.log(errors,type);
+        // return false;
         if (errors.length) {
                     // console.log(errors);
                     $('.preloader').hide();

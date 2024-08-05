@@ -58,7 +58,7 @@
                                                 <small>(Max size
                                                     250 Characters)</small> *</label>
                                             <input class="primary_input_field @if($errors->first('subtitle')) border-danger @endif" name="subtitle" placeholder="-"
-                                                id="subtitle" maxlength="30" type="text"
+                                                id="subtitle" maxlength="250" type="text"
                                                 {{ $errors->has('title') ? 'autofocus' : '' }}
                                                 value="{{ old('subtitle') }}" maxlength="250" required>
                                         </div>
@@ -369,7 +369,7 @@
             
             $('.custom_summernote').each(function (){
                 var elId = $(this).attr('id');
-                // ClassicEditor
+                ClassicEditor
                 .create( document.getElementById(elId),{
                     ckfinder: {
                         uploadUrl: "{{ route('ckeditor.upload',['_token' => csrf_token()]) }}",

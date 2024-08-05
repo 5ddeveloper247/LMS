@@ -12821,6 +12821,10 @@ table.dataTable > tbody > tr.child ul.dtr-details > li{
     transition: .4s
 }
 
+.switch_toggle.disabled{
+    opacity:0.8;
+}
+
 .pulse {
     position: relative
 }

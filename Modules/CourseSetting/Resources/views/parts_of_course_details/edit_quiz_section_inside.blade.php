@@ -31,6 +31,8 @@
     <input type="hidden" name="chapterId" value="{{@$chapter->id}}">
     <input type="hidden" name="lesson_id" value="{{@$editLesson->id}}">
     <input type="hidden" name="quiz_id" value="{{@$editLesson->lessonQuiz->id}}">
+    {{-- <input type="hidden" name="type" value="2"> --}}
+    
     <div class="row">
         <div class="col-lg-12">
 
@@ -65,6 +67,17 @@
             </span>
                     @endif
                 </div> --}}
+                    <div class="input-effect mt-2 pt-1 mb-30 d-none">
+                           <div class="col-xl-6 ">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="radio" name="type"
+                                           value="2" checked>
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
 
 
                 @php
@@ -96,7 +109,7 @@
                     <div class="col-lg-12">
                         <div class="input-effect">
                             <label class="primary_input_label mt-1" for="">{{__('quiz.Minimum Percentage')}} *</label>
-                            <input {{ $errors->has('title') ? ' percentage' : '' }}
+                            <input 
                                    class="primary_input_field name{{ $errors->has('percentage') ? ' is-invalid' : '' }}"
                                    type="number" name="percentage" autocomplete="off"
                                    min="0" max="100" required

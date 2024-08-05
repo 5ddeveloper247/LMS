@@ -311,6 +311,7 @@ class CourseSettingController extends Controller
             // 'image' => 'nullable|mimes:jpeg,bmp,png,jpg|max:4096',
             // 'hidden_file' => 'nullable|mimes:jpeg,bmp,png,jpg|max:4096',
             //         	'parent_course_thumbnail_image' => 'required|mimes:jpeg,bmp,png,jpg|max:4096',
+            'price' => 'required_if:type,==,9'
         ];
         $this->validate($request, $rules, validationMessage($rules));
         if ($request->type == 1) {
@@ -520,7 +521,7 @@ class CourseSettingController extends Controller
                 $course->what_learn1 = $request->what_learn1;
                 $course->what_learn2 = $request->what_learn2;
             }
-            $course->status = 1;
+            $course->status = ($request->type == 9) ? 0 : 1;
             if ($request->type == 7) {
                 $course->time_table_id = $request->timetable;
             }

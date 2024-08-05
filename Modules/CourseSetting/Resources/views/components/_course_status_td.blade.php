@@ -20,9 +20,10 @@
         $checked = $query->status == 1 ? "checked" : "";
     @endphp
 
-    <label class="switch_toggle" for="active_checkbox{{$query->id}}">
+    <label class="switch_toggle @if(auth()->user()->role_id==9 && auth()->user()->can_change_status == 0) disabled @endif" for="active_checkbox{{$query->id}}">
         <input type="checkbox" class="{{$status_enable_eisable}}"
                id="active_checkbox{{$query->id}}" value="{{$query->id}}"
+            @if(auth()->user()->role_id==9 && auth()->user()->can_change_status == 0) disabled @endif
             {{$checked}}><i class="slider round"></i></label>
 @else
     {{$query->status == 1 ? trans('common.Approved') : trans('common.Pending')}}

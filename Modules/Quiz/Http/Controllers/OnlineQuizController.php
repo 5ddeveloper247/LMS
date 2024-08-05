@@ -311,13 +311,10 @@ class OnlineQuizController extends Controller
     public function CourseQuizUpdate(Request $request)
     {
 
-        if (demoCheck()) {
-            return redirect()->back();
-        }
         $rules = [
             'title.en' => 'required|max:100',
            // 'category' => 'required',
-            'percentage' => 'required|max:100',
+            'percentage' => 'required|numeric|max:100',
             // 'instruction.en' => 'required'
         ];
         $this->validate($request, $rules, validationMessage($rules));
@@ -352,7 +349,7 @@ class OnlineQuizController extends Controller
             DB::commit();
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
-            return redirect()->route('courseDetails', $request->course_id);
+            return redirect()->route('courseDetails', ['id' => $request->course_id, 'type' => 'courses']);
         } catch (\Exception $e) {
             Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
             return redirect()->back();

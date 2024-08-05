@@ -85,6 +85,7 @@ class AjaxController extends Controller
                     }
 
                     if($current_package && $total_courses >= (int)$current_package->course_limit){
+                        $allow_user_status_change = User::where('id',$request->user_id)->update(['can_change_status' => 0]);
                         return response()->json(['error' => 'The current package does not allow more courses. Please delete or disable some course to enable this course.']);
                     }
                 }

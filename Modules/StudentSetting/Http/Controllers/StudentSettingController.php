@@ -210,7 +210,7 @@ class StudentSettingController extends Controller
 
         $rules = [
             'ProgramTitle' => 'required|max:100|unique:programs',
-            'subtitle' => 'required|max:200',
+            'subtitle' => 'required|max:250',
             'image' => 'required|mimes:png,jpg,jpeg',
 //            'totalcost' => 'required',
 //            'duration' => 'required',
@@ -281,8 +281,8 @@ class StudentSettingController extends Controller
     {
 
         $rules = [
-            'ProgramTitle' => 'required|max:30|unique:programs,programtitle,' . $request->id,
-            'subtitle' => 'required|max:30',
+            'ProgramTitle' => 'required|max:100|unique:programs,programtitle,' . $request->id,
+            'subtitle' => 'required|max:250',
 //            'totalcost' => 'required',
 //            'duration' => 'required',
             'image' => 'nullable|mimes:png,jpg,jpeg',

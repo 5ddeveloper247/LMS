@@ -54,9 +54,9 @@
 
                                         <div class="primary_input mb-25">
                                             <label class="primary_input_label" for="">Program Title <small>(Max size
-                                                    30 Characters)</small> *</label>
+                                                    100 Characters)</small> *</label>
                                             <input class="primary_input_field" name="ProgramTitle" placeholder="-"
-                                                   id="addTitle" maxlength="30" type="text"
+                                                   id="addTitle" maxlength="100" type="text"
 
                                                    value="{{ $progaram->programtitle }}">
                                         </div>
@@ -68,9 +68,9 @@
                                         <div class="primary_input mb-25">
                                             <label class="primary_input_label" for="">Program
                                                 subtitle/greetings <small>(Max size
-                                                    30 Characters)</small> *</label>
+                                                    250 Characters)</small> *</label>
                                             <input class="primary_input_field" name="subtitle" placeholder="-"
-                                                   id="subtitle" maxlength="30" type="text"
+                                                   id="subtitle" maxlength="250" type="text"
 
                                                    value="{{ $progaram->subtitle }}">
                                         </div>
