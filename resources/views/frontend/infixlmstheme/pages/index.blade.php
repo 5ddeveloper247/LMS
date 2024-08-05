@@ -77,9 +77,11 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
+
     .accordion::-webkit-scrollbar {
         display: none;
     }
+
     .section-header {
         width: 100%;
         color: var(--system_secendory_color);
@@ -1359,18 +1361,18 @@
         background: #D3D3D3;
     }
 
-    .for-main {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
-
     .for-border {
-        min-height: 238px;
+        min-height: auto;
         border: 0px;
         border-left: 1px solid #D3D3D3;
         padding-left: 20px;
         min-width: 82%;
+    }
+
+    .for-main-2nd {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
     }
 
     .icons-style {
@@ -1447,11 +1449,6 @@
     .percent-video img {
         clip-path: polygon(26% 0, 100% 0, 100% 100%, 0 100%);
     }
-
-    /* .percent-video {
-        padding-right: 0.3rem !important;
-
-    } */
 
     .percent-h {
         color: var(--system_secendory_color);
@@ -1943,7 +1940,12 @@
         .text-custom-height {
             -webkit-line-clamp: 2 !important;
         }
-
+        .for-main{
+            gap: 2rem;
+        }
+        .for-main-2nd{
+            gap: 2rem !important;
+        }
         .for-focus {
             width: 73px !important;
         }
@@ -1978,10 +1980,6 @@
             font-size: 12px;
         }
 
-        .for-border {
-            min-height: auto !important;
-        }
-
         .card-date {
             left: 5px !important;
             background-color: white !important;
@@ -2014,13 +2012,6 @@
         }
     }
 
-    @media (min-width: 576px) and (max-width: 767px) {
-        .for-border {
-            min-height: auto !important;
-        }
-
-    }
-
     @media (min-width: 768px) {
         .responsive-style-btn {
             padding: 10px 0 !important;
@@ -2034,19 +2025,17 @@
         .rts-section a {
             font-size: 14px;
         }
-        .event-date span{
+
+        .event-date span {
             font-size: 13px !important;
         }
+
         .video-container {
             height: 450px !important;
         }
 
         .shadow_ist {
             height: 450px !important;
-        }
-
-        .for-label {
-            font-size: 12px !important;
         }
 
         .online-learning {
@@ -2097,10 +2086,6 @@
             padding: 4px 9px !important;
         }
 
-        .for-main-2nd {
-            gap: 3rem;
-        }
-
         .for-backcolor-row {
             gap: 1.5rem;
         }
@@ -2140,10 +2125,6 @@
             height: 400px !important;
         }
 
-        /* .old_row {
-            height: 400px;
-        } */
-
         .main_banner_2 {
             height: 200px !important;
         }
@@ -2152,7 +2133,10 @@
         .for-label1,
         .heading-responsive-style,
         .content-features2-hh,
-        .card-title, .rts-section-title, .event-title, .rts-section-title {
+        .card-title,
+        .rts-section-title,
+        .event-title,
+        .rts-section-title {
             font-size: 16px !important;
         }
 
@@ -2268,7 +2252,7 @@
         .about-img {
             max-height: 330px !important;
         }
-       
+
         .percent-video {
             max-height: 520px !important;
         }
@@ -2292,10 +2276,14 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1023px) {
-        .content-features-btn, .custom-button-call-to-action, .Faq-btn{
+
+        .content-features-btn,
+        .custom-button-call-to-action,
+        .Faq-btn {
             font-size: 14px !important;
             padding: .2rem .6rem !important;
         }
+
         .video-container {
             height: 550px !important;
         }
@@ -2306,10 +2294,6 @@
 
         .percent1 {
             margin: 0 -103px 1.5rem 160px;
-        }
-
-        .for-border {
-            min-height: 260px !important;
         }
 
         .about_us_image {
@@ -2407,9 +2391,12 @@
     }
 
     @media only screen and (min-width: 1024px) and (max-width: 1279px) {
-        .about_us_img2, .about_us_img1{
+
+        .about_us_img2,
+        .about_us_img1 {
             height: 450px;
         }
+
         /* .video-container {
             height: 500px !important;
         } */
@@ -2428,10 +2415,6 @@
 
         .about_us {
             height: auto !important;
-        }
-
-        .for-border {
-            min-height: 292px !important;
         }
 
         .main_banner-section {
@@ -2490,24 +2473,21 @@
             height: 630px !important;
         }
 
-        .shadow_ist{
+        .shadow_ist {
             height: 630px !important;
         }
+
         .video-container {
-        height: 630px !important;
-    }
+            height: 630px !important;
+        }
 
         .main_banner_2 {
             height: 315px !important;
-            
+
         }
 
         .cta_area {
             height: 600px !important;
-        }
-
-        .for-border {
-            min-height: 180px !important;
         }
 
         .card-shadow {
@@ -2731,9 +2711,11 @@
         .card-date {
             font-size: 18px !important;
         }
-        .card-date2{
+
+        .card-date2 {
             font-size: 18px !important;
         }
+
         .image-date {
             font-size: 18px !important;
         }
@@ -2836,13 +2818,7 @@
         }
 
         .percent-video {
-            /* max-height: 820px;
-            min-height: 820px; */
             padding: 0px 20px 0px 0px !important;
-        }
-
-        .for-border {
-            min-width: 92%;
         }
 
         .percent_wrapper {
@@ -3033,9 +3009,12 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="col-6 @if(!isset($random_program)) col-md-12 order-md-2 @endif random_program_data_2 height-card main_banner_2">
-                            <div class="d-flex flex-column h-100 justify-content-center py-3 py-md-0 pl-md-2 pl-4 text-center align-items-center">
-                                <h5 class="font-weight-bold custom_heading_2 heading-responsive-style mb-4" @if(!isset($random_program)) style="font-size:1.8rem" @endif>
+                        <div
+                            class="col-6 @if (!isset($random_program)) col-md-12 order-md-2 @endif random_program_data_2 height-card main_banner_2">
+                            <div
+                                class="d-flex flex-column h-100 justify-content-center py-3 py-md-0 pl-md-2 pl-4 text-center align-items-center">
+                                <h5 class="font-weight-bold custom_heading_2 heading-responsive-style mb-4"
+                                    @if (!isset($random_program)) style="font-size:1.8rem" @endif>
                                     Accelerate Your Future
                                     <br>
                                     Learn New Things
@@ -3048,7 +3027,8 @@
                                     Courses</a>
                             </div>
                         </div>
-                        <div class="col-6 @if(!isset($random_program)) col-md-12 order-md-1 @endif height-card random_program_data_1 px-0 main_banner_2">
+                        <div
+                            class="col-6 @if (!isset($random_program)) col-md-12 order-md-1 @endif height-card random_program_data_1 px-0 main_banner_2">
                             {{-- <div class=""> --}}
                             <img src="{{ asset('/public/assets/lms/homepage-leftimg.png') }}" alt=""
                                 class="w-100 h-100 imgcls img-fluid" style="object-fit: cover;">
@@ -3075,13 +3055,14 @@
             <div class="row px-xl-5 main-content-feature ">
                 <div class="col-md-5 px-md-0">
                     <div class="content-features p-lg-5 px-4 py-4">
-                        <div class="content-features1 px-xl-4 px-md-3">
-                            <h2 class="content-features-h font-weight-bold">BEYOND KNOWLEDGE, EDUCATION TRANSFORMS LIVES
-                                ANYWHERE</h2>
-                            <p class="content-features-p">We understand that life doesn't always stop for education. That's
-                                why we offer a truly
-                                affordable and flexible learning experience that fits your schedule and lifestyle.</p>
-                            <a href="{{ route('about') }}"><button class="content-features-btn">How it
+                        <div class="content-features1 px-md-2">
+                            <h2 class="content-features-h font-weight-bold">TUTORS & MENTORS</h2>
+                            <h6 class="text-capitalize">Don't Just Study for the NCLEX-RN, Excel With It!</h6>
+                            <p class="content-features-p">Elevate your nursing education with Merkaii Xcellence Prep's
+                                personalized tutoring and mentorship. Achieve your academic goals, conquer Nursing School
+                                Courses and Exams, NCLEX- RN & PN, HESI, TEAS, ATI, other Healthcare Exams and unlock a
+                                fulfilling nursing career.</p>
+                            <a href="{{ route('about') }}"><button class="content-features-btn mt-lg-3">How it
                                     Works</button></a>
                         </div>
                     </div>
@@ -3090,19 +3071,21 @@
                     <div class="col-md-12 content-features2 d-lg-flex ">
                         <div class="col-lg-6 col-12 px-2 content-feature1 hidden hidden-left">
                             <h2 class="content-features2-h font-weight-bold">01</h2>
-                            <h5 class="content-features2-hh font-weight-bold">Are You Struggling in Your <br>Nursing
-                                Program?
+                            <h5 class="content-features2-hh font-weight-bold">Personal Enrichment for <br>the Aspiring
+                                Nurse!
                             </h5>
-                            <p class="content-features2-p">Feeling overwhelmed or bewildered by the material? You may catch
-                                up, understand, and succeed in nursing classes with our support.</p>
+                            <p class="content-features2-p">Knowledge is power, but a great tutor is your superpower! Our
+                                mentors go beyond textbooks, expert tutors are your life rafts, igniting your passion for
+                                nursing and empowering you to reach your full potential. </p>
                         </div>
                         <div class="col-lg-6 col-12 px-2 content-feature1 hidden hidden-right">
                             <h2 class="content-features2-h font-weight-bold">02</h2>
-                            <h5 class=" content-features2-hh font-weight-bold">Fail to Apply Knowledge to <br>NCLEX
-                                Questions?
+                            <h5 class=" content-features2-hh font-weight-bold">Are You Struggling in Your <br>Nursing
+                                Program?
                             </h5>
-                            <p class="content-features2-p">Knowledge is only half the battle. We can educate you about
-                                NCLEX exam methods and how to use your knowledge.</p>
+                            <p class="content-features2-p">Feeling bewildered by the material! Don’t drown in a sea of
+                                Textbooks. We can identify your deficiencies, boost your understanding, provide personalized
+                                assistance, and help you excel and succeed in healthcare classes.</p>
 
                         </div>
                     </div>
@@ -3111,18 +3094,22 @@
                         <div class="col-lg-6 col-12 content-feature1 px-2 hidden hidden-left">
                             <h2 class="content-features2-h font-weight-bold">03
                             </h2>
-                            <h5 class="content-features2-hh font-weight-bold">Having Trouble Passing the<br> HESI Exit Exam?
+                            <h5 class="content-features2-hh font-weight-bold">Not Sure Where to Start <br> with Healthcare
+                                Examination Prep?
                             </h5>
-                            <p class="content-features2-p">Don't let HESI stop your healthcare career. Helping you gain the
-                                skills and knowledge you need to confidently pass the exam.</p>
+                            <p class="content-features2-p">Don't waste time navigating prep materials alone! Our
+                                personalized tutoring helps you develop a targeted study plan and conquer Nursing School
+                                courses and NCLEX Examinations with confidence.</p>
                         </div>
                         <div class="col-lg-6 col-12 content-feature1 px-2 hidden hidden-right">
                             <h2 class="content-features2-h font-weight-bold">04
                             </h2>
-                            <h5 class="content-features2-hh font-weight-bold">Healthcare Course <br>Failure?
+                            <h5 class="content-features2-hh font-weight-bold">Does Test Anxiety Taking Over or Feeling
+                                Apprehensive Before Exams?
                             </h5>
-                            <p class="content-features2-p">Return to form! We can identify your deficiencies, provide
-                                personalized assistance, and help you succeed in healthcare classes.</p>
+                            <p class="content-features2-p">We've all been there. Relax, take a deep breath, we’ve got your
+                                back. You’ll learn how to conquer test anxiety and ace the NCLEX-RN & PN with our
+                                personalized tutoring and proven strategies.</p>
                         </div>
 
                     </div>
@@ -3133,21 +3120,22 @@
 
                             <h2 class="content-features2-h font-weight-bold">05
                             </h2>
-                            <h5 class="content-features2-hh font-weight-bold">Do You Get Test Anxiety or<br> Feel
-                                Apprehensive Before Exams?
+                            <h5 class="content-features2-hh font-weight-bold">Having Trouble Passing Nursing <br> Entrance
+                                & Exit Exams?
                             </h5>
-                            <p class="content-features2-p">You'll learn how to control test anxiety and ace healthcare
-                                tests. </p>
+                            <p class="content-features2-p">Don't let HESI, TEAS & ATI stop your healthcare dream career.
+                                Merkaii Prep will help you gain the knowledge, skills and application needed to confidently
+                                pass your exam. </p>
                         </div>
 
                         <div class="col-lg-6 col-12 content-feature1 px-2 hidden hidden-right">
                             <h2 class="content-features2-h font-weight-bold">06
                             </h2>
-                            <h5 class="content-features2-hh font-weight-bold">Need Help Starting Your<br> Healthcare
-                                Journey?
+                            <h5 class="content-features2-hh font-weight-bold">Feeling Lost in a Sea of <br>Information?
                             </h5>
-                            <p class="content-features2-p">We can assist with program selection and entrance exam
-                                preparation. Let us help you start your healthcare career. </p>
+                            <p class="content-features2-p">Feeling overwhelmed by nursing school resources? Our mentors are
+                                your compass, guiding you through the complexities of nursing education and personal
+                                enrichment. </p>
                         </div>
                     </div>
                 </div>
@@ -3941,721 +3929,751 @@
                 <div class="col-lg-4 col-sm-12 for-main px-lg-2 mb-sm-3 mb-md-0">
                     <div>
                         <label class="for-label">WHY JOIN MERKAII XCELLENCE PREP</label>
-                        <h2 class="custom_small_heading for-bold font-weight-bold">Unbound Learning: Your Healthcare
-                            Education, Anywhere
+                        <h2 class="custom_small_heading for-bold font-weight-bold">FLORIDA BOARD OF NURSING REMEDIAL
+                            PROGRAM
                         </h2>
-                        <p class="for-para custom_paragraph mb-2">At Merkaii Xcellence, we understand that life doesn't
-                            always
-                            stop
-                            for education. That's why we offer a
-                            truly flexible learning experience that fits your schedule and lifestyle. Study on your
-                            terms, whether you're at home, traveling the world, or juggling a busy work life.</p>
+                        <h6>Struggling to Pass the NCLEX-RN After 3 Attempts? </h6>
+                        <p class="for-para custom_paragraph mb-2">Taking the NCLEX-RN can be challenging, but it doesn't
+                            have to be an insurmountable obstacle. Don't Give Up! Merkaii’s Florida Board of Nursing
+                            approved remedial course provides the personalized support and targeted strategies you need to
+                            succeed. With our help, you'll be well on your way to achieving your nursing career goals and
+                            licensure. Become the Registered Nurse You Were Meant to Be.</p>
 
-                        <p class="for-para custom_paragraph "><span class="font-weight-bold">Our global reach</span>
+                        {{-- <p class="for-para custom_paragraph "><span class="font-weight-bold">Our global reach</span>
                             means you can join a vibrant community of learners from over 35
                             countries. Plus, with our pioneering approach to online healthcare education, you can be
                             confident you're receiving a top-notch education, no matter your location. <span
                                 class="font-weight-bold">So, wherever
-                                you go, your education goes with you.</span></p>
+                                you go, your education goes with you.</span></p> --}}
                     </div>
                 </div>
                 <!-- 2nd 1st-side-->
-                <div class="col-lg-8 d-flex flex-column flex-md-row for-main-2nd mt-md-4 mt-lg-0">
-                    <div class="col-md-6 for-main">
-                        <div class="d-flex for-element">
-                            <svg class="for-flexibility" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"
-                                xml:space="preserve">
-                                <switch>
-                                    <g>
-                                        <circle fill="#382B73" cx="500" cy="500" r="398" />
-                                        <circle fill="#473080" cx="500" cy="500" r="346" />
-                                        <path fill="#382B73"
-                                            d="M765 500.8H574.3c-10.4 0-19.2 6.3-23 15.3l-4-2.3v-26.5c12.7-5.4 24.5-13 34.6-22.3 10.4-9.6 19.2-21 25.7-33.6 3.9-7.5 6.9-15.4 9.1-23.5 1.2.2 2.5.4 3.8.4 11.2 0 20.3-9.1 20.3-20.3v-30.9c0-11.2-9.1-20.3-20.3-20.3-.4-2.7-.9-5.4-1.7-8.1-3.3-16.7-10.1-32.6-19.9-46.4-2.9-4.1-6-8-9.4-11.7-16.7-18.3-38.9-31.2-63.1-36.6-6.8-1.5-13.7-2.4-20.7-2.7-12.4-.6-24.9.8-36.9 4-3.3.9-6.7 1.9-9.9 3.1-6.8 2.5-13.4 5.6-19.7 9.2-2.9 1.7-5.8 3.6-8.6 5.5-2.6 1.8-5.3 3.7-7.7 5.8-1 .8-2 1.7-3 2.6-15.4 13.6-27.4 31.3-34.1 50.8-1.9 5.4-3.4 10.9-4.5 16.5-.7 2.7-1.3 5.4-1.7 8.1h-.1c-11.2 0-20.3 9.1-20.3 20.3v30.9c0 11.2 9.1 20.3 20.3 20.3 1.3 0 2.6-.1 3.8-.4 3.8 13.7 10 26.8 18.3 38.4 8.2 11.4 18.4 21.4 30 29.4 6.7 4.6 13.8 8.5 21.2 11.6V514v-.1l-31.3 17.6h-41.1c-52.3 0-94.8 42.4-94.8 94.8v78.4c16.2 18.8 34.8 35.4 55.3 49.4 5.9 4 11.9 7.8 18.1 11.3 5.4 3.1 11 6.1 16.6 8.8 14.7 7.2 30 13.1 45.6 17.7 16.2 4.7 32.9 7.9 49.7 9.6 17.2 1.8 34.7 2 51.9.6 17-1.4 33.8-4.2 50.3-8.6 15.8-4.2 31.2-9.8 46-16.7 1.8-.8 3.6-1.7 5.4-2.6 5.6-2.7 11.2-5.7 16.6-8.8 12.1-7 23.6-14.8 34.6-23.4l4.5-3.6c1.5-1.2 3.1-2.4 4.5-3.8 10.4-9 20.2-18.7 29.2-29.1h.6v-10H765c13.8 0 25-11.2 25-25V525.8c0-13.8-11.2-25-25-25z" />
-                                        <path fill="#D1D3D4"
-                                            d="M723.6 547.1c-8.7 0-16.9 2.1-24.1 5.7V545c0-8.3-6.7-15-15-15h-93.8c-8.3 0-15 6.7-15 15v100.4c0 8.3 6.7 15 15 15h93.8c3.8 0 7.4-1.5 10-3.8 2.2-1.9 3.8-4.5 4.5-7.4 7.4 3.8 15.7 5.9 24.6 5.9 29.8 0 54-24.2 54-54s-24.2-54-54-54z" />
-                                        <path fill="#FFF"
-                                            d="M452.8 447.4h94.4v114.5h-94.4zM379.6 388.3c-11.2 0-20.3-9.1-20.3-20.3v-30.9c0-11.2 9.1-20.3 20.3-20.3 11.2 0 20.3 9.1 20.3 20.3V368c-.1 11.2-9.1 20.3-20.3 20.3z" />
-                                        <path fill="#D1D3D4"
-                                            d="M379.6 378.7c-11.2 0-20.3-9.1-20.3-20.3v9.5c0 11.2 9.1 20.3 20.3 20.3 11.2 0 20.3-9.1 20.3-20.3v-9.5c-.1 11.2-9.1 20.3-20.3 20.3z" />
-                                        <path fill="#FFF"
-                                            d="M620.4 388.3c-11.2 0-20.3-9.1-20.3-20.3v-30.9c0-11.2 9.1-20.3 20.3-20.3 11.2 0 20.3 9.1 20.3 20.3V368c0 11.2-9.1 20.3-20.3 20.3z" />
-                                        <path fill="#D1D3D4"
-                                            d="M620.4 378.7c-11.2 0-20.3-9.1-20.3-20.3v9.5c0 11.2 9.1 20.3 20.3 20.3 11.2 0 20.3-9.1 20.3-20.3v-9.5c0 11.2-9.1 20.3-20.3 20.3z" />
-                                        <path fill="#FFF"
-                                            d="M381.3 308.8c3.9-20.2 12.9-38.5 25.5-53.8 3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.4 0 2.8 0 4.2.1h1.4c31.2 1.4 59.3 14.6 79.9 35.3 18.4 18.4 30.9 42.7 34.4 69.9.7 5.1 1 10.3 1 15.6v24c0 66.8-54.1 120.9-120.9 120.9-66.8 0-120.9-54.1-120.9-120.9v-24c0-5.1.3-10.2.9-15.2l1.3-8z" />
-                                        <path fill="#D1D3D4"
-                                            d="M500 457.8c-66.8 0-120.9-54.1-120.9-120.9V356c0 66.8 54.1 120.9 120.9 120.9 66.8 0 120.9-54.1 120.9-120.9v-19.1c0 66.8-54.1 120.9-120.9 120.9z" />
-                                        <path fill="#E7AD27"
-                                            d="M381.3 308.8h11.5v57.9c0 3.8-2.9 7.1-6.7 7.2-3.9.1-7.1-3-7.1-6.9v-41.7c.1-5.6.8-11.2 2.3-16.5zM618.7 308.8c1.5 5.1 2.2 10.3 2.2 15.6V367c0 3.8-3.3 6.9-7.4 6.9-4.1 0-7.4-3.1-7.4-6.9v-58.2h12.6z" />
-                                        <path fill="#E7AD27"
-                                            d="M504.2 211.2c-12.2 19.1-42.5 60.4-91.6 89.4-11.8 7-22.7 12.3-32.5 16.3 2.9-23.3 12.5-44.6 26.8-61.8 3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.3-.1 2.7-.1 4.1 0z" />
-                                        <path fill="#FEDE3A"
-                                            d="M619.9 316.4c-16.5 5-48.9 9.7-100.4-3.8C467.4 299 427.9 272 406.8 255c3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.9 0 3.7 0 5.6.1 31.2 1.4 59.3 14.6 79.9 35.3 18.4 18.4 30.9 42.8 34.4 69.9z" />
-                                        <path fill="#E7AD27"
-                                            d="M519.5 241.9c-22.8-6-43.2-14.5-60.7-23.6-15 5.4-28.6 13.7-40.2 24.3-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-3.2-25.2-14.3-48-30.6-65.8-17.5.8-40.6-1-69.8-8.7z" />
-                                        <path fill="#FEDE3A"
-                                            d="M519.5 265.5c-33.3-8.7-61.5-22.9-83-36.4-6.4 3.9-12.4 8.5-17.9 13.5-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-2-15.8-7.1-30.6-14.6-43.8-18.5 2.9-46.6 3.1-85.8-7.1z" />
-                                        <path fill="#E7AD27"
-                                            d="M519.5 289.1c-42.7-11.2-77-31.3-99.6-47.6-.4.4-.9.8-1.3 1.2-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-1-7.6-2.7-15.1-5.1-22.2-17.6 4.2-48.6 7-95.3-5.2zM500 396c-7.4 0-13.4-6-13.4-13.4V365c0-7.4 6-13.4 13.4-13.4s13.4 6 13.4 13.4v17.6c0 7.4-6 13.4-13.4 13.4z" />
-                                        <path fill="#1CAEE4"
-                                            d="M714.5 614.4v70.2c-9.2 10.7-19.2 20.7-29.9 29.9-.1.1-.2.1-.2.2-10.9 9.4-22.5 17.9-34.8 25.6-29.6 18.5-62.9 31.6-98.5 38.1-6.5 1.2-13.1 2.1-19.8 2.9-6.4.7-12.9 1.2-19.4 1.5-2.6.1-5.1.2-7.7.2H496c-2.6 0-5.2-.1-7.7-.2-6.6-.3-13-.8-19.5-1.5-6.7-.7-13.4-1.7-20-2.9-35.5-6.5-68.7-19.6-98.3-38.1-5.6-3.5-11.1-7.2-16.4-11.1-6.4-4.6-12.6-9.6-18.6-14.7-10.7-9.2-20.7-19.2-29.9-29.9v-78.4c0-52.4 42.5-94.8 94.8-94.8h41.1l31.4 103h94.2l31.4-103h41.1c52.3 0 94.8 42.4 94.8 94.8l.1 8.2z" />
-                                        <path fill="#136DA0"
-                                            d="M641 745.4c-5.4 3.1-11 6.1-16.6 8.8L641 631.9v113.5zM375.5 754.2c-5.6-2.8-11.2-5.7-16.6-8.8V631.9l16.6 122.3z" />
-                                        <path fill="#A72973"
-                                            d="m550.1 604.6-26.2 85.8-.5 1.6-5.9 19.3-4.3 14.2-5.9 19.3L503 759l-3 9.9-3.7-12.1-5.3-17.3-7.2-23.6-5.3-17.4-2.4-7.9-26.2-86 50.1-42.7z" />
-                                        <g fill="#E7AD27">
-                                            <circle cx="443.8" cy="341.3" r="10.2" />
-                                            <circle cx="556.2" cy="341.3" r="10.2" />
-                                        </g>
+                <div class="col-lg-8 for-main-2nd mt-md-4 mt-lg-0">
+                    <div class="row for-main">
+                        <div class="col-md-6">
+                            {{-- 1 --}}
+                            <div class="d-flex for-element">
+                                <svg class="for-flexibility" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"
+                                    xml:space="preserve">
+                                    <switch>
                                         <g>
-                                            <path fill="#E7AD27"
-                                                d="M500 433.6c-13 0-26-4.9-35.9-14.8-2-2-2-5.1 0-7.1s5.1-2 7.1 0c15.9 15.9 41.8 15.9 57.6 0 2-2 5.1-2 7.1 0s2 5.1 0 7.1c-9.9 9.9-22.9 14.8-35.9 14.8z" />
-                                        </g>
-                                        <g>
-                                            <path fill="#E7AD27"
-                                                d="m523.9 690.4-1.3-14.3-1.9-21.8-1.4-16.1-3.4-38.7h-31.8l-2.3 26.4-1.3 15.2-1.9 20.6-1.3 15.2-1.2 13.7 2.4 7.9 5.3 17.4 7.2 23.6 5.3 17.3 3.7 12.1 3-9.9 4.3-14.2 5.9-19.3 4.3-14.2 5.9-19.3z" />
-                                            <path fill="#FEDE3A"
-                                                d="m520.7 654.3-40.3-13.2 1.4-15.2 37.5 12.3zM523.9 690.4l-1.3-14.3-44-14.4-1.3 15.2 46.1 15.1zM517.5 711.3l-4.3 14.2-29.4-9.6-5.3-17.4zM507.3 744.8 503 759l-6.7-2.2-5.3-17.3z" />
-                                        </g>
-                                        <path fill="#FEDE3A"
-                                            d="M510.9 614.4h-21.7c-12.3 0-20.7-12.3-16.4-23.7l6.7-17.5c2.6-6.8 9.1-11.3 16.4-11.3h8.4c7.3 0 13.8 4.5 16.4 11.3l6.7 17.5c4.2 11.4-4.3 23.7-16.5 23.7z" />
-                                        <path fill="#EF5A9D"
-                                            d="m578.5 511.5-31.3-17.7-47.2 68.1 50.1 42.7zM421.5 511.5l31.3-17.7 47.2 68.1-50.1 42.7z" />
-                                        <path fill="#136DA0"
-                                            d="m578.5 511.5 25.9 82.7c.9 3-.6 6.2-3.6 7.3l-20.1 7.6c-5.1 1.9-5.1 9.1-.1 11l24.8 9.8c3.7 1.5 5 6.2 2.4 9.3L500 768.9l78.5-257.4zM421.5 511.5l-25.9 82.7c-.9 3 .6 6.2 3.6 7.3l20.1 7.6c5.1 1.9 5.1 9.1.1 11l-24.8 9.8c-3.7 1.5-5 6.2-2.4 9.3L500 768.9l-78.5-257.4z" />
-                                        <path fill="#D1D3D4"
-                                            d="M547.1 480.8 500 532.3l-47.2-51.5v13l47.2 68.1 47.2-68.1z" />
-                                        <path fill="#136DA0"
-                                            d="M630 723.2h-29c-6.1 0-11-4.9-11-11s4.9-11 11-11h29c6.1 0 11 4.9 11 11s-4.9 11-11 11zM619.6 521.5h-41.1l-29.3 95.9v37c0 17.1 13.9 31 31 31h134.1v-69.2c.1-52.3-42.3-94.7-94.7-94.7z" />
-                                        <path fill="#FFF"
-                                            d="M765 675.4H574.3c-13.8 0-25-11.2-25-25V505.8c0-13.8 11.2-25 25-25H765c13.8 0 25 11.2 25 25v144.6c0 13.8-11.2 25-25 25z" />
-                                        <path fill="#D1D3D4"
-                                            d="M723.6 556.5c-8.9 0-17.2 2.6-24.1 7.1v-18.7c0-8.3-6.7-15-15-15h-93.8c-8.3 0-15 6.7-15 15v100.4c0 8.3 6.7 15 15 15h93.8c3.8 0 7.4-1.5 10-3.8 3.1-2.8 5-6.7 5-11.2v-6.8c7 4.5 15.2 7.1 24.1 7.1 24.6 0 44.6-20 44.6-44.6s-20-44.5-44.6-44.5z" />
-                                        <g>
-                                            <path fill="#FEDE3A"
-                                                d="M699.5 534.9v100.4c0 4.4-1.9 8.4-5 11.2-2.6 2.4-6.2 3.8-10 3.8h-93.8c-8.3 0-15-6.7-15-15V534.9c0-8.3 6.7-15 15-15h93.8c8.3 0 15 6.8 15 15z" />
-                                            <path fill="#E7AD27"
-                                                d="M684.5 643.7h-93.8c-8.3 0-15-6.7-15-15v6.7c0 8.3 6.7 15 15 15h93.8c8.3 0 15-6.7 15-15v-6.7c0 8.3-6.7 15-15 15z" />
-                                            <path fill="#FFF335"
-                                                d="M684.5 520h-93.8c-8.3 0-15 6.7-15 15v5.9c0-8.3 6.7-15 15-15h93.8c8.3 0 15 6.7 15 15V535c0-8.3-6.7-15-15-15z" />
-                                            <g fill="#EF5A9D">
-                                                <path
-                                                    d="M600.8 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c.1 2.7-2.2 5-5 5zM625.7 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c0 2.7-2.2 5-5 5zM650.5 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c.1 2.7-2.2 5-5 5zM675.4 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c0 2.7-2.2 5-5 5z" />
-                                            </g>
-                                            <g fill="#FFF">
-                                                <path
-                                                    d="M593 545h23.7v23.7H593zM625.8 545h23.7v23.7h-23.7zM658.5 545h23.7v23.7h-23.7z" />
-                                            </g>
-                                            <g fill="#FFF">
-                                                <path
-                                                    d="M593 576.5h23.7v23.7H593zM625.8 576.5h23.7v23.7h-23.7zM658.5 576.5h23.7v23.7h-23.7z" />
-                                            </g>
-                                            <g fill="#FFF">
-                                                <path
-                                                    d="M593 608.1h23.7v23.7H593zM625.8 608.1h23.7v23.7h-23.7zM658.5 608.1h23.7v23.7h-23.7z" />
-                                            </g>
-                                        </g>
-                                        <path fill="#E7AD27"
-                                            d="M699.5 552.7v82.6c0 4.4-1.9 8.4-5 11.2-15-9.6-24.9-26.4-24.9-45.5 0-21.1 12.2-39.4 29.9-48.3z" />
-                                        <g>
-                                            <circle fill="#136DA0" cx="723.6" cy="591.1" r="44.6" />
-                                        </g>
-                                        <g>
+                                            <circle fill="#382B73" cx="500" cy="500" r="398" />
+                                            <circle fill="#473080" cx="500" cy="500" r="346" />
+                                            <path fill="#382B73"
+                                                d="M765 500.8H574.3c-10.4 0-19.2 6.3-23 15.3l-4-2.3v-26.5c12.7-5.4 24.5-13 34.6-22.3 10.4-9.6 19.2-21 25.7-33.6 3.9-7.5 6.9-15.4 9.1-23.5 1.2.2 2.5.4 3.8.4 11.2 0 20.3-9.1 20.3-20.3v-30.9c0-11.2-9.1-20.3-20.3-20.3-.4-2.7-.9-5.4-1.7-8.1-3.3-16.7-10.1-32.6-19.9-46.4-2.9-4.1-6-8-9.4-11.7-16.7-18.3-38.9-31.2-63.1-36.6-6.8-1.5-13.7-2.4-20.7-2.7-12.4-.6-24.9.8-36.9 4-3.3.9-6.7 1.9-9.9 3.1-6.8 2.5-13.4 5.6-19.7 9.2-2.9 1.7-5.8 3.6-8.6 5.5-2.6 1.8-5.3 3.7-7.7 5.8-1 .8-2 1.7-3 2.6-15.4 13.6-27.4 31.3-34.1 50.8-1.9 5.4-3.4 10.9-4.5 16.5-.7 2.7-1.3 5.4-1.7 8.1h-.1c-11.2 0-20.3 9.1-20.3 20.3v30.9c0 11.2 9.1 20.3 20.3 20.3 1.3 0 2.6-.1 3.8-.4 3.8 13.7 10 26.8 18.3 38.4 8.2 11.4 18.4 21.4 30 29.4 6.7 4.6 13.8 8.5 21.2 11.6V514v-.1l-31.3 17.6h-41.1c-52.3 0-94.8 42.4-94.8 94.8v78.4c16.2 18.8 34.8 35.4 55.3 49.4 5.9 4 11.9 7.8 18.1 11.3 5.4 3.1 11 6.1 16.6 8.8 14.7 7.2 30 13.1 45.6 17.7 16.2 4.7 32.9 7.9 49.7 9.6 17.2 1.8 34.7 2 51.9.6 17-1.4 33.8-4.2 50.3-8.6 15.8-4.2 31.2-9.8 46-16.7 1.8-.8 3.6-1.7 5.4-2.6 5.6-2.7 11.2-5.7 16.6-8.8 12.1-7 23.6-14.8 34.6-23.4l4.5-3.6c1.5-1.2 3.1-2.4 4.5-3.8 10.4-9 20.2-18.7 29.2-29.1h.6v-10H765c13.8 0 25-11.2 25-25V525.8c0-13.8-11.2-25-25-25z" />
+                                            <path fill="#D1D3D4"
+                                                d="M723.6 547.1c-8.7 0-16.9 2.1-24.1 5.7V545c0-8.3-6.7-15-15-15h-93.8c-8.3 0-15 6.7-15 15v100.4c0 8.3 6.7 15 15 15h93.8c3.8 0 7.4-1.5 10-3.8 2.2-1.9 3.8-4.5 4.5-7.4 7.4 3.8 15.7 5.9 24.6 5.9 29.8 0 54-24.2 54-54s-24.2-54-54-54z" />
                                             <path fill="#FFF"
-                                                d="M737 605.9c-1 0-2.1-.3-3-1l-13.4-9.8c-1.3-.9-2-2.4-2-4v-28.2c0-2.8 2.2-5 5-5s5 2.2 5 5v25.7l11.3 8.3c2.2 1.6 2.7 4.8 1.1 7-.9 1.3-2.5 2-4 2z" />
+                                                d="M452.8 447.4h94.4v114.5h-94.4zM379.6 388.3c-11.2 0-20.3-9.1-20.3-20.3v-30.9c0-11.2 9.1-20.3 20.3-20.3 11.2 0 20.3 9.1 20.3 20.3V368c-.1 11.2-9.1 20.3-20.3 20.3z" />
+                                            <path fill="#D1D3D4"
+                                                d="M379.6 378.7c-11.2 0-20.3-9.1-20.3-20.3v9.5c0 11.2 9.1 20.3 20.3 20.3 11.2 0 20.3-9.1 20.3-20.3v-9.5c-.1 11.2-9.1 20.3-20.3 20.3z" />
+                                            <path fill="#FFF"
+                                                d="M620.4 388.3c-11.2 0-20.3-9.1-20.3-20.3v-30.9c0-11.2 9.1-20.3 20.3-20.3 11.2 0 20.3 9.1 20.3 20.3V368c0 11.2-9.1 20.3-20.3 20.3z" />
+                                            <path fill="#D1D3D4"
+                                                d="M620.4 378.7c-11.2 0-20.3-9.1-20.3-20.3v9.5c0 11.2 9.1 20.3 20.3 20.3 11.2 0 20.3-9.1 20.3-20.3v-9.5c0 11.2-9.1 20.3-20.3 20.3z" />
+                                            <path fill="#FFF"
+                                                d="M381.3 308.8c3.9-20.2 12.9-38.5 25.5-53.8 3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.4 0 2.8 0 4.2.1h1.4c31.2 1.4 59.3 14.6 79.9 35.3 18.4 18.4 30.9 42.7 34.4 69.9.7 5.1 1 10.3 1 15.6v24c0 66.8-54.1 120.9-120.9 120.9-66.8 0-120.9-54.1-120.9-120.9v-24c0-5.1.3-10.2.9-15.2l1.3-8z" />
+                                            <path fill="#D1D3D4"
+                                                d="M500 457.8c-66.8 0-120.9-54.1-120.9-120.9V356c0 66.8 54.1 120.9 120.9 120.9 66.8 0 120.9-54.1 120.9-120.9v-19.1c0 66.8-54.1 120.9-120.9 120.9z" />
+                                            <path fill="#E7AD27"
+                                                d="M381.3 308.8h11.5v57.9c0 3.8-2.9 7.1-6.7 7.2-3.9.1-7.1-3-7.1-6.9v-41.7c.1-5.6.8-11.2 2.3-16.5zM618.7 308.8c1.5 5.1 2.2 10.3 2.2 15.6V367c0 3.8-3.3 6.9-7.4 6.9-4.1 0-7.4-3.1-7.4-6.9v-58.2h12.6z" />
+                                            <path fill="#E7AD27"
+                                                d="M504.2 211.2c-12.2 19.1-42.5 60.4-91.6 89.4-11.8 7-22.7 12.3-32.5 16.3 2.9-23.3 12.5-44.6 26.8-61.8 3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.3-.1 2.7-.1 4.1 0z" />
+                                            <path fill="#FEDE3A"
+                                                d="M619.9 316.4c-16.5 5-48.9 9.7-100.4-3.8C467.4 299 427.9 272 406.8 255c3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.9 0 3.7 0 5.6.1 31.2 1.4 59.3 14.6 79.9 35.3 18.4 18.4 30.9 42.8 34.4 69.9z" />
+                                            <path fill="#E7AD27"
+                                                d="M519.5 241.9c-22.8-6-43.2-14.5-60.7-23.6-15 5.4-28.6 13.7-40.2 24.3-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-3.2-25.2-14.3-48-30.6-65.8-17.5.8-40.6-1-69.8-8.7z" />
+                                            <path fill="#FEDE3A"
+                                                d="M519.5 265.5c-33.3-8.7-61.5-22.9-83-36.4-6.4 3.9-12.4 8.5-17.9 13.5-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-2-15.8-7.1-30.6-14.6-43.8-18.5 2.9-46.6 3.1-85.8-7.1z" />
+                                            <path fill="#E7AD27"
+                                                d="M519.5 289.1c-42.7-11.2-77-31.3-99.6-47.6-.4.4-.9.8-1.3 1.2-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-1-7.6-2.7-15.1-5.1-22.2-17.6 4.2-48.6 7-95.3-5.2zM500 396c-7.4 0-13.4-6-13.4-13.4V365c0-7.4 6-13.4 13.4-13.4s13.4 6 13.4 13.4v17.6c0 7.4-6 13.4-13.4 13.4z" />
+                                            <path fill="#1CAEE4"
+                                                d="M714.5 614.4v70.2c-9.2 10.7-19.2 20.7-29.9 29.9-.1.1-.2.1-.2.2-10.9 9.4-22.5 17.9-34.8 25.6-29.6 18.5-62.9 31.6-98.5 38.1-6.5 1.2-13.1 2.1-19.8 2.9-6.4.7-12.9 1.2-19.4 1.5-2.6.1-5.1.2-7.7.2H496c-2.6 0-5.2-.1-7.7-.2-6.6-.3-13-.8-19.5-1.5-6.7-.7-13.4-1.7-20-2.9-35.5-6.5-68.7-19.6-98.3-38.1-5.6-3.5-11.1-7.2-16.4-11.1-6.4-4.6-12.6-9.6-18.6-14.7-10.7-9.2-20.7-19.2-29.9-29.9v-78.4c0-52.4 42.5-94.8 94.8-94.8h41.1l31.4 103h94.2l31.4-103h41.1c52.3 0 94.8 42.4 94.8 94.8l.1 8.2z" />
+                                            <path fill="#136DA0"
+                                                d="M641 745.4c-5.4 3.1-11 6.1-16.6 8.8L641 631.9v113.5zM375.5 754.2c-5.6-2.8-11.2-5.7-16.6-8.8V631.9l16.6 122.3z" />
+                                            <path fill="#A72973"
+                                                d="m550.1 604.6-26.2 85.8-.5 1.6-5.9 19.3-4.3 14.2-5.9 19.3L503 759l-3 9.9-3.7-12.1-5.3-17.3-7.2-23.6-5.3-17.4-2.4-7.9-26.2-86 50.1-42.7z" />
+                                            <g fill="#E7AD27">
+                                                <circle cx="443.8" cy="341.3" r="10.2" />
+                                                <circle cx="556.2" cy="341.3" r="10.2" />
+                                            </g>
+                                            <g>
+                                                <path fill="#E7AD27"
+                                                    d="M500 433.6c-13 0-26-4.9-35.9-14.8-2-2-2-5.1 0-7.1s5.1-2 7.1 0c15.9 15.9 41.8 15.9 57.6 0 2-2 5.1-2 7.1 0s2 5.1 0 7.1c-9.9 9.9-22.9 14.8-35.9 14.8z" />
+                                            </g>
+                                            <g>
+                                                <path fill="#E7AD27"
+                                                    d="m523.9 690.4-1.3-14.3-1.9-21.8-1.4-16.1-3.4-38.7h-31.8l-2.3 26.4-1.3 15.2-1.9 20.6-1.3 15.2-1.2 13.7 2.4 7.9 5.3 17.4 7.2 23.6 5.3 17.3 3.7 12.1 3-9.9 4.3-14.2 5.9-19.3 4.3-14.2 5.9-19.3z" />
+                                                <path fill="#FEDE3A"
+                                                    d="m520.7 654.3-40.3-13.2 1.4-15.2 37.5 12.3zM523.9 690.4l-1.3-14.3-44-14.4-1.3 15.2 46.1 15.1zM517.5 711.3l-4.3 14.2-29.4-9.6-5.3-17.4zM507.3 744.8 503 759l-6.7-2.2-5.3-17.3z" />
+                                            </g>
+                                            <path fill="#FEDE3A"
+                                                d="M510.9 614.4h-21.7c-12.3 0-20.7-12.3-16.4-23.7l6.7-17.5c2.6-6.8 9.1-11.3 16.4-11.3h8.4c7.3 0 13.8 4.5 16.4 11.3l6.7 17.5c4.2 11.4-4.3 23.7-16.5 23.7z" />
+                                            <path fill="#EF5A9D"
+                                                d="m578.5 511.5-31.3-17.7-47.2 68.1 50.1 42.7zM421.5 511.5l31.3-17.7 47.2 68.1-50.1 42.7z" />
+                                            <path fill="#136DA0"
+                                                d="m578.5 511.5 25.9 82.7c.9 3-.6 6.2-3.6 7.3l-20.1 7.6c-5.1 1.9-5.1 9.1-.1 11l24.8 9.8c3.7 1.5 5 6.2 2.4 9.3L500 768.9l78.5-257.4zM421.5 511.5l-25.9 82.7c-.9 3 .6 6.2 3.6 7.3l20.1 7.6c5.1 1.9 5.1 9.1.1 11l-24.8 9.8c-3.7 1.5-5 6.2-2.4 9.3L500 768.9l-78.5-257.4z" />
+                                            <path fill="#D1D3D4"
+                                                d="M547.1 480.8 500 532.3l-47.2-51.5v13l47.2 68.1 47.2-68.1z" />
+                                            <path fill="#136DA0"
+                                                d="M630 723.2h-29c-6.1 0-11-4.9-11-11s4.9-11 11-11h29c6.1 0 11 4.9 11 11s-4.9 11-11 11zM619.6 521.5h-41.1l-29.3 95.9v37c0 17.1 13.9 31 31 31h134.1v-69.2c.1-52.3-42.3-94.7-94.7-94.7z" />
+                                            <path fill="#FFF"
+                                                d="M765 675.4H574.3c-13.8 0-25-11.2-25-25V505.8c0-13.8 11.2-25 25-25H765c13.8 0 25 11.2 25 25v144.6c0 13.8-11.2 25-25 25z" />
+                                            <path fill="#D1D3D4"
+                                                d="M723.6 556.5c-8.9 0-17.2 2.6-24.1 7.1v-18.7c0-8.3-6.7-15-15-15h-93.8c-8.3 0-15 6.7-15 15v100.4c0 8.3 6.7 15 15 15h93.8c3.8 0 7.4-1.5 10-3.8 3.1-2.8 5-6.7 5-11.2v-6.8c7 4.5 15.2 7.1 24.1 7.1 24.6 0 44.6-20 44.6-44.6s-20-44.5-44.6-44.5z" />
+                                            <g>
+                                                <path fill="#FEDE3A"
+                                                    d="M699.5 534.9v100.4c0 4.4-1.9 8.4-5 11.2-2.6 2.4-6.2 3.8-10 3.8h-93.8c-8.3 0-15-6.7-15-15V534.9c0-8.3 6.7-15 15-15h93.8c8.3 0 15 6.8 15 15z" />
+                                                <path fill="#E7AD27"
+                                                    d="M684.5 643.7h-93.8c-8.3 0-15-6.7-15-15v6.7c0 8.3 6.7 15 15 15h93.8c8.3 0 15-6.7 15-15v-6.7c0 8.3-6.7 15-15 15z" />
+                                                <path fill="#FFF335"
+                                                    d="M684.5 520h-93.8c-8.3 0-15 6.7-15 15v5.9c0-8.3 6.7-15 15-15h93.8c8.3 0 15 6.7 15 15V535c0-8.3-6.7-15-15-15z" />
+                                                <g fill="#EF5A9D">
+                                                    <path
+                                                        d="M600.8 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c.1 2.7-2.2 5-5 5zM625.7 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c0 2.7-2.2 5-5 5zM650.5 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c.1 2.7-2.2 5-5 5zM675.4 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c0 2.7-2.2 5-5 5z" />
+                                                </g>
+                                                <g fill="#FFF">
+                                                    <path
+                                                        d="M593 545h23.7v23.7H593zM625.8 545h23.7v23.7h-23.7zM658.5 545h23.7v23.7h-23.7z" />
+                                                </g>
+                                                <g fill="#FFF">
+                                                    <path
+                                                        d="M593 576.5h23.7v23.7H593zM625.8 576.5h23.7v23.7h-23.7zM658.5 576.5h23.7v23.7h-23.7z" />
+                                                </g>
+                                                <g fill="#FFF">
+                                                    <path
+                                                        d="M593 608.1h23.7v23.7H593zM625.8 608.1h23.7v23.7h-23.7zM658.5 608.1h23.7v23.7h-23.7z" />
+                                                </g>
+                                            </g>
+                                            <path fill="#E7AD27"
+                                                d="M699.5 552.7v82.6c0 4.4-1.9 8.4-5 11.2-15-9.6-24.9-26.4-24.9-45.5 0-21.1 12.2-39.4 29.9-48.3z" />
+                                            <g>
+                                                <circle fill="#136DA0" cx="723.6" cy="591.1" r="44.6" />
+                                            </g>
+                                            <g>
+                                                <path fill="#FFF"
+                                                    d="M737 605.9c-1 0-2.1-.3-3-1l-13.4-9.8c-1.3-.9-2-2.4-2-4v-28.2c0-2.8 2.2-5 5-5s5 2.2 5 5v25.7l11.3 8.3c2.2 1.6 2.7 4.8 1.1 7-.9 1.3-2.5 2-4 2z" />
+                                            </g>
                                         </g>
+                                    </switch>
+                                </svg>
+                                <div class="for-border ml-4">
+
+                                    <h5 class="for-label1 font-weight-bold">Stuck in NCLEX-RN Limbo? </h5>
+                                    <p class="for-para custom_paragraph pr-2"> Feeling frustrated after failing the
+                                        NCLEX-RN
+                                        three times or more? You're not alone. Our course is like a life raft, guiding you
+                                        confidently towards that RN license. </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{-- 2 --}}
+                        <div class="col-md-6 for-main">
+                            <div class="d-flex for-element">
+                                <svg class="for-global" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                    style="enable-background:new 0 0 256 256" xml:space="preserve">
+                                    <style>
+                                        .st2 {
+                                            fill: none;
+                                            stroke: #6b1d1d;
+                                            stroke-width: .5;
+                                            stroke-miterlimit: 10
+                                        }
+
+                                        .st3 {
+                                            fill: #3a312a
+                                        }
+
+                                        .st4 {
+                                            fill: #87796f
+                                        }
+
+                                        .st14 {
+                                            fill: #d7e057
+                                        }
+
+                                        .st19 {
+                                            fill: #fae6ca
+                                        }
+                                    </style>
+                                    <g id="Layer_1">
+                                        <path class="st4"
+                                            d="M222.145 180.568H33.355c-9.447 0-17.105-7.658-17.105-17.105V33.173c0-9.447 7.658-17.106 17.105-17.106h188.789c9.447 0 17.105 7.658 17.105 17.106v130.289c.001 9.447-7.657 17.106-17.104 17.106z" />
+                                        <path class="st3"
+                                            d="M222.145 182.068H33.355c-10.259 0-18.605-8.346-18.605-18.605V33.173c0-10.259 8.347-18.605 18.605-18.605h188.789c10.259 0 18.605 8.346 18.605 18.605v130.289c.001 10.26-8.346 18.606-18.604 18.606zm-188.79-164.5c-8.604 0-15.605 7-15.605 15.605v130.289c0 8.605 7.001 15.605 15.605 15.605h188.789c8.604 0 15.605-7.001 15.605-15.605V33.173c0-8.605-7.001-15.605-15.605-15.605H33.355z" />
+                                        <path class="st14"
+                                            d="M28.861 115.877v40.271c0 6.583 5.337 11.92 11.92 11.92h173.938c6.583 0 11.92-5.337 11.92-11.92V40.488c0-6.583-5.337-11.92-11.92-11.92H40.781c-6.583 0-11.92 5.337-11.92 11.92v75.389z" />
+                                        <path class="st3"
+                                            d="M214.719 169.568H40.781c-7.4 0-13.42-6.02-13.42-13.42v-40.271a1.5 1.5 0 1 1 3 0v40.271c0 5.746 4.675 10.42 10.42 10.42h173.938c5.745 0 10.42-4.674 10.42-10.42V40.488c0-5.746-4.675-10.42-10.42-10.42H40.781c-5.745 0-10.42 4.674-10.42 10.42v62.167a1.5 1.5 0 1 1-3 0V40.488c0-7.4 6.02-13.42 13.42-13.42h173.938c7.399 0 13.42 6.02 13.42 13.42v115.66c0 7.4-6.021 13.42-13.42 13.42z" />
+                                        <path class="st4" d="M113.438 180.568h28.625v35.593h-28.625z" />
+                                        <path class="st3"
+                                            d="M142.062 217.661h-28.625a1.5 1.5 0 0 1-1.5-1.5v-35.593a1.5 1.5 0 0 1 1.5-1.5h28.625a1.5 1.5 0 0 1 1.5 1.5v35.593a1.5 1.5 0 0 1-1.5 1.5zm-27.124-3h25.625v-32.593h-25.625v32.593z" />
+                                        <path class="st4"
+                                            d="M135.202 239.568h36.252c0-12.927-10.479-23.407-23.407-23.407h-40.593c-12.927 0-23.407 10.479-23.407 23.407h51.155z" />
+                                        <path class="st3"
+                                            d="M171.453 241.068h-36.252a1.5 1.5 0 1 1 0-3h34.701c-.773-11.382-10.28-20.407-21.855-20.407h-40.594c-11.575 0-21.082 9.024-21.855 20.407h36.033a1.5 1.5 0 1 1 0 3H84.047a1.5 1.5 0 0 1-1.5-1.5c0-13.733 11.173-24.907 24.906-24.907h40.594c13.733 0 24.906 11.173 24.906 24.907a1.5 1.5 0 0 1-1.5 1.5z" />
+                                        <path class="st14"
+                                            d="M47.421 203.402s3.408 12.659 13.222 13.246c0 0-13.1 4.525-13.321 14.202 0 0-2.579-13.572-12.925-14.059 0 0 12.05-1.825 13.024-13.389z" />
+                                        <path class="st3"
+                                            d="M47.321 232.349a1.502 1.502 0 0 1-1.473-1.217c-.023-.124-2.494-12.417-11.522-12.842a1.5 1.5 0 0 1-.155-2.982c.441-.069 10.895-1.817 11.754-12.032a1.501 1.501 0 0 1 2.943-.265c.031.116 3.259 11.626 11.863 12.141a1.5 1.5 0 0 1 .402 2.915c-.121.042-12.118 4.31-12.312 12.818a1.498 1.498 0 0 1-1.5 1.464zm-7.742-15.729c3.879 1.969 6.231 5.746 7.588 8.876 2.026-4.021 5.941-6.787 8.948-8.427-4.134-1.842-6.783-5.651-8.334-8.723-1.793 4.361-5.27 6.869-8.202 8.274z" />
+                                        <path class="st14"
+                                            d="M25.722 220.382s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0 0 8.524-1.291 9.212-9.471z" />
+                                        <path class="st3"
+                                            d="M25.651 241.297a1.5 1.5 0 0 1-1.473-1.22c-.016-.082-1.704-8.442-7.739-8.726a1.5 1.5 0 0 1-.154-2.982c.296-.047 7.363-1.243 7.942-8.114a1.501 1.501 0 0 1 1.361-1.368 1.506 1.506 0 0 1 1.582 1.102c.021.079 2.227 7.919 7.993 8.264a1.5 1.5 0 0 1 .4 2.916c-.081.028-8.282 2.953-8.412 8.662a1.5 1.5 0 0 1-1.5 1.466zm-4.519-11.527c2.108 1.333 3.524 3.394 4.447 5.28 1.376-2.232 3.515-3.872 5.365-4.973-2.287-1.269-3.885-3.35-4.941-5.224-1.174 2.287-3.016 3.876-4.871 4.917z" />
+                                        <path class="st14"
+                                            d="M25.722 193.725s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0-.001 8.524-1.292 9.212-9.471z" />
+                                        <path class="st3"
+                                            d="M25.651 214.64a1.5 1.5 0 0 1-1.473-1.22c-.016-.082-1.704-8.442-7.739-8.726a1.5 1.5 0 0 1-.154-2.982c.296-.047 7.363-1.243 7.942-8.114a1.501 1.501 0 0 1 1.361-1.368c.712-.061 1.392.4 1.582 1.103.038.138 2.249 7.92 7.993 8.263a1.5 1.5 0 0 1 .4 2.915c-.081.028-8.282 2.952-8.412 8.662a1.5 1.5 0 0 1-1.5 1.467zm-4.519-11.528c2.108 1.332 3.524 3.394 4.447 5.28 1.376-2.233 3.515-3.872 5.365-4.973-2.287-1.269-3.885-3.35-4.941-5.224-1.174 2.287-3.016 3.876-4.871 4.917z" />
+                                        <path class="st19"
+                                            d="M208.323 25.02a105.268 105.268 0 0 0-80.572 0v107.968a105.277 105.277 0 0 1 80.572 0V25.02z" />
+                                        <path class="st3"
+                                            d="M208.323 134.488c-.194 0-.39-.038-.574-.114-25.607-10.607-53.816-10.607-79.424 0a1.498 1.498 0 0 1-2.074-1.386V25.02a1.5 1.5 0 0 1 .926-1.386c26.35-10.914 55.371-10.914 81.721 0a1.5 1.5 0 0 1 .926 1.386v107.968a1.498 1.498 0 0 1-1.501 1.5zm-40.286-11.071c13.118 0 26.237 2.451 38.786 7.351V26.027c-25.053-10.104-52.52-10.104-77.572 0v104.741c12.549-4.901 25.668-7.351 38.786-7.351z" />
+                                        <path class="st19"
+                                            d="M127.749 25.02a105.268 105.268 0 0 0-80.572 0v107.968a105.277 105.277 0 0 1 80.572 0V25.02z" />
+                                        <path class="st3"
+                                            d="M127.749 134.488c-.194 0-.39-.038-.574-.114-25.607-10.607-53.816-10.607-79.424 0a1.498 1.498 0 0 1-2.074-1.386V25.02a1.5 1.5 0 0 1 .926-1.386c26.35-10.914 55.371-10.914 81.721 0 .561.232.926.779.926 1.386v107.968a1.498 1.498 0 0 1-1.501 1.5zm-40.286-11.071c13.118 0 26.237 2.451 38.786 7.351V26.027c-25.053-10.104-52.52-10.104-77.572 0v104.741c12.549-4.901 25.668-7.351 38.786-7.351z" />
+                                        <path class="st3"
+                                            d="M56.463 114.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 114.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 99.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 99.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 84.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.344 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 84.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.947-40.475-5.933-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 69.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 69.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.933-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 54.153a1.5 1.5 0 0 1-.443-2.933c20.566-6.346 42.313-6.345 62.885-.001a1.5 1.5 0 0 1-.885 2.868c-19.996-6.167-41.129-6.167-61.115 0a1.548 1.548 0 0 1-.442.066zM137.462 54.013a1.501 1.501 0 0 1-.436-2.936c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.476 1.476 0 0 1-.437.066zM56.463 39.153a1.5 1.5 0 0 1-.443-2.933c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.548 1.548 0 0 1-.442.066zM137.462 39.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065z" />
+                                        <circle cx="183.75" cy="183.932" r="56" style="fill:#8ac6dd" />
+                                        <path class="st3"
+                                            d="M183.75 241.432c-31.706 0-57.5-25.794-57.5-57.5s25.794-57.5 57.5-57.5 57.5 25.794 57.5 57.5-25.794 57.5-57.5 57.5zm0-112c-30.052 0-54.5 24.449-54.5 54.5s24.448 54.5 54.5 54.5 54.5-24.449 54.5-54.5-24.448-54.5-54.5-54.5z" />
+                                        <path class="st3"
+                                            d="M183.75 241.432c-21.474 0-38.943-25.794-38.943-57.5s17.47-57.5 38.943-57.5 38.943 25.794 38.943 57.5-17.469 57.5-38.943 57.5zm0-112c-19.819 0-35.943 24.449-35.943 54.5s16.124 54.5 35.943 54.5 35.943-24.449 35.943-54.5-16.124-54.5-35.943-54.5z" />
+                                        <path class="st3"
+                                            d="M183.75 241.432c-10.405 0-16.02-29.626-16.02-57.5s5.615-57.5 16.02-57.5 16.02 29.626 16.02 57.5-5.615 57.5-16.02 57.5zm0-112c-6.158 0-13.02 22.382-13.02 54.5 0 32.118 6.862 54.5 13.02 54.5s13.02-22.382 13.02-54.5c0-32.117-6.862-54.5-13.02-54.5z" />
+                                        <path class="st3"
+                                            d="M183.75 222.876c-31.706 0-57.5-17.47-57.5-38.944 0-21.474 25.794-38.943 57.5-38.943s57.5 17.47 57.5 38.943c0 21.474-25.794 38.944-57.5 38.944zm0-74.887c-30.052 0-54.5 16.124-54.5 35.943s24.448 35.944 54.5 35.944 54.5-16.124 54.5-35.944c0-19.819-24.448-35.943-54.5-35.943z" />
+                                        <path class="st3"
+                                            d="M183.75 199.953c-27.875 0-57.5-5.615-57.5-16.02s29.625-16.02 57.5-16.02 57.5 5.615 57.5 16.02-29.625 16.02-57.5 16.02zm0-29.041c-32.117 0-54.5 6.862-54.5 13.02 0 6.159 22.383 13.02 54.5 13.02s54.5-6.862 54.5-13.02c0-6.158-22.383-13.02-54.5-13.02z" />
+                                        <path
+                                            d="M214.719 30.068h-4.896V132.71a57.788 57.788 0 0 1 15.316 11.369V40.488c0-5.746-4.675-10.42-10.42-10.42z"
+                                            style="fill:#b9c239" />
                                     </g>
-                                </switch>
-                            </svg>
-                            <div class="for-border ml-4">
-
-                                <h5 class="for-label1 font-weight-bold">Flexible Learning Options</h5>
-                                <p class="for-para custom_paragraph pr-2"> At Merkaii’s we offer a blend of live online
-                                    courses, in-person sessions, and on-demand recordings, allowing you to choose the format
-                                    that best suits your learning style and schedule.</p>
-
+                                </svg>
+                                <div class="for-border ml-4">
+                                    <h5 class="for-label1 font-weight-bold">3rd Time's Not the Charm? </h5>
+                                    <p class="for-para custom_paragraph pr-2">Let's make it time you conquer the NCLEX-RN!
+                                        Our
+                                        targeted Florida Board of Nursing approved program identifies your weaknesses and
+                                        strengthens your foundation. </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-flex for-element">
-                            <svg class="for-quality" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
-                                style="enable-background:new 0 0 256 256" xml:space="preserve">
-                                <style>
-                                    .st2 {
-                                        fill: none;
-                                        stroke: #6b1d1d;
-                                        stroke-width: .5;
-                                        stroke-miterlimit: 10
-                                    }
 
-                                    .st3 {
-                                        fill: #3a312a
-                                    }
+                    </div>
 
-                                    .st4 {
-                                        fill: #87796f
-                                    }
+                    {{-- 2nd row --}}
+                    <div class="row for-main">
+                        <div class="col-md-6">
+                            <div class="d-flex for-element">
+                                <svg class="for-quality" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                    style="enable-background:new 0 0 256 256" xml:space="preserve">
+                                    <style>
+                                        .st2 {
+                                            fill: none;
+                                            stroke: #6b1d1d;
+                                            stroke-width: .5;
+                                            stroke-miterlimit: 10
+                                        }
 
-                                    .st8 {
-                                        fill: #f16c7a
-                                    }
+                                        .st3 {
+                                            fill: #3a312a
+                                        }
 
-                                    .st9 {
-                                        fill: #8ac6dd
-                                    }
+                                        .st4 {
+                                            fill: #87796f
+                                        }
 
-                                    .st14 {
-                                        fill: #d7e057
-                                    }
-                                </style>
-                                <g id="Layer_1">
-                                    <path class="st4"
-                                        d="M222.395 180.635H33.605c-9.447 0-17.105-7.658-17.105-17.105V33.241c0-9.447 7.658-17.106 17.105-17.106h188.789c9.447 0 17.105 7.659 17.105 17.106V163.53c.001 9.447-7.657 17.105-17.104 17.105z" />
-                                    <path class="st3"
-                                        d="M222.395 182.135H33.605C23.347 182.135 15 173.789 15 163.53V33.241c0-10.259 8.347-18.605 18.605-18.605h188.789c10.259 0 18.605 8.346 18.605 18.605V163.53c.001 10.259-8.346 18.605-18.604 18.605zm-188.79-164.5c-8.604 0-15.605 7-15.605 15.605v130.29c0 8.605 7.001 15.605 15.605 15.605h188.789c8.604 0 15.605-7.001 15.605-15.605V33.241c0-8.605-7.001-15.605-15.605-15.605H33.605z" />
-                                    <path class="st14"
-                                        d="M86.201 28.635h-45.17c-6.583 0-11.92 5.337-11.92 11.92v115.66c0 6.583 5.337 11.92 11.92 11.92h173.938c6.583 0 11.92-5.337 11.92-11.92V40.555c0-6.583-5.337-11.92-11.92-11.92H86.201z" />
-                                    <path class="st3"
-                                        d="M214.969 169.635H41.031c-7.4 0-13.42-6.02-13.42-13.42V40.555c0-7.4 6.02-13.42 13.42-13.42h45.17a1.5 1.5 0 1 1 0 3h-45.17c-5.745 0-10.42 4.674-10.42 10.42v115.66c0 5.746 4.675 10.42 10.42 10.42h173.938c5.745 0 10.42-4.674 10.42-10.42V40.555c0-5.746-4.675-10.42-10.42-10.42H99.799a1.5 1.5 0 1 1 0-3h115.17c7.399 0 13.42 6.02 13.42 13.42v115.66c0 7.4-6.021 13.42-13.42 13.42z" />
-                                    <path class="st4" d="M113.688 180.635h28.625v35.593h-28.625z" />
-                                    <path class="st3"
-                                        d="M142.312 217.729h-28.625a1.5 1.5 0 0 1-1.5-1.5v-35.593a1.5 1.5 0 0 1 1.5-1.5h28.625a1.5 1.5 0 0 1 1.5 1.5v35.593a1.5 1.5 0 0 1-1.5 1.5zm-27.124-3h25.625v-32.593h-25.625v32.593z" />
-                                    <path class="st4"
-                                        d="M135.452 239.635h36.252c0-12.927-10.479-23.407-23.407-23.407h-40.593c-12.927 0-23.407 10.48-23.407 23.407h51.155z" />
-                                    <path class="st3"
-                                        d="M171.703 241.135h-36.252a1.5 1.5 0 1 1 0-3h34.701c-.773-11.382-10.28-20.407-21.855-20.407h-40.594c-11.575 0-21.082 9.024-21.855 20.407h36.033a1.5 1.5 0 1 1 0 3H84.297a1.5 1.5 0 0 1-1.5-1.5c0-13.733 11.173-24.907 24.906-24.907h40.594c13.733 0 24.906 11.173 24.906 24.907a1.5 1.5 0 0 1-1.5 1.5z" />
-                                    <path class="st14"
-                                        d="M226.278 203.469s3.408 12.659 13.222 13.247c0 0-13.1 4.525-13.321 14.202 0 0-2.579-13.572-12.925-14.059 0 0 12.05-1.826 13.024-13.39z" />
-                                    <path class="st3"
-                                        d="M226.178 232.417a1.502 1.502 0 0 1-1.473-1.217c-.023-.124-2.494-12.418-11.521-12.842a1.5 1.5 0 0 1-.155-2.981c.441-.069 10.895-1.817 11.754-12.033a1.5 1.5 0 0 1 2.943-.265c.031.116 3.259 11.626 11.863 12.141a1.501 1.501 0 0 1 .402 2.915c-.121.042-12.119 4.311-12.312 12.819a1.5 1.5 0 0 1-1.375 1.46l-.126.003zm-7.742-15.729c3.878 1.969 6.231 5.746 7.587 8.876 2.026-4.021 5.941-6.787 8.949-8.427-4.135-1.842-6.783-5.651-8.334-8.722-1.792 4.36-5.271 6.868-8.202 8.273z" />
-                                    <path class="st14"
-                                        d="M204.579 220.45s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0 0 8.524-1.292 9.212-9.471z" />
-                                    <path class="st3"
-                                        d="M204.508 241.365a1.5 1.5 0 0 1-1.473-1.22c-.016-.081-1.703-8.441-7.738-8.726a1.5 1.5 0 0 1-.155-2.982c.296-.047 7.363-1.243 7.941-8.114a1.5 1.5 0 0 1 2.942-.266c.022.079 2.229 7.92 7.995 8.265a1.5 1.5 0 0 1 .399 2.915c-.08.028-8.282 2.952-8.412 8.662a1.5 1.5 0 0 1-1.499 1.466zm-4.519-11.528c2.106 1.333 3.523 3.395 4.447 5.28 1.376-2.232 3.515-3.872 5.364-4.972-2.286-1.27-3.884-3.35-4.941-5.224-1.173 2.286-3.014 3.875-4.87 4.916z" />
-                                    <path class="st14"
-                                        d="M204.579 193.792s2.411 8.954 9.352 9.37c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0-.001 8.524-1.292 9.212-9.472z" />
-                                    <path class="st3"
-                                        d="M204.508 214.708a1.5 1.5 0 0 1-1.473-1.22c-.016-.081-1.703-8.442-7.738-8.726a1.5 1.5 0 0 1-.155-2.982c.296-.047 7.363-1.243 7.941-8.113a1.5 1.5 0 0 1 2.942-.266c.022.079 2.229 7.919 7.995 8.264a1.5 1.5 0 0 1 .4 2.915c-.081.028-8.283 2.953-8.413 8.662a1.5 1.5 0 0 1-1.499 1.466zm-4.519-11.528c2.107 1.333 3.523 3.394 4.447 5.28 1.376-2.232 3.515-3.872 5.364-4.973-2.286-1.269-3.884-3.35-4.941-5.224-1.173 2.287-3.014 3.875-4.87 4.917z" />
-                                    <path
-                                        d="M214.97 30.135h-15c5.74 0 10.42 4.67 10.42 10.42v115.66c0 5.75-4.68 10.42-10.42 10.42h15c5.74 0 10.42-4.67 10.42-10.42V40.555c0-5.75-4.68-10.42-10.42-10.42z"
-                                        style="fill:#b9c239" />
-                                    <path class="st9"
-                                        d="M170.44 95.613v32.03c0 4.5-3.645 8.145-8.145 8.145H90.687a8.143 8.143 0 0 1-8.145-8.145v-32.03l43.949 22.353 43.949-22.353z" />
-                                    <path class="st3"
-                                        d="M162.296 137.288H90.687c-5.318 0-9.645-4.327-9.645-9.645v-32.03a1.501 1.501 0 0 1 2.18-1.337l43.27 22.007 43.269-22.007a1.5 1.5 0 0 1 2.18 1.337v32.03c-.001 5.318-4.327 9.645-9.645 9.645zm-78.254-39.23v29.585a6.653 6.653 0 0 0 6.645 6.645h71.608a6.653 6.653 0 0 0 6.645-6.645V98.058l-41.77 21.245a1.494 1.494 0 0 1-1.359 0L84.042 98.058z" />
-                                    <path class="st9" d="M126.491 50.699 60.366 84.332l66.125 33.633 66.125-33.633z" />
-                                    <path class="st3"
-                                        d="M126.491 119.465c-.233 0-.467-.054-.68-.163L59.686 85.669a1.498 1.498 0 0 1 0-2.674l66.125-33.633a1.494 1.494 0 0 1 1.359 0l66.125 33.633a1.498 1.498 0 0 1 0 2.674l-66.125 33.633a1.483 1.483 0 0 1-.679.163zM63.675 84.332l62.816 31.95 62.816-31.95-62.816-31.95-62.816 31.95z" />
-                                    <path class="st8"
-                                        d="M192.616 84.332v40.965c-1.693-2.177-3.984-3.516-6.516-3.516-2.516 0-4.806 1.339-6.5 3.516V90.945l13.016-6.613z" />
-                                    <path class="st3"
-                                        d="M192.616 126.797a1.5 1.5 0 0 1-1.184-.579c-1.474-1.894-3.367-2.937-5.332-2.937-1.955 0-3.843 1.043-5.316 2.937a1.502 1.502 0 0 1-2.684-.921V90.945a1.5 1.5 0 0 1 .82-1.337l13.016-6.613a1.5 1.5 0 0 1 2.18 1.337v40.965a1.5 1.5 0 0 1-1.5 1.5zm-6.515-6.516c1.775 0 3.485.541 5.016 1.562V86.777l-10.016 5.088v29.977c1.526-1.02 3.231-1.561 5-1.561z" />
-                                    <ellipse class="st8" cx="186.105" cy="134.798" rx="9.528"
-                                        ry="13.014" />
-                                    <path class="st3"
-                                        d="M186.105 149.312c-6.081 0-11.028-6.511-11.028-14.515 0-8.003 4.947-14.514 11.028-14.514s11.028 6.511 11.028 14.514c.001 8.004-4.947 14.515-11.028 14.515zm0-26.029c-4.427 0-8.028 5.165-8.028 11.514 0 6.349 3.602 11.515 8.028 11.515 4.427 0 8.028-5.165 8.028-11.515.001-6.349-3.601-11.514-8.028-11.514z" />
-                                    <path class="st8"
-                                        d="m19.95 207.283-3.07 3.069V239.6h61.504l4.588-4.588-45.375-45.376-6.822 6.822z" />
-                                    <path class="st3"
-                                        d="M78.385 241.1H16.881a1.5 1.5 0 0 1-1.5-1.5v-29.248c0-.398.158-.779.439-1.06l3.069-3.069a1.5 1.5 0 1 1 2.121 2.121l-2.63 2.63V238.1h59.383l3.088-3.088-43.255-43.254-5.761 5.761a1.5 1.5 0 1 1-2.121-2.121l6.821-6.822c.562-.562 1.559-.562 2.121 0l45.376 45.376a1.5 1.5 0 0 1 0 2.121l-4.588 4.588c-.28.281-.662.439-1.059.439z" />
-                                    <path class="st9"
-                                        d="m72.914 187.843-11.131-11.131a7.962 7.962 0 0 0-11.261 0l-12.924 12.924 45.376 45.376 12.924-12.924a7.962 7.962 0 0 0 0-11.261l-12.611-12.611-10.373-10.373z" />
-                                    <path class="st3"
-                                        d="M82.973 236.512c-.398 0-.779-.158-1.061-.439l-45.376-45.376a1.5 1.5 0 0 1 0-2.122l12.925-12.924a9.397 9.397 0 0 1 6.691-2.772 9.4 9.4 0 0 1 6.691 2.772l11.132 11.131 22.982 22.983a9.397 9.397 0 0 1 2.772 6.691 9.397 9.397 0 0 1-2.772 6.691l-12.924 12.924a1.494 1.494 0 0 1-1.06.441zm-43.255-46.876 43.255 43.255 11.863-11.864a6.421 6.421 0 0 0 1.894-4.57 6.417 6.417 0 0 0-1.894-4.569l-34.114-34.115a6.42 6.42 0 0 0-4.569-1.893c-1.726 0-3.35.672-4.57 1.893l-11.865 11.863z" />
-                                    <path class="st4"
-                                        d="M87.087 212.077a6.007 6.007 0 1 1-8.495 8.494 6.007 6.007 0 0 1 8.495-8.494z" />
-                                    <path class="st3"
-                                        d="M82.839 223.827a7.485 7.485 0 0 1-5.308-2.195c-2.927-2.927-2.927-7.689 0-10.616 2.927-2.927 7.691-2.926 10.616 0 2.927 2.927 2.927 7.689 0 10.616a7.481 7.481 0 0 1-5.308 2.195zm.001-12.008a4.495 4.495 0 0 0-3.188 1.318 4.512 4.512 0 0 0 0 6.373 4.514 4.514 0 0 0 6.374 0 4.512 4.512 0 0 0 0-6.373 4.496 4.496 0 0 0-3.186-1.318z" />
-                                    <path
-                                        d="m125.162 102.789-15.099 15.099-17.205 17.205-4.114 4.114a5.282 5.282 0 0 1-7.47 0L69.107 127.04c-4.166-4.166-10.922-4.166-15.084-.005a10.658 10.658 0 0 0 .005 15.083l9.414 9.414a12.819 12.819 0 0 1 2.435 14.727l-4.826 9.816c.253.193.496.407.729.64l34.116 34.116c.104.104.198.208.298.308l1.984-1.181a138.166 138.166 0 0 0 26.457-20.455c.064-.064.129-.119.193-.184l18.397-18.397a7.569 7.569 0 0 0 0-10.704l-.069-.069a7.569 7.569 0 0 0-10.704 0l3.66-3.661a7.569 7.569 0 0 0 0-10.704l-.07-.07a7.569 7.569 0 0 0-10.704 0l3.66-3.661a7.569 7.569 0 0 0 0-10.704l-.069-.069c-2.909-2.909-7.591-2.949-10.557-.133l17.574-17.574a7.627 7.627 0 0 0 0-10.785 7.624 7.624 0 0 0-10.784.001z"
-                                        style="fill:#fce8cb" />
-                                    <path class="st3"
-                                        d="M96.194 212.638c-.39 0-.774-.151-1.064-.442l-.297-.308-34.113-34.113a5.706 5.706 0 0 0-.579-.508 1.5 1.5 0 0 1-.434-1.854l4.826-9.816a11.317 11.317 0 0 0-2.15-13.004l-9.414-9.414a12.114 12.114 0 0 1-3.569-8.602c0-3.25 1.266-6.304 3.563-8.603 4.742-4.743 12.461-4.74 17.205.005l12.167 12.167a3.787 3.787 0 0 0 5.35 0l36.417-36.418c3.558-3.558 9.348-3.559 12.907 0 3.559 3.558 3.559 9.348 0 12.907l-12.926 12.926a9.03 9.03 0 0 1 5.909 2.659c3.248 3.248 3.57 8.239 1.017 11.783a9.004 9.004 0 0 1 6.096 2.651c3.249 3.249 3.57 8.24 1.017 11.783a9.004 9.004 0 0 1 6.097 2.651c1.782 1.782 2.726 4.06 2.726 6.481a9.01 9.01 0 0 1-2.656 6.413l-18.536 18.53a140.05 140.05 0 0 1-26.806 20.735l-1.984 1.18a1.511 1.511 0 0 1-.769.211zM62.9 175.714l33.535 33.535.976-.58a136.786 136.786 0 0 0 26.17-20.234l.132-.126 18.452-18.448a6.075 6.075 0 0 0 0-8.582c-1.216-1.216-2.74-1.847-4.361-1.847a6.03 6.03 0 0 0-4.291 1.777 1.5 1.5 0 1 1-2.121-2.121l3.661-3.661a6.077 6.077 0 0 0 0-8.583c-1.217-1.216-2.74-1.847-4.361-1.847-1.62 0-3.145.631-4.291 1.778a1.5 1.5 0 1 1-2.121-2.121l3.66-3.661a6.077 6.077 0 0 0 0-8.583c-2.412-2.411-6.129-2.458-8.533-.175a1.5 1.5 0 0 1-2.094-2.148l17.574-17.573a6.134 6.134 0 0 0 0-8.665 6.135 6.135 0 0 0-8.665 0l-36.417 36.418a6.79 6.79 0 0 1-9.592 0L68.046 128.1c-3.575-3.575-9.39-3.576-12.963-.005a9.107 9.107 0 0 0-2.685 6.479 9.136 9.136 0 0 0 2.69 6.484l9.414 9.414a14.314 14.314 0 0 1 2.721 16.45l-4.323 8.792z" />
-                                </g>
-                            </svg>
-                            <div class="for-border ml-4">
+                                        .st8 {
+                                            fill: #f16c7a
+                                        }
 
-                                <h5 class="for-label1 font-weight-bold">Expert Instructors</h5>
-                                <p class="for-para custom_paragraph pr-2">Our Merkaii's instructors are experienced
-                                    professionals in their field of expertise who understand the intricacies of the exam?
-                                </p>
+                                        .st9 {
+                                            fill: #8ac6dd
+                                        }
+
+                                        .st14 {
+                                            fill: #d7e057
+                                        }
+                                    </style>
+                                    <g id="Layer_1">
+                                        <path class="st4"
+                                            d="M222.395 180.635H33.605c-9.447 0-17.105-7.658-17.105-17.105V33.241c0-9.447 7.658-17.106 17.105-17.106h188.789c9.447 0 17.105 7.659 17.105 17.106V163.53c.001 9.447-7.657 17.105-17.104 17.105z" />
+                                        <path class="st3"
+                                            d="M222.395 182.135H33.605C23.347 182.135 15 173.789 15 163.53V33.241c0-10.259 8.347-18.605 18.605-18.605h188.789c10.259 0 18.605 8.346 18.605 18.605V163.53c.001 10.259-8.346 18.605-18.604 18.605zm-188.79-164.5c-8.604 0-15.605 7-15.605 15.605v130.29c0 8.605 7.001 15.605 15.605 15.605h188.789c8.604 0 15.605-7.001 15.605-15.605V33.241c0-8.605-7.001-15.605-15.605-15.605H33.605z" />
+                                        <path class="st14"
+                                            d="M86.201 28.635h-45.17c-6.583 0-11.92 5.337-11.92 11.92v115.66c0 6.583 5.337 11.92 11.92 11.92h173.938c6.583 0 11.92-5.337 11.92-11.92V40.555c0-6.583-5.337-11.92-11.92-11.92H86.201z" />
+                                        <path class="st3"
+                                            d="M214.969 169.635H41.031c-7.4 0-13.42-6.02-13.42-13.42V40.555c0-7.4 6.02-13.42 13.42-13.42h45.17a1.5 1.5 0 1 1 0 3h-45.17c-5.745 0-10.42 4.674-10.42 10.42v115.66c0 5.746 4.675 10.42 10.42 10.42h173.938c5.745 0 10.42-4.674 10.42-10.42V40.555c0-5.746-4.675-10.42-10.42-10.42H99.799a1.5 1.5 0 1 1 0-3h115.17c7.399 0 13.42 6.02 13.42 13.42v115.66c0 7.4-6.021 13.42-13.42 13.42z" />
+                                        <path class="st4" d="M113.688 180.635h28.625v35.593h-28.625z" />
+                                        <path class="st3"
+                                            d="M142.312 217.729h-28.625a1.5 1.5 0 0 1-1.5-1.5v-35.593a1.5 1.5 0 0 1 1.5-1.5h28.625a1.5 1.5 0 0 1 1.5 1.5v35.593a1.5 1.5 0 0 1-1.5 1.5zm-27.124-3h25.625v-32.593h-25.625v32.593z" />
+                                        <path class="st4"
+                                            d="M135.452 239.635h36.252c0-12.927-10.479-23.407-23.407-23.407h-40.593c-12.927 0-23.407 10.48-23.407 23.407h51.155z" />
+                                        <path class="st3"
+                                            d="M171.703 241.135h-36.252a1.5 1.5 0 1 1 0-3h34.701c-.773-11.382-10.28-20.407-21.855-20.407h-40.594c-11.575 0-21.082 9.024-21.855 20.407h36.033a1.5 1.5 0 1 1 0 3H84.297a1.5 1.5 0 0 1-1.5-1.5c0-13.733 11.173-24.907 24.906-24.907h40.594c13.733 0 24.906 11.173 24.906 24.907a1.5 1.5 0 0 1-1.5 1.5z" />
+                                        <path class="st14"
+                                            d="M226.278 203.469s3.408 12.659 13.222 13.247c0 0-13.1 4.525-13.321 14.202 0 0-2.579-13.572-12.925-14.059 0 0 12.05-1.826 13.024-13.39z" />
+                                        <path class="st3"
+                                            d="M226.178 232.417a1.502 1.502 0 0 1-1.473-1.217c-.023-.124-2.494-12.418-11.521-12.842a1.5 1.5 0 0 1-.155-2.981c.441-.069 10.895-1.817 11.754-12.033a1.5 1.5 0 0 1 2.943-.265c.031.116 3.259 11.626 11.863 12.141a1.501 1.501 0 0 1 .402 2.915c-.121.042-12.119 4.311-12.312 12.819a1.5 1.5 0 0 1-1.375 1.46l-.126.003zm-7.742-15.729c3.878 1.969 6.231 5.746 7.587 8.876 2.026-4.021 5.941-6.787 8.949-8.427-4.135-1.842-6.783-5.651-8.334-8.722-1.792 4.36-5.271 6.868-8.202 8.273z" />
+                                        <path class="st14"
+                                            d="M204.579 220.45s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0 0 8.524-1.292 9.212-9.471z" />
+                                        <path class="st3"
+                                            d="M204.508 241.365a1.5 1.5 0 0 1-1.473-1.22c-.016-.081-1.703-8.441-7.738-8.726a1.5 1.5 0 0 1-.155-2.982c.296-.047 7.363-1.243 7.941-8.114a1.5 1.5 0 0 1 2.942-.266c.022.079 2.229 7.92 7.995 8.265a1.5 1.5 0 0 1 .399 2.915c-.08.028-8.282 2.952-8.412 8.662a1.5 1.5 0 0 1-1.499 1.466zm-4.519-11.528c2.106 1.333 3.523 3.395 4.447 5.28 1.376-2.232 3.515-3.872 5.364-4.972-2.286-1.27-3.884-3.35-4.941-5.224-1.173 2.286-3.014 3.875-4.87 4.916z" />
+                                        <path class="st14"
+                                            d="M204.579 193.792s2.411 8.954 9.352 9.37c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0-.001 8.524-1.292 9.212-9.472z" />
+                                        <path class="st3"
+                                            d="M204.508 214.708a1.5 1.5 0 0 1-1.473-1.22c-.016-.081-1.703-8.442-7.738-8.726a1.5 1.5 0 0 1-.155-2.982c.296-.047 7.363-1.243 7.941-8.113a1.5 1.5 0 0 1 2.942-.266c.022.079 2.229 7.919 7.995 8.264a1.5 1.5 0 0 1 .4 2.915c-.081.028-8.283 2.953-8.413 8.662a1.5 1.5 0 0 1-1.499 1.466zm-4.519-11.528c2.107 1.333 3.523 3.394 4.447 5.28 1.376-2.232 3.515-3.872 5.364-4.973-2.286-1.269-3.884-3.35-4.941-5.224-1.173 2.287-3.014 3.875-4.87 4.917z" />
+                                        <path
+                                            d="M214.97 30.135h-15c5.74 0 10.42 4.67 10.42 10.42v115.66c0 5.75-4.68 10.42-10.42 10.42h15c5.74 0 10.42-4.67 10.42-10.42V40.555c0-5.75-4.68-10.42-10.42-10.42z"
+                                            style="fill:#b9c239" />
+                                        <path class="st9"
+                                            d="M170.44 95.613v32.03c0 4.5-3.645 8.145-8.145 8.145H90.687a8.143 8.143 0 0 1-8.145-8.145v-32.03l43.949 22.353 43.949-22.353z" />
+                                        <path class="st3"
+                                            d="M162.296 137.288H90.687c-5.318 0-9.645-4.327-9.645-9.645v-32.03a1.501 1.501 0 0 1 2.18-1.337l43.27 22.007 43.269-22.007a1.5 1.5 0 0 1 2.18 1.337v32.03c-.001 5.318-4.327 9.645-9.645 9.645zm-78.254-39.23v29.585a6.653 6.653 0 0 0 6.645 6.645h71.608a6.653 6.653 0 0 0 6.645-6.645V98.058l-41.77 21.245a1.494 1.494 0 0 1-1.359 0L84.042 98.058z" />
+                                        <path class="st9"
+                                            d="M126.491 50.699 60.366 84.332l66.125 33.633 66.125-33.633z" />
+                                        <path class="st3"
+                                            d="M126.491 119.465c-.233 0-.467-.054-.68-.163L59.686 85.669a1.498 1.498 0 0 1 0-2.674l66.125-33.633a1.494 1.494 0 0 1 1.359 0l66.125 33.633a1.498 1.498 0 0 1 0 2.674l-66.125 33.633a1.483 1.483 0 0 1-.679.163zM63.675 84.332l62.816 31.95 62.816-31.95-62.816-31.95-62.816 31.95z" />
+                                        <path class="st8"
+                                            d="M192.616 84.332v40.965c-1.693-2.177-3.984-3.516-6.516-3.516-2.516 0-4.806 1.339-6.5 3.516V90.945l13.016-6.613z" />
+                                        <path class="st3"
+                                            d="M192.616 126.797a1.5 1.5 0 0 1-1.184-.579c-1.474-1.894-3.367-2.937-5.332-2.937-1.955 0-3.843 1.043-5.316 2.937a1.502 1.502 0 0 1-2.684-.921V90.945a1.5 1.5 0 0 1 .82-1.337l13.016-6.613a1.5 1.5 0 0 1 2.18 1.337v40.965a1.5 1.5 0 0 1-1.5 1.5zm-6.515-6.516c1.775 0 3.485.541 5.016 1.562V86.777l-10.016 5.088v29.977c1.526-1.02 3.231-1.561 5-1.561z" />
+                                        <ellipse class="st8" cx="186.105" cy="134.798" rx="9.528"
+                                            ry="13.014" />
+                                        <path class="st3"
+                                            d="M186.105 149.312c-6.081 0-11.028-6.511-11.028-14.515 0-8.003 4.947-14.514 11.028-14.514s11.028 6.511 11.028 14.514c.001 8.004-4.947 14.515-11.028 14.515zm0-26.029c-4.427 0-8.028 5.165-8.028 11.514 0 6.349 3.602 11.515 8.028 11.515 4.427 0 8.028-5.165 8.028-11.515.001-6.349-3.601-11.514-8.028-11.514z" />
+                                        <path class="st8"
+                                            d="m19.95 207.283-3.07 3.069V239.6h61.504l4.588-4.588-45.375-45.376-6.822 6.822z" />
+                                        <path class="st3"
+                                            d="M78.385 241.1H16.881a1.5 1.5 0 0 1-1.5-1.5v-29.248c0-.398.158-.779.439-1.06l3.069-3.069a1.5 1.5 0 1 1 2.121 2.121l-2.63 2.63V238.1h59.383l3.088-3.088-43.255-43.254-5.761 5.761a1.5 1.5 0 1 1-2.121-2.121l6.821-6.822c.562-.562 1.559-.562 2.121 0l45.376 45.376a1.5 1.5 0 0 1 0 2.121l-4.588 4.588c-.28.281-.662.439-1.059.439z" />
+                                        <path class="st9"
+                                            d="m72.914 187.843-11.131-11.131a7.962 7.962 0 0 0-11.261 0l-12.924 12.924 45.376 45.376 12.924-12.924a7.962 7.962 0 0 0 0-11.261l-12.611-12.611-10.373-10.373z" />
+                                        <path class="st3"
+                                            d="M82.973 236.512c-.398 0-.779-.158-1.061-.439l-45.376-45.376a1.5 1.5 0 0 1 0-2.122l12.925-12.924a9.397 9.397 0 0 1 6.691-2.772 9.4 9.4 0 0 1 6.691 2.772l11.132 11.131 22.982 22.983a9.397 9.397 0 0 1 2.772 6.691 9.397 9.397 0 0 1-2.772 6.691l-12.924 12.924a1.494 1.494 0 0 1-1.06.441zm-43.255-46.876 43.255 43.255 11.863-11.864a6.421 6.421 0 0 0 1.894-4.57 6.417 6.417 0 0 0-1.894-4.569l-34.114-34.115a6.42 6.42 0 0 0-4.569-1.893c-1.726 0-3.35.672-4.57 1.893l-11.865 11.863z" />
+                                        <path class="st4"
+                                            d="M87.087 212.077a6.007 6.007 0 1 1-8.495 8.494 6.007 6.007 0 0 1 8.495-8.494z" />
+                                        <path class="st3"
+                                            d="M82.839 223.827a7.485 7.485 0 0 1-5.308-2.195c-2.927-2.927-2.927-7.689 0-10.616 2.927-2.927 7.691-2.926 10.616 0 2.927 2.927 2.927 7.689 0 10.616a7.481 7.481 0 0 1-5.308 2.195zm.001-12.008a4.495 4.495 0 0 0-3.188 1.318 4.512 4.512 0 0 0 0 6.373 4.514 4.514 0 0 0 6.374 0 4.512 4.512 0 0 0 0-6.373 4.496 4.496 0 0 0-3.186-1.318z" />
+                                        <path
+                                            d="m125.162 102.789-15.099 15.099-17.205 17.205-4.114 4.114a5.282 5.282 0 0 1-7.47 0L69.107 127.04c-4.166-4.166-10.922-4.166-15.084-.005a10.658 10.658 0 0 0 .005 15.083l9.414 9.414a12.819 12.819 0 0 1 2.435 14.727l-4.826 9.816c.253.193.496.407.729.64l34.116 34.116c.104.104.198.208.298.308l1.984-1.181a138.166 138.166 0 0 0 26.457-20.455c.064-.064.129-.119.193-.184l18.397-18.397a7.569 7.569 0 0 0 0-10.704l-.069-.069a7.569 7.569 0 0 0-10.704 0l3.66-3.661a7.569 7.569 0 0 0 0-10.704l-.07-.07a7.569 7.569 0 0 0-10.704 0l3.66-3.661a7.569 7.569 0 0 0 0-10.704l-.069-.069c-2.909-2.909-7.591-2.949-10.557-.133l17.574-17.574a7.627 7.627 0 0 0 0-10.785 7.624 7.624 0 0 0-10.784.001z"
+                                            style="fill:#fce8cb" />
+                                        <path class="st3"
+                                            d="M96.194 212.638c-.39 0-.774-.151-1.064-.442l-.297-.308-34.113-34.113a5.706 5.706 0 0 0-.579-.508 1.5 1.5 0 0 1-.434-1.854l4.826-9.816a11.317 11.317 0 0 0-2.15-13.004l-9.414-9.414a12.114 12.114 0 0 1-3.569-8.602c0-3.25 1.266-6.304 3.563-8.603 4.742-4.743 12.461-4.74 17.205.005l12.167 12.167a3.787 3.787 0 0 0 5.35 0l36.417-36.418c3.558-3.558 9.348-3.559 12.907 0 3.559 3.558 3.559 9.348 0 12.907l-12.926 12.926a9.03 9.03 0 0 1 5.909 2.659c3.248 3.248 3.57 8.239 1.017 11.783a9.004 9.004 0 0 1 6.096 2.651c3.249 3.249 3.57 8.24 1.017 11.783a9.004 9.004 0 0 1 6.097 2.651c1.782 1.782 2.726 4.06 2.726 6.481a9.01 9.01 0 0 1-2.656 6.413l-18.536 18.53a140.05 140.05 0 0 1-26.806 20.735l-1.984 1.18a1.511 1.511 0 0 1-.769.211zM62.9 175.714l33.535 33.535.976-.58a136.786 136.786 0 0 0 26.17-20.234l.132-.126 18.452-18.448a6.075 6.075 0 0 0 0-8.582c-1.216-1.216-2.74-1.847-4.361-1.847a6.03 6.03 0 0 0-4.291 1.777 1.5 1.5 0 1 1-2.121-2.121l3.661-3.661a6.077 6.077 0 0 0 0-8.583c-1.217-1.216-2.74-1.847-4.361-1.847-1.62 0-3.145.631-4.291 1.778a1.5 1.5 0 1 1-2.121-2.121l3.66-3.661a6.077 6.077 0 0 0 0-8.583c-2.412-2.411-6.129-2.458-8.533-.175a1.5 1.5 0 0 1-2.094-2.148l17.574-17.573a6.134 6.134 0 0 0 0-8.665 6.135 6.135 0 0 0-8.665 0l-36.417 36.418a6.79 6.79 0 0 1-9.592 0L68.046 128.1c-3.575-3.575-9.39-3.576-12.963-.005a9.107 9.107 0 0 0-2.685 6.479 9.136 9.136 0 0 0 2.69 6.484l9.414 9.414a14.314 14.314 0 0 1 2.721 16.45l-4.323 8.792z" />
+                                    </g>
+                                </svg>
+                                <div class="for-border ml-4">
+
+                                    <h5 class="for-label1 font-weight-bold">Feeling Defeated by the NCLEX-RN?</h5>
+                                    <p class="for-para custom_paragraph pr-2">Picture this: you're confidently caring for
+                                        patients, not stressing about tests. Our proven and successful
+                                        live-virtual-Instructor-led remedial course can make that a reality.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-flex for-element">
-                            <svg class="for-learning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"
-                                xml:space="preserve">
-                                <path fill="#333"
-                                    d="M146.179 83.943h-3.884a.385.385 0 1 1 0-.768h3.884a.384.384 0 1 1 0 .768z" />
-                                <path fill="#333"
-                                    d="M144.153 85.549a.385.385 0 0 1-.384-.385v-3.338a.384.384 0 0 1 .768 0v3.338a.385.385 0 0 1-.384.385z" />
-                                <g>
-                                    <path fill="#FFDB76"
-                                        d="M154.623 90c0 35.69-28.934 64.623-64.623 64.623-35.688 0-64.622-28.932-64.622-64.623 0-35.689 28.934-64.622 64.622-64.622 35.689 0 64.623 28.932 64.623 64.622z" />
+                        {{-- 2 --}}
+                        <div class="col-md-6">
+                            <div class="d-flex for-element">
+                                <svg class="for-affordability" version="1.1" id="Layer_1"
+                                    xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 256 256"
+                                    style="enable-background:new 0 0 256 256" xml:space="preserve">
+                                    <style>
+                                        .st0 {
+                                            fill: #382b73
+                                        }
+
+                                        .st2 {
+                                            fill: #f6ca14
+                                        }
+
+                                        .st3 {
+                                            fill: #e7ad27
+                                        }
+
+                                        .st5 {
+                                            fill: #fddd3a
+                                        }
+
+                                        .st7 {
+                                            fill: #009add
+                                        }
+
+                                        .st12 {
+                                            fill: #d0d2d3
+                                        }
+
+                                        .st13 {
+                                            fill: #fff
+                                        }
+
+                                        .st14 {
+                                            fill: #0099dc
+                                        }
+
+                                        .st15 {
+                                            fill: #1cade3
+                                        }
+
+                                        .st17 {
+                                            fill: #106ea0
+                                        }
+                                    </style>
+                                    <switch>
+                                        <g>
+                                            <circle class="st0" cx="128" cy="128" r="120" />
+                                            <circle cx="128" cy="128" r="102.5" style="fill:#473080" />
+                                            <path class="st0"
+                                                d="M195.675 124.643h-28.026l.008-23.562v.013l.001-1.777a8.855 8.855 0 0 0-2.751-6.43l-.013-.012a8.913 8.913 0 0 0-1.27-1.004l-.129-.083a8.843 8.843 0 0 0-4.72-1.357h-1.341c.37-1.883.565-3.829.565-5.82 0-16.568-13.431-30-30-30s-30 13.432-30 30c0 1.985.193 3.924.561 5.801l-38.215-.013a8.854 8.854 0 0 0-1.5.126c-4.192.712-7.385 4.36-7.387 8.755l-.001 1.777v-.006l-.018 53.485a8.885 8.885 0 0 0 8.881 8.887l28.039.009v25.352a9.115 9.115 0 0 0 .227 2.007 9.005 9.005 0 0 0 .744 2.039l.1.19a8.883 8.883 0 0 0 7.812 4.649h98.43a8.885 8.885 0 0 0 8.884-8.884V133.53a8.88 8.88 0 0 0-8.881-8.887z" />
+                                            <g>
+                                                <path class="st2"
+                                                    d="m158.752 156.454-98.43-.033a8.884 8.884 0 0 1-8.881-8.887l.018-55.255a8.884 8.884 0 0 1 8.887-8.881l98.43.033a8.883 8.883 0 0 1 8.881 8.887l-.018 55.255a8.885 8.885 0 0 1-8.887 8.881z" />
+                                                <path class="st3"
+                                                    d="m158.752 154.677-98.43-.033a8.884 8.884 0 0 1-8.881-8.887l-.001 1.777a8.885 8.885 0 0 0 8.881 8.887l98.43.033a8.885 8.885 0 0 0 8.887-8.881l.001-1.777c-.001 4.906-3.98 8.882-8.887 8.881z" />
+                                                <path
+                                                    d="m158.776 83.43-98.43-.033a8.885 8.885 0 0 0-8.887 8.881l-.001 1.777a8.883 8.883 0 0 1 8.887-8.881l98.43.033a8.884 8.884 0 0 1 8.881 8.887l.001-1.777a8.884 8.884 0 0 0-8.881-8.887z"
+                                                    style="fill:#fff235" />
+                                                <path class="st3" d="M51.456 92.298h116.198v16.936H51.456z" />
+                                                <path class="st5"
+                                                    d="m155.743 123.894-93.859-.031a3.058 3.058 0 1 1 .002-6.116l93.859.031a3.057 3.057 0 1 1-.002 6.116zM117.85 138.255l-55.97-.019a3.058 3.058 0 1 1 .002-6.116l55.97.019a3.058 3.058 0 1 1-.002 6.116z" />
+                                                <g>
+                                                    <path
+                                                        d="M195.675 190.667h-98.43a8.884 8.884 0 0 1-8.884-8.884v-55.255a8.884 8.884 0 0 1 8.884-8.884h98.43a8.883 8.883 0 0 1 8.884 8.884v55.255a8.884 8.884 0 0 1-8.884 8.884z"
+                                                        style="fill:#1caee4" />
+                                                    <path class="st7"
+                                                        d="M195.675 188.89h-98.43a8.884 8.884 0 0 1-8.884-8.884v1.777a8.884 8.884 0 0 0 8.884 8.884h98.43a8.884 8.884 0 0 0 8.884-8.884v-1.777a8.884 8.884 0 0 1-8.884 8.884z" />
+                                                    <path
+                                                        d="M195.675 117.643h-98.43a8.883 8.883 0 0 0-8.884 8.884v1.777a8.885 8.885 0 0 1 8.884-8.884h98.43a8.884 8.884 0 0 1 8.884 8.884v-1.777a8.884 8.884 0 0 0-8.884-8.884z"
+                                                        style="fill:#27c1e6" />
+                                                    <path class="st7"
+                                                        d="M110.734 151.637h-9.476a3.554 3.554 0 0 1-3.554-3.554v-9.476a3.554 3.554 0 0 1 3.554-3.554h9.476a3.554 3.554 0 0 1 3.554 3.554v9.476a3.555 3.555 0 0 1-3.554 3.554z" />
+                                                    <path class="st5"
+                                                        d="M110.734 150.926h-9.476a3.554 3.554 0 0 1-3.554-3.554v-9.476a3.554 3.554 0 0 1 3.554-3.554h9.476a3.554 3.554 0 0 1 3.554 3.554v9.476a3.555 3.555 0 0 1-3.554 3.554z" />
+                                                    <path class="st2" d="M102.442 139.081h7.107v7.107h-7.107z" />
+                                                    <path class="st2"
+                                                        d="M97.704 139.081h16.583v.711H97.704zM97.704 145.477h16.583v.711H97.704z" />
+                                                    <path transform="rotate(-90 102.797 142.634)" class="st2"
+                                                        d="M94.505 142.279h16.584v.711H94.505z" />
+                                                    <path transform="rotate(-90 109.194 142.634)" class="st2"
+                                                        d="M100.902 142.279h16.584v.711h-16.584z" />
+                                                    <path class="st5"
+                                                        d="M113.195 169.378H98.796a3.058 3.058 0 1 1 0-6.116h14.398a3.057 3.057 0 1 1 .001 6.116z" />
+                                                    <g>
+                                                        <path class="st5"
+                                                            d="M139.682 169.378h-14.398a3.058 3.058 0 1 1 0-6.116h14.398a3.058 3.058 0 0 1 0 6.116z" />
+                                                    </g>
+                                                    <g>
+                                                        <path class="st5"
+                                                            d="M166.169 169.378H151.77a3.058 3.058 0 1 1 0-6.116h14.398a3.057 3.057 0 1 1 .001 6.116z" />
+                                                    </g>
+                                                    <g>
+                                                        <path class="st5"
+                                                            d="M192.656 169.378h-14.398a3.058 3.058 0 1 1 0-6.116h14.398a3.058 3.058 0 0 1 0 6.116z" />
+                                                    </g>
+                                                    <g>
+                                                        <path class="st5"
+                                                            d="M154.767 180.987h-55.97a3.058 3.058 0 1 1 0-6.116h55.97a3.058 3.058 0 1 1 0 6.116z" />
+                                                    </g>
+                                                    <g>
+                                                        <path class="st5"
+                                                            d="M194.529 142.634a9.335 9.335 0 1 1-18.67 0 9.335 9.335 0 0 1 18.67 0z" />
+                                                    </g>
+                                                    <g>
+                                                        <path class="st5"
+                                                            d="M179.555 142.634a9.335 9.335 0 1 1-18.67 0 9.335 9.335 0 0 1 18.67 0z" />
+                                                    </g>
+                                                </g>
+                                                <path class="st3"
+                                                    d="M98.054 83.41c.931 15.73 13.982 28.2 29.946 28.2 15.957 0 29.004-12.459 29.945-28.18l-59.891-.02z" />
+                                                <g>
+                                                    <circle cx="128" cy="77.609" r="30" style="fill:#ef5a9d" />
+                                                    <path
+                                                        d="m147.658 93.661-.001-.005a3.53 3.53 0 0 0-.016-.101l-.001-.008-.016-.087-.005-.025-.018-.081-.006-.027-.018-.072-.01-.038-.031-.106-3.544-11.548-.039-.121a3.444 3.444 0 0 0-2.455-2.225 3.532 3.532 0 0 0-.372-.068l-5.918-.781a.694.694 0 0 0-.171-.559l-1.672-1.863a.696.696 0 0 0-.785-.178l-.105.043v-1.634c1.729-1.129 3.09-2.961 3.812-5.173.049.013.099.023.15.03.933.131 1.824-.719 1.989-1.898.165-1.179-.457-2.241-1.39-2.371a1.42 1.42 0 0 0-.195-.013 4.955 4.955 0 0 0-.007-.125l-.007-.107a5.77 5.77 0 0 0-.01-.131l-.01-.11-.013-.131-.012-.104-.016-.129-.015-.11-.017-.117-.018-.116-.019-.113-.02-.112a4.108 4.108 0 0 0-.023-.118l-.021-.102-.026-.122-.023-.101a19.36 19.36 0 0 0-.027-.113l-.026-.104-.032-.117-.026-.096-.031-.106a3.34 3.34 0 0 0-.032-.107l-.02-.062a7.088 7.088 0 0 0-.086-.258l-.028-.08-.038-.103a3.91 3.91 0 0 0-.037-.098l-.047-.118-.029-.073-.05-.117a2.633 2.633 0 0 0-.034-.078l-.051-.112-.034-.074-.056-.114-.035-.071a5.628 5.628 0 0 0-.056-.109l-.04-.075-.059-.109-.035-.061a6.983 6.983 0 0 0-.067-.117l-.033-.055c-.023-.04-.048-.079-.072-.118l-.03-.047-.078-.122-.027-.04a5.647 5.647 0 0 0-.086-.127l-.01-.014a7.784 7.784 0 0 0-1.112-1.275l-.002-.001a7.865 7.865 0 0 0-2.474-1.539l-.033-.012-.175-.066a.868.868 0 0 0-.047-.016l-.161-.055a7.199 7.199 0 0 0-.214-.068l-.06-.018-.158-.045-.058-.016-.182-.046-.033-.008a8.2 8.2 0 0 0-.446-.094l-.047-.008a5.39 5.39 0 0 0-.401-.062 2.184 2.184 0 0 0-.08-.01l-.144-.017-.088-.009a.088.088 0 0 1-.016-.002h-.004l-.12-.011-.092-.007-.105-.007-.066-.004-.059-.003-.066-.003-.106-.004-.059-.002-.029-.001a13.604 13.604 0 0 0-.418 0l-.065.002a7.216 7.216 0 0 0-.147.005l-.096.005a4.51 4.51 0 0 0-.204.014l-.124.01-.085.008-.123.013a2.574 2.574 0 0 0-.092.011l-.113.014-.102.015-.103.015-.104.018-.099.017-.105.02-.097.019-.104.023-.095.021-.11.026-.086.022-.111.029-.085.023a3.53 3.53 0 0 0-.192.057l-.114.036a5.309 5.309 0 0 0-.381.134l-.074.028a13.329 13.329 0 0 0-.299.123l-.063.028-.122.055-.055.026a4.584 4.584 0 0 0-.122.059l-.055.028a7.622 7.622 0 0 0-.127.065l-.043.023-.128.07-.046.026-.129.075a.602.602 0 0 1-.034.02l-.137.084-.025.016a6.9 6.9 0 0 0-.142.092l-.017.012-.147.1a.055.055 0 0 0-.008.006l-.152.109-.002.001c-1.899 1.404-3.168 3.682-3.322 6.648-.065 0-.13.004-.194.013-.933.131-1.556 1.192-1.39 2.371.165 1.179 1.055 2.029 1.988 1.898.051-.007.101-.017.15-.03.722 2.212 2.082 4.044 3.812 5.173v1.634l-.105-.043a.697.697 0 0 0-.785.178l-1.672 1.863a.691.691 0 0 0-.171.559l-5.918.781a3.485 3.485 0 0 0-1.289.434 3.45 3.45 0 0 0-.767.601c-.028.03-.056.059-.083.09a3.451 3.451 0 0 0-.727 1.289l-3.544 11.548a4.378 4.378 0 0 0-.031.108l-.004.015a3.326 3.326 0 0 0-.027.103l-.022.1-.003.013a1.618 1.618 0 0 0-.018.096l-.001.008a3.4 3.4 0 0 0-.047.693l.005.101a3.718 3.718 0 0 0 .092.593l.025.096a3.496 3.496 0 0 0 .391.899c.223.361.511.681.85.941.052.04.106.078.16.116.546.37 1.208.589 1.934.589h31.592a3.435 3.435 0 0 0 3.042-1.816 3.422 3.422 0 0 0 .361-1.02l.017-.098c.015-.099.026-.199.032-.3l.005-.101a3.47 3.47 0 0 0-.031-.585z"
+                                                        style="fill:#e43d91" />
+                                                    <path class="st3" d="M124.396 69.185h8.078v8.078h-8.078z" />
+                                                    <path class="st2"
+                                                        d="M121.825 64.308c.165 1.179-.457 2.241-1.39 2.371-.933.131-1.823-.719-1.989-1.898-.165-1.179.457-2.241 1.39-2.371.933-.131 1.824.719 1.989 1.898zM135.045 64.308c-.165 1.179.457 2.241 1.39 2.371s1.823-.719 1.989-1.898c.165-1.179-.457-2.241-1.39-2.371-.933-.131-1.824.719-1.989 1.898z" />
+                                                    <path class="st5"
+                                                        d="M136.856 63.013c0 5.543-3.77 10.037-8.421 10.037s-8.421-4.494-8.421-10.037 3.77-8.869 8.421-8.869c4.651-.001 8.421 3.325 8.421 8.869z" />
+                                                    <path class="st2"
+                                                        d="M128.435 72.179c-4.528 0-8.22-4.26-8.412-9.6a12.36 12.36 0 0 0-.009.434c0 5.543 3.77 10.037 8.421 10.037s8.421-4.494 8.421-10.037c0-.146-.004-.291-.009-.434-.193 5.34-3.884 9.6-8.412 9.6z" />
+                                                    <path class="st2"
+                                                        d="M136.833 63.711c-.281-4.766-3.452-7.737-7.477-8.13a7.937 7.937 0 0 0 7.384 9.083c.044-.312.074-.63.093-.953z" />
+                                                    <path
+                                                        d="M144.231 95.229h-31.592c-2.325 0-3.987-2.249-3.305-4.472l3.544-11.548a3.457 3.457 0 0 1 2.867-2.415l12.69-1.675 12.69 1.675a3.457 3.457 0 0 1 2.867 2.415l3.544 11.548c.682 2.223-.98 4.472-3.305 4.472z"
+                                                        style="fill:#e6e7e8" />
+                                                    <path class="st12"
+                                                        d="m130.736 79.137-1.791 1.791a.72.72 0 0 1-1.02 0l-1.791-1.791a.72.72 0 0 1 0-1.02l1.791-1.791a.72.72 0 0 1 1.02 0l1.791 1.791a.72.72 0 0 1 0 1.02z" />
+                                                    <path class="st13"
+                                                        d="m109.334 92.151 3.544-11.548a3.457 3.457 0 0 1 2.867-2.415l12.69-1.675 12.69 1.675a3.457 3.457 0 0 1 2.867 2.415l3.544 11.548c.033.108.059.216.081.323a3.435 3.435 0 0 0-.081-1.716l-3.544-11.548a3.457 3.457 0 0 0-2.867-2.415l-12.69-1.676-12.69 1.676a3.458 3.458 0 0 0-2.867 2.415l-3.544 11.548a3.435 3.435 0 0 0-.081 1.716 3.39 3.39 0 0 1 .081-.323z" />
+                                                    <path class="st12"
+                                                        d="m128.435 75.128-2.737 3.833a.89.89 0 0 1-1.393.07l-2.649-3.017 6.779-.886zM128.435 75.128l2.737 3.833a.89.89 0 0 0 1.393.07l2.649-3.017-6.779-.886zM147.41 90.347a3.45 3.45 0 0 1-3.179 2.097h-31.592a3.45 3.45 0 0 1-3.179-2.097l-.126.411c-.682 2.223.98 4.471 3.305 4.471h31.592c2.325 0 3.987-2.249 3.305-4.471l-.126-.411z" />
+                                                    <path class="st2"
+                                                        d="M120.014 63.013c0 .456.028.904.077 1.344a9.547 9.547 0 0 0 12.011-9.222c0-.074-.004-.147-.005-.221a8.8 8.8 0 0 0-3.662-.77c-4.651-.001-8.421 3.325-8.421 8.869z" />
+                                                    <path class="st14"
+                                                        d="M120.024 62.568a7.94 7.94 0 0 0 11.205-7.991 9.004 9.004 0 0 0-2.794-.434c-4.525 0-8.215 3.149-8.411 8.425z" />
+                                                    <path class="st15"
+                                                        d="M128.435 55.536c.98 0 1.919.149 2.794.434l.006.078c.02-.23.032-.462.032-.698 0-.261-.014-.519-.038-.773a9.004 9.004 0 0 0-2.794-.434c-4.525 0-8.215 3.149-8.411 8.425.043.02.088.037.132.056.719-4.466 4.151-7.088 8.279-7.088z" />
+                                                    <path class="st15"
+                                                        d="M129.356 54.189a7.939 7.939 0 0 0 7.494 9.091c.002-.089.006-.178.006-.267 0-5.173-3.283-8.413-7.5-8.824z" />
+                                                    <path
+                                                        d="M129.356 55.582c3.901.38 7 3.183 7.443 7.695l.051.003c.002-.089.006-.178.006-.267 0-5.172-3.283-8.413-7.5-8.824a7.943 7.943 0 0 0-.053 1.858c.013-.156.031-.311.053-.465z"
+                                                        style="fill:#23c1e6" />
+                                                    <path class="st13"
+                                                        d="M131.51 78.194c.24.239.618.271.894.075l2.518-1.785a.696.696 0 0 0 .113-1.031l-1.672-1.863a.696.696 0 0 0-.785-.178l-4.144 1.715 3.076 3.067z" />
+                                                    <path class="st13"
+                                                        d="M125.36 78.194a.696.696 0 0 1-.894.075l-2.519-1.785a.696.696 0 0 1-.112-1.031l1.672-1.863a.696.696 0 0 1 .785-.178l4.144 1.715-3.076 3.067z" />
+                                                    <path class="st14"
+                                                        d="m125.286 95.229 2.156-17.479h1.986l2.157 17.479z" />
+                                                    <path class="st12"
+                                                        d="M137.84 85.724h-5.051a.698.698 0 0 1 0-1.396h5.051a.699.699 0 0 1 0 1.396zM114.682 95.229l1.501-8.299c.056-.312.506-.302.55.011l1.153 8.288h-3.204zM142.189 95.229l-1.501-8.299c-.056-.312-.506-.302-.55.011l-1.153 8.288h3.204z" />
+                                                    <path class="st17"
+                                                        d="m127.173 80.454.752.752a.72.72 0 0 0 1.02 0l.752-.752-.269-2.704h-1.986l-.269 2.704z" />
+                                                    <path class="st15"
+                                                        d="m130.736 78.441-1.791 1.791a.72.72 0 0 1-1.02 0l-1.791-1.791a.72.72 0 0 1 0-1.02l1.791-1.791a.72.72 0 0 1 1.02 0l1.791 1.791a.72.72 0 0 1 0 1.02z" />
+                                                    <path class="st2"
+                                                        d="m129.31 67.992-.655.655a.311.311 0 0 1-.441 0l-.655-.655a.312.312 0 0 1 .22-.532h1.31c.278 0 .418.336.221.532z" />
+                                                    <path class="st17" d="m125.626 92.474-.34 2.755h6.299l-.34-2.755z" />
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </switch>
+                                </svg>
+                                <div class="for-border ml-4">
+
+                                    <h5 class="for-label1 font-weight-bold">NCLEX-RN Anxiety Got You Down? </h5>
+                                    <p class="for-para custom_paragraph pr-2">Stop feeling overwhelmed and start feeling
+                                        empowered! Our supportive remedial program equips you with the knowledge and
+                                        strategies
+                                        you need to pass the NCLEX-RN with confidence. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- 3rd row --}}
+                    <div class="row for-main">
+                        <div class="col-md-6">
+                            <div class="d-flex for-element">
+                                <svg class="for-learning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"
+                                    xml:space="preserve">
                                     <path fill="#333"
-                                        d="M57.104 46.514h-9.818a.385.385 0 1 1 0-.768h9.818a.383.383 0 0 1 0 .768zM60.516 44.333h-1.585a.384.384 0 1 1 0-.768h1.585a.384.384 0 0 1 0 .768zM62.405 49.361H60.82a.385.385 0 0 1 0-.77h1.585a.386.386 0 0 1 0 .77zM57.104 44.333h-5.979a.385.385 0 0 1 0-.768h5.979a.383.383 0 0 1 0 .768zM58.412 61.128h-1.586a.383.383 0 1 1 0-.768h1.586a.384.384 0 0 1 0 .768zM54.999 61.128H49.02a.384.384 0 0 1 0-.768h5.979c.212 0 .385.172.385.385a.385.385 0 0 1-.385.383zM66.013 42.116h-7.218a.384.384 0 0 1-.383-.385c0-.212.171-.385.383-.385h7.218a.385.385 0 0 1 0 .77zM136.666 55.808h-10.17a.384.384 0 1 1 0-.768h10.17a.384.384 0 1 1 0 .768zM124.604 58.579h-1.643a.383.383 0 1 1 0-.768h1.643a.384.384 0 0 1 0 .768zM122.646 52.196h-1.643a.385.385 0 0 1 0-.77h1.643a.385.385 0 0 1 0 .77zM132.69 58.579h-6.193a.384.384 0 1 1 0-.768h6.193a.383.383 0 0 1 0 .768zM124.743 61.394h-7.477a.385.385 0 1 1 0-.768h7.477a.383.383 0 0 1 0 .768z" />
+                                        d="M146.179 83.943h-3.884a.385.385 0 1 1 0-.768h3.884a.384.384 0 1 1 0 .768z" />
+                                    <path fill="#333"
+                                        d="M144.153 85.549a.385.385 0 0 1-.384-.385v-3.338a.384.384 0 0 1 .768 0v3.338a.385.385 0 0 1-.384.385z" />
                                     <g>
+                                        <path fill="#FFDB76"
+                                            d="M154.623 90c0 35.69-28.934 64.623-64.623 64.623-35.688 0-64.622-28.932-64.622-64.623 0-35.689 28.934-64.622 64.622-64.622 35.689 0 64.623 28.932 64.623 64.622z" />
                                         <path fill="#333"
-                                            d="M151.188 93.259h-6.951a.385.385 0 0 1 0-.769h6.951a.384.384 0 0 1 0 .769zM142.944 96.028h-1.123a.383.383 0 1 1 0-.768h1.123a.384.384 0 1 1 0 .768zM141.606 89.644h-1.122a.385.385 0 1 1 0-.768h1.122a.384.384 0 0 1 0 .768zM148.469 96.028h-4.232a.384.384 0 0 1 0-.768h4.232a.385.385 0 1 1 0 .768zM143.039 98.844h-5.11a.383.383 0 1 1 0-.768h5.11a.384.384 0 0 1 0 .768z" />
-                                    </g>
-                                    <g>
-                                        <path fill="#333"
-                                            d="M54.29 53.503h-3.269a.384.384 0 0 1 0-.768h3.269a.383.383 0 1 1 0 .768z" />
-                                        <path fill="#333"
-                                            d="M52.583 54.952a.385.385 0 0 1-.384-.385v-3.013a.384.384 0 1 1 .769 0v3.013a.386.386 0 0 1-.385.385z" />
-                                    </g>
-                                    <g>
-                                        <path fill="#333"
-                                            d="M87.998 145.032H77.827a.383.383 0 0 1 0-.768h10.171a.384.384 0 1 1 0 .768zM91.534 140.382h-1.643a.383.383 0 1 1 0-.768h1.643c.212 0 .383.17.383.383a.385.385 0 0 1-.383.385zM93.491 151.099h-1.643a.383.383 0 1 1 0-.768h1.643a.385.385 0 0 1 0 .768zM87.998 140.382h-6.192a.386.386 0 0 1-.385-.385c0-.213.172-.383.385-.383h6.192c.213 0 .385.17.385.383a.387.387 0 0 1-.385.385zM97.229 135.654h-7.477a.385.385 0 1 1 0-.768h7.477a.383.383 0 0 1 0 .768z" />
+                                            d="M57.104 46.514h-9.818a.385.385 0 1 1 0-.768h9.818a.383.383 0 0 1 0 .768zM60.516 44.333h-1.585a.384.384 0 1 1 0-.768h1.585a.384.384 0 0 1 0 .768zM62.405 49.361H60.82a.385.385 0 0 1 0-.77h1.585a.386.386 0 0 1 0 .77zM57.104 44.333h-5.979a.385.385 0 0 1 0-.768h5.979a.383.383 0 0 1 0 .768zM58.412 61.128h-1.586a.383.383 0 1 1 0-.768h1.586a.384.384 0 0 1 0 .768zM54.999 61.128H49.02a.384.384 0 0 1 0-.768h5.979c.212 0 .385.172.385.385a.385.385 0 0 1-.385.383zM66.013 42.116h-7.218a.384.384 0 0 1-.383-.385c0-.212.171-.385.383-.385h7.218a.385.385 0 0 1 0 .77zM136.666 55.808h-10.17a.384.384 0 1 1 0-.768h10.17a.384.384 0 1 1 0 .768zM124.604 58.579h-1.643a.383.383 0 1 1 0-.768h1.643a.384.384 0 0 1 0 .768zM122.646 52.196h-1.643a.385.385 0 0 1 0-.77h1.643a.385.385 0 0 1 0 .77zM132.69 58.579h-6.193a.384.384 0 1 1 0-.768h6.193a.383.383 0 0 1 0 .768zM124.743 61.394h-7.477a.385.385 0 1 1 0-.768h7.477a.383.383 0 0 1 0 .768z" />
                                         <g>
                                             <path fill="#333"
-                                                d="M102.004 145.361H98.12a.385.385 0 0 1 0-.77h3.884a.386.386 0 0 1 0 .77z" />
-                                            <path fill="#333"
-                                                d="M99.978 147.47a.382.382 0 0 1-.384-.383v-4.391a.384.384 0 1 1 .768 0v4.391a.383.383 0 0 1-.384.383z" />
+                                                d="M151.188 93.259h-6.951a.385.385 0 0 1 0-.769h6.951a.384.384 0 0 1 0 .769zM142.944 96.028h-1.123a.383.383 0 1 1 0-.768h1.123a.384.384 0 1 1 0 .768zM141.606 89.644h-1.122a.385.385 0 1 1 0-.768h1.122a.384.384 0 0 1 0 .768zM148.469 96.028h-4.232a.384.384 0 0 1 0-.768h4.232a.385.385 0 1 1 0 .768zM143.039 98.844h-5.11a.383.383 0 1 1 0-.768h5.11a.384.384 0 0 1 0 .768z" />
                                         </g>
-                                    </g>
-                                    <g>
-                                        <path fill="#333"
-                                            d="M128.992 46.902h-3.884a.383.383 0 1 1 0-.768h3.884a.384.384 0 1 1 0 .768z" />
-                                        <path fill="#333"
-                                            d="M126.966 49.012a.384.384 0 0 1-.385-.383v-4.392a.385.385 0 0 1 .768 0v4.392a.382.382 0 0 1-.383.383z" />
-                                    </g>
-                                    <g>
-                                        <path fill="#333"
-                                            d="M36.786 126.585v2.639c0 1.459 1.155 2.643 2.58 2.643h101.27c1.424 0 2.58-1.184 2.58-2.643v-2.639H36.786z" />
-                                        <path fill="#686868"
-                                            d="M138.291 126.585V70.713c0-3.108-2.461-5.627-5.498-5.627H47.207c-3.036 0-5.498 2.519-5.498 5.627v55.872h96.582z" />
-                                        <path fill="#CCCBC9" d="M46.505 70.419h86.989v51.845H46.505z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
-                                            d="M67.814 88.174h43.087V101H67.814z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
-                                            d="M67.814 94.587h43.087V101H67.814z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                            d="M103.65 88.174h1.609V101h-1.609zM95.976 88.174h1.609V101h-1.609zM70.754 88.174h1.609V101h-1.609zM100.484 92.429a1.235 1.235 0 1 1 0-2.47 1.235 1.235 0 0 1 0 2.47z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                            d="M100.484 95.821a1.234 1.234 0 1 1-.002-2.468 1.234 1.234 0 0 1 .002 2.468z"
-                                            opacity=".6" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                            d="M100.484 99.213a1.234 1.234 0 1 1-.002-2.468 1.234 1.234 0 0 1 .002 2.468z"
-                                            opacity=".2" />
                                         <g>
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
-                                                d="m69.984 122.118.02-9.292 47.507.105-.02 9.292z" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
-                                                d="m117.491 122.225.008-3.786-47.506-.274-.009 3.953z" />
+                                            <path fill="#333"
+                                                d="M54.29 53.503h-3.269a.384.384 0 0 1 0-.768h3.269a.383.383 0 1 1 0 .768z" />
+                                            <path fill="#333"
+                                                d="M52.583 54.952a.385.385 0 0 1-.384-.385v-3.013a.384.384 0 1 1 .769 0v3.013a.386.386 0 0 1-.385.385z" />
+                                        </g>
+                                        <g>
+                                            <path fill="#333"
+                                                d="M87.998 145.032H77.827a.383.383 0 0 1 0-.768h10.171a.384.384 0 1 1 0 .768zM91.534 140.382h-1.643a.383.383 0 1 1 0-.768h1.643c.212 0 .383.17.383.383a.385.385 0 0 1-.383.385zM93.491 151.099h-1.643a.383.383 0 1 1 0-.768h1.643a.385.385 0 0 1 0 .768zM87.998 140.382h-6.192a.386.386 0 0 1-.385-.385c0-.213.172-.383.385-.383h6.192c.213 0 .385.17.385.383a.387.387 0 0 1-.385.385zM97.229 135.654h-7.477a.385.385 0 1 1 0-.768h7.477a.383.383 0 0 1 0 .768z" />
+                                            <g>
+                                                <path fill="#333"
+                                                    d="M102.004 145.361H98.12a.385.385 0 0 1 0-.77h3.884a.386.386 0 0 1 0 .77z" />
+                                                <path fill="#333"
+                                                    d="M99.978 147.47a.382.382 0 0 1-.384-.383v-4.391a.384.384 0 1 1 .768 0v4.391a.383.383 0 0 1-.384.383z" />
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <path fill="#333"
+                                                d="M128.992 46.902h-3.884a.383.383 0 1 1 0-.768h3.884a.384.384 0 1 1 0 .768z" />
+                                            <path fill="#333"
+                                                d="M126.966 49.012a.384.384 0 0 1-.385-.383v-4.392a.385.385 0 0 1 .768 0v4.392a.382.382 0 0 1-.383.383z" />
+                                        </g>
+                                        <g>
+                                            <path fill="#333"
+                                                d="M36.786 126.585v2.639c0 1.459 1.155 2.643 2.58 2.643h101.27c1.424 0 2.58-1.184 2.58-2.643v-2.639H36.786z" />
+                                            <path fill="#686868"
+                                                d="M138.291 126.585V70.713c0-3.108-2.461-5.627-5.498-5.627H47.207c-3.036 0-5.498 2.519-5.498 5.627v55.872h96.582z" />
+                                            <path fill="#CCCBC9" d="M46.505 70.419h86.989v51.845H46.505z" />
                                             <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
-                                                d="m110.9 122.21.02-9.293 1.389.003-.02 9.292zM106.1 122.192l.021-9.293 1.387.003-.02 9.293z" />
+                                                d="M67.814 88.174h43.087V101H67.814z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
+                                                d="M67.814 94.587h43.087V101H67.814z" />
                                             <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                                d="m100.291 117.556 1.201-1.197 1.198 1.201-1.201 1.198zM97.423 117.502l1.202-1.197 1.197 1.202-1.202 1.196z" />
+                                                d="M103.65 88.174h1.609V101h-1.609zM95.976 88.174h1.609V101h-1.609zM70.754 88.174h1.609V101h-1.609zM100.484 92.429a1.235 1.235 0 1 1 0-2.47 1.235 1.235 0 0 1 0 2.47z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                                d="M100.484 95.821a1.234 1.234 0 1 1-.002-2.468 1.234 1.234 0 0 1 .002 2.468z"
+                                                opacity=".6" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                                d="M100.484 99.213a1.234 1.234 0 1 1-.002-2.468 1.234 1.234 0 0 1 .002 2.468z"
+                                                opacity=".2" />
+                                            <g>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
+                                                    d="m69.984 122.118.02-9.292 47.507.105-.02 9.292z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
+                                                    d="m117.491 122.225.008-3.786-47.506-.274-.009 3.953z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
+                                                    d="m110.9 122.21.02-9.293 1.389.003-.02 9.292zM106.1 122.192l.021-9.293 1.387.003-.02 9.293z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                                    d="m100.291 117.556 1.201-1.197 1.198 1.201-1.201 1.198zM97.423 117.502l1.202-1.197 1.197 1.202-1.202 1.196z" />
+                                            </g>
+                                            <g>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
+                                                    d="m64.35 88.133.01-9.292 47.51.057-.011 9.292z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
+                                                    d="m111.855 88.187.003-3.786-47.507-.225-.005 3.953z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
+                                                    d="m105.27 88.182.01-9.292 1.388.002-.01 9.292zM100.467 88.17l.011-9.292 1.387.002-.011 9.292z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                                    d="m94.648 83.535 1.202-1.197 1.197 1.203-1.201 1.196zM91.78 83.496l1.2-1.198 1.198 1.2-1.2 1.198z" />
+                                            </g>
+                                            <g>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                                    d="M103.639 101.056v11.839H69.555a5.93 5.93 0 0 1-5.66-5.924 5.924 5.924 0 0 1 5.526-5.915h34.218z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFF"
+                                                    d="M103.639 101.913v10.125H70.343c-2.927 0-5.299-2.269-5.299-5.066 0-2.704 2.214-4.913 5.004-5.059h33.591z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#B2B2B2"
+                                                    d="m93.372 112.038.023-6.788-.875.005v6.783z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
+                                                    d="m88.121 105.277 4.421-.027.075 11.852-2.228-1.876-2.193 1.905z" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
+                                                    d="m88.166 112.188 4.422-.029.014 2.078-4.422.03z" opacity=".5" />
+                                            </g>
+                                            <g>
+                                                <path fill="#FFF"
+                                                    d="M91.418 67.778c0 .802-.635 1.452-1.419 1.452s-1.418-.65-1.418-1.452c0-.802.634-1.452 1.418-1.452.785 0 1.419.65 1.419 1.452z" />
+                                            </g>
                                         </g>
                                         <g>
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
-                                                d="m64.35 88.133.01-9.292 47.51.057-.011 9.292z" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
-                                                d="m111.855 88.187.003-3.786-47.507-.225-.005 3.953z" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
-                                                d="m105.27 88.182.01-9.292 1.388.002-.01 9.292zM100.467 88.17l.011-9.292 1.387.002-.011 9.292z" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                                d="m94.648 83.535 1.202-1.197 1.197 1.203-1.201 1.196zM91.78 83.496l1.2-1.198 1.198 1.2-1.2 1.198z" />
+                                            <path fill="#333"
+                                                d="M103.184 65.096V49.408l-13.829 6.258-13.831-6.258v15.688h27.66z" />
+                                            <path fill="#333"
+                                                d="M103.184 49.409v3.4l-13.832 6.254-13.828-6.258v-3.396l13.831 6.259 13.829-6.259z" />
+                                            <path fill="#757575"
+                                                d="M89.354 54.218v1.454l-23.901-9.574v-1.322l.01-.005 23.891 9.447z" />
+                                            <path fill="#333"
+                                                d="m89.354 54.219-23.901-9.452 24.078-9.287 23.278 9.296zM111.101 45.721h1.396V60.4h-1.396z" />
+                                            <path fill="#333"
+                                                d="M114.012 60.925a2.21 2.21 0 0 0-2.213-2.212 2.214 2.214 0 0 0 0 4.427 2.214 2.214 0 0 0 2.213-2.215z" />
+                                            <path fill="#333"
+                                                d="M113.271 62.034h-2.794c-.468 1.249-1.502 4.684-.914 9.391 0 .282 1.033.511 2.308.511 1.274 0 2.308-.229 2.308-.511.587-4.707-.442-8.142-.908-9.391z" />
+                                            <g>
+                                                <path fill="#B2B2B2"
+                                                    d="m89.354 54.218.001 1.454 23.454-9.574v-1.322l-.01-.005-23.444 9.447z" />
+                                            </g>
                                         </g>
                                         <g>
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                                d="M103.639 101.056v11.839H69.555a5.93 5.93 0 0 1-5.66-5.924 5.924 5.924 0 0 1 5.526-5.915h34.218z" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFF"
-                                                d="M103.639 101.913v10.125H70.343c-2.927 0-5.299-2.269-5.299-5.066 0-2.704 2.214-4.913 5.004-5.059h33.591z" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#B2B2B2"
-                                                d="m93.372 112.038.023-6.788-.875.005v6.783z" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
-                                                d="m88.121 105.277 4.421-.027.075 11.852-2.228-1.876-2.193 1.905z" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
-                                                d="m88.166 112.188 4.422-.029.014 2.078-4.422.03z" opacity=".5" />
-                                        </g>
-                                        <g>
-                                            <path fill="#FFF"
-                                                d="M91.418 67.778c0 .802-.635 1.452-1.419 1.452s-1.418-.65-1.418-1.452c0-.802.634-1.452 1.418-1.452.785 0 1.419.65 1.419 1.452z" />
+                                            <path fill="#333"
+                                                d="M36.78 93.018h-6.034a.384.384 0 0 1 0-.769h6.034a.384.384 0 0 1 0 .769zM35.861 88.589h-.975a.385.385 0 1 1 0-.768h.975a.385.385 0 0 1 0 .768zM37.021 97.722h-.975a.385.385 0 1 1 0-.768h.975a.385.385 0 1 1 0 .768zM33.762 88.589h-3.674a.384.384 0 1 1 0-.768h3.674a.385.385 0 1 1 0 .768zM39.24 84.559h-4.436a.385.385 0 1 1 0-.769h4.436a.384.384 0 0 1 0 .769z" />
                                         </g>
                                     </g>
-                                    <g>
-                                        <path fill="#333"
-                                            d="M103.184 65.096V49.408l-13.829 6.258-13.831-6.258v15.688h27.66z" />
-                                        <path fill="#333"
-                                            d="M103.184 49.409v3.4l-13.832 6.254-13.828-6.258v-3.396l13.831 6.259 13.829-6.259z" />
-                                        <path fill="#757575"
-                                            d="M89.354 54.218v1.454l-23.901-9.574v-1.322l.01-.005 23.891 9.447z" />
-                                        <path fill="#333"
-                                            d="m89.354 54.219-23.901-9.452 24.078-9.287 23.278 9.296zM111.101 45.721h1.396V60.4h-1.396z" />
-                                        <path fill="#333"
-                                            d="M114.012 60.925a2.21 2.21 0 0 0-2.213-2.212 2.214 2.214 0 0 0 0 4.427 2.214 2.214 0 0 0 2.213-2.215z" />
-                                        <path fill="#333"
-                                            d="M113.271 62.034h-2.794c-.468 1.249-1.502 4.684-.914 9.391 0 .282 1.033.511 2.308.511 1.274 0 2.308-.229 2.308-.511.587-4.707-.442-8.142-.908-9.391z" />
-                                        <g>
-                                            <path fill="#B2B2B2"
-                                                d="m89.354 54.218.001 1.454 23.454-9.574v-1.322l-.01-.005-23.444 9.447z" />
-                                        </g>
-                                    </g>
-                                    <g>
-                                        <path fill="#333"
-                                            d="M36.78 93.018h-6.034a.384.384 0 0 1 0-.769h6.034a.384.384 0 0 1 0 .769zM35.861 88.589h-.975a.385.385 0 1 1 0-.768h.975a.385.385 0 0 1 0 .768zM37.021 97.722h-.975a.385.385 0 1 1 0-.768h.975a.385.385 0 1 1 0 .768zM33.762 88.589h-3.674a.384.384 0 1 1 0-.768h3.674a.385.385 0 1 1 0 .768zM39.24 84.559h-4.436a.385.385 0 1 1 0-.769h4.436a.384.384 0 0 1 0 .769z" />
-                                    </g>
-                                </g>
-                            </svg>
-                            <div class="for-border ml-4">
+                                </svg>
+                                <div class="for-border ml-4">
 
-                                <h5 class="for-label1 font-weight-bold">Personalized Support</h5>
-                                <p class="for-para custom_paragraph pr-2">Our prep courses provide opportunities for
-                                    personalized help from instructors or tutors-small groups or Q&A sessions.
-                                    We address specific challenging concepts or filling knowledge
-                                    gaps.
-                                </p>
+                                    <h5 class="for-label1 font-weight-bold">Is the NCLEX-RN Keeping You From Your Dream
+                                        Job?
+                                    </h5>
+                                    <p class="for-para custom_paragraph pr-2">Don't let one test stand between you and a
+                                        fulfilling nursing career. Our results-oriented Florida Board-approved course can
+                                        bridge
+                                        the gap.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- 3rd 1st-side-->
-                    <div class="col-md-6 for-main">
-                        <div class="d-flex for-element">
-                            <svg class="for-global" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
-                                style="enable-background:new 0 0 256 256" xml:space="preserve">
-                                <style>
-                                    .st2 {
-                                        fill: none;
-                                        stroke: #6b1d1d;
-                                        stroke-width: .5;
-                                        stroke-miterlimit: 10
-                                    }
+                        {{-- 2 --}}
+                        <div class="col-md-6">
+                            <div class="d-flex for-element">
+                                <svg class="for-focus" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                    x="0" y="0" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256"
+                                    xml:space="preserve">
+                                    <style>
+                                        .st0 {
+                                            fill: #4671c6
+                                        }
 
-                                    .st3 {
-                                        fill: #3a312a
-                                    }
+                                        .st3 {
+                                            fill: #a4c9ff
+                                        }
 
-                                    .st4 {
-                                        fill: #87796f
-                                    }
+                                        .st4 {
+                                            fill: #3762cc
+                                        }
 
-                                    .st14 {
-                                        fill: #d7e057
-                                    }
+                                        .st5 {
+                                            fill: #e0ebfc
+                                        }
 
-                                    .st19 {
-                                        fill: #fae6ca
-                                    }
-                                </style>
-                                <g id="Layer_1">
-                                    <path class="st4"
-                                        d="M222.145 180.568H33.355c-9.447 0-17.105-7.658-17.105-17.105V33.173c0-9.447 7.658-17.106 17.105-17.106h188.789c9.447 0 17.105 7.658 17.105 17.106v130.289c.001 9.447-7.657 17.106-17.104 17.106z" />
+                                        .st7 {
+                                            fill: #b9befc
+                                        }
+                                    </style>
                                     <path class="st3"
-                                        d="M222.145 182.068H33.355c-10.259 0-18.605-8.346-18.605-18.605V33.173c0-10.259 8.347-18.605 18.605-18.605h188.789c10.259 0 18.605 8.346 18.605 18.605v130.289c.001 10.26-8.346 18.606-18.604 18.606zm-188.79-164.5c-8.604 0-15.605 7-15.605 15.605v130.289c0 8.605 7.001 15.605 15.605 15.605h188.789c8.604 0 15.605-7.001 15.605-15.605V33.173c0-8.605-7.001-15.605-15.605-15.605H33.355z" />
-                                    <path class="st14"
-                                        d="M28.861 115.877v40.271c0 6.583 5.337 11.92 11.92 11.92h173.938c6.583 0 11.92-5.337 11.92-11.92V40.488c0-6.583-5.337-11.92-11.92-11.92H40.781c-6.583 0-11.92 5.337-11.92 11.92v75.389z" />
-                                    <path class="st3"
-                                        d="M214.719 169.568H40.781c-7.4 0-13.42-6.02-13.42-13.42v-40.271a1.5 1.5 0 1 1 3 0v40.271c0 5.746 4.675 10.42 10.42 10.42h173.938c5.745 0 10.42-4.674 10.42-10.42V40.488c0-5.746-4.675-10.42-10.42-10.42H40.781c-5.745 0-10.42 4.674-10.42 10.42v62.167a1.5 1.5 0 1 1-3 0V40.488c0-7.4 6.02-13.42 13.42-13.42h173.938c7.399 0 13.42 6.02 13.42 13.42v115.66c0 7.4-6.021 13.42-13.42 13.42z" />
-                                    <path class="st4" d="M113.438 180.568h28.625v35.593h-28.625z" />
-                                    <path class="st3"
-                                        d="M142.062 217.661h-28.625a1.5 1.5 0 0 1-1.5-1.5v-35.593a1.5 1.5 0 0 1 1.5-1.5h28.625a1.5 1.5 0 0 1 1.5 1.5v35.593a1.5 1.5 0 0 1-1.5 1.5zm-27.124-3h25.625v-32.593h-25.625v32.593z" />
-                                    <path class="st4"
-                                        d="M135.202 239.568h36.252c0-12.927-10.479-23.407-23.407-23.407h-40.593c-12.927 0-23.407 10.479-23.407 23.407h51.155z" />
-                                    <path class="st3"
-                                        d="M171.453 241.068h-36.252a1.5 1.5 0 1 1 0-3h34.701c-.773-11.382-10.28-20.407-21.855-20.407h-40.594c-11.575 0-21.082 9.024-21.855 20.407h36.033a1.5 1.5 0 1 1 0 3H84.047a1.5 1.5 0 0 1-1.5-1.5c0-13.733 11.173-24.907 24.906-24.907h40.594c13.733 0 24.906 11.173 24.906 24.907a1.5 1.5 0 0 1-1.5 1.5z" />
-                                    <path class="st14"
-                                        d="M47.421 203.402s3.408 12.659 13.222 13.246c0 0-13.1 4.525-13.321 14.202 0 0-2.579-13.572-12.925-14.059 0 0 12.05-1.825 13.024-13.389z" />
-                                    <path class="st3"
-                                        d="M47.321 232.349a1.502 1.502 0 0 1-1.473-1.217c-.023-.124-2.494-12.417-11.522-12.842a1.5 1.5 0 0 1-.155-2.982c.441-.069 10.895-1.817 11.754-12.032a1.501 1.501 0 0 1 2.943-.265c.031.116 3.259 11.626 11.863 12.141a1.5 1.5 0 0 1 .402 2.915c-.121.042-12.118 4.31-12.312 12.818a1.498 1.498 0 0 1-1.5 1.464zm-7.742-15.729c3.879 1.969 6.231 5.746 7.588 8.876 2.026-4.021 5.941-6.787 8.948-8.427-4.134-1.842-6.783-5.651-8.334-8.723-1.793 4.361-5.27 6.869-8.202 8.274z" />
-                                    <path class="st14"
-                                        d="M25.722 220.382s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0 0 8.524-1.291 9.212-9.471z" />
-                                    <path class="st3"
-                                        d="M25.651 241.297a1.5 1.5 0 0 1-1.473-1.22c-.016-.082-1.704-8.442-7.739-8.726a1.5 1.5 0 0 1-.154-2.982c.296-.047 7.363-1.243 7.942-8.114a1.501 1.501 0 0 1 1.361-1.368 1.506 1.506 0 0 1 1.582 1.102c.021.079 2.227 7.919 7.993 8.264a1.5 1.5 0 0 1 .4 2.916c-.081.028-8.282 2.953-8.412 8.662a1.5 1.5 0 0 1-1.5 1.466zm-4.519-11.527c2.108 1.333 3.524 3.394 4.447 5.28 1.376-2.232 3.515-3.872 5.365-4.973-2.287-1.269-3.885-3.35-4.941-5.224-1.174 2.287-3.016 3.876-4.871 4.917z" />
-                                    <path class="st14"
-                                        d="M25.722 193.725s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0-.001 8.524-1.292 9.212-9.471z" />
-                                    <path class="st3"
-                                        d="M25.651 214.64a1.5 1.5 0 0 1-1.473-1.22c-.016-.082-1.704-8.442-7.739-8.726a1.5 1.5 0 0 1-.154-2.982c.296-.047 7.363-1.243 7.942-8.114a1.501 1.501 0 0 1 1.361-1.368c.712-.061 1.392.4 1.582 1.103.038.138 2.249 7.92 7.993 8.263a1.5 1.5 0 0 1 .4 2.915c-.081.028-8.282 2.952-8.412 8.662a1.5 1.5 0 0 1-1.5 1.467zm-4.519-11.528c2.108 1.332 3.524 3.394 4.447 5.28 1.376-2.233 3.515-3.872 5.365-4.973-2.287-1.269-3.885-3.35-4.941-5.224-1.174 2.287-3.016 3.876-4.871 4.917z" />
-                                    <path class="st19"
-                                        d="M208.323 25.02a105.268 105.268 0 0 0-80.572 0v107.968a105.277 105.277 0 0 1 80.572 0V25.02z" />
-                                    <path class="st3"
-                                        d="M208.323 134.488c-.194 0-.39-.038-.574-.114-25.607-10.607-53.816-10.607-79.424 0a1.498 1.498 0 0 1-2.074-1.386V25.02a1.5 1.5 0 0 1 .926-1.386c26.35-10.914 55.371-10.914 81.721 0a1.5 1.5 0 0 1 .926 1.386v107.968a1.498 1.498 0 0 1-1.501 1.5zm-40.286-11.071c13.118 0 26.237 2.451 38.786 7.351V26.027c-25.053-10.104-52.52-10.104-77.572 0v104.741c12.549-4.901 25.668-7.351 38.786-7.351z" />
-                                    <path class="st19"
-                                        d="M127.749 25.02a105.268 105.268 0 0 0-80.572 0v107.968a105.277 105.277 0 0 1 80.572 0V25.02z" />
-                                    <path class="st3"
-                                        d="M127.749 134.488c-.194 0-.39-.038-.574-.114-25.607-10.607-53.816-10.607-79.424 0a1.498 1.498 0 0 1-2.074-1.386V25.02a1.5 1.5 0 0 1 .926-1.386c26.35-10.914 55.371-10.914 81.721 0 .561.232.926.779.926 1.386v107.968a1.498 1.498 0 0 1-1.501 1.5zm-40.286-11.071c13.118 0 26.237 2.451 38.786 7.351V26.027c-25.053-10.104-52.52-10.104-77.572 0v104.741c12.549-4.901 25.668-7.351 38.786-7.351z" />
-                                    <path class="st3"
-                                        d="M56.463 114.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 114.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 99.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 99.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 84.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.344 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 84.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.947-40.475-5.933-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 69.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 69.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.933-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 54.153a1.5 1.5 0 0 1-.443-2.933c20.566-6.346 42.313-6.345 62.885-.001a1.5 1.5 0 0 1-.885 2.868c-19.996-6.167-41.129-6.167-61.115 0a1.548 1.548 0 0 1-.442.066zM137.462 54.013a1.501 1.501 0 0 1-.436-2.936c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.476 1.476 0 0 1-.437.066zM56.463 39.153a1.5 1.5 0 0 1-.443-2.933c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.548 1.548 0 0 1-.442.066zM137.462 39.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065z" />
-                                    <circle cx="183.75" cy="183.932" r="56" style="fill:#8ac6dd" />
-                                    <path class="st3"
-                                        d="M183.75 241.432c-31.706 0-57.5-25.794-57.5-57.5s25.794-57.5 57.5-57.5 57.5 25.794 57.5 57.5-25.794 57.5-57.5 57.5zm0-112c-30.052 0-54.5 24.449-54.5 54.5s24.448 54.5 54.5 54.5 54.5-24.449 54.5-54.5-24.448-54.5-54.5-54.5z" />
-                                    <path class="st3"
-                                        d="M183.75 241.432c-21.474 0-38.943-25.794-38.943-57.5s17.47-57.5 38.943-57.5 38.943 25.794 38.943 57.5-17.469 57.5-38.943 57.5zm0-112c-19.819 0-35.943 24.449-35.943 54.5s16.124 54.5 35.943 54.5 35.943-24.449 35.943-54.5-16.124-54.5-35.943-54.5z" />
-                                    <path class="st3"
-                                        d="M183.75 241.432c-10.405 0-16.02-29.626-16.02-57.5s5.615-57.5 16.02-57.5 16.02 29.626 16.02 57.5-5.615 57.5-16.02 57.5zm0-112c-6.158 0-13.02 22.382-13.02 54.5 0 32.118 6.862 54.5 13.02 54.5s13.02-22.382 13.02-54.5c0-32.117-6.862-54.5-13.02-54.5z" />
-                                    <path class="st3"
-                                        d="M183.75 222.876c-31.706 0-57.5-17.47-57.5-38.944 0-21.474 25.794-38.943 57.5-38.943s57.5 17.47 57.5 38.943c0 21.474-25.794 38.944-57.5 38.944zm0-74.887c-30.052 0-54.5 16.124-54.5 35.943s24.448 35.944 54.5 35.944 54.5-16.124 54.5-35.944c0-19.819-24.448-35.943-54.5-35.943z" />
-                                    <path class="st3"
-                                        d="M183.75 199.953c-27.875 0-57.5-5.615-57.5-16.02s29.625-16.02 57.5-16.02 57.5 5.615 57.5 16.02-29.625 16.02-57.5 16.02zm0-29.041c-32.117 0-54.5 6.862-54.5 13.02 0 6.159 22.383 13.02 54.5 13.02s54.5-6.862 54.5-13.02c0-6.158-22.383-13.02-54.5-13.02z" />
+                                        d="M178.346 248.616H77.654a7.039 7.039 0 0 1 0-14.078h100.692a7.039 7.039 0 0 1 0 14.078zM232.568 207.378H23.432c-5.634 0-10.202-4.567-10.202-10.202V64.553c0-5.634 4.567-10.202 10.202-10.202h209.137c5.634 0 10.202 4.567 10.202 10.202v132.623c-.001 5.634-4.568 10.202-10.203 10.202z" />
                                     <path
-                                        d="M214.719 30.068h-4.896V132.71a57.788 57.788 0 0 1 15.316 11.369V40.488c0-5.746-4.675-10.42-10.42-10.42z"
-                                        style="fill:#b9c239" />
-                                </g>
-                            </svg>
-                            <div class="for-border ml-4">
-                                <h5 class="for-label1 font-weight-bold">Targeted Instruction</h5>
-                                <p class="for-para custom_paragraph pr-2">Merkaii Xcellence Prep offers courses
-                                    specifically developed for your licensure exam, ensuring that content directly aligns
-                                    with what you need to know for test success.</p>
-
-                            </div>
-                        </div>
-                        <div class="d-flex for-element">
-                            <svg class="for-affordability" version="1.1" id="Layer_1"
-                                xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 256 256"
-                                style="enable-background:new 0 0 256 256" xml:space="preserve">
-                                <style>
-                                    .st0 {
-                                        fill: #382b73
-                                    }
-
-                                    .st2 {
-                                        fill: #f6ca14
-                                    }
-
-                                    .st3 {
-                                        fill: #e7ad27
-                                    }
-
-                                    .st5 {
-                                        fill: #fddd3a
-                                    }
-
-                                    .st7 {
-                                        fill: #009add
-                                    }
-
-                                    .st12 {
-                                        fill: #d0d2d3
-                                    }
-
-                                    .st13 {
-                                        fill: #fff
-                                    }
-
-                                    .st14 {
-                                        fill: #0099dc
-                                    }
-
-                                    .st15 {
-                                        fill: #1cade3
-                                    }
-
-                                    .st17 {
-                                        fill: #106ea0
-                                    }
-                                </style>
-                                <switch>
-                                    <g>
-                                        <circle class="st0" cx="128" cy="128" r="120" />
-                                        <circle cx="128" cy="128" r="102.5" style="fill:#473080" />
-                                        <path class="st0"
-                                            d="M195.675 124.643h-28.026l.008-23.562v.013l.001-1.777a8.855 8.855 0 0 0-2.751-6.43l-.013-.012a8.913 8.913 0 0 0-1.27-1.004l-.129-.083a8.843 8.843 0 0 0-4.72-1.357h-1.341c.37-1.883.565-3.829.565-5.82 0-16.568-13.431-30-30-30s-30 13.432-30 30c0 1.985.193 3.924.561 5.801l-38.215-.013a8.854 8.854 0 0 0-1.5.126c-4.192.712-7.385 4.36-7.387 8.755l-.001 1.777v-.006l-.018 53.485a8.885 8.885 0 0 0 8.881 8.887l28.039.009v25.352a9.115 9.115 0 0 0 .227 2.007 9.005 9.005 0 0 0 .744 2.039l.1.19a8.883 8.883 0 0 0 7.812 4.649h98.43a8.885 8.885 0 0 0 8.884-8.884V133.53a8.88 8.88 0 0 0-8.881-8.887z" />
-                                        <g>
-                                            <path class="st2"
-                                                d="m158.752 156.454-98.43-.033a8.884 8.884 0 0 1-8.881-8.887l.018-55.255a8.884 8.884 0 0 1 8.887-8.881l98.43.033a8.883 8.883 0 0 1 8.881 8.887l-.018 55.255a8.885 8.885 0 0 1-8.887 8.881z" />
-                                            <path class="st3"
-                                                d="m158.752 154.677-98.43-.033a8.884 8.884 0 0 1-8.881-8.887l-.001 1.777a8.885 8.885 0 0 0 8.881 8.887l98.43.033a8.885 8.885 0 0 0 8.887-8.881l.001-1.777c-.001 4.906-3.98 8.882-8.887 8.881z" />
-                                            <path
-                                                d="m158.776 83.43-98.43-.033a8.885 8.885 0 0 0-8.887 8.881l-.001 1.777a8.883 8.883 0 0 1 8.887-8.881l98.43.033a8.884 8.884 0 0 1 8.881 8.887l.001-1.777a8.884 8.884 0 0 0-8.881-8.887z"
-                                                style="fill:#fff235" />
-                                            <path class="st3" d="M51.456 92.298h116.198v16.936H51.456z" />
-                                            <path class="st5"
-                                                d="m155.743 123.894-93.859-.031a3.058 3.058 0 1 1 .002-6.116l93.859.031a3.057 3.057 0 1 1-.002 6.116zM117.85 138.255l-55.97-.019a3.058 3.058 0 1 1 .002-6.116l55.97.019a3.058 3.058 0 1 1-.002 6.116z" />
-                                            <g>
-                                                <path
-                                                    d="M195.675 190.667h-98.43a8.884 8.884 0 0 1-8.884-8.884v-55.255a8.884 8.884 0 0 1 8.884-8.884h98.43a8.883 8.883 0 0 1 8.884 8.884v55.255a8.884 8.884 0 0 1-8.884 8.884z"
-                                                    style="fill:#1caee4" />
-                                                <path class="st7"
-                                                    d="M195.675 188.89h-98.43a8.884 8.884 0 0 1-8.884-8.884v1.777a8.884 8.884 0 0 0 8.884 8.884h98.43a8.884 8.884 0 0 0 8.884-8.884v-1.777a8.884 8.884 0 0 1-8.884 8.884z" />
-                                                <path
-                                                    d="M195.675 117.643h-98.43a8.883 8.883 0 0 0-8.884 8.884v1.777a8.885 8.885 0 0 1 8.884-8.884h98.43a8.884 8.884 0 0 1 8.884 8.884v-1.777a8.884 8.884 0 0 0-8.884-8.884z"
-                                                    style="fill:#27c1e6" />
-                                                <path class="st7"
-                                                    d="M110.734 151.637h-9.476a3.554 3.554 0 0 1-3.554-3.554v-9.476a3.554 3.554 0 0 1 3.554-3.554h9.476a3.554 3.554 0 0 1 3.554 3.554v9.476a3.555 3.555 0 0 1-3.554 3.554z" />
-                                                <path class="st5"
-                                                    d="M110.734 150.926h-9.476a3.554 3.554 0 0 1-3.554-3.554v-9.476a3.554 3.554 0 0 1 3.554-3.554h9.476a3.554 3.554 0 0 1 3.554 3.554v9.476a3.555 3.555 0 0 1-3.554 3.554z" />
-                                                <path class="st2" d="M102.442 139.081h7.107v7.107h-7.107z" />
-                                                <path class="st2"
-                                                    d="M97.704 139.081h16.583v.711H97.704zM97.704 145.477h16.583v.711H97.704z" />
-                                                <path transform="rotate(-90 102.797 142.634)" class="st2"
-                                                    d="M94.505 142.279h16.584v.711H94.505z" />
-                                                <path transform="rotate(-90 109.194 142.634)" class="st2"
-                                                    d="M100.902 142.279h16.584v.711h-16.584z" />
-                                                <path class="st5"
-                                                    d="M113.195 169.378H98.796a3.058 3.058 0 1 1 0-6.116h14.398a3.057 3.057 0 1 1 .001 6.116z" />
-                                                <g>
-                                                    <path class="st5"
-                                                        d="M139.682 169.378h-14.398a3.058 3.058 0 1 1 0-6.116h14.398a3.058 3.058 0 0 1 0 6.116z" />
-                                                </g>
-                                                <g>
-                                                    <path class="st5"
-                                                        d="M166.169 169.378H151.77a3.058 3.058 0 1 1 0-6.116h14.398a3.057 3.057 0 1 1 .001 6.116z" />
-                                                </g>
-                                                <g>
-                                                    <path class="st5"
-                                                        d="M192.656 169.378h-14.398a3.058 3.058 0 1 1 0-6.116h14.398a3.058 3.058 0 0 1 0 6.116z" />
-                                                </g>
-                                                <g>
-                                                    <path class="st5"
-                                                        d="M154.767 180.987h-55.97a3.058 3.058 0 1 1 0-6.116h55.97a3.058 3.058 0 1 1 0 6.116z" />
-                                                </g>
-                                                <g>
-                                                    <path class="st5"
-                                                        d="M194.529 142.634a9.335 9.335 0 1 1-18.67 0 9.335 9.335 0 0 1 18.67 0z" />
-                                                </g>
-                                                <g>
-                                                    <path class="st5"
-                                                        d="M179.555 142.634a9.335 9.335 0 1 1-18.67 0 9.335 9.335 0 0 1 18.67 0z" />
-                                                </g>
-                                            </g>
-                                            <path class="st3"
-                                                d="M98.054 83.41c.931 15.73 13.982 28.2 29.946 28.2 15.957 0 29.004-12.459 29.945-28.18l-59.891-.02z" />
-                                            <g>
-                                                <circle cx="128" cy="77.609" r="30" style="fill:#ef5a9d" />
-                                                <path
-                                                    d="m147.658 93.661-.001-.005a3.53 3.53 0 0 0-.016-.101l-.001-.008-.016-.087-.005-.025-.018-.081-.006-.027-.018-.072-.01-.038-.031-.106-3.544-11.548-.039-.121a3.444 3.444 0 0 0-2.455-2.225 3.532 3.532 0 0 0-.372-.068l-5.918-.781a.694.694 0 0 0-.171-.559l-1.672-1.863a.696.696 0 0 0-.785-.178l-.105.043v-1.634c1.729-1.129 3.09-2.961 3.812-5.173.049.013.099.023.15.03.933.131 1.824-.719 1.989-1.898.165-1.179-.457-2.241-1.39-2.371a1.42 1.42 0 0 0-.195-.013 4.955 4.955 0 0 0-.007-.125l-.007-.107a5.77 5.77 0 0 0-.01-.131l-.01-.11-.013-.131-.012-.104-.016-.129-.015-.11-.017-.117-.018-.116-.019-.113-.02-.112a4.108 4.108 0 0 0-.023-.118l-.021-.102-.026-.122-.023-.101a19.36 19.36 0 0 0-.027-.113l-.026-.104-.032-.117-.026-.096-.031-.106a3.34 3.34 0 0 0-.032-.107l-.02-.062a7.088 7.088 0 0 0-.086-.258l-.028-.08-.038-.103a3.91 3.91 0 0 0-.037-.098l-.047-.118-.029-.073-.05-.117a2.633 2.633 0 0 0-.034-.078l-.051-.112-.034-.074-.056-.114-.035-.071a5.628 5.628 0 0 0-.056-.109l-.04-.075-.059-.109-.035-.061a6.983 6.983 0 0 0-.067-.117l-.033-.055c-.023-.04-.048-.079-.072-.118l-.03-.047-.078-.122-.027-.04a5.647 5.647 0 0 0-.086-.127l-.01-.014a7.784 7.784 0 0 0-1.112-1.275l-.002-.001a7.865 7.865 0 0 0-2.474-1.539l-.033-.012-.175-.066a.868.868 0 0 0-.047-.016l-.161-.055a7.199 7.199 0 0 0-.214-.068l-.06-.018-.158-.045-.058-.016-.182-.046-.033-.008a8.2 8.2 0 0 0-.446-.094l-.047-.008a5.39 5.39 0 0 0-.401-.062 2.184 2.184 0 0 0-.08-.01l-.144-.017-.088-.009a.088.088 0 0 1-.016-.002h-.004l-.12-.011-.092-.007-.105-.007-.066-.004-.059-.003-.066-.003-.106-.004-.059-.002-.029-.001a13.604 13.604 0 0 0-.418 0l-.065.002a7.216 7.216 0 0 0-.147.005l-.096.005a4.51 4.51 0 0 0-.204.014l-.124.01-.085.008-.123.013a2.574 2.574 0 0 0-.092.011l-.113.014-.102.015-.103.015-.104.018-.099.017-.105.02-.097.019-.104.023-.095.021-.11.026-.086.022-.111.029-.085.023a3.53 3.53 0 0 0-.192.057l-.114.036a5.309 5.309 0 0 0-.381.134l-.074.028a13.329 13.329 0 0 0-.299.123l-.063.028-.122.055-.055.026a4.584 4.584 0 0 0-.122.059l-.055.028a7.622 7.622 0 0 0-.127.065l-.043.023-.128.07-.046.026-.129.075a.602.602 0 0 1-.034.02l-.137.084-.025.016a6.9 6.9 0 0 0-.142.092l-.017.012-.147.1a.055.055 0 0 0-.008.006l-.152.109-.002.001c-1.899 1.404-3.168 3.682-3.322 6.648-.065 0-.13.004-.194.013-.933.131-1.556 1.192-1.39 2.371.165 1.179 1.055 2.029 1.988 1.898.051-.007.101-.017.15-.03.722 2.212 2.082 4.044 3.812 5.173v1.634l-.105-.043a.697.697 0 0 0-.785.178l-1.672 1.863a.691.691 0 0 0-.171.559l-5.918.781a3.485 3.485 0 0 0-1.289.434 3.45 3.45 0 0 0-.767.601c-.028.03-.056.059-.083.09a3.451 3.451 0 0 0-.727 1.289l-3.544 11.548a4.378 4.378 0 0 0-.031.108l-.004.015a3.326 3.326 0 0 0-.027.103l-.022.1-.003.013a1.618 1.618 0 0 0-.018.096l-.001.008a3.4 3.4 0 0 0-.047.693l.005.101a3.718 3.718 0 0 0 .092.593l.025.096a3.496 3.496 0 0 0 .391.899c.223.361.511.681.85.941.052.04.106.078.16.116.546.37 1.208.589 1.934.589h31.592a3.435 3.435 0 0 0 3.042-1.816 3.422 3.422 0 0 0 .361-1.02l.017-.098c.015-.099.026-.199.032-.3l.005-.101a3.47 3.47 0 0 0-.031-.585z"
-                                                    style="fill:#e43d91" />
-                                                <path class="st3" d="M124.396 69.185h8.078v8.078h-8.078z" />
-                                                <path class="st2"
-                                                    d="M121.825 64.308c.165 1.179-.457 2.241-1.39 2.371-.933.131-1.823-.719-1.989-1.898-.165-1.179.457-2.241 1.39-2.371.933-.131 1.824.719 1.989 1.898zM135.045 64.308c-.165 1.179.457 2.241 1.39 2.371s1.823-.719 1.989-1.898c.165-1.179-.457-2.241-1.39-2.371-.933-.131-1.824.719-1.989 1.898z" />
-                                                <path class="st5"
-                                                    d="M136.856 63.013c0 5.543-3.77 10.037-8.421 10.037s-8.421-4.494-8.421-10.037 3.77-8.869 8.421-8.869c4.651-.001 8.421 3.325 8.421 8.869z" />
-                                                <path class="st2"
-                                                    d="M128.435 72.179c-4.528 0-8.22-4.26-8.412-9.6a12.36 12.36 0 0 0-.009.434c0 5.543 3.77 10.037 8.421 10.037s8.421-4.494 8.421-10.037c0-.146-.004-.291-.009-.434-.193 5.34-3.884 9.6-8.412 9.6z" />
-                                                <path class="st2"
-                                                    d="M136.833 63.711c-.281-4.766-3.452-7.737-7.477-8.13a7.937 7.937 0 0 0 7.384 9.083c.044-.312.074-.63.093-.953z" />
-                                                <path
-                                                    d="M144.231 95.229h-31.592c-2.325 0-3.987-2.249-3.305-4.472l3.544-11.548a3.457 3.457 0 0 1 2.867-2.415l12.69-1.675 12.69 1.675a3.457 3.457 0 0 1 2.867 2.415l3.544 11.548c.682 2.223-.98 4.472-3.305 4.472z"
-                                                    style="fill:#e6e7e8" />
-                                                <path class="st12"
-                                                    d="m130.736 79.137-1.791 1.791a.72.72 0 0 1-1.02 0l-1.791-1.791a.72.72 0 0 1 0-1.02l1.791-1.791a.72.72 0 0 1 1.02 0l1.791 1.791a.72.72 0 0 1 0 1.02z" />
-                                                <path class="st13"
-                                                    d="m109.334 92.151 3.544-11.548a3.457 3.457 0 0 1 2.867-2.415l12.69-1.675 12.69 1.675a3.457 3.457 0 0 1 2.867 2.415l3.544 11.548c.033.108.059.216.081.323a3.435 3.435 0 0 0-.081-1.716l-3.544-11.548a3.457 3.457 0 0 0-2.867-2.415l-12.69-1.676-12.69 1.676a3.458 3.458 0 0 0-2.867 2.415l-3.544 11.548a3.435 3.435 0 0 0-.081 1.716 3.39 3.39 0 0 1 .081-.323z" />
-                                                <path class="st12"
-                                                    d="m128.435 75.128-2.737 3.833a.89.89 0 0 1-1.393.07l-2.649-3.017 6.779-.886zM128.435 75.128l2.737 3.833a.89.89 0 0 0 1.393.07l2.649-3.017-6.779-.886zM147.41 90.347a3.45 3.45 0 0 1-3.179 2.097h-31.592a3.45 3.45 0 0 1-3.179-2.097l-.126.411c-.682 2.223.98 4.471 3.305 4.471h31.592c2.325 0 3.987-2.249 3.305-4.471l-.126-.411z" />
-                                                <path class="st2"
-                                                    d="M120.014 63.013c0 .456.028.904.077 1.344a9.547 9.547 0 0 0 12.011-9.222c0-.074-.004-.147-.005-.221a8.8 8.8 0 0 0-3.662-.77c-4.651-.001-8.421 3.325-8.421 8.869z" />
-                                                <path class="st14"
-                                                    d="M120.024 62.568a7.94 7.94 0 0 0 11.205-7.991 9.004 9.004 0 0 0-2.794-.434c-4.525 0-8.215 3.149-8.411 8.425z" />
-                                                <path class="st15"
-                                                    d="M128.435 55.536c.98 0 1.919.149 2.794.434l.006.078c.02-.23.032-.462.032-.698 0-.261-.014-.519-.038-.773a9.004 9.004 0 0 0-2.794-.434c-4.525 0-8.215 3.149-8.411 8.425.043.02.088.037.132.056.719-4.466 4.151-7.088 8.279-7.088z" />
-                                                <path class="st15"
-                                                    d="M129.356 54.189a7.939 7.939 0 0 0 7.494 9.091c.002-.089.006-.178.006-.267 0-5.173-3.283-8.413-7.5-8.824z" />
-                                                <path
-                                                    d="M129.356 55.582c3.901.38 7 3.183 7.443 7.695l.051.003c.002-.089.006-.178.006-.267 0-5.172-3.283-8.413-7.5-8.824a7.943 7.943 0 0 0-.053 1.858c.013-.156.031-.311.053-.465z"
-                                                    style="fill:#23c1e6" />
-                                                <path class="st13"
-                                                    d="M131.51 78.194c.24.239.618.271.894.075l2.518-1.785a.696.696 0 0 0 .113-1.031l-1.672-1.863a.696.696 0 0 0-.785-.178l-4.144 1.715 3.076 3.067z" />
-                                                <path class="st13"
-                                                    d="M125.36 78.194a.696.696 0 0 1-.894.075l-2.519-1.785a.696.696 0 0 1-.112-1.031l1.672-1.863a.696.696 0 0 1 .785-.178l4.144 1.715-3.076 3.067z" />
-                                                <path class="st14"
-                                                    d="m125.286 95.229 2.156-17.479h1.986l2.157 17.479z" />
-                                                <path class="st12"
-                                                    d="M137.84 85.724h-5.051a.698.698 0 0 1 0-1.396h5.051a.699.699 0 0 1 0 1.396zM114.682 95.229l1.501-8.299c.056-.312.506-.302.55.011l1.153 8.288h-3.204zM142.189 95.229l-1.501-8.299c-.056-.312-.506-.302-.55.011l-1.153 8.288h3.204z" />
-                                                <path class="st17"
-                                                    d="m127.173 80.454.752.752a.72.72 0 0 0 1.02 0l.752-.752-.269-2.704h-1.986l-.269 2.704z" />
-                                                <path class="st15"
-                                                    d="m130.736 78.441-1.791 1.791a.72.72 0 0 1-1.02 0l-1.791-1.791a.72.72 0 0 1 0-1.02l1.791-1.791a.72.72 0 0 1 1.02 0l1.791 1.791a.72.72 0 0 1 0 1.02z" />
-                                                <path class="st2"
-                                                    d="m129.31 67.992-.655.655a.311.311 0 0 1-.441 0l-.655-.655a.312.312 0 0 1 .22-.532h1.31c.278 0 .418.336.221.532z" />
-                                                <path class="st17" d="m125.626 92.474-.34 2.755h6.299l-.34-2.755z" />
-                                            </g>
-                                        </g>
-                                    </g>
-                                </switch>
-                            </svg>
-                            <div class="for-border ml-4">
-
-                                <h5 class="for-label1 font-weight-bold">Comprehensive Coursework</h5>
-                                <p class="for-para custom_paragraph pr-2">Merkaii's Xcel courses content cover the
-                                    essential
-                                    Test-Plan topics throughly, including lectures, practice questions, and sample test. We
-                                    teach effective test-taking strategies to improve exam performance.</p>
-                            </div>
-                        </div>
-                        <div class="d-flex for-element">
-                            <svg class="for-focus" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                x="0" y="0" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256"
-                                xml:space="preserve">
-                                <style>
-                                    .st0 {
-                                        fill: #4671c6
-                                    }
-
-                                    .st3 {
-                                        fill: #a4c9ff
-                                    }
-
-                                    .st4 {
-                                        fill: #3762cc
-                                    }
-
-                                    .st5 {
-                                        fill: #e0ebfc
-                                    }
-
-                                    .st7 {
-                                        fill: #b9befc
-                                    }
-                                </style>
-                                <path class="st3"
-                                    d="M178.346 248.616H77.654a7.039 7.039 0 0 1 0-14.078h100.692a7.039 7.039 0 0 1 0 14.078zM232.568 207.378H23.432c-5.634 0-10.202-4.567-10.202-10.202V64.553c0-5.634 4.567-10.202 10.202-10.202h209.137c5.634 0 10.202 4.567 10.202 10.202v132.623c-.001 5.634-4.568 10.202-10.203 10.202z" />
-                                <path
-                                    d="M25.982 190.8V70.929a3.826 3.826 0 0 1 3.826-3.826h196.384a3.826 3.826 0 0 1 3.826 3.826V190.8a3.826 3.826 0 0 1-3.826 3.826H29.808a3.826 3.826 0 0 1-3.826-3.826z"
-                                    style="fill:#6bdddd" />
-                                <path class="st5" d="M105.684 207.378h44.633v27.16h-44.633z" />
-                                <path class="st4"
-                                    d="M178.346 250.615H77.654c-4.984 0-9.039-4.055-9.039-9.039s4.055-9.039 9.039-9.039h100.691c4.984 0 9.039 4.055 9.039 9.039s-4.054 9.039-9.038 9.039zM77.654 236.537c-2.778 0-5.039 2.261-5.039 5.039s2.261 5.039 5.039 5.039h100.691c2.778 0 5.039-2.261 5.039-5.039s-2.261-5.039-5.039-5.039H77.654zM232.568 209.378H23.432c-6.729 0-12.202-5.474-12.202-12.202V64.553c0-6.729 5.474-12.202 12.202-12.202h209.137c6.729 0 12.202 5.474 12.202 12.202v132.623c0 6.728-5.474 12.202-12.203 12.202zM23.432 56.351c-4.522 0-8.202 3.68-8.202 8.202v132.623c0 4.522 3.68 8.202 8.202 8.202h209.137c4.522 0 8.202-3.68 8.202-8.202V64.553c0-4.522-3.68-8.202-8.202-8.202H23.432z" />
-                                <path class="st4"
-                                    d="M150.316 236.537h-44.633a2 2 0 0 1-2-2v-27.159a2 2 0 0 1 2-2h44.633a2 2 0 0 1 2 2v27.159a2 2 0 0 1-2 2zm-42.632-4h40.633v-23.159h-40.633v23.159zM226.192 196.626H29.808a5.832 5.832 0 0 1-5.825-5.826V70.929a5.831 5.831 0 0 1 5.825-5.825h196.385a5.831 5.831 0 0 1 5.825 5.825V190.8a5.833 5.833 0 0 1-5.826 5.826zM29.808 69.104a1.826 1.826 0 0 0-1.825 1.825V190.8c0 1.007.818 1.826 1.825 1.826h196.385a1.827 1.827 0 0 0 1.825-1.826V70.929a1.826 1.826 0 0 0-1.825-1.825H29.808z" />
-                                <path class="st0"
-                                    d="M128 155.538H43.427a3.677 3.677 0 0 1-3.677-3.677V42.835a3.677 3.677 0 0 1 3.677-3.677h78.001A6.572 6.572 0 0 1 128 45.73v109.808zM128 155.538h84.573a3.677 3.677 0 0 0 3.677-3.677V42.835a3.677 3.677 0 0 0-3.677-3.677h-78.001A6.572 6.572 0 0 0 128 45.73v109.808z" />
-                                <path class="st4"
-                                    d="M128 157.538H43.427a5.684 5.684 0 0 1-5.677-5.678V42.835a5.684 5.684 0 0 1 5.677-5.677h78.001c4.727 0 8.572 3.846 8.572 8.572v109.808a2 2 0 0 1-2 2zM43.427 41.158c-.925 0-1.677.752-1.677 1.677V151.86a1.68 1.68 0 0 0 1.677 1.678H126V45.73a4.577 4.577 0 0 0-4.572-4.572H43.427z" />
-                                <path class="st4"
-                                    d="M212.573 157.538H128a2 2 0 0 1-2-2V45.73c0-4.727 3.846-8.572 8.572-8.572h78.001a5.684 5.684 0 0 1 5.677 5.677V151.86a5.684 5.684 0 0 1-5.677 5.678zm-82.573-4h82.573a1.68 1.68 0 0 0 1.677-1.678V42.835c0-.925-.752-1.677-1.677-1.677h-78.001A4.577 4.577 0 0 0 130 45.73v107.808z" />
-                                <path class="st7"
-                                    d="M201.542 33.21v6.067H54.458V33.21c-5.638.613-5.963 6.067-5.963 6.067v110.312h159.01V39.277c-.001 0-.325-5.454-5.963-6.067z" />
-                                <path class="st4"
-                                    d="M207.505 151.59H48.495a2 2 0 0 1-2-2V39.277c0-.04.001-.079.004-.119.146-2.47 1.955-7.308 7.743-7.937a1.997 1.997 0 0 1 2.216 1.988v4.067h143.084V33.21a1.997 1.997 0 0 1 2.216-1.988c5.788.629 7.597 5.467 7.743 7.937.003.04.004.079.004.119V149.59a2 2 0 0 1-2 2zm-157.01-4h155.01V39.355c-.038-.395-.304-2.295-1.963-3.398v3.32a2 2 0 0 1-2 2H54.458a2 2 0 0 1-2-2v-3.324c-1.69 1.117-1.933 3.056-1.963 3.396V147.59z" />
-                                <path class="st5"
-                                    d="M128 149.59H54.458V33.21h67.499A6.044 6.044 0 0 1 128 39.253V149.59zM128 149.59h73.542V33.21h-67.499A6.044 6.044 0 0 0 128 39.253V149.59z" />
-                                <path class="st4"
-                                    d="M128 151.59H54.458a2 2 0 0 1-2-2V33.21a2 2 0 0 1 2-2h67.499c4.435 0 8.043 3.608 8.043 8.043V149.59a2 2 0 0 1-2 2zm-71.542-4H126V39.253a4.047 4.047 0 0 0-4.043-4.043H56.458v112.38z" />
-                                <path class="st4"
-                                    d="M201.542 151.59H128a2 2 0 0 1-2-2V39.253c0-4.435 3.608-8.043 8.043-8.043h67.499a2 2 0 0 1 2 2v116.38a2 2 0 0 1-2 2zm-71.542-4h69.542V35.21h-65.499A4.047 4.047 0 0 0 130 39.253V147.59z" />
-                                <path class="st7"
-                                    d="M122.037 143.641H54.458c-5.638.601-5.963 5.948-5.963 5.948h79.504c.001.001-.324-5.347-5.962-5.948zM201.542 143.641h-67.579c-5.638.601-5.963 5.948-5.963 5.948h79.505c-.001.001-.325-5.347-5.963-5.948z" />
-                                <path class="st4"
-                                    d="M128 151.59H48.495a2 2 0 0 1-1.996-2.121c.147-2.434 1.957-7.199 7.747-7.815.07-.008.142-.012.212-.012h67.579c.07 0 .142.004.212.012 5.791.616 7.6 5.382 7.747 7.815A2.002 2.002 0 0 1 128 151.59zm-76.771-4h74.051c-.567-.879-1.572-1.731-3.356-1.948H54.571c-1.769.215-2.773 1.074-3.342 1.948z" />
-                                <path class="st4"
-                                    d="M207.505 151.59H128a2 2 0 0 1-1.996-2.121c.147-2.434 1.956-7.199 7.747-7.815.07-.008.142-.012.212-.012h67.579c.07 0 .142.004.212.012 5.79.616 7.6 5.382 7.747 7.815a2 2 0 0 1-1.996 2.121zm-76.783-4h74.063c-.566-.879-1.572-1.731-3.355-1.948h-67.353c-1.783.216-2.789 1.068-3.355 1.948z" />
-                                <path class="st7"
-                                    d="M191.859 54.801h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.574 2.574 0 0 1 0 5.148zM191.859 69.509h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.574 2.574 0 0 1 0 5.148zM191.859 113.634h-52.215a2.573 2.573 0 1 1 0-5.148h52.215c3.423 0 3.429 5.148 0 5.148zM191.859 128.343h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.575 2.575 0 0 1 0 5.148zM117.336 54.801H92.884a2.573 2.573 0 1 1 0-5.148h24.453a2.575 2.575 0 0 1-.001 5.148zM117.336 69.509H92.884a2.573 2.573 0 1 1 0-5.148h24.453a2.575 2.575 0 0 1-.001 5.148zM117.336 84.218H65.122a2.573 2.573 0 1 1 0-5.148h52.215a2.573 2.573 0 0 1 2.574 2.574 2.576 2.576 0 0 1-2.575 2.574zM117.336 98.926H65.122a2.573 2.573 0 1 1 0-5.148h52.215a2.575 2.575 0 0 1-.001 5.148zM118.44 128.343H64.019a1.472 1.472 0 0 1-1.471-1.471v-16.915c0-.812.659-1.471 1.471-1.471h54.421c.812 0 1.471.659 1.471 1.471v16.915a1.472 1.472 0 0 1-1.471 1.471zM85.346 69.509H64.019a1.472 1.472 0 0 1-1.471-1.471V51.124c0-.812.659-1.471 1.471-1.471h21.327c.812 0 1.471.659 1.471 1.471v16.915a1.47 1.47 0 0 1-1.471 1.47zM192.962 98.926h-54.421a1.472 1.472 0 0 1-1.471-1.471V80.541c0-.812.659-1.471 1.471-1.471h54.421c.812 0 1.471.659 1.471 1.471v16.915c0 .811-.659 1.47-1.471 1.47z" />
-                                <path
-                                    d="M167.17 40.809h-7.933a32.628 32.628 0 0 0-2.26-5.44c5.896-5.896 6.787-6.302 6.787-8.446 0-1.07-.417-2.075-1.173-2.831l-8.124-8.124a4.002 4.002 0 0 0-5.663 0l-5.614 5.615a32.668 32.668 0 0 0-5.44-2.261v-7.933a4.008 4.008 0 0 0-4.004-4.004h-11.49a4.008 4.008 0 0 0-4.004 4.004v7.933a32.618 32.618 0 0 0-5.44 2.261c-5.892-5.892-6.3-6.787-8.445-6.787-1.07 0-2.075.417-2.832 1.173-12.092 12.092-12.07 9.841-2.51 19.402a32.628 32.628 0 0 0-2.26 5.44H88.83a4.008 4.008 0 0 0-4.004 4.004v11.49a4.008 4.008 0 0 0 4.004 4.004h7.933a32.628 32.628 0 0 0 2.26 5.44c-5.892 5.892-6.787 6.3-6.787 8.446 0 2.169.563 2.221 9.297 10.956a3.98 3.98 0 0 0 2.832 1.173 3.979 3.979 0 0 0 2.831-1.173l5.614-5.615a32.668 32.668 0 0 0 5.44 2.261v7.933a4.008 4.008 0 0 0 4.004 4.004h11.49a4.008 4.008 0 0 0 4.004-4.004v-7.933a32.618 32.618 0 0 0 5.44-2.261c5.892 5.892 6.3 6.787 8.445 6.787 1.07 0 2.075-.417 2.832-1.173l8.124-8.124a4.001 4.001 0 0 0 0-5.663l-5.614-5.615a32.628 32.628 0 0 0 2.26-5.44h7.933a4.008 4.008 0 0 0 4.004-4.004v-11.49a4.006 4.006 0 0 0-4.002-4.005zm-19.944 9.749c0 10.602-8.625 19.226-19.226 19.226s-19.226-8.625-19.226-19.226c0-10.601 8.625-19.226 19.226-19.226s19.226 8.624 19.226 19.226z"
-                                    style="fill:#ffea94" />
-                                <path class="st3"
-                                    d="M128 27.833c-12.53 0-22.724 10.194-22.724 22.724 0 12.531 10.194 22.725 22.724 22.725 12.531 0 22.725-10.194 22.725-22.725 0-12.529-10.194-22.724-22.725-22.724zm0 34.638c-6.569 0-11.914-5.345-11.914-11.914S121.43 38.644 128 38.644c6.569 0 11.914 5.343 11.914 11.913S134.569 62.471 128 62.471z" />
-                                <path class="st4"
-                                    d="M133.745 95.731h-11.49a6.01 6.01 0 0 1-6.004-6.004V83.23a34.313 34.313 0 0 1-3.044-1.265l-4.597 4.597c-1.134 1.134-2.642 1.759-4.245 1.759s-3.111-.625-4.245-1.759c-1.646-1.646-3.001-2.982-4.116-4.083-4.999-4.933-5.768-5.69-5.768-8.287 0-2.598.988-3.568 4.665-7.18.5-.492 1.062-1.043 1.689-1.665a34.526 34.526 0 0 1-1.264-3.041H88.83a6.01 6.01 0 0 1-6.004-6.004V44.813a6.01 6.01 0 0 1 6.004-6.005h6.497a34.159 34.159 0 0 1 1.263-3.038c-.436-.429-.847-.831-1.234-1.209-3.367-3.292-5.222-5.104-5.223-7.575-.001-2.636 2.062-4.652 6.579-9.072a433.434 433.434 0 0 0 3.408-3.361 5.96 5.96 0 0 1 4.245-1.758c2.599 0 3.569.988 7.181 4.664.491.501 1.042 1.062 1.664 1.689a34.653 34.653 0 0 1 3.041-1.264v-6.496a6.01 6.01 0 0 1 6.004-6.004h11.49a6.01 6.01 0 0 1 6.004 6.004v6.496c1.032.373 2.05.795 3.044 1.265l4.597-4.597a6.008 6.008 0 0 1 8.49 0l8.124 8.125a5.959 5.959 0 0 1 1.76 4.245c0 2.598-.988 3.568-4.665 7.181-.501.492-1.062 1.043-1.689 1.665a34.33 34.33 0 0 1 1.264 3.04h6.497a6.01 6.01 0 0 1 6.004 6.005v11.489a6.01 6.01 0 0 1-6.004 6.004h-6.497a34.738 34.738 0 0 1-1.265 3.045l4.596 4.596a5.967 5.967 0 0 1 1.761 4.245 5.964 5.964 0 0 1-1.761 4.247l-8.124 8.123a5.965 5.965 0 0 1-4.245 1.759c-2.598 0-3.568-.987-7.177-4.661a546.866 546.866 0 0 0-1.668-1.692c-.993.469-2.01.892-3.041 1.263v6.497a6.012 6.012 0 0 1-6.005 6.003zm-20.933-18.197c.316 0 .636.075.93.229a30.612 30.612 0 0 0 5.106 2.121 2 2 0 0 1 1.403 1.909v7.934c0 1.104.899 2.004 2.004 2.004h11.49a2.007 2.007 0 0 0 2.004-2.004v-7.934a2 2 0 0 1 1.403-1.909 30.64 30.64 0 0 0 5.106-2.121 2.001 2.001 0 0 1 2.345.356c1.068 1.067 1.956 1.972 2.708 2.737 3.403 3.464 3.508 3.464 4.323 3.464a1.99 1.99 0 0 0 1.417-.587l8.124-8.124c.38-.38.589-.883.589-1.418 0-.534-.209-1.037-.589-1.416l-5.614-5.615a1.998 1.998 0 0 1-.355-2.346 30.752 30.752 0 0 0 2.121-5.105 2 2 0 0 1 1.909-1.403h7.934a2.007 2.007 0 0 0 2.004-2.004V44.813a2.007 2.007 0 0 0-2.004-2.005h-7.934a2 2 0 0 1-1.909-1.403 30.572 30.572 0 0 0-2.121-5.104 2 2 0 0 1 .355-2.346c1.066-1.066 1.97-1.954 2.733-2.705 3.469-3.407 3.469-3.512 3.469-4.327a1.99 1.99 0 0 0-.587-1.416l-8.125-8.126c-.758-.758-2.076-.758-2.834 0l-5.614 5.615a2 2 0 0 1-2.345.356 30.8 30.8 0 0 0-5.106-2.122 2 2 0 0 1-1.403-1.909v-7.933a2.007 2.007 0 0 0-2.004-2.004h-11.49a2.007 2.007 0 0 0-2.004 2.004v7.933a2 2 0 0 1-1.402 1.908 30.781 30.781 0 0 0-5.106 2.122 1.998 1.998 0 0 1-2.346-.355c-1.066-1.066-1.953-1.97-2.704-2.733-3.406-3.468-3.511-3.468-4.327-3.468a1.99 1.99 0 0 0-1.417.586c-1.28 1.281-2.426 2.401-3.439 3.393-3.004 2.938-5.376 5.26-5.376 6.212 0 .787 1.862 2.607 4.019 4.715.689.674 1.452 1.42 2.287 2.255.62.619.764 1.57.355 2.346a30.681 30.681 0 0 0-2.121 5.105 2.002 2.002 0 0 1-1.909 1.402H88.83a2.007 2.007 0 0 0-2.004 2.005v11.489c0 1.104.899 2.004 2.004 2.004h7.934a2 2 0 0 1 1.909 1.403 30.681 30.681 0 0 0 2.121 5.105 2 2 0 0 1-.355 2.346c-1.066 1.066-1.97 1.954-2.734 2.705-3.468 3.406-3.468 3.511-3.468 4.326 0 .854 0 .924 4.577 5.439 1.12 1.106 2.481 2.449 4.135 4.103.758.758 2.076.758 2.834 0l5.614-5.614a1.994 1.994 0 0 1 1.415-.586z" />
-                                <circle class="st5" cx="128" cy="50.472" r="15.802" />
-                                <path
-                                    d="M121.229 42.231v15.442a1.49 1.49 0 0 0 2.207 1.305l14.038-7.721a1.49 1.49 0 0 0 0-2.61l-14.038-7.721a1.49 1.49 0 0 0-2.207 1.305z"
-                                    style="fill:#f9a7a7" />
-                            </svg>
-                            <div class="for-border ml-4">
-                                <h5 class="for-label1 font-weight-bold">Community and Support</h5>
-                                <p class="for-para custom_paragraph pr-2">Merkaii Xcellence offers opportunities to connect
-                                    with other students preparing for the same exam or instructors, this can be a great
-                                    source for support, motivation and study tips.</p>
+                                        d="M25.982 190.8V70.929a3.826 3.826 0 0 1 3.826-3.826h196.384a3.826 3.826 0 0 1 3.826 3.826V190.8a3.826 3.826 0 0 1-3.826 3.826H29.808a3.826 3.826 0 0 1-3.826-3.826z"
+                                        style="fill:#6bdddd" />
+                                    <path class="st5" d="M105.684 207.378h44.633v27.16h-44.633z" />
+                                    <path class="st4"
+                                        d="M178.346 250.615H77.654c-4.984 0-9.039-4.055-9.039-9.039s4.055-9.039 9.039-9.039h100.691c4.984 0 9.039 4.055 9.039 9.039s-4.054 9.039-9.038 9.039zM77.654 236.537c-2.778 0-5.039 2.261-5.039 5.039s2.261 5.039 5.039 5.039h100.691c2.778 0 5.039-2.261 5.039-5.039s-2.261-5.039-5.039-5.039H77.654zM232.568 209.378H23.432c-6.729 0-12.202-5.474-12.202-12.202V64.553c0-6.729 5.474-12.202 12.202-12.202h209.137c6.729 0 12.202 5.474 12.202 12.202v132.623c0 6.728-5.474 12.202-12.203 12.202zM23.432 56.351c-4.522 0-8.202 3.68-8.202 8.202v132.623c0 4.522 3.68 8.202 8.202 8.202h209.137c4.522 0 8.202-3.68 8.202-8.202V64.553c0-4.522-3.68-8.202-8.202-8.202H23.432z" />
+                                    <path class="st4"
+                                        d="M150.316 236.537h-44.633a2 2 0 0 1-2-2v-27.159a2 2 0 0 1 2-2h44.633a2 2 0 0 1 2 2v27.159a2 2 0 0 1-2 2zm-42.632-4h40.633v-23.159h-40.633v23.159zM226.192 196.626H29.808a5.832 5.832 0 0 1-5.825-5.826V70.929a5.831 5.831 0 0 1 5.825-5.825h196.385a5.831 5.831 0 0 1 5.825 5.825V190.8a5.833 5.833 0 0 1-5.826 5.826zM29.808 69.104a1.826 1.826 0 0 0-1.825 1.825V190.8c0 1.007.818 1.826 1.825 1.826h196.385a1.827 1.827 0 0 0 1.825-1.826V70.929a1.826 1.826 0 0 0-1.825-1.825H29.808z" />
+                                    <path class="st0"
+                                        d="M128 155.538H43.427a3.677 3.677 0 0 1-3.677-3.677V42.835a3.677 3.677 0 0 1 3.677-3.677h78.001A6.572 6.572 0 0 1 128 45.73v109.808zM128 155.538h84.573a3.677 3.677 0 0 0 3.677-3.677V42.835a3.677 3.677 0 0 0-3.677-3.677h-78.001A6.572 6.572 0 0 0 128 45.73v109.808z" />
+                                    <path class="st4"
+                                        d="M128 157.538H43.427a5.684 5.684 0 0 1-5.677-5.678V42.835a5.684 5.684 0 0 1 5.677-5.677h78.001c4.727 0 8.572 3.846 8.572 8.572v109.808a2 2 0 0 1-2 2zM43.427 41.158c-.925 0-1.677.752-1.677 1.677V151.86a1.68 1.68 0 0 0 1.677 1.678H126V45.73a4.577 4.577 0 0 0-4.572-4.572H43.427z" />
+                                    <path class="st4"
+                                        d="M212.573 157.538H128a2 2 0 0 1-2-2V45.73c0-4.727 3.846-8.572 8.572-8.572h78.001a5.684 5.684 0 0 1 5.677 5.677V151.86a5.684 5.684 0 0 1-5.677 5.678zm-82.573-4h82.573a1.68 1.68 0 0 0 1.677-1.678V42.835c0-.925-.752-1.677-1.677-1.677h-78.001A4.577 4.577 0 0 0 130 45.73v107.808z" />
+                                    <path class="st7"
+                                        d="M201.542 33.21v6.067H54.458V33.21c-5.638.613-5.963 6.067-5.963 6.067v110.312h159.01V39.277c-.001 0-.325-5.454-5.963-6.067z" />
+                                    <path class="st4"
+                                        d="M207.505 151.59H48.495a2 2 0 0 1-2-2V39.277c0-.04.001-.079.004-.119.146-2.47 1.955-7.308 7.743-7.937a1.997 1.997 0 0 1 2.216 1.988v4.067h143.084V33.21a1.997 1.997 0 0 1 2.216-1.988c5.788.629 7.597 5.467 7.743 7.937.003.04.004.079.004.119V149.59a2 2 0 0 1-2 2zm-157.01-4h155.01V39.355c-.038-.395-.304-2.295-1.963-3.398v3.32a2 2 0 0 1-2 2H54.458a2 2 0 0 1-2-2v-3.324c-1.69 1.117-1.933 3.056-1.963 3.396V147.59z" />
+                                    <path class="st5"
+                                        d="M128 149.59H54.458V33.21h67.499A6.044 6.044 0 0 1 128 39.253V149.59zM128 149.59h73.542V33.21h-67.499A6.044 6.044 0 0 0 128 39.253V149.59z" />
+                                    <path class="st4"
+                                        d="M128 151.59H54.458a2 2 0 0 1-2-2V33.21a2 2 0 0 1 2-2h67.499c4.435 0 8.043 3.608 8.043 8.043V149.59a2 2 0 0 1-2 2zm-71.542-4H126V39.253a4.047 4.047 0 0 0-4.043-4.043H56.458v112.38z" />
+                                    <path class="st4"
+                                        d="M201.542 151.59H128a2 2 0 0 1-2-2V39.253c0-4.435 3.608-8.043 8.043-8.043h67.499a2 2 0 0 1 2 2v116.38a2 2 0 0 1-2 2zm-71.542-4h69.542V35.21h-65.499A4.047 4.047 0 0 0 130 39.253V147.59z" />
+                                    <path class="st7"
+                                        d="M122.037 143.641H54.458c-5.638.601-5.963 5.948-5.963 5.948h79.504c.001.001-.324-5.347-5.962-5.948zM201.542 143.641h-67.579c-5.638.601-5.963 5.948-5.963 5.948h79.505c-.001.001-.325-5.347-5.963-5.948z" />
+                                    <path class="st4"
+                                        d="M128 151.59H48.495a2 2 0 0 1-1.996-2.121c.147-2.434 1.957-7.199 7.747-7.815.07-.008.142-.012.212-.012h67.579c.07 0 .142.004.212.012 5.791.616 7.6 5.382 7.747 7.815A2.002 2.002 0 0 1 128 151.59zm-76.771-4h74.051c-.567-.879-1.572-1.731-3.356-1.948H54.571c-1.769.215-2.773 1.074-3.342 1.948z" />
+                                    <path class="st4"
+                                        d="M207.505 151.59H128a2 2 0 0 1-1.996-2.121c.147-2.434 1.956-7.199 7.747-7.815.07-.008.142-.012.212-.012h67.579c.07 0 .142.004.212.012 5.79.616 7.6 5.382 7.747 7.815a2 2 0 0 1-1.996 2.121zm-76.783-4h74.063c-.566-.879-1.572-1.731-3.355-1.948h-67.353c-1.783.216-2.789 1.068-3.355 1.948z" />
+                                    <path class="st7"
+                                        d="M191.859 54.801h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.574 2.574 0 0 1 0 5.148zM191.859 69.509h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.574 2.574 0 0 1 0 5.148zM191.859 113.634h-52.215a2.573 2.573 0 1 1 0-5.148h52.215c3.423 0 3.429 5.148 0 5.148zM191.859 128.343h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.575 2.575 0 0 1 0 5.148zM117.336 54.801H92.884a2.573 2.573 0 1 1 0-5.148h24.453a2.575 2.575 0 0 1-.001 5.148zM117.336 69.509H92.884a2.573 2.573 0 1 1 0-5.148h24.453a2.575 2.575 0 0 1-.001 5.148zM117.336 84.218H65.122a2.573 2.573 0 1 1 0-5.148h52.215a2.573 2.573 0 0 1 2.574 2.574 2.576 2.576 0 0 1-2.575 2.574zM117.336 98.926H65.122a2.573 2.573 0 1 1 0-5.148h52.215a2.575 2.575 0 0 1-.001 5.148zM118.44 128.343H64.019a1.472 1.472 0 0 1-1.471-1.471v-16.915c0-.812.659-1.471 1.471-1.471h54.421c.812 0 1.471.659 1.471 1.471v16.915a1.472 1.472 0 0 1-1.471 1.471zM85.346 69.509H64.019a1.472 1.472 0 0 1-1.471-1.471V51.124c0-.812.659-1.471 1.471-1.471h21.327c.812 0 1.471.659 1.471 1.471v16.915a1.47 1.47 0 0 1-1.471 1.47zM192.962 98.926h-54.421a1.472 1.472 0 0 1-1.471-1.471V80.541c0-.812.659-1.471 1.471-1.471h54.421c.812 0 1.471.659 1.471 1.471v16.915c0 .811-.659 1.47-1.471 1.47z" />
+                                    <path
+                                        d="M167.17 40.809h-7.933a32.628 32.628 0 0 0-2.26-5.44c5.896-5.896 6.787-6.302 6.787-8.446 0-1.07-.417-2.075-1.173-2.831l-8.124-8.124a4.002 4.002 0 0 0-5.663 0l-5.614 5.615a32.668 32.668 0 0 0-5.44-2.261v-7.933a4.008 4.008 0 0 0-4.004-4.004h-11.49a4.008 4.008 0 0 0-4.004 4.004v7.933a32.618 32.618 0 0 0-5.44 2.261c-5.892-5.892-6.3-6.787-8.445-6.787-1.07 0-2.075.417-2.832 1.173-12.092 12.092-12.07 9.841-2.51 19.402a32.628 32.628 0 0 0-2.26 5.44H88.83a4.008 4.008 0 0 0-4.004 4.004v11.49a4.008 4.008 0 0 0 4.004 4.004h7.933a32.628 32.628 0 0 0 2.26 5.44c-5.892 5.892-6.787 6.3-6.787 8.446 0 2.169.563 2.221 9.297 10.956a3.98 3.98 0 0 0 2.832 1.173 3.979 3.979 0 0 0 2.831-1.173l5.614-5.615a32.668 32.668 0 0 0 5.44 2.261v7.933a4.008 4.008 0 0 0 4.004 4.004h11.49a4.008 4.008 0 0 0 4.004-4.004v-7.933a32.618 32.618 0 0 0 5.44-2.261c5.892 5.892 6.3 6.787 8.445 6.787 1.07 0 2.075-.417 2.832-1.173l8.124-8.124a4.001 4.001 0 0 0 0-5.663l-5.614-5.615a32.628 32.628 0 0 0 2.26-5.44h7.933a4.008 4.008 0 0 0 4.004-4.004v-11.49a4.006 4.006 0 0 0-4.002-4.005zm-19.944 9.749c0 10.602-8.625 19.226-19.226 19.226s-19.226-8.625-19.226-19.226c0-10.601 8.625-19.226 19.226-19.226s19.226 8.624 19.226 19.226z"
+                                        style="fill:#ffea94" />
+                                    <path class="st3"
+                                        d="M128 27.833c-12.53 0-22.724 10.194-22.724 22.724 0 12.531 10.194 22.725 22.724 22.725 12.531 0 22.725-10.194 22.725-22.725 0-12.529-10.194-22.724-22.725-22.724zm0 34.638c-6.569 0-11.914-5.345-11.914-11.914S121.43 38.644 128 38.644c6.569 0 11.914 5.343 11.914 11.913S134.569 62.471 128 62.471z" />
+                                    <path class="st4"
+                                        d="M133.745 95.731h-11.49a6.01 6.01 0 0 1-6.004-6.004V83.23a34.313 34.313 0 0 1-3.044-1.265l-4.597 4.597c-1.134 1.134-2.642 1.759-4.245 1.759s-3.111-.625-4.245-1.759c-1.646-1.646-3.001-2.982-4.116-4.083-4.999-4.933-5.768-5.69-5.768-8.287 0-2.598.988-3.568 4.665-7.18.5-.492 1.062-1.043 1.689-1.665a34.526 34.526 0 0 1-1.264-3.041H88.83a6.01 6.01 0 0 1-6.004-6.004V44.813a6.01 6.01 0 0 1 6.004-6.005h6.497a34.159 34.159 0 0 1 1.263-3.038c-.436-.429-.847-.831-1.234-1.209-3.367-3.292-5.222-5.104-5.223-7.575-.001-2.636 2.062-4.652 6.579-9.072a433.434 433.434 0 0 0 3.408-3.361 5.96 5.96 0 0 1 4.245-1.758c2.599 0 3.569.988 7.181 4.664.491.501 1.042 1.062 1.664 1.689a34.653 34.653 0 0 1 3.041-1.264v-6.496a6.01 6.01 0 0 1 6.004-6.004h11.49a6.01 6.01 0 0 1 6.004 6.004v6.496c1.032.373 2.05.795 3.044 1.265l4.597-4.597a6.008 6.008 0 0 1 8.49 0l8.124 8.125a5.959 5.959 0 0 1 1.76 4.245c0 2.598-.988 3.568-4.665 7.181-.501.492-1.062 1.043-1.689 1.665a34.33 34.33 0 0 1 1.264 3.04h6.497a6.01 6.01 0 0 1 6.004 6.005v11.489a6.01 6.01 0 0 1-6.004 6.004h-6.497a34.738 34.738 0 0 1-1.265 3.045l4.596 4.596a5.967 5.967 0 0 1 1.761 4.245 5.964 5.964 0 0 1-1.761 4.247l-8.124 8.123a5.965 5.965 0 0 1-4.245 1.759c-2.598 0-3.568-.987-7.177-4.661a546.866 546.866 0 0 0-1.668-1.692c-.993.469-2.01.892-3.041 1.263v6.497a6.012 6.012 0 0 1-6.005 6.003zm-20.933-18.197c.316 0 .636.075.93.229a30.612 30.612 0 0 0 5.106 2.121 2 2 0 0 1 1.403 1.909v7.934c0 1.104.899 2.004 2.004 2.004h11.49a2.007 2.007 0 0 0 2.004-2.004v-7.934a2 2 0 0 1 1.403-1.909 30.64 30.64 0 0 0 5.106-2.121 2.001 2.001 0 0 1 2.345.356c1.068 1.067 1.956 1.972 2.708 2.737 3.403 3.464 3.508 3.464 4.323 3.464a1.99 1.99 0 0 0 1.417-.587l8.124-8.124c.38-.38.589-.883.589-1.418 0-.534-.209-1.037-.589-1.416l-5.614-5.615a1.998 1.998 0 0 1-.355-2.346 30.752 30.752 0 0 0 2.121-5.105 2 2 0 0 1 1.909-1.403h7.934a2.007 2.007 0 0 0 2.004-2.004V44.813a2.007 2.007 0 0 0-2.004-2.005h-7.934a2 2 0 0 1-1.909-1.403 30.572 30.572 0 0 0-2.121-5.104 2 2 0 0 1 .355-2.346c1.066-1.066 1.97-1.954 2.733-2.705 3.469-3.407 3.469-3.512 3.469-4.327a1.99 1.99 0 0 0-.587-1.416l-8.125-8.126c-.758-.758-2.076-.758-2.834 0l-5.614 5.615a2 2 0 0 1-2.345.356 30.8 30.8 0 0 0-5.106-2.122 2 2 0 0 1-1.403-1.909v-7.933a2.007 2.007 0 0 0-2.004-2.004h-11.49a2.007 2.007 0 0 0-2.004 2.004v7.933a2 2 0 0 1-1.402 1.908 30.781 30.781 0 0 0-5.106 2.122 1.998 1.998 0 0 1-2.346-.355c-1.066-1.066-1.953-1.97-2.704-2.733-3.406-3.468-3.511-3.468-4.327-3.468a1.99 1.99 0 0 0-1.417.586c-1.28 1.281-2.426 2.401-3.439 3.393-3.004 2.938-5.376 5.26-5.376 6.212 0 .787 1.862 2.607 4.019 4.715.689.674 1.452 1.42 2.287 2.255.62.619.764 1.57.355 2.346a30.681 30.681 0 0 0-2.121 5.105 2.002 2.002 0 0 1-1.909 1.402H88.83a2.007 2.007 0 0 0-2.004 2.005v11.489c0 1.104.899 2.004 2.004 2.004h7.934a2 2 0 0 1 1.909 1.403 30.681 30.681 0 0 0 2.121 5.105 2 2 0 0 1-.355 2.346c-1.066 1.066-1.97 1.954-2.734 2.705-3.468 3.406-3.468 3.511-3.468 4.326 0 .854 0 .924 4.577 5.439 1.12 1.106 2.481 2.449 4.135 4.103.758.758 2.076.758 2.834 0l5.614-5.614a1.994 1.994 0 0 1 1.415-.586z" />
+                                    <circle class="st5" cx="128" cy="50.472" r="15.802" />
+                                    <path
+                                        d="M121.229 42.231v15.442a1.49 1.49 0 0 0 2.207 1.305l14.038-7.721a1.49 1.49 0 0 0 0-2.61l-14.038-7.721a1.49 1.49 0 0 0-2.207 1.305z"
+                                        style="fill:#f9a7a7" />
+                                </svg>
+                                <div class="for-border ml-4">
+                                    <h5 class="for-label1 font-weight-bold">The NCLEX-RN Doesn't Have to Be a Mystery!
+                                    </h5>
+                                    <p class="for-para custom_paragraph pr-2">We unlock the secrets of the NCLEX-RN with
+                                        our
+                                        Florida Board-approved remedial course. Gain clarity, build confidence, and finally
+                                        pass
+                                        the exam.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- end col -->
                 </div>
-                <!-- end col -->
             </div>
         </div>
+
     </section>
     <!-- section2 end -->
 
@@ -5129,13 +5147,13 @@
             </div>
             </div> --}}
                     <!-- <section>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="row">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-md-12">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <img src="{{ asset('public/frontend/infixlmstheme/img/images/WE_ARE_HERE_TO_LISTEN.png') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" class="img-fluid w-100">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </section> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-md-12">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <img src="{{ asset('public/frontend/infixlmstheme/img/images/WE_ARE_HERE_TO_LISTEN.png') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" class="img-fluid w-100">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </section> -->
                     {{-- How to Buy --}}
                     {{-- hide from all screen --}}
                     <div class="section-margin-y container d-none">
@@ -5543,8 +5561,7 @@
                             <div class="col-lg-8 col-md-7 shadow_row video-h-cls pr-xl-5 pl-lg-0 pr-lg-3">
                                 <div class="video-container">
                                     <video id="myVideo" class=" w-100" style="object-fit: cover">
-                                        <source
-                                            src="{{ asset('/public/uploads/images/footerimg/intro-video.mp4') }}">
+                                        <source src="{{ asset('/public/uploads/images/footerimg/intro-video.mp4') }}">
                                     </video>
                                     <div class="overlay-video"></div>
                                     <div class="text-video-overlay top-center">
@@ -5770,7 +5787,8 @@
                                                             <div class="single-event-counter">
                                                                 <div class="count-number rt-clip-text"></div>
                                                             </div>
-                                                            <a href = "{{ route('blogDetails', [$thisblog->slug]) }}" class="single-event-content">
+                                                            <a href = "{{ route('blogDetails', [$thisblog->slug]) }}"
+                                                                class="single-event-content">
                                                                 <h5 class="event-title">{{ $thisblog->title }}</h5>
                                                                 <div class="single-event-content-meta">
                                                                     <div class="event-date">
@@ -5879,93 +5897,95 @@
                     </section>
                 @endif
                 <!-- <div class="row m-0 mt-5 shadow">
-                                                                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
-                                                                                            <div class="text-white">
-                                                                                            <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
-                                                                                            <p class="my-3 text-justify text-white">
-                                                                                            MCOH is an inclusive and equitable enviroment that provides educational
-                                                                                            oppturities for anyone seeking update their skill being a new career path and
-                                                                                            enhance professional Skills </p>
-                                                                                            <div class="mb-4 text-white">
-                                                                                            <p class="locaton py-1 text-white">
-                                                                                                <i class="fi fi-rs-marker"></i>
-                                                                                                501 S. Florida Avenue<br>
-                                                                                                <span class="ml-4">Lakeland, FL 33801</span>
-                                                                                            </p>
-                                                                                            <p class="call py-1 text-white">
-                                                                                                <i class="fi fi-br-phone-call"></i>
-                                                                                                863-250-8764 | 347-525-1736
-                                                                                            </p>
-                                                                                            <p class="time py-1 text-white">
-                                                                                                <i class="fi fi-rs-clock-three"></i>
-                                                                                                Mon - Thur: 8:30 AM - 7:00 PM
-                                                                                            </p>
-                                                                                            </div>
-                                                                                            </div>
-                                                                                            </div>
-                                                                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
-                                                                                            <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
-                                                                                            <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
-                                                                                            @csrf
-                                                                                            <label for="name" class="form-label">Your Name</label>
-                                                                                            <input type="text" name="name" class="form-control form_sm mb-2"
-                                                                                            placeholder="">
-                                                                                            <label for="" class="form-label">Email Address</label>
-                                                                                            <input type="email" name="email" class="form-control form_sm mb-2"
-                                                                                            placeholder="">
-                                                                                            <label for="" class="form-label">Phone #</label>
-                                                                                            <input type="text" name="phone" class="form-control form_sm mb-2"
-                                                                                            placeholder="">
-                                                                                            <label for="" class="form-label">Zip Code</label>
-                                                                                            <input type="text" name="zip" class="form-control form_sm mb-2"
-                                                                                            placeholder="">
-                                                                                            <label for="" class="form-label">Select Program</label>
-                                                                                            <select id="program" name="program" class="form-control form_sm mb-2" required>
-                                                                                            <option value="" selected>Select Program</option>
-                                                                                            <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
-                                                                                            <option value="Refresher-RM(Endorsement & inactive License)">
-                                                                                                Refresher-RM(Endorsement & inactive License)
-                                                                                            </option>
-                                                                                            <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
-                                                                                            <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
-                                                                                                Testing)
-                                                                                            </option>
-                                                                                            <option value="Clinical-Proctor">Clinical-Proctor</option>
-                                                                                            </select>
-                                                                                            <label for="year" class="form-label mt-2">High School Grade Year</label>
-                                                                                            <select id="years" name="year" class="form-control form_sm w-100 mb-2"
-                                                                                            required>
-                                                                                            <option value="" selected>Select Year</option>
-                                                                                            @php
-                                                                                                $years = range(
-                                                                                                    date('Y'),
-                                                                                                    1950,
-                                                                                                );
-                                                                                            @endphp
-                                                                                            @forelse ($years as $year)
+                                                                                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
+                                                                                                            <div class="text-white">
+                                                                                                            <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
+                                                                                                            <p class="my-3 text-justify text-white">
+                                                                                                            MCOH is an inclusive and equitable enviroment that provides educational
+                                                                                                            oppturities for anyone seeking update their skill being a new career path and
+                                                                                                            enhance professional Skills </p>
+                                                                                                            <div class="mb-4 text-white">
+                                                                                                            <p class="locaton py-1 text-white">
+                                                                                                                <i class="fi fi-rs-marker"></i>
+                                                                                                                501 S. Florida Avenue<br>
+                                                                                                                <span class="ml-4">Lakeland, FL 33801</span>
+                                                                                                            </p>
+                                                                                                            <p class="call py-1 text-white">
+                                                                                                                <i class="fi fi-br-phone-call"></i>
+                                                                                                                863-250-8764 | 347-525-1736
+                                                                                                            </p>
+                                                                                                            <p class="time py-1 text-white">
+                                                                                                                <i class="fi fi-rs-clock-three"></i>
+                                                                                                                Mon - Thur: 8:30 AM - 7:00 PM
+                                                                                                            </p>
+                                                                                                            </div>
+                                                                                                            </div>
+                                                                                                            </div>
+                                                                                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
+                                                                                                            <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
+                                                                                                            <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
+                                                                                                            @csrf
+                                                                                                            <label for="name" class="form-label">Your Name</label>
+                                                                                                            <input type="text" name="name" class="form-control form_sm mb-2"
+                                                                                                            placeholder="">
+                                                                                                            <label for="" class="form-label">Email Address</label>
+                                                                                                            <input type="email" name="email" class="form-control form_sm mb-2"
+                                                                                                            placeholder="">
+                                                                                                            <label for="" class="form-label">Phone #</label>
+                                                                                                            <input type="text" name="phone" class="form-control form_sm mb-2"
+                                                                                                            placeholder="">
+                                                                                                            <label for="" class="form-label">Zip Code</label>
+                                                                                                            <input type="text" name="zip" class="form-control form_sm mb-2"
+                                                                                                            placeholder="">
+                                                                                                            <label for="" class="form-label">Select Program</label>
+                                                                                                            <select id="program" name="program" class="form-control form_sm mb-2" required>
+                                                                                                            <option value="" selected>Select Program</option>
+                                                                                                            <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
+                                                                                                            <option value="Refresher-RM(Endorsement & inactive License)">
+                                                                                                                Refresher-RM(Endorsement & inactive License)
+                                                                                                            </option>
+                                                                                                            <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
+                                                                                                            <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
+                                                                                                                Testing)
+                                                                                                            </option>
+                                                                                                            <option value="Clinical-Proctor">Clinical-Proctor</option>
+                                                                                                            </select>
+                                                                                                            <label for="year" class="form-label mt-2">High School Grade Year</label>
+                                                                                                            <select id="years" name="year" class="form-control form_sm w-100 mb-2"
+                                                                                                            required>
+                                                                                                            <option value="" selected>Select Year</option>
+                                                                                                            @php
+                                                                                                                $years = range(
+                                                                                                                    date(
+                                                                                                                        'Y',
+                                                                                                                    ),
+                                                                                                                    1950,
+                                                                                                                );
+                                                                                                            @endphp
+                                                                                                            @forelse ($years as $year)
     <option value="{{ $year }}">{{ $year }}</option>
     @empty
-                                                                                            <option value="">No Year Found</option>
+                                                                                                            <option value="">No Year Found</option>
     @endforelse
-                                                                                                </select>
-                                                                                                <label for="message" class="form-label mt-2">Message</label>
-                                                                                                <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
-                                                                                                    placeholder="" required style="resize: none"></textarea>
-                                                                                                <div class="col-md-12 my-3 text-center">
-                                                                                                    <button type="submit" class="theme_btn small_btn4">Submit</button>
-                                                                                                </div>
-                                                                                            </form>
-                                                                                            </div>
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
+                                                                                                                </select>
+                                                                                                                <label for="message" class="form-label mt-2">Message</label>
+                                                                                                                <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
+                                                                                                                    placeholder="" required style="resize: none"></textarea>
+                                                                                                                <div class="col-md-12 my-3 text-center">
+                                                                                                                    <button type="submit" class="theme_btn small_btn4">Submit</button>
+                                                                                                                </div>
+                                                                                                            </form>
+                                                                                                            </div>
+                                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
 
-                                                                                            <div class="video1" onclick="homeVideo()">
-                                                                                                <div class="vidicons m-auto">
-                                                                                                    <i class="fa-solid fa-play"></i>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            </div>
-                                                                                            </div>
-                                                                                            -->
+                                                                                                            <div class="video1" onclick="homeVideo()">
+                                                                                                                <div class="vidicons m-auto">
+                                                                                                                    <i class="fa-solid fa-play"></i>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            </div>
+                                                                                                            </div>
+                                                                                                            -->
 
 
                 <div class="modal fade" id="video_image" tabindex="-1" role="dialog"
@@ -6025,12 +6045,12 @@
                                                     Instructor</a>
 
                                                 <!--
-                                                                                                                                                                                                                                                                                                                                   <h1 class="mx-3 mt-5 pt-4">Ut enim ad minim veniam, quis nos trud exercita ion</h1>
-                                                                                                                                                                                                                                                                                                                    <p class="mx-3 mt-2 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                                                                                                                                                                                                                                                                                                    Doloremque, eveniet deleniti atque dicta ullam officia rerum. Non iure quos sint deserunt
-                                                                                                                                                                                                                                                                                                                         sed officia sequi assumenda eos repellendus expedita? Quasi veritatis tenetur, fugiat quis
-                                                                                                                                                                                                                                                                                                                                       numquam maxime voluptate praesentium dolores amet nemo ipsum soluta unde quam suscipit.
-                                                                                                                                                                                                                                                                                                                                                                                    Rerum nobis amet voluptatem eos.</p> -->
+                                                                                                                                                                                                                                                                                                                                                   <h1 class="mx-3 mt-5 pt-4">Ut enim ad minim veniam, quis nos trud exercita ion</h1>
+                                                                                                                                                                                                                                                                                                                                    <p class="mx-3 mt-2 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                                                                                                                                                                                                                                                                                                                    Doloremque, eveniet deleniti atque dicta ullam officia rerum. Non iure quos sint deserunt
+                                                                                                                                                                                                                                                                                                                                         sed officia sequi assumenda eos repellendus expedita? Quasi veritatis tenetur, fugiat quis
+                                                                                                                                                                                                                                                                                                                                                       numquam maxime voluptate praesentium dolores amet nemo ipsum soluta unde quam suscipit.
+                                                                                                                                                                                                                                                                                                                                                                                                    Rerum nobis amet voluptatem eos.</p> -->
                                                 {{-- <img src="{{ asset('public/assets/left-arrow-64.png') }}" height="50"
                                         class="lia" style="position:absolute;right: -12px;"> --}}
                                             </div>
@@ -6038,7 +6058,7 @@
                                     </div>
                                 </div>
                                 <!-- <div class="col-sm-6 ankar col-md-6 p-0" >
-                                                                                                                                                         </div> -->
+                                                                                                                                                                         </div> -->
                                 {{-- form-add --}}
                                 <div class="col-lg-4 col-md-6 my-3 my-lg-0 flowdiv-ele d-flex align-items-center">
 
@@ -6181,46 +6201,46 @@
                                                 </div>
                                             </div>
                                             <!-- <div class="eltdf-eh-item-content eltdf-eh-custom-5500"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="padding: 66px 12% 0 12% !important;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="padding: 66px 12% 0 12% !important;">
 
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="wpb_text_column wpb_content_element">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="wpb_wrapper mt-3">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <h3 style="font-weight: bold;">Apply Now</h3>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="vc_empty_space" style="height: 25px"><span
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    class="vc_empty_space_inner"></span></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dir="ltr">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="screen-reader-response">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p role="status" aria-live="polite" aria-atomic="true"></p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul></ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <form action="{{ route('login') }}" method="POST" class="wpcf7-form init demo">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @csrf
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="eltdf-contact-form-7-widget">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="wpcf7-form-control-wrap" data-name="your-email"><input
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                type="email" name="email" value="{{ old('email') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                size="40"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                required placeholder="Email"></span><br>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="wpcf7-form-control-wrap" data-name="your-tel"><input
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                type="password" name="password" value="{{ old('password') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                size="40"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                required placeholder="Password"></span><br>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{-- <input type="submit" value="Get it now"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="wpb_text_column wpb_content_element">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="wpb_wrapper mt-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <h3 style="font-weight: bold;">Apply Now</h3>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="vc_empty_space" style="height: 25px"><span
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    class="vc_empty_space_inner"></span></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dir="ltr">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="screen-reader-response">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul></ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <form action="{{ route('login') }}" method="POST" class="wpcf7-form init demo">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @csrf
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="eltdf-contact-form-7-widget">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="wpcf7-form-control-wrap" data-name="your-email"><input
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                type="email" name="email" value="{{ old('email') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                size="40"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                required placeholder="Email"></span><br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="wpcf7-form-control-wrap" data-name="your-tel"><input
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                type="password" name="password" value="{{ old('password') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                size="40"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                required placeholder="Password"></span><br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{-- <input type="submit" value="Get it now"
                                                     class="has-spinner small_btn theme_btn wpcf7-form-control wpcf7-submit mt-4"><span
                                                     class="wpcf7-spinner"></span> --}}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <button type="submit" class="theme_btn small_btn5 text-center">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {{ __('common.Login') }}</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="wpcf7-response-output" aria-hidden="true"></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </form>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <button type="submit" class="theme_btn small_btn5 text-center">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {{ __('common.Login') }}</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="wpcf7-response-output" aria-hidden="true"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </form>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -6293,29 +6313,29 @@
                             ];
                             html = html +
                                 '<li class="single-notice">\
-                                                                                                                                                <div class="single-notice-item">\
-                                                                                                                                                    <div class="notice-date">\
-                                                                                                                                                        ' +
+                                                                                                                                                                <div class="single-notice-item">\
+                                                                                                                                                                    <div class="notice-date">\
+                                                                                                                                                                        ' +
                                 day +
                                 '<br>\
-                                                                                                                                                        <span>' +
+                                                                                                                                                                        <span>' +
                                 monthDay[
                                     month] +
                                 '</span>\
-                                                                                                                                                    </div>\
-                                                                                                                                                    <div class="notice-content">\
-                                                                                                                                                        <p>\
-                                                                                                                                                            <a href="' +
+                                                                                                                                                                    </div>\
+                                                                                                                                                                    <div class="notice-content">\
+                                                                                                                                                                        <p>\
+                                                                                                                                                                            <a href="' +
                                 blog_url +
                                 '">' +
                                 row
                                 .title
                                 .en +
                                 '</a>\
-                                                                                                                                                        </p>\
-                                                                                                                                                    </div>\
-                                                                                                                                                </div>\
-                                                                                                                                            </li>';
+                                                                                                                                                                        </p>\
+                                                                                                                                                                    </div>\
+                                                                                                                                                                </div>\
+                                                                                                                                                            </li>';
                         });
                         $('#blogs_ul').html(html);
                     }
@@ -6544,63 +6564,62 @@
         // });
     </script>
     <script>
-  $(document).ready(function() {
-    const slideWidth = $(".custom-slide").outerWidth(); 
-    const numSlides = $(".custom-slide").length;
-    let currentSlide = 0;
-    let autoplayInterval;
-    let slideDelayTimeout;
+        $(document).ready(function() {
+            const slideWidth = $(".custom-slide").outerWidth();
+            const numSlides = $(".custom-slide").length;
+            let currentSlide = 0;
+            let autoplayInterval;
+            let slideDelayTimeout;
 
-    $(".custom-slider").width(numSlides * slideWidth);
+            $(".custom-slider").width(numSlides * slideWidth);
 
-    function nextSlide() {
-        if (currentSlide < numSlides - 1) {
-            currentSlide++;
-        } else {
-            currentSlide = 0; 
-        }
-        $(".custom-slider").css("transform", `translateX(-${currentSlide * slideWidth}px)`);
-    }
+            function nextSlide() {
+                if (currentSlide < numSlides - 1) {
+                    currentSlide++;
+                } else {
+                    currentSlide = 0;
+                }
+                $(".custom-slider").css("transform", `translateX(-${currentSlide * slideWidth}px)`);
+            }
 
-    function prevSlide() {
-        if (currentSlide > 0) {
-            currentSlide--;
-        } else {
-            currentSlide = numSlides - 1; 
-        }
-        $(".custom-slider").css("transform", `translateX(-${currentSlide * slideWidth}px)`);
-    }
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                } else {
+                    currentSlide = numSlides - 1;
+                }
+                $(".custom-slider").css("transform", `translateX(-${currentSlide * slideWidth}px)`);
+            }
 
-    function startAutoplay() {
-        autoplayInterval = setInterval(nextSlide, 9000);
-    }
+            function startAutoplay() {
+                autoplayInterval = setInterval(nextSlide, 9000);
+            }
 
-    function stopAutoplay() {
-        clearInterval(autoplayInterval);
-    }
+            function stopAutoplay() {
+                clearInterval(autoplayInterval);
+            }
 
-    function restartAutoplay() {
-        stopAutoplay();
-        slideDelayTimeout = setTimeout(startAutoplay, 9000);
-    }
+            function restartAutoplay() {
+                stopAutoplay();
+                slideDelayTimeout = setTimeout(startAutoplay, 9000);
+            }
 
-    startAutoplay();
+            startAutoplay();
 
-    $(".next").click(function() {
-        stopAutoplay();
-        clearTimeout(slideDelayTimeout); 
-        nextSlide();
-        restartAutoplay();
-    });
+            $(".next").click(function() {
+                stopAutoplay();
+                clearTimeout(slideDelayTimeout);
+                nextSlide();
+                restartAutoplay();
+            });
 
-    $(".prev").click(function() {
-        stopAutoplay();
-        clearTimeout(slideDelayTimeout); 
-        prevSlide();
-        restartAutoplay();
-    });
-});
-
+            $(".prev").click(function() {
+                stopAutoplay();
+                clearTimeout(slideDelayTimeout);
+                prevSlide();
+                restartAutoplay();
+            });
+        });
     </script>
     {{-- //   scroll our partner --}}
     <script>
@@ -6953,89 +6972,48 @@
     </script>
 
 
-    {{-- <script>
-        const tabsBox = document.querySelector(".news-events-navtabs"),
-            allTabs = tabsBox.querySelectorAll(".nav-item"),
-            arroweventsIcons = document.querySelectorAll(".eventsIcon i");
+    <script>
+        $(document).ready(function() {
+            const $tabsBox = $(".news-events-navtabs"),
+                $allTabs = $tabsBox.find(".nav-item"),
+                $arrowEventsIcons = $(".eventsIcon i");
 
-        const handleeventsIcons = () => {
-            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
-            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" :
-                "flex";
-        }
-
-        arroweventsIcons.forEach(eventsIcon => {
-            eventsIcon.addEventListener("click", () => {
-                if (eventsIcon.id === "left") {
-                    tabsBox.scrollBy({
-                        left: -340,
-                        behavior: 'smooth'
-                    });
+            const handleEventsIcons = () => {
+                let maxScrollableWidth = $tabsBox[0].scrollWidth - $tabsBox[0].clientWidth;
+                if (maxScrollableWidth <= 0) {
+                    $arrowEventsIcons.parent().css("display", "none");
                 } else {
-                    tabsBox.scrollBy({
-                        left: 340,
-                        behavior: 'smooth'
-                    });
+                    // Handle visibility based on scroll position
+                    $arrowEventsIcons.eq(0).parent().css("display", $tabsBox.scrollLeft() <= 0 ? "none" :
+                        "flex");
+                    $arrowEventsIcons.eq(1).parent().css("display", maxScrollableWidth - $tabsBox
+                        .scrollLeft() <= 1 ? "none" : "flex");
+                }
+            };
+
+            handleEventsIcons();
+
+            $arrowEventsIcons.on("click", function() {
+                if ($(this).attr("id") === "left") {
+                    $tabsBox.animate({
+                        scrollLeft: "-=340"
+                    }, 400);
+                } else {
+                    $tabsBox.animate({
+                        scrollLeft: "+=340"
+                    }, 400);
                 }
             });
-        });
 
-        allTabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                tabsBox.querySelector(".active").classList.remove("active");
-                tab.classList.add("active");
+            $allTabs.on("click", function() {
+                $tabsBox.find(".active").removeClass("active");
+                $(this).addClass("active");
             });
+
+            $tabsBox.on("scroll", handleEventsIcons);
+            $(window).on("resize", handleEventsIcons); // Check on resize as well
         });
-
-        tabsBox.addEventListener("scroll", handleeventsIcons);
-    </script> --}}
-
-
-
-<script>
-       $(document).ready(function() {
-    const $tabsBox = $(".news-events-navtabs"),
-        $allTabs = $tabsBox.find(".nav-item"),
-        $arrowEventsIcons = $(".eventsIcon i");
-
-    const handleEventsIcons = () => {
-        let maxScrollableWidth = $tabsBox[0].scrollWidth - $tabsBox[0].clientWidth;
-        if (maxScrollableWidth <= 0) {
-            // Hide both arrows if there's no overflow
-            $arrowEventsIcons.parent().css("display", "none");
-        } else {
-            // Handle visibility based on scroll position
-            $arrowEventsIcons.eq(0).parent().css("display", $tabsBox.scrollLeft() <= 0 ? "none" : "flex");
-            $arrowEventsIcons.eq(1).parent().css("display", maxScrollableWidth - $tabsBox.scrollLeft() <= 1 ? "none" : "flex");
-        }
-    };
-
-    // Initial check
-    handleEventsIcons();
-
-    $arrowEventsIcons.on("click", function() {
-        if ($(this).attr("id") === "left") {
-            $tabsBox.animate({
-                scrollLeft: "-=340"
-            }, 400);
-        } else {
-            $tabsBox.animate({
-                scrollLeft: "+=340"
-            }, 400);
-        }
-    });
-
-    $allTabs.on("click", function() {
-        $tabsBox.find(".active").removeClass("active");
-        $(this).addClass("active");
-    });
-
-    $tabsBox.on("scroll", handleEventsIcons);
-    $(window).on("resize", handleEventsIcons); // Check on resize as well
-});
-
-</script>
+    </script>
     </body>
 
 @endsection

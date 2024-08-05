@@ -44,27 +44,25 @@
     @import url("https:://fonts.googleleapis.com/css2?family=Poppins&display=swap");
     @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
-    .tab-about {
+    .panel-about {
         width: 100%;
-        position: relative;
-        /* border-bottom: #eee;
-        color: #eee; */
+        border: 1px solid;
+        border-radius: 0.5rem 0.5rem 0 0;
     }
 
-    .tab-about input {
+    .panel-about input {
         position: absolute;
         opacity: 0;
         z-index: -1;
     }
 
-    .tab-about .tab-about-content {
+    .panel-about .panel-about-content {
         max-height: 0;
         overflow: hidden;
     }
 
-    .tab-about input:checked~.tab-about-content {
+    .panel-about input:checked~.panel-about-content {
         max-height: max-content;
-        /* color: #eee; */
     }
 
     .accordion {
@@ -72,7 +70,6 @@
         flex-direction: column;
         align-items: center;
         gap: 1rem;
-        padding: 1rem;
         border: none;
         border-radius: 1rem;
         max-height: 430px;
@@ -80,31 +77,26 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
-
     .accordion::-webkit-scrollbar {
         display: none;
     }
-
     .section-header {
         width: 100%;
         color: var(--system_secendory_color);
     }
 
-    .tab-about-wrapper {
+    .panel-about-wrapper {
         width: 100%;
-        height: 100%;
+        height: auto;
         padding: 0.5rem 0.5rem;
-        border: 1px solid;
-        border-radius: 0.5rem 0.5rem 0 0;
         transition: background-color 0.25s ease-in;
     }
 
-    .tab-about-wrapper:hover {
+    .panel-about-wrapper:hover {
         background-color: transparent;
-        /* color: #eee; */
     }
 
-    .tab-about label {
+    .panel-about label {
         width: 100%;
         display: flex;
         align-items: center;
@@ -114,7 +106,7 @@
         margin: 0px;
     }
 
-    .tab-about_label::after {
+    .panel-about_label::after {
         content: "\276F";
         width: 1em;
         height: 1em;
@@ -123,11 +115,11 @@
         transition: all 0.5s;
     }
 
-    .tab-about_label.rotate::after {
+    .panel-about_label.rotate::after {
         transform: rotate(270deg);
     }
 
-    .tab-about_content.closed+.tab-about_label::after {
+    .panel-about_content.closed+.panel-about_label::after {
         transform: rotate(0deg);
     }
 
@@ -201,28 +193,24 @@
         transition: all 1s ease;
     }
 
-    /* .events-content {
-    display: flex;
-    flex-wrap: wrap;
-} */
     .single-event {
         display: flex;
-            align-items: center;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ccc;
-            position: relative;
+        align-items: center;
+        margin: 10px 0;
+        padding: 10px;
+        /* border: 1px solid #ccc; */
+        position: relative;
     }
 
     .single-event::before {
-    content: "";
-    position: absolute;
-    left: 170px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-color: #ccc;
-}
+        content: "";
+        position: absolute;
+        left: 170px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background-color: #ccc;
+    }
 
     .events-content .single-event-counter {
         padding-right: 20px;
@@ -332,57 +320,53 @@
 
     /*  */
     .ml_span {
-        margin-left: -170px;
+        margin-left: -117px;
     }
 
     /* col-md-5 */
-    .wrapper {
-            position: relative;
-            overflow-x: hidden;
-        }
+    .events_wrapper {
+        position: relative;
+        overflow-x: hidden;
+    }
 
-        .wrapper .eventsIcon {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            width: auto;
-            display: flex;
-            align-items: center;
-        }
+    .events_wrapper .eventsIcon {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: auto;
+        display: flex;
+        align-items: center;
+    }
 
-        .eventsIcon:first-child {
-            left: 0;
-            display: none;
-            background: linear-gradient(90deg, #fff 70%, transparent);
-        }
+    .eventsIcon:first-child {
+        left: 0;
+        display: none;
+        background: linear-gradient(90deg, #fff 70%, transparent);
+    }
 
-        .eventsIcon:last-child {
-            right: 0;
-            justify-content: flex-end;
-            background: linear-gradient(-90deg, #fff 70%, transparent);
-        }
+    .eventsIcon:last-child {
+        right: 0;
+        justify-content: flex-end;
+        background: linear-gradient(-90deg, #fff 70%, transparent);
+    }
 
-        .eventsIcon i {
-            /* width: 30px;
-            height: 30px; */
-            cursor: pointer;
-            font-size: 14px;
-            text-align: center;
-            /* line-height: 30px; */
-            border-radius: 10%;
-            background: #efedfb;
-            padding: 10
-        }
+    .eventsIcon i {
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        border-radius: 10%;
+        background: #efedfb;
+        padding: 10
+    }
 
-        .eventsIcon:first-child i {
-            margin-left: 0px;
-        }
+    .eventsIcon:first-child i {
+        margin-left: 0px;
+    }
 
-        .eventsIcon:last-child i {
-            margin-right: 0px;
-        }
+    .eventsIcon:last-child i {
+        margin-right: 0px;
+    }
 
-    /*  */
     .news-events-tabs-section {
         padding-left: 75px;
     }
@@ -469,9 +453,9 @@
     }
 
     .news-events-tabs-section .news-events-tab .tab-content {
-        height: 500px;
+        max-height: 500px;
         overscroll-behavior: inherit;
-        overflow-y: scroll;
+        overflow-y: auto;
         margin-top: 15px;
     }
 
@@ -491,14 +475,10 @@
         position: relative;
     }
 
-    .news-events-tabs-section .news-events-tab .single-notice:first-child {
-        /* border-top: 1px solid #ddd8f9; */
-    }
-
     .news-events-tabs-section .news-events-tab .single-notice {
         border-bottom: 1px solid #ddd8f9;
         padding: 25px 0;
-        margin-right: 40px;
+        margin-right: 10px;
     }
 
     .news-events-tabs-section .news-events-tab .single-notice-item {
@@ -537,8 +517,7 @@
         border-top-left-radius: .25rem;
         border-bottom-left-radius: .25rem;
         box-sizing: border-box;
-        /* margin-bottom: -1px; */
-        padding: .375rem 45px;
+        padding: .375rem 10px .375rem 45px !important;
         position: relative;
         z-index: 1;
         height: calc(1.5em + .75rem + 2px);
@@ -558,7 +537,7 @@
     select:focus~.floating-label-outside select:not(:focus):valid~.floating-label-outside {
         top: 15px;
         left: 40px;
-        font-size: 15px;
+        font-size: 14px;
         opacity: 1;
         font-weight: 400
     }
@@ -569,7 +548,7 @@
     select:valid~.floating-label-outside {
         top: -10px;
         opacity: 1;
-        font-size: 15px;
+        font-size: 14px;
         color: #727272;
         background-color: #eee;
         padding: 0px 5px;
@@ -608,7 +587,7 @@
     select:focus~.floating-label-msg input:not(:focus):valid~.floating-label-msg,
     select:focus~.floating-label-msg select:not(:focus):valid~.floating-label-msg {
         top: 15px;
-        left: 40px;
+        left: 45px;
         font-size: 15px;
         opacity: 1;
         font-weight: 400;
@@ -620,7 +599,7 @@
     select:valid~.floating-label-msg {
         top: -10px;
         opacity: 1;
-        font-size: 15px;
+        font-size: 13px;
         color: #727272;
         background: #fff;
         padding: 0px 5px;
@@ -650,7 +629,7 @@
     .floating-label-outside {
         position: absolute;
         pointer-events: none;
-        left: 60px;
+        left: 50px;
         top: 12px;
         transition: .2s ease all;
         color: #777;
@@ -659,6 +638,9 @@
         letter-spacing: .5px;
         z-index: 3;
         text-transform: uppercase;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .input-icon-outside {
@@ -850,8 +832,9 @@
         padding: 28px;
         font-size: 17px;
     }
-    .about_us{
-        height: 100%;
+
+    .about_us {
+        height: auto;
     }
 
     .about_us_height {
@@ -868,13 +851,20 @@
         display: none;
     }
 
+    .about_us_image {
+        height: 100%;
+        object-fit: fill;
+        object-position: right;
+        border-radius: 20px;
+    }
+
     .shadow_row {
         height: auto;
         justify-content: center;
     }
 
     .shadow_ist {
-        height: auto;
+        height: 490px;
         border-radius: 20px;
         justify-content: space-between;
     }
@@ -884,9 +874,10 @@
         background: transparent;
         color: black;
         font-weight: 700;
-        margin: 0px 0px 13px 0px;
+        /* margin: 0px 0px 13px 0px; */
         border: 1px solid black;
         border-radius: 16px;
+        padding: 0.5rem 1.5rem;
     }
 
     .Faq-btn:hover {
@@ -902,13 +893,13 @@
     .video-container {
         position: relative;
         width: 100%;
-        height: auto;
+        height: 490px;
     }
 
     .video-container video {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: fill;
         border-radius: 20px;
     }
 
@@ -932,7 +923,7 @@
     }
 
     .bottom-center {
-        bottom: 16%;
+        bottom: 10%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -946,7 +937,7 @@
     }
 
     .text-video-overlay h2 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
 
     .video-controls {
@@ -968,10 +959,6 @@
     .video-container:hover .overlay-video {
         opacity: 1;
     }
-
-    /* .video-container:hover .text-video-overlay {
-        opacity: 0;
-    } */
 
     .video-container:hover .video-controls {
         opacity: 1;
@@ -1014,11 +1001,22 @@
     }
 
     .main_bannar {
-        background-image: url("{{ asset('public/assets/PN-Accelerated-fotor-2023070923837.jpg') }}");
+        background-image: url("{{ asset(HomeContents('slider_banner')) }}");
         background-size: cover;
-        height: 100%;
+        height: 510px;
         position: relative;
         padding-left: 30px;
+        /* min-height: 90vh; */
+    }
+
+    /* .old_row {
+        height: 510px;
+        overflow: hidden;
+    } */
+
+    .main_banner_2 {
+        height: 255px;
+        overflow: hidden;
     }
 
     .main_bannar::before {
@@ -1028,7 +1026,14 @@
         right: 0;
         top: 0;
         bottom: 0;
-        background-color: #00000050;
+        background-color: #0000007a;
+    }
+
+    .text-custom-height {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
     }
 
     .main_bannar .main_banner-section>h1 {
@@ -1057,7 +1062,7 @@
 
     .modal-lg,
     .modal-xl {
-        max-width: 600px !important;
+        max-width: 600px;
     }
 
     .paragraph_custom_height {
@@ -1092,9 +1097,11 @@
 
     /* shift from contact */
     .mintban {
-        background-image: url("{{ asset('public/assets/bgpicture.jpg') }}");
+        background-image: url("{{ asset('public/assets/Section9-.jpg') }}");
         height: auto;
         background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
     .flowdiv {
@@ -1105,19 +1112,29 @@
         justify-content: center;
     }
 
-    .dataflow {
+    .eltdf-eh-item-content {
         height: 100%;
-        background-color: var(--system_secendory_color);
-        position: relative;
-        border-radius: 20px;
+        display: flex;
+        align-items: center;
     }
 
     .custom_form {
+        height: 615px;
         border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .dataflow {
+        height: 615px;
+        background-color: var(--system_secendory_color);
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
     }
 
     .ankar_eltdf {
-        height: 100%;
+        height: 615px;
+        overflow: hidden;
         border-radius: 20px;
         display: flex;
         justify-content: center;
@@ -1142,7 +1159,6 @@
 
     .cta_service_info h2 {
         font-weight: 700;
-        margin: 29px 0 29px;
         color: white;
     }
 
@@ -1298,7 +1314,8 @@
 
     .for-label {
         display: block;
-        width: 50%;
+        width: fit-content;
+        white-space: nowrap;
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 6px;
@@ -1307,7 +1324,7 @@
         position: relative;
         z-index: 2;
         text-decoration: none;
-        color: #365e88;
+        color: var(--system_secendory_color);
         box-sizing: border-box;
         -webkit-box-sizing: border-box;
     }
@@ -1345,11 +1362,11 @@
     .for-main {
         display: flex;
         flex-direction: column;
-        gap: 4rem;
+        gap: 3rem;
     }
 
     .for-border {
-        min-height: 190px;
+        min-height: 238px;
         border: 0px;
         border-left: 1px solid #D3D3D3;
         padding-left: 20px;
@@ -1377,11 +1394,6 @@
 
     }
 
-    /* .hero-section-main-heading {
-        font-size: 33px !important;
-        font-weight: 700 !important;
-    } */
-
     .for-flexibility {
         min-width: 45px;
         width: 85;
@@ -1390,7 +1402,7 @@
 
     .for-quality {
         min-width: 45px;
-        width: 115;
+        /* width: 115; */
         height: 40;
     }
 
@@ -1432,17 +1444,13 @@
         transform: translateX(0);
     }
 
-    .percent-video video {
-        clip-path: polygon(29% 0, 100% 0, 100% 100%, 0 100%);
+    .percent-video img {
+        clip-path: polygon(26% 0, 100% 0, 100% 100%, 0 100%);
     }
 
-    .percent-video {
+    /* .percent-video {
         padding-right: 0.3rem !important;
 
-    }
-
-    /* .percent-section {
-        padding: 0px 70px !important;
     } */
 
     .percent-h {
@@ -1459,11 +1467,11 @@
     }
 
     .percent3 {
-        margin: 0 -53px 1.5rem 50px;
+        margin: 0 -63px 1.5rem 50px;
     }
 
     .percent4 {
-        margin: 0 -13px 1.5rem -8px;
+        margin: 0 -6px 1.5rem -8px;
     }
 
     .percent {
@@ -1471,16 +1479,10 @@
         color: var(--system_primery_color);
     }
 
-    /* features  */
-    /* .main-content-feature{
-    height: 50vh;
-    overflow: auto;
-} */
+    /* features */
     .content-features {
-        padding: 3rem;
         border-radius: 10px;
         box-sizing: border-box;
-        background-image: url({{ asset('/public/uploads/images/footerimg/Photo.png') }});
         background-size: cover;
         background-position: center;
         color: white;
@@ -1492,6 +1494,8 @@
         align-items: center;
         position: relative;
         word-wrap: break-word;
+        background-image: url('{{ asset('/public/assets/Untitled design (40).png') }}');
+
     }
 
     .content-feature {
@@ -1506,10 +1510,6 @@
         display: flex;
         flex-direction: column;
     }
-
-    /* .content-features2 {
-        display: grid;
-    } */
 
     .content-features2-h {
         text-align: left;
@@ -1539,10 +1539,6 @@
         opacity: 1;
     }
 
-    .main-content-feature {
-        align-items: center;
-    }
-
     .content-features2-hh {
         color: #000;
     }
@@ -1563,9 +1559,11 @@
         letter-spacing: 0em;
         text-align: center;
         border-radius: 16px;
+        color: #000;
         border: none;
         cursor: pointer;
         border: 2px solid white;
+        padding: 0.5rem 1.5rem;
     }
 
     .content-features-btn:hover {
@@ -1575,6 +1573,28 @@
 
     .custom-h {
         font-size: 19px;
+    }
+
+    .hidden {
+        opacity: 0;
+        transition: all 1s;
+        filter: blur(1px);
+    }
+
+    .hidden-left {
+        transform: translateX(-100%);
+        animation-name: hidden-left;
+    }
+
+    .hidden-right {
+        transform: translateX(100%);
+    }
+
+    .show {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0);
+        transition: all 2s ease;
     }
 
     /* features end */
@@ -1623,760 +1643,20 @@
 
     /* logos section end */
     .about-img {
-    height: 380px;
-    width: 315px;
-}
-    .about_us_img1 {
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: 1;
+        height: 100%;
+        /* width: 250px; */
+        scale: 1;
+        overflow: hidden;
+        border-radius: 20px;
     }
 
-    .about_us_img2 {
-        position: absolute;
-        bottom: 0;
-        z-index: 2;
+    .about-img:hover img {
+        scale: 1.2;
+        transition: all 2s;
     }
 
-    /*  */
-    @media only screen and (max-width: 576px) {
-        .main_banner-section {
-            width: 17rem;
-        }
-
-        .cus-padding {
-            padding-left: 0px !important;
-        }
-
-        .hero-section-h-responsive {
-            height: 400px !important;
-        }
-
-        .responsive-style-btn {
-            /* width: 100% !important; */
-            margin: 0 0 0 30px !important;
-        }
-
-        .heading-responsive-style {
-            font-size: 16px !important;
-            padding: 0px 0 0 30px !important;
-        }
-
-        .prep_card_height {
-            height: 100%;
-            width: 100%;
-        }
-
-        .prep_card-text {
-            font-size: 12px !important;
-        }
-
-        .left-content {
-            margin-bottom: 10px;
-            font-size: 12px;
-        }
-
-        .random_program_data_2 {
-            /* height: 200px; */
-        }
-
-        .random_program_data_1 {
-            height: 250px !important;
-            object-fit: cover;
-        }
-
-        .cta_service_info h2 {
-            margin: 17px 0 17px;
-        }
-
-    }
-
-    @media (min-width: 576px) and (max-width: 767px) {
-
-        .main_banner-section {
-            width: 23rem;
-        }
-
-        .hero-section-h-responsive {
-            height: 440px !important;
-            padding: 0px !important;
-        }
-
-        .responsive-style-btn {
-            margin: 0 0 0 30px !important;
-        }
-
-        .heading-responsive-style {
-            font-size: 37px !important;
-            padding: 0px 0 0 30px !important;
-        }
-
-        .random_program_data_1 {
-            height: 300px;
-            overflow: hidden;
-        }
-    }
-
-    @media (min-width: 768px) {
-        .responsive-style-btn {
-            padding: 10px 0 !important;
-        }
-
-        .heading-responsive-style {
-            font-size: 18px !important;
-        }
-    }
-
-
-    @media only screen and (max-width: 768px) {
-        .video-container {
-    height: 450px !important;
-}
-        .single-event::before{
-            left: 85px !important;
-        }
-       
-        .events-content .single-event {
-            padding: 35px 10px !important;
-        }
-
-        .events-content .single-event-counter .count-number {
-            font-size: 50px !important;
-        }
-        .events-content .single-event-content {
-        padding-left: 5px !important;
-    }
-
-        .news-events-tabs-section {
-            padding-left: 0px !important;
-        }
-
-        .percent1 {
-            margin: 0 0px 1.5rem 160px !important;
-        }
-
-        .percent2 {
-            margin: 0 0px 1.5rem 104px !important;
-        }
-
-        .percent3 {
-            margin: 0 0px 1.5rem 50px !important;
-        }
-
-        .percent4 {
-            margin: 0 0px 1.5rem -8px !important;
-        }
-
-        .content-features {
-            height: auto !important;
-        }
-
-        .map-main-div {
-            height: 400px !important;
-            width: 100% !important;
-        }
-
-        .section-margin-y {
-            margin: 20px auto !important;
-        }
-
-        .left-s-h-cls {
-            height: 200px !important;
-        }
-
-        .reviews {
-            text-align: center !important;
-        }
-
-        .for-bold {
-            font-size: 25px;
-        }
-
-        .for-main {
-            margin-bottom: 4rem;
-        }
-
-        .hero-section-main-heading {
-            font-size: 20px !important;
-        }
-
-        .flowdiv {
-            padding: 3rem 0px !important;
-        }
-
-        /*
-        #program_title {
-            font-size: 15px !important;
-        } */
-    }
-
-    @media only screen and (min-width: 769px) and (max-width: 1024px) {
-
-        .news-events-tabs-section {
-            padding-left: 0px !important;
-        }
-
-        .main_banner-section {
-            width: 25rem;
-        }
-
-        h2 {
-            font-size: 24px !important;
-        }
-
-        h5 {
-            font-size: 18px !important;
-        }
-
-        .hero-section-main-heading {
-            font-size: 30px !important;
-        }
-
-        .cus-padding {
-            padding-left: 25px !important;
-        }
-
-        #program_title {
-            font-size: 15px !important;
-        }
-
-        .percent1 {
-            margin: 0 -107px 1.5rem 160px !important;
-        }
-    }
-
-    @media only screen and (min-width: 1024px) and (max-width: 1279px) {
-        .for-border {
-            min-height: 237px !important;
-        }
-
-        .main_banner-section {
-            width: 25rem;
-        }
-
-        .hero-section-main-heading {
-            font-size: 35px !important;
-        }
-
-        .left-content {
-            width: 28rem;
-        }
-
-        .card-shadow {
-            min-height: 95vh;
-        }
-
-        .percent1 {
-            margin: 0 -103px 1.5rem 160px;
-        }
-
-        .percent2 {
-            margin: 0 -77px 1.5rem 104px;
-        }
-
-        .percent3 {
-            margin: 0 -53px 1.5rem 50px;
-        }
-
-        .text-video-overlay h2 {
-            font-size: 1.4rem !important;
-        }
-
-        /* .flowdiv {
-            padding: 5rem 4rem !important;
-        } */
-    }
-
-    @media only screen and (min-width: 1281px) {
-        .text-video-overlay h2 {
-            font-size: 2rem !important;
-        }
-
-        .prep_card-image {
-            height: 15rem;
-        }
-
-        .main_banner-section {
-            width: 40rem;
-        }
-
-        .heading-responsive-style {
-            font-size: 30px !important;
-        }
-    }
-
-    @media only screen and (min-width: 1350px) {
-        .card-shadow {
-            min-height: 95vh;
-        }
-
-        .shadow_msg {
-            height: 3.5rem !important;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            font-size: 18px;
-        }
-
-        .select2-container .select2-selection--single {
-            height: 2.4rem !important;
-        }
-
-        .form_sm {
-            height: 2.4rem !important;
-        }
-
-    }
-
-    @media only screen and (min-width: 1440px) {
-        .about-img {
-        height: 430px !important;
-        width: 350px !important;
-    }
-        .main-content-feature {
-            height: 81vh;
-            overflow: auto;
-        }
-
-        .content-features {
-            height: 100% !important;
-        }
-
-        .content-feature {
-            height: 100% !important;
-        }
-
-        .accordion {
-            max-height: 520px !important;
-        }
-
-        .logos {
-            min-width: 100rem !important;
-        }
-
-        .percent-video {
-            padding: 0px 25px 0px 0px !important;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            font-size: 18px;
-        }
-
-        .select2-container .select2-selection--single {
-            height: 2.3rem !important;
-        }
-
-        .form_sm {
-            height: 2.3rem !important;
-        }
-
-        .video {
-            height: 610px;
-        }
-    }
-
-    @media only screen and (min-width: 1530px) {
-        .flowdiv {
-            padding: 5rem 3rem !important;
-        }
-    }
-
-    @media only screen and (min-width: 1560px) {
-        .main-content-feature {
-            align-items: center
-        }
-
-        .content-feature1 {
-            margin: 30px 0px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .shadow_msg {
-            height: 5rem !important;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            font-size: 19px;
-        }
-
-        .select2-container .select2-selection--single {
-            height: 2.7rem !important;
-        }
-
-        .form_sm {
-            height: 2.8rem !important;
-        }
-
-        .shadow_msg {
-            height: 5rem !important;
-        }
-
-        .percent4 {
-            margin: 0 -14px 1.5rem -8px !important;
-        }
-
-        /* .top-center {
-            left: 30% !important;
-            transform: translate(-20%, 0%) !important;
-        } */
-    }
-
-    @media screen and (width < 1650px) {
-
-        /*   #program_title {
-            font-size: 20px !important;
-        } */
-
-        #program_subtitle {
-            font-size: 18px !important;
-        }
-
-        #program_desc {
-            font-size: 16px !important;
-            line-height: normal;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3;
-            overflow: hidden;
-        }
-
-        .random_program_data_2 {
-            font-size: 20px !important;
-
-        }
-
-    }
-
-    @media only screen and (min-width: 1650px) {
-
-        /* .news-events-tabs-section .news-events-tab .tab-content {
-            height: 380px !important;
-        } */
-
-        .logos {
-            min-width: 125rem !important;
-        }
-
-        p {
-            font-size: 20px !important;
-        }
-
-        h5 {
-            font-size: 25px !important;
-        }
-
-        .percent1 {
-            margin-top: 110px !important;
-        }
-
-        .percent4 {
-            margin-bottom: 110px !important;
-        }
-
-        .prep_card-image {
-            height: 13rem;
-        }
-
-        .left-content {
-            width: 45rem;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            font-size: 19px;
-        }
-
-        .select2-container .select2-selection--single {
-            height: 2.7rem !important;
-        }
-
-        .form_sm {
-            height: 2.8rem !important;
-        }
-
-        .shadow_msg {
-            height: 5rem !important;
-        }
-
-        .icon-img {
-            max-width: 7% !important;
-        }
-
-        .for-label {
-            font-size: 18px;
-        }
-
-        .widget-49-pro-title {
-            font-size: 14px;
-        }
-    }
-
-    @media only screen and (min-width: 1800px) {
-        .accordion {
-            max-height: 720px !important;
-        }
-
-        .flowdiv {
-            padding: 5rem 3.5rem !important;
-        }
-
-        .card-date {
-            font-size: 18px !important;
-        }
-
-        .image-date {
-            font-size: 18px !important;
-        }
-
-        .category {
-            font-size: 18px !important;
-        }
-
-        .ml_span {
-            margin-left: -445px;
-        }
-
-        .Faq-btn,
-        .content-features-btn {
-            font-size: 18px;
-            border-radius: 20px !important;
-        }
-
-        .btn_glo {
-            border-radius: 20px;
-            font-size: 18px;
-        }
-
-        .text-video-overlay {
-            padding: 40px 0px;
-        }
-
-        .video-controls {
-            padding: 25px 35px;
-        }
-
-        .fa-play {
-            font-size: 30px !important;
-        }
-
-        .custom-button-call-to-action {
-            font-size: 18px !important;
-            border-radius: 20px !important;
-        }
-
-        .custom-button-call-to-action:hover {
-            font-size: 18px !important;
-        }
-
-        /*
-        .for-backcolor-container {
-            padding: 0px 55px !important;
-        } */
-
-        .faqs-row {
-            padding: 0px 20px !important;
-        }
-
-        .about-img {
-            height: 565px !important;
-            width: 450px !important;
-        }
-
-        .logo-text {
-            font-size: 25px;
-        }
-
-        .logos-img {
-            height: 120px;
-            width: 120px;
-        }
-
-        .logos-img2 {
-            height: 120px;
-            width: 120px;
-        }
-
-        .logos-img3 {
-            height: 128px;
-            width: 128px;
-        }
-
-        .logos-img4 {
-            height: 115px;
-            width: 128px;
-        }
-
-
-        .logos-img5 {
-            height: 120px;
-            width: 120px;
-        }
-
-        .logos-img6 {
-            height: 100px;
-            width: 128px;
-        }
-
-        .logos-img7 {
-            height: 120px;
-            width: 120px;
-        }
-
-        .logos-img8 {
-            height: 120px;
-            width: 120px;
-        }
-
-        .card-shadow {
-            min-height: 79vh;
-        }
-        .percent-video {
-            max-height: 830px;
-            min-height: 830px;
-            padding: 0px 20px 0px 0px !important;
-        }
-
-        .for-border {
-            min-width: 92%;
-        }
-
-        .percent_wrapper {
-            padding: 157px 0;
-        }
-
-        .percent-row {
-            padding: 0px 38px !important;
-        }
-
-        .percent {
-            font-size: 60px;
-        }
-
-        .percent1 {
-            margin: 0 -166px 1.5rem 230px;
-        }
-
-        .percent2 {
-            margin: 0 -127px 1.5rem 155px;
-        }
-
-        .percent3 {
-            margin: 0 -83px 1.5rem 85px;
-        }
-
-        .percent4 {
-            margin: 0 -39px 1.5rem 0px;
-        }
-
-        .percent-padd {
-            padding: 134px 0 !important;
-        }
-
-        .content-feature {
-            height: 100%;
-        }
-
-        .content-features-p {
-            font-size: 20px;
-        }
-
-        .content-features2-hh {
-            font-size: 2rem;
-        }
-
-        .main_banner-section {
-            width: 45rem !important;
-        }
-
-        /*
-        .hero-section-main-heading {
-            line-height: .9;
-        } */
-
-        .video {
-            height: 835px;
-        }
-
-        .tab-about label {
-            font-size: 20px;
-        }
-
-        .prep_card {
-            height: 300px;
-        }
-
-        .prep_card-image {
-            height: 16rem;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            font-size: 19px;
-        }
-
-        .select2-container .select2-selection--single {
-            height: 2.7rem !important;
-        }
-
-        .form_sm {
-            height: 2.8rem !important;
-        }
-
-        .shadow_msg {
-            height: 8rem !important;
-        }
-
-        .content-features {
-            min-width: 580px !important;
-            max-width: 580px !important;
-            height: 100%;
-            /* margin-left: 45px; */
-            margin-right: 45px;
-        }
-
-        .main-content-feature {
-            height: 81vh;
-            overflow: auto;
-        }
-
-        .content-feature {
-            padding-left: 43px !important;
-        }
-
-    }
-
-    @media only screen and (min-width: 2560px) {
-
-        .custom_heading_1 {
-            font-size: 35px;
-        }
-
-        .custom_paragraph {
-            font-size: 25px;
-        }
-
-        .p-shadow {
-            font-size: 20px;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            font-size: 22px;
-
-        }
-
-        .select2-container .select2-selection--single {
-            height: 3.5rem !important;
-        }
-
-        .form_sm {
-            height: 3.5rem !important;
-        }
-
-        .shadow_msg {
-            height: 9rem !important;
-        }
-
+    .at_Merkaii {
+        font-size: 1.8rem;
     }
 
     .custom_border_radius {
@@ -2428,6 +1708,7 @@
         width: 100%;
         overflow: hidden;
         border-radius: 10px;
+        transition: transform 0.5s ease;
     }
 
     .custom-slider {
@@ -2449,10 +1730,10 @@
 
     .custom-slide img {
         width: 100%;
-        height: 70vh;
+        height: 450px;
         filter: brightness(70%);
         border-radius: 10px;
-        transition: transform 0.6s ease;
+        transition: transform 0.9s ease;
     }
 
     .custom-slide:hover img {
@@ -2468,9 +1749,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        /* background-color: #2441e7; */
         opacity: 0;
-        transition: opacity 0.6s ease;
     }
 
     /* Text overlay styles */
@@ -2488,7 +1767,6 @@
     /* Text overlay styles */
     .text-overlay p {
         color: white;
-        /* Text color */
     }
 
     .category_name {
@@ -2527,6 +1805,7 @@
         font-size: 1.5em;
         padding: 10px;
         z-index: 1;
+        color: #000 !important;
     }
 
     button.prev {
@@ -2558,7 +1837,7 @@
     .custom-card img {
         filter: brightness(70%);
         border-radius: 10px;
-        height: 70vh;
+        height: 450px;
         transition: transform 0.6s ease;
     }
 
@@ -2577,12 +1856,15 @@
         height: 100%;
         box-sizing: border-box;
         border-radius: 10px;
+        display: flex;
+        justify-content: center;
     }
 
     .custom-card h5 {
         position: absolute;
+        text-align: center;
         bottom: 5%;
-        left: 30px;
+        /* left: 30px; */
         color: white;
     }
 
@@ -2590,6 +1872,13 @@
         position: absolute;
         top: 35px;
         left: 30px;
+        font-size: 12.5px;
+    }
+
+    .card-date2 {
+        position: absolute;
+        top: 35px;
+        right: 30px;
         font-size: 12.5px;
     }
 
@@ -2605,14 +1894,14 @@
     .online-learning {
         position: relative;
         /* Ensure relative positioning for absolute pseudo-element */
-        background-image: url('https://mchnursing.com/lms/public/frontend/infixlmstheme/img/banner/bradcam_bg_3.jpg');
+        background-image: url('{{ asset('/public/assets/Section8-Transformation.jpg') }}');
         color: white;
         /* Set text color to white for better visibility */
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         z-index: 999;
-        height: 83vh;
+        height: 500px;
     }
 
     .online-learning::before {
@@ -2638,6 +1927,7 @@
         color: white !important;
         background-color: transparent !important;
         transition: all 0.3s ease;
+        padding: 0.5rem 1.5rem;
         /* Smooth transition for hover effect */
     }
 
@@ -2648,6 +1938,1030 @@
         color: black !important;
         border-color: white !important;
     }
+
+    @media only screen and (max-width: 575px) {
+        .text-custom-height {
+            -webkit-line-clamp: 2 !important;
+        }
+
+        .for-focus {
+            width: 73px !important;
+        }
+
+        .for-global {
+            width: 90px !important;
+        }
+
+        .for-flexibility {
+            width: 75px !important;
+        }
+
+        .custom-card img {
+            height: 240px !important;
+        }
+
+        .about-img {
+            height: 250px !important;
+        }
+
+        .prep_card_height {
+            height: 100%;
+            width: 100%;
+        }
+
+        .prep_card-text {
+            font-size: 12px !important;
+        }
+
+        .left-content {
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .for-border {
+            min-height: auto !important;
+        }
+
+        .card-date {
+            left: 5px !important;
+            background-color: white !important;
+            color: black !important;
+            padding: 0px !important;
+            border-radius: 5px !important;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: auto;
+        }
+
+        .card-date2 {
+            right: 5px !important;
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 60px;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .card_date_heading {
+            padding: 5px !important;
+            background-color: transparent !important;
+
+        }
+    }
+
+    @media (min-width: 576px) and (max-width: 767px) {
+        .for-border {
+            min-height: auto !important;
+        }
+
+    }
+
+    @media (min-width: 768px) {
+        .responsive-style-btn {
+            padding: 10px 0 !important;
+            display: flex !important;
+            justify-content: center;
+        }
+
+    }
+
+    @media only screen and (max-width: 767.5px) {
+        .rts-section a {
+            font-size: 14px;
+        }
+        .event-date span{
+            font-size: 13px !important;
+        }
+        .video-container {
+            height: 450px !important;
+        }
+
+        .shadow_ist {
+            height: 450px !important;
+        }
+
+        .for-label {
+            font-size: 12px !important;
+        }
+
+        .online-learning {
+            height: 400px !important;
+        }
+
+        .main_banner-section {
+            width: 18rem;
+        }
+
+        .cus-padding {
+            padding-left: 0px !important;
+        }
+
+        .date-overlay {
+            right: 10px !important;
+        }
+
+        .category {
+            left: 10px !important;
+        }
+
+        .card-date {
+            left: 5px !important;
+        }
+
+        .card-date2 {
+            right: 5px !important;
+        }
+
+        .card_date_heading {
+            padding: 5px !important;
+        }
+
+        .about-img {
+            height: 300px;
+        }
+
+        .content-features-btn {
+            padding: 4px 9px !important;
+        }
+
+        .custom-button-call-to-action {
+            padding: 4px 9px !important
+        }
+
+        .Faq-btn {
+            padding: 4px 9px !important;
+        }
+
+        .for-main-2nd {
+            gap: 3rem;
+        }
+
+        .for-backcolor-row {
+            gap: 1.5rem;
+        }
+
+        .random_program_data_1 {
+            height: 270px;
+            overflow: hidden;
+        }
+
+        .custom-slide img {
+            height: 350px !important;
+        }
+
+        .custom-card img {
+            height: 260px !important;
+        }
+
+        .percent-video {
+            height: 390px !important;
+        }
+
+        .fa-lightbulb {
+            display: flex !important;
+            justify-content: center;
+        }
+
+        .at_Merkaii,
+        .at_Merkaii span {
+            text-align: center;
+        }
+
+        .ml_span {
+            margin: 0px !important;
+        }
+
+        .main_bannar {
+            height: 400px !important;
+        }
+
+        /* .old_row {
+            height: 400px;
+        } */
+
+        .main_banner_2 {
+            height: 200px !important;
+        }
+
+        .percent-h,
+        .for-label1,
+        .heading-responsive-style,
+        .content-features2-hh,
+        .card-title, .rts-section-title, .event-title, .rts-section-title {
+            font-size: 16px !important;
+        }
+
+        .cta_service_info h2,
+        .section-header,
+        .text-video-overlay h2,
+        .custom_small_heading,
+        .content-features-h,
+        .content-features2-h,
+        .text-video-overlay h2 {
+            font-size: 18px !important;
+        }
+
+        button.prev {
+            left: 5px !important;
+        }
+
+        button.next {
+            right: 5px !important;
+        }
+
+        .for-focus,
+        .for-affordability,
+        .for-global {
+            min-width: 45px !important;
+        }
+
+        .about_us {
+            height: auto;
+        }
+
+        .top-center {
+            left: 20% !important;
+            transform: translate(-13%, -0%) !important;
+            white-space: normal !important;
+        }
+
+        .single-event::before {
+            left: 85px !important;
+        }
+
+        .events-content .single-event {
+            padding: 35px 10px !important;
+        }
+
+        .events-content .single-event-counter .count-number {
+            font-size: 50px !important;
+        }
+
+        .events-content .single-event-content {
+            padding-left: 5px !important;
+        }
+
+        .news-events-tabs-section {
+            padding-left: 0px !important;
+        }
+
+        .percent1 {
+            margin: 0 0px 1.5rem 0px !important;
+        }
+
+        .percent2 {
+            margin: 0 0px 1.5rem 0px !important;
+        }
+
+        .percent3 {
+            margin: 0 0px 1.5rem 0px !important;
+        }
+
+        .percent4 {
+            margin: 0 0px 1.5rem 0px !important;
+        }
+
+        .content-features {
+            height: 357px !important;
+        }
+
+        .content-feature {
+            height: 357px !important;
+        }
+
+        .map-main-div {
+            height: 400px !important;
+            width: 100% !important;
+        }
+
+        .section-margin-y {
+            margin: 20px auto !important;
+        }
+
+        .left-s-h-cls {
+            height: 200px !important;
+        }
+
+        .reviews {
+            text-align: center !important;
+        }
+
+        .for-bold {
+            font-size: 25px;
+        }
+
+        .hero-section-main-heading {
+            font-size: 20px !important;
+        }
+
+        .flowdiv {
+            padding: 3rem 0px !important;
+        }
+    }
+
+    @media only screen and (min-width:768px) and (max-width: 991.98px) {
+        .about-img {
+            max-height: 330px !important;
+        }
+       
+        .percent-video {
+            max-height: 520px !important;
+        }
+
+        .percent1 {
+            margin: 0 0px 1.5rem 160px !important;
+        }
+
+        .percent2 {
+            margin: 0 0px 1.5rem 104px !important;
+
+        }
+
+        .percent3 {
+            margin: 0 0px 1.5rem 50px !important;
+        }
+
+        .percent4 {
+            margin: 0 0px 1.5rem -8px !important;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+        .content-features-btn, .custom-button-call-to-action, .Faq-btn{
+            font-size: 14px !important;
+            padding: .2rem .6rem !important;
+        }
+        .video-container {
+            height: 550px !important;
+        }
+
+        .shadow_ist {
+            height: 550px !important;
+        }
+
+        .percent1 {
+            margin: 0 -103px 1.5rem 160px;
+        }
+
+        .for-border {
+            min-height: 260px !important;
+        }
+
+        .about_us_image {
+            object-fit: cover !important;
+            object-position: top !important;
+        }
+
+        .online-learning {
+            height: 500px !important;
+        }
+
+        .card-date {
+            left: 5px !important;
+        }
+
+        .card-date2 {
+            right: 5px !important;
+
+        }
+
+        .card_date_heading {
+            padding: 5px !important;
+        }
+
+        .custom-slide img {
+            height: 390px !important;
+        }
+
+        .custom-card img {
+            height: 390px !important;
+        }
+
+        .heading-responsive-style {
+            font-size: 18px !important;
+        }
+
+        .at_Merkaii,
+        .at_Merkaii span {
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .ml_span {
+            margin: 0px !important
+        }
+
+        .fa-lightbulb {
+            display: flex !important;
+            justify-content: center;
+        }
+
+        .text-video-overlay h2,
+        .content-features2-h,
+        .section-header,
+        .custom_small_heading,
+        .custom_heading_1,
+        .content-features-h,
+        .cta_service_info h2 {
+            font-size: 1.5rem !important;
+        }
+
+        .about_us {
+            height: auto;
+        }
+
+        .top-center {
+            top: 16%;
+            left: 2% !important;
+            transform: translate(0%, 0%) !important;
+            white-space: normal !important;
+
+        }
+
+        .news-events-tabs-section {
+            padding-left: 0px !important;
+        }
+
+        .main_banner-section {
+            width: 23rem;
+        }
+
+        .hero-section-main-heading {
+            font-size: 30px !important;
+        }
+
+        .cus-padding {
+            padding-left: 25px !important;
+        }
+
+        #program_title {
+            font-size: 15px !important;
+        }
+
+
+    }
+
+    @media only screen and (min-width: 1024px) and (max-width: 1279px) {
+        .about_us_img2, .about_us_img1{
+            height: 450px;
+        }
+        /* .video-container {
+            height: 500px !important;
+        } */
+
+        .shadow_ist {
+            height: 500px !important;
+        }
+
+        .card-date {
+            left: 10px !important;
+        }
+
+        .card-date2 {
+            right: 10px !important;
+        }
+
+        .about_us {
+            height: auto !important;
+        }
+
+        .for-border {
+            min-height: 292px !important;
+        }
+
+        .main_banner-section {
+            width: 24rem !important;
+        }
+
+        .hero-section-main-heading {
+            font-size: 35px !important;
+        }
+
+        .left-content {
+            width: 28rem;
+        }
+
+        .card-shadow {
+            min-height: 95vh;
+        }
+
+        .percent1 {
+            margin: 0 -103px 1.5rem 160px;
+        }
+
+        .percent2 {
+            margin: 0 -77px 1.5rem 104px;
+        }
+
+        .percent3 {
+            margin: 0 -53px 1.5rem 50px;
+        }
+
+        .text-video-overlay h2,
+        .section-header,
+        .custom_small_heading,
+        .custom_heading_1,
+        .content-features-h {
+            font-size: 1.6rem !important;
+        }
+    }
+
+    @media only screen and (min-width: 1281px) {
+        .text-video-overlay h2 {
+            font-size: 2rem !important;
+        }
+
+        .prep_card-image {
+            height: 15rem;
+        }
+
+        .main_banner-section {
+            width: 40rem;
+        }
+    }
+
+    @media only screen and (min-width: 1350px) {
+        .main_bannar {
+            height: 630px !important;
+        }
+
+        .shadow_ist{
+            height: 630px !important;
+        }
+        .video-container {
+        height: 630px !important;
+    }
+
+        .main_banner_2 {
+            height: 315px !important;
+            
+        }
+
+        .cta_area {
+            height: 600px !important;
+        }
+
+        .for-border {
+            min-height: 180px !important;
+        }
+
+        .card-shadow {
+            min-height: 95vh;
+        }
+
+        .shadow_msg {
+            height: 5rem !important;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            font-size: 18px;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 2.4rem !important;
+        }
+
+        .form_sm {
+            height: 2.4rem !important;
+        }
+
+    }
+
+    @media only screen and (min-width: 1440px) {
+
+
+        .main-content-feature {
+            height: 630px !important;
+            overflow: auto;
+        }
+
+        .content-features {
+            height: 100% !important;
+        }
+
+        .content-feature {
+            height: 100% !important;
+        }
+
+        .accordion {
+            max-height: 520px !important;
+        }
+
+        .logos {
+            min-width: 100rem !important;
+        }
+
+        /* .percent-video {
+            padding: 0px 25px 0px 0px !important;
+        } */
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            font-size: 18px;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 2.3rem !important;
+        }
+
+        .form_sm {
+            height: 2.3rem !important;
+        }
+
+        .video {
+            height: 610px;
+        }
+    }
+
+    @media only screen and (min-width: 1530px) {
+        .online-learning {
+            height: 630px !important;
+        }
+
+        .flowdiv {
+            padding: 5rem 3rem !important;
+        }
+
+        .content-feature1 {
+            margin: 30px 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+
+    @media only screen and (min-width: 1560px) {
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            font-size: 19px;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 2.7rem !important;
+        }
+
+        .form_sm {
+            height: 2.8rem !important;
+        }
+
+        .percent4 {
+            margin: 0 -8px 1.5rem -8px !important;
+        }
+    }
+
+    @media screen and (width < 1650px) {
+
+        #program_subtitle {
+            font-size: 18px !important;
+        }
+
+        .random_program_data_2 {
+            font-size: 20px !important;
+
+        }
+
+    }
+
+    @media only screen and (min-width: 1650px) {
+        .custom_form {
+            height: 660px !important;
+        }
+
+        .dataflow {
+            height: 660px !important;
+        }
+
+        .ankar_eltdf {
+            height: 660px !important;
+        }
+
+        .video-container {
+            height: 755px !important;
+        }
+
+        .shadow_ist {
+            height: 755px !important;
+        }
+
+        .main_bannar {
+            height: 820px !important;
+        }
+
+        .main_banner_2 {
+            height: 410px !important;
+        }
+
+        .cta_area {
+            height: 800px !important;
+        }
+
+        .online-learning {
+            height: 800px !important;
+        }
+
+        .main-content-feature {
+            height: 780px !important;
+        }
+
+        .custom-slide img {
+            height: 600px !important;
+        }
+
+        .custom-card img {
+            height: 600px !important;
+        }
+
+        .logos {
+            min-width: 125rem !important;
+        }
+
+        .percent1 {
+            margin-top: 110px !important;
+        }
+
+        .percent4 {
+            margin-bottom: 110px !important;
+        }
+
+        .prep_card-image {
+            height: 13rem;
+        }
+
+        .left-content {
+            width: 45rem;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            font-size: 19px;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 2.7rem !important;
+        }
+
+        .form_sm {
+            height: 2.8rem !important;
+        }
+
+        .icon-img {
+            max-width: 7% !important;
+        }
+
+        .for-label {
+            font-size: 18px;
+        }
+
+        .widget-49-pro-title {
+            font-size: 14px;
+        }
+    }
+
+    @media only screen and (min-width: 1800px) {
+        .accordion {
+            max-height: 720px !important;
+        }
+
+        .flowdiv {
+            padding: 5rem 3.5rem !important;
+        }
+
+        .card-date {
+            font-size: 18px !important;
+        }
+        .card-date2{
+            font-size: 18px !important;
+        }
+        .image-date {
+            font-size: 18px !important;
+        }
+
+        .category {
+            font-size: 18px !important;
+        }
+
+        .ml_span {
+            margin-left: -270px;
+        }
+
+        .Faq-btn,
+        .content-features-btn {
+            font-size: 18px;
+            border-radius: 20px !important;
+        }
+
+        .btn_glo {
+            border-radius: 20px;
+            font-size: 18px;
+        }
+
+        .text-video-overlay {
+            padding: 40px 0px;
+        }
+
+        .video-controls {
+            padding: 25px 35px;
+        }
+
+        .fa-play {
+            font-size: 30px !important;
+        }
+
+        .custom-button-call-to-action {
+            font-size: 18px !important;
+            border-radius: 20px !important;
+        }
+
+        .custom-button-call-to-action:hover {
+            font-size: 18px !important;
+        }
+
+        .faqs-row {
+            padding: 0px 20px !important;
+        }
+
+        .about-img {
+            /* height: 760px !important; */
+        }
+
+        .logo-text {
+            font-size: 25px;
+        }
+
+        .logos-img {
+            height: 120px;
+            width: 120px;
+        }
+
+        .logos-img2 {
+            height: 120px;
+            width: 120px;
+        }
+
+        .logos-img3 {
+            height: 128px;
+            width: 128px;
+        }
+
+        .logos-img4 {
+            height: 115px;
+            width: 128px;
+        }
+
+
+        .logos-img5 {
+            height: 120px;
+            width: 120px;
+        }
+
+        .logos-img6 {
+            height: 100px;
+            width: 128px;
+        }
+
+        .logos-img7 {
+            height: 120px;
+            width: 120px;
+        }
+
+        .logos-img8 {
+            height: 120px;
+            width: 120px;
+        }
+
+        .card-shadow {
+            min-height: 79vh;
+        }
+
+        .percent-video {
+            /* max-height: 820px;
+            min-height: 820px; */
+            padding: 0px 20px 0px 0px !important;
+        }
+
+        .for-border {
+            min-width: 92%;
+        }
+
+        .percent_wrapper {
+            padding: 157px 0;
+        }
+
+        .percent-row {
+            padding: 0px 38px !important;
+        }
+
+        .percent {
+            font-size: 60px;
+        }
+
+        .percent1 {
+            margin: 0 -166px 1.5rem 230px;
+        }
+
+        .percent2 {
+            margin: 0 -127px 1.5rem 155px;
+        }
+
+        .percent3 {
+            margin: 0 -83px 1.5rem 85px;
+        }
+
+        .percent4 {
+            margin: 0 -39px 1.5rem 0px;
+        }
+
+        .percent-padd {
+            padding: 134px 0 !important;
+        }
+
+        .content-feature {
+            height: 100%;
+        }
+
+        .content-features-p {
+            font-size: 20px;
+        }
+
+        .main_banner-section {
+            width: 45rem !important;
+        }
+
+        .video {
+            height: 835px;
+        }
+
+        .panel-about label {
+            font-size: 20px;
+        }
+
+        .prep_card {
+            height: 300px;
+        }
+
+        .prep_card-image {
+            height: 16rem;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            font-size: 19px;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 2.7rem !important;
+        }
+
+        .form_sm {
+            height: 2.8rem !important;
+        }
+
+        .shadow_msg {
+            height: 8rem !important;
+        }
+
+        .content-features {
+            min-width: 580px !important;
+            max-width: 580px !important;
+            height: 100%;
+            /* margin-left: 45px; */
+            margin-right: 45px;
+        }
+
+        .content-feature {
+            padding-left: 43px !important;
+        }
+
+    }
+
+    @media only screen and (min-width: 2560px) {
+
+        .custom_heading_1 {
+            font-size: 35px;
+        }
+
+        .custom_paragraph {
+            font-size: 25px;
+        }
+
+        .p-shadow {
+            font-size: 20px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            font-size: 22px;
+
+        }
+
+        .select2-container .select2-selection--single {
+            height: 3.5rem !important;
+        }
+
+        .form_sm {
+            height: 3.5rem !important;
+        }
+    }
 </style>
 @section('mainContent')
     {{-- MainBanner --}}
@@ -2655,18 +2969,19 @@
     <section class="sec-1 show-animate">
         <div class="container-fluid px-0 g-0 ">
             <div class="row mb-3">
-                <div class="col-md-8 pl-md-0 hero-section-h-responsive">
-                    <div class="main_bannar d-flex align-items-start justify-content-center flex-column py-5 pl-5">
+                <div class="col-md-8 px-md-0 hero-section-h-responsive">
+                    <div class="main_bannar d-flex align-items-start justify-content-center flex-column py-5 pl-sm-5 pl-3">
 
                         <div class="main_banner-section cus-padding">
 
                             <h1 class="hero-section-main-heading">
-                                BECOME A LICENSED HEALTHCARE PROFESSIONAL
+                                PASS YOUR EXAMS - BECOME A LICENSED HEALTHCARE PROFESSIONAL
                             </h1>
-                            <p class="mt-4 hero-section-p mb-5"> <span class="font-weight-bold">Adult Learners: </span> Your
-                                Guide to Choosing the <span class="font-weight-bold">Perfect Prep Course</span> to Help
-                                <span class="font-weight-bold">ACE</span> the NCLEX, CPT, CPhT, CMA, or other Healthcare
-                                Licensing Exam on the <span class="font-weight-bold"> First Try!</span>
+                            <p class="mt-4 hero-section-p mb-5"> <span class="font-weight-bold">Adult Learners, </span>
+                                discover the ultimate roadmap for selecting preparatory courses to conquer exams such as the
+                                Nursing School, <span class="font-weight-bold"> NCLEX, CPT, CPhT, CPC, CMA </span> and
+                                various general licensures.
+
                             </p>
 
                             @guest
@@ -2679,62 +2994,68 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 old_row pl-0">
-                    @if (isset($random_program))
-                        <div class="row" id="random_programs">
-                            <div class="col-6 first_div random_program_data_1 height-card px-0">
-                                <img id="program_icon" src="{{ $random_program->icon }}"
-                                    class="w-100 h-100 imgcls object-fit-cover img-fluid height-card">
-                            </div>
-                            <div class="col-6 first_div height-card px-0">
-                                <a href="{{ route('programs.detail', ['id' => $random_program->id]) }}"
-                                    class="d-flex flex-column h-100 justify-content-center small_section_bg_color">
-                                    <h5 class="font-weight-bold px-2 px-lg-4 pt-4 text-white" id="program_title">
-                                        {{ $random_program->programtitle }}
-                                    </h5>
-                                    <h5 class="font-weight-bold px-2 px-lg-4 text-white" id="program_subtitle">
-                                        {{ $random_program->subtitle }}
-                                    </h5>
-                                    <p class="px-2 px-lg-4 text-white" style="margin-bottom:0.5rem" id="program_desc">
-
-                                        @php
-                                            $program_description = strip_tags($random_program->discription);
-                                        @endphp
-                                        @if (Str::length($program_description) > 100)
-                                            {{ Str::limit($program_description, 100, '...') }}
-                                        @else
-                                            {{ $program_description }}
-                                        @endif
-                                    </p>
-                                    <h5 class="px-2 px-lg-4 pt-2 text-white" id="program_cost">
-                                        ${{ $random_program->totalcost }}
-                                    </h5>
-                                </a>
-                            </div>
-
-                            <div class="col-6 random_program_data_2 height-card">
-                                <div class="d-flex flex-column h-100 justify-content-center py-2 py-sm-3 py-md-0">
-                                    <h5 class="font-weight-bold custom_heading_2 heading-responsive-style mb-4">
-                                        Accelerate Your Future
-                                        <br>
-                                        Learn New Things
-                                        <br>
-                                        Get New skills,
-                                        <br> JOIN US !
-                                    </h5>
-                                    <a class="theme_btn small_btn mt-2 text-center responsive-style-btn"
-                                        href="{{ url('/prep-courses') }}">View
-                                        Courses</a>
+                <div class="col-md-4 old_row">
+                    <div class="row" id="random_programs" @if (!isset($random_program)) style="height:100%" @endif>
+                        @if (isset($random_program))
+                            <div class="col-6 px-0 main_banner_2">
+                                <div class="first_div random_program_data_1 height-card">
+                                    <img id="program_icon" src="{{ $random_program->icon }}"
+                                        class="w-100 h-100 imgcls img-fluid height-card">
                                 </div>
                             </div>
-                            <div class="col-6 height-card random_program_data_1 px-0">
-                                {{-- <div class=""> --}}
-                                <img src="http://mchnursing.com/lms/public/uploads/homepage/home_banner.jpg" alt=""
-                                    class="w-100 h-100 imgcls object-fit-cover img-fluid height-card" style="">
-                                {{-- </div> --}}
+                            <div class="col-6 small_section_bg_color main_banner_2 pl-0 pl-xl-2">
+                                <div class="first_div height-card d-flex justify-content-center h-100">
+                                    <a href="{{ route('programs.detail', ['id' => $random_program->id]) }}"
+                                        class="d-flex flex-column h-100 justify-content-center">
+                                        <h5 class="font-weight-bold px-2 px-xl-4 text-white" id="program_title">
+                                            {{ $random_program->programtitle }}
+                                        </h5>
+                                        <h5 class="font-weight-bold px-2 px-xl-4 text-white text-custom-height"
+                                            id="program_subtitle">
+                                            {{ $random_program->subtitle }}
+                                        </h5>
+                                        <p class="px-2 px-xl-4 text-white text-custom-height" style="margin-bottom:0.5rem"
+                                            id="program_desc">
+
+                                            @php
+                                                $program_description = strip_tags($random_program->discription);
+                                            @endphp
+                                            @if (Str::length($program_description) > 100)
+                                                {{ Str::limit($program_description, 100, '...') }}
+                                            @else
+                                                {{ $program_description }}
+                                            @endif
+                                        </p>
+                                        <h5 class="px-2 px-xl-4 pt-2 text-white" id="program_cost">
+                                            ${{ $random_program->currentProgramPlan[0]->amount }}
+                                        </h5>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="col-6 @if(!isset($random_program)) col-md-12 order-md-2 @endif random_program_data_2 height-card main_banner_2">
+                            <div class="d-flex flex-column h-100 justify-content-center py-3 py-md-0 pl-md-2 pl-4 text-center align-items-center">
+                                <h5 class="font-weight-bold custom_heading_2 heading-responsive-style mb-4" @if(!isset($random_program)) style="font-size:1.8rem" @endif>
+                                    Accelerate Your Future
+                                    <br>
+                                    Learn New Things
+                                    <br>
+                                    Get New skills,
+                                    <br> JOIN US !
+                                </h5>
+                                <a class="theme_btn small_btn mt-2 text-center responsive-style-btn"
+                                    href="{{ url('/prep-courses') }}">View
+                                    Courses</a>
                             </div>
                         </div>
-                    @endif
+                        <div class="col-6 @if(!isset($random_program)) col-md-12 order-md-1 @endif height-card random_program_data_1 px-0 main_banner_2">
+                            {{-- <div class=""> --}}
+                            <img src="{{ asset('/public/assets/lms/homepage-leftimg.png') }}" alt=""
+                                class="w-100 h-100 imgcls img-fluid" style="object-fit: cover;">
+                            {{-- </div> --}}
+                        </div>
+                    </div>
+
 
                 </div>
             </div>
@@ -2752,20 +3073,22 @@
     <section class="sec-2">
         <div class="container p-lg-5 p-3">
             <div class="row px-xl-5 main-content-feature ">
-                <div class="col-md-5 content-features">
-                    <div class="content-features1 px-xl-5 px-md-2 ">
-                        <h2 class="content-features-h font-weight-bold">BEYOND KNOWLEDGE, EDUCATION TRANSFORMS LIVES
-                            ANYWHERE</h2>
-                        <p class="content-features-p">We understand that life doesn't always stop for education. That's
-                            why we offer a truly
-                            affordable and flexible learning experience that fits your schedule and lifestyle.</p>
-                        <a href="{{ route('about') }}"><button class="content-features-btn py-2 px-4">How it
-                                Works</button></a>
+                <div class="col-md-5 px-md-0">
+                    <div class="content-features p-lg-5 px-4 py-4">
+                        <div class="content-features1 px-xl-4 px-md-3">
+                            <h2 class="content-features-h font-weight-bold">BEYOND KNOWLEDGE, EDUCATION TRANSFORMS LIVES
+                                ANYWHERE</h2>
+                            <p class="content-features-p">We understand that life doesn't always stop for education. That's
+                                why we offer a truly
+                                affordable and flexible learning experience that fits your schedule and lifestyle.</p>
+                            <a href="{{ route('about') }}"><button class="content-features-btn">How it
+                                    Works</button></a>
+                        </div>
                     </div>
                 </div>
-                <div id="content-container" class="col-md-7 d-flex content-feature">
-                    <div class="col-md-6 content-features2 d-flex flex-column ">
-                        <div class=" px-2 content-feature1">
+                <div id="content-container" class="col-md-7 content-feature mt-4 mt-md-0">
+                    <div class="col-md-12 content-features2 d-lg-flex ">
+                        <div class="col-lg-6 col-12 px-2 content-feature1 hidden hidden-left">
                             <h2 class="content-features2-h font-weight-bold">01</h2>
                             <h5 class="content-features2-hh font-weight-bold">Are You Struggling in Your <br>Nursing
                                 Program?
@@ -2773,7 +3096,19 @@
                             <p class="content-features2-p">Feeling overwhelmed or bewildered by the material? You may catch
                                 up, understand, and succeed in nursing classes with our support.</p>
                         </div>
-                        <div class="content-feature1 px-2">
+                        <div class="col-lg-6 col-12 px-2 content-feature1 hidden hidden-right">
+                            <h2 class="content-features2-h font-weight-bold">02</h2>
+                            <h5 class=" content-features2-hh font-weight-bold">Fail to Apply Knowledge to <br>NCLEX
+                                Questions?
+                            </h5>
+                            <p class="content-features2-p">Knowledge is only half the battle. We can educate you about
+                                NCLEX exam methods and how to use your knowledge.</p>
+
+                        </div>
+                    </div>
+                    {{--  2nd features --}}
+                    <div class="col-md-12 content-features2 d-lg-flex ">
+                        <div class="col-lg-6 col-12 content-feature1 px-2 hidden hidden-left">
                             <h2 class="content-features2-h font-weight-bold">03
                             </h2>
                             <h5 class="content-features2-hh font-weight-bold">Having Trouble Passing the<br> HESI Exit Exam?
@@ -2781,7 +3116,21 @@
                             <p class="content-features2-p">Don't let HESI stop your healthcare career. Helping you gain the
                                 skills and knowledge you need to confidently pass the exam.</p>
                         </div>
-                        <div class="content-feature1 px-2">
+                        <div class="col-lg-6 col-12 content-feature1 px-2 hidden hidden-right">
+                            <h2 class="content-features2-h font-weight-bold">04
+                            </h2>
+                            <h5 class="content-features2-hh font-weight-bold">Healthcare Course <br>Failure?
+                            </h5>
+                            <p class="content-features2-p">Return to form! We can identify your deficiencies, provide
+                                personalized assistance, and help you succeed in healthcare classes.</p>
+                        </div>
+
+                    </div>
+                    {{-- 3 --}}
+                    <div class="col-md-12 content-features2 d-lg-flex ">
+
+                        <div class="col-lg-6 col-12 content-feature1 px-2 hidden hidden-left">
+
                             <h2 class="content-features2-h font-weight-bold">05
                             </h2>
                             <h5 class="content-features2-hh font-weight-bold">Do You Get Test Anxiety or<br> Feel
@@ -2790,27 +3139,8 @@
                             <p class="content-features2-p">You'll learn how to control test anxiety and ace healthcare
                                 tests. </p>
                         </div>
-                        <div></div>
-                    </div>
-                    <div class="col-md-6 content-features2 d-flex flex-column ">
-                        <div class="px-2 content-feature1">
-                            <h2 class="content-features2-h font-weight-bold">02</h2>
-                            <h5 class=" content-features2-hh font-weight-bold">Fail to Apply Knowledge to <br>NCLEX
-                                Questions?
-                            </h5>
-                            <p class="content-features2-p">Knowledge is only half the battle. We can educate you about
-                                NCLEX exam methods and how to use your knowledge.</p>
-                            <div></div>
-                        </div>
-                        <div class="content-feature1 px-2">
-                            <h2 class="content-features2-h font-weight-bold">04
-                            </h2>
-                            <h5 class="content-features2-hh font-weight-bold">Healthcare Course <br>Failure?
-                            </h5>
-                            <p class="content-features2-p">Return to form! We can identify your deficiencies, provide
-                                personalized assistance, and help you succeed in healthcare classes.</p>
-                        </div>
-                        <div class="content-feature1 px-2">
+
+                        <div class="col-lg-6 col-12 content-feature1 px-2 hidden hidden-right">
                             <h2 class="content-features2-h font-weight-bold">06
                             </h2>
                             <h5 class="content-features2-hh font-weight-bold">Need Help Starting Your<br> Healthcare
@@ -2833,190 +3163,245 @@
         <x-home-page-instructor-section :homeContent="$homeContent" />
     @endif
 
-
-    {{-- Custom Slider by Arsam --}}
-    <section class="sec-4">
-        <div class="container px-lg-5 pt-5">
-            <div class="row text-center main_row mb-5">
-                <h2 class="font-weight-bold">Gain the Edge in Healthcare School & Beyond</h2>
-                <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
-                    Licensure.</p>
-            </div>
-            <div class="row d-flex align-items-stretch pb-5 px-xl-5 animate">
-                <div class="col-md-6 mb-2 px-md-0">
-                    <div class="custom-slider-container">
-                        <button class="prev">❮</button>
-                        <div class="custom-slider">
-                            @php
-                                $recent_programs = $latest_programs;
-                                $first_program = $recent_programs->first();
-                                if ($first_program) {
-                                    $recent_programs = $recent_programs->except($first_program->id);
-                                }
-                            @endphp
-                            @php
-                                $recent_courses = $latest_courses;
-                                $first_course = $recent_courses->first();
-                                if ($first_course) {
-                                    $recent_courses = $recent_courses->except($first_course->id);
-                                }
-                                $i = 0;
-                            @endphp
-                            @foreach ($recent_programs as $keyprograms => $thisprogram)
-                                <div class="custom-slide">
-                                    <img src="{{ getCourseImage($thisprogram->image) }}" alt="Image 1">
-                                    <div class="overlay"></div>
-                                    <div class="text-overlay px-4 py-2">
-                                        <a href = "{{ route('programs.detail', [$thisprogram->id]) }}">
-                                            <h5 class="image-text font-weight-bold">{{ $thisprogram->programtitle }}</h5>
-                                        </a>
-                                        {{-- <br> --}}
-                                        <p>
-                                            @php
-                                                $description = str_replace(
-                                                    '&nbsp;',
-                                                    ' ',
-                                                    htmlspecialchars_decode(strip_tags($thisprogram->discription)),
-                                                );
-                                            @endphp
-                                            @if (Str::length($description) > 120)
-                                                {{ Str::limit($description, 120, '...') }}
-                                            @else
-                                                {{ $description }}
-                                            @endif
-                                        </p>
-                                    </div>
-                                    <div class="category">
-                                        <span class="category_name">Program</span>
-                                    </div>
-                                    <div class="date-overlay">
-                                        <span class="image-date">${{ $thisprogram->currentProgramPlan[0]->amount }}</span>
-                                    </div>
-                                </div>
-                            @endforeach
-                            @foreach ($recent_courses as $keycourses => $thiscourse)
-                                @if (array_key_exists($keycourses, $recent_courses->toArray()))
+    @if (count($latest_programs) > 0 || count($latest_courses) > 0)
+        {{-- Custom Slider by Arsam --}}
+        <section class="sec-4">
+            <div class="container px-lg-5 pt-lg-5 pt-3">
+                <div class="row text-center main_row mb-3 px-2 px-md-0">
+                    <h2 class="custom_small_heading font-weight-bold">Gain the Edge in Healthcare School & Beyond</h2>
+                    <p class="custom_paragraph">Adult-Focused Programs & Prep-Courses Prepare You for NCLEX® & Career
+                        Licensure.</p>
+                </div>
+                <div class="row d-flex align-items-stretch pb-3 pb-md-0 px-xl-5">
+                    <div class="col-md-6 mb-2 px-md-0 hidden hidden-left">
+                        <div class="custom-slider-container">
+                            <button class="prev">❮</button>
+                            <div class="custom-slider">
+                                @php
+                                    $recent_programs = $latest_programs;
+                                    $first_program = $recent_programs->first();
+                                    if ($first_program) {
+                                        $recent_programs = $recent_programs->except($first_program->id);
+                                    }
+                                @endphp
+                                @php
+                                    $recent_courses = $latest_courses;
+                                    $first_course = $recent_courses->first();
+                                    if ($first_course) {
+                                        $recent_courses = $recent_courses->except($first_course->id);
+                                    }
+                                    $i = 0;
+                                @endphp
+                                @foreach ($recent_programs as $keyprograms => $thisprogram)
                                     <div class="custom-slide">
-                                        <img src="{{ getCourseImage($thiscourse->image) }}" alt="Recent Courses Image">
-
+                                        <img src="{{ getCourseImage($thisprogram->image) }}" alt="Image 1">
                                         <div class="overlay"></div>
-                                        <div class="text-overlay">
-                                            <a
-                                                href="{{ !empty($thiscourse->parent_id) ? courseDetailsUrl(@$thiscourse->parent->id, @$thiscourse->type, @$thiscourse->parent->slug) . '?courseType=' . $thiscourse->type : courseDetailsUrl(@$thiscourse->id, @$thiscourse->type, @$thiscourse->slug) }}">
-                                                <h5 class="image-text font-weight-bold">
-                                                    {{ !empty($thiscourse->parent_id) ? $thiscourse->parent->title : $thiscourse->title }}
+                                        <div class="text-overlay px-4 py-2">
+                                            <a href = "{{ route('programs.detail', [$thisprogram->id]) }}">
+                                                <h5 class="image-text font-weight-bold">{{ $thisprogram->programtitle }}
                                                 </h5>
                                             </a>
-                                            <br>
+                                            {{-- <br> --}}
                                             <p>
                                                 @php
-                                                    $requirements = str_replace(
+                                                    $description = str_replace(
                                                         '&nbsp;',
                                                         ' ',
-                                                        htmlspecialchars_decode(
-                                                            strip_tags(
-                                                                !empty($thiscourse->parent_id)
-                                                                    ? $thiscourse->parent->requirements
-                                                                    : $thiscourse->requirements,
-                                                            ),
-                                                        ),
+                                                        htmlspecialchars_decode(strip_tags($thisprogram->discription)),
                                                     );
                                                 @endphp
-                                                @if (Str::length($requirements) > 120)
-                                                    {{ Str::limit($requirements, 120, '...') }}
+                                                @if (Str::length($description) > 120)
+                                                    {{ Str::limit($description, 120, '...') }}
                                                 @else
-                                                    {{ $requirements }}
+                                                    {{ $description }}
                                                 @endif
                                             </p>
                                         </div>
                                         <div class="category">
-                                            <span class="text-white">
-                                                @if ($thiscourse->type == 1)
-                                                    {{ __('Course') }}
-                                                @elseif($thiscourse->type == 2)
-                                                    {{ __('Big Quiz') }}
-                                                @elseif($thiscourse->type == 3)
-                                                    {{ __('Individual Course') }}
-                                                @elseif($thiscourse->type == 4)
-                                                    {{ __('Full Course') }}
-                                                @elseif($thiscourse->type == 5)
-                                                    {{ __('Prep-Course (On-Demand)') }}
-                                                @elseif($thiscourse->type == 6)
-                                                    {{ __('Prep-Course (Live)') }}
-                                                @elseif($thiscourse->type == 8)
-                                                    {{ __('Repeat Course') }}
-                                                @elseif($thiscourse->type == 9)
-                                                    {{ __('Tutor Course') }}
-                                                @endif
-                                            </span>
+                                            <span class="category_name">Program</span>
                                         </div>
                                         <div class="date-overlay">
-                                            <span class="image-date">${{ number_format($thiscourse->price, 0) }}</span>
+                                            <span
+                                                class="image-date">${{ $thisprogram->currentProgramPlan[0]->amount }}</span>
                                         </div>
                                     </div>
-                                @endif
-                            @endforeach
+                                @endforeach
+                                @foreach ($recent_courses as $keycourses => $thiscourse)
+                                    @if (array_key_exists($keycourses, $recent_courses->toArray()))
+                                        <div class="custom-slide">
+                                            <img src="{{ getCourseImage($thiscourse->image) }}"
+                                                alt="Recent Courses Image">
+
+                                            <div class="overlay"></div>
+                                            <div class="text-overlay">
+                                                <a
+                                                    href="{{ !empty($thiscourse->parent_id) ? courseDetailsUrl(@$thiscourse->parent->id, @$thiscourse->type, @$thiscourse->parent->slug) . '?courseType=' . $thiscourse->type : courseDetailsUrl(@$thiscourse->id, @$thiscourse->type, @$thiscourse->slug) }}">
+                                                    <h5 class="image-text font-weight-bold">
+                                                        {{ !empty($thiscourse->parent_id) ? $thiscourse->parent->title : $thiscourse->title }}
+                                                    </h5>
+                                                </a>
+                                                <br>
+                                                <p>
+                                                    @php
+                                                        $requirements = str_replace(
+                                                            '&nbsp;',
+                                                            ' ',
+                                                            htmlspecialchars_decode(
+                                                                strip_tags(
+                                                                    !empty($thiscourse->parent_id)
+                                                                        ? $thiscourse->parent->requirements
+                                                                        : $thiscourse->requirements,
+                                                                ),
+                                                            ),
+                                                        );
+                                                    @endphp
+                                                    @if (Str::length($requirements) > 120)
+                                                        {{ Str::limit($requirements, 120, '...') }}
+                                                    @else
+                                                        {{ $requirements }}
+                                                    @endif
+                                                </p>
+                                            </div>
+                                            <div class="category">
+                                                <span class="text-white">
+                                                    @if ($thiscourse->type == 1)
+                                                        {{ __('Course') }}
+                                                    @elseif($thiscourse->type == 2)
+                                                        {{ __('Big Quiz') }}
+                                                    @elseif($thiscourse->type == 3)
+                                                        {{ __('Individual Course') }}
+                                                    @elseif($thiscourse->type == 4)
+                                                        {{ __('Full Course') }}
+                                                    @elseif($thiscourse->type == 5)
+                                                        {{ __('Prep-Course (On-Demand)') }}
+                                                    @elseif($thiscourse->type == 6)
+                                                        {{ __('Prep-Course (Live)') }}
+                                                    @elseif($thiscourse->type == 8)
+                                                        {{ __('Repeat Course') }}
+                                                    @elseif($thiscourse->type == 9)
+                                                        {{ __('Tutor Course') }}
+                                                    @endif
+                                                </span>
+                                            </div>
+                                            @php
+                                                if (isset($thiscourse->currentCoursePlan[0])) {
+                                                    $course_price = $thiscourse->currentCoursePlan[0]->amount;
+                                                } else {
+                                                    $course_price = $thiscourse->price + $thiscourse->tax;
+                                                }
+                                            @endphp
+                                            <div class="date-overlay">
+                                                <span class="image-date">${{ number_format($course_price, 0) }}</span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <button class="next">❯</button>
                         </div>
-                        <button class="next">❯</button>
+
                     </div>
+                    @php
 
-                </div>
-                @php
-
-                @endphp
-                <div class="col-md-6">
-                    <div class="row">
-                        @if ($first_program)
-                            <div class="col-md-6 px-lg-2">
-                                <div class="card custom-card">
-                                    <img src="{{ getCourseImage($first_program->icon) }}" class="card-img"
-                                        alt="...">
-                                    {{-- <img src="https://demoapus2.com/edumy/wp-content/uploads/elementor/thumbs/1105-pe3njtkqt5gexzmb6f3gua5ab17rzk5a1ccdwchmj0.jpg"
+                    @endphp
+                    <div class="col-md-6 hidden hidden-right">
+                        <div class="row">
+                            @if ($first_program)
+                                <div class="col-6 px-md-2">
+                                    <div class="card custom-card">
+                                        <img src="{{ getCourseImage($first_program->icon) }}" class="card-img"
+                                            alt="...">
+                                        {{-- <img src="https://demoapus2.com/edumy/wp-content/uploads/elementor/thumbs/1105-pe3njtkqt5gexzmb6f3gua5ab17rzk5a1ccdwchmj0.jpg"
                                     class="card-img" alt="..."> --}}
-                                    <div class="card-img-overlay">
-                                        <h5 class="card-title font-weight-bold">{{ $first_program->programtitle }}</h5>
-                                        <div class="card-date">
-                                            <span
-                                                class="card_date_heading">${{ number_format($first_program->currentProgramPlan[0]->amount, 0) }}</span>
+                                        <div class="card-img-overlay">
+                                            <h5 class="card-title font-weight-bold">
+                                                <a
+                                                    href="{{ route('programs.detail', [$first_program->id]) }}">{{ $first_program->programtitle }}</a>
+                                            </h5>
+                                            <div class="d-flex justify-content-between" style="gap: 10px">
+                                                <div class="card-date">
+                                                    <span
+                                                        class="card_date_heading">${{ number_format($first_program->currentProgramPlan[0]->amount, 0) }}</span>
+                                                </div>
+                                                <div class="card-date2">
+                                                    <span class="card_date_heading">
+                                                        Program
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
-                        @if ($first_course)
-                            <div class="col-md-6 px-lg-2">
-                                <div class="card custom-card">
-                                    <img src="{{ getCourseImage($first_course->thumbnail) }}" class="card-img"
-                                        alt="...">
-                                    {{-- <img src="https://demoapus2.com/edumy/wp-content/uploads/elementor/thumbs/301242-pe3njtkqt5gexzmb6f3gua5ab17rzk5a1ccdwchmj0.jpg"
+                            @endif
+                            @if ($first_course)
+                                @php
+                                    if (isset($first_course->currentCoursePlan[0])) {
+                                        $course_price = $first_course->currentCoursePlan[0]->amount;
+                                    } else {
+                                        $course_price = $first_course->price + $first_course->tax;
+                                    }
+
+                                @endphp
+                                <div class="col-6 px-md-2">
+                                    <div class="card custom-card">
+                                        <img src="{{ getCourseImage($first_course->thumbnail) }}" class="card-img"
+                                            alt="...">
+                                        {{-- <img src="https://demoapus2.com/edumy/wp-content/uploads/elementor/thumbs/301242-pe3njtkqt5gexzmb6f3gua5ab17rzk5a1ccdwchmj0.jpg"
                                     class="card-img" alt="..."> --}}
-                                    <div class="card-img-overlay">
-                                        <h5 class="card-title font-weight-bold">
-                                            {{ !empty($first_course->parent_id) ? $first_course->parent->title : $first_course->title }}
-                                        </h5>
-                                        <div class="card-date">
-                                            <span
-                                                class="card_date_heading">${{ number_format($first_course->price, 0) }}</span>
+                                        <div class="card-img-overlay">
+                                            <h5 class="card-title font-weight-bold">
+                                                <a
+                                                    href="{{ !empty($first_course->parent_id) ? courseDetailsUrl(@$first_course->parent->id, @$first_course->type, @$first_course->parent->slug) . '?courseType=' . $first_course->type : courseDetailsUrl(@$first_course->id, @$first_course->type, @$first_course->slug) }}">
+                                                    {{ !empty($first_course->parent_id) ? $first_course->parent->title : $first_course->title }}
+                                                </a>
+                                            </h5>
+                                            <div class="d-flex justify-content-between" style="gap: 10px">
+                                                <div class="card-date">
+                                                    <span
+                                                        class="card_date_heading">${{ number_format($course_price, 0) }}</span>
+                                                </div>
+                                                <div class="card-date2">
+                                                    <span class="card_date_heading">
+                                                        @if ($first_course->type == 1)
+                                                            {{ __('Course') }}
+                                                        @elseif($first_course->type == 2)
+                                                            {{ __('Big Quiz') }}
+                                                        @elseif($first_course->type == 3)
+                                                            {{ __('Individual Course') }}
+                                                        @elseif($first_course->type == 4)
+                                                            {{ __('Full Course') }}
+                                                        @elseif($first_course->type == 5)
+                                                            {{ __('Prep-Course (On-Demand)') }}
+                                                        @elseif($first_course->type == 6)
+                                                            {{ __('Prep-Course (Live)') }}
+                                                        @elseif($first_course->type == 8)
+                                                            {{ __('Repeat Course') }}
+                                                        @elseif($first_course->type == 9)
+                                                            {{ __('Tutor Course') }}
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-12 mt-5 text-center">
-                    <a href="{{ route('programs') }}" class="small_btn5 theme_btn py-2 px-4">View all Programs </a>
+                    <div class="col-md-12 mt-4 text-center">
+                        <a href="{{ route('programs') }}" class="small_btn5 theme_btn py-2 px-4">View all Programs </a>
 
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    {{-- Custom Slider End --}}
+        </section>
+        {{-- Custom Slider End --}}
+    @endif
 
     {{-- percent section --}}
     <section class="sec-5 percent-section">
         {{-- <div class=""> --}}
-        <div class="container px-lg-5 pb-5 mt-3">
+        <div class="container px-lg-5 py-lg-5 py-4">
             <div class="row percent-row px-xl-5">
                 <div class="col-lg-6 d-flex flex-column counter-padd px-md-0 ">
 
@@ -3411,13 +3796,10 @@
                         </div>
                     </div>
 
-
                 </div>
-                <div class="col-md-6 d-none d-lg-block percent-video pr-2">
-                    <img src="{{ asset('/public/uploads/images/footerimg/counter_bg.png') }}" class="w-100 h-100">
-                    {{-- <video autoplay loop muted height="100%" width="100%" style="object-fit: cover">
-                            <source src="{{ asset('/public/uploads/images/footerimg/ezgif-3-7f2a47567b.mp4') }}">
-                        </video> --}}
+                <div class="col-lg-6 percent-video pr-2">
+                    <img src="{{ asset('/public/assets/homesection5.png') }}" class="w-100 h-100">
+
                 </div>
 
             </div>
@@ -3430,21 +3812,23 @@
 
     {{-- Map aboutus --}}
 
-    <section class="sec-7 mb-lg-4">
-        <div class="container p-lg-5 ">
+    <section class="sec-7">
+        <div class="container p-lg-5 py-3">
             <div class="row about_us px-xl-5 justify-content-between">
-                <div class="col-sm-6 about_us_height align-items-center d-flex justify-content-center py-3 px-lg-2">
+                <div
+                    class="col-md-6 col-xl-5 about_us_height d-flex justify-content-center align-items-center mb-3 mb-md-0">
                     <div class="about_us_p">
-                        <i class="fa-regular fa-lightbulb fa-2x" style="color: var(--system_primery_color);"></i>
-                        <h2 class="font-weight-bold mb-4">AT MERAKII</h2>
-                        <h2 class="font-weight-bold mb-4">WE ARE ADULT LEARNER-CENTRIC <br> <span
-                                class="d-flex justify-content-center ml_span">and</span>EDUCATION IS FOR
-                            EVERYONE</h2>
+                        <i class="fa-regular fa-lightbulb fa-2x " style="color: var(--system_primery_color);"></i>
+                        <h2 class="custom_small_heading font-weight-bold mb-4 at_Merkaii">AT Merkaii Xcellence</h2>
+                        <h2 class="custom_small_heading font-weight-bold mb-4 at_Merkaii">WE ARE ADULT LEARNER-CENTRIC <br>
+                            <span class="d-flex justify-content-center ml_span">and</span>EDUCATION IS FOR
+                            EVERYONE
+                        </h2>
                         <p class="mb-4 custom_paragraph">
-                            At Merakii, we believe education is the key to unlocking potential, and that's why we
-                            offer a variety of programs designed to fit diverse student body and learning styles. We
+                            At Merkaii Xcellence, we believe education is the key to unlocking potential, and that's why we
+                            offer a variety of prep courses designed to fit diverse student body and learning styles. We
                             offer accessible learning pathways to fuel your passion for healthcare, regardless of
-                            background, experience, or location. Merakii fosters a vibrant and supportive global
+                            background, experience, or location. Merkaii Xcellence fosters a vibrant and supportive global
                             community where <span class="font-weight-bold">everyone can learn, grow, and achieve
                                 their healthcare goals.</span>
                         </p>
@@ -3452,14 +3836,17 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 position-relative">
-                    <div class="align-self-end about-img about_us_img1 p-lg-0">
-                        <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                            src="{{ asset('public/assets/courses-2.jpg') }}" class="img-fluid  w-100">
+                <div class="col-md-6 col-xl-7 d-flex flex-md-column flex-lg-row justify-content-center about-image-main"
+                    style="gap: 1rem">
+                    <div class="col-6 col-md-11 col-lg-6 p-0 about-img about_us_img1 shadow">
+
+                        <img src="{{ asset('public/assets/Untitled-1.png') }}" class="w-100 about_us_image">
+
                     </div>
-                    <div class=" align-self-start about-img about_us_img2 p-lg-0">
-                        <img style="height:100%; object-fit: fill; object-position: right; border-radius: 20px;"
-                            src="{{ asset('public/assets/ban.jpg') }}" class="img-fluid  w-100">
+                    <div class="col-6 col-md-11 col-lg-6 p-md-0 pl-0 about-img about_us_img2 shadow">
+
+                        <img src="{{ asset('public/assets/About-Section7.jpg') }}" class=" w-100 about_us_image">
+
                     </div>
                 </div>
             </div>
@@ -3529,31 +3916,36 @@
 
     <!-- call to action added by arsam  -->
 
-    <section class="sec-8 online-learning d-flex align-items-center justify-content-center my-lg-3">
-        <div class="animate">
-            <h2 class="text-white text-center font-weight-bold text-capitalize">Start your transformation with a
+    <section class="sec-8 online-learning d-flex align-items-center justify-content-center my-3">
+        <div class="hidden hidden-left px-2">
+            <h2 class="custom_small_heading text-white text-center font-weight-bold mb-md-4 mb-2">ADULT-LEARNER'S SUCCESS
+            </h2>
+            <h2 class="custom_small_heading text-white text-center font-weight-bold text-capitalize">Start your
+                transformation with a
                 single click.
-                Limited Seats Available!</h2>
-            <p class="text-white text-center py-4">Get Licensure, <a href="{{ url('pre-registration') }}"><span
-                        class="font-weight-bold text-white">Apply Now
-                    </span></a> Merakii College's Healthcare Programs and Courses. <br>Adult-Learner’s Success</p>
+                LIMITED SEATS AVAILABLE!</h2>
+            <p class="text-white text-center my-md-4 my-2">Prepare for Licensure: <a
+                    href="{{ url('pre-registration') }}"><span class="font-weight-bold text-white">Apply Now
+                    </span></a> Merkaii Xcellence Healthcare Remedial Program and Prep Courses</p>
             <div class="d-flex justify-content-center mt-2">
-                <a href="{{ url('contact#contact-form-ankar') }}"><button
-                        class="custom-button-call-to-action px-4 py-2">Contact Admission Specialist</button></a>
+                <a href="{{ url('contact#contact-form-ankar') }}"><button class="custom-button-call-to-action">Contact
+                        Admission Specialist</button></a>
             </div>
         </div>
     </section>
     <!-- section-3b -->
     <section class="sec-9 ">
-        <div class="container for-backcolor-container p-5">
-            <div class="row justify-content-left px-xl-5">
+        <div class="container for-backcolor-container p-lg-5 py-3">
+            <div class="row justify-content-left px-xl-5 for-backcolor-row">
                 <!-- 1st -->
-                <div class="col-md-4 col-12 for-main px-lg-2">
+                <div class="col-lg-4 col-sm-12 for-main px-lg-2 mb-sm-3 mb-md-0">
                     <div>
-                        <label class="for-label">Why Attend Merakii</label>
-                        <h2 class="for-bold font-weight-bold">Unbound Learning: Your Healthcare Education, Anywhere
+                        <label class="for-label">WHY JOIN MERKAII XCELLENCE PREP</label>
+                        <h2 class="custom_small_heading for-bold font-weight-bold">Unbound Learning: Your Healthcare
+                            Education, Anywhere
                         </h2>
-                        <p class="for-para custom_paragraph mb-2">At Merakii, we understand that life doesn't always
+                        <p class="for-para custom_paragraph mb-2">At Merkaii Xcellence, we understand that life doesn't
+                            always
                             stop
                             for education. That's why we offer a
                             truly flexible learning experience that fits your schedule and lifestyle. Study on your
@@ -3568,687 +3960,696 @@
                     </div>
                 </div>
                 <!-- 2nd 1st-side-->
-                <div class="col-md-4 col-12 for-main">
-                    <div class="d-flex for-element">
-                        <svg class="for-flexibility" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"
-                            xml:space="preserve">
-                            <switch>
-                                <g>
-                                    <circle fill="#382B73" cx="500" cy="500" r="398" />
-                                    <circle fill="#473080" cx="500" cy="500" r="346" />
-                                    <path fill="#382B73"
-                                        d="M765 500.8H574.3c-10.4 0-19.2 6.3-23 15.3l-4-2.3v-26.5c12.7-5.4 24.5-13 34.6-22.3 10.4-9.6 19.2-21 25.7-33.6 3.9-7.5 6.9-15.4 9.1-23.5 1.2.2 2.5.4 3.8.4 11.2 0 20.3-9.1 20.3-20.3v-30.9c0-11.2-9.1-20.3-20.3-20.3-.4-2.7-.9-5.4-1.7-8.1-3.3-16.7-10.1-32.6-19.9-46.4-2.9-4.1-6-8-9.4-11.7-16.7-18.3-38.9-31.2-63.1-36.6-6.8-1.5-13.7-2.4-20.7-2.7-12.4-.6-24.9.8-36.9 4-3.3.9-6.7 1.9-9.9 3.1-6.8 2.5-13.4 5.6-19.7 9.2-2.9 1.7-5.8 3.6-8.6 5.5-2.6 1.8-5.3 3.7-7.7 5.8-1 .8-2 1.7-3 2.6-15.4 13.6-27.4 31.3-34.1 50.8-1.9 5.4-3.4 10.9-4.5 16.5-.7 2.7-1.3 5.4-1.7 8.1h-.1c-11.2 0-20.3 9.1-20.3 20.3v30.9c0 11.2 9.1 20.3 20.3 20.3 1.3 0 2.6-.1 3.8-.4 3.8 13.7 10 26.8 18.3 38.4 8.2 11.4 18.4 21.4 30 29.4 6.7 4.6 13.8 8.5 21.2 11.6V514v-.1l-31.3 17.6h-41.1c-52.3 0-94.8 42.4-94.8 94.8v78.4c16.2 18.8 34.8 35.4 55.3 49.4 5.9 4 11.9 7.8 18.1 11.3 5.4 3.1 11 6.1 16.6 8.8 14.7 7.2 30 13.1 45.6 17.7 16.2 4.7 32.9 7.9 49.7 9.6 17.2 1.8 34.7 2 51.9.6 17-1.4 33.8-4.2 50.3-8.6 15.8-4.2 31.2-9.8 46-16.7 1.8-.8 3.6-1.7 5.4-2.6 5.6-2.7 11.2-5.7 16.6-8.8 12.1-7 23.6-14.8 34.6-23.4l4.5-3.6c1.5-1.2 3.1-2.4 4.5-3.8 10.4-9 20.2-18.7 29.2-29.1h.6v-10H765c13.8 0 25-11.2 25-25V525.8c0-13.8-11.2-25-25-25z" />
-                                    <path fill="#D1D3D4"
-                                        d="M723.6 547.1c-8.7 0-16.9 2.1-24.1 5.7V545c0-8.3-6.7-15-15-15h-93.8c-8.3 0-15 6.7-15 15v100.4c0 8.3 6.7 15 15 15h93.8c3.8 0 7.4-1.5 10-3.8 2.2-1.9 3.8-4.5 4.5-7.4 7.4 3.8 15.7 5.9 24.6 5.9 29.8 0 54-24.2 54-54s-24.2-54-54-54z" />
-                                    <path fill="#FFF"
-                                        d="M452.8 447.4h94.4v114.5h-94.4zM379.6 388.3c-11.2 0-20.3-9.1-20.3-20.3v-30.9c0-11.2 9.1-20.3 20.3-20.3 11.2 0 20.3 9.1 20.3 20.3V368c-.1 11.2-9.1 20.3-20.3 20.3z" />
-                                    <path fill="#D1D3D4"
-                                        d="M379.6 378.7c-11.2 0-20.3-9.1-20.3-20.3v9.5c0 11.2 9.1 20.3 20.3 20.3 11.2 0 20.3-9.1 20.3-20.3v-9.5c-.1 11.2-9.1 20.3-20.3 20.3z" />
-                                    <path fill="#FFF"
-                                        d="M620.4 388.3c-11.2 0-20.3-9.1-20.3-20.3v-30.9c0-11.2 9.1-20.3 20.3-20.3 11.2 0 20.3 9.1 20.3 20.3V368c0 11.2-9.1 20.3-20.3 20.3z" />
-                                    <path fill="#D1D3D4"
-                                        d="M620.4 378.7c-11.2 0-20.3-9.1-20.3-20.3v9.5c0 11.2 9.1 20.3 20.3 20.3 11.2 0 20.3-9.1 20.3-20.3v-9.5c0 11.2-9.1 20.3-20.3 20.3z" />
-                                    <path fill="#FFF"
-                                        d="M381.3 308.8c3.9-20.2 12.9-38.5 25.5-53.8 3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.4 0 2.8 0 4.2.1h1.4c31.2 1.4 59.3 14.6 79.9 35.3 18.4 18.4 30.9 42.7 34.4 69.9.7 5.1 1 10.3 1 15.6v24c0 66.8-54.1 120.9-120.9 120.9-66.8 0-120.9-54.1-120.9-120.9v-24c0-5.1.3-10.2.9-15.2l1.3-8z" />
-                                    <path fill="#D1D3D4"
-                                        d="M500 457.8c-66.8 0-120.9-54.1-120.9-120.9V356c0 66.8 54.1 120.9 120.9 120.9 66.8 0 120.9-54.1 120.9-120.9v-19.1c0 66.8-54.1 120.9-120.9 120.9z" />
-                                    <path fill="#E7AD27"
-                                        d="M381.3 308.8h11.5v57.9c0 3.8-2.9 7.1-6.7 7.2-3.9.1-7.1-3-7.1-6.9v-41.7c.1-5.6.8-11.2 2.3-16.5zM618.7 308.8c1.5 5.1 2.2 10.3 2.2 15.6V367c0 3.8-3.3 6.9-7.4 6.9-4.1 0-7.4-3.1-7.4-6.9v-58.2h12.6z" />
-                                    <path fill="#E7AD27"
-                                        d="M504.2 211.2c-12.2 19.1-42.5 60.4-91.6 89.4-11.8 7-22.7 12.3-32.5 16.3 2.9-23.3 12.5-44.6 26.8-61.8 3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.3-.1 2.7-.1 4.1 0z" />
-                                    <path fill="#FEDE3A"
-                                        d="M619.9 316.4c-16.5 5-48.9 9.7-100.4-3.8C467.4 299 427.9 272 406.8 255c3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.9 0 3.7 0 5.6.1 31.2 1.4 59.3 14.6 79.9 35.3 18.4 18.4 30.9 42.8 34.4 69.9z" />
-                                    <path fill="#E7AD27"
-                                        d="M519.5 241.9c-22.8-6-43.2-14.5-60.7-23.6-15 5.4-28.6 13.7-40.2 24.3-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-3.2-25.2-14.3-48-30.6-65.8-17.5.8-40.6-1-69.8-8.7z" />
-                                    <path fill="#FEDE3A"
-                                        d="M519.5 265.5c-33.3-8.7-61.5-22.9-83-36.4-6.4 3.9-12.4 8.5-17.9 13.5-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-2-15.8-7.1-30.6-14.6-43.8-18.5 2.9-46.6 3.1-85.8-7.1z" />
-                                    <path fill="#E7AD27"
-                                        d="M519.5 289.1c-42.7-11.2-77-31.3-99.6-47.6-.4.4-.9.8-1.3 1.2-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-1-7.6-2.7-15.1-5.1-22.2-17.6 4.2-48.6 7-95.3-5.2zM500 396c-7.4 0-13.4-6-13.4-13.4V365c0-7.4 6-13.4 13.4-13.4s13.4 6 13.4 13.4v17.6c0 7.4-6 13.4-13.4 13.4z" />
-                                    <path fill="#1CAEE4"
-                                        d="M714.5 614.4v70.2c-9.2 10.7-19.2 20.7-29.9 29.9-.1.1-.2.1-.2.2-10.9 9.4-22.5 17.9-34.8 25.6-29.6 18.5-62.9 31.6-98.5 38.1-6.5 1.2-13.1 2.1-19.8 2.9-6.4.7-12.9 1.2-19.4 1.5-2.6.1-5.1.2-7.7.2H496c-2.6 0-5.2-.1-7.7-.2-6.6-.3-13-.8-19.5-1.5-6.7-.7-13.4-1.7-20-2.9-35.5-6.5-68.7-19.6-98.3-38.1-5.6-3.5-11.1-7.2-16.4-11.1-6.4-4.6-12.6-9.6-18.6-14.7-10.7-9.2-20.7-19.2-29.9-29.9v-78.4c0-52.4 42.5-94.8 94.8-94.8h41.1l31.4 103h94.2l31.4-103h41.1c52.3 0 94.8 42.4 94.8 94.8l.1 8.2z" />
-                                    <path fill="#136DA0"
-                                        d="M641 745.4c-5.4 3.1-11 6.1-16.6 8.8L641 631.9v113.5zM375.5 754.2c-5.6-2.8-11.2-5.7-16.6-8.8V631.9l16.6 122.3z" />
-                                    <path fill="#A72973"
-                                        d="m550.1 604.6-26.2 85.8-.5 1.6-5.9 19.3-4.3 14.2-5.9 19.3L503 759l-3 9.9-3.7-12.1-5.3-17.3-7.2-23.6-5.3-17.4-2.4-7.9-26.2-86 50.1-42.7z" />
-                                    <g fill="#E7AD27">
-                                        <circle cx="443.8" cy="341.3" r="10.2" />
-                                        <circle cx="556.2" cy="341.3" r="10.2" />
-                                    </g>
+                <div class="col-lg-8 d-flex flex-column flex-md-row for-main-2nd mt-md-4 mt-lg-0">
+                    <div class="col-md-6 for-main">
+                        <div class="d-flex for-element">
+                            <svg class="for-flexibility" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"
+                                xml:space="preserve">
+                                <switch>
                                     <g>
-                                        <path fill="#E7AD27"
-                                            d="M500 433.6c-13 0-26-4.9-35.9-14.8-2-2-2-5.1 0-7.1s5.1-2 7.1 0c15.9 15.9 41.8 15.9 57.6 0 2-2 5.1-2 7.1 0s2 5.1 0 7.1c-9.9 9.9-22.9 14.8-35.9 14.8z" />
-                                    </g>
-                                    <g>
-                                        <path fill="#E7AD27"
-                                            d="m523.9 690.4-1.3-14.3-1.9-21.8-1.4-16.1-3.4-38.7h-31.8l-2.3 26.4-1.3 15.2-1.9 20.6-1.3 15.2-1.2 13.7 2.4 7.9 5.3 17.4 7.2 23.6 5.3 17.3 3.7 12.1 3-9.9 4.3-14.2 5.9-19.3 4.3-14.2 5.9-19.3z" />
-                                        <path fill="#FEDE3A"
-                                            d="m520.7 654.3-40.3-13.2 1.4-15.2 37.5 12.3zM523.9 690.4l-1.3-14.3-44-14.4-1.3 15.2 46.1 15.1zM517.5 711.3l-4.3 14.2-29.4-9.6-5.3-17.4zM507.3 744.8 503 759l-6.7-2.2-5.3-17.3z" />
-                                    </g>
-                                    <path fill="#FEDE3A"
-                                        d="M510.9 614.4h-21.7c-12.3 0-20.7-12.3-16.4-23.7l6.7-17.5c2.6-6.8 9.1-11.3 16.4-11.3h8.4c7.3 0 13.8 4.5 16.4 11.3l6.7 17.5c4.2 11.4-4.3 23.7-16.5 23.7z" />
-                                    <path fill="#EF5A9D"
-                                        d="m578.5 511.5-31.3-17.7-47.2 68.1 50.1 42.7zM421.5 511.5l31.3-17.7 47.2 68.1-50.1 42.7z" />
-                                    <path fill="#136DA0"
-                                        d="m578.5 511.5 25.9 82.7c.9 3-.6 6.2-3.6 7.3l-20.1 7.6c-5.1 1.9-5.1 9.1-.1 11l24.8 9.8c3.7 1.5 5 6.2 2.4 9.3L500 768.9l78.5-257.4zM421.5 511.5l-25.9 82.7c-.9 3 .6 6.2 3.6 7.3l20.1 7.6c5.1 1.9 5.1 9.1.1 11l-24.8 9.8c-3.7 1.5-5 6.2-2.4 9.3L500 768.9l-78.5-257.4z" />
-                                    <path fill="#D1D3D4" d="M547.1 480.8 500 532.3l-47.2-51.5v13l47.2 68.1 47.2-68.1z" />
-                                    <path fill="#136DA0"
-                                        d="M630 723.2h-29c-6.1 0-11-4.9-11-11s4.9-11 11-11h29c6.1 0 11 4.9 11 11s-4.9 11-11 11zM619.6 521.5h-41.1l-29.3 95.9v37c0 17.1 13.9 31 31 31h134.1v-69.2c.1-52.3-42.3-94.7-94.7-94.7z" />
-                                    <path fill="#FFF"
-                                        d="M765 675.4H574.3c-13.8 0-25-11.2-25-25V505.8c0-13.8 11.2-25 25-25H765c13.8 0 25 11.2 25 25v144.6c0 13.8-11.2 25-25 25z" />
-                                    <path fill="#D1D3D4"
-                                        d="M723.6 556.5c-8.9 0-17.2 2.6-24.1 7.1v-18.7c0-8.3-6.7-15-15-15h-93.8c-8.3 0-15 6.7-15 15v100.4c0 8.3 6.7 15 15 15h93.8c3.8 0 7.4-1.5 10-3.8 3.1-2.8 5-6.7 5-11.2v-6.8c7 4.5 15.2 7.1 24.1 7.1 24.6 0 44.6-20 44.6-44.6s-20-44.5-44.6-44.5z" />
-                                    <g>
-                                        <path fill="#FEDE3A"
-                                            d="M699.5 534.9v100.4c0 4.4-1.9 8.4-5 11.2-2.6 2.4-6.2 3.8-10 3.8h-93.8c-8.3 0-15-6.7-15-15V534.9c0-8.3 6.7-15 15-15h93.8c8.3 0 15 6.8 15 15z" />
-                                        <path fill="#E7AD27"
-                                            d="M684.5 643.7h-93.8c-8.3 0-15-6.7-15-15v6.7c0 8.3 6.7 15 15 15h93.8c8.3 0 15-6.7 15-15v-6.7c0 8.3-6.7 15-15 15z" />
-                                        <path fill="#FFF335"
-                                            d="M684.5 520h-93.8c-8.3 0-15 6.7-15 15v5.9c0-8.3 6.7-15 15-15h93.8c8.3 0 15 6.7 15 15V535c0-8.3-6.7-15-15-15z" />
-                                        <g fill="#EF5A9D">
-                                            <path
-                                                d="M600.8 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c.1 2.7-2.2 5-5 5zM625.7 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c0 2.7-2.2 5-5 5zM650.5 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c.1 2.7-2.2 5-5 5zM675.4 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c0 2.7-2.2 5-5 5z" />
-                                        </g>
-                                        <g fill="#FFF">
-                                            <path
-                                                d="M593 545h23.7v23.7H593zM625.8 545h23.7v23.7h-23.7zM658.5 545h23.7v23.7h-23.7z" />
-                                        </g>
-                                        <g fill="#FFF">
-                                            <path
-                                                d="M593 576.5h23.7v23.7H593zM625.8 576.5h23.7v23.7h-23.7zM658.5 576.5h23.7v23.7h-23.7z" />
-                                        </g>
-                                        <g fill="#FFF">
-                                            <path
-                                                d="M593 608.1h23.7v23.7H593zM625.8 608.1h23.7v23.7h-23.7zM658.5 608.1h23.7v23.7h-23.7z" />
-                                        </g>
-                                    </g>
-                                    <path fill="#E7AD27"
-                                        d="M699.5 552.7v82.6c0 4.4-1.9 8.4-5 11.2-15-9.6-24.9-26.4-24.9-45.5 0-21.1 12.2-39.4 29.9-48.3z" />
-                                    <g>
-                                        <circle fill="#136DA0" cx="723.6" cy="591.1" r="44.6" />
-                                    </g>
-                                    <g>
+                                        <circle fill="#382B73" cx="500" cy="500" r="398" />
+                                        <circle fill="#473080" cx="500" cy="500" r="346" />
+                                        <path fill="#382B73"
+                                            d="M765 500.8H574.3c-10.4 0-19.2 6.3-23 15.3l-4-2.3v-26.5c12.7-5.4 24.5-13 34.6-22.3 10.4-9.6 19.2-21 25.7-33.6 3.9-7.5 6.9-15.4 9.1-23.5 1.2.2 2.5.4 3.8.4 11.2 0 20.3-9.1 20.3-20.3v-30.9c0-11.2-9.1-20.3-20.3-20.3-.4-2.7-.9-5.4-1.7-8.1-3.3-16.7-10.1-32.6-19.9-46.4-2.9-4.1-6-8-9.4-11.7-16.7-18.3-38.9-31.2-63.1-36.6-6.8-1.5-13.7-2.4-20.7-2.7-12.4-.6-24.9.8-36.9 4-3.3.9-6.7 1.9-9.9 3.1-6.8 2.5-13.4 5.6-19.7 9.2-2.9 1.7-5.8 3.6-8.6 5.5-2.6 1.8-5.3 3.7-7.7 5.8-1 .8-2 1.7-3 2.6-15.4 13.6-27.4 31.3-34.1 50.8-1.9 5.4-3.4 10.9-4.5 16.5-.7 2.7-1.3 5.4-1.7 8.1h-.1c-11.2 0-20.3 9.1-20.3 20.3v30.9c0 11.2 9.1 20.3 20.3 20.3 1.3 0 2.6-.1 3.8-.4 3.8 13.7 10 26.8 18.3 38.4 8.2 11.4 18.4 21.4 30 29.4 6.7 4.6 13.8 8.5 21.2 11.6V514v-.1l-31.3 17.6h-41.1c-52.3 0-94.8 42.4-94.8 94.8v78.4c16.2 18.8 34.8 35.4 55.3 49.4 5.9 4 11.9 7.8 18.1 11.3 5.4 3.1 11 6.1 16.6 8.8 14.7 7.2 30 13.1 45.6 17.7 16.2 4.7 32.9 7.9 49.7 9.6 17.2 1.8 34.7 2 51.9.6 17-1.4 33.8-4.2 50.3-8.6 15.8-4.2 31.2-9.8 46-16.7 1.8-.8 3.6-1.7 5.4-2.6 5.6-2.7 11.2-5.7 16.6-8.8 12.1-7 23.6-14.8 34.6-23.4l4.5-3.6c1.5-1.2 3.1-2.4 4.5-3.8 10.4-9 20.2-18.7 29.2-29.1h.6v-10H765c13.8 0 25-11.2 25-25V525.8c0-13.8-11.2-25-25-25z" />
+                                        <path fill="#D1D3D4"
+                                            d="M723.6 547.1c-8.7 0-16.9 2.1-24.1 5.7V545c0-8.3-6.7-15-15-15h-93.8c-8.3 0-15 6.7-15 15v100.4c0 8.3 6.7 15 15 15h93.8c3.8 0 7.4-1.5 10-3.8 2.2-1.9 3.8-4.5 4.5-7.4 7.4 3.8 15.7 5.9 24.6 5.9 29.8 0 54-24.2 54-54s-24.2-54-54-54z" />
                                         <path fill="#FFF"
-                                            d="M737 605.9c-1 0-2.1-.3-3-1l-13.4-9.8c-1.3-.9-2-2.4-2-4v-28.2c0-2.8 2.2-5 5-5s5 2.2 5 5v25.7l11.3 8.3c2.2 1.6 2.7 4.8 1.1 7-.9 1.3-2.5 2-4 2z" />
+                                            d="M452.8 447.4h94.4v114.5h-94.4zM379.6 388.3c-11.2 0-20.3-9.1-20.3-20.3v-30.9c0-11.2 9.1-20.3 20.3-20.3 11.2 0 20.3 9.1 20.3 20.3V368c-.1 11.2-9.1 20.3-20.3 20.3z" />
+                                        <path fill="#D1D3D4"
+                                            d="M379.6 378.7c-11.2 0-20.3-9.1-20.3-20.3v9.5c0 11.2 9.1 20.3 20.3 20.3 11.2 0 20.3-9.1 20.3-20.3v-9.5c-.1 11.2-9.1 20.3-20.3 20.3z" />
+                                        <path fill="#FFF"
+                                            d="M620.4 388.3c-11.2 0-20.3-9.1-20.3-20.3v-30.9c0-11.2 9.1-20.3 20.3-20.3 11.2 0 20.3 9.1 20.3 20.3V368c0 11.2-9.1 20.3-20.3 20.3z" />
+                                        <path fill="#D1D3D4"
+                                            d="M620.4 378.7c-11.2 0-20.3-9.1-20.3-20.3v9.5c0 11.2 9.1 20.3 20.3 20.3 11.2 0 20.3-9.1 20.3-20.3v-9.5c0 11.2-9.1 20.3-20.3 20.3z" />
+                                        <path fill="#FFF"
+                                            d="M381.3 308.8c3.9-20.2 12.9-38.5 25.5-53.8 3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.4 0 2.8 0 4.2.1h1.4c31.2 1.4 59.3 14.6 79.9 35.3 18.4 18.4 30.9 42.7 34.4 69.9.7 5.1 1 10.3 1 15.6v24c0 66.8-54.1 120.9-120.9 120.9-66.8 0-120.9-54.1-120.9-120.9v-24c0-5.1.3-10.2.9-15.2l1.3-8z" />
+                                        <path fill="#D1D3D4"
+                                            d="M500 457.8c-66.8 0-120.9-54.1-120.9-120.9V356c0 66.8 54.1 120.9 120.9 120.9 66.8 0 120.9-54.1 120.9-120.9v-19.1c0 66.8-54.1 120.9-120.9 120.9z" />
+                                        <path fill="#E7AD27"
+                                            d="M381.3 308.8h11.5v57.9c0 3.8-2.9 7.1-6.7 7.2-3.9.1-7.1-3-7.1-6.9v-41.7c.1-5.6.8-11.2 2.3-16.5zM618.7 308.8c1.5 5.1 2.2 10.3 2.2 15.6V367c0 3.8-3.3 6.9-7.4 6.9-4.1 0-7.4-3.1-7.4-6.9v-58.2h12.6z" />
+                                        <path fill="#E7AD27"
+                                            d="M504.2 211.2c-12.2 19.1-42.5 60.4-91.6 89.4-11.8 7-22.7 12.3-32.5 16.3 2.9-23.3 12.5-44.6 26.8-61.8 3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.3-.1 2.7-.1 4.1 0z" />
+                                        <path fill="#FEDE3A"
+                                            d="M619.9 316.4c-16.5 5-48.9 9.7-100.4-3.8C467.4 299 427.9 272 406.8 255c3.6-4.4 7.6-8.6 11.8-12.4 21.5-19.6 50-31.5 81.4-31.5 1.9 0 3.7 0 5.6.1 31.2 1.4 59.3 14.6 79.9 35.3 18.4 18.4 30.9 42.8 34.4 69.9z" />
+                                        <path fill="#E7AD27"
+                                            d="M519.5 241.9c-22.8-6-43.2-14.5-60.7-23.6-15 5.4-28.6 13.7-40.2 24.3-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-3.2-25.2-14.3-48-30.6-65.8-17.5.8-40.6-1-69.8-8.7z" />
+                                        <path fill="#FEDE3A"
+                                            d="M519.5 265.5c-33.3-8.7-61.5-22.9-83-36.4-6.4 3.9-12.4 8.5-17.9 13.5-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-2-15.8-7.1-30.6-14.6-43.8-18.5 2.9-46.6 3.1-85.8-7.1z" />
+                                        <path fill="#E7AD27"
+                                            d="M519.5 289.1c-42.7-11.2-77-31.3-99.6-47.6-.4.4-.9.8-1.3 1.2-4.2 3.9-8.2 8-11.8 12.4 21.1 17 60.6 44 112.7 57.6 51.5 13.5 84 8.8 100.4 3.8-1-7.6-2.7-15.1-5.1-22.2-17.6 4.2-48.6 7-95.3-5.2zM500 396c-7.4 0-13.4-6-13.4-13.4V365c0-7.4 6-13.4 13.4-13.4s13.4 6 13.4 13.4v17.6c0 7.4-6 13.4-13.4 13.4z" />
+                                        <path fill="#1CAEE4"
+                                            d="M714.5 614.4v70.2c-9.2 10.7-19.2 20.7-29.9 29.9-.1.1-.2.1-.2.2-10.9 9.4-22.5 17.9-34.8 25.6-29.6 18.5-62.9 31.6-98.5 38.1-6.5 1.2-13.1 2.1-19.8 2.9-6.4.7-12.9 1.2-19.4 1.5-2.6.1-5.1.2-7.7.2H496c-2.6 0-5.2-.1-7.7-.2-6.6-.3-13-.8-19.5-1.5-6.7-.7-13.4-1.7-20-2.9-35.5-6.5-68.7-19.6-98.3-38.1-5.6-3.5-11.1-7.2-16.4-11.1-6.4-4.6-12.6-9.6-18.6-14.7-10.7-9.2-20.7-19.2-29.9-29.9v-78.4c0-52.4 42.5-94.8 94.8-94.8h41.1l31.4 103h94.2l31.4-103h41.1c52.3 0 94.8 42.4 94.8 94.8l.1 8.2z" />
+                                        <path fill="#136DA0"
+                                            d="M641 745.4c-5.4 3.1-11 6.1-16.6 8.8L641 631.9v113.5zM375.5 754.2c-5.6-2.8-11.2-5.7-16.6-8.8V631.9l16.6 122.3z" />
+                                        <path fill="#A72973"
+                                            d="m550.1 604.6-26.2 85.8-.5 1.6-5.9 19.3-4.3 14.2-5.9 19.3L503 759l-3 9.9-3.7-12.1-5.3-17.3-7.2-23.6-5.3-17.4-2.4-7.9-26.2-86 50.1-42.7z" />
+                                        <g fill="#E7AD27">
+                                            <circle cx="443.8" cy="341.3" r="10.2" />
+                                            <circle cx="556.2" cy="341.3" r="10.2" />
+                                        </g>
+                                        <g>
+                                            <path fill="#E7AD27"
+                                                d="M500 433.6c-13 0-26-4.9-35.9-14.8-2-2-2-5.1 0-7.1s5.1-2 7.1 0c15.9 15.9 41.8 15.9 57.6 0 2-2 5.1-2 7.1 0s2 5.1 0 7.1c-9.9 9.9-22.9 14.8-35.9 14.8z" />
+                                        </g>
+                                        <g>
+                                            <path fill="#E7AD27"
+                                                d="m523.9 690.4-1.3-14.3-1.9-21.8-1.4-16.1-3.4-38.7h-31.8l-2.3 26.4-1.3 15.2-1.9 20.6-1.3 15.2-1.2 13.7 2.4 7.9 5.3 17.4 7.2 23.6 5.3 17.3 3.7 12.1 3-9.9 4.3-14.2 5.9-19.3 4.3-14.2 5.9-19.3z" />
+                                            <path fill="#FEDE3A"
+                                                d="m520.7 654.3-40.3-13.2 1.4-15.2 37.5 12.3zM523.9 690.4l-1.3-14.3-44-14.4-1.3 15.2 46.1 15.1zM517.5 711.3l-4.3 14.2-29.4-9.6-5.3-17.4zM507.3 744.8 503 759l-6.7-2.2-5.3-17.3z" />
+                                        </g>
+                                        <path fill="#FEDE3A"
+                                            d="M510.9 614.4h-21.7c-12.3 0-20.7-12.3-16.4-23.7l6.7-17.5c2.6-6.8 9.1-11.3 16.4-11.3h8.4c7.3 0 13.8 4.5 16.4 11.3l6.7 17.5c4.2 11.4-4.3 23.7-16.5 23.7z" />
+                                        <path fill="#EF5A9D"
+                                            d="m578.5 511.5-31.3-17.7-47.2 68.1 50.1 42.7zM421.5 511.5l31.3-17.7 47.2 68.1-50.1 42.7z" />
+                                        <path fill="#136DA0"
+                                            d="m578.5 511.5 25.9 82.7c.9 3-.6 6.2-3.6 7.3l-20.1 7.6c-5.1 1.9-5.1 9.1-.1 11l24.8 9.8c3.7 1.5 5 6.2 2.4 9.3L500 768.9l78.5-257.4zM421.5 511.5l-25.9 82.7c-.9 3 .6 6.2 3.6 7.3l20.1 7.6c5.1 1.9 5.1 9.1.1 11l-24.8 9.8c-3.7 1.5-5 6.2-2.4 9.3L500 768.9l-78.5-257.4z" />
+                                        <path fill="#D1D3D4"
+                                            d="M547.1 480.8 500 532.3l-47.2-51.5v13l47.2 68.1 47.2-68.1z" />
+                                        <path fill="#136DA0"
+                                            d="M630 723.2h-29c-6.1 0-11-4.9-11-11s4.9-11 11-11h29c6.1 0 11 4.9 11 11s-4.9 11-11 11zM619.6 521.5h-41.1l-29.3 95.9v37c0 17.1 13.9 31 31 31h134.1v-69.2c.1-52.3-42.3-94.7-94.7-94.7z" />
+                                        <path fill="#FFF"
+                                            d="M765 675.4H574.3c-13.8 0-25-11.2-25-25V505.8c0-13.8 11.2-25 25-25H765c13.8 0 25 11.2 25 25v144.6c0 13.8-11.2 25-25 25z" />
+                                        <path fill="#D1D3D4"
+                                            d="M723.6 556.5c-8.9 0-17.2 2.6-24.1 7.1v-18.7c0-8.3-6.7-15-15-15h-93.8c-8.3 0-15 6.7-15 15v100.4c0 8.3 6.7 15 15 15h93.8c3.8 0 7.4-1.5 10-3.8 3.1-2.8 5-6.7 5-11.2v-6.8c7 4.5 15.2 7.1 24.1 7.1 24.6 0 44.6-20 44.6-44.6s-20-44.5-44.6-44.5z" />
+                                        <g>
+                                            <path fill="#FEDE3A"
+                                                d="M699.5 534.9v100.4c0 4.4-1.9 8.4-5 11.2-2.6 2.4-6.2 3.8-10 3.8h-93.8c-8.3 0-15-6.7-15-15V534.9c0-8.3 6.7-15 15-15h93.8c8.3 0 15 6.8 15 15z" />
+                                            <path fill="#E7AD27"
+                                                d="M684.5 643.7h-93.8c-8.3 0-15-6.7-15-15v6.7c0 8.3 6.7 15 15 15h93.8c8.3 0 15-6.7 15-15v-6.7c0 8.3-6.7 15-15 15z" />
+                                            <path fill="#FFF335"
+                                                d="M684.5 520h-93.8c-8.3 0-15 6.7-15 15v5.9c0-8.3 6.7-15 15-15h93.8c8.3 0 15 6.7 15 15V535c0-8.3-6.7-15-15-15z" />
+                                            <g fill="#EF5A9D">
+                                                <path
+                                                    d="M600.8 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c.1 2.7-2.2 5-5 5zM625.7 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c0 2.7-2.2 5-5 5zM650.5 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c.1 2.7-2.2 5-5 5zM675.4 534.8h-1c-2.8 0-5-2.3-5-5v-19.6c0-2.8 2.3-5 5-5h1c2.8 0 5 2.3 5 5v19.6c0 2.7-2.2 5-5 5z" />
+                                            </g>
+                                            <g fill="#FFF">
+                                                <path
+                                                    d="M593 545h23.7v23.7H593zM625.8 545h23.7v23.7h-23.7zM658.5 545h23.7v23.7h-23.7z" />
+                                            </g>
+                                            <g fill="#FFF">
+                                                <path
+                                                    d="M593 576.5h23.7v23.7H593zM625.8 576.5h23.7v23.7h-23.7zM658.5 576.5h23.7v23.7h-23.7z" />
+                                            </g>
+                                            <g fill="#FFF">
+                                                <path
+                                                    d="M593 608.1h23.7v23.7H593zM625.8 608.1h23.7v23.7h-23.7zM658.5 608.1h23.7v23.7h-23.7z" />
+                                            </g>
+                                        </g>
+                                        <path fill="#E7AD27"
+                                            d="M699.5 552.7v82.6c0 4.4-1.9 8.4-5 11.2-15-9.6-24.9-26.4-24.9-45.5 0-21.1 12.2-39.4 29.9-48.3z" />
+                                        <g>
+                                            <circle fill="#136DA0" cx="723.6" cy="591.1" r="44.6" />
+                                        </g>
+                                        <g>
+                                            <path fill="#FFF"
+                                                d="M737 605.9c-1 0-2.1-.3-3-1l-13.4-9.8c-1.3-.9-2-2.4-2-4v-28.2c0-2.8 2.2-5 5-5s5 2.2 5 5v25.7l11.3 8.3c2.2 1.6 2.7 4.8 1.1 7-.9 1.3-2.5 2-4 2z" />
+                                        </g>
                                     </g>
+                                </switch>
+                            </svg>
+                            <div class="for-border ml-4">
+
+                                <h5 class="for-label1 font-weight-bold">Flexible Learning Options</h5>
+                                <p class="for-para custom_paragraph pr-2"> At Merkaii’s we offer a blend of live online
+                                    courses, in-person sessions, and on-demand recordings, allowing you to choose the format
+                                    that best suits your learning style and schedule.</p>
+
+                            </div>
+                        </div>
+                        <div class="d-flex for-element">
+                            <svg class="for-quality" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="enable-background:new 0 0 256 256" xml:space="preserve">
+                                <style>
+                                    .st2 {
+                                        fill: none;
+                                        stroke: #6b1d1d;
+                                        stroke-width: .5;
+                                        stroke-miterlimit: 10
+                                    }
+
+                                    .st3 {
+                                        fill: #3a312a
+                                    }
+
+                                    .st4 {
+                                        fill: #87796f
+                                    }
+
+                                    .st8 {
+                                        fill: #f16c7a
+                                    }
+
+                                    .st9 {
+                                        fill: #8ac6dd
+                                    }
+
+                                    .st14 {
+                                        fill: #d7e057
+                                    }
+                                </style>
+                                <g id="Layer_1">
+                                    <path class="st4"
+                                        d="M222.395 180.635H33.605c-9.447 0-17.105-7.658-17.105-17.105V33.241c0-9.447 7.658-17.106 17.105-17.106h188.789c9.447 0 17.105 7.659 17.105 17.106V163.53c.001 9.447-7.657 17.105-17.104 17.105z" />
+                                    <path class="st3"
+                                        d="M222.395 182.135H33.605C23.347 182.135 15 173.789 15 163.53V33.241c0-10.259 8.347-18.605 18.605-18.605h188.789c10.259 0 18.605 8.346 18.605 18.605V163.53c.001 10.259-8.346 18.605-18.604 18.605zm-188.79-164.5c-8.604 0-15.605 7-15.605 15.605v130.29c0 8.605 7.001 15.605 15.605 15.605h188.789c8.604 0 15.605-7.001 15.605-15.605V33.241c0-8.605-7.001-15.605-15.605-15.605H33.605z" />
+                                    <path class="st14"
+                                        d="M86.201 28.635h-45.17c-6.583 0-11.92 5.337-11.92 11.92v115.66c0 6.583 5.337 11.92 11.92 11.92h173.938c6.583 0 11.92-5.337 11.92-11.92V40.555c0-6.583-5.337-11.92-11.92-11.92H86.201z" />
+                                    <path class="st3"
+                                        d="M214.969 169.635H41.031c-7.4 0-13.42-6.02-13.42-13.42V40.555c0-7.4 6.02-13.42 13.42-13.42h45.17a1.5 1.5 0 1 1 0 3h-45.17c-5.745 0-10.42 4.674-10.42 10.42v115.66c0 5.746 4.675 10.42 10.42 10.42h173.938c5.745 0 10.42-4.674 10.42-10.42V40.555c0-5.746-4.675-10.42-10.42-10.42H99.799a1.5 1.5 0 1 1 0-3h115.17c7.399 0 13.42 6.02 13.42 13.42v115.66c0 7.4-6.021 13.42-13.42 13.42z" />
+                                    <path class="st4" d="M113.688 180.635h28.625v35.593h-28.625z" />
+                                    <path class="st3"
+                                        d="M142.312 217.729h-28.625a1.5 1.5 0 0 1-1.5-1.5v-35.593a1.5 1.5 0 0 1 1.5-1.5h28.625a1.5 1.5 0 0 1 1.5 1.5v35.593a1.5 1.5 0 0 1-1.5 1.5zm-27.124-3h25.625v-32.593h-25.625v32.593z" />
+                                    <path class="st4"
+                                        d="M135.452 239.635h36.252c0-12.927-10.479-23.407-23.407-23.407h-40.593c-12.927 0-23.407 10.48-23.407 23.407h51.155z" />
+                                    <path class="st3"
+                                        d="M171.703 241.135h-36.252a1.5 1.5 0 1 1 0-3h34.701c-.773-11.382-10.28-20.407-21.855-20.407h-40.594c-11.575 0-21.082 9.024-21.855 20.407h36.033a1.5 1.5 0 1 1 0 3H84.297a1.5 1.5 0 0 1-1.5-1.5c0-13.733 11.173-24.907 24.906-24.907h40.594c13.733 0 24.906 11.173 24.906 24.907a1.5 1.5 0 0 1-1.5 1.5z" />
+                                    <path class="st14"
+                                        d="M226.278 203.469s3.408 12.659 13.222 13.247c0 0-13.1 4.525-13.321 14.202 0 0-2.579-13.572-12.925-14.059 0 0 12.05-1.826 13.024-13.39z" />
+                                    <path class="st3"
+                                        d="M226.178 232.417a1.502 1.502 0 0 1-1.473-1.217c-.023-.124-2.494-12.418-11.521-12.842a1.5 1.5 0 0 1-.155-2.981c.441-.069 10.895-1.817 11.754-12.033a1.5 1.5 0 0 1 2.943-.265c.031.116 3.259 11.626 11.863 12.141a1.501 1.501 0 0 1 .402 2.915c-.121.042-12.119 4.311-12.312 12.819a1.5 1.5 0 0 1-1.375 1.46l-.126.003zm-7.742-15.729c3.878 1.969 6.231 5.746 7.587 8.876 2.026-4.021 5.941-6.787 8.949-8.427-4.135-1.842-6.783-5.651-8.334-8.722-1.792 4.36-5.271 6.868-8.202 8.273z" />
+                                    <path class="st14"
+                                        d="M204.579 220.45s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0 0 8.524-1.292 9.212-9.471z" />
+                                    <path class="st3"
+                                        d="M204.508 241.365a1.5 1.5 0 0 1-1.473-1.22c-.016-.081-1.703-8.441-7.738-8.726a1.5 1.5 0 0 1-.155-2.982c.296-.047 7.363-1.243 7.941-8.114a1.5 1.5 0 0 1 2.942-.266c.022.079 2.229 7.92 7.995 8.265a1.5 1.5 0 0 1 .399 2.915c-.08.028-8.282 2.952-8.412 8.662a1.5 1.5 0 0 1-1.499 1.466zm-4.519-11.528c2.106 1.333 3.523 3.395 4.447 5.28 1.376-2.232 3.515-3.872 5.364-4.972-2.286-1.27-3.884-3.35-4.941-5.224-1.173 2.286-3.014 3.875-4.87 4.916z" />
+                                    <path class="st14"
+                                        d="M204.579 193.792s2.411 8.954 9.352 9.37c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0-.001 8.524-1.292 9.212-9.472z" />
+                                    <path class="st3"
+                                        d="M204.508 214.708a1.5 1.5 0 0 1-1.473-1.22c-.016-.081-1.703-8.442-7.738-8.726a1.5 1.5 0 0 1-.155-2.982c.296-.047 7.363-1.243 7.941-8.113a1.5 1.5 0 0 1 2.942-.266c.022.079 2.229 7.919 7.995 8.264a1.5 1.5 0 0 1 .4 2.915c-.081.028-8.283 2.953-8.413 8.662a1.5 1.5 0 0 1-1.499 1.466zm-4.519-11.528c2.107 1.333 3.523 3.394 4.447 5.28 1.376-2.232 3.515-3.872 5.364-4.973-2.286-1.269-3.884-3.35-4.941-5.224-1.173 2.287-3.014 3.875-4.87 4.917z" />
+                                    <path
+                                        d="M214.97 30.135h-15c5.74 0 10.42 4.67 10.42 10.42v115.66c0 5.75-4.68 10.42-10.42 10.42h15c5.74 0 10.42-4.67 10.42-10.42V40.555c0-5.75-4.68-10.42-10.42-10.42z"
+                                        style="fill:#b9c239" />
+                                    <path class="st9"
+                                        d="M170.44 95.613v32.03c0 4.5-3.645 8.145-8.145 8.145H90.687a8.143 8.143 0 0 1-8.145-8.145v-32.03l43.949 22.353 43.949-22.353z" />
+                                    <path class="st3"
+                                        d="M162.296 137.288H90.687c-5.318 0-9.645-4.327-9.645-9.645v-32.03a1.501 1.501 0 0 1 2.18-1.337l43.27 22.007 43.269-22.007a1.5 1.5 0 0 1 2.18 1.337v32.03c-.001 5.318-4.327 9.645-9.645 9.645zm-78.254-39.23v29.585a6.653 6.653 0 0 0 6.645 6.645h71.608a6.653 6.653 0 0 0 6.645-6.645V98.058l-41.77 21.245a1.494 1.494 0 0 1-1.359 0L84.042 98.058z" />
+                                    <path class="st9" d="M126.491 50.699 60.366 84.332l66.125 33.633 66.125-33.633z" />
+                                    <path class="st3"
+                                        d="M126.491 119.465c-.233 0-.467-.054-.68-.163L59.686 85.669a1.498 1.498 0 0 1 0-2.674l66.125-33.633a1.494 1.494 0 0 1 1.359 0l66.125 33.633a1.498 1.498 0 0 1 0 2.674l-66.125 33.633a1.483 1.483 0 0 1-.679.163zM63.675 84.332l62.816 31.95 62.816-31.95-62.816-31.95-62.816 31.95z" />
+                                    <path class="st8"
+                                        d="M192.616 84.332v40.965c-1.693-2.177-3.984-3.516-6.516-3.516-2.516 0-4.806 1.339-6.5 3.516V90.945l13.016-6.613z" />
+                                    <path class="st3"
+                                        d="M192.616 126.797a1.5 1.5 0 0 1-1.184-.579c-1.474-1.894-3.367-2.937-5.332-2.937-1.955 0-3.843 1.043-5.316 2.937a1.502 1.502 0 0 1-2.684-.921V90.945a1.5 1.5 0 0 1 .82-1.337l13.016-6.613a1.5 1.5 0 0 1 2.18 1.337v40.965a1.5 1.5 0 0 1-1.5 1.5zm-6.515-6.516c1.775 0 3.485.541 5.016 1.562V86.777l-10.016 5.088v29.977c1.526-1.02 3.231-1.561 5-1.561z" />
+                                    <ellipse class="st8" cx="186.105" cy="134.798" rx="9.528"
+                                        ry="13.014" />
+                                    <path class="st3"
+                                        d="M186.105 149.312c-6.081 0-11.028-6.511-11.028-14.515 0-8.003 4.947-14.514 11.028-14.514s11.028 6.511 11.028 14.514c.001 8.004-4.947 14.515-11.028 14.515zm0-26.029c-4.427 0-8.028 5.165-8.028 11.514 0 6.349 3.602 11.515 8.028 11.515 4.427 0 8.028-5.165 8.028-11.515.001-6.349-3.601-11.514-8.028-11.514z" />
+                                    <path class="st8"
+                                        d="m19.95 207.283-3.07 3.069V239.6h61.504l4.588-4.588-45.375-45.376-6.822 6.822z" />
+                                    <path class="st3"
+                                        d="M78.385 241.1H16.881a1.5 1.5 0 0 1-1.5-1.5v-29.248c0-.398.158-.779.439-1.06l3.069-3.069a1.5 1.5 0 1 1 2.121 2.121l-2.63 2.63V238.1h59.383l3.088-3.088-43.255-43.254-5.761 5.761a1.5 1.5 0 1 1-2.121-2.121l6.821-6.822c.562-.562 1.559-.562 2.121 0l45.376 45.376a1.5 1.5 0 0 1 0 2.121l-4.588 4.588c-.28.281-.662.439-1.059.439z" />
+                                    <path class="st9"
+                                        d="m72.914 187.843-11.131-11.131a7.962 7.962 0 0 0-11.261 0l-12.924 12.924 45.376 45.376 12.924-12.924a7.962 7.962 0 0 0 0-11.261l-12.611-12.611-10.373-10.373z" />
+                                    <path class="st3"
+                                        d="M82.973 236.512c-.398 0-.779-.158-1.061-.439l-45.376-45.376a1.5 1.5 0 0 1 0-2.122l12.925-12.924a9.397 9.397 0 0 1 6.691-2.772 9.4 9.4 0 0 1 6.691 2.772l11.132 11.131 22.982 22.983a9.397 9.397 0 0 1 2.772 6.691 9.397 9.397 0 0 1-2.772 6.691l-12.924 12.924a1.494 1.494 0 0 1-1.06.441zm-43.255-46.876 43.255 43.255 11.863-11.864a6.421 6.421 0 0 0 1.894-4.57 6.417 6.417 0 0 0-1.894-4.569l-34.114-34.115a6.42 6.42 0 0 0-4.569-1.893c-1.726 0-3.35.672-4.57 1.893l-11.865 11.863z" />
+                                    <path class="st4"
+                                        d="M87.087 212.077a6.007 6.007 0 1 1-8.495 8.494 6.007 6.007 0 0 1 8.495-8.494z" />
+                                    <path class="st3"
+                                        d="M82.839 223.827a7.485 7.485 0 0 1-5.308-2.195c-2.927-2.927-2.927-7.689 0-10.616 2.927-2.927 7.691-2.926 10.616 0 2.927 2.927 2.927 7.689 0 10.616a7.481 7.481 0 0 1-5.308 2.195zm.001-12.008a4.495 4.495 0 0 0-3.188 1.318 4.512 4.512 0 0 0 0 6.373 4.514 4.514 0 0 0 6.374 0 4.512 4.512 0 0 0 0-6.373 4.496 4.496 0 0 0-3.186-1.318z" />
+                                    <path
+                                        d="m125.162 102.789-15.099 15.099-17.205 17.205-4.114 4.114a5.282 5.282 0 0 1-7.47 0L69.107 127.04c-4.166-4.166-10.922-4.166-15.084-.005a10.658 10.658 0 0 0 .005 15.083l9.414 9.414a12.819 12.819 0 0 1 2.435 14.727l-4.826 9.816c.253.193.496.407.729.64l34.116 34.116c.104.104.198.208.298.308l1.984-1.181a138.166 138.166 0 0 0 26.457-20.455c.064-.064.129-.119.193-.184l18.397-18.397a7.569 7.569 0 0 0 0-10.704l-.069-.069a7.569 7.569 0 0 0-10.704 0l3.66-3.661a7.569 7.569 0 0 0 0-10.704l-.07-.07a7.569 7.569 0 0 0-10.704 0l3.66-3.661a7.569 7.569 0 0 0 0-10.704l-.069-.069c-2.909-2.909-7.591-2.949-10.557-.133l17.574-17.574a7.627 7.627 0 0 0 0-10.785 7.624 7.624 0 0 0-10.784.001z"
+                                        style="fill:#fce8cb" />
+                                    <path class="st3"
+                                        d="M96.194 212.638c-.39 0-.774-.151-1.064-.442l-.297-.308-34.113-34.113a5.706 5.706 0 0 0-.579-.508 1.5 1.5 0 0 1-.434-1.854l4.826-9.816a11.317 11.317 0 0 0-2.15-13.004l-9.414-9.414a12.114 12.114 0 0 1-3.569-8.602c0-3.25 1.266-6.304 3.563-8.603 4.742-4.743 12.461-4.74 17.205.005l12.167 12.167a3.787 3.787 0 0 0 5.35 0l36.417-36.418c3.558-3.558 9.348-3.559 12.907 0 3.559 3.558 3.559 9.348 0 12.907l-12.926 12.926a9.03 9.03 0 0 1 5.909 2.659c3.248 3.248 3.57 8.239 1.017 11.783a9.004 9.004 0 0 1 6.096 2.651c3.249 3.249 3.57 8.24 1.017 11.783a9.004 9.004 0 0 1 6.097 2.651c1.782 1.782 2.726 4.06 2.726 6.481a9.01 9.01 0 0 1-2.656 6.413l-18.536 18.53a140.05 140.05 0 0 1-26.806 20.735l-1.984 1.18a1.511 1.511 0 0 1-.769.211zM62.9 175.714l33.535 33.535.976-.58a136.786 136.786 0 0 0 26.17-20.234l.132-.126 18.452-18.448a6.075 6.075 0 0 0 0-8.582c-1.216-1.216-2.74-1.847-4.361-1.847a6.03 6.03 0 0 0-4.291 1.777 1.5 1.5 0 1 1-2.121-2.121l3.661-3.661a6.077 6.077 0 0 0 0-8.583c-1.217-1.216-2.74-1.847-4.361-1.847-1.62 0-3.145.631-4.291 1.778a1.5 1.5 0 1 1-2.121-2.121l3.66-3.661a6.077 6.077 0 0 0 0-8.583c-2.412-2.411-6.129-2.458-8.533-.175a1.5 1.5 0 0 1-2.094-2.148l17.574-17.573a6.134 6.134 0 0 0 0-8.665 6.135 6.135 0 0 0-8.665 0l-36.417 36.418a6.79 6.79 0 0 1-9.592 0L68.046 128.1c-3.575-3.575-9.39-3.576-12.963-.005a9.107 9.107 0 0 0-2.685 6.479 9.136 9.136 0 0 0 2.69 6.484l9.414 9.414a14.314 14.314 0 0 1 2.721 16.45l-4.323 8.792z" />
                                 </g>
-                            </switch>
-                        </svg>
-                        <div class="for-border ml-4">
+                            </svg>
+                            <div class="for-border ml-4">
 
-                            <h5 class="for-label1 font-weight-bold">Flexible Learning Options</h5>
-                            <p class="for-para custom_paragraph pr-2">Merakii offers a blend of online and in-person
-                                classes, allowing you to learn at your own pace and convenience.</p>
-
+                                <h5 class="for-label1 font-weight-bold">Expert Instructors</h5>
+                                <p class="for-para custom_paragraph pr-2">Our Merkaii's instructors are experienced
+                                    professionals in their field of expertise who understand the intricacies of the exam?
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class=" d-flex for-element">
-                        <svg class="for-quality" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
-                            style="enable-background:new 0 0 256 256" xml:space="preserve">
-                            <style>
-                                .st2 {
-                                    fill: none;
-                                    stroke: #6b1d1d;
-                                    stroke-width: .5;
-                                    stroke-miterlimit: 10
-                                }
-
-                                .st3 {
-                                    fill: #3a312a
-                                }
-
-                                .st4 {
-                                    fill: #87796f
-                                }
-
-                                .st8 {
-                                    fill: #f16c7a
-                                }
-
-                                .st9 {
-                                    fill: #8ac6dd
-                                }
-
-                                .st14 {
-                                    fill: #d7e057
-                                }
-                            </style>
-                            <g id="Layer_1">
-                                <path class="st4"
-                                    d="M222.395 180.635H33.605c-9.447 0-17.105-7.658-17.105-17.105V33.241c0-9.447 7.658-17.106 17.105-17.106h188.789c9.447 0 17.105 7.659 17.105 17.106V163.53c.001 9.447-7.657 17.105-17.104 17.105z" />
-                                <path class="st3"
-                                    d="M222.395 182.135H33.605C23.347 182.135 15 173.789 15 163.53V33.241c0-10.259 8.347-18.605 18.605-18.605h188.789c10.259 0 18.605 8.346 18.605 18.605V163.53c.001 10.259-8.346 18.605-18.604 18.605zm-188.79-164.5c-8.604 0-15.605 7-15.605 15.605v130.29c0 8.605 7.001 15.605 15.605 15.605h188.789c8.604 0 15.605-7.001 15.605-15.605V33.241c0-8.605-7.001-15.605-15.605-15.605H33.605z" />
-                                <path class="st14"
-                                    d="M86.201 28.635h-45.17c-6.583 0-11.92 5.337-11.92 11.92v115.66c0 6.583 5.337 11.92 11.92 11.92h173.938c6.583 0 11.92-5.337 11.92-11.92V40.555c0-6.583-5.337-11.92-11.92-11.92H86.201z" />
-                                <path class="st3"
-                                    d="M214.969 169.635H41.031c-7.4 0-13.42-6.02-13.42-13.42V40.555c0-7.4 6.02-13.42 13.42-13.42h45.17a1.5 1.5 0 1 1 0 3h-45.17c-5.745 0-10.42 4.674-10.42 10.42v115.66c0 5.746 4.675 10.42 10.42 10.42h173.938c5.745 0 10.42-4.674 10.42-10.42V40.555c0-5.746-4.675-10.42-10.42-10.42H99.799a1.5 1.5 0 1 1 0-3h115.17c7.399 0 13.42 6.02 13.42 13.42v115.66c0 7.4-6.021 13.42-13.42 13.42z" />
-                                <path class="st4" d="M113.688 180.635h28.625v35.593h-28.625z" />
-                                <path class="st3"
-                                    d="M142.312 217.729h-28.625a1.5 1.5 0 0 1-1.5-1.5v-35.593a1.5 1.5 0 0 1 1.5-1.5h28.625a1.5 1.5 0 0 1 1.5 1.5v35.593a1.5 1.5 0 0 1-1.5 1.5zm-27.124-3h25.625v-32.593h-25.625v32.593z" />
-                                <path class="st4"
-                                    d="M135.452 239.635h36.252c0-12.927-10.479-23.407-23.407-23.407h-40.593c-12.927 0-23.407 10.48-23.407 23.407h51.155z" />
-                                <path class="st3"
-                                    d="M171.703 241.135h-36.252a1.5 1.5 0 1 1 0-3h34.701c-.773-11.382-10.28-20.407-21.855-20.407h-40.594c-11.575 0-21.082 9.024-21.855 20.407h36.033a1.5 1.5 0 1 1 0 3H84.297a1.5 1.5 0 0 1-1.5-1.5c0-13.733 11.173-24.907 24.906-24.907h40.594c13.733 0 24.906 11.173 24.906 24.907a1.5 1.5 0 0 1-1.5 1.5z" />
-                                <path class="st14"
-                                    d="M226.278 203.469s3.408 12.659 13.222 13.247c0 0-13.1 4.525-13.321 14.202 0 0-2.579-13.572-12.925-14.059 0 0 12.05-1.826 13.024-13.39z" />
-                                <path class="st3"
-                                    d="M226.178 232.417a1.502 1.502 0 0 1-1.473-1.217c-.023-.124-2.494-12.418-11.521-12.842a1.5 1.5 0 0 1-.155-2.981c.441-.069 10.895-1.817 11.754-12.033a1.5 1.5 0 0 1 2.943-.265c.031.116 3.259 11.626 11.863 12.141a1.501 1.501 0 0 1 .402 2.915c-.121.042-12.119 4.311-12.312 12.819a1.5 1.5 0 0 1-1.375 1.46l-.126.003zm-7.742-15.729c3.878 1.969 6.231 5.746 7.587 8.876 2.026-4.021 5.941-6.787 8.949-8.427-4.135-1.842-6.783-5.651-8.334-8.722-1.792 4.36-5.271 6.868-8.202 8.273z" />
-                                <path class="st14"
-                                    d="M204.579 220.45s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0 0 8.524-1.292 9.212-9.471z" />
-                                <path class="st3"
-                                    d="M204.508 241.365a1.5 1.5 0 0 1-1.473-1.22c-.016-.081-1.703-8.441-7.738-8.726a1.5 1.5 0 0 1-.155-2.982c.296-.047 7.363-1.243 7.941-8.114a1.5 1.5 0 0 1 2.942-.266c.022.079 2.229 7.92 7.995 8.265a1.5 1.5 0 0 1 .399 2.915c-.08.028-8.282 2.952-8.412 8.662a1.5 1.5 0 0 1-1.499 1.466zm-4.519-11.528c2.106 1.333 3.523 3.395 4.447 5.28 1.376-2.232 3.515-3.872 5.364-4.972-2.286-1.27-3.884-3.35-4.941-5.224-1.173 2.286-3.014 3.875-4.87 4.916z" />
-                                <path class="st14"
-                                    d="M204.579 193.792s2.411 8.954 9.352 9.37c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0-.001 8.524-1.292 9.212-9.472z" />
-                                <path class="st3"
-                                    d="M204.508 214.708a1.5 1.5 0 0 1-1.473-1.22c-.016-.081-1.703-8.442-7.738-8.726a1.5 1.5 0 0 1-.155-2.982c.296-.047 7.363-1.243 7.941-8.113a1.5 1.5 0 0 1 2.942-.266c.022.079 2.229 7.919 7.995 8.264a1.5 1.5 0 0 1 .4 2.915c-.081.028-8.283 2.953-8.413 8.662a1.5 1.5 0 0 1-1.499 1.466zm-4.519-11.528c2.107 1.333 3.523 3.394 4.447 5.28 1.376-2.232 3.515-3.872 5.364-4.973-2.286-1.269-3.884-3.35-4.941-5.224-1.173 2.287-3.014 3.875-4.87 4.917z" />
-                                <path
-                                    d="M214.97 30.135h-15c5.74 0 10.42 4.67 10.42 10.42v115.66c0 5.75-4.68 10.42-10.42 10.42h15c5.74 0 10.42-4.67 10.42-10.42V40.555c0-5.75-4.68-10.42-10.42-10.42z"
-                                    style="fill:#b9c239" />
-                                <path class="st9"
-                                    d="M170.44 95.613v32.03c0 4.5-3.645 8.145-8.145 8.145H90.687a8.143 8.143 0 0 1-8.145-8.145v-32.03l43.949 22.353 43.949-22.353z" />
-                                <path class="st3"
-                                    d="M162.296 137.288H90.687c-5.318 0-9.645-4.327-9.645-9.645v-32.03a1.501 1.501 0 0 1 2.18-1.337l43.27 22.007 43.269-22.007a1.5 1.5 0 0 1 2.18 1.337v32.03c-.001 5.318-4.327 9.645-9.645 9.645zm-78.254-39.23v29.585a6.653 6.653 0 0 0 6.645 6.645h71.608a6.653 6.653 0 0 0 6.645-6.645V98.058l-41.77 21.245a1.494 1.494 0 0 1-1.359 0L84.042 98.058z" />
-                                <path class="st9" d="M126.491 50.699 60.366 84.332l66.125 33.633 66.125-33.633z" />
-                                <path class="st3"
-                                    d="M126.491 119.465c-.233 0-.467-.054-.68-.163L59.686 85.669a1.498 1.498 0 0 1 0-2.674l66.125-33.633a1.494 1.494 0 0 1 1.359 0l66.125 33.633a1.498 1.498 0 0 1 0 2.674l-66.125 33.633a1.483 1.483 0 0 1-.679.163zM63.675 84.332l62.816 31.95 62.816-31.95-62.816-31.95-62.816 31.95z" />
-                                <path class="st8"
-                                    d="M192.616 84.332v40.965c-1.693-2.177-3.984-3.516-6.516-3.516-2.516 0-4.806 1.339-6.5 3.516V90.945l13.016-6.613z" />
-                                <path class="st3"
-                                    d="M192.616 126.797a1.5 1.5 0 0 1-1.184-.579c-1.474-1.894-3.367-2.937-5.332-2.937-1.955 0-3.843 1.043-5.316 2.937a1.502 1.502 0 0 1-2.684-.921V90.945a1.5 1.5 0 0 1 .82-1.337l13.016-6.613a1.5 1.5 0 0 1 2.18 1.337v40.965a1.5 1.5 0 0 1-1.5 1.5zm-6.515-6.516c1.775 0 3.485.541 5.016 1.562V86.777l-10.016 5.088v29.977c1.526-1.02 3.231-1.561 5-1.561z" />
-                                <ellipse class="st8" cx="186.105" cy="134.798" rx="9.528" ry="13.014" />
-                                <path class="st3"
-                                    d="M186.105 149.312c-6.081 0-11.028-6.511-11.028-14.515 0-8.003 4.947-14.514 11.028-14.514s11.028 6.511 11.028 14.514c.001 8.004-4.947 14.515-11.028 14.515zm0-26.029c-4.427 0-8.028 5.165-8.028 11.514 0 6.349 3.602 11.515 8.028 11.515 4.427 0 8.028-5.165 8.028-11.515.001-6.349-3.601-11.514-8.028-11.514z" />
-                                <path class="st8"
-                                    d="m19.95 207.283-3.07 3.069V239.6h61.504l4.588-4.588-45.375-45.376-6.822 6.822z" />
-                                <path class="st3"
-                                    d="M78.385 241.1H16.881a1.5 1.5 0 0 1-1.5-1.5v-29.248c0-.398.158-.779.439-1.06l3.069-3.069a1.5 1.5 0 1 1 2.121 2.121l-2.63 2.63V238.1h59.383l3.088-3.088-43.255-43.254-5.761 5.761a1.5 1.5 0 1 1-2.121-2.121l6.821-6.822c.562-.562 1.559-.562 2.121 0l45.376 45.376a1.5 1.5 0 0 1 0 2.121l-4.588 4.588c-.28.281-.662.439-1.059.439z" />
-                                <path class="st9"
-                                    d="m72.914 187.843-11.131-11.131a7.962 7.962 0 0 0-11.261 0l-12.924 12.924 45.376 45.376 12.924-12.924a7.962 7.962 0 0 0 0-11.261l-12.611-12.611-10.373-10.373z" />
-                                <path class="st3"
-                                    d="M82.973 236.512c-.398 0-.779-.158-1.061-.439l-45.376-45.376a1.5 1.5 0 0 1 0-2.122l12.925-12.924a9.397 9.397 0 0 1 6.691-2.772 9.4 9.4 0 0 1 6.691 2.772l11.132 11.131 22.982 22.983a9.397 9.397 0 0 1 2.772 6.691 9.397 9.397 0 0 1-2.772 6.691l-12.924 12.924a1.494 1.494 0 0 1-1.06.441zm-43.255-46.876 43.255 43.255 11.863-11.864a6.421 6.421 0 0 0 1.894-4.57 6.417 6.417 0 0 0-1.894-4.569l-34.114-34.115a6.42 6.42 0 0 0-4.569-1.893c-1.726 0-3.35.672-4.57 1.893l-11.865 11.863z" />
-                                <path class="st4"
-                                    d="M87.087 212.077a6.007 6.007 0 1 1-8.495 8.494 6.007 6.007 0 0 1 8.495-8.494z" />
-                                <path class="st3"
-                                    d="M82.839 223.827a7.485 7.485 0 0 1-5.308-2.195c-2.927-2.927-2.927-7.689 0-10.616 2.927-2.927 7.691-2.926 10.616 0 2.927 2.927 2.927 7.689 0 10.616a7.481 7.481 0 0 1-5.308 2.195zm.001-12.008a4.495 4.495 0 0 0-3.188 1.318 4.512 4.512 0 0 0 0 6.373 4.514 4.514 0 0 0 6.374 0 4.512 4.512 0 0 0 0-6.373 4.496 4.496 0 0 0-3.186-1.318z" />
-                                <path
-                                    d="m125.162 102.789-15.099 15.099-17.205 17.205-4.114 4.114a5.282 5.282 0 0 1-7.47 0L69.107 127.04c-4.166-4.166-10.922-4.166-15.084-.005a10.658 10.658 0 0 0 .005 15.083l9.414 9.414a12.819 12.819 0 0 1 2.435 14.727l-4.826 9.816c.253.193.496.407.729.64l34.116 34.116c.104.104.198.208.298.308l1.984-1.181a138.166 138.166 0 0 0 26.457-20.455c.064-.064.129-.119.193-.184l18.397-18.397a7.569 7.569 0 0 0 0-10.704l-.069-.069a7.569 7.569 0 0 0-10.704 0l3.66-3.661a7.569 7.569 0 0 0 0-10.704l-.07-.07a7.569 7.569 0 0 0-10.704 0l3.66-3.661a7.569 7.569 0 0 0 0-10.704l-.069-.069c-2.909-2.909-7.591-2.949-10.557-.133l17.574-17.574a7.627 7.627 0 0 0 0-10.785 7.624 7.624 0 0 0-10.784.001z"
-                                    style="fill:#fce8cb" />
-                                <path class="st3"
-                                    d="M96.194 212.638c-.39 0-.774-.151-1.064-.442l-.297-.308-34.113-34.113a5.706 5.706 0 0 0-.579-.508 1.5 1.5 0 0 1-.434-1.854l4.826-9.816a11.317 11.317 0 0 0-2.15-13.004l-9.414-9.414a12.114 12.114 0 0 1-3.569-8.602c0-3.25 1.266-6.304 3.563-8.603 4.742-4.743 12.461-4.74 17.205.005l12.167 12.167a3.787 3.787 0 0 0 5.35 0l36.417-36.418c3.558-3.558 9.348-3.559 12.907 0 3.559 3.558 3.559 9.348 0 12.907l-12.926 12.926a9.03 9.03 0 0 1 5.909 2.659c3.248 3.248 3.57 8.239 1.017 11.783a9.004 9.004 0 0 1 6.096 2.651c3.249 3.249 3.57 8.24 1.017 11.783a9.004 9.004 0 0 1 6.097 2.651c1.782 1.782 2.726 4.06 2.726 6.481a9.01 9.01 0 0 1-2.656 6.413l-18.536 18.53a140.05 140.05 0 0 1-26.806 20.735l-1.984 1.18a1.511 1.511 0 0 1-.769.211zM62.9 175.714l33.535 33.535.976-.58a136.786 136.786 0 0 0 26.17-20.234l.132-.126 18.452-18.448a6.075 6.075 0 0 0 0-8.582c-1.216-1.216-2.74-1.847-4.361-1.847a6.03 6.03 0 0 0-4.291 1.777 1.5 1.5 0 1 1-2.121-2.121l3.661-3.661a6.077 6.077 0 0 0 0-8.583c-1.217-1.216-2.74-1.847-4.361-1.847-1.62 0-3.145.631-4.291 1.778a1.5 1.5 0 1 1-2.121-2.121l3.66-3.661a6.077 6.077 0 0 0 0-8.583c-2.412-2.411-6.129-2.458-8.533-.175a1.5 1.5 0 0 1-2.094-2.148l17.574-17.573a6.134 6.134 0 0 0 0-8.665 6.135 6.135 0 0 0-8.665 0l-36.417 36.418a6.79 6.79 0 0 1-9.592 0L68.046 128.1c-3.575-3.575-9.39-3.576-12.963-.005a9.107 9.107 0 0 0-2.685 6.479 9.136 9.136 0 0 0 2.69 6.484l9.414 9.414a14.314 14.314 0 0 1 2.721 16.45l-4.323 8.792z" />
-                            </g>
-                        </svg>
-                        <div class="for-border ml-4">
-
-                            <h5 class="for-label1 font-weight-bold">Student-Centered Approach</h5>
-                            <p class="for-para custom_paragraph pr-2">Your success is our priority. Merakii's
-                                instruction
-                                prioritize individual needs and learning styles, ensuring you get the most out of
-                                your educational experience.</p>
-                        </div>
-                    </div>
-                    <div class=" d-flex for-element">
-                        <svg class="for-learning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"
-                            xml:space="preserve">
-                            <path fill="#333"
-                                d="M146.179 83.943h-3.884a.385.385 0 1 1 0-.768h3.884a.384.384 0 1 1 0 .768z" />
-                            <path fill="#333"
-                                d="M144.153 85.549a.385.385 0 0 1-.384-.385v-3.338a.384.384 0 0 1 .768 0v3.338a.385.385 0 0 1-.384.385z" />
-                            <g>
-                                <path fill="#FFDB76"
-                                    d="M154.623 90c0 35.69-28.934 64.623-64.623 64.623-35.688 0-64.622-28.932-64.622-64.623 0-35.689 28.934-64.622 64.622-64.622 35.689 0 64.623 28.932 64.623 64.622z" />
+                        <div class="d-flex for-element">
+                            <svg class="for-learning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"
+                                xml:space="preserve">
                                 <path fill="#333"
-                                    d="M57.104 46.514h-9.818a.385.385 0 1 1 0-.768h9.818a.383.383 0 0 1 0 .768zM60.516 44.333h-1.585a.384.384 0 1 1 0-.768h1.585a.384.384 0 0 1 0 .768zM62.405 49.361H60.82a.385.385 0 0 1 0-.77h1.585a.386.386 0 0 1 0 .77zM57.104 44.333h-5.979a.385.385 0 0 1 0-.768h5.979a.383.383 0 0 1 0 .768zM58.412 61.128h-1.586a.383.383 0 1 1 0-.768h1.586a.384.384 0 0 1 0 .768zM54.999 61.128H49.02a.384.384 0 0 1 0-.768h5.979c.212 0 .385.172.385.385a.385.385 0 0 1-.385.383zM66.013 42.116h-7.218a.384.384 0 0 1-.383-.385c0-.212.171-.385.383-.385h7.218a.385.385 0 0 1 0 .77zM136.666 55.808h-10.17a.384.384 0 1 1 0-.768h10.17a.384.384 0 1 1 0 .768zM124.604 58.579h-1.643a.383.383 0 1 1 0-.768h1.643a.384.384 0 0 1 0 .768zM122.646 52.196h-1.643a.385.385 0 0 1 0-.77h1.643a.385.385 0 0 1 0 .77zM132.69 58.579h-6.193a.384.384 0 1 1 0-.768h6.193a.383.383 0 0 1 0 .768zM124.743 61.394h-7.477a.385.385 0 1 1 0-.768h7.477a.383.383 0 0 1 0 .768z" />
+                                    d="M146.179 83.943h-3.884a.385.385 0 1 1 0-.768h3.884a.384.384 0 1 1 0 .768z" />
+                                <path fill="#333"
+                                    d="M144.153 85.549a.385.385 0 0 1-.384-.385v-3.338a.384.384 0 0 1 .768 0v3.338a.385.385 0 0 1-.384.385z" />
                                 <g>
+                                    <path fill="#FFDB76"
+                                        d="M154.623 90c0 35.69-28.934 64.623-64.623 64.623-35.688 0-64.622-28.932-64.622-64.623 0-35.689 28.934-64.622 64.622-64.622 35.689 0 64.623 28.932 64.623 64.622z" />
                                     <path fill="#333"
-                                        d="M151.188 93.259h-6.951a.385.385 0 0 1 0-.769h6.951a.384.384 0 0 1 0 .769zM142.944 96.028h-1.123a.383.383 0 1 1 0-.768h1.123a.384.384 0 1 1 0 .768zM141.606 89.644h-1.122a.385.385 0 1 1 0-.768h1.122a.384.384 0 0 1 0 .768zM148.469 96.028h-4.232a.384.384 0 0 1 0-.768h4.232a.385.385 0 1 1 0 .768zM143.039 98.844h-5.11a.383.383 0 1 1 0-.768h5.11a.384.384 0 0 1 0 .768z" />
-                                </g>
-                                <g>
-                                    <path fill="#333"
-                                        d="M54.29 53.503h-3.269a.384.384 0 0 1 0-.768h3.269a.383.383 0 1 1 0 .768z" />
-                                    <path fill="#333"
-                                        d="M52.583 54.952a.385.385 0 0 1-.384-.385v-3.013a.384.384 0 1 1 .769 0v3.013a.386.386 0 0 1-.385.385z" />
-                                </g>
-                                <g>
-                                    <path fill="#333"
-                                        d="M87.998 145.032H77.827a.383.383 0 0 1 0-.768h10.171a.384.384 0 1 1 0 .768zM91.534 140.382h-1.643a.383.383 0 1 1 0-.768h1.643c.212 0 .383.17.383.383a.385.385 0 0 1-.383.385zM93.491 151.099h-1.643a.383.383 0 1 1 0-.768h1.643a.385.385 0 0 1 0 .768zM87.998 140.382h-6.192a.386.386 0 0 1-.385-.385c0-.213.172-.383.385-.383h6.192c.213 0 .385.17.385.383a.387.387 0 0 1-.385.385zM97.229 135.654h-7.477a.385.385 0 1 1 0-.768h7.477a.383.383 0 0 1 0 .768z" />
+                                        d="M57.104 46.514h-9.818a.385.385 0 1 1 0-.768h9.818a.383.383 0 0 1 0 .768zM60.516 44.333h-1.585a.384.384 0 1 1 0-.768h1.585a.384.384 0 0 1 0 .768zM62.405 49.361H60.82a.385.385 0 0 1 0-.77h1.585a.386.386 0 0 1 0 .77zM57.104 44.333h-5.979a.385.385 0 0 1 0-.768h5.979a.383.383 0 0 1 0 .768zM58.412 61.128h-1.586a.383.383 0 1 1 0-.768h1.586a.384.384 0 0 1 0 .768zM54.999 61.128H49.02a.384.384 0 0 1 0-.768h5.979c.212 0 .385.172.385.385a.385.385 0 0 1-.385.383zM66.013 42.116h-7.218a.384.384 0 0 1-.383-.385c0-.212.171-.385.383-.385h7.218a.385.385 0 0 1 0 .77zM136.666 55.808h-10.17a.384.384 0 1 1 0-.768h10.17a.384.384 0 1 1 0 .768zM124.604 58.579h-1.643a.383.383 0 1 1 0-.768h1.643a.384.384 0 0 1 0 .768zM122.646 52.196h-1.643a.385.385 0 0 1 0-.77h1.643a.385.385 0 0 1 0 .77zM132.69 58.579h-6.193a.384.384 0 1 1 0-.768h6.193a.383.383 0 0 1 0 .768zM124.743 61.394h-7.477a.385.385 0 1 1 0-.768h7.477a.383.383 0 0 1 0 .768z" />
                                     <g>
                                         <path fill="#333"
-                                            d="M102.004 145.361H98.12a.385.385 0 0 1 0-.77h3.884a.386.386 0 0 1 0 .77z" />
-                                        <path fill="#333"
-                                            d="M99.978 147.47a.382.382 0 0 1-.384-.383v-4.391a.384.384 0 1 1 .768 0v4.391a.383.383 0 0 1-.384.383z" />
+                                            d="M151.188 93.259h-6.951a.385.385 0 0 1 0-.769h6.951a.384.384 0 0 1 0 .769zM142.944 96.028h-1.123a.383.383 0 1 1 0-.768h1.123a.384.384 0 1 1 0 .768zM141.606 89.644h-1.122a.385.385 0 1 1 0-.768h1.122a.384.384 0 0 1 0 .768zM148.469 96.028h-4.232a.384.384 0 0 1 0-.768h4.232a.385.385 0 1 1 0 .768zM143.039 98.844h-5.11a.383.383 0 1 1 0-.768h5.11a.384.384 0 0 1 0 .768z" />
                                     </g>
-                                </g>
-                                <g>
-                                    <path fill="#333"
-                                        d="M128.992 46.902h-3.884a.383.383 0 1 1 0-.768h3.884a.384.384 0 1 1 0 .768z" />
-                                    <path fill="#333"
-                                        d="M126.966 49.012a.384.384 0 0 1-.385-.383v-4.392a.385.385 0 0 1 .768 0v4.392a.382.382 0 0 1-.383.383z" />
-                                </g>
-                                <g>
-                                    <path fill="#333"
-                                        d="M36.786 126.585v2.639c0 1.459 1.155 2.643 2.58 2.643h101.27c1.424 0 2.58-1.184 2.58-2.643v-2.639H36.786z" />
-                                    <path fill="#686868"
-                                        d="M138.291 126.585V70.713c0-3.108-2.461-5.627-5.498-5.627H47.207c-3.036 0-5.498 2.519-5.498 5.627v55.872h96.582z" />
-                                    <path fill="#CCCBC9" d="M46.505 70.419h86.989v51.845H46.505z" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
-                                        d="M67.814 88.174h43.087V101H67.814z" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
-                                        d="M67.814 94.587h43.087V101H67.814z" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                        d="M103.65 88.174h1.609V101h-1.609zM95.976 88.174h1.609V101h-1.609zM70.754 88.174h1.609V101h-1.609zM100.484 92.429a1.235 1.235 0 1 1 0-2.47 1.235 1.235 0 0 1 0 2.47z" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                        d="M100.484 95.821a1.234 1.234 0 1 1-.002-2.468 1.234 1.234 0 0 1 .002 2.468z"
-                                        opacity=".6" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                        d="M100.484 99.213a1.234 1.234 0 1 1-.002-2.468 1.234 1.234 0 0 1 .002 2.468z"
-                                        opacity=".2" />
                                     <g>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
-                                            d="m69.984 122.118.02-9.292 47.507.105-.02 9.292z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
-                                            d="m117.491 122.225.008-3.786-47.506-.274-.009 3.953z" />
+                                        <path fill="#333"
+                                            d="M54.29 53.503h-3.269a.384.384 0 0 1 0-.768h3.269a.383.383 0 1 1 0 .768z" />
+                                        <path fill="#333"
+                                            d="M52.583 54.952a.385.385 0 0 1-.384-.385v-3.013a.384.384 0 1 1 .769 0v3.013a.386.386 0 0 1-.385.385z" />
+                                    </g>
+                                    <g>
+                                        <path fill="#333"
+                                            d="M87.998 145.032H77.827a.383.383 0 0 1 0-.768h10.171a.384.384 0 1 1 0 .768zM91.534 140.382h-1.643a.383.383 0 1 1 0-.768h1.643c.212 0 .383.17.383.383a.385.385 0 0 1-.383.385zM93.491 151.099h-1.643a.383.383 0 1 1 0-.768h1.643a.385.385 0 0 1 0 .768zM87.998 140.382h-6.192a.386.386 0 0 1-.385-.385c0-.213.172-.383.385-.383h6.192c.213 0 .385.17.385.383a.387.387 0 0 1-.385.385zM97.229 135.654h-7.477a.385.385 0 1 1 0-.768h7.477a.383.383 0 0 1 0 .768z" />
+                                        <g>
+                                            <path fill="#333"
+                                                d="M102.004 145.361H98.12a.385.385 0 0 1 0-.77h3.884a.386.386 0 0 1 0 .77z" />
+                                            <path fill="#333"
+                                                d="M99.978 147.47a.382.382 0 0 1-.384-.383v-4.391a.384.384 0 1 1 .768 0v4.391a.383.383 0 0 1-.384.383z" />
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <path fill="#333"
+                                            d="M128.992 46.902h-3.884a.383.383 0 1 1 0-.768h3.884a.384.384 0 1 1 0 .768z" />
+                                        <path fill="#333"
+                                            d="M126.966 49.012a.384.384 0 0 1-.385-.383v-4.392a.385.385 0 0 1 .768 0v4.392a.382.382 0 0 1-.383.383z" />
+                                    </g>
+                                    <g>
+                                        <path fill="#333"
+                                            d="M36.786 126.585v2.639c0 1.459 1.155 2.643 2.58 2.643h101.27c1.424 0 2.58-1.184 2.58-2.643v-2.639H36.786z" />
+                                        <path fill="#686868"
+                                            d="M138.291 126.585V70.713c0-3.108-2.461-5.627-5.498-5.627H47.207c-3.036 0-5.498 2.519-5.498 5.627v55.872h96.582z" />
+                                        <path fill="#CCCBC9" d="M46.505 70.419h86.989v51.845H46.505z" />
                                         <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
-                                            d="m110.9 122.21.02-9.293 1.389.003-.02 9.292zM106.1 122.192l.021-9.293 1.387.003-.02 9.293z" />
+                                            d="M67.814 88.174h43.087V101H67.814z" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
+                                            d="M67.814 94.587h43.087V101H67.814z" />
                                         <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                            d="m100.291 117.556 1.201-1.197 1.198 1.201-1.201 1.198zM97.423 117.502l1.202-1.197 1.197 1.202-1.202 1.196z" />
+                                            d="M103.65 88.174h1.609V101h-1.609zM95.976 88.174h1.609V101h-1.609zM70.754 88.174h1.609V101h-1.609zM100.484 92.429a1.235 1.235 0 1 1 0-2.47 1.235 1.235 0 0 1 0 2.47z" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                            d="M100.484 95.821a1.234 1.234 0 1 1-.002-2.468 1.234 1.234 0 0 1 .002 2.468z"
+                                            opacity=".6" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                            d="M100.484 99.213a1.234 1.234 0 1 1-.002-2.468 1.234 1.234 0 0 1 .002 2.468z"
+                                            opacity=".2" />
+                                        <g>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
+                                                d="m69.984 122.118.02-9.292 47.507.105-.02 9.292z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
+                                                d="m117.491 122.225.008-3.786-47.506-.274-.009 3.953z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFDB76"
+                                                d="m110.9 122.21.02-9.293 1.389.003-.02 9.292zM106.1 122.192l.021-9.293 1.387.003-.02 9.293z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                                d="m100.291 117.556 1.201-1.197 1.198 1.201-1.201 1.198zM97.423 117.502l1.202-1.197 1.197 1.202-1.202 1.196z" />
+                                        </g>
+                                        <g>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
+                                                d="m64.35 88.133.01-9.292 47.51.057-.011 9.292z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
+                                                d="m111.855 88.187.003-3.786-47.507-.225-.005 3.953z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
+                                                d="m105.27 88.182.01-9.292 1.388.002-.01 9.292zM100.467 88.17l.011-9.292 1.387.002-.011 9.292z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                                d="m94.648 83.535 1.202-1.197 1.197 1.203-1.201 1.196zM91.78 83.496l1.2-1.198 1.198 1.2-1.2 1.198z" />
+                                        </g>
+                                        <g>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
+                                                d="M103.639 101.056v11.839H69.555a5.93 5.93 0 0 1-5.66-5.924 5.924 5.924 0 0 1 5.526-5.915h34.218z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFF"
+                                                d="M103.639 101.913v10.125H70.343c-2.927 0-5.299-2.269-5.299-5.066 0-2.704 2.214-4.913 5.004-5.059h33.591z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#B2B2B2"
+                                                d="m93.372 112.038.023-6.788-.875.005v6.783z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
+                                                d="m88.121 105.277 4.421-.027.075 11.852-2.228-1.876-2.193 1.905z" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
+                                                d="m88.166 112.188 4.422-.029.014 2.078-4.422.03z" opacity=".5" />
+                                        </g>
+                                        <g>
+                                            <path fill="#FFF"
+                                                d="M91.418 67.778c0 .802-.635 1.452-1.419 1.452s-1.418-.65-1.418-1.452c0-.802.634-1.452 1.418-1.452.785 0 1.419.65 1.419 1.452z" />
+                                        </g>
                                     </g>
                                     <g>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
-                                            d="m64.35 88.133.01-9.292 47.51.057-.011 9.292z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
-                                            d="m111.855 88.187.003-3.786-47.507-.225-.005 3.953z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#ADEBF6"
-                                            d="m105.27 88.182.01-9.292 1.388.002-.01 9.292zM100.467 88.17l.011-9.292 1.387.002-.011 9.292z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                            d="m94.648 83.535 1.202-1.197 1.197 1.203-1.201 1.196zM91.78 83.496l1.2-1.198 1.198 1.2-1.2 1.198z" />
+                                        <path fill="#333"
+                                            d="M103.184 65.096V49.408l-13.829 6.258-13.831-6.258v15.688h27.66z" />
+                                        <path fill="#333"
+                                            d="M103.184 49.409v3.4l-13.832 6.254-13.828-6.258v-3.396l13.831 6.259 13.829-6.259z" />
+                                        <path fill="#757575"
+                                            d="M89.354 54.218v1.454l-23.901-9.574v-1.322l.01-.005 23.891 9.447z" />
+                                        <path fill="#333"
+                                            d="m89.354 54.219-23.901-9.452 24.078-9.287 23.278 9.296zM111.101 45.721h1.396V60.4h-1.396z" />
+                                        <path fill="#333"
+                                            d="M114.012 60.925a2.21 2.21 0 0 0-2.213-2.212 2.214 2.214 0 0 0 0 4.427 2.214 2.214 0 0 0 2.213-2.215z" />
+                                        <path fill="#333"
+                                            d="M113.271 62.034h-2.794c-.468 1.249-1.502 4.684-.914 9.391 0 .282 1.033.511 2.308.511 1.274 0 2.308-.229 2.308-.511.587-4.707-.442-8.142-.908-9.391z" />
+                                        <g>
+                                            <path fill="#B2B2B2"
+                                                d="m89.354 54.218.001 1.454 23.454-9.574v-1.322l-.01-.005-23.444 9.447z" />
+                                        </g>
                                     </g>
                                     <g>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#333"
-                                            d="M103.639 101.056v11.839H69.555a5.93 5.93 0 0 1-5.66-5.924 5.924 5.924 0 0 1 5.526-5.915h34.218z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFF"
-                                            d="M103.639 101.913v10.125H70.343c-2.927 0-5.299-2.269-5.299-5.066 0-2.704 2.214-4.913 5.004-5.059h33.591z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#B2B2B2"
-                                            d="m93.372 112.038.023-6.788-.875.005v6.783z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
-                                            d="m88.121 105.277 4.421-.027.075 11.852-2.228-1.876-2.193 1.905z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FF916E"
-                                            d="m88.166 112.188 4.422-.029.014 2.078-4.422.03z" opacity=".5" />
-                                    </g>
-                                    <g>
-                                        <path fill="#FFF"
-                                            d="M91.418 67.778c0 .802-.635 1.452-1.419 1.452s-1.418-.65-1.418-1.452c0-.802.634-1.452 1.418-1.452.785 0 1.419.65 1.419 1.452z" />
+                                        <path fill="#333"
+                                            d="M36.78 93.018h-6.034a.384.384 0 0 1 0-.769h6.034a.384.384 0 0 1 0 .769zM35.861 88.589h-.975a.385.385 0 1 1 0-.768h.975a.385.385 0 0 1 0 .768zM37.021 97.722h-.975a.385.385 0 1 1 0-.768h.975a.385.385 0 1 1 0 .768zM33.762 88.589h-3.674a.384.384 0 1 1 0-.768h3.674a.385.385 0 1 1 0 .768zM39.24 84.559h-4.436a.385.385 0 1 1 0-.769h4.436a.384.384 0 0 1 0 .769z" />
                                     </g>
                                 </g>
-                                <g>
-                                    <path fill="#333"
-                                        d="M103.184 65.096V49.408l-13.829 6.258-13.831-6.258v15.688h27.66z" />
-                                    <path fill="#333"
-                                        d="M103.184 49.409v3.4l-13.832 6.254-13.828-6.258v-3.396l13.831 6.259 13.829-6.259z" />
-                                    <path fill="#757575"
-                                        d="M89.354 54.218v1.454l-23.901-9.574v-1.322l.01-.005 23.891 9.447z" />
-                                    <path fill="#333"
-                                        d="m89.354 54.219-23.901-9.452 24.078-9.287 23.278 9.296zM111.101 45.721h1.396V60.4h-1.396z" />
-                                    <path fill="#333"
-                                        d="M114.012 60.925a2.21 2.21 0 0 0-2.213-2.212 2.214 2.214 0 0 0 0 4.427 2.214 2.214 0 0 0 2.213-2.215z" />
-                                    <path fill="#333"
-                                        d="M113.271 62.034h-2.794c-.468 1.249-1.502 4.684-.914 9.391 0 .282 1.033.511 2.308.511 1.274 0 2.308-.229 2.308-.511.587-4.707-.442-8.142-.908-9.391z" />
-                                    <g>
-                                        <path fill="#B2B2B2"
-                                            d="m89.354 54.218.001 1.454 23.454-9.574v-1.322l-.01-.005-23.444 9.447z" />
-                                    </g>
-                                </g>
-                                <g>
-                                    <path fill="#333"
-                                        d="M36.78 93.018h-6.034a.384.384 0 0 1 0-.769h6.034a.384.384 0 0 1 0 .769zM35.861 88.589h-.975a.385.385 0 1 1 0-.768h.975a.385.385 0 0 1 0 .768zM37.021 97.722h-.975a.385.385 0 1 1 0-.768h.975a.385.385 0 1 1 0 .768zM33.762 88.589h-3.674a.384.384 0 1 1 0-.768h3.674a.385.385 0 1 1 0 .768zM39.24 84.559h-4.436a.385.385 0 1 1 0-.769h4.436a.384.384 0 0 1 0 .769z" />
-                                </g>
-                            </g>
-                        </svg>
-                        <div class="for-border ml-4">
+                            </svg>
+                            <div class="for-border ml-4">
 
-                            <h5 class="for-label1 font-weight-bold">Supportive Services</h5>
-                            <p class="for-para custom_paragraph pr-2">Juggling work, studies, and personal life can be
-                                demanding. Merakii provide academic advisors, mentors, and support services
-                                to help you navigate your program and succeed.</p>
+                                <h5 class="for-label1 font-weight-bold">Personalized Support</h5>
+                                <p class="for-para custom_paragraph pr-2">Our prep courses provide opportunities for
+                                    personalized help from instructors or tutors-small groups or Q&A sessions.
+                                    We address specific challenging concepts or filling knowledge
+                                    gaps.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- 3rd 1st-side-->
-                <div class="col-md-4 col-12 for-main">
-                    <div class="d-flex for-element">
-                        <svg class="for-global" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
-                            style="enable-background:new 0 0 256 256" xml:space="preserve">
-                            <style>
-                                .st2 {
-                                    fill: none;
-                                    stroke: #6b1d1d;
-                                    stroke-width: .5;
-                                    stroke-miterlimit: 10
-                                }
+                    <!-- 3rd 1st-side-->
+                    <div class="col-md-6 for-main">
+                        <div class="d-flex for-element">
+                            <svg class="for-global" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="enable-background:new 0 0 256 256" xml:space="preserve">
+                                <style>
+                                    .st2 {
+                                        fill: none;
+                                        stroke: #6b1d1d;
+                                        stroke-width: .5;
+                                        stroke-miterlimit: 10
+                                    }
 
-                                .st3 {
-                                    fill: #3a312a
-                                }
+                                    .st3 {
+                                        fill: #3a312a
+                                    }
 
-                                .st4 {
-                                    fill: #87796f
-                                }
+                                    .st4 {
+                                        fill: #87796f
+                                    }
 
-                                .st14 {
-                                    fill: #d7e057
-                                }
+                                    .st14 {
+                                        fill: #d7e057
+                                    }
 
-                                .st19 {
-                                    fill: #fae6ca
-                                }
-                            </style>
-                            <g id="Layer_1">
-                                <path class="st4"
-                                    d="M222.145 180.568H33.355c-9.447 0-17.105-7.658-17.105-17.105V33.173c0-9.447 7.658-17.106 17.105-17.106h188.789c9.447 0 17.105 7.658 17.105 17.106v130.289c.001 9.447-7.657 17.106-17.104 17.106z" />
+                                    .st19 {
+                                        fill: #fae6ca
+                                    }
+                                </style>
+                                <g id="Layer_1">
+                                    <path class="st4"
+                                        d="M222.145 180.568H33.355c-9.447 0-17.105-7.658-17.105-17.105V33.173c0-9.447 7.658-17.106 17.105-17.106h188.789c9.447 0 17.105 7.658 17.105 17.106v130.289c.001 9.447-7.657 17.106-17.104 17.106z" />
+                                    <path class="st3"
+                                        d="M222.145 182.068H33.355c-10.259 0-18.605-8.346-18.605-18.605V33.173c0-10.259 8.347-18.605 18.605-18.605h188.789c10.259 0 18.605 8.346 18.605 18.605v130.289c.001 10.26-8.346 18.606-18.604 18.606zm-188.79-164.5c-8.604 0-15.605 7-15.605 15.605v130.289c0 8.605 7.001 15.605 15.605 15.605h188.789c8.604 0 15.605-7.001 15.605-15.605V33.173c0-8.605-7.001-15.605-15.605-15.605H33.355z" />
+                                    <path class="st14"
+                                        d="M28.861 115.877v40.271c0 6.583 5.337 11.92 11.92 11.92h173.938c6.583 0 11.92-5.337 11.92-11.92V40.488c0-6.583-5.337-11.92-11.92-11.92H40.781c-6.583 0-11.92 5.337-11.92 11.92v75.389z" />
+                                    <path class="st3"
+                                        d="M214.719 169.568H40.781c-7.4 0-13.42-6.02-13.42-13.42v-40.271a1.5 1.5 0 1 1 3 0v40.271c0 5.746 4.675 10.42 10.42 10.42h173.938c5.745 0 10.42-4.674 10.42-10.42V40.488c0-5.746-4.675-10.42-10.42-10.42H40.781c-5.745 0-10.42 4.674-10.42 10.42v62.167a1.5 1.5 0 1 1-3 0V40.488c0-7.4 6.02-13.42 13.42-13.42h173.938c7.399 0 13.42 6.02 13.42 13.42v115.66c0 7.4-6.021 13.42-13.42 13.42z" />
+                                    <path class="st4" d="M113.438 180.568h28.625v35.593h-28.625z" />
+                                    <path class="st3"
+                                        d="M142.062 217.661h-28.625a1.5 1.5 0 0 1-1.5-1.5v-35.593a1.5 1.5 0 0 1 1.5-1.5h28.625a1.5 1.5 0 0 1 1.5 1.5v35.593a1.5 1.5 0 0 1-1.5 1.5zm-27.124-3h25.625v-32.593h-25.625v32.593z" />
+                                    <path class="st4"
+                                        d="M135.202 239.568h36.252c0-12.927-10.479-23.407-23.407-23.407h-40.593c-12.927 0-23.407 10.479-23.407 23.407h51.155z" />
+                                    <path class="st3"
+                                        d="M171.453 241.068h-36.252a1.5 1.5 0 1 1 0-3h34.701c-.773-11.382-10.28-20.407-21.855-20.407h-40.594c-11.575 0-21.082 9.024-21.855 20.407h36.033a1.5 1.5 0 1 1 0 3H84.047a1.5 1.5 0 0 1-1.5-1.5c0-13.733 11.173-24.907 24.906-24.907h40.594c13.733 0 24.906 11.173 24.906 24.907a1.5 1.5 0 0 1-1.5 1.5z" />
+                                    <path class="st14"
+                                        d="M47.421 203.402s3.408 12.659 13.222 13.246c0 0-13.1 4.525-13.321 14.202 0 0-2.579-13.572-12.925-14.059 0 0 12.05-1.825 13.024-13.389z" />
+                                    <path class="st3"
+                                        d="M47.321 232.349a1.502 1.502 0 0 1-1.473-1.217c-.023-.124-2.494-12.417-11.522-12.842a1.5 1.5 0 0 1-.155-2.982c.441-.069 10.895-1.817 11.754-12.032a1.501 1.501 0 0 1 2.943-.265c.031.116 3.259 11.626 11.863 12.141a1.5 1.5 0 0 1 .402 2.915c-.121.042-12.118 4.31-12.312 12.818a1.498 1.498 0 0 1-1.5 1.464zm-7.742-15.729c3.879 1.969 6.231 5.746 7.588 8.876 2.026-4.021 5.941-6.787 8.948-8.427-4.134-1.842-6.783-5.651-8.334-8.723-1.793 4.361-5.27 6.869-8.202 8.274z" />
+                                    <path class="st14"
+                                        d="M25.722 220.382s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0 0 8.524-1.291 9.212-9.471z" />
+                                    <path class="st3"
+                                        d="M25.651 241.297a1.5 1.5 0 0 1-1.473-1.22c-.016-.082-1.704-8.442-7.739-8.726a1.5 1.5 0 0 1-.154-2.982c.296-.047 7.363-1.243 7.942-8.114a1.501 1.501 0 0 1 1.361-1.368 1.506 1.506 0 0 1 1.582 1.102c.021.079 2.227 7.919 7.993 8.264a1.5 1.5 0 0 1 .4 2.916c-.081.028-8.282 2.953-8.412 8.662a1.5 1.5 0 0 1-1.5 1.466zm-4.519-11.527c2.108 1.333 3.524 3.394 4.447 5.28 1.376-2.232 3.515-3.872 5.365-4.973-2.287-1.269-3.885-3.35-4.941-5.224-1.174 2.287-3.016 3.876-4.871 4.917z" />
+                                    <path class="st14"
+                                        d="M25.722 193.725s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0-.001 8.524-1.292 9.212-9.471z" />
+                                    <path class="st3"
+                                        d="M25.651 214.64a1.5 1.5 0 0 1-1.473-1.22c-.016-.082-1.704-8.442-7.739-8.726a1.5 1.5 0 0 1-.154-2.982c.296-.047 7.363-1.243 7.942-8.114a1.501 1.501 0 0 1 1.361-1.368c.712-.061 1.392.4 1.582 1.103.038.138 2.249 7.92 7.993 8.263a1.5 1.5 0 0 1 .4 2.915c-.081.028-8.282 2.952-8.412 8.662a1.5 1.5 0 0 1-1.5 1.467zm-4.519-11.528c2.108 1.332 3.524 3.394 4.447 5.28 1.376-2.233 3.515-3.872 5.365-4.973-2.287-1.269-3.885-3.35-4.941-5.224-1.174 2.287-3.016 3.876-4.871 4.917z" />
+                                    <path class="st19"
+                                        d="M208.323 25.02a105.268 105.268 0 0 0-80.572 0v107.968a105.277 105.277 0 0 1 80.572 0V25.02z" />
+                                    <path class="st3"
+                                        d="M208.323 134.488c-.194 0-.39-.038-.574-.114-25.607-10.607-53.816-10.607-79.424 0a1.498 1.498 0 0 1-2.074-1.386V25.02a1.5 1.5 0 0 1 .926-1.386c26.35-10.914 55.371-10.914 81.721 0a1.5 1.5 0 0 1 .926 1.386v107.968a1.498 1.498 0 0 1-1.501 1.5zm-40.286-11.071c13.118 0 26.237 2.451 38.786 7.351V26.027c-25.053-10.104-52.52-10.104-77.572 0v104.741c12.549-4.901 25.668-7.351 38.786-7.351z" />
+                                    <path class="st19"
+                                        d="M127.749 25.02a105.268 105.268 0 0 0-80.572 0v107.968a105.277 105.277 0 0 1 80.572 0V25.02z" />
+                                    <path class="st3"
+                                        d="M127.749 134.488c-.194 0-.39-.038-.574-.114-25.607-10.607-53.816-10.607-79.424 0a1.498 1.498 0 0 1-2.074-1.386V25.02a1.5 1.5 0 0 1 .926-1.386c26.35-10.914 55.371-10.914 81.721 0 .561.232.926.779.926 1.386v107.968a1.498 1.498 0 0 1-1.501 1.5zm-40.286-11.071c13.118 0 26.237 2.451 38.786 7.351V26.027c-25.053-10.104-52.52-10.104-77.572 0v104.741c12.549-4.901 25.668-7.351 38.786-7.351z" />
+                                    <path class="st3"
+                                        d="M56.463 114.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 114.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 99.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 99.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 84.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.344 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 84.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.947-40.475-5.933-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 69.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 69.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.933-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 54.153a1.5 1.5 0 0 1-.443-2.933c20.566-6.346 42.313-6.345 62.885-.001a1.5 1.5 0 0 1-.885 2.868c-19.996-6.167-41.129-6.167-61.115 0a1.548 1.548 0 0 1-.442.066zM137.462 54.013a1.501 1.501 0 0 1-.436-2.936c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.476 1.476 0 0 1-.437.066zM56.463 39.153a1.5 1.5 0 0 1-.443-2.933c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.548 1.548 0 0 1-.442.066zM137.462 39.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065z" />
+                                    <circle cx="183.75" cy="183.932" r="56" style="fill:#8ac6dd" />
+                                    <path class="st3"
+                                        d="M183.75 241.432c-31.706 0-57.5-25.794-57.5-57.5s25.794-57.5 57.5-57.5 57.5 25.794 57.5 57.5-25.794 57.5-57.5 57.5zm0-112c-30.052 0-54.5 24.449-54.5 54.5s24.448 54.5 54.5 54.5 54.5-24.449 54.5-54.5-24.448-54.5-54.5-54.5z" />
+                                    <path class="st3"
+                                        d="M183.75 241.432c-21.474 0-38.943-25.794-38.943-57.5s17.47-57.5 38.943-57.5 38.943 25.794 38.943 57.5-17.469 57.5-38.943 57.5zm0-112c-19.819 0-35.943 24.449-35.943 54.5s16.124 54.5 35.943 54.5 35.943-24.449 35.943-54.5-16.124-54.5-35.943-54.5z" />
+                                    <path class="st3"
+                                        d="M183.75 241.432c-10.405 0-16.02-29.626-16.02-57.5s5.615-57.5 16.02-57.5 16.02 29.626 16.02 57.5-5.615 57.5-16.02 57.5zm0-112c-6.158 0-13.02 22.382-13.02 54.5 0 32.118 6.862 54.5 13.02 54.5s13.02-22.382 13.02-54.5c0-32.117-6.862-54.5-13.02-54.5z" />
+                                    <path class="st3"
+                                        d="M183.75 222.876c-31.706 0-57.5-17.47-57.5-38.944 0-21.474 25.794-38.943 57.5-38.943s57.5 17.47 57.5 38.943c0 21.474-25.794 38.944-57.5 38.944zm0-74.887c-30.052 0-54.5 16.124-54.5 35.943s24.448 35.944 54.5 35.944 54.5-16.124 54.5-35.944c0-19.819-24.448-35.943-54.5-35.943z" />
+                                    <path class="st3"
+                                        d="M183.75 199.953c-27.875 0-57.5-5.615-57.5-16.02s29.625-16.02 57.5-16.02 57.5 5.615 57.5 16.02-29.625 16.02-57.5 16.02zm0-29.041c-32.117 0-54.5 6.862-54.5 13.02 0 6.159 22.383 13.02 54.5 13.02s54.5-6.862 54.5-13.02c0-6.158-22.383-13.02-54.5-13.02z" />
+                                    <path
+                                        d="M214.719 30.068h-4.896V132.71a57.788 57.788 0 0 1 15.316 11.369V40.488c0-5.746-4.675-10.42-10.42-10.42z"
+                                        style="fill:#b9c239" />
+                                </g>
+                            </svg>
+                            <div class="for-border ml-4">
+                                <h5 class="for-label1 font-weight-bold">Targeted Instruction</h5>
+                                <p class="for-para custom_paragraph pr-2">Merkaii Xcellence Prep offers courses
+                                    specifically developed for your licensure exam, ensuring that content directly aligns
+                                    with what you need to know for test success.</p>
+
+                            </div>
+                        </div>
+                        <div class="d-flex for-element">
+                            <svg class="for-affordability" version="1.1" id="Layer_1"
+                                xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 256 256"
+                                style="enable-background:new 0 0 256 256" xml:space="preserve">
+                                <style>
+                                    .st0 {
+                                        fill: #382b73
+                                    }
+
+                                    .st2 {
+                                        fill: #f6ca14
+                                    }
+
+                                    .st3 {
+                                        fill: #e7ad27
+                                    }
+
+                                    .st5 {
+                                        fill: #fddd3a
+                                    }
+
+                                    .st7 {
+                                        fill: #009add
+                                    }
+
+                                    .st12 {
+                                        fill: #d0d2d3
+                                    }
+
+                                    .st13 {
+                                        fill: #fff
+                                    }
+
+                                    .st14 {
+                                        fill: #0099dc
+                                    }
+
+                                    .st15 {
+                                        fill: #1cade3
+                                    }
+
+                                    .st17 {
+                                        fill: #106ea0
+                                    }
+                                </style>
+                                <switch>
+                                    <g>
+                                        <circle class="st0" cx="128" cy="128" r="120" />
+                                        <circle cx="128" cy="128" r="102.5" style="fill:#473080" />
+                                        <path class="st0"
+                                            d="M195.675 124.643h-28.026l.008-23.562v.013l.001-1.777a8.855 8.855 0 0 0-2.751-6.43l-.013-.012a8.913 8.913 0 0 0-1.27-1.004l-.129-.083a8.843 8.843 0 0 0-4.72-1.357h-1.341c.37-1.883.565-3.829.565-5.82 0-16.568-13.431-30-30-30s-30 13.432-30 30c0 1.985.193 3.924.561 5.801l-38.215-.013a8.854 8.854 0 0 0-1.5.126c-4.192.712-7.385 4.36-7.387 8.755l-.001 1.777v-.006l-.018 53.485a8.885 8.885 0 0 0 8.881 8.887l28.039.009v25.352a9.115 9.115 0 0 0 .227 2.007 9.005 9.005 0 0 0 .744 2.039l.1.19a8.883 8.883 0 0 0 7.812 4.649h98.43a8.885 8.885 0 0 0 8.884-8.884V133.53a8.88 8.88 0 0 0-8.881-8.887z" />
+                                        <g>
+                                            <path class="st2"
+                                                d="m158.752 156.454-98.43-.033a8.884 8.884 0 0 1-8.881-8.887l.018-55.255a8.884 8.884 0 0 1 8.887-8.881l98.43.033a8.883 8.883 0 0 1 8.881 8.887l-.018 55.255a8.885 8.885 0 0 1-8.887 8.881z" />
+                                            <path class="st3"
+                                                d="m158.752 154.677-98.43-.033a8.884 8.884 0 0 1-8.881-8.887l-.001 1.777a8.885 8.885 0 0 0 8.881 8.887l98.43.033a8.885 8.885 0 0 0 8.887-8.881l.001-1.777c-.001 4.906-3.98 8.882-8.887 8.881z" />
+                                            <path
+                                                d="m158.776 83.43-98.43-.033a8.885 8.885 0 0 0-8.887 8.881l-.001 1.777a8.883 8.883 0 0 1 8.887-8.881l98.43.033a8.884 8.884 0 0 1 8.881 8.887l.001-1.777a8.884 8.884 0 0 0-8.881-8.887z"
+                                                style="fill:#fff235" />
+                                            <path class="st3" d="M51.456 92.298h116.198v16.936H51.456z" />
+                                            <path class="st5"
+                                                d="m155.743 123.894-93.859-.031a3.058 3.058 0 1 1 .002-6.116l93.859.031a3.057 3.057 0 1 1-.002 6.116zM117.85 138.255l-55.97-.019a3.058 3.058 0 1 1 .002-6.116l55.97.019a3.058 3.058 0 1 1-.002 6.116z" />
+                                            <g>
+                                                <path
+                                                    d="M195.675 190.667h-98.43a8.884 8.884 0 0 1-8.884-8.884v-55.255a8.884 8.884 0 0 1 8.884-8.884h98.43a8.883 8.883 0 0 1 8.884 8.884v55.255a8.884 8.884 0 0 1-8.884 8.884z"
+                                                    style="fill:#1caee4" />
+                                                <path class="st7"
+                                                    d="M195.675 188.89h-98.43a8.884 8.884 0 0 1-8.884-8.884v1.777a8.884 8.884 0 0 0 8.884 8.884h98.43a8.884 8.884 0 0 0 8.884-8.884v-1.777a8.884 8.884 0 0 1-8.884 8.884z" />
+                                                <path
+                                                    d="M195.675 117.643h-98.43a8.883 8.883 0 0 0-8.884 8.884v1.777a8.885 8.885 0 0 1 8.884-8.884h98.43a8.884 8.884 0 0 1 8.884 8.884v-1.777a8.884 8.884 0 0 0-8.884-8.884z"
+                                                    style="fill:#27c1e6" />
+                                                <path class="st7"
+                                                    d="M110.734 151.637h-9.476a3.554 3.554 0 0 1-3.554-3.554v-9.476a3.554 3.554 0 0 1 3.554-3.554h9.476a3.554 3.554 0 0 1 3.554 3.554v9.476a3.555 3.555 0 0 1-3.554 3.554z" />
+                                                <path class="st5"
+                                                    d="M110.734 150.926h-9.476a3.554 3.554 0 0 1-3.554-3.554v-9.476a3.554 3.554 0 0 1 3.554-3.554h9.476a3.554 3.554 0 0 1 3.554 3.554v9.476a3.555 3.555 0 0 1-3.554 3.554z" />
+                                                <path class="st2" d="M102.442 139.081h7.107v7.107h-7.107z" />
+                                                <path class="st2"
+                                                    d="M97.704 139.081h16.583v.711H97.704zM97.704 145.477h16.583v.711H97.704z" />
+                                                <path transform="rotate(-90 102.797 142.634)" class="st2"
+                                                    d="M94.505 142.279h16.584v.711H94.505z" />
+                                                <path transform="rotate(-90 109.194 142.634)" class="st2"
+                                                    d="M100.902 142.279h16.584v.711h-16.584z" />
+                                                <path class="st5"
+                                                    d="M113.195 169.378H98.796a3.058 3.058 0 1 1 0-6.116h14.398a3.057 3.057 0 1 1 .001 6.116z" />
+                                                <g>
+                                                    <path class="st5"
+                                                        d="M139.682 169.378h-14.398a3.058 3.058 0 1 1 0-6.116h14.398a3.058 3.058 0 0 1 0 6.116z" />
+                                                </g>
+                                                <g>
+                                                    <path class="st5"
+                                                        d="M166.169 169.378H151.77a3.058 3.058 0 1 1 0-6.116h14.398a3.057 3.057 0 1 1 .001 6.116z" />
+                                                </g>
+                                                <g>
+                                                    <path class="st5"
+                                                        d="M192.656 169.378h-14.398a3.058 3.058 0 1 1 0-6.116h14.398a3.058 3.058 0 0 1 0 6.116z" />
+                                                </g>
+                                                <g>
+                                                    <path class="st5"
+                                                        d="M154.767 180.987h-55.97a3.058 3.058 0 1 1 0-6.116h55.97a3.058 3.058 0 1 1 0 6.116z" />
+                                                </g>
+                                                <g>
+                                                    <path class="st5"
+                                                        d="M194.529 142.634a9.335 9.335 0 1 1-18.67 0 9.335 9.335 0 0 1 18.67 0z" />
+                                                </g>
+                                                <g>
+                                                    <path class="st5"
+                                                        d="M179.555 142.634a9.335 9.335 0 1 1-18.67 0 9.335 9.335 0 0 1 18.67 0z" />
+                                                </g>
+                                            </g>
+                                            <path class="st3"
+                                                d="M98.054 83.41c.931 15.73 13.982 28.2 29.946 28.2 15.957 0 29.004-12.459 29.945-28.18l-59.891-.02z" />
+                                            <g>
+                                                <circle cx="128" cy="77.609" r="30" style="fill:#ef5a9d" />
+                                                <path
+                                                    d="m147.658 93.661-.001-.005a3.53 3.53 0 0 0-.016-.101l-.001-.008-.016-.087-.005-.025-.018-.081-.006-.027-.018-.072-.01-.038-.031-.106-3.544-11.548-.039-.121a3.444 3.444 0 0 0-2.455-2.225 3.532 3.532 0 0 0-.372-.068l-5.918-.781a.694.694 0 0 0-.171-.559l-1.672-1.863a.696.696 0 0 0-.785-.178l-.105.043v-1.634c1.729-1.129 3.09-2.961 3.812-5.173.049.013.099.023.15.03.933.131 1.824-.719 1.989-1.898.165-1.179-.457-2.241-1.39-2.371a1.42 1.42 0 0 0-.195-.013 4.955 4.955 0 0 0-.007-.125l-.007-.107a5.77 5.77 0 0 0-.01-.131l-.01-.11-.013-.131-.012-.104-.016-.129-.015-.11-.017-.117-.018-.116-.019-.113-.02-.112a4.108 4.108 0 0 0-.023-.118l-.021-.102-.026-.122-.023-.101a19.36 19.36 0 0 0-.027-.113l-.026-.104-.032-.117-.026-.096-.031-.106a3.34 3.34 0 0 0-.032-.107l-.02-.062a7.088 7.088 0 0 0-.086-.258l-.028-.08-.038-.103a3.91 3.91 0 0 0-.037-.098l-.047-.118-.029-.073-.05-.117a2.633 2.633 0 0 0-.034-.078l-.051-.112-.034-.074-.056-.114-.035-.071a5.628 5.628 0 0 0-.056-.109l-.04-.075-.059-.109-.035-.061a6.983 6.983 0 0 0-.067-.117l-.033-.055c-.023-.04-.048-.079-.072-.118l-.03-.047-.078-.122-.027-.04a5.647 5.647 0 0 0-.086-.127l-.01-.014a7.784 7.784 0 0 0-1.112-1.275l-.002-.001a7.865 7.865 0 0 0-2.474-1.539l-.033-.012-.175-.066a.868.868 0 0 0-.047-.016l-.161-.055a7.199 7.199 0 0 0-.214-.068l-.06-.018-.158-.045-.058-.016-.182-.046-.033-.008a8.2 8.2 0 0 0-.446-.094l-.047-.008a5.39 5.39 0 0 0-.401-.062 2.184 2.184 0 0 0-.08-.01l-.144-.017-.088-.009a.088.088 0 0 1-.016-.002h-.004l-.12-.011-.092-.007-.105-.007-.066-.004-.059-.003-.066-.003-.106-.004-.059-.002-.029-.001a13.604 13.604 0 0 0-.418 0l-.065.002a7.216 7.216 0 0 0-.147.005l-.096.005a4.51 4.51 0 0 0-.204.014l-.124.01-.085.008-.123.013a2.574 2.574 0 0 0-.092.011l-.113.014-.102.015-.103.015-.104.018-.099.017-.105.02-.097.019-.104.023-.095.021-.11.026-.086.022-.111.029-.085.023a3.53 3.53 0 0 0-.192.057l-.114.036a5.309 5.309 0 0 0-.381.134l-.074.028a13.329 13.329 0 0 0-.299.123l-.063.028-.122.055-.055.026a4.584 4.584 0 0 0-.122.059l-.055.028a7.622 7.622 0 0 0-.127.065l-.043.023-.128.07-.046.026-.129.075a.602.602 0 0 1-.034.02l-.137.084-.025.016a6.9 6.9 0 0 0-.142.092l-.017.012-.147.1a.055.055 0 0 0-.008.006l-.152.109-.002.001c-1.899 1.404-3.168 3.682-3.322 6.648-.065 0-.13.004-.194.013-.933.131-1.556 1.192-1.39 2.371.165 1.179 1.055 2.029 1.988 1.898.051-.007.101-.017.15-.03.722 2.212 2.082 4.044 3.812 5.173v1.634l-.105-.043a.697.697 0 0 0-.785.178l-1.672 1.863a.691.691 0 0 0-.171.559l-5.918.781a3.485 3.485 0 0 0-1.289.434 3.45 3.45 0 0 0-.767.601c-.028.03-.056.059-.083.09a3.451 3.451 0 0 0-.727 1.289l-3.544 11.548a4.378 4.378 0 0 0-.031.108l-.004.015a3.326 3.326 0 0 0-.027.103l-.022.1-.003.013a1.618 1.618 0 0 0-.018.096l-.001.008a3.4 3.4 0 0 0-.047.693l.005.101a3.718 3.718 0 0 0 .092.593l.025.096a3.496 3.496 0 0 0 .391.899c.223.361.511.681.85.941.052.04.106.078.16.116.546.37 1.208.589 1.934.589h31.592a3.435 3.435 0 0 0 3.042-1.816 3.422 3.422 0 0 0 .361-1.02l.017-.098c.015-.099.026-.199.032-.3l.005-.101a3.47 3.47 0 0 0-.031-.585z"
+                                                    style="fill:#e43d91" />
+                                                <path class="st3" d="M124.396 69.185h8.078v8.078h-8.078z" />
+                                                <path class="st2"
+                                                    d="M121.825 64.308c.165 1.179-.457 2.241-1.39 2.371-.933.131-1.823-.719-1.989-1.898-.165-1.179.457-2.241 1.39-2.371.933-.131 1.824.719 1.989 1.898zM135.045 64.308c-.165 1.179.457 2.241 1.39 2.371s1.823-.719 1.989-1.898c.165-1.179-.457-2.241-1.39-2.371-.933-.131-1.824.719-1.989 1.898z" />
+                                                <path class="st5"
+                                                    d="M136.856 63.013c0 5.543-3.77 10.037-8.421 10.037s-8.421-4.494-8.421-10.037 3.77-8.869 8.421-8.869c4.651-.001 8.421 3.325 8.421 8.869z" />
+                                                <path class="st2"
+                                                    d="M128.435 72.179c-4.528 0-8.22-4.26-8.412-9.6a12.36 12.36 0 0 0-.009.434c0 5.543 3.77 10.037 8.421 10.037s8.421-4.494 8.421-10.037c0-.146-.004-.291-.009-.434-.193 5.34-3.884 9.6-8.412 9.6z" />
+                                                <path class="st2"
+                                                    d="M136.833 63.711c-.281-4.766-3.452-7.737-7.477-8.13a7.937 7.937 0 0 0 7.384 9.083c.044-.312.074-.63.093-.953z" />
+                                                <path
+                                                    d="M144.231 95.229h-31.592c-2.325 0-3.987-2.249-3.305-4.472l3.544-11.548a3.457 3.457 0 0 1 2.867-2.415l12.69-1.675 12.69 1.675a3.457 3.457 0 0 1 2.867 2.415l3.544 11.548c.682 2.223-.98 4.472-3.305 4.472z"
+                                                    style="fill:#e6e7e8" />
+                                                <path class="st12"
+                                                    d="m130.736 79.137-1.791 1.791a.72.72 0 0 1-1.02 0l-1.791-1.791a.72.72 0 0 1 0-1.02l1.791-1.791a.72.72 0 0 1 1.02 0l1.791 1.791a.72.72 0 0 1 0 1.02z" />
+                                                <path class="st13"
+                                                    d="m109.334 92.151 3.544-11.548a3.457 3.457 0 0 1 2.867-2.415l12.69-1.675 12.69 1.675a3.457 3.457 0 0 1 2.867 2.415l3.544 11.548c.033.108.059.216.081.323a3.435 3.435 0 0 0-.081-1.716l-3.544-11.548a3.457 3.457 0 0 0-2.867-2.415l-12.69-1.676-12.69 1.676a3.458 3.458 0 0 0-2.867 2.415l-3.544 11.548a3.435 3.435 0 0 0-.081 1.716 3.39 3.39 0 0 1 .081-.323z" />
+                                                <path class="st12"
+                                                    d="m128.435 75.128-2.737 3.833a.89.89 0 0 1-1.393.07l-2.649-3.017 6.779-.886zM128.435 75.128l2.737 3.833a.89.89 0 0 0 1.393.07l2.649-3.017-6.779-.886zM147.41 90.347a3.45 3.45 0 0 1-3.179 2.097h-31.592a3.45 3.45 0 0 1-3.179-2.097l-.126.411c-.682 2.223.98 4.471 3.305 4.471h31.592c2.325 0 3.987-2.249 3.305-4.471l-.126-.411z" />
+                                                <path class="st2"
+                                                    d="M120.014 63.013c0 .456.028.904.077 1.344a9.547 9.547 0 0 0 12.011-9.222c0-.074-.004-.147-.005-.221a8.8 8.8 0 0 0-3.662-.77c-4.651-.001-8.421 3.325-8.421 8.869z" />
+                                                <path class="st14"
+                                                    d="M120.024 62.568a7.94 7.94 0 0 0 11.205-7.991 9.004 9.004 0 0 0-2.794-.434c-4.525 0-8.215 3.149-8.411 8.425z" />
+                                                <path class="st15"
+                                                    d="M128.435 55.536c.98 0 1.919.149 2.794.434l.006.078c.02-.23.032-.462.032-.698 0-.261-.014-.519-.038-.773a9.004 9.004 0 0 0-2.794-.434c-4.525 0-8.215 3.149-8.411 8.425.043.02.088.037.132.056.719-4.466 4.151-7.088 8.279-7.088z" />
+                                                <path class="st15"
+                                                    d="M129.356 54.189a7.939 7.939 0 0 0 7.494 9.091c.002-.089.006-.178.006-.267 0-5.173-3.283-8.413-7.5-8.824z" />
+                                                <path
+                                                    d="M129.356 55.582c3.901.38 7 3.183 7.443 7.695l.051.003c.002-.089.006-.178.006-.267 0-5.172-3.283-8.413-7.5-8.824a7.943 7.943 0 0 0-.053 1.858c.013-.156.031-.311.053-.465z"
+                                                    style="fill:#23c1e6" />
+                                                <path class="st13"
+                                                    d="M131.51 78.194c.24.239.618.271.894.075l2.518-1.785a.696.696 0 0 0 .113-1.031l-1.672-1.863a.696.696 0 0 0-.785-.178l-4.144 1.715 3.076 3.067z" />
+                                                <path class="st13"
+                                                    d="M125.36 78.194a.696.696 0 0 1-.894.075l-2.519-1.785a.696.696 0 0 1-.112-1.031l1.672-1.863a.696.696 0 0 1 .785-.178l4.144 1.715-3.076 3.067z" />
+                                                <path class="st14"
+                                                    d="m125.286 95.229 2.156-17.479h1.986l2.157 17.479z" />
+                                                <path class="st12"
+                                                    d="M137.84 85.724h-5.051a.698.698 0 0 1 0-1.396h5.051a.699.699 0 0 1 0 1.396zM114.682 95.229l1.501-8.299c.056-.312.506-.302.55.011l1.153 8.288h-3.204zM142.189 95.229l-1.501-8.299c-.056-.312-.506-.302-.55.011l-1.153 8.288h3.204z" />
+                                                <path class="st17"
+                                                    d="m127.173 80.454.752.752a.72.72 0 0 0 1.02 0l.752-.752-.269-2.704h-1.986l-.269 2.704z" />
+                                                <path class="st15"
+                                                    d="m130.736 78.441-1.791 1.791a.72.72 0 0 1-1.02 0l-1.791-1.791a.72.72 0 0 1 0-1.02l1.791-1.791a.72.72 0 0 1 1.02 0l1.791 1.791a.72.72 0 0 1 0 1.02z" />
+                                                <path class="st2"
+                                                    d="m129.31 67.992-.655.655a.311.311 0 0 1-.441 0l-.655-.655a.312.312 0 0 1 .22-.532h1.31c.278 0 .418.336.221.532z" />
+                                                <path class="st17" d="m125.626 92.474-.34 2.755h6.299l-.34-2.755z" />
+                                            </g>
+                                        </g>
+                                    </g>
+                                </switch>
+                            </svg>
+                            <div class="for-border ml-4">
+
+                                <h5 class="for-label1 font-weight-bold">Comprehensive Coursework</h5>
+                                <p class="for-para custom_paragraph pr-2">Merkaii's Xcel courses content cover the
+                                    essential
+                                    Test-Plan topics throughly, including lectures, practice questions, and sample test. We
+                                    teach effective test-taking strategies to improve exam performance.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex for-element">
+                            <svg class="for-focus" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                x="0" y="0" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256"
+                                xml:space="preserve">
+                                <style>
+                                    .st0 {
+                                        fill: #4671c6
+                                    }
+
+                                    .st3 {
+                                        fill: #a4c9ff
+                                    }
+
+                                    .st4 {
+                                        fill: #3762cc
+                                    }
+
+                                    .st5 {
+                                        fill: #e0ebfc
+                                    }
+
+                                    .st7 {
+                                        fill: #b9befc
+                                    }
+                                </style>
                                 <path class="st3"
-                                    d="M222.145 182.068H33.355c-10.259 0-18.605-8.346-18.605-18.605V33.173c0-10.259 8.347-18.605 18.605-18.605h188.789c10.259 0 18.605 8.346 18.605 18.605v130.289c.001 10.26-8.346 18.606-18.604 18.606zm-188.79-164.5c-8.604 0-15.605 7-15.605 15.605v130.289c0 8.605 7.001 15.605 15.605 15.605h188.789c8.604 0 15.605-7.001 15.605-15.605V33.173c0-8.605-7.001-15.605-15.605-15.605H33.355z" />
-                                <path class="st14"
-                                    d="M28.861 115.877v40.271c0 6.583 5.337 11.92 11.92 11.92h173.938c6.583 0 11.92-5.337 11.92-11.92V40.488c0-6.583-5.337-11.92-11.92-11.92H40.781c-6.583 0-11.92 5.337-11.92 11.92v75.389z" />
-                                <path class="st3"
-                                    d="M214.719 169.568H40.781c-7.4 0-13.42-6.02-13.42-13.42v-40.271a1.5 1.5 0 1 1 3 0v40.271c0 5.746 4.675 10.42 10.42 10.42h173.938c5.745 0 10.42-4.674 10.42-10.42V40.488c0-5.746-4.675-10.42-10.42-10.42H40.781c-5.745 0-10.42 4.674-10.42 10.42v62.167a1.5 1.5 0 1 1-3 0V40.488c0-7.4 6.02-13.42 13.42-13.42h173.938c7.399 0 13.42 6.02 13.42 13.42v115.66c0 7.4-6.021 13.42-13.42 13.42z" />
-                                <path class="st4" d="M113.438 180.568h28.625v35.593h-28.625z" />
-                                <path class="st3"
-                                    d="M142.062 217.661h-28.625a1.5 1.5 0 0 1-1.5-1.5v-35.593a1.5 1.5 0 0 1 1.5-1.5h28.625a1.5 1.5 0 0 1 1.5 1.5v35.593a1.5 1.5 0 0 1-1.5 1.5zm-27.124-3h25.625v-32.593h-25.625v32.593z" />
-                                <path class="st4"
-                                    d="M135.202 239.568h36.252c0-12.927-10.479-23.407-23.407-23.407h-40.593c-12.927 0-23.407 10.479-23.407 23.407h51.155z" />
-                                <path class="st3"
-                                    d="M171.453 241.068h-36.252a1.5 1.5 0 1 1 0-3h34.701c-.773-11.382-10.28-20.407-21.855-20.407h-40.594c-11.575 0-21.082 9.024-21.855 20.407h36.033a1.5 1.5 0 1 1 0 3H84.047a1.5 1.5 0 0 1-1.5-1.5c0-13.733 11.173-24.907 24.906-24.907h40.594c13.733 0 24.906 11.173 24.906 24.907a1.5 1.5 0 0 1-1.5 1.5z" />
-                                <path class="st14"
-                                    d="M47.421 203.402s3.408 12.659 13.222 13.246c0 0-13.1 4.525-13.321 14.202 0 0-2.579-13.572-12.925-14.059 0 0 12.05-1.825 13.024-13.389z" />
-                                <path class="st3"
-                                    d="M47.321 232.349a1.502 1.502 0 0 1-1.473-1.217c-.023-.124-2.494-12.417-11.522-12.842a1.5 1.5 0 0 1-.155-2.982c.441-.069 10.895-1.817 11.754-12.032a1.501 1.501 0 0 1 2.943-.265c.031.116 3.259 11.626 11.863 12.141a1.5 1.5 0 0 1 .402 2.915c-.121.042-12.118 4.31-12.312 12.818a1.498 1.498 0 0 1-1.5 1.464zm-7.742-15.729c3.879 1.969 6.231 5.746 7.588 8.876 2.026-4.021 5.941-6.787 8.948-8.427-4.134-1.842-6.783-5.651-8.334-8.723-1.793 4.361-5.27 6.869-8.202 8.274z" />
-                                <path class="st14"
-                                    d="M25.722 220.382s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0 0 8.524-1.291 9.212-9.471z" />
-                                <path class="st3"
-                                    d="M25.651 241.297a1.5 1.5 0 0 1-1.473-1.22c-.016-.082-1.704-8.442-7.739-8.726a1.5 1.5 0 0 1-.154-2.982c.296-.047 7.363-1.243 7.942-8.114a1.501 1.501 0 0 1 1.361-1.368 1.506 1.506 0 0 1 1.582 1.102c.021.079 2.227 7.919 7.993 8.264a1.5 1.5 0 0 1 .4 2.916c-.081.028-8.282 2.953-8.412 8.662a1.5 1.5 0 0 1-1.5 1.466zm-4.519-11.527c2.108 1.333 3.524 3.394 4.447 5.28 1.376-2.232 3.515-3.872 5.365-4.973-2.287-1.269-3.885-3.35-4.941-5.224-1.174 2.287-3.016 3.876-4.871 4.917z" />
-                                <path class="st14"
-                                    d="M25.722 193.725s2.411 8.954 9.352 9.369c0 0-9.266 3.201-9.422 10.046 0 0-1.824-9.6-9.142-9.944 0-.001 8.524-1.292 9.212-9.471z" />
-                                <path class="st3"
-                                    d="M25.651 214.64a1.5 1.5 0 0 1-1.473-1.22c-.016-.082-1.704-8.442-7.739-8.726a1.5 1.5 0 0 1-.154-2.982c.296-.047 7.363-1.243 7.942-8.114a1.501 1.501 0 0 1 1.361-1.368c.712-.061 1.392.4 1.582 1.103.038.138 2.249 7.92 7.993 8.263a1.5 1.5 0 0 1 .4 2.915c-.081.028-8.282 2.952-8.412 8.662a1.5 1.5 0 0 1-1.5 1.467zm-4.519-11.528c2.108 1.332 3.524 3.394 4.447 5.28 1.376-2.233 3.515-3.872 5.365-4.973-2.287-1.269-3.885-3.35-4.941-5.224-1.174 2.287-3.016 3.876-4.871 4.917z" />
-                                <path class="st19"
-                                    d="M208.323 25.02a105.268 105.268 0 0 0-80.572 0v107.968a105.277 105.277 0 0 1 80.572 0V25.02z" />
-                                <path class="st3"
-                                    d="M208.323 134.488c-.194 0-.39-.038-.574-.114-25.607-10.607-53.816-10.607-79.424 0a1.498 1.498 0 0 1-2.074-1.386V25.02a1.5 1.5 0 0 1 .926-1.386c26.35-10.914 55.371-10.914 81.721 0a1.5 1.5 0 0 1 .926 1.386v107.968a1.498 1.498 0 0 1-1.501 1.5zm-40.286-11.071c13.118 0 26.237 2.451 38.786 7.351V26.027c-25.053-10.104-52.52-10.104-77.572 0v104.741c12.549-4.901 25.668-7.351 38.786-7.351z" />
-                                <path class="st19"
-                                    d="M127.749 25.02a105.268 105.268 0 0 0-80.572 0v107.968a105.277 105.277 0 0 1 80.572 0V25.02z" />
-                                <path class="st3"
-                                    d="M127.749 134.488c-.194 0-.39-.038-.574-.114-25.607-10.607-53.816-10.607-79.424 0a1.498 1.498 0 0 1-2.074-1.386V25.02a1.5 1.5 0 0 1 .926-1.386c26.35-10.914 55.371-10.914 81.721 0 .561.232.926.779.926 1.386v107.968a1.498 1.498 0 0 1-1.501 1.5zm-40.286-11.071c13.118 0 26.237 2.451 38.786 7.351V26.027c-25.053-10.104-52.52-10.104-77.572 0v104.741c12.549-4.901 25.668-7.351 38.786-7.351z" />
-                                <path class="st3"
-                                    d="M56.463 114.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 114.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 99.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 99.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 84.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.344 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 84.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.947-40.475-5.933-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 69.153a1.501 1.501 0 0 1-.443-2.934c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.515 1.515 0 0 1-.442.067zM137.462 69.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.933-60.13.039a1.508 1.508 0 0 1-.437.065zM56.463 54.153a1.5 1.5 0 0 1-.443-2.933c20.566-6.346 42.313-6.345 62.885-.001a1.5 1.5 0 0 1-.885 2.868c-19.996-6.167-41.129-6.167-61.115 0a1.548 1.548 0 0 1-.442.066zM137.462 54.013a1.501 1.501 0 0 1-.436-2.936c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.476 1.476 0 0 1-.437.066zM56.463 39.153a1.5 1.5 0 0 1-.443-2.933c20.566-6.346 42.313-6.345 62.885 0a1.5 1.5 0 0 1-.885 2.867c-19.996-6.167-41.129-6.167-61.115 0a1.548 1.548 0 0 1-.442.066zM137.462 39.013a1.501 1.501 0 0 1-.436-2.935c20.228-6.146 41.621-6.159 61.87-.041a1.5 1.5 0 0 1-.867 2.872c-19.681-5.946-40.475-5.934-60.13.039a1.508 1.508 0 0 1-.437.065z" />
-                                <circle cx="183.75" cy="183.932" r="56" style="fill:#8ac6dd" />
-                                <path class="st3"
-                                    d="M183.75 241.432c-31.706 0-57.5-25.794-57.5-57.5s25.794-57.5 57.5-57.5 57.5 25.794 57.5 57.5-25.794 57.5-57.5 57.5zm0-112c-30.052 0-54.5 24.449-54.5 54.5s24.448 54.5 54.5 54.5 54.5-24.449 54.5-54.5-24.448-54.5-54.5-54.5z" />
-                                <path class="st3"
-                                    d="M183.75 241.432c-21.474 0-38.943-25.794-38.943-57.5s17.47-57.5 38.943-57.5 38.943 25.794 38.943 57.5-17.469 57.5-38.943 57.5zm0-112c-19.819 0-35.943 24.449-35.943 54.5s16.124 54.5 35.943 54.5 35.943-24.449 35.943-54.5-16.124-54.5-35.943-54.5z" />
-                                <path class="st3"
-                                    d="M183.75 241.432c-10.405 0-16.02-29.626-16.02-57.5s5.615-57.5 16.02-57.5 16.02 29.626 16.02 57.5-5.615 57.5-16.02 57.5zm0-112c-6.158 0-13.02 22.382-13.02 54.5 0 32.118 6.862 54.5 13.02 54.5s13.02-22.382 13.02-54.5c0-32.117-6.862-54.5-13.02-54.5z" />
-                                <path class="st3"
-                                    d="M183.75 222.876c-31.706 0-57.5-17.47-57.5-38.944 0-21.474 25.794-38.943 57.5-38.943s57.5 17.47 57.5 38.943c0 21.474-25.794 38.944-57.5 38.944zm0-74.887c-30.052 0-54.5 16.124-54.5 35.943s24.448 35.944 54.5 35.944 54.5-16.124 54.5-35.944c0-19.819-24.448-35.943-54.5-35.943z" />
-                                <path class="st3"
-                                    d="M183.75 199.953c-27.875 0-57.5-5.615-57.5-16.02s29.625-16.02 57.5-16.02 57.5 5.615 57.5 16.02-29.625 16.02-57.5 16.02zm0-29.041c-32.117 0-54.5 6.862-54.5 13.02 0 6.159 22.383 13.02 54.5 13.02s54.5-6.862 54.5-13.02c0-6.158-22.383-13.02-54.5-13.02z" />
+                                    d="M178.346 248.616H77.654a7.039 7.039 0 0 1 0-14.078h100.692a7.039 7.039 0 0 1 0 14.078zM232.568 207.378H23.432c-5.634 0-10.202-4.567-10.202-10.202V64.553c0-5.634 4.567-10.202 10.202-10.202h209.137c5.634 0 10.202 4.567 10.202 10.202v132.623c-.001 5.634-4.568 10.202-10.203 10.202z" />
                                 <path
-                                    d="M214.719 30.068h-4.896V132.71a57.788 57.788 0 0 1 15.316 11.369V40.488c0-5.746-4.675-10.42-10.42-10.42z"
-                                    style="fill:#b9c239" />
-                            </g>
-                        </svg>
-                        <div class="for-border ml-4">
-                            <h5 class="for-label1 font-weight-bold">Evening and Weekend Courses</h5>
-                            <p class="for-para custom_paragraph pr-2">Daytime obligations shouldn't hinder your
-                                education. Merakii cater to working adults by providing classes outside of
-                                regular business hours.</p>
-
-                        </div>
-                    </div>
-                    <div class=" d-flex for-element">
-                        <svg class="for-affordability" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                            x="0" y="0" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256"
-                            xml:space="preserve">
-                            <style>
-                                .st0 {
-                                    fill: #382b73
-                                }
-
-                                .st2 {
-                                    fill: #f6ca14
-                                }
-
-                                .st3 {
-                                    fill: #e7ad27
-                                }
-
-                                .st5 {
-                                    fill: #fddd3a
-                                }
-
-                                .st7 {
-                                    fill: #009add
-                                }
-
-                                .st12 {
-                                    fill: #d0d2d3
-                                }
-
-                                .st13 {
-                                    fill: #fff
-                                }
-
-                                .st14 {
-                                    fill: #0099dc
-                                }
-
-                                .st15 {
-                                    fill: #1cade3
-                                }
-
-                                .st17 {
-                                    fill: #106ea0
-                                }
-                            </style>
-                            <switch>
-                                <g>
-                                    <circle class="st0" cx="128" cy="128" r="120" />
-                                    <circle cx="128" cy="128" r="102.5" style="fill:#473080" />
-                                    <path class="st0"
-                                        d="M195.675 124.643h-28.026l.008-23.562v.013l.001-1.777a8.855 8.855 0 0 0-2.751-6.43l-.013-.012a8.913 8.913 0 0 0-1.27-1.004l-.129-.083a8.843 8.843 0 0 0-4.72-1.357h-1.341c.37-1.883.565-3.829.565-5.82 0-16.568-13.431-30-30-30s-30 13.432-30 30c0 1.985.193 3.924.561 5.801l-38.215-.013a8.854 8.854 0 0 0-1.5.126c-4.192.712-7.385 4.36-7.387 8.755l-.001 1.777v-.006l-.018 53.485a8.885 8.885 0 0 0 8.881 8.887l28.039.009v25.352a9.115 9.115 0 0 0 .227 2.007 9.005 9.005 0 0 0 .744 2.039l.1.19a8.883 8.883 0 0 0 7.812 4.649h98.43a8.885 8.885 0 0 0 8.884-8.884V133.53a8.88 8.88 0 0 0-8.881-8.887z" />
-                                    <g>
-                                        <path class="st2"
-                                            d="m158.752 156.454-98.43-.033a8.884 8.884 0 0 1-8.881-8.887l.018-55.255a8.884 8.884 0 0 1 8.887-8.881l98.43.033a8.883 8.883 0 0 1 8.881 8.887l-.018 55.255a8.885 8.885 0 0 1-8.887 8.881z" />
-                                        <path class="st3"
-                                            d="m158.752 154.677-98.43-.033a8.884 8.884 0 0 1-8.881-8.887l-.001 1.777a8.885 8.885 0 0 0 8.881 8.887l98.43.033a8.885 8.885 0 0 0 8.887-8.881l.001-1.777c-.001 4.906-3.98 8.882-8.887 8.881z" />
-                                        <path
-                                            d="m158.776 83.43-98.43-.033a8.885 8.885 0 0 0-8.887 8.881l-.001 1.777a8.883 8.883 0 0 1 8.887-8.881l98.43.033a8.884 8.884 0 0 1 8.881 8.887l.001-1.777a8.884 8.884 0 0 0-8.881-8.887z"
-                                            style="fill:#fff235" />
-                                        <path class="st3" d="M51.456 92.298h116.198v16.936H51.456z" />
-                                        <path class="st5"
-                                            d="m155.743 123.894-93.859-.031a3.058 3.058 0 1 1 .002-6.116l93.859.031a3.057 3.057 0 1 1-.002 6.116zM117.85 138.255l-55.97-.019a3.058 3.058 0 1 1 .002-6.116l55.97.019a3.058 3.058 0 1 1-.002 6.116z" />
-                                        <g>
-                                            <path
-                                                d="M195.675 190.667h-98.43a8.884 8.884 0 0 1-8.884-8.884v-55.255a8.884 8.884 0 0 1 8.884-8.884h98.43a8.883 8.883 0 0 1 8.884 8.884v55.255a8.884 8.884 0 0 1-8.884 8.884z"
-                                                style="fill:#1caee4" />
-                                            <path class="st7"
-                                                d="M195.675 188.89h-98.43a8.884 8.884 0 0 1-8.884-8.884v1.777a8.884 8.884 0 0 0 8.884 8.884h98.43a8.884 8.884 0 0 0 8.884-8.884v-1.777a8.884 8.884 0 0 1-8.884 8.884z" />
-                                            <path
-                                                d="M195.675 117.643h-98.43a8.883 8.883 0 0 0-8.884 8.884v1.777a8.885 8.885 0 0 1 8.884-8.884h98.43a8.884 8.884 0 0 1 8.884 8.884v-1.777a8.884 8.884 0 0 0-8.884-8.884z"
-                                                style="fill:#27c1e6" />
-                                            <path class="st7"
-                                                d="M110.734 151.637h-9.476a3.554 3.554 0 0 1-3.554-3.554v-9.476a3.554 3.554 0 0 1 3.554-3.554h9.476a3.554 3.554 0 0 1 3.554 3.554v9.476a3.555 3.555 0 0 1-3.554 3.554z" />
-                                            <path class="st5"
-                                                d="M110.734 150.926h-9.476a3.554 3.554 0 0 1-3.554-3.554v-9.476a3.554 3.554 0 0 1 3.554-3.554h9.476a3.554 3.554 0 0 1 3.554 3.554v9.476a3.555 3.555 0 0 1-3.554 3.554z" />
-                                            <path class="st2" d="M102.442 139.081h7.107v7.107h-7.107z" />
-                                            <path class="st2"
-                                                d="M97.704 139.081h16.583v.711H97.704zM97.704 145.477h16.583v.711H97.704z" />
-                                            <path transform="rotate(-90 102.797 142.634)" class="st2"
-                                                d="M94.505 142.279h16.584v.711H94.505z" />
-                                            <path transform="rotate(-90 109.194 142.634)" class="st2"
-                                                d="M100.902 142.279h16.584v.711h-16.584z" />
-                                            <path class="st5"
-                                                d="M113.195 169.378H98.796a3.058 3.058 0 1 1 0-6.116h14.398a3.057 3.057 0 1 1 .001 6.116z" />
-                                            <g>
-                                                <path class="st5"
-                                                    d="M139.682 169.378h-14.398a3.058 3.058 0 1 1 0-6.116h14.398a3.058 3.058 0 0 1 0 6.116z" />
-                                            </g>
-                                            <g>
-                                                <path class="st5"
-                                                    d="M166.169 169.378H151.77a3.058 3.058 0 1 1 0-6.116h14.398a3.057 3.057 0 1 1 .001 6.116z" />
-                                            </g>
-                                            <g>
-                                                <path class="st5"
-                                                    d="M192.656 169.378h-14.398a3.058 3.058 0 1 1 0-6.116h14.398a3.058 3.058 0 0 1 0 6.116z" />
-                                            </g>
-                                            <g>
-                                                <path class="st5"
-                                                    d="M154.767 180.987h-55.97a3.058 3.058 0 1 1 0-6.116h55.97a3.058 3.058 0 1 1 0 6.116z" />
-                                            </g>
-                                            <g>
-                                                <path class="st5"
-                                                    d="M194.529 142.634a9.335 9.335 0 1 1-18.67 0 9.335 9.335 0 0 1 18.67 0z" />
-                                            </g>
-                                            <g>
-                                                <path class="st5"
-                                                    d="M179.555 142.634a9.335 9.335 0 1 1-18.67 0 9.335 9.335 0 0 1 18.67 0z" />
-                                            </g>
-                                        </g>
-                                        <path class="st3"
-                                            d="M98.054 83.41c.931 15.73 13.982 28.2 29.946 28.2 15.957 0 29.004-12.459 29.945-28.18l-59.891-.02z" />
-                                        <g>
-                                            <circle cx="128" cy="77.609" r="30" style="fill:#ef5a9d" />
-                                            <path
-                                                d="m147.658 93.661-.001-.005a3.53 3.53 0 0 0-.016-.101l-.001-.008-.016-.087-.005-.025-.018-.081-.006-.027-.018-.072-.01-.038-.031-.106-3.544-11.548-.039-.121a3.444 3.444 0 0 0-2.455-2.225 3.532 3.532 0 0 0-.372-.068l-5.918-.781a.694.694 0 0 0-.171-.559l-1.672-1.863a.696.696 0 0 0-.785-.178l-.105.043v-1.634c1.729-1.129 3.09-2.961 3.812-5.173.049.013.099.023.15.03.933.131 1.824-.719 1.989-1.898.165-1.179-.457-2.241-1.39-2.371a1.42 1.42 0 0 0-.195-.013 4.955 4.955 0 0 0-.007-.125l-.007-.107a5.77 5.77 0 0 0-.01-.131l-.01-.11-.013-.131-.012-.104-.016-.129-.015-.11-.017-.117-.018-.116-.019-.113-.02-.112a4.108 4.108 0 0 0-.023-.118l-.021-.102-.026-.122-.023-.101a19.36 19.36 0 0 0-.027-.113l-.026-.104-.032-.117-.026-.096-.031-.106a3.34 3.34 0 0 0-.032-.107l-.02-.062a7.088 7.088 0 0 0-.086-.258l-.028-.08-.038-.103a3.91 3.91 0 0 0-.037-.098l-.047-.118-.029-.073-.05-.117a2.633 2.633 0 0 0-.034-.078l-.051-.112-.034-.074-.056-.114-.035-.071a5.628 5.628 0 0 0-.056-.109l-.04-.075-.059-.109-.035-.061a6.983 6.983 0 0 0-.067-.117l-.033-.055c-.023-.04-.048-.079-.072-.118l-.03-.047-.078-.122-.027-.04a5.647 5.647 0 0 0-.086-.127l-.01-.014a7.784 7.784 0 0 0-1.112-1.275l-.002-.001a7.865 7.865 0 0 0-2.474-1.539l-.033-.012-.175-.066a.868.868 0 0 0-.047-.016l-.161-.055a7.199 7.199 0 0 0-.214-.068l-.06-.018-.158-.045-.058-.016-.182-.046-.033-.008a8.2 8.2 0 0 0-.446-.094l-.047-.008a5.39 5.39 0 0 0-.401-.062 2.184 2.184 0 0 0-.08-.01l-.144-.017-.088-.009a.088.088 0 0 1-.016-.002h-.004l-.12-.011-.092-.007-.105-.007-.066-.004-.059-.003-.066-.003-.106-.004-.059-.002-.029-.001a13.604 13.604 0 0 0-.418 0l-.065.002a7.216 7.216 0 0 0-.147.005l-.096.005a4.51 4.51 0 0 0-.204.014l-.124.01-.085.008-.123.013a2.574 2.574 0 0 0-.092.011l-.113.014-.102.015-.103.015-.104.018-.099.017-.105.02-.097.019-.104.023-.095.021-.11.026-.086.022-.111.029-.085.023a3.53 3.53 0 0 0-.192.057l-.114.036a5.309 5.309 0 0 0-.381.134l-.074.028a13.329 13.329 0 0 0-.299.123l-.063.028-.122.055-.055.026a4.584 4.584 0 0 0-.122.059l-.055.028a7.622 7.622 0 0 0-.127.065l-.043.023-.128.07-.046.026-.129.075a.602.602 0 0 1-.034.02l-.137.084-.025.016a6.9 6.9 0 0 0-.142.092l-.017.012-.147.1a.055.055 0 0 0-.008.006l-.152.109-.002.001c-1.899 1.404-3.168 3.682-3.322 6.648-.065 0-.13.004-.194.013-.933.131-1.556 1.192-1.39 2.371.165 1.179 1.055 2.029 1.988 1.898.051-.007.101-.017.15-.03.722 2.212 2.082 4.044 3.812 5.173v1.634l-.105-.043a.697.697 0 0 0-.785.178l-1.672 1.863a.691.691 0 0 0-.171.559l-5.918.781a3.485 3.485 0 0 0-1.289.434 3.45 3.45 0 0 0-.767.601c-.028.03-.056.059-.083.09a3.451 3.451 0 0 0-.727 1.289l-3.544 11.548a4.378 4.378 0 0 0-.031.108l-.004.015a3.326 3.326 0 0 0-.027.103l-.022.1-.003.013a1.618 1.618 0 0 0-.018.096l-.001.008a3.4 3.4 0 0 0-.047.693l.005.101a3.718 3.718 0 0 0 .092.593l.025.096a3.496 3.496 0 0 0 .391.899c.223.361.511.681.85.941.052.04.106.078.16.116.546.37 1.208.589 1.934.589h31.592a3.435 3.435 0 0 0 3.042-1.816 3.422 3.422 0 0 0 .361-1.02l.017-.098c.015-.099.026-.199.032-.3l.005-.101a3.47 3.47 0 0 0-.031-.585z"
-                                                style="fill:#e43d91" />
-                                            <path class="st3" d="M124.396 69.185h8.078v8.078h-8.078z" />
-                                            <path class="st2"
-                                                d="M121.825 64.308c.165 1.179-.457 2.241-1.39 2.371-.933.131-1.823-.719-1.989-1.898-.165-1.179.457-2.241 1.39-2.371.933-.131 1.824.719 1.989 1.898zM135.045 64.308c-.165 1.179.457 2.241 1.39 2.371s1.823-.719 1.989-1.898c.165-1.179-.457-2.241-1.39-2.371-.933-.131-1.824.719-1.989 1.898z" />
-                                            <path class="st5"
-                                                d="M136.856 63.013c0 5.543-3.77 10.037-8.421 10.037s-8.421-4.494-8.421-10.037 3.77-8.869 8.421-8.869c4.651-.001 8.421 3.325 8.421 8.869z" />
-                                            <path class="st2"
-                                                d="M128.435 72.179c-4.528 0-8.22-4.26-8.412-9.6a12.36 12.36 0 0 0-.009.434c0 5.543 3.77 10.037 8.421 10.037s8.421-4.494 8.421-10.037c0-.146-.004-.291-.009-.434-.193 5.34-3.884 9.6-8.412 9.6z" />
-                                            <path class="st2"
-                                                d="M136.833 63.711c-.281-4.766-3.452-7.737-7.477-8.13a7.937 7.937 0 0 0 7.384 9.083c.044-.312.074-.63.093-.953z" />
-                                            <path
-                                                d="M144.231 95.229h-31.592c-2.325 0-3.987-2.249-3.305-4.472l3.544-11.548a3.457 3.457 0 0 1 2.867-2.415l12.69-1.675 12.69 1.675a3.457 3.457 0 0 1 2.867 2.415l3.544 11.548c.682 2.223-.98 4.472-3.305 4.472z"
-                                                style="fill:#e6e7e8" />
-                                            <path class="st12"
-                                                d="m130.736 79.137-1.791 1.791a.72.72 0 0 1-1.02 0l-1.791-1.791a.72.72 0 0 1 0-1.02l1.791-1.791a.72.72 0 0 1 1.02 0l1.791 1.791a.72.72 0 0 1 0 1.02z" />
-                                            <path class="st13"
-                                                d="m109.334 92.151 3.544-11.548a3.457 3.457 0 0 1 2.867-2.415l12.69-1.675 12.69 1.675a3.457 3.457 0 0 1 2.867 2.415l3.544 11.548c.033.108.059.216.081.323a3.435 3.435 0 0 0-.081-1.716l-3.544-11.548a3.457 3.457 0 0 0-2.867-2.415l-12.69-1.676-12.69 1.676a3.458 3.458 0 0 0-2.867 2.415l-3.544 11.548a3.435 3.435 0 0 0-.081 1.716 3.39 3.39 0 0 1 .081-.323z" />
-                                            <path class="st12"
-                                                d="m128.435 75.128-2.737 3.833a.89.89 0 0 1-1.393.07l-2.649-3.017 6.779-.886zM128.435 75.128l2.737 3.833a.89.89 0 0 0 1.393.07l2.649-3.017-6.779-.886zM147.41 90.347a3.45 3.45 0 0 1-3.179 2.097h-31.592a3.45 3.45 0 0 1-3.179-2.097l-.126.411c-.682 2.223.98 4.471 3.305 4.471h31.592c2.325 0 3.987-2.249 3.305-4.471l-.126-.411z" />
-                                            <path class="st2"
-                                                d="M120.014 63.013c0 .456.028.904.077 1.344a9.547 9.547 0 0 0 12.011-9.222c0-.074-.004-.147-.005-.221a8.8 8.8 0 0 0-3.662-.77c-4.651-.001-8.421 3.325-8.421 8.869z" />
-                                            <path class="st14"
-                                                d="M120.024 62.568a7.94 7.94 0 0 0 11.205-7.991 9.004 9.004 0 0 0-2.794-.434c-4.525 0-8.215 3.149-8.411 8.425z" />
-                                            <path class="st15"
-                                                d="M128.435 55.536c.98 0 1.919.149 2.794.434l.006.078c.02-.23.032-.462.032-.698 0-.261-.014-.519-.038-.773a9.004 9.004 0 0 0-2.794-.434c-4.525 0-8.215 3.149-8.411 8.425.043.02.088.037.132.056.719-4.466 4.151-7.088 8.279-7.088z" />
-                                            <path class="st15"
-                                                d="M129.356 54.189a7.939 7.939 0 0 0 7.494 9.091c.002-.089.006-.178.006-.267 0-5.173-3.283-8.413-7.5-8.824z" />
-                                            <path
-                                                d="M129.356 55.582c3.901.38 7 3.183 7.443 7.695l.051.003c.002-.089.006-.178.006-.267 0-5.172-3.283-8.413-7.5-8.824a7.943 7.943 0 0 0-.053 1.858c.013-.156.031-.311.053-.465z"
-                                                style="fill:#23c1e6" />
-                                            <path class="st13"
-                                                d="M131.51 78.194c.24.239.618.271.894.075l2.518-1.785a.696.696 0 0 0 .113-1.031l-1.672-1.863a.696.696 0 0 0-.785-.178l-4.144 1.715 3.076 3.067z" />
-                                            <path class="st13"
-                                                d="M125.36 78.194a.696.696 0 0 1-.894.075l-2.519-1.785a.696.696 0 0 1-.112-1.031l1.672-1.863a.696.696 0 0 1 .785-.178l4.144 1.715-3.076 3.067z" />
-                                            <path class="st14" d="m125.286 95.229 2.156-17.479h1.986l2.157 17.479z" />
-                                            <path class="st12"
-                                                d="M137.84 85.724h-5.051a.698.698 0 0 1 0-1.396h5.051a.699.699 0 0 1 0 1.396zM114.682 95.229l1.501-8.299c.056-.312.506-.302.55.011l1.153 8.288h-3.204zM142.189 95.229l-1.501-8.299c-.056-.312-.506-.302-.55.011l-1.153 8.288h3.204z" />
-                                            <path class="st17"
-                                                d="m127.173 80.454.752.752a.72.72 0 0 0 1.02 0l.752-.752-.269-2.704h-1.986l-.269 2.704z" />
-                                            <path class="st15"
-                                                d="m130.736 78.441-1.791 1.791a.72.72 0 0 1-1.02 0l-1.791-1.791a.72.72 0 0 1 0-1.02l1.791-1.791a.72.72 0 0 1 1.02 0l1.791 1.791a.72.72 0 0 1 0 1.02z" />
-                                            <path class="st2"
-                                                d="m129.31 67.992-.655.655a.311.311 0 0 1-.441 0l-.655-.655a.312.312 0 0 1 .22-.532h1.31c.278 0 .418.336.221.532z" />
-                                            <path class="st17" d="m125.626 92.474-.34 2.755h6.299l-.34-2.755z" />
-                                        </g>
-                                    </g>
-                                </g>
-                            </switch>
-                        </svg>
-                        <div class="for-border ml-4">
-
-                            <h5 class="for-label1 font-weight-bold">Real-world Focused Curriculum</h5>
-                            <p class="for-para custom_paragraph pr-2"> Learning goes beyond the basics and our
-                                curriculum emphasizes achieving competency and mastering essential
-                                healthcare skills, preparing you for real-world scenarios.</p>
-                        </div>
-                    </div>
-                    <div class=" d-flex for-element">
-                        <svg class="for-focus" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0"
-                            y="0" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256" xml:space="preserve">
-                            <style>
-                                .st0 {
-                                    fill: #4671c6
-                                }
-
-                                .st3 {
-                                    fill: #a4c9ff
-                                }
-
-                                .st4 {
-                                    fill: #3762cc
-                                }
-
-                                .st5 {
-                                    fill: #e0ebfc
-                                }
-
-                                .st7 {
-                                    fill: #b9befc
-                                }
-                            </style>
-                            <path class="st3"
-                                d="M178.346 248.616H77.654a7.039 7.039 0 0 1 0-14.078h100.692a7.039 7.039 0 0 1 0 14.078zM232.568 207.378H23.432c-5.634 0-10.202-4.567-10.202-10.202V64.553c0-5.634 4.567-10.202 10.202-10.202h209.137c5.634 0 10.202 4.567 10.202 10.202v132.623c-.001 5.634-4.568 10.202-10.203 10.202z" />
-                            <path
-                                d="M25.982 190.8V70.929a3.826 3.826 0 0 1 3.826-3.826h196.384a3.826 3.826 0 0 1 3.826 3.826V190.8a3.826 3.826 0 0 1-3.826 3.826H29.808a3.826 3.826 0 0 1-3.826-3.826z"
-                                style="fill:#6bdddd" />
-                            <path class="st5" d="M105.684 207.378h44.633v27.16h-44.633z" />
-                            <path class="st4"
-                                d="M178.346 250.615H77.654c-4.984 0-9.039-4.055-9.039-9.039s4.055-9.039 9.039-9.039h100.691c4.984 0 9.039 4.055 9.039 9.039s-4.054 9.039-9.038 9.039zM77.654 236.537c-2.778 0-5.039 2.261-5.039 5.039s2.261 5.039 5.039 5.039h100.691c2.778 0 5.039-2.261 5.039-5.039s-2.261-5.039-5.039-5.039H77.654zM232.568 209.378H23.432c-6.729 0-12.202-5.474-12.202-12.202V64.553c0-6.729 5.474-12.202 12.202-12.202h209.137c6.729 0 12.202 5.474 12.202 12.202v132.623c0 6.728-5.474 12.202-12.203 12.202zM23.432 56.351c-4.522 0-8.202 3.68-8.202 8.202v132.623c0 4.522 3.68 8.202 8.202 8.202h209.137c4.522 0 8.202-3.68 8.202-8.202V64.553c0-4.522-3.68-8.202-8.202-8.202H23.432z" />
-                            <path class="st4"
-                                d="M150.316 236.537h-44.633a2 2 0 0 1-2-2v-27.159a2 2 0 0 1 2-2h44.633a2 2 0 0 1 2 2v27.159a2 2 0 0 1-2 2zm-42.632-4h40.633v-23.159h-40.633v23.159zM226.192 196.626H29.808a5.832 5.832 0 0 1-5.825-5.826V70.929a5.831 5.831 0 0 1 5.825-5.825h196.385a5.831 5.831 0 0 1 5.825 5.825V190.8a5.833 5.833 0 0 1-5.826 5.826zM29.808 69.104a1.826 1.826 0 0 0-1.825 1.825V190.8c0 1.007.818 1.826 1.825 1.826h196.385a1.827 1.827 0 0 0 1.825-1.826V70.929a1.826 1.826 0 0 0-1.825-1.825H29.808z" />
-                            <path class="st0"
-                                d="M128 155.538H43.427a3.677 3.677 0 0 1-3.677-3.677V42.835a3.677 3.677 0 0 1 3.677-3.677h78.001A6.572 6.572 0 0 1 128 45.73v109.808zM128 155.538h84.573a3.677 3.677 0 0 0 3.677-3.677V42.835a3.677 3.677 0 0 0-3.677-3.677h-78.001A6.572 6.572 0 0 0 128 45.73v109.808z" />
-                            <path class="st4"
-                                d="M128 157.538H43.427a5.684 5.684 0 0 1-5.677-5.678V42.835a5.684 5.684 0 0 1 5.677-5.677h78.001c4.727 0 8.572 3.846 8.572 8.572v109.808a2 2 0 0 1-2 2zM43.427 41.158c-.925 0-1.677.752-1.677 1.677V151.86a1.68 1.68 0 0 0 1.677 1.678H126V45.73a4.577 4.577 0 0 0-4.572-4.572H43.427z" />
-                            <path class="st4"
-                                d="M212.573 157.538H128a2 2 0 0 1-2-2V45.73c0-4.727 3.846-8.572 8.572-8.572h78.001a5.684 5.684 0 0 1 5.677 5.677V151.86a5.684 5.684 0 0 1-5.677 5.678zm-82.573-4h82.573a1.68 1.68 0 0 0 1.677-1.678V42.835c0-.925-.752-1.677-1.677-1.677h-78.001A4.577 4.577 0 0 0 130 45.73v107.808z" />
-                            <path class="st7"
-                                d="M201.542 33.21v6.067H54.458V33.21c-5.638.613-5.963 6.067-5.963 6.067v110.312h159.01V39.277c-.001 0-.325-5.454-5.963-6.067z" />
-                            <path class="st4"
-                                d="M207.505 151.59H48.495a2 2 0 0 1-2-2V39.277c0-.04.001-.079.004-.119.146-2.47 1.955-7.308 7.743-7.937a1.997 1.997 0 0 1 2.216 1.988v4.067h143.084V33.21a1.997 1.997 0 0 1 2.216-1.988c5.788.629 7.597 5.467 7.743 7.937.003.04.004.079.004.119V149.59a2 2 0 0 1-2 2zm-157.01-4h155.01V39.355c-.038-.395-.304-2.295-1.963-3.398v3.32a2 2 0 0 1-2 2H54.458a2 2 0 0 1-2-2v-3.324c-1.69 1.117-1.933 3.056-1.963 3.396V147.59z" />
-                            <path class="st5"
-                                d="M128 149.59H54.458V33.21h67.499A6.044 6.044 0 0 1 128 39.253V149.59zM128 149.59h73.542V33.21h-67.499A6.044 6.044 0 0 0 128 39.253V149.59z" />
-                            <path class="st4"
-                                d="M128 151.59H54.458a2 2 0 0 1-2-2V33.21a2 2 0 0 1 2-2h67.499c4.435 0 8.043 3.608 8.043 8.043V149.59a2 2 0 0 1-2 2zm-71.542-4H126V39.253a4.047 4.047 0 0 0-4.043-4.043H56.458v112.38z" />
-                            <path class="st4"
-                                d="M201.542 151.59H128a2 2 0 0 1-2-2V39.253c0-4.435 3.608-8.043 8.043-8.043h67.499a2 2 0 0 1 2 2v116.38a2 2 0 0 1-2 2zm-71.542-4h69.542V35.21h-65.499A4.047 4.047 0 0 0 130 39.253V147.59z" />
-                            <path class="st7"
-                                d="M122.037 143.641H54.458c-5.638.601-5.963 5.948-5.963 5.948h79.504c.001.001-.324-5.347-5.962-5.948zM201.542 143.641h-67.579c-5.638.601-5.963 5.948-5.963 5.948h79.505c-.001.001-.325-5.347-5.963-5.948z" />
-                            <path class="st4"
-                                d="M128 151.59H48.495a2 2 0 0 1-1.996-2.121c.147-2.434 1.957-7.199 7.747-7.815.07-.008.142-.012.212-.012h67.579c.07 0 .142.004.212.012 5.791.616 7.6 5.382 7.747 7.815A2.002 2.002 0 0 1 128 151.59zm-76.771-4h74.051c-.567-.879-1.572-1.731-3.356-1.948H54.571c-1.769.215-2.773 1.074-3.342 1.948z" />
-                            <path class="st4"
-                                d="M207.505 151.59H128a2 2 0 0 1-1.996-2.121c.147-2.434 1.956-7.199 7.747-7.815.07-.008.142-.012.212-.012h67.579c.07 0 .142.004.212.012 5.79.616 7.6 5.382 7.747 7.815a2 2 0 0 1-1.996 2.121zm-76.783-4h74.063c-.566-.879-1.572-1.731-3.355-1.948h-67.353c-1.783.216-2.789 1.068-3.355 1.948z" />
-                            <path class="st7"
-                                d="M191.859 54.801h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.574 2.574 0 0 1 0 5.148zM191.859 69.509h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.574 2.574 0 0 1 0 5.148zM191.859 113.634h-52.215a2.573 2.573 0 1 1 0-5.148h52.215c3.423 0 3.429 5.148 0 5.148zM191.859 128.343h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.575 2.575 0 0 1 0 5.148zM117.336 54.801H92.884a2.573 2.573 0 1 1 0-5.148h24.453a2.575 2.575 0 0 1-.001 5.148zM117.336 69.509H92.884a2.573 2.573 0 1 1 0-5.148h24.453a2.575 2.575 0 0 1-.001 5.148zM117.336 84.218H65.122a2.573 2.573 0 1 1 0-5.148h52.215a2.573 2.573 0 0 1 2.574 2.574 2.576 2.576 0 0 1-2.575 2.574zM117.336 98.926H65.122a2.573 2.573 0 1 1 0-5.148h52.215a2.575 2.575 0 0 1-.001 5.148zM118.44 128.343H64.019a1.472 1.472 0 0 1-1.471-1.471v-16.915c0-.812.659-1.471 1.471-1.471h54.421c.812 0 1.471.659 1.471 1.471v16.915a1.472 1.472 0 0 1-1.471 1.471zM85.346 69.509H64.019a1.472 1.472 0 0 1-1.471-1.471V51.124c0-.812.659-1.471 1.471-1.471h21.327c.812 0 1.471.659 1.471 1.471v16.915a1.47 1.47 0 0 1-1.471 1.47zM192.962 98.926h-54.421a1.472 1.472 0 0 1-1.471-1.471V80.541c0-.812.659-1.471 1.471-1.471h54.421c.812 0 1.471.659 1.471 1.471v16.915c0 .811-.659 1.47-1.471 1.47z" />
-                            <path
-                                d="M167.17 40.809h-7.933a32.628 32.628 0 0 0-2.26-5.44c5.896-5.896 6.787-6.302 6.787-8.446 0-1.07-.417-2.075-1.173-2.831l-8.124-8.124a4.002 4.002 0 0 0-5.663 0l-5.614 5.615a32.668 32.668 0 0 0-5.44-2.261v-7.933a4.008 4.008 0 0 0-4.004-4.004h-11.49a4.008 4.008 0 0 0-4.004 4.004v7.933a32.618 32.618 0 0 0-5.44 2.261c-5.892-5.892-6.3-6.787-8.445-6.787-1.07 0-2.075.417-2.832 1.173-12.092 12.092-12.07 9.841-2.51 19.402a32.628 32.628 0 0 0-2.26 5.44H88.83a4.008 4.008 0 0 0-4.004 4.004v11.49a4.008 4.008 0 0 0 4.004 4.004h7.933a32.628 32.628 0 0 0 2.26 5.44c-5.892 5.892-6.787 6.3-6.787 8.446 0 2.169.563 2.221 9.297 10.956a3.98 3.98 0 0 0 2.832 1.173 3.979 3.979 0 0 0 2.831-1.173l5.614-5.615a32.668 32.668 0 0 0 5.44 2.261v7.933a4.008 4.008 0 0 0 4.004 4.004h11.49a4.008 4.008 0 0 0 4.004-4.004v-7.933a32.618 32.618 0 0 0 5.44-2.261c5.892 5.892 6.3 6.787 8.445 6.787 1.07 0 2.075-.417 2.832-1.173l8.124-8.124a4.001 4.001 0 0 0 0-5.663l-5.614-5.615a32.628 32.628 0 0 0 2.26-5.44h7.933a4.008 4.008 0 0 0 4.004-4.004v-11.49a4.006 4.006 0 0 0-4.002-4.005zm-19.944 9.749c0 10.602-8.625 19.226-19.226 19.226s-19.226-8.625-19.226-19.226c0-10.601 8.625-19.226 19.226-19.226s19.226 8.624 19.226 19.226z"
-                                style="fill:#ffea94" />
-                            <path class="st3"
-                                d="M128 27.833c-12.53 0-22.724 10.194-22.724 22.724 0 12.531 10.194 22.725 22.724 22.725 12.531 0 22.725-10.194 22.725-22.725 0-12.529-10.194-22.724-22.725-22.724zm0 34.638c-6.569 0-11.914-5.345-11.914-11.914S121.43 38.644 128 38.644c6.569 0 11.914 5.343 11.914 11.913S134.569 62.471 128 62.471z" />
-                            <path class="st4"
-                                d="M133.745 95.731h-11.49a6.01 6.01 0 0 1-6.004-6.004V83.23a34.313 34.313 0 0 1-3.044-1.265l-4.597 4.597c-1.134 1.134-2.642 1.759-4.245 1.759s-3.111-.625-4.245-1.759c-1.646-1.646-3.001-2.982-4.116-4.083-4.999-4.933-5.768-5.69-5.768-8.287 0-2.598.988-3.568 4.665-7.18.5-.492 1.062-1.043 1.689-1.665a34.526 34.526 0 0 1-1.264-3.041H88.83a6.01 6.01 0 0 1-6.004-6.004V44.813a6.01 6.01 0 0 1 6.004-6.005h6.497a34.159 34.159 0 0 1 1.263-3.038c-.436-.429-.847-.831-1.234-1.209-3.367-3.292-5.222-5.104-5.223-7.575-.001-2.636 2.062-4.652 6.579-9.072a433.434 433.434 0 0 0 3.408-3.361 5.96 5.96 0 0 1 4.245-1.758c2.599 0 3.569.988 7.181 4.664.491.501 1.042 1.062 1.664 1.689a34.653 34.653 0 0 1 3.041-1.264v-6.496a6.01 6.01 0 0 1 6.004-6.004h11.49a6.01 6.01 0 0 1 6.004 6.004v6.496c1.032.373 2.05.795 3.044 1.265l4.597-4.597a6.008 6.008 0 0 1 8.49 0l8.124 8.125a5.959 5.959 0 0 1 1.76 4.245c0 2.598-.988 3.568-4.665 7.181-.501.492-1.062 1.043-1.689 1.665a34.33 34.33 0 0 1 1.264 3.04h6.497a6.01 6.01 0 0 1 6.004 6.005v11.489a6.01 6.01 0 0 1-6.004 6.004h-6.497a34.738 34.738 0 0 1-1.265 3.045l4.596 4.596a5.967 5.967 0 0 1 1.761 4.245 5.964 5.964 0 0 1-1.761 4.247l-8.124 8.123a5.965 5.965 0 0 1-4.245 1.759c-2.598 0-3.568-.987-7.177-4.661a546.866 546.866 0 0 0-1.668-1.692c-.993.469-2.01.892-3.041 1.263v6.497a6.012 6.012 0 0 1-6.005 6.003zm-20.933-18.197c.316 0 .636.075.93.229a30.612 30.612 0 0 0 5.106 2.121 2 2 0 0 1 1.403 1.909v7.934c0 1.104.899 2.004 2.004 2.004h11.49a2.007 2.007 0 0 0 2.004-2.004v-7.934a2 2 0 0 1 1.403-1.909 30.64 30.64 0 0 0 5.106-2.121 2.001 2.001 0 0 1 2.345.356c1.068 1.067 1.956 1.972 2.708 2.737 3.403 3.464 3.508 3.464 4.323 3.464a1.99 1.99 0 0 0 1.417-.587l8.124-8.124c.38-.38.589-.883.589-1.418 0-.534-.209-1.037-.589-1.416l-5.614-5.615a1.998 1.998 0 0 1-.355-2.346 30.752 30.752 0 0 0 2.121-5.105 2 2 0 0 1 1.909-1.403h7.934a2.007 2.007 0 0 0 2.004-2.004V44.813a2.007 2.007 0 0 0-2.004-2.005h-7.934a2 2 0 0 1-1.909-1.403 30.572 30.572 0 0 0-2.121-5.104 2 2 0 0 1 .355-2.346c1.066-1.066 1.97-1.954 2.733-2.705 3.469-3.407 3.469-3.512 3.469-4.327a1.99 1.99 0 0 0-.587-1.416l-8.125-8.126c-.758-.758-2.076-.758-2.834 0l-5.614 5.615a2 2 0 0 1-2.345.356 30.8 30.8 0 0 0-5.106-2.122 2 2 0 0 1-1.403-1.909v-7.933a2.007 2.007 0 0 0-2.004-2.004h-11.49a2.007 2.007 0 0 0-2.004 2.004v7.933a2 2 0 0 1-1.402 1.908 30.781 30.781 0 0 0-5.106 2.122 1.998 1.998 0 0 1-2.346-.355c-1.066-1.066-1.953-1.97-2.704-2.733-3.406-3.468-3.511-3.468-4.327-3.468a1.99 1.99 0 0 0-1.417.586c-1.28 1.281-2.426 2.401-3.439 3.393-3.004 2.938-5.376 5.26-5.376 6.212 0 .787 1.862 2.607 4.019 4.715.689.674 1.452 1.42 2.287 2.255.62.619.764 1.57.355 2.346a30.681 30.681 0 0 0-2.121 5.105 2.002 2.002 0 0 1-1.909 1.402H88.83a2.007 2.007 0 0 0-2.004 2.005v11.489c0 1.104.899 2.004 2.004 2.004h7.934a2 2 0 0 1 1.909 1.403 30.681 30.681 0 0 0 2.121 5.105 2 2 0 0 1-.355 2.346c-1.066 1.066-1.97 1.954-2.734 2.705-3.468 3.406-3.468 3.511-3.468 4.326 0 .854 0 .924 4.577 5.439 1.12 1.106 2.481 2.449 4.135 4.103.758.758 2.076.758 2.834 0l5.614-5.614a1.994 1.994 0 0 1 1.415-.586z" />
-                            <circle class="st5" cx="128" cy="50.472" r="15.802" />
-                            <path
-                                d="M121.229 42.231v15.442a1.49 1.49 0 0 0 2.207 1.305l14.038-7.721a1.49 1.49 0 0 0 0-2.61l-14.038-7.721a1.49 1.49 0 0 0-2.207 1.305z"
-                                style="fill:#f9a7a7" />
-                        </svg>
-                        <div class="for-border ml-4">
-                            <h5 class="for-label1 font-weight-bold">Prior Learning Recognition</h5>
-                            <p class="for-para custom_paragraph pr-2">Awarding credit for relevant certifications or
-                                past
-                                coursework, potentially reducing your overall program time.</p>
+                                    d="M25.982 190.8V70.929a3.826 3.826 0 0 1 3.826-3.826h196.384a3.826 3.826 0 0 1 3.826 3.826V190.8a3.826 3.826 0 0 1-3.826 3.826H29.808a3.826 3.826 0 0 1-3.826-3.826z"
+                                    style="fill:#6bdddd" />
+                                <path class="st5" d="M105.684 207.378h44.633v27.16h-44.633z" />
+                                <path class="st4"
+                                    d="M178.346 250.615H77.654c-4.984 0-9.039-4.055-9.039-9.039s4.055-9.039 9.039-9.039h100.691c4.984 0 9.039 4.055 9.039 9.039s-4.054 9.039-9.038 9.039zM77.654 236.537c-2.778 0-5.039 2.261-5.039 5.039s2.261 5.039 5.039 5.039h100.691c2.778 0 5.039-2.261 5.039-5.039s-2.261-5.039-5.039-5.039H77.654zM232.568 209.378H23.432c-6.729 0-12.202-5.474-12.202-12.202V64.553c0-6.729 5.474-12.202 12.202-12.202h209.137c6.729 0 12.202 5.474 12.202 12.202v132.623c0 6.728-5.474 12.202-12.203 12.202zM23.432 56.351c-4.522 0-8.202 3.68-8.202 8.202v132.623c0 4.522 3.68 8.202 8.202 8.202h209.137c4.522 0 8.202-3.68 8.202-8.202V64.553c0-4.522-3.68-8.202-8.202-8.202H23.432z" />
+                                <path class="st4"
+                                    d="M150.316 236.537h-44.633a2 2 0 0 1-2-2v-27.159a2 2 0 0 1 2-2h44.633a2 2 0 0 1 2 2v27.159a2 2 0 0 1-2 2zm-42.632-4h40.633v-23.159h-40.633v23.159zM226.192 196.626H29.808a5.832 5.832 0 0 1-5.825-5.826V70.929a5.831 5.831 0 0 1 5.825-5.825h196.385a5.831 5.831 0 0 1 5.825 5.825V190.8a5.833 5.833 0 0 1-5.826 5.826zM29.808 69.104a1.826 1.826 0 0 0-1.825 1.825V190.8c0 1.007.818 1.826 1.825 1.826h196.385a1.827 1.827 0 0 0 1.825-1.826V70.929a1.826 1.826 0 0 0-1.825-1.825H29.808z" />
+                                <path class="st0"
+                                    d="M128 155.538H43.427a3.677 3.677 0 0 1-3.677-3.677V42.835a3.677 3.677 0 0 1 3.677-3.677h78.001A6.572 6.572 0 0 1 128 45.73v109.808zM128 155.538h84.573a3.677 3.677 0 0 0 3.677-3.677V42.835a3.677 3.677 0 0 0-3.677-3.677h-78.001A6.572 6.572 0 0 0 128 45.73v109.808z" />
+                                <path class="st4"
+                                    d="M128 157.538H43.427a5.684 5.684 0 0 1-5.677-5.678V42.835a5.684 5.684 0 0 1 5.677-5.677h78.001c4.727 0 8.572 3.846 8.572 8.572v109.808a2 2 0 0 1-2 2zM43.427 41.158c-.925 0-1.677.752-1.677 1.677V151.86a1.68 1.68 0 0 0 1.677 1.678H126V45.73a4.577 4.577 0 0 0-4.572-4.572H43.427z" />
+                                <path class="st4"
+                                    d="M212.573 157.538H128a2 2 0 0 1-2-2V45.73c0-4.727 3.846-8.572 8.572-8.572h78.001a5.684 5.684 0 0 1 5.677 5.677V151.86a5.684 5.684 0 0 1-5.677 5.678zm-82.573-4h82.573a1.68 1.68 0 0 0 1.677-1.678V42.835c0-.925-.752-1.677-1.677-1.677h-78.001A4.577 4.577 0 0 0 130 45.73v107.808z" />
+                                <path class="st7"
+                                    d="M201.542 33.21v6.067H54.458V33.21c-5.638.613-5.963 6.067-5.963 6.067v110.312h159.01V39.277c-.001 0-.325-5.454-5.963-6.067z" />
+                                <path class="st4"
+                                    d="M207.505 151.59H48.495a2 2 0 0 1-2-2V39.277c0-.04.001-.079.004-.119.146-2.47 1.955-7.308 7.743-7.937a1.997 1.997 0 0 1 2.216 1.988v4.067h143.084V33.21a1.997 1.997 0 0 1 2.216-1.988c5.788.629 7.597 5.467 7.743 7.937.003.04.004.079.004.119V149.59a2 2 0 0 1-2 2zm-157.01-4h155.01V39.355c-.038-.395-.304-2.295-1.963-3.398v3.32a2 2 0 0 1-2 2H54.458a2 2 0 0 1-2-2v-3.324c-1.69 1.117-1.933 3.056-1.963 3.396V147.59z" />
+                                <path class="st5"
+                                    d="M128 149.59H54.458V33.21h67.499A6.044 6.044 0 0 1 128 39.253V149.59zM128 149.59h73.542V33.21h-67.499A6.044 6.044 0 0 0 128 39.253V149.59z" />
+                                <path class="st4"
+                                    d="M128 151.59H54.458a2 2 0 0 1-2-2V33.21a2 2 0 0 1 2-2h67.499c4.435 0 8.043 3.608 8.043 8.043V149.59a2 2 0 0 1-2 2zm-71.542-4H126V39.253a4.047 4.047 0 0 0-4.043-4.043H56.458v112.38z" />
+                                <path class="st4"
+                                    d="M201.542 151.59H128a2 2 0 0 1-2-2V39.253c0-4.435 3.608-8.043 8.043-8.043h67.499a2 2 0 0 1 2 2v116.38a2 2 0 0 1-2 2zm-71.542-4h69.542V35.21h-65.499A4.047 4.047 0 0 0 130 39.253V147.59z" />
+                                <path class="st7"
+                                    d="M122.037 143.641H54.458c-5.638.601-5.963 5.948-5.963 5.948h79.504c.001.001-.324-5.347-5.962-5.948zM201.542 143.641h-67.579c-5.638.601-5.963 5.948-5.963 5.948h79.505c-.001.001-.325-5.347-5.963-5.948z" />
+                                <path class="st4"
+                                    d="M128 151.59H48.495a2 2 0 0 1-1.996-2.121c.147-2.434 1.957-7.199 7.747-7.815.07-.008.142-.012.212-.012h67.579c.07 0 .142.004.212.012 5.791.616 7.6 5.382 7.747 7.815A2.002 2.002 0 0 1 128 151.59zm-76.771-4h74.051c-.567-.879-1.572-1.731-3.356-1.948H54.571c-1.769.215-2.773 1.074-3.342 1.948z" />
+                                <path class="st4"
+                                    d="M207.505 151.59H128a2 2 0 0 1-1.996-2.121c.147-2.434 1.956-7.199 7.747-7.815.07-.008.142-.012.212-.012h67.579c.07 0 .142.004.212.012 5.79.616 7.6 5.382 7.747 7.815a2 2 0 0 1-1.996 2.121zm-76.783-4h74.063c-.566-.879-1.572-1.731-3.355-1.948h-67.353c-1.783.216-2.789 1.068-3.355 1.948z" />
+                                <path class="st7"
+                                    d="M191.859 54.801h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.574 2.574 0 0 1 0 5.148zM191.859 69.509h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.574 2.574 0 0 1 0 5.148zM191.859 113.634h-52.215a2.573 2.573 0 1 1 0-5.148h52.215c3.423 0 3.429 5.148 0 5.148zM191.859 128.343h-52.215a2.573 2.573 0 1 1 0-5.148h52.215a2.575 2.575 0 0 1 0 5.148zM117.336 54.801H92.884a2.573 2.573 0 1 1 0-5.148h24.453a2.575 2.575 0 0 1-.001 5.148zM117.336 69.509H92.884a2.573 2.573 0 1 1 0-5.148h24.453a2.575 2.575 0 0 1-.001 5.148zM117.336 84.218H65.122a2.573 2.573 0 1 1 0-5.148h52.215a2.573 2.573 0 0 1 2.574 2.574 2.576 2.576 0 0 1-2.575 2.574zM117.336 98.926H65.122a2.573 2.573 0 1 1 0-5.148h52.215a2.575 2.575 0 0 1-.001 5.148zM118.44 128.343H64.019a1.472 1.472 0 0 1-1.471-1.471v-16.915c0-.812.659-1.471 1.471-1.471h54.421c.812 0 1.471.659 1.471 1.471v16.915a1.472 1.472 0 0 1-1.471 1.471zM85.346 69.509H64.019a1.472 1.472 0 0 1-1.471-1.471V51.124c0-.812.659-1.471 1.471-1.471h21.327c.812 0 1.471.659 1.471 1.471v16.915a1.47 1.47 0 0 1-1.471 1.47zM192.962 98.926h-54.421a1.472 1.472 0 0 1-1.471-1.471V80.541c0-.812.659-1.471 1.471-1.471h54.421c.812 0 1.471.659 1.471 1.471v16.915c0 .811-.659 1.47-1.471 1.47z" />
+                                <path
+                                    d="M167.17 40.809h-7.933a32.628 32.628 0 0 0-2.26-5.44c5.896-5.896 6.787-6.302 6.787-8.446 0-1.07-.417-2.075-1.173-2.831l-8.124-8.124a4.002 4.002 0 0 0-5.663 0l-5.614 5.615a32.668 32.668 0 0 0-5.44-2.261v-7.933a4.008 4.008 0 0 0-4.004-4.004h-11.49a4.008 4.008 0 0 0-4.004 4.004v7.933a32.618 32.618 0 0 0-5.44 2.261c-5.892-5.892-6.3-6.787-8.445-6.787-1.07 0-2.075.417-2.832 1.173-12.092 12.092-12.07 9.841-2.51 19.402a32.628 32.628 0 0 0-2.26 5.44H88.83a4.008 4.008 0 0 0-4.004 4.004v11.49a4.008 4.008 0 0 0 4.004 4.004h7.933a32.628 32.628 0 0 0 2.26 5.44c-5.892 5.892-6.787 6.3-6.787 8.446 0 2.169.563 2.221 9.297 10.956a3.98 3.98 0 0 0 2.832 1.173 3.979 3.979 0 0 0 2.831-1.173l5.614-5.615a32.668 32.668 0 0 0 5.44 2.261v7.933a4.008 4.008 0 0 0 4.004 4.004h11.49a4.008 4.008 0 0 0 4.004-4.004v-7.933a32.618 32.618 0 0 0 5.44-2.261c5.892 5.892 6.3 6.787 8.445 6.787 1.07 0 2.075-.417 2.832-1.173l8.124-8.124a4.001 4.001 0 0 0 0-5.663l-5.614-5.615a32.628 32.628 0 0 0 2.26-5.44h7.933a4.008 4.008 0 0 0 4.004-4.004v-11.49a4.006 4.006 0 0 0-4.002-4.005zm-19.944 9.749c0 10.602-8.625 19.226-19.226 19.226s-19.226-8.625-19.226-19.226c0-10.601 8.625-19.226 19.226-19.226s19.226 8.624 19.226 19.226z"
+                                    style="fill:#ffea94" />
+                                <path class="st3"
+                                    d="M128 27.833c-12.53 0-22.724 10.194-22.724 22.724 0 12.531 10.194 22.725 22.724 22.725 12.531 0 22.725-10.194 22.725-22.725 0-12.529-10.194-22.724-22.725-22.724zm0 34.638c-6.569 0-11.914-5.345-11.914-11.914S121.43 38.644 128 38.644c6.569 0 11.914 5.343 11.914 11.913S134.569 62.471 128 62.471z" />
+                                <path class="st4"
+                                    d="M133.745 95.731h-11.49a6.01 6.01 0 0 1-6.004-6.004V83.23a34.313 34.313 0 0 1-3.044-1.265l-4.597 4.597c-1.134 1.134-2.642 1.759-4.245 1.759s-3.111-.625-4.245-1.759c-1.646-1.646-3.001-2.982-4.116-4.083-4.999-4.933-5.768-5.69-5.768-8.287 0-2.598.988-3.568 4.665-7.18.5-.492 1.062-1.043 1.689-1.665a34.526 34.526 0 0 1-1.264-3.041H88.83a6.01 6.01 0 0 1-6.004-6.004V44.813a6.01 6.01 0 0 1 6.004-6.005h6.497a34.159 34.159 0 0 1 1.263-3.038c-.436-.429-.847-.831-1.234-1.209-3.367-3.292-5.222-5.104-5.223-7.575-.001-2.636 2.062-4.652 6.579-9.072a433.434 433.434 0 0 0 3.408-3.361 5.96 5.96 0 0 1 4.245-1.758c2.599 0 3.569.988 7.181 4.664.491.501 1.042 1.062 1.664 1.689a34.653 34.653 0 0 1 3.041-1.264v-6.496a6.01 6.01 0 0 1 6.004-6.004h11.49a6.01 6.01 0 0 1 6.004 6.004v6.496c1.032.373 2.05.795 3.044 1.265l4.597-4.597a6.008 6.008 0 0 1 8.49 0l8.124 8.125a5.959 5.959 0 0 1 1.76 4.245c0 2.598-.988 3.568-4.665 7.181-.501.492-1.062 1.043-1.689 1.665a34.33 34.33 0 0 1 1.264 3.04h6.497a6.01 6.01 0 0 1 6.004 6.005v11.489a6.01 6.01 0 0 1-6.004 6.004h-6.497a34.738 34.738 0 0 1-1.265 3.045l4.596 4.596a5.967 5.967 0 0 1 1.761 4.245 5.964 5.964 0 0 1-1.761 4.247l-8.124 8.123a5.965 5.965 0 0 1-4.245 1.759c-2.598 0-3.568-.987-7.177-4.661a546.866 546.866 0 0 0-1.668-1.692c-.993.469-2.01.892-3.041 1.263v6.497a6.012 6.012 0 0 1-6.005 6.003zm-20.933-18.197c.316 0 .636.075.93.229a30.612 30.612 0 0 0 5.106 2.121 2 2 0 0 1 1.403 1.909v7.934c0 1.104.899 2.004 2.004 2.004h11.49a2.007 2.007 0 0 0 2.004-2.004v-7.934a2 2 0 0 1 1.403-1.909 30.64 30.64 0 0 0 5.106-2.121 2.001 2.001 0 0 1 2.345.356c1.068 1.067 1.956 1.972 2.708 2.737 3.403 3.464 3.508 3.464 4.323 3.464a1.99 1.99 0 0 0 1.417-.587l8.124-8.124c.38-.38.589-.883.589-1.418 0-.534-.209-1.037-.589-1.416l-5.614-5.615a1.998 1.998 0 0 1-.355-2.346 30.752 30.752 0 0 0 2.121-5.105 2 2 0 0 1 1.909-1.403h7.934a2.007 2.007 0 0 0 2.004-2.004V44.813a2.007 2.007 0 0 0-2.004-2.005h-7.934a2 2 0 0 1-1.909-1.403 30.572 30.572 0 0 0-2.121-5.104 2 2 0 0 1 .355-2.346c1.066-1.066 1.97-1.954 2.733-2.705 3.469-3.407 3.469-3.512 3.469-4.327a1.99 1.99 0 0 0-.587-1.416l-8.125-8.126c-.758-.758-2.076-.758-2.834 0l-5.614 5.615a2 2 0 0 1-2.345.356 30.8 30.8 0 0 0-5.106-2.122 2 2 0 0 1-1.403-1.909v-7.933a2.007 2.007 0 0 0-2.004-2.004h-11.49a2.007 2.007 0 0 0-2.004 2.004v7.933a2 2 0 0 1-1.402 1.908 30.781 30.781 0 0 0-5.106 2.122 1.998 1.998 0 0 1-2.346-.355c-1.066-1.066-1.953-1.97-2.704-2.733-3.406-3.468-3.511-3.468-4.327-3.468a1.99 1.99 0 0 0-1.417.586c-1.28 1.281-2.426 2.401-3.439 3.393-3.004 2.938-5.376 5.26-5.376 6.212 0 .787 1.862 2.607 4.019 4.715.689.674 1.452 1.42 2.287 2.255.62.619.764 1.57.355 2.346a30.681 30.681 0 0 0-2.121 5.105 2.002 2.002 0 0 1-1.909 1.402H88.83a2.007 2.007 0 0 0-2.004 2.005v11.489c0 1.104.899 2.004 2.004 2.004h7.934a2 2 0 0 1 1.909 1.403 30.681 30.681 0 0 0 2.121 5.105 2 2 0 0 1-.355 2.346c-1.066 1.066-1.97 1.954-2.734 2.705-3.468 3.406-3.468 3.511-3.468 4.326 0 .854 0 .924 4.577 5.439 1.12 1.106 2.481 2.449 4.135 4.103.758.758 2.076.758 2.834 0l5.614-5.614a1.994 1.994 0 0 1 1.415-.586z" />
+                                <circle class="st5" cx="128" cy="50.472" r="15.802" />
+                                <path
+                                    d="M121.229 42.231v15.442a1.49 1.49 0 0 0 2.207 1.305l14.038-7.721a1.49 1.49 0 0 0 0-2.61l-14.038-7.721a1.49 1.49 0 0 0-2.207 1.305z"
+                                    style="fill:#f9a7a7" />
+                            </svg>
+                            <div class="for-border ml-4">
+                                <h5 class="for-label1 font-weight-bold">Community and Support</h5>
+                                <p class="for-para custom_paragraph pr-2">Merkaii Xcellence offers opportunities to connect
+                                    with other students preparing for the same exam or instructors, this can be a great
+                                    source for support, motivation and study tips.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -4728,13 +5129,13 @@
             </div>
             </div> --}}
                     <!-- <section>
-                                                                                                                                                                                                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                                                                                                                                                                                                            <div class="col-md-12">
-                                                                                                                                                                                                                                                                                                                                                                                                                <img src="{{ asset('public/frontend/infixlmstheme/img/images/WE_ARE_HERE_TO_LISTEN.png') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                    alt="" class="img-fluid w-100">
-                                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                    </section> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-md-12">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <img src="{{ asset('public/frontend/infixlmstheme/img/images/WE_ARE_HERE_TO_LISTEN.png') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" class="img-fluid w-100">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </section> -->
                     {{-- How to Buy --}}
                     {{-- hide from all screen --}}
                     <div class="section-margin-y container d-none">
@@ -5112,8 +5513,8 @@
 
                 {{-- FAQS section --}}
                 <section class="sec-10">
-                    <div class="container px-lg-5">
-                        <div class="row faqs-row  mt-lg-3 mb-lg-2 px-xl-5">
+                    <div class="container px-lg-5 py-3">
+                        <div class="row faqs-row px-xl-5">
                             {{-- <div class="col-sm-7 shadow_row video-h-cls p-0">
                             <div class="video-container">
                                 <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
@@ -5129,7 +5530,7 @@
                                 <div class="text-video-overlay" >
 
                                   <div class="d-flex text-center overlay-heading1">
-                                    <h2 class="font-weight-bold text-white">Take a Tour of Merakii</h2>
+                                    <h2 class="font-weight-bold text-white">Take a Tour of Merkaii Xcellence</h2>
                                   </div>
                                 </div>
                                 <div class="video-controls">
@@ -5139,11 +5540,11 @@
                                 </div>
                             </div>
                         </div> --}}
-                            <div class="col-md-8 shadow_row video-h-cls pr-lg-5 pl-lg-0">
+                            <div class="col-lg-8 col-md-7 shadow_row video-h-cls pr-xl-5 pl-lg-0 pr-lg-3">
                                 <div class="video-container">
-                                    <video id="myVideo" class="h-100 w-100" style="object-fit: cover">
+                                    <video id="myVideo" class=" w-100" style="object-fit: cover">
                                         <source
-                                            src="{{ asset('/public/uploads/images/footerimg/ezgif-2-78802b2d5b.mp4') }}">
+                                            src="{{ asset('/public/uploads/images/footerimg/intro-video.mp4') }}">
                                     </video>
                                     <div class="overlay-video"></div>
                                     <div class="text-video-overlay top-center">
@@ -5154,7 +5555,7 @@
                                     </div>
                                     <div class="text-video-overlay bottom-center">
                                         <div class="d-flex text-center overlay-heading1">
-                                            <h2 class="font-weight-bold text-white">Take a Tour of Merakii</h2>
+                                            <h2 class="font-weight-bold text-white">Take a Tour of Merkaii Xcellence</h2>
                                         </div>
                                     </div>
                                     <div class="video-controls">
@@ -5165,41 +5566,42 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 my-4 my-md-0">
-                        <div class=" shadow_ist d-flex flex-column align-items-center" 
-                        style="background-color: #b2dfcc">
-                        <h2 class="section-header font-weight-bold my-2" style=" padding: 1rem;">ASK US ANYTHING: FAQs</h2>
-                            <div class="accordion">
-                              
-                                <!-- tab-about1 -->
-                                @foreach ($faqs as $faq)
-                                    <div class="tab-about">
-                                        <div class="tab-about-wrapper">
-                                            <input type="checkbox" name="checkbox-1"
-                                                id="cb{{ $loop->iteration }}" />
-                                            <label for="cb{{ $loop->iteration }}" class="tab-about_label"
-                                                onclick="toggleAccordion('{{ $loop->iteration }}')">{{ $faq->question }}</label>
-                                            <div id="collapse_{{ $loop->iteration }}"
-                                                class="tab-about-content accordion-body">
-                                                {{-- <p class="text-white">{{ strip_tags($faq->answer) }}</p> --}}
-                                                <p class="">
-                                                    @php
-                                                        $answer = str_replace(
-                                                            '&nbsp;',
-                                                            ' ',
-                                                            htmlspecialchars_decode(strip_tags($faq->answer)),
-                                                        );
-                                                    @endphp
-                                                    {{ $answer }}
-                                                </p>
+                            <div class="col-lg-4 col-md-5 mt-4 mt-md-0 px-md-2">
+                                <div class=" shadow_ist d-flex flex-column align-items-center"
+                                    style="background-color: #b2dfcc;">
+                                    <h2 class="section-header font-weight-bold m-0 p-3">ASK US
+                                        ANYTHING: FAQs</h2>
+                                    <div class="accordion p-sm-3 p-2">
+
+                                        <!-- panel-about1 -->
+                                        @foreach ($faqs as $faq)
+                                            <div class="panel-about">
+                                                <div class="panel-about-wrapper mb-2">
+                                                    <input type="checkbox" name="checkbox-1"
+                                                        id="cb{{ $loop->iteration }}" />
+                                                    <label for="cb{{ $loop->iteration }}" class="panel-about_label"
+                                                        onclick="toggleAccordion('{{ $loop->iteration }}')">{{ $faq->question }}</label>
+                                                    <div id="collapse_{{ $loop->iteration }}"
+                                                        class="panel-about-content accordion-body">
+                                                        {{-- <p class="text-white">{{ strip_tags($faq->answer) }}</p> --}}
+                                                        <p class="">
+                                                            @php
+                                                                $answer = str_replace(
+                                                                    '&nbsp;',
+                                                                    ' ',
+                                                                    htmlspecialchars_decode(strip_tags($faq->answer)),
+                                                                );
+                                                            @endphp
+                                                            {{ $answer }}
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     </div>
-                                @endforeach
-                            </div>
-                            <a href="{{ route('customer-help') }}#faq" onclick="informationflag('faq')"
-                                class="m-md-3"> <button class="Faq-btn py-2 px-4 ">More FAQS</button></a>
-                        </div>
+                                    <a href="{{ route('customer-help') }}#faq" onclick="informationflag('faq')"
+                                        class="m-md-3 m-2"> <button class="Faq-btn">More FAQS</button></a>
+                                </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-12 custom_section_color shadow_row custom_paragraph d-none"
                                 style="padding: 1rem">
@@ -5342,114 +5744,49 @@
                 </section>
 
                 {{-- stayin touchend --}}
-                <section class="sec-11">
-                    <div class="container p-lg-5">
-                        <div class="row px-xl-5">
-                            <div class="col-md-12">
-                                <div class="pb-5 text-center ">
-                                    <h2 class="custom_heading_1 font-weight-bold">
-                                        Popular Events and News</h2>
-                                    <p class="custom_paragraph font-weight-bold">
-                                        Be in the Know: What’s happening at Merakii?
-                                    </p>
-                                    <p>Connect and Engage for all news and events from the desk of ThaRakii </p>
+                @if (count($latest_blogs) > 0)
+                    <section class="sec-11">
+                        <div class="container p-lg-5 py-3">
+                            <div class="row px-xl-5">
+                                <div class="col-md-12">
+                                    <div class="pb-lg-5 pb-4 text-center ">
+                                        <h2 class="custom_small_heading custom_heading_1 font-weight-bold">
+                                            Popular Events and News</h2>
+                                        <p class="custom_paragraph font-weight-bold">
+                                            Be in the Know: What’s happening at Merkaii Xcellence?
+                                        </p>
+                                        <p>Connect and Engage for all news and events from the desk of ThaRakii </p>
+                                    </div>
                                 </div>
-                            </div>
-                            {{-- new section --}}
-                            @if (count($featured_blogs) > 0)
-                                <div class="col-lg-7 px-lg-0 mb-4 mb-lg-0">
-                                    <div class="rts-event-section">
-                                        <h4 class="rts-section-title mb--25">Blogs and News</h4>
-                                        <div class="events-content">
-                                            <ul class="list-unstyled rts-counter">
-                                                @foreach ($featured_blogs as $thisblog)
-                                                    <li class="single-event">
-                                                        <div class="single-event-counter">
-                                                            <div class="count-number rt-clip-text"></div>
-                                                        </div>
-                                                        <div class="single-event-content">
-                                                            <h5 class="event-title">{{ $thisblog->title }}</h5>
-                                                            <div class="single-event-content-meta">
-                                                                <div class="event-date">
-                                                                    <span><i class="fa fa-calendar"></i></span>
-                                                                    <span>{{ Carbon\Carbon::parse($thisblog->authored_date)->format('d M, y') }}</span>
-                                                                </div>
-                                                                <div class="event-time">
-                                                                    <span><i class="fa fa-clock"></i></span>
-                                                                    <span>{{ Carbon\Carbon::parse($thisblog->created_at)->format('h:i a') }}</span>
-                                                                </div>
-                                                                {{-- <div class="event-place">
+                                {{-- new section --}}
+                                @if (count($featured_blogs) > 0)
+                                    <div class="col-lg-7 px-lg-0 mb-4 mb-lg-0">
+                                        <div class="rts-event-section">
+                                            <h4 class="rts-section-title mb--25">Blogs and News</h4>
+                                            <div class="events-content">
+                                                <ul class="list-unstyled rts-counter">
+                                                    @foreach ($featured_blogs as $thisblog)
+                                                        <li class="single-event">
+                                                            <div class="single-event-counter">
+                                                                <div class="count-number rt-clip-text"></div>
+                                                            </div>
+                                                            <a href = "{{ route('blogDetails', [$thisblog->slug]) }}" class="single-event-content">
+                                                                <h5 class="event-title">{{ $thisblog->title }}</h5>
+                                                                <div class="single-event-content-meta">
+                                                                    <div class="event-date">
+                                                                        <span><i class="fa fa-calendar"></i></span>
+                                                                        <span>{{ Carbon\Carbon::parse($thisblog->authored_date)->format('d M, y') }}</span>
+                                                                    </div>
+                                                                    <div class="event-time">
+                                                                        <span><i class="fa fa-clock"></i></span>
+                                                                        <span>{{ Carbon\Carbon::parse($thisblog->created_at)->format('h:i a') }}</span>
+                                                                    </div>
+                                                                    {{-- <div class="event-place">
                                 <span><i class="fa fa-location-dot"></i></span>
                                 <span>Yarra Park, UK</span>
                             </div> --}}
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                @endforeach
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                            <div class="col-md-12 @if (count($featured_blogs) > 0) col-lg-5 @else col-lg-12 @endif">
-                                @php
-                                    $tags = Modules\Blog\Entities\Blog::where('status', 1)->pluck('tags')->toArray(); // Assuming 'tags' is the column name
-
-                                    $tagsArray = [];
-
-                                    foreach ($tags as $tagString) {
-                                        $tagsArray = array_merge($tagsArray, explode(',', trim($tagString)));
-                                    }
-                                    $tagsArray = array_unique($tagsArray);
-                                @endphp
-                                <div class="news-events-tabs-section">
-                                    <div class="rts-section rt-between pb--25 rts-border-bottom-2">
-                                        <h4 class="rts-section-title">Events</h4>
-                                        <a href="{{ route('blogs') }}" class="rts-arrow">View All <span><i
-                                                    class="fa fa-arrow-right"></i></span></a>
-                                    </div>
-                                    <div class="news-events-tab">
-                                        <div class="wrapper">
-                                            <div class="eventsIcon"><i id="left" class="fa-solid fa-angle-left"></i></div>
-                                        <ul class="nav nav-tabs pb--30 news-events-navtabs">
-                                            <li class="nav-item active" role="presentation">
-                                                <a class="nav-link blog-tag active" data-tag="latest"
-                                                    href="javascript:void(0)">Latest</a>
-                                            </li>
-                                            @foreach ($tagsArray as $tag)
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link blog-tag" class="nav-link"
-                                                        data-tag="{{ $tag }}" href="javascript:void(0)">
-                                                        {{ $tag }} </a>
-                                                </li>
-                                            @endforeach
-                                            {{-- <li class="nav-item" role="presentation">
-                                                <a class="nav-link" data-toggle="pill" href="#Admission">Admission</a>
-                                            </li> --}}
-                                        </ul>
-                                        <div class="eventsIcon"><i id="right" class="fa-solid fa-angle-right"></i></div>
-                                        </div>
-                                        {{-- fortabs --}}
-                                        <div class="tab-content">
-                                            <div id="home" class="tab-pane active">
-                                                <ul class="list-unstyled notice-content-box" id="blogs_ul">
-                                                    @foreach ($latest_blogs as $latest_blog)
-                                                        <li class="single-notice">
-                                                            <div class="single-notice-item">
-                                                                <div class="notice-date">
-                                                                    {{ Carbon\Carbon::parse($latest_blog->authored_date)->format('d') }}<br>
-                                                                    <span>{{ Carbon\Carbon::parse($latest_blog->authored_date)->format('M') }}</span>
                                                                 </div>
-                                                                <div class="notice-content">
-                                                                    <p>
-                                                                        <a
-                                                                            href="{{ route('blogDetails', [$latest_blog->slug]) }}">
-                                                                            {{ $latest_blog->title }}
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                            </div>
+                                                            </a>
                                                         </li>
                                                     @endforeach
 
@@ -5457,101 +5794,178 @@
                                             </div>
                                         </div>
                                     </div>
+                                @endif
+                                <div class="col-md-12 @if (count($featured_blogs) > 0) col-lg-5 @else col-lg-12 @endif">
+                                    @php
+                                        $tags = Modules\Blog\Entities\Blog::where('status', 1)
+                                            ->pluck('tags')
+                                            ->toArray(); // Assuming 'tags' is the column name
+
+                                        $tagsArray = [];
+
+                                        foreach ($tags as $tagString) {
+                                            $tagsArray = array_merge($tagsArray, explode(',', trim($tagString)));
+                                        }
+                                        $tagsArray = array_unique($tagsArray);
+                                    @endphp
+                                    <div class="news-events-tabs-section">
+                                        <div class="rts-section rt-between pb--25 rts-border-bottom-2">
+                                            <h4 class="rts-section-title">Events</h4>
+                                            <a href="{{ route('blogs') }}" class="rts-arrow">View All <span><i
+                                                        class="fa fa-arrow-right"></i></span></a>
+                                        </div>
+                                        <div class="news-events-tab">
+                                            <div class="events_wrapper">
+                                                <div class="eventsIcon"><i id="left"
+                                                        class="fa-solid fa-angle-left"></i>
+                                                </div>
+                                                <ul class="nav nav-tabs pb--30 news-events-navtabs">
+                                                    <li class="nav-item active" role="presentation">
+                                                        <a class="nav-link blog-tag active" data-tag="latest"
+                                                            href="javascript:void(0)">Latest</a>
+                                                    </li>
+                                                    @foreach ($tagsArray as $tag)
+                                                        @if ($tag != '')
+                                                            <li class="nav-item" role="presentation">
+                                                                <a class="nav-link blog-tag" class="nav-link"
+                                                                    data-tag="{{ $tag }}"
+                                                                    href="javascript:void(0)">
+                                                                    {{ $tag }} </a>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+                                                    {{-- <li class="nav-item" role="presentation">
+                                                <a class="nav-link" data-toggle="pill" href="#Admission">Admission</a>
+                                            </li> --}}
+                                                </ul>
+                                                <div class="eventsIcon"><i id="right"
+                                                        class="fa-solid fa-angle-right"></i></div>
+                                            </div>
+                                            {{-- fortabs --}}
+                                            <div class="tab-content">
+                                                <div id="home" class="tab-pane active">
+                                                    <ul class="list-unstyled notice-content-box" id="blogs_ul">
+                                                        @foreach ($latest_blogs as $latest_blog)
+                                                            <li class="single-notice">
+                                                                <div class="single-notice-item">
+                                                                    <div class="notice-date">
+                                                                        {{ Carbon\Carbon::parse($latest_blog->authored_date)->format('d') }}<br>
+                                                                        <span>{{ Carbon\Carbon::parse($latest_blog->authored_date)->format('M') }}</span>
+                                                                    </div>
+                                                                    <div class="notice-content">
+                                                                        <p>
+                                                                            <a
+                                                                                href="{{ route('blogDetails', [$latest_blog->slug]) }}">
+                                                                                {{ $latest_blog->title }}
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        @endforeach
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                {{-- section tabssss --}}
+
+
                             </div>
-
-                            {{-- section tabssss --}}
-
-
                         </div>
-                    </div>
-                </section>
-
+                    </section>
+                @endif
                 <!-- <div class="row m-0 mt-5 shadow">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
-                <div class="text-white">
-                <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
-                <p class="my-3 text-justify text-white">
-                MCOH is an inclusive and equitable enviroment that provides educational
-                oppturities for anyone seeking update their skill being a new career path and
-                enhance professional Skills </p>
-                <div class="mb-4 text-white">
-                <p class="locaton py-1 text-white">
-                    <i class="fi fi-rs-marker"></i>
-                    501 S. Florida Avenue<br>
-                    <span class="ml-4">Lakeland, FL 33801</span>
-                </p>
-                <p class="call py-1 text-white">
-                    <i class="fi fi-br-phone-call"></i>
-                    863-250-8764 | 347-525-1736
-                </p>
-                <p class="time py-1 text-white">
-                    <i class="fi fi-rs-clock-three"></i>
-                    Mon - Thur: 8:30 AM - 7:00 PM
-                </p>
-                </div>
-                </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
-                <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
-                <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
-                @csrf
-                <label for="name" class="form-label">Your Name</label>
-                <input type="text" name="name" class="form-control form_sm mb-2"
-                placeholder="">
-                <label for="" class="form-label">Email Address</label>
-                <input type="email" name="email" class="form-control form_sm mb-2"
-                placeholder="">
-                <label for="" class="form-label">Phone #</label>
-                <input type="text" name="phone" class="form-control form_sm mb-2"
-                placeholder="">
-                <label for="" class="form-label">Zip Code</label>
-                <input type="text" name="zip" class="form-control form_sm mb-2"
-                placeholder="">
-                <label for="" class="form-label">Select Program</label>
-                <select id="program" name="program" class="form-control form_sm mb-2" required>
-                <option value="" selected>Select Program</option>
-                <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
-                <option value="Refresher-RM(Endorsement & inactive License)">
-                    Refresher-RM(Endorsement & inactive License)
-                </option>
-                <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
-                <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
-                    Testing)
-                </option>
-                <option value="Clinical-Proctor">Clinical-Proctor</option>
-                </select>
-                <label for="year" class="form-label mt-2">High School Grade Year</label>
-                <select id="years" name="year" class="form-control form_sm w-100 mb-2"
-                required>
-                <option value="" selected>Select Year</option>
-                @php
-                    $years = range(date('Y'), 1950);
-                @endphp
-                @forelse ($years as $year)
+                                                                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 bg-dark">
+                                                                                            <div class="text-white">
+                                                                                            <h2 class="custom_heading_1 font-weight-bold my-4 text-white">About Us</h2>
+                                                                                            <p class="my-3 text-justify text-white">
+                                                                                            MCOH is an inclusive and equitable enviroment that provides educational
+                                                                                            oppturities for anyone seeking update their skill being a new career path and
+                                                                                            enhance professional Skills </p>
+                                                                                            <div class="mb-4 text-white">
+                                                                                            <p class="locaton py-1 text-white">
+                                                                                                <i class="fi fi-rs-marker"></i>
+                                                                                                501 S. Florida Avenue<br>
+                                                                                                <span class="ml-4">Lakeland, FL 33801</span>
+                                                                                            </p>
+                                                                                            <p class="call py-1 text-white">
+                                                                                                <i class="fi fi-br-phone-call"></i>
+                                                                                                863-250-8764 | 347-525-1736
+                                                                                            </p>
+                                                                                            <p class="time py-1 text-white">
+                                                                                                <i class="fi fi-rs-clock-three"></i>
+                                                                                                Mon - Thur: 8:30 AM - 7:00 PM
+                                                                                            </p>
+                                                                                            </div>
+                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 custom_section_color p-0">
+                                                                                            <form method="POST" action="{{ route('contactMsgSubmit') }}" class="fe mx-4 mt-2">
+                                                                                            <h2 class="custom_heading_1 font-weight-bold my-4">Stay in Touch!</h2>
+                                                                                            @csrf
+                                                                                            <label for="name" class="form-label">Your Name</label>
+                                                                                            <input type="text" name="name" class="form-control form_sm mb-2"
+                                                                                            placeholder="">
+                                                                                            <label for="" class="form-label">Email Address</label>
+                                                                                            <input type="email" name="email" class="form-control form_sm mb-2"
+                                                                                            placeholder="">
+                                                                                            <label for="" class="form-label">Phone #</label>
+                                                                                            <input type="text" name="phone" class="form-control form_sm mb-2"
+                                                                                            placeholder="">
+                                                                                            <label for="" class="form-label">Zip Code</label>
+                                                                                            <input type="text" name="zip" class="form-control form_sm mb-2"
+                                                                                            placeholder="">
+                                                                                            <label for="" class="form-label">Select Program</label>
+                                                                                            <select id="program" name="program" class="form-control form_sm mb-2" required>
+                                                                                            <option value="" selected>Select Program</option>
+                                                                                            <option value="REMEDIAL-RN(176 Hours)">REMEDIAL-RN(176 Hours)</option>
+                                                                                            <option value="Refresher-RM(Endorsement & inactive License)">
+                                                                                                Refresher-RM(Endorsement & inactive License)
+                                                                                            </option>
+                                                                                            <option value="NCLEX Refresher(Prep)">NCLEX Refresher(Prep)</option>
+                                                                                            <option value="CNA Exam Prep(Skills Testing)">CNA Exam Prep(Skills
+                                                                                                Testing)
+                                                                                            </option>
+                                                                                            <option value="Clinical-Proctor">Clinical-Proctor</option>
+                                                                                            </select>
+                                                                                            <label for="year" class="form-label mt-2">High School Grade Year</label>
+                                                                                            <select id="years" name="year" class="form-control form_sm w-100 mb-2"
+                                                                                            required>
+                                                                                            <option value="" selected>Select Year</option>
+                                                                                            @php
+                                                                                                $years = range(
+                                                                                                    date('Y'),
+                                                                                                    1950,
+                                                                                                );
+                                                                                            @endphp
+                                                                                            @forelse ($years as $year)
     <option value="{{ $year }}">{{ $year }}</option>
     @empty
-                <option value="">No Year Found</option>
+                                                                                            <option value="">No Year Found</option>
     @endforelse
-                    </select>
-                    <label for="message" class="form-label mt-2">Message</label>
-                    <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
-                        placeholder="" required style="resize: none"></textarea>
-                    <div class="col-md-12 my-3 text-center">
-                        <button type="submit" class="theme_btn small_btn4">Submit</button>
-                    </div>
-                </form>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
+                                                                                                </select>
+                                                                                                <label for="message" class="form-label mt-2">Message</label>
+                                                                                                <textarea name="message" class="form-control form_sm" rows="4" aria-required="true" aria-invalid="false"
+                                                                                                    placeholder="" required style="resize: none"></textarea>
+                                                                                                <div class="col-md-12 my-3 text-center">
+                                                                                                    <button type="submit" class="theme_btn small_btn4">Submit</button>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                            </div>
+                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 d-none d-lg-block d-md-block p-0">
 
-                <div class="video1" onclick="homeVideo()">
-                    <div class="vidicons m-auto">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
-                </div>
-                </div>
-                </div>
-                -->
+                                                                                            <div class="video1" onclick="homeVideo()">
+                                                                                                <div class="vidicons m-auto">
+                                                                                                    <i class="fa-solid fa-play"></i>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            </div>
+                                                                                            </div>
+                                                                                            -->
 
 
                 <div class="modal fade" id="video_image" tabindex="-1" role="dialog"
@@ -5584,9 +5998,9 @@
 
 
                 <!-- new section -->
-                <section class="sec-12">
-                    <div class="container-fluid mintban px-lg-5 mb-5">
-                        <div class="container mintban_row mb-5 mt-5 mt-lg-3 d-flex justify-content-center">
+                <section class="sec-12 pb-3">
+                    <div class="container-fluid mintban px-lg-5 my-lg-5 my-4">
+                        <div class="container mintban_row d-flex justify-content-center">
                             {{-- <div class="col-md-12 mb-5">
             <div class="row "> --}}
                             <div class="row flowdiv ">
@@ -5594,11 +6008,11 @@
                                 <div class="col-lg-4 col-md-6 my-3 my-lg-0 ankar flowdiv-ele">
 
                                     <div class="dataflow p-2 text-white d-flex justify-content-center align-items-center">
-                                        <div class="eltdf-eh-item-content eltdf-eh-custom-5500 py-3 py-md-0 px-4">
-                                            <div class="cta_service_info txt">
-                                                <h2 class="mb-4">Become a MCInstructor | Tutor</h2>
+                                        <div class="eltdf-eh-item-content eltdf-eh-custom-5500 py-3 py-md-0 px-sm-4 px-2">
+                                            <div class="cta_service_info txt py-3">
+                                                <h2 class="custom_small_heading mb-4">Become a MCInstructor | Tutor</h2>
                                                 <p class="mb-4"> Make a difference in the lives of future generations:
-                                                    Merakii seeks
+                                                    Merkaii Xcellence seeks
                                                     passionate
                                                     educators. Our students come from a variety of backgrounds, and so can
                                                     you. Share
@@ -5611,12 +6025,12 @@
                                                     Instructor</a>
 
                                                 <!--
-                                                                                                                                                                                                                                                       <h1 class="mx-3 mt-5 pt-4">Ut enim ad minim veniam, quis nos trud exercita ion</h1>
-                                                                                                                                                                                                                                        <p class="mx-3 mt-2 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                                                                                                                                                                                                                        Doloremque, eveniet deleniti atque dicta ullam officia rerum. Non iure quos sint deserunt
-                                                                                                                                                                                                                                             sed officia sequi assumenda eos repellendus expedita? Quasi veritatis tenetur, fugiat quis
-                                                                                                                                                                                                                                                           numquam maxime voluptate praesentium dolores amet nemo ipsum soluta unde quam suscipit.
-                                                                                                                                                                                                                                                                                                        Rerum nobis amet voluptatem eos.</p> -->
+                                                                                                                                                                                                                                                                                                                                   <h1 class="mx-3 mt-5 pt-4">Ut enim ad minim veniam, quis nos trud exercita ion</h1>
+                                                                                                                                                                                                                                                                                                                    <p class="mx-3 mt-2 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                                                                                                                                                                                                                                                                                                    Doloremque, eveniet deleniti atque dicta ullam officia rerum. Non iure quos sint deserunt
+                                                                                                                                                                                                                                                                                                                         sed officia sequi assumenda eos repellendus expedita? Quasi veritatis tenetur, fugiat quis
+                                                                                                                                                                                                                                                                                                                                       numquam maxime voluptate praesentium dolores amet nemo ipsum soluta unde quam suscipit.
+                                                                                                                                                                                                                                                                                                                                                                                    Rerum nobis amet voluptatem eos.</p> -->
                                                 {{-- <img src="{{ asset('public/assets/left-arrow-64.png') }}" height="50"
                                         class="lia" style="position:absolute;right: -12px;"> --}}
                                             </div>
@@ -5624,17 +6038,20 @@
                                     </div>
                                 </div>
                                 <!-- <div class="col-sm-6 ankar col-md-6 p-0" >
-                                                                             </div> -->
+                                                                                                                                                         </div> -->
                                 {{-- form-add --}}
                                 <div class="col-lg-4 col-md-6 my-3 my-lg-0 flowdiv-ele d-flex align-items-center">
 
-                                    <form
-                                        class="w-100 custom_section_color shadow_row custom_paragraph custom_form mb-0 py-3 py-md-0 px-4">
-                                        <h2 class="custom_heading_1 font-weight-bold my-2 form_h1">Stay in Touch!</h2>
+                                    <form method="POST" action="{{ route('contactMsgSubmit') }}"
+                                        class="w-100 custom_section_color shadow_row custom_paragraph custom_form mb-0 py-3 py-md-0 px-sm-4 px-2">
+                                        <h2 class="custom_small_heading custom_heading_1 font-weight-bold my-2 form_h1">
+                                            Stay in Touch!</h2>
+                                        @csrf
                                         <div class="form-row mt-3">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="outside form-control" required />
+                                                    <input type="text" class="outside form-control" required
+                                                        name="name" />
                                                     <span class="floating-label-outside">Your name</span>
                                                     <i class="fa fa-user-o input-icon-outside"></i>
                                                 </div>
@@ -5644,7 +6061,8 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" id="dateInput" class="outside" required />
+                                                    <input type="text" id="dateInput" class="outside" required
+                                                        name="email" />
                                                     <span class="floating-label-outside">Email Address</span>
                                                     <i class="fa fa-envelope-o input-icon-outside"></i>
                                                 </div>
@@ -5654,7 +6072,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="outside" required />
+                                                    <input type="text" class="outside" required name="phone" />
                                                     <span class="floating-label-outside">Phone #</span>
                                                     <i class="fa fa-mobile input-icon-outside"></i>
                                                 </div>
@@ -5664,7 +6082,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="outside" required />
+                                                    <input type="text" class="outside" name="zip" required />
                                                     <span class="floating-label-outside">Zip Code</span>
                                                     <i class="fa fa-map-marker input-icon-outside"></i>
                                                 </div>
@@ -5674,14 +6092,30 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <select class="outside" required>
+                                                    <select class="outside" name="program">
                                                         <option value="" disabled selected></option>
-                                                        <option value="9">Grade 9</option>
-                                                        <option value="10">Grade 10</option>
-                                                        <option value="11">Grade 11</option>
-                                                        <option value="12">Grade 12</option>
+                                                        <optgroup label="Programs">
+                                                            @if (count($allPrograms) > 0)
+                                                                @foreach ($allPrograms as $thisProgram)
+                                                                    <option value="{{ $thisProgram->programtitle }}">
+                                                                        {{ $thisProgram->programtitle }}</option>
+                                                                @endforeach
+                                                            @else
+                                                                <option disabled>-- No Program --</option>
+                                                            @endif
+                                                        </optgroup>
+                                                        <optgroup label="Courses">
+                                                            @if (count($allCourses) > 0)
+                                                                @foreach ($allCourses as $thisCourse)
+                                                                    <option value="{{ $thisCourse->title }}">
+                                                                        {{ $thisCourse->title }}</option>
+                                                                @endforeach
+                                                            @else
+                                                                <option disabled>-- No Course --</option>
+                                                            @endif
+                                                        </optgroup>
                                                     </select>
-                                                    <span class="floating-label-outside">Select Program</span>
+                                                    <span class="floating-label-outside">Course / Program</span>
                                                     <i class="fa fa-chalkboard-user input-icon-outside"></i>
                                                 </div>
                                             </div>
@@ -5690,13 +6124,15 @@
                                         <div class="form-row">
                                             <div class="form-group col-12 ">
                                                 <div class="position-relative mb-2">
-                                                    <select class="outside" required>
+                                                    <select class="outside" required name="year">
                                                         <option value="" disabled selected></option>
-                                                        <option value="9">Grade 9</option>
-                                                        <option value="10">Grade 10</option>
-                                                        <option value="11">Grade 11</option>
-                                                        <option value="12">Grade 12</option>
+                                                        @for ($yr = 1; $yr <= 20; $yr++)
+                                                            <option
+                                                                value="{{ date('Y', strtotime('-' . $yr . ' year')) }}">
+                                                                {{ date('Y', strtotime('-' . $yr . ' year')) }}</option>
+                                                        @endfor
                                                     </select>
+                                                    {{-- <input type="date" class="outside" name="year" id="contactYr"/> --}}
                                                     <span class="floating-label-outside">High School Grade Year</span>
                                                     <i class="fa fa-graduation-cap input-icon-outside"></i>
                                                 </div>
@@ -5705,12 +6141,13 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <div class="position-relative mb-2">
-                                                    <input type="text" class="shadow_msg" required />
+                                                    <input type="text" class="shadow_msg" required
+                                                        name="message" />
                                                     <span class="floating-label-msg">Message</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 text-center mb-3">
+                                        <div class="col-md-12 text-center mb-3 d-flex justify-content-center">
                                             <button type="submit"
                                                 class="theme_btn small_btn4 py-2 px-4">Submit</button>
                                         </div>
@@ -5719,17 +6156,19 @@
 
                                 {{-- form-end --}}
                                 <div class="col-lg-4 col-md-6 flowdiv-ele my-3 my-lg-0">
-                                    <div class="eltdf-eh-item eltdf-background-arrow-left changeborder ankar_eltdf"
+                                    <div class="eltdf-eh-item eltdf-background-arrow-left changeborder ankar_eltdf p-2"
                                         style="background: var(--footer_background_color);">
 
                                         <div class="eltdf-eh-item-inner d-flex align-items-center justify-content-center"
                                             style="">
 
-                                            <div class="eltdf-eh-item-content eltdf-eh-custom-5500 py-3 py-md-0 px-4">
-                                                <div class="cta_service_info">
-                                                    <h2 class="mb-4">Expand Your Reach to Global Adult Learners</h2>
+                                            <div
+                                                class="eltdf-eh-item-content eltdf-eh-custom-5500 py-3 py-md-0 px-sm-4 px-2">
+                                                <div class="cta_service_info py-3">
+                                                    <h2 class="custom_small_heading mb-4">Expand Your Reach to Global
+                                                        Adult Learners</h2>
                                                     <p class="mb-4 text-white"> Fuel your passion for Teaching and join
-                                                        Merakii's vibrant
+                                                        Merkaii Xcellence vibrant
                                                         community of
                                                         Educators. Our diverse student body welcomes instructors from all
                                                         walks of life.
@@ -5742,46 +6181,46 @@
                                                 </div>
                                             </div>
                                             <!-- <div class="eltdf-eh-item-content eltdf-eh-custom-5500"
-                                                                                                                                                                                                                                                                                                                                                                                                                style="padding: 66px 12% 0 12% !important;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="padding: 66px 12% 0 12% !important;">
 
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                <div class="wpb_text_column wpb_content_element">
-                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="wpb_wrapper mt-3">
-                                                                                                                                                                                                                                                                                                                                                                                                                        <h3 style="font-weight: bold;">Apply Now</h3>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                <div class="vc_empty_space" style="height: 25px"><span
-                                                                                                                                                                                                                                                                                                                                                                                                                        class="vc_empty_space_inner"></span></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
-                                                                                                                                                                                                                                                                                                                                                                                                                    dir="ltr">
-                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="screen-reader-response">
-                                                                                                                                                                                                                                                                                                                                                                                                                        <p role="status" aria-live="polite" aria-atomic="true"></p>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <ul></ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                    <form action="{{ route('login') }}" method="POST" class="wpcf7-form init demo">
-                                                                                                                                                                                                                                                                                                                                                                                                                        @csrf
-                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="eltdf-contact-form-7-widget">
-                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="wpcf7-form-control-wrap" data-name="your-email"><input
-                                                                                                                                                                                                                                                                                                                                                                                                                                    type="email" name="email" value="{{ old('email') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    size="40"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    required placeholder="Email"></span><br>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="wpcf7-form-control-wrap" data-name="your-tel"><input
-                                                                                                                                                                                                                                                                                                                                                                                                                                    type="password" name="password" value="{{ old('password') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    size="40"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    required placeholder="Password"></span><br>
-                                                                                                                                                                                                                                                                                                                                                                                                                            {{-- <input type="submit" value="Get it now"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="wpb_text_column wpb_content_element">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="wpb_wrapper mt-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <h3 style="font-weight: bold;">Apply Now</h3>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="vc_empty_space" style="height: 25px"><span
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    class="vc_empty_space_inner"></span></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div role="form" class="wpcf7" id="wpcf7-f910-p311-o2" lang="en-US"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dir="ltr">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="screen-reader-response">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul></ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <form action="{{ route('login') }}" method="POST" class="wpcf7-form init demo">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @csrf
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="eltdf-contact-form-7-widget">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="wpcf7-form-control-wrap" data-name="your-email"><input
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                type="email" name="email" value="{{ old('email') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                size="40"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                required placeholder="Email"></span><br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="wpcf7-form-control-wrap" data-name="your-tel"><input
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                type="password" name="password" value="{{ old('password') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                size="40"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="w-100 wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                required placeholder="Password"></span><br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{-- <input type="submit" value="Get it now"
                                                     class="has-spinner small_btn theme_btn wpcf7-form-control wpcf7-submit mt-4"><span
                                                     class="wpcf7-spinner"></span> --}}
-                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="submit" class="theme_btn small_btn5 text-center">
-                                                                                                                                                                                                                                                                                                                                                                                                                                {{ __('common.Login') }}</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="wpcf7-response-output" aria-hidden="true"></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </form>
-                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <button type="submit" class="theme_btn small_btn5 text-center">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {{ __('common.Login') }}</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="wpcf7-response-output" aria-hidden="true"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </form>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -5852,20 +6291,31 @@
                                 'Nov',
                                 'Dec',
                             ];
-                            html = html + '<li class="single-notice">\
-                                                                    <div class="single-notice-item">\
-                                                                        <div class="notice-date">\
-                                                                            ' + day + '<br>\
-                                                                            <span>' + monthDay[month] + '</span>\
-                                                                        </div>\
-                                                                        <div class="notice-content">\
-                                                                            <p>\
-                                                                                <a href="' + blog_url + '">' + row.title
-                                .en + '</a>\
-                                                                            </p>\
-                                                                        </div>\
-                                                                    </div>\
-                                                                </li>';
+                            html = html +
+                                '<li class="single-notice">\
+                                                                                                                                                <div class="single-notice-item">\
+                                                                                                                                                    <div class="notice-date">\
+                                                                                                                                                        ' +
+                                day +
+                                '<br>\
+                                                                                                                                                        <span>' +
+                                monthDay[
+                                    month] +
+                                '</span>\
+                                                                                                                                                    </div>\
+                                                                                                                                                    <div class="notice-content">\
+                                                                                                                                                        <p>\
+                                                                                                                                                            <a href="' +
+                                blog_url +
+                                '">' +
+                                row
+                                .title
+                                .en +
+                                '</a>\
+                                                                                                                                                        </p>\
+                                                                                                                                                    </div>\
+                                                                                                                                                </div>\
+                                                                                                                                            </li>';
                         });
                         $('#blogs_ul').html(html);
                     }
@@ -5887,13 +6337,14 @@
             // var random_program = $('#random_programs');
             var url = '{{ route('getRandomProgram') }}';
             var random_program_data = '';
-            setInterval(() => {
-                $.ajax({
-                    type: "GET",
-                    url: url,
-                    // data: "null",
-                    dataType: "json",
-                    success: function(response) {
+            // setInterval(() => {
+            $.ajax({
+                type: "GET",
+                url: url,
+                // data: "null",
+                dataType: "json",
+                success: function(response) {
+                    if (!response.status == true) {
                         var icon = response.program.icon ? response.program.icon :
                             "asset('public/assets/program/no-image.png')";
                         var programTitle = response.program.programtitle;
@@ -5905,39 +6356,10 @@
                         $('#program_subtitle').html(programTotalsubtitle);
                         $('#program_desc').html(programTotaldesc);
                         $('#program_cost').html('$' + programTotalcost);
-                        // $('.random_program_data').fadeOut(500, function() {
-                        //     $(this).remove();
-                        // });
-                        // random_program_data = `<div class="col-lg-6 col-md-6 col-sm-6 col-6 first_div px-0 random_program_data">
-                    //         <img src="` + response.program.icon + `" class="img-fluid w-100">
-                    //     </div>
-                    //     <div class="col-lg-6 col-md-6 col-sm-6 col-6 first_div px-0 random_program_data">
-                    //         <div class="small_section_bg_color h-100">
-                    //             <h2 class="px-4 pt-4 text-white">
-                    //                 ` + response.program.programtitle + `
-                    //             </h2>
-                    //             <h4 class="px-4 pt-2 text-white">
-                    //                 <span class="font-weight-bold font-italic">$` + response.program.totalcost + `</span>
-                    //                 <br class="mb-3">
-
-                    //             </h4>
-                    //         </div>
-                    //     </div>`;
-                        // random_program.html(random_program_data).fadeIn(500);
-
                     }
-                    // });
-                    // if (first_div.hasClass('d-none')) {
-                    //     first_div.fadeIn(500).removeClass('d-none');
-                    //     second_div.fadeOut(500).addClass('d-none');
-                    //     console.log('The div has the specified class.');
-                    // } else {
-                    //     second_div.fadeIn(500).removeClass('d-none');
-                    //     first_div.fadeOut(500).addClass('d-none');
-                    //     console.log('The div does not have the specified class.');
-                    // }
-                });
-            }, 10000);
+                }
+            });
+            // }, 10000);
 
 
         });
@@ -6122,30 +6544,63 @@
         // });
     </script>
     <script>
-        $(document).ready(function() {
-            const slideWidth = $(".custom-slide").outerWidth(); // Width of each custom-slide
-            const numSlides = $(".custom-slide").length;
-            let currentSlide = 0;
+  $(document).ready(function() {
+    const slideWidth = $(".custom-slide").outerWidth(); 
+    const numSlides = $(".custom-slide").length;
+    let currentSlide = 0;
+    let autoplayInterval;
+    let slideDelayTimeout;
 
-            // Set the total width of the custom-slider dynamically based on number of slides
-            $(".custom-slider").width(numSlides * slideWidth);
+    $(".custom-slider").width(numSlides * slideWidth);
 
-            // Function to move slides left
-            $(".next").click(function() {
-                if (currentSlide < numSlides - 1) {
-                    currentSlide++;
-                    $(".custom-slider").css("transform", `translateX(-${currentSlide * slideWidth}px)`);
-                }
-            });
+    function nextSlide() {
+        if (currentSlide < numSlides - 1) {
+            currentSlide++;
+        } else {
+            currentSlide = 0; 
+        }
+        $(".custom-slider").css("transform", `translateX(-${currentSlide * slideWidth}px)`);
+    }
 
-            // Function to move slides right
-            $(".prev").click(function() {
-                if (currentSlide > 0) {
-                    currentSlide--;
-                    $(".custom-slider").css("transform", `translateX(-${currentSlide * slideWidth}px)`);
-                }
-            });
-        });
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+        } else {
+            currentSlide = numSlides - 1; 
+        }
+        $(".custom-slider").css("transform", `translateX(-${currentSlide * slideWidth}px)`);
+    }
+
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 9000);
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+
+    function restartAutoplay() {
+        stopAutoplay();
+        slideDelayTimeout = setTimeout(startAutoplay, 9000);
+    }
+
+    startAutoplay();
+
+    $(".next").click(function() {
+        stopAutoplay();
+        clearTimeout(slideDelayTimeout); 
+        nextSlide();
+        restartAutoplay();
+    });
+
+    $(".prev").click(function() {
+        stopAutoplay();
+        clearTimeout(slideDelayTimeout); 
+        prevSlide();
+        restartAutoplay();
+    });
+});
+
     </script>
     {{-- //   scroll our partner --}}
     <script>
@@ -6251,11 +6706,11 @@
             var content = document.getElementById('collapse_' + id);
             var isOpen = content.style.maxHeight !== '0px' && content.style.maxHeight !== '';
             // Close all other tabs
-            var allContents = document.querySelectorAll('.tab-about-content');
+            var allContents = document.querySelectorAll('.panel-about-content');
             allContents.forEach(function(item) {
                 if (item.id !== 'collapse_' + id) {
                     item.style.maxHeight = '0';
-                    var label = item.parentElement.querySelector('.tab-about_label');
+                    var label = item.parentElement.querySelector('.panel-about_label');
                     label.classList.remove('rotate');
                 }
             });
@@ -6265,7 +6720,7 @@
             } else {
                 // Close the clicked tab
                 content.style.maxHeight = '0';
-                var label = content.parentElement.querySelector('.tab-about_label');
+                var label = content.parentElement.querySelector('.panel-about_label');
                 label.classList.remove('rotate');
             }
         }
@@ -6323,31 +6778,45 @@
     </script>
     {{-- sec-2 --}}
     <script>
-        function handleScroll() {
-            const container = document.getElementById('content-container');
-            const elements = container.querySelectorAll('.content-feature1');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                console.log(entry)
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
 
-            elements.forEach(element => {
-                const rect = element.getBoundingClientRect();
-                if (
-                    rect.top >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-                ) {
-                    gsap.to(element, {
-                        opacity: 1,
-                        duration: 0.5
-                    });
-                    console.log("Element in view:", element);
                 } else {
-                    gsap.to(element, {
-                        opacity: 0,
-                        duration: 0.5
-                    });
+                    entry.target.classList.remove('show');
                 }
             });
-        }
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
+        });
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        gsap.to(entry.target, {
+                            opacity: 1,
+                            duration: 0.5
+                        });
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry
+                            .target);
+                    }
+                });
+            }, options);
+
+            const elements = document.querySelectorAll('.content-feature1');
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        });
     </script>
     {{-- sec-3 --}}
     <script>
@@ -6484,42 +6953,88 @@
     </script>
 
 
+    {{-- <script>
+        const tabsBox = document.querySelector(".news-events-navtabs"),
+            allTabs = tabsBox.querySelectorAll(".nav-item"),
+            arroweventsIcons = document.querySelectorAll(".eventsIcon i");
+
+        const handleeventsIcons = () => {
+            let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
+            arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
+            arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" :
+                "flex";
+        }
+
+        arroweventsIcons.forEach(eventsIcon => {
+            eventsIcon.addEventListener("click", () => {
+                if (eventsIcon.id === "left") {
+                    tabsBox.scrollBy({
+                        left: -340,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    tabsBox.scrollBy({
+                        left: 340,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        allTabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabsBox.querySelector(".active").classList.remove("active");
+                tab.classList.add("active");
+            });
+        });
+
+        tabsBox.addEventListener("scroll", handleeventsIcons);
+    </script> --}}
+
+
+
 <script>
-    const tabsBox = document.querySelector(".news-events-navtabs"),
-        allTabs = tabsBox.querySelectorAll(".nav-item"),
-        arroweventsIcons = document.querySelectorAll(".eventsIcon i");
+       $(document).ready(function() {
+    const $tabsBox = $(".news-events-navtabs"),
+        $allTabs = $tabsBox.find(".nav-item"),
+        $arrowEventsIcons = $(".eventsIcon i");
 
-    const handleeventsIcons = () => {
-        let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-        arroweventsIcons[0].parentElement.style.display = tabsBox.scrollLeft <= 0 ? "none" : "flex";
-        arroweventsIcons[1].parentElement.style.display = maxScrollableWidth - tabsBox.scrollLeft <= 1 ? "none" : "flex";
-    }
+    const handleEventsIcons = () => {
+        let maxScrollableWidth = $tabsBox[0].scrollWidth - $tabsBox[0].clientWidth;
+        if (maxScrollableWidth <= 0) {
+            // Hide both arrows if there's no overflow
+            $arrowEventsIcons.parent().css("display", "none");
+        } else {
+            // Handle visibility based on scroll position
+            $arrowEventsIcons.eq(0).parent().css("display", $tabsBox.scrollLeft() <= 0 ? "none" : "flex");
+            $arrowEventsIcons.eq(1).parent().css("display", maxScrollableWidth - $tabsBox.scrollLeft() <= 1 ? "none" : "flex");
+        }
+    };
 
-    arroweventsIcons.forEach(eventsIcon => {
-        eventsIcon.addEventListener("click", () => {
-            // if clicked eventsIcon is left, scroll left else scroll right
-            if (eventsIcon.id === "left") {
-                tabsBox.scrollBy({
-                    left: -340,
-                    behavior: 'smooth'
-                });
-            } else {
-                tabsBox.scrollBy({
-                    left: 340,
-                    behavior: 'smooth'
-                });
-            }
-        });
+    // Initial check
+    handleEventsIcons();
+
+    $arrowEventsIcons.on("click", function() {
+        if ($(this).attr("id") === "left") {
+            $tabsBox.animate({
+                scrollLeft: "-=340"
+            }, 400);
+        } else {
+            $tabsBox.animate({
+                scrollLeft: "+=340"
+            }, 400);
+        }
     });
 
-    allTabs.forEach(tab => {
-        tab.addEventListener("click", () => {
-            tabsBox.querySelector(".active").classList.remove("active");
-            tab.classList.add("active");
-        });
+    $allTabs.on("click", function() {
+        $tabsBox.find(".active").removeClass("active");
+        $(this).addClass("active");
     });
 
-    tabsBox.addEventListener("scroll", handleeventsIcons);
+    $tabsBox.on("scroll", handleEventsIcons);
+    $(window).on("resize", handleEventsIcons); // Check on resize as well
+});
+
 </script>
     </body>
 

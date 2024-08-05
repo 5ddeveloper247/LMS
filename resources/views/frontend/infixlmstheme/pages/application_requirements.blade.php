@@ -1074,7 +1074,7 @@
 
     <div class="row justify-content-center pt-lg-5 pt-4">
         <div class="col-12 col-md-7 text-center text-lg-left">
-            <h2 class="custom_small_heading heading font-weight-bold text-capitalize text-center mb-0 px-4 px-md-0">required application documents for remedial</h2>
+            <h2 class="custom_small_heading heading font-weight-bold text-capitalize text-center mb-0 px-4 px-md-0">Required Application Documents for FL Approved Remedial Program</h2>
         </div>
         <div class="col-md-7 col-10 mt-3">
             <div class="boxaccordion mt-2">
@@ -1168,9 +1168,9 @@
     </div>
 <div class="container-fluid p-0 mt-md-4 mt-2" style="background-color: #eee;">
         <div class="row mb-md-5 mb-4 justify-content-center px-4 px-sm-5 px-md-0">
-            <div class="col-md-7 py-lg-5 px-lg-0 py-3">
-                <div class="custom_fs_a d-flex justify-content-between align-items-start mx-lg-0 px-sm-4 px-md-0" style="gap: 10px;">
-                    <h2 class="custom_small_heading text-center font-weight-bold avail-ser mb-0">FOCUSED LEARNING + DISCIPLINE - GOALS ACHIEVED
+            <div class="col-md-9 py-lg-5 px-lg-5 py-3">
+                <div class="custom_fs_a d-flex justify-content-center align-items-start mx-lg-0 px-sm-4 px-md-0" style="gap: 10px;">
+                    <h2 class="custom_small_heading text-center font-weight-bold avail-ser mb-0">FOCUSED LEARNING + DISCIPLINE + CONSISTENCY <br> = GOALS ACHIEVED
                     </h2>
                     <div class="contact_btn text-center">
                         <a href="{{ route('register') }}"class="theme_btn small_btn2 p-2">Apply Now </a>
