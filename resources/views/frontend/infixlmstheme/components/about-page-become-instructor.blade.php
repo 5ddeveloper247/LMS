@@ -11,6 +11,11 @@
 .small_btn{
     white-space: nowrap;
 }
+.cta_service_info p{
+     max-height: 100px;
+     overflow: auto;
+     scrollbar-width: none;
+}
     @media only screen and (min-width:1800px) {
         p {
             font-size: 20px;
@@ -22,6 +27,9 @@
         .service_cta_row{
             padding: 0px 35px !important;
         }
+        .cta_service_info p{
+     max-height: 130px !important;
+}
     }
 </style>
 
