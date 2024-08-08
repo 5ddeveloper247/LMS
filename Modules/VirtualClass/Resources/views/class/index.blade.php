@@ -122,7 +122,7 @@
                                             @endforeach
                                         </div>
 
-                                        @if (\Illuminate\Support\Facades\Auth::user()->role_id == 1)
+                                        @if (auth()->user()->role_id == 1)
                                             <div class="row mt-25">
                                                 <div class="col-xl-12">
                                                     <div class="primary_input mb-25">

@@ -3121,6 +3121,8 @@ class WebsiteController extends Controller
                 if($total_courses > $PackagePricing->allowed_courses){
                   $disable_courses = Course::where('user_id',$request->user_id)->update(['status' => 0]);
                   $allow_user_status_change = User::where('id',$request->user_id)->update(['can_change_status' => 1]);
+                }else{
+                    $disable_courses = Course::where('user_id',$request->user_id)->update(['status' => 1]);
                 }
 
                 //dd(PackagePurchasing::where('user_id', $request->user_id)->count());

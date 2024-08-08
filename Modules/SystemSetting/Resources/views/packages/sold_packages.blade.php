@@ -299,6 +299,6 @@
             responsive: true,
         });
 
-        $('#lms_table_info').append('<span id="add_here"> new-dynamic-text</span>');
+        // $('#lms_table_info').append('<span id="add_here"> new-dynamic-text</span>');
     </script>
 @endpush

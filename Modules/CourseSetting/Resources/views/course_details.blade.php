@@ -252,19 +252,20 @@
                     <div class="row pt-0">
                         <ul class="nav nav-tabs no-bottom-border mt-sm-md-20 mb-10 ml-3" role="tablist">
                             @if ($course->type == 1 || $course->type == 9)
+                            @if($course->type != 9 && $course->user_id == auth()->user()->id)
                                 <li class="nav-item">
                                     <a class="nav-link @if ($type == 'courses') active @endif"
                                         href="#course_cirriculum" role="tab"
                                         data-toggle="tab">{{ __('courses.Course') }}
                                         {{ __('courses.Curriculum') }} </a>
                                 </li>
-
+                            @endif
                                 <li class="nav-item">
                                     <a class="nav-link @if ($type == 'courseDetails') active @endif"
                                         href="#course_details" role="tab" data-toggle="tab">{{ __('courses.Course') }}
                                         {{ __('common.Details') }}</a>
                                 </li>
-
+                                @if($course->type != 9 && $course->user_id == auth()->user()->id)
                                 <li class="nav-item">
                                     <a class="nav-link @if ($type == 'files') active @endif"
                                         href="#course_exercise" role="tab"
@@ -285,6 +286,7 @@
                                         <a class="nav-link @if ($type == 'drip') active @endif" href="#drip"
                                             role="tab" data-toggle="tab"> {{ __('common.Drip Content') }}</a>
                                     </li>
+                                @endif
                                 @endif
                             @endif
 
@@ -888,9 +890,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    @if($course->type != 9)
                                                     <div
-                                                        class="col-xl-6 courseBox {{ $d_none }} {{ $course->type == 7 ? 'd-none' : '' }}">
+                                                        class="col-xl-6 courseBox {{ $d_none }}" @if($course->type == 7 || $course->type == 9) style="display:none" @endif>
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
                                                                 for="course_code">{{ __('Course Code') }}
@@ -903,7 +905,7 @@
                                                         </div>
                                                     </div>
                                                     <div
-                                                        class="col-xl-6 courseBox {{ $d_none }} {{ ($course->type == 7 || $course->type == 9) ? 'd-none' : '' }}">
+                                                        class="col-xl-6 courseBox {{ $d_none }}" @if($course->type == 7 || $course->type == 9) style="display:none" @endif>
                                                         <div class="primary_input mb-25">
                                                             <label class="primary_input_label"
                                                                 for="assistant_instructors">{{ __('Total Classes') }} *
@@ -915,7 +917,7 @@
                                                                 value="{{ $course->total_classes }}">
                                                         </div>
                                                     </div>
-
+                                                    @endif
 
                                                 </div>
 

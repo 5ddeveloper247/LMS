@@ -83,7 +83,7 @@ class BlogPageSection extends Component
         }
 
         $query->where('authored_date_time', '<', date('Y-m-d H:i:s'));
-        $blogs = $query->orderBy('id', 'asc')->paginate(10);
+        $blogs = $query->orderBy('id', 'asc')->paginate(5);
         return view(theme('components.blog-page-section'), compact('blogs'));
     }
 }

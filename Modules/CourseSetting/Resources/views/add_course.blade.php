@@ -1667,7 +1667,10 @@
                 if (isEmpty($('#document_file_thumb-1').val())) {
                     errors.push("Prep-Course Image is required");
                 }
-
+                if (isEmpty($('#cropper_img').val())) {
+                    errors.push("Prep-Course Image is required");
+                }
+                console.log(isEmpty($('#document_file_thumb-1').val()),$('#cropper_img').val());
                 if (errors.length) {
                     console.log(errors);
                     $('.preloader').hide();
@@ -1678,7 +1681,7 @@
                     return false;
                 }
 
-                $('#course_form').submit();
+                // $('#course_form').submit();
             });
         }else{
             form.reportValidity();
