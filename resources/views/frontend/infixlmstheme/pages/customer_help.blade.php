@@ -317,31 +317,30 @@
 
                             <div class="tab-pane fade show active rounded bg-white p-3 p-lg-5 shadow mb-3"
                                 id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                <h4 class="font-weight-bold text-center">Terms and Conditions for Merkaii Xcellence Prep,
-                                    also known as Merkaii Global Society (MGS)</h4>
+                                <h5 class="font-weight-bold text-center mb-md-4 mb-2">Terms and Conditions for Merkaii Xcellence Prep,
+                                    also known as Merkaii Global Society (MGS)</h5>
                                 <h5>License Contract</h5>
-                                <p><span class="font-weight-bold">IMPORTANT:</span> DO NOT EDIT THIS AGREEMENT. READY?
-                                    MERKAII GLOBAL SOCIETE, LLC. (REFERRED TO AS "MGS", "WE", OR "OUR") AND YOU (REFERRED TO
-                                    AS "LICENSEE", "YOU", OR "YOUR") AGREE TO A LICENSE AGREEMENT FOR THE USE OF MGS CONTENT
-                                    AND/OR SERVICES.</p>
-                                <br>
-                                <p>DOWNLOADING AND USING MGS CONTENT OR SERVICES CONFIRMS THAT YOU HAVE THE LEGAL AUTHORITY
-                                    TO ENTER INTO THIS AGREEMENT, THAT YOU ACCEPT ITS TERMS AND CONDITIONS, AND THAT YOU
-                                    AGREE TO BE BOUND BY THEM. You may not access or use MGS Content or Services if you do
+                                <p class="mb-2"><span class="font-weight-bold">IMPORTANT:</span> Do not edit this agreement. ready?
+                                    merkaii global societe, llc. (referred to as "Mgs", "We", or "Uur") and you (referred to
+                                    as "Licensee", "You", or "Your") agree to a license agreement for the use of mgs content
+                                    and/or services.
+                                </p>
+                                <p class="mb-2">Downloading and using mgs content or services confirms that you have the legal authority
+                                    to enter into this agreement, that you accept its terms and conditions, and that you
+                                    agree to be bound by them.
+                                    You may not access or use MGS Content or Services if you do
                                     not have the necessary authority or if you disagree with its terms. In such case, you
                                     must delete them.</p>
+                                <p class="mb-2">This agreement seats any prior agreement, written or oral, and any other communications
+                                    relating to the subject matter of this agreement being the entire and exclusive
+                                    statement between you and mgs.
+                                </p>
+                                <p>You certify that you are over 18 years old and are able to form a legal binding agreement.
+                                </p>
                                 <br>
-                                <p>THIS AGREEMENT SEATS ANY PRIOR AGREEMENT, WRITTEN OR ORAL, AND ANY OTHER COMMUNICATIONS
-                                    RELATING TO THE SUBJECT MATTER OF THIS AGREEMENT BEING THE ENTIRE AND EXCLUSIVE
-                                    STATEMENT BETWEEN YOU AND MGS.</p>
-
-                                <br>
-                                <p>YOU CERTIFY THAT YOU ARE OVER 18 YEARS OLD AND ARE ABLE TO FORM A LEGAL BINDING
-                                    AGREEMENT.</p>
-                                <h5 class="text-center font-weight-bold">TERMS AND SUMMARY</h5>
-                                <p><span class="font-weight-bold"> 1. Definitions</span>
-                                    <br>
-                                    The following terms have the
+                                <h5 class="text-center font-weight-bold mb-md-4 mb-3">TERMS AND SUMMARY</h5>
+                              <h5> 1. Definitions</h5>
+                                    <p>The following terms have the
                                     following meanings as they are used in this document:
                                     <br>
                                     "Agreement" refers to the license agreement between the licensee and MGS as well as any
@@ -355,8 +354,8 @@
                                     marketplace where MGS sells such goods or services
 
                                 </p>
-                                <p><span class="font-weight-bold">2. Permission and Inclusion</span>
-                                    <br>
+                                <h5>2. Permission and Inclusion</h5>
+                                <p>
                                     <span class="font-weight-bold">a.</span> Exclusive Rights. MGS is the owner and
                                     operator of the Services. All materials
                                     included in or included with the Services, unless otherwise specifically stated by MGS,
@@ -388,8 +387,8 @@
                                     MGS may alter from time to time in compliance with Section 15(a) of this Agreement, will
                                     apply to each new Subscription Period.
                                 </p>
-                                <p><span class="font-weight-bold">3. Payment </span>
-                                    <br>
+                                <h5>3. Payment</h5>
+                                <p>
                                     The MGS Content and Services are only accessible to subscribers who have paid for them
                                     or who have been granted access by a promotion (including a limited free trial). Unless
                                     they cancel the service, subscribers will automatically be charged the standard monthly
@@ -402,8 +401,8 @@
                                     costs, billing, or refunds, please send an email to payments@merkaiixcelprep.com (MGS).
 
                                 </p>
-                                <p><span class="font-weight-bold"> 4. A Free Trial Membership</span>
-                                    <br>
+                                <h5>4. A Free Trial Membership</h5>
+                                <p>
                                     For some Services, which require registration with a working payment card, we might
                                     provide free trials. If a user cancels before the trial expires, their subscription will
                                     automatically renew at the discounted cost. A free trial can be ended online or by
@@ -415,9 +414,8 @@
                                     included as part of them.
 
                                 </p>
-
-                                <p><span class="font-weight-bold"> 5. Licensee's Restrictions and Covenants</span>
-                                    <br>
+                                <h5>5. Licensee's Restrictions and Covenants</h5>
+                                <p>
                                     <span class="font-weight-bold"> a.</span> To guarantee that MGS Content and Services
                                     are used exclusively by Licensee and in
                                     compliance with this Agreement, Licensee shall implement internal policies and
@@ -453,9 +451,8 @@
                                     offered for sale, license, or distribution.
 
                                 </p>
-
-                                <p><span class="font-weight-bold">6. Possession</span>
-                                    <br>
+                                <h5>6. Possession</h5>
+                                <p>
                                     The Licensee agrees that MGS owns all copies, versions, and updates of the MGS Content
                                     and Services, as well as all rights, title, interest, and ownership in and to them. This
                                     Agreement only grants Licensee a restricted right of use in compliance with this
@@ -464,9 +461,8 @@
                                     specifically granted hereunder.
 
                                 </p>
-
-                                <p><span class="font-weight-bold"> 7. User Submissions and Profile Information</span>
-                                    <br>
+                                <h5> 7. User Submissions and Profile Information</h5>
+                                <p>
                                     <span class="font-weight-bold"> a.</span> You grant MGS and our affiliates, licensees,
                                     distributors, agents, representatives,
                                     and other entities authorized by MGS the non-exclusive, worldwide, perpetual, unlimited,
@@ -506,27 +502,24 @@
                                     contracts, or other intellectual property. You will provide MGS with any records, proof,
                                     or releases required to confirm your adherence to this Agreement at MGS's request.
                                 </p>
-
-                                <p><span class="font-weight-bold">8. Updates automatically</span>
-                                    <br>
+                                <h5>8. Updates automatically</h5>
+                                <p>
                                     Licensee understands that MGS may need to adopt changes in order to maintain the
                                     accuracy and integrity of MGS Content and Services, and Licensee consents to receive
                                     such updates from MGS. MGS will try its best to lessen the impact of these changes. The
                                     licensee is not allowed to try to change or remove any of these updates.
 
                                 </p>
-
-                                <p><span class="font-weight-bold">9. Agreement Modifications</span>
-                                    <br>
+                                <h5>9. Agreement Modifications</h5>
+                                <p>
                                     MGS retains the right to alter, amend, add, or remove any part of this Agreement at any
                                     time, at its sole discretion. After updates are posted, Licensee's continuing use of the
                                     Services signifies Licensee's acceptance and agreement to the changes. MGS reserves the
                                     right to end this Agreement at any time and to stop offering the Services instantly.
 
                                 </p>
-
-                                <p><span class="font-weight-bold">10. Termination</span>
-                                    <br>
+                                <h5>10. Termination</h5>
+                                <p>
                                     <span class="font-weight-bold"> a.</span> Until they are terminated, this Agreement and
                                     the license it grants are in effect. If
                                     Licensee violates any provision of this Agreement, MGS may immediately terminate this
@@ -540,9 +533,8 @@
                                     of this agreement.
 
                                 </p>
-
-                                <p><span class="font-weight-bold"> 11. Disclaimer of Warranties</span>
-                                    <br>
+                                  <h5> 11. Disclaimer of Warranties</h5>
+                                <p>
                                     <span class="font-weight-bold"> a.</span> Warranty of any kind, express or implied,
                                     including without limitation any implied
                                     warranties of merchantability, fitness for a particular purpose, accuracy, completeness,
@@ -562,9 +554,8 @@
                                     be liable for the whole cost of any necessary servicing, repair, or correction should
                                     the services prove to be defective.
                                 </p>
-
-                                <p><span class="font-weight-bold">12. Limitation of Liability</span>
-                                    <br>
+                                <h5>12. Limitation of Liability</h5>
+                                <p>
                                     To the maximum extent permitted by applicable law, mgs and its affiliates, licensors,
                                     suppliers, advertisers, or sponsors shall not be liable for any direct, indirect,
                                     incidental, consequential, special, punitive, or exemplary damages, including damages
@@ -573,27 +564,24 @@
                                     unauthorized access to or alteration of your transmissions or data.
 
                                 </p>
-
-                                <p><span class="font-weight-bold"> 13. Liability</span>
-                                    <br>
+                               <h5> 13. Liability</h5>
+                                <p>
                                     In the event that Licensee violates this Agreement or uses the Services in any way,
                                     Licensee agrees to indemnify, defend, and hold harmless MGS, its officers, directors,
                                     employees, agents, licensors, and suppliers from and against any and all claims, losses,
                                     expenses, damages, and costs, including reasonable attorneys' fees.
 
                                 </p>
-
-                                <p><span class="font-weight-bold"> 14. Applicable Law and Location</span>
-                                    <br>
+                                <h5> 14. Applicable Law and Location</h5>
+                                <p>
                                     Without respect to its conflict of law provisions, the laws of the State of Florida
                                     shall govern and be construed in conformity with this Agreement. Any action or cause
                                     arising out of this agreement may only be brought in Florida's federal or state courts,
                                     and the parties agree to the personal jurisdiction and venue of such courts.
 
                                 </p>
-
-                                <p><span class="font-weight-bold"> 15. Miscellaneous </span>
-                                    <br>
+                                 <h5> 15. Miscellaneous</h5>
+                                <p>
                                     <span class="font-weight-bold"> a.</span> Modification and Release. By updating the
                                     conditions on the Website, MGS reserves the
                                     right to change this Agreement at any time. Any modification to this agreement must be
@@ -620,9 +608,8 @@
                                     service.
 
                                 </p>
-
-                                <p><span class="font-weight-bold"> 16. Money-Back Promise. </span>
-                                    <br>
+                                 <h5> 16. Money-Back Promise </h5>
+                                <p>
                                     We will reimburse your tuition if you are a graduate of a recognized nursing or
                                     healthcare career institution, and you did not pass your exam. The following qualifying
                                     requirements must be met by you:
@@ -649,90 +636,93 @@
                             <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-cookies"
                                 role="tabpanel" aria-labelledby="v-pills-cookies">
 
-                                <h5 class="font-weight-bold">Merkaii Xcellence Prep Cookie Policy</h5>
-                                <h5 class="font-weight-bold">What are Cookies and Tracking Technologies?</h5>
+                                <h5 class="font-weight-bold text-center mb-md-4 mb-2">Merkaii Xcellence Prep Cookie Policy</h5>
+                                <h5>What are Cookies and Tracking Technologies?</h5>
                                 <p>We use cookies and similar tracking technologies to improve and analyze our service,
                                     Merkaii Xcellence Prep. This policy explains what cookies are and how we use them, your
                                     choices regarding cookies, and where you can find more information. These technologies
                                     track activity on our website and store certain information. Examples of tracking
                                     technologies include beacons, tags, and scripts.</p>
-                                    <br>
                                 <h5>Types of Cookies We Use</h5>
-                               <ul>
-                                <li style="list-style:disc">
-                                <span class="font-weight-bold"> Cookies or Browser Cookies:</span> Small data files
-                                    stored on your device when
-                                    you visit a
-                                    website. They are widely used to remember You and Your preferences and track your
-                                    activity on our website. You can instruct your browser to refuse all cookies or to
-                                    indicate when a cookie is being sent. However, this may limit your ability to use some
-                                    features of our service.</li>
-                                    <br>
-                                    <li style="list-style:disc"><span class="font-weight-bold"> Web Beacons:</span> Tiny electronic files (also
-                                    referred to as clear gifs,
-                                    pixel tags, and
-                                    single pixel gifs) embedded in our website and emails that track activity, like how many
-                                    users visit those pages or open emails.</li>
-                               </ul>
-                                <br>
-                                <h5> We use two main types of cookies:</h5>
-                                <ul><li style="list-style:disc"><span class="font-weight-bold"> Session Cookies:</span> These cookies are temporary
-                                    and deleted as soon as you close your web
-                                    browser.</li>
-                                    <br>
-                                  <li style="list-style:disc"><span class="font-weight-bold">Persistent Cookies:</span> These cookies remain on
-                                    your personal computer or mobile device
-                                    when you go offline until they expire, or you delete them.
-                                  </li>
+                                <ul>
+                                    <li>
+                                        <span class="font-weight-bold"> Cookies or Browser Cookies:</span> Small data files
+                                        stored on your device when
+                                        you visit a
+                                        website. They are widely used to remember You and Your preferences and track your
+                                        activity on our website. You can instruct your browser to refuse all cookies or to
+                                        indicate when a cookie is being sent. However, this may limit your ability to use
+                                        some
+                                        features of our service.
+                                    </li>
+                                    <li ><span class="font-weight-bold"> Web Beacons:</span> Tiny
+                                        electronic files (also
+                                        referred to as clear gifs,
+                                        pixel tags, and
+                                        single pixel gifs) embedded in our website and emails that track activity, like how
+                                        many
+                                        users visit those pages or open emails.</li>
+                                </ul>
+                                <h5> We use two main types of cookies</h5>
+                                <ul>
+                                    <li><span class="font-weight-bold"> Session Cookies:</span>
+                                        These cookies are temporary
+                                        and deleted as soon as you close your web
+                                        browser.</li>
+                                    <li><span class="font-weight-bold">Persistent Cookies:</span>
+                                        These cookies remain on
+                                        your personal computer or mobile device
+                                        when you go offline until they expire, or you delete them.
+                                    </li>
                                 </ul>
                                 <br>
-                                <h5 class="font-weight-bold">Why We Use Cookies</h5>
+                                <h5 class="font-weight-bold text-center mb-md-4 mb-2">Why We Use Cookies</h5>
                                 <h5> We use cookies for several reasons, including:</h5>
 
-                                <ul><li style="list-style:disc"> <span class="font-weight-bold">Necessary and Essential Cookies:</span> These cookies
-                                    are
-                                    essential for our website to
-                                    provide you with our services and let you use some of their features, like
-                                    authentication and security.
+                                <ul>
+                                    <li> <span class="font-weight-bold">Necessary and Essential
+                                            Cookies:</span> These cookies
+                                        are
+                                        essential for our website to
+                                        provide you with our services and let you use some of their features, like
+                                        authentication and security.
                                     </li>
-                                    <br>
-                                    <li style="list-style:disc">
-                                    <span class="font-weight-bold"> Cookies Policy and Notice Acceptance Cookies:</span>
-                                    Remember if you've accepted our cookie
-                                    policy.
+                                    <li>
+                                        <span class="font-weight-bold"> Cookies Policy and Notice Acceptance
+                                            Cookies:</span>
+                                        Remember if you've accepted our cookie
+                                        policy.
                                     </li>
-                                    <br>
-                                    <li style="list-style:disc">
-                                    <span class="font-weight-bold">Functionality Cookies:</span> Remember your
-                                    preferences,
-                                    such as login details or language,
-                                    to personalize your experience. This gives you a more customized experience by not
-                                    having to re-enter your preferences each time you visit the website.
+                                    <li>
+                                        <span class="font-weight-bold">Functionality Cookies:</span> Remember your
+                                        preferences,
+                                        such as login details or language,
+                                        to personalize your experience. This gives you a more customized experience by not
+                                        having to re-enter your preferences each time you visit the website.
                                     </li>
-                                    <br>
-                                    <li style="list-style:disc">
-                                    <span class="font-weight-bold"> Tracking and Performance Cookies:</span> We use these
-                                    third parties to track website traffic
-                                    and user behavior to improve our website and your experience. This information may be
-                                    used to identify you indirectly. We also test new website pages, features, or functions
-                                    using these cookies to see how people respond to them.
+                                    <li>
+                                        <span class="font-weight-bold"> Tracking and Performance Cookies:</span> We use
+                                        these
+                                        third parties to track website traffic
+                                        and user behavior to improve our website and your experience. This information may
+                                        be
+                                        used to identify you indirectly. We also test new website pages, features, or
+                                        functions
+                                        using these cookies to see how people respond to them.
                                     </li>
                                 </ul>
                                 <br>
-                                <p><span class="font-weight-bold"> Learn More About Your Cookie Choices</span>
-                                    <br>
+                               <h5>Learn More About Your Cookie Choices</h5>
+                                    <p>
                                     Most web browsers allow you to control cookies through their settings. You can usually
                                     choose to block all cookies, or to receive a notification before a cookie is set. Please
                                     be aware that completely blocking cookies may limit your use of some websites.
 
                                 </p>
                                 <br>
-                                <p><span class="font-weight-bold"> Where to Find More Information</span>
-                                    <br>
-                                    For more detailed information about the cookies, we use and your choices regarding
-                                    cookies, please see our Privacy Policy.
-
-                                </p>
+                                <h5> Where to Find More Information</h5>
+                                   <p> For more detailed information about the cookies, we use and your choices regarding
+                                    cookies, please see our Privacy Policy.</p>
                             </div>
 
                             <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-profile"
@@ -828,16 +818,53 @@
 
                             <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-messages"
                                 role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                <h5 class="font-weight-bold text-center">Merkaii Xcellence Prep: Your One-Stop Shop for Academic Success - Help & Support</h5>
                                 <p>
-                                    Merkaii Xcellence College of Health are committed to providing a website that is
-                                    accessible to
-                                    all audiences, regardless of technology or ability. As part of this, Fenty Beauty+ Fenty
-                                    Skin aim to substantially conform to applicable guidelines, including WCAG 2.1 at levels
-                                    A and AA. If you experience any difficulty in accessing any part of this website, please
-                                    contact us by <br> emailing: <b>admin@merakinursing.com</b>
-                                    or
-                                    calling: <b>863-250-8764</b>
+                                    At Merkaii Xcellence Prep, we're dedicated to empowering students of all backgrounds to
+                                    achieve their academic goals. We understand that you might have questions about our prep
+                                    programs and courses, enrollment process, or billing.
+
                                 </p>
+                                <p> Merkaii Xcellence Prep is a comprehensive academic support platform designed to help
+                                    students excel in their academic pursuits. We offer personalized tutoring, test prep
+                                    courses, and academic coaching to healthcare adult learners at all levels.
+                                </p>
+                                <p> This Help & Support page is designed to be your one-stop resource for everything Merkaii
+                                    Xcellence Prep.
+                                </p>
+
+                                <h5>Haven't Found What You're Looking For?</h5>
+                                <p>
+                                    If you can't find the answer to your question on this page, don't hesitate to reach out
+                                    to our friendly and knowledgeable support team. We're available by phone, text, or email
+                                    to assist you:
+                                </p>
+                                <ul>
+                                    <li><span class="font-weight-bold">Phone:</span><a href="" class="text-dark"> 863-250-8764 </a>(Main Line + Text) </li>
+                                    <li><span class="font-weight-bold"> Cell:</span> <a href="" class="text-dark">347-525-1736 </a>(Voice + Text)</li>
+                                    <li><span class="font-weight-bold">Email:</span><a href="" class="text-dark"> mpsupport@merkaiixcelprep.com</a></li>
+                                </ul>
+                                <h5>For General Inquiries see our Frequently Asked Questions (FAQs) page </h5>
+                                <p><span class="font-weight-bold">Billing & Payment: What are your payment options?</span>
+                                    We accept all major credit cards and debit cards. You can also set up automatic payments
+                                    for your convenience.</p>
+                                <p><span class="font-weight-bold">Technical Support: I'm having trouble accessing my online
+                                        account.</span> If you're having
+                                    trouble accessing your online account, please ensure you are using the correct username
+                                    and password. You can also try resetting your password by clicking on the "Forgot
+                                    Password" link on the login page. If you continue to experience issues, please contact
+                                    our support team. </p>
+
+                                <h5>We're Here to Help!</h5>
+                                <p>We hope this Help & Support page has answered your questions about Merkaii Xcellence
+                                    Prep. If you have any further inquiries, please don't hesitate to reach out to our
+                                    support team. We're always happy to help!</p>
+                                <h5>In addition to the above, you may find the following resources helpful</h5>
+                                <ul>
+                                    <li><span class="font-weight-bold">Our Website:</span><a href="" class="text-dark"> www.merkaiixcelprep.com</a> </li>
+                                    <li><span class="font-weight-bold">Our Blog:</span>
+                                      <a href="" class="text-dark">  https://merkaiixcelprep.com/articles </a></li>
+                                </ul>
                             </div>
 
                             {{-- <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-settings"

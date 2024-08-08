@@ -249,11 +249,11 @@
     <x-breadcrumb :banner="$frontendContent->about_page_banner" :title="$frontendContent->about_page_title" :subTitle="$frontendContent->about_page_title" />
     @include('frontend.infixlmstheme.pages.stepper')
     {{-- <x-about-page-who-we-are :whoWeAre="$about->who_we_are" :bannerTitle="$about->banner_title" /> --}}
-        @include('frontend.infixlmstheme.pages.sectionBlock')
+       
     <x-about-page-gallery :about="$about" />
 
     <x-about-page-counter :about="$about" />
-
+    @include('frontend.infixlmstheme.pages.sectionBlock')
     {{-- @if ($about->show_testimonial)
         <x-about-page-testimonial :frontendContent="$frontendContent" />
     @endif --}}
