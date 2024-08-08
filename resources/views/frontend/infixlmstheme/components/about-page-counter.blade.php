@@ -4,19 +4,22 @@
             background-image: url('{{ asset($about->image4) }}');
             margin-right: 26px;
         } */
-        .counter-image{
+        /* .counter-image{
             clip-path: polygon(23% 0, 100% 0, 100% 100%, 0 100%);
-        }
-        .center-content-about{
+        } */
+         .counter_video{
+            height: 490px;
+         }
+        /* .center-content-about{
             display: flex;
             align-items: center;
-        }
+        } */
     </style>
    <section class="aboutPage-sec3">
-    <div class="counter_area d-flex align-items-center my-lg-5 px-xl-5 ">
-        <div class="container center-content-about">
+    <div class="counter_area mt-lg-5 px-xl-5">
+        <div class="container">
             <div class="row counter_area_row px-3 px-sm-0 px-lg-4">
-                <div class="col-lg-6 d-flex align-items-center">
+                {{-- <div class="col-lg-6 d-flex align-items-center">
                     <div class="counter_wrapper mb-3 mb-lg-0">
                         <div class="single_counter">
                             <h3><span class="">{{ $about->total_teacher }}</span></h3>
@@ -47,8 +50,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 mb-3">
+                </div> --}}
+                <div class="col-12 mb-3">
                     {{-- <img src="{{ asset('/public/uploads/images/footerimg/ezgif-2-78802b2d5b.mp4') }}" class="w-100 h-100"> --}}
                     <div class="counter_video">
                         <video class="counter-image h-100 w-100" autoplay loop muted style="object-fit: fill">

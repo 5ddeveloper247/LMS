@@ -3065,7 +3065,7 @@
                                 personalized tutoring and mentorship. Achieve your academic goals, conquer Nursing School
                                 Courses and Exams, NCLEX- RN & PN, HESI, TEAS, ATI, other Healthcare Exams and unlock a
                                 fulfilling nursing career.</p>
-                            <a href="{{ route('about') }}"><button class="content-features-btn mt-lg-3">Let's get started today!</button></a>
+                            <a href="{{ route('instructors') }}"><button class="content-features-btn mt-lg-3">Let's get started today!</button></a>
                         </div>
                     </div>
                 </div>
@@ -3940,7 +3940,7 @@
                             approved remedial course provides the personalized support and targeted strategies you need to
                             succeed. With our help, you'll be well on your way to achieving your nursing career goals and
                             licensure. Become the Registered Nurse You Were Meant to Be.</p>
-                          <a href="" class="d-flex justify-content-center justify-content-sm-start"><button class="theme_btn font-weight-bold mt-md-4 mt-sm-3 text-center">Register today and unlock <br>your potential!</button>
+                          <a href="{{ url('pre-registration') }}" class="d-flex justify-content-center justify-content-sm-start"><button class="theme_btn font-weight-bold mt-md-4 mt-sm-3 text-center">Register today and unlock <br>your potential!</button>
                         </a>
 
                         {{-- <p class="for-para custom_paragraph "><span class="font-weight-bold">Our global reach</span>
