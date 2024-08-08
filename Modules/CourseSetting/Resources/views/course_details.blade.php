@@ -1206,6 +1206,10 @@
                                                         @endif
 
                                                         <div class="col-xl-6 courseBox mb-25" @if($course->type == 9 && $course->user_id != auth()->user()->id) style="display:none" @endif>
+                                                            <label class="primary_input_label"
+                                                                                for="">
+                                                                                {{ __('quiz.Category') }} *
+                                                                            </label>
                                                             <select class="primary_select" name="category"
                                                                         
                                                                 id="course_cat_id">
@@ -1233,6 +1237,10 @@
                                                         </div>
 
                                                         <div class="col-xl-6 courseBox mb-25" id="subCatDiv" @if($course->type == 9 && $course->user_id != auth()->user()->id) style="display:none" @endif>
+                                                            <label class="primary_input_label"
+                                                                                for="">
+                                                                                {{ __('courses.Sub Category') }}
+                                                                            </label>
                                                             <select class="primary_select" name="sub_category"
                                                                         @if($course->type == 9 && $course->user_id != auth()->user()->id) readonly @endif
                                                                 id="subcat_id">

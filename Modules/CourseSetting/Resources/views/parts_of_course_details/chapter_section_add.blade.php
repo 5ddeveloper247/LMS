@@ -150,8 +150,8 @@
                 if (isEmpty(form.find("select[name='host']").val())) {
                     errors.push('Choose Host first.');
                 }
-
-                // if(lessonId != ''){
+                console.log(lessonId);
+                if(lessonId == ''){
                 	var host = form.find("select[name='host']").val();
                     if(host == 'Self' || host == 'GoogleDrive'|| host == 'Zip'|| host == 'Text' || 
                     	host == 'PowerPoint'|| host == 'Excel'|| host == 'Word'|| host == 'PDF' || 
@@ -162,23 +162,7 @@
                             if (pondInstance.getFiles().length == 0) {
                                 errors.push("Host file is required");
                             }
-                        // if(fileInput.files.length == 0){
-                        // if(!form.find("input[name='file']")[0].files.length || form.find("input[name='file']")[0].files.length == 0){
-                    	if (isEmpty(fileInput.val())) {
-                    	// if (isEmpty(form.find("input[name='file']").val())) {
-                            
                         }
-                        // var fileInput = form.find(".filepond--browser");
-                        //     console.log(fileInput.attr('type'));
-                        // if (fileInput.length > 0) {
-                        //     var files = fileInput[0].files; // Get the files property from the DOM element
-                        //     console.log(files.length);
-                        //     if (!files || files.length === 0) {
-                        //         errors.push("Host file is required");
-                        //     }
-                        // } else {
-                        //     errors.push("File input element not found");
-                        // }
                     }
                     if(host == 'Youtube' || host == 'URL'){
 

@@ -208,6 +208,12 @@
                             Repeat Course
                         </label>
                     </li>
+                    <li class="nav-item px-1 mb-2" role="presentation">
+                        <input type="radio" name="search_courseType" value="individual_course" id="search_individual_course" @if($request->has('search_courseType') && $request->get('search_courseType') == 'search_individual_course') checked @endif>
+                        <label for="search_individual_course" class="nav-sub-links transfer-user nav-link text-nowrap px-2 px-md-3 py-1 d-flex flex-column align-items-center justify-content-center" type="button" role="tab" aria-controls="pills-transfer-user" aria-selected="false" tabindex="-1">
+                            Individual Instructor Courses
+                        </label>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -253,7 +259,7 @@
             <div class="row px-4 px-sm-2 px-md-5">
                 <div class="col-12 mb-3 mb-md-4">
                     <h5 class="small_heading text-center">
-                        @if ($request->has('query'))
+                        @if ($request->has('query') && $request->get('query') != '')
                         {{ __('courses.Search result for') }}
                         <span class="font-weight-bold">"{{ $request->get('query') }}"</span>{{ ' out of ' . count($all_programs) . ' Program(s)' }}<br style="line-break: auto">
                         {{-- <span class="font-weight-bold">"{{ $request->get('query') }}"</span>{{ ' out of ' . $total_programs . ' Program(s)' }}<br style="line-break: auto"> --}}
@@ -279,7 +285,8 @@
                         $course_type = 'Program';
                         $price = $program->get('current_program_plan')[0]['amount'];
                 }else{
-                    $url_link = route('courseDetailsView', ['slug' => $program->get('parent')['slug'] ?? $program->get('slug'), 'courseType' => $program->get('type')]);
+                    $routeParams = $program->get('type') == 1 ? [$program->get('slug')] : ['slug' => $program->get('parent')['slug'] ?? $program->get('slug'), 'courseType' => $program->get('type')];
+                    $url_link = route('courseDetailsView', $routeParams);
                         $course_image = getCourseImage($program->get('thumbnail'));
                         $course_title = $program->get('parent') ? $program->get('parent')['title']['en'] : $program->get('title')['en'];
                         $course_description = $program->get('parent') ? $program->get('parent')['about']['en'] : $program->get('about')['en'];

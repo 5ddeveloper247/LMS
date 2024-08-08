@@ -648,6 +648,7 @@
                             </div>
                         </div>
                         <div class="col-xl-6 courseBox mb_30">
+                            <label class="primary_input_label" for="">{{ __('quiz.Category') }}</label>
                             <select class="primary_select category_id" name="category" id="category_id"
                                 {{ $errors->has('category') ? 'autofocus' : '' }}>
                                 <option data-display="{{ __('common.Select') }} {{ __('quiz.Category') }} *"
@@ -663,6 +664,7 @@
                             </select>
                         </div>
                         <div class="col-xl-6 courseBox mb_30" id="subCategoryDiv">
+                            <label class="primary_input_label" for="">{{ __('courses.Sub Category') }}</label>
                             <select class="primary_select" name="sub_category" id="subcategory_id"
                                 {{ $errors->has('sub_category') ? 'autofocus' : '' }}>
                                 <option data-display="{{ __('common.Select') }} {{ __('courses.Sub Category') }}  "
@@ -1643,6 +1645,11 @@
                     errors.push("Requirement is required");
                 }
 
+                if (type == 9) {
+                    if (isEmpty($('#category_id').val())) {
+                        errors.push("Category is required");
+                    }
+                }
                 if (type == 1) {
                     if (isEmpty($('#category_id').val())) {
                         errors.push("Category is required");
@@ -1667,10 +1674,9 @@
                 if (isEmpty($('#document_file_thumb-1').val())) {
                     errors.push("Prep-Course Image is required");
                 }
-                if (isEmpty($('#cropper_img').val())) {
+                if ($('#cropper_img').val() == '') {
                     errors.push("Prep-Course Image is required");
                 }
-                console.log(isEmpty($('#document_file_thumb-1').val()),$('#cropper_img').val());
                 if (errors.length) {
                     console.log(errors);
                     $('.preloader').hide();
@@ -1681,7 +1687,7 @@
                     return false;
                 }
 
-                // $('#course_form').submit();
+                $('#course_form').submit();
             });
         }else{
             form.reportValidity();

@@ -1638,7 +1638,7 @@ class CourseSettingController extends Controller
 
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
                           <a href="'.route('courseDetails',[$course->id]).'" class="dropdown-item">Edit</a>
-                          <a href="javascript:void(0);"  class="dropdown-item" onclick="confirm_modal(\''.route('Delete.TimeTable', [$course->id]).'\')">Delete</a>
+                          <a href="javascript:void(0);"  class="dropdown-item" onclick="confirm_modal(\''.route('course.delete', [$course->id]).'\')">Delete</a>
                           </div>
                       </div>';
               return $html;

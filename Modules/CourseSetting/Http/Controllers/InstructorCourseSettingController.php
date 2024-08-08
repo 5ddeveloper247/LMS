@@ -451,7 +451,7 @@ class InstructorCourseSettingController extends Controller
                         return redirect()->back();
                     }
 
-                    $lesson->duration = $request->duration;
+                    $lesson->duration = 0;
                     $lesson->is_lock = $request->is_lock;
                     $lesson->save();
                     $ignoreHost = ['SCORM', 'SCORM-AwsS3', 'XAPI', 'XAPI-AwsS3'];
@@ -868,7 +868,7 @@ class InstructorCourseSettingController extends Controller
                     }
 
 
-                    $lesson->duration = $request->duration;
+                    $lesson->duration = 0;
                     $lesson->is_lock = $request->is_lock;
                     $lesson->update();
 

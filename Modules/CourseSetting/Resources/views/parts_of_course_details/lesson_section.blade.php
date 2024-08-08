@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-lg-12">
 
-                            <div class="input-effect mt-2 pt-1">
+                            {{-- <div class="input-effect mt-2 pt-1">
                                 <label>{{ __('common.Duration') }} ({{ __('common.In Minute') }}) </label>
                                 <input
                                     class="primary_input_field name{{ $errors->has('chapter_name') ? ' is-invalid' : '' }}"
@@ -86,7 +86,7 @@
                                         <strong>{{ $errors->first('chapter_name') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            </div> --}}
                             @if (isModuleActive('Org'))
 
                                 @include('coursesetting::parts_of_course_details._org_host_select')

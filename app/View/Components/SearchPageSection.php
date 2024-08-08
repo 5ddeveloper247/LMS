@@ -66,6 +66,9 @@ class SearchPageSection extends Component
                 case 'repeat_course':
                     $type = 8;
                     break;
+                case 'search_individual_course':
+                    $type = 9;
+                    break;
                 
                 default:
                     $type = 0;
