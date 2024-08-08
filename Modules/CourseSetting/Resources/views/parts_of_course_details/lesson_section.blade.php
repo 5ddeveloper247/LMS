@@ -473,9 +473,12 @@ $(document).ready(function () {
                 if(host == 'GoogleDrive'|| host == 'Zip'|| host == 'Text' || 
                 	host == 'PowerPoint'|| host == 'Excel'|| host == 'Word'|| host == 'PDF' || 
                 	host == 'Image'){
-                	
+                        
                 	// if(!$("#hostFile")[0].files.length || $('#hostFile').files.length == 0){
-                	if (isEmpty($('#hostFile').val())) {
+                    let fileInput = form.find("#hostFile");
+                            var pondInstance = FilePond.find(fileInput[0]);
+                            if (pondInstance.getFiles().length == 0) {
+                	// if (isEmpty($('#hostFile').val())) {
                         errors.push("Host file is required");
                     }
                 }

@@ -345,6 +345,7 @@ class OnlineQuizController extends Controller
             $online_exam->created_by = Auth::user()->id;
             $result = $online_exam->save();
 
+            $lesson = Lesson::where('quiz_id',$request->quiz_id)->update(['is_lock' => $request->lock]);
 
             DB::commit();
 

@@ -178,10 +178,10 @@
                     <div class="permission_header d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             <i class="ti-move text-white"></i>
-                            <label for="Main_Module_1" class="pl-10 mb-0">{{ @$chapter->name }}</label>
+                            <label for="Main_Module_1" class="pl-10 mb-0 text-break">{{ @$chapter->name }}</label>
                         </div>
                         {{-- <div class="arrow collapsed"  data-toggle="collapse" data-target="#Rolechapter_id{{$key}}"  aria-expanded="true"> --}}
-                        <div class="mr-20 mt-1">
+                        <div class="mr-20 mt-1 d-flex">
                             <a class="chapter_icon mr-20"
                                 href="{{ url('admin/course/course-chapter-show/' . $course->id . '/' . $chapter->id) }}">
                                 <i class="ti-pencil-alt"></i> </a>

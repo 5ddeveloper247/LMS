@@ -338,7 +338,7 @@
                                                 $editLesson->host == 'Iframe' ||
                                                 $editLesson->host == 'URL')) ||
                                             !isset($editLesson)) none @endif">
-                                    <input type="file" class="filepond" name="file" id="hostFile">
+                                    <input type="file" class="filepond" name="file" id="hostFile{{ @$chapter->id }}">
                                 </div>
 
                             </div>
@@ -431,6 +431,8 @@
             } else {
                 $('.filepond--browser').attr('accept', '');
             }
+
+            $('.filepond--browser').val('');
         }
     </script>
 @endpush

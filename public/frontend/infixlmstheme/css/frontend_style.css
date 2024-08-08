@@ -11149,6 +11149,8 @@ footer .social-network a {
     background: #eee;
     padding: 12.3px 25px 18px 30px;
     transition: 0.3s;
+    overflow: hidden;
+        text-overflow: ellipsis;
 }
 
 .theme_according .card .card-header h5 button {
@@ -11163,6 +11165,8 @@ footer .social-network a {
     text-align: left;
     box-shadow: none !important;
     background: #eee;
+    overflow: hidden;
+        text-overflow: ellipsis;
 }
 
 .theme_according .card .card-header h5 button span.course_number {

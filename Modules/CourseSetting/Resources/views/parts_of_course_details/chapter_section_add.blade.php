@@ -131,9 +131,10 @@
     	$('.preloader').show();
         var errors = [];
         var lessonId = '{{isset($editLesson) ? $editLesson->id : ''}}';
-
+        
         var form = $(button).closest("form");
-
+        var chapterId = form.find('input[name="chapter_id"]').val();
+        console.log(chapterId)
        	isUnique(
             {
                 columns: [
@@ -150,15 +151,34 @@
                     errors.push('Choose Host first.');
                 }
 
-                if(lessonId != ''){
+                // if(lessonId != ''){
                 	var host = form.find("select[name='host']").val();
                     if(host == 'Self' || host == 'GoogleDrive'|| host == 'Zip'|| host == 'Text' || 
                     	host == 'PowerPoint'|| host == 'Excel'|| host == 'Word'|| host == 'PDF' || 
                     	host == 'Image'){
-                    	
-//                     	if (isEmpty(form.find("input[name='hostFile']").val())) {
-//                             errors.push("Host file is required");
-//                         }
+                            // let fileInput = form.find('.filepond--browser');
+                            let fileInput = form.find("#hostFile"+chapterId);
+                            var pondInstance = FilePond.find(fileInput[0]);
+                            if (pondInstance.getFiles().length == 0) {
+                                errors.push("Host file is required");
+                            }
+                        // if(fileInput.files.length == 0){
+                        // if(!form.find("input[name='file']")[0].files.length || form.find("input[name='file']")[0].files.length == 0){
+                    	if (isEmpty(fileInput.val())) {
+                    	// if (isEmpty(form.find("input[name='file']").val())) {
+                            
+                        }
+                        // var fileInput = form.find(".filepond--browser");
+                        //     console.log(fileInput.attr('type'));
+                        // if (fileInput.length > 0) {
+                        //     var files = fileInput[0].files; // Get the files property from the DOM element
+                        //     console.log(files.length);
+                        //     if (!files || files.length === 0) {
+                        //         errors.push("Host file is required");
+                        //     }
+                        // } else {
+                        //     errors.push("File input element not found");
+                        // }
                     }
                     if(host == 'Youtube' || host == 'URL'){
 
@@ -178,7 +198,7 @@
                             errors.push("Choose host video first.");
                         }
                 	}
-               }
+            //    }
 
                 if (isEmpty(form.find("select[id='is_lock']").val())) {
                     errors.push('Choose Privacy first.');
@@ -186,7 +206,6 @@
                 
 
                 if (errors.length) {
-                    console.log(errors);
                         $('.preloader').hide();
                         $('input[type="submit"]').attr('disabled', false);
                         $.each(errors.reverse(), function (index, item) {

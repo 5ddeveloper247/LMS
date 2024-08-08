@@ -141,6 +141,35 @@
                         </div>
                     </div>
                 </div>
+                {{-- @dd($online_exam) --}}
+                <div class="row mt-25">
+                    <div class="col-lg-12">
+                        <div class="input-effect mt-2 pt-1">
+                            <label class="primary_input_label "
+                                   for="">{{__('courses.Privacy')}}
+                                <span>*</span></label>
+                            <select class="primary_select" name="lock">
+                                <option
+                                    data-display="{{__('common.Select')}} {{__('courses.Privacy')}} "
+                                    value="">{{__('common.Select')}} {{__('courses.Privacy')}} </option>
+
+                                <option value="0"
+                                        @if (@$editLesson->is_lock==0) selected @endif >
+                                        {{__('courses.Unlock')}}</option>
+
+                                <option value="1"
+                                        @if (@$editLesson->is_lock==1) selected @endif >
+                                        {{__('courses.Locked')}}</option>
+                            </select>
+                            @if ($errors->has('is_lock'))
+                                <span class="invalid-feedback invalid-select"
+                                      role="alert">
+                    <strong>{{ $errors->first('is_lock') }}</strong>
+                </span>
+                            @endif
+                    </div>
+                    </div>
+                </div>
              </div>
                 {{-- End New Create --}}
 
