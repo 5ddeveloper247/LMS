@@ -100,21 +100,29 @@ class PackageController extends Controller
             ->editColumn('allowed_courses', function ($query) {
                 return $query->allowed_courses;
             })
-            ->editColumn('option_1', function ($query) {
-                return $query->option_1;
+            ->editColumn('options', function ($query) {
+                $html = '';
+                $html = $html.'<ul>';
+                $html = $html.'<li><i class="fa fa-arrow-right"></i>'.$query->option_1.'</li>';
+                $html = $html.'<li><i class="fa fa-arrow-right"></i>'.$query->option_2.'</li>';
+                $html = $html.'<li><i class="fa fa-arrow-right"></i>'.$query->option_3.'</li>';
+                $html = $html.'<li><i class="fa fa-arrow-right"></i>'.$query->option_4.'</li>';
+                $html = $html.'<li><i class="fa fa-arrow-right"></i>'.$query->option_5.'</li>';
+                $html = $html.'</ul>';
+                return $html;
             })
-            ->editColumn('option_2', function ($query) {
-                return $query->option_2;
-            })
-            ->editColumn('option_3', function ($query) {
-                return $query->option_3;
-            })
-            ->editColumn('option_4', function ($query) {
-                return $query->option_4;
-            })
-            ->editColumn('option_5', function ($query) {
-                return $query->option_5;
-            })
+            // ->editColumn('option_2', function ($query) {
+            //     return $query->option_2;
+            // })
+            // ->editColumn('option_3', function ($query) {
+            //     return $query->option_3;
+            // })
+            // ->editColumn('option_4', function ($query) {
+            //     return $query->option_4;
+            // })
+            // ->editColumn('option_5', function ($query) {
+            //     return $query->option_5;
+            // })
             ->addColumn('status', function ($query) {
                 $route = 'PackagePricing.change_status';
                 return view('systemsetting::partials._td_status', compact('query', 'route'));
@@ -122,7 +130,7 @@ class PackageController extends Controller
             ->addColumn('action', function ($query) {
                 return view('systemsetting::partials._td_action', compact('query'));
             })
-            ->rawColumns(['status', 'price', 'action'])
+            ->rawColumns(['status', 'price', 'action','options'])
             ->make(true);
     }
 
@@ -172,6 +180,7 @@ class PackageController extends Controller
         $package_pricing->option_5 = $request->option_5;
         $package_pricing->description = $request->description;
         $package_pricing->package_term = $request->package_term;
+        $package_pricing->status = 0;
         $package_pricing->save();
 
         Toastr::success(trans('common.Operation successful'), trans('common.Success'));
@@ -194,6 +203,7 @@ class PackageController extends Controller
     public function edit($id)
     {
         $package = PackagePricing::find($id);
+        $packagepurchases = PackagePurchasing::where('package_id',$id)->has('user')->count();
         // dd($package);
         return view('systemsetting::packages.edit', get_defined_vars());
     }
@@ -204,41 +214,50 @@ class PackageController extends Controller
         $request->validate(
             [
                 'title' => 'required|max:50',
-                'price' => 'required',
-                'allowed_courses' => 'required',
+                // 'price' => 'required',
+                // 'allowed_courses' => 'required',
                 'option_1' => 'required|max:100',
                 'option_2' => 'required|max:100',
                 'option_3' => 'required|max:100',
                 'option_4' => 'required|max:100',
                 'option_5' => 'required|max:100',
                 'description' => 'required|max:200',
-                'package_term' => 'required'
+                // 'package_term' => 'required'
             ],
             [
                 'title.required' => 'Please Enter Title !',
-                'price.required' => 'Please Enter Price !',
-                'allowed_courses.required' => 'Please Enter Allowed Courses !',
+                // 'price.required' => 'Please Enter Price !',
+                // 'allowed_courses.required' => 'Please Enter Allowed Courses !',
                 'option_1.required' => 'Please Enter Option 1 Option !',
                 'option_2.required' => 'Please Enter Option 2 Option !',
                 'option_3.required' => 'Please Enter Option 3 Option !',
                 'option_4.required' => 'Please Enter Option 4 Option !',
                 'option_5.required' => 'Please Enter Option 5 Option !',
                 'description.max' => 'Description Should Not Exceed by 200 Characters !',
-                'description.required' => 'Please Enter Course Description !',
+                // 'description.required' => 'Please Enter Course Description !',
             ]
         );
 
         $package_pricing = PackagePricing::find($request->package_id);
+        $packagepurchases = PackagePurchasing::where('package_id',$request->package_id)->has('user')->count();
         $package_pricing->title = $request->title;
-        $package_pricing->price = $request->price;
-        $package_pricing->allowed_courses = $request->allowed_courses;
+        if($packagepurchases == 0){
+            if($request->has('price')){
+                $package_pricing->price = $request->price;
+            }
+            if($request->has('allowed_courses')){
+                $package_pricing->allowed_courses = $request->allowed_courses;
+            }
+            if($request->has('package_term')){
+                $package_pricing->package_term = $request->package_term;
+        }
+        }
         $package_pricing->option_1 = $request->option_1;
         $package_pricing->option_2 = $request->option_2;
         $package_pricing->option_3 = $request->option_3;
         $package_pricing->option_4 = $request->option_4;
         $package_pricing->option_5 = $request->option_5;
         $package_pricing->description = $request->description;
-        $package_pricing->package_term = $request->package_term;
         $package_pricing->save();
 
         Toastr::success(trans('common.Operation successful'), trans('common.Success'));
@@ -264,12 +283,11 @@ class PackageController extends Controller
     public function getAllsoldPackages()
     {
         $query = PackagePurchasing::has('package')->with('package');
-        
         if (isTutor()) {
             $query->where('user_id', Auth::id());
         }
         $query->select('package_purchasing.*');
-
+        
         return Datatables::of($query)
             ->addIndexColumn()
             ->editColumn('tutor_name', function ($query) {
@@ -285,7 +303,8 @@ class PackageController extends Controller
                 return $tutor_name;
             })
             ->editColumn('package_name', function ($query) {
-                if (!empty($query->latestPackageBuy) && $query->latestPackageBuy->id == $query->id) {
+                
+                if ($query->latestPackageBuy && $query->latestPackageBuy->id == $query->id) {
                     return ($query->package) ? $query->package->title . " (Current)" : '<span class="text-danger">Package not found</span>' ;
                 } else {
                     return ($query->package) ? $query->package->title : '<span class="text-danger">Package not found</span>';
@@ -316,7 +335,8 @@ class PackageController extends Controller
             })
             ->addColumn('invoice',function($query){
                 $createdAt = Carbon::parse($query->created_at);
-                $invoice = Checkout::where('user_id',$query->user->id)->where('type','package')->whereBetween('created_at',[$createdAt->subMinute(), $createdAt->addMinute()])->first();
+                $user = $query->user->id ?? 0;
+                $invoice = Checkout::where('user_id',$user)->where('type','package')->whereBetween('created_at',[$createdAt->subMinute(), $createdAt->addMinute()])->first();
                 if($invoice){
                 return '<div class="main-title d-md-flex">
                                 <a class="primary-btn radius_30px fix-gr-bg mr-10 text-white"

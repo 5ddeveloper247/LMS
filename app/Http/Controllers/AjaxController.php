@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Modules\CourseSetting\Entities\Course;
+use Modules\SystemSetting\Entities\PackagePricing;
 use Modules\SystemSetting\Entities\PackagePurchasing;
 use Modules\CourseSetting\Entities\Lesson;
 use Modules\CourseSetting\Entities\SubCategory;
@@ -71,6 +72,13 @@ class AjaxController extends Controller
         }
         if (Auth::user()->role_id == 3) {
             return response()->json(['error' => 'Permission Denied'], 403);
+        }
+        if($request->table == 'package_pricing' && $request->status == 1){
+            
+            $active = PackagePricing::where('status',1)->count();
+            if($active>=3){
+                return response()->json(['error' => 'Maximum Packages limit have been reached.']);
+            }
         }
         if($request->table == 'courses' && $request->status == 1){
             $course = Course::find($request->id);

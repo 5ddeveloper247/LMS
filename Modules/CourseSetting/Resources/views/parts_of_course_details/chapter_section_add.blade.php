@@ -162,6 +162,15 @@
                             if (pondInstance.getFiles().length == 0) {
                                 errors.push("Host file is required");
                             }
+
+                            var isUploading = pondInstance.getFiles().some(fileItem => {
+                                return fileItem.status === FilePond.FileStatus.PROCESSING ||
+                                    fileItem.status === FilePond.FileStatus.PROCESSING_QUEUED;
+                            });
+
+                            if(isUploading){
+                                errors.push("Please wait. File upload in in process");
+                            }
                         }
                     }
                     if(host == 'Youtube' || host == 'URL'){

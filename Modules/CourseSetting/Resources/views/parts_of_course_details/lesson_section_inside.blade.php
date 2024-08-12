@@ -431,8 +431,11 @@
             } else {
                 $('.filepond--browser').attr('accept', '');
             }
-
-            $('.filepond--browser').val('');
+            let form = sel.closest('form');
+            let chapterId = form.querySelector('input[name="chapter_id"]').value;
+            let hostInput = form.querySelector('#hostFile'+chapterId);
+            var pondInstance = FilePond.find(hostInput);
+            pondInstance.removeFiles();
         }
     </script>
 @endpush

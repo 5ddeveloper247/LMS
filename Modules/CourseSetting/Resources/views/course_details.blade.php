@@ -512,6 +512,7 @@
                                                                     <label class="primary_input_label" for="">
                                                                         {{ __('courses.Type') }} </label>
                                                                 </div>
+                                                                @if(auth()->user()->role_id == 1 || in_array($course->type,[1,9]))
                                                                 <div class="col-md-4 col-sm-4 mb-25">
                                                                     <label class="primary_checkbox d-flex mr-12"
                                                                         onclick="removecol()">
@@ -523,7 +524,9 @@
                                                                             class="checkmark mr-2"></span>{{ __('courses.Course') }}
                                                                     </label>
                                                                 </div>
+                                                                @endif
                                                                 @if($course->type != 9)
+                                                                @if(auth()->user()->role_id == 1 || $course->type == 7)
                                                                 <div class="col-md-4 col-sm-4 mb-25 {{ $d_none }} @if($course->type == 0) d-none @endif">
                                                                     <label class="primary_checkbox d-flex nowrap mr-12"
                                                                         onclick="timecol()">
@@ -534,7 +537,8 @@
                                                                         <span class="checkmark mr-2"></span>
                                                                         {{ __('Time Table') }}</label>
                                                                 </div>
-                                                                
+                                                                @endif
+                                                                @if(auth()->user()->role_id == 1 || $course->type == 2)
                                                                 <div class="col-md-4 col-sm-4 mb-25 {{ $d_none }} @if($course->type == 0) d-none @endif">
                                                                     <label class="primary_checkbox d-flex nowrap mr-12"
                                                                         onclick="addcol()">
@@ -547,6 +551,7 @@
                                                                         {{ __('Big Quiz') }}
                                                                     </label>
                                                                 </div>
+                                                                @endif
                                                                 <script>
                                                                     function addcol() {
                                                                         if ($('.type2').is(':checked')) {
@@ -616,7 +621,7 @@
                                                             ->first();
                                                     @endphp
 
-                                                    <div class="col-xl-6 courseBox @if($course->type == 9) d-none @endif">
+                                                    <div class="col-xl-6 courseBox @if($course->type != 1) d-none @endif">
                                                         <div class="primary_input {{ $d_none }}">
                                                             <div class="row toggle_course_testPrep">
                                                                 <div class="col-md-12">

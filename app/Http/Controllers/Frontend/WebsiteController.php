@@ -1959,7 +1959,7 @@ class WebsiteController extends Controller
         $courses = Course::where('status', 1)->has('userRoleId')->with(['userRoleId', 'chapters', 'enrolls'])->take(4)->orderBy('feature','desc')->get();
         $postions = DB::table('instructor_positions')->get();
         $hears = DB::table('instructor_hears')->get();
-        $packages = PackagePricing::where('status', '1')->get() ;
+        $packages = PackagePricing::where('status', '1')->take(3)->get() ;
         $about = AboutPage::first();
         $current_package = PackagePurchasing::where('user_id', Auth::id())->latest()->first();
         $exist = PackagePurchasing::where('user_id', Auth::id())->count();

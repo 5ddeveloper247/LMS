@@ -15,12 +15,12 @@
             @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
                 <div class="row pt-0">
                     <ul class="nav nav-tabs no-bottom-border mt-sm-md-20 mb-10 ml-3" role="tablist">
-
+                        @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
                         <li class="nav-item">
                             <a class="nav-link @if (!session()->get('type')) active @endif" href="#group_email_sms"
                                 role="tab" data-toggle="tab">{{ __('Programs') }}</a>
                         </li>
-
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link @if (session()->get('type') == 2) active @endif" href="#indivitual_email_sms"
                                 role="tab" data-toggle="tab">{{ __('Prep-Courses') }}</a>
@@ -37,7 +37,7 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <input type="hidden" name="selectTab" id="selectTab">
-                            @if (Auth::user()->role_id == 1)
+                            @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
                                 <div role="tabpanel"
                                     class="tab-pane fade @if (!session()->get('type')) show active @endif"
                                     id="group_email_sms">

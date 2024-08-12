@@ -244,6 +244,37 @@ class MeetingController extends Controller
         }
     }
 
+    public function getTeamUserIdFromEmail($email,$access_token){
+        // First, retrieve the user's Azure AD object ID
+        $userEmail = $email;
+        $userId = null;
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://graph.microsoft.com/v1.0/users?$filter=userPrincipalName%20eq%20\'' . urlencode($userEmail) . '\'',
+            // CURLOPT_URL => 'https://graph.microsoft.com/v1.0/users?$filter=userPrincipalName=' . $userEmail,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer ' . $access_token,
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        $userData = json_decode($response, true);
+        if (isset($userData['value'][0]['id'])) {
+            $userId = $userData['value'][0]['id'];
+        }
+        return $response;
+    }
+
 
     public function classStore($data)
     {
@@ -265,18 +296,30 @@ class MeetingController extends Controller
                 Toastr::error($msg);
                 return redirect()->back();
             }else{
+
                 $access_token = $tokenData['access_token'];
-                
                 $startDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $start_time)->format('Y-m-d\TH:i:s\Z');
-                // dd($startDateTime); "2023-12-19T11:48:00Z"
-                // die;
+                
                 $endDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $endTime)->format('Y-m-d\TH:i:s\Z');
-                // echo('start:'. $startDateTime);
-                // echo('endtime'. $endDateTime);
-                // dd('jkfjlaskjfdlkajsflkajs');
                 
                 $curl = curl_init();
-                $jsonData = '{"startDateTime":"'.$startDateTime.'", "endDateTime":"'.$endDateTime.'", "subject": "'.$data['description'].'","lobbyBypassSettings":{"scope":"everyone","isDialInBypassEnabled":true}}';
+                $jsonData = '{"startDateTime":"'.$startDateTime.'", 
+                "endDateTime":"'.$endDateTime.'", 
+                "subject": "'.$data['description'].'",
+                "allowMeetingChat": "enabled",
+                "allowAttendeeToEnableCamera": true,
+                "allowAttendeeToEnableMic": true,
+                "isCopyToClipboardEnabled": true,
+                "allowRecording": true,
+                "allowTranscription": true,
+                "isLobbyEnabled": true,
+                "whoCanPresent": "organizer",
+                "allowedPresenters": "organizer",
+                "lobbyBypassSettings":{
+                    "scope":"everyone",
+                    "isDialInBypassEnabled":true
+                }
+                }';
                 
                 //dd($jsonData);
                 curl_setopt_array($curl, array(
@@ -301,7 +344,7 @@ class MeetingController extends Controller
             $response = json_decode($response);
             
             
-            //dd($response, $jsonPostfields, $jsonData);
+            dd($response);
             
             
             

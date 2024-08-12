@@ -123,13 +123,16 @@
                             class="primary_input_field mb-15" maxlength="50" value="{{ $package->title ?? old('title') }}">
                     </div>
                 </div>
-
+                
                 <div class="col-xl-4">
                     <div class="primary_input mb-25">
                         <label class="primary_input_label" for="price">{{ __('Price') }}
                         </label>
-                        <input type="text" name="price" id="price" placeholder="-"
-                            class="primary_input_field mb-15" maxlength="30" value="{{ $package->price ?? old('price') }}">
+                        <input type="text" name="price" id="price" placeholder="-" @if($packagepurchases > 0) readonly @endif
+                            class="primary_input_field @if($packagepurchases == 0) mb-15 @endif" maxlength="30" value="{{ $package->price ?? old('price') }}">
+                        @if($packagepurchases > 0)
+                        <small class="text-danger">Package has already been bought so this input can't be changed</small>
+                        @endif
                     </div>
                 </div>
                 <div class="col-xl-4">
@@ -137,19 +140,31 @@
                         <label class="primary_input_label" for="allowed_courses">{{ __('Allowed Courses') }}
                         </label>
                         <input type="number" name="allowed_courses" id="allowed_courses" placeholder="-"
-                            class="primary_input_field mb-15"
+                            class="primary_input_field @if($packagepurchases == 0) mb-15 @endif"  @if($packagepurchases > 0) readonly @endif
                             value="{{ $package->allowed_courses ?? old('allowed_courses') }}">
+                            @if($packagepurchases > 0)
+                        <small class="text-danger">Package has already been bought so this input can't be changed</small>
+                        @endif
                     </div>
                 </div>
                 <div class="col-xl-4">
                     <div class="primary_input mb-25">
                         <label class="primary_input_label" for="package_term">{{ __('Package Term') }}
                         </label>
-                        <select name="package_term" id="package_term" placeholder="-"
-                            class="primary_input_field mb-15">
-                            <option value="mo" @if($package->package_term == 'mo') selected @endif>per month</option>
-                            <option value="annum" @if($package->package_term == 'annum') selected @endif>per annum</option>
+                        <select name="package_term" id="package_term" placeholder="-"  @if($packagepurchases > 0) readonly @endif
+                            class="primary_input_field @if($packagepurchases == 0) mb-15 @endif">
+                            <option value="mo" @if($package->package_term == 'mo') selected
+                                @else
+                                @if($packagepurchases > 0) disabled @endif
+                                @endif>per month</option>
+                            <option value="annum" @if($package->package_term == 'annum') selected
+                                @else
+                                @if($packagepurchases > 0) disabled @endif
+                                @endif>per annum</option>
                         </select>
+                        @if($packagepurchases > 0)
+                        <small class="text-danger">Package has already been bought so this input can't be changed</small>
+                        @endif
                     </div>
                 </div>
                 <div class="col-xl-12">

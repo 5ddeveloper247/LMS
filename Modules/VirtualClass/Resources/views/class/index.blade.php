@@ -1536,6 +1536,19 @@
             })
 
         }
+
+        function removeCircularReferences() {
+    const seen = new WeakSet();
+    return function(key, value) {
+        if (typeof value === "object" && value !== null) {
+            if (seen.has(value)) {
+                return; // Omit circular references
+            }
+            seen.add(value);
+        }
+        return value;
+    };
+}
         function formValidations(button){
 
     	    var form = $('#virtual_class_form');
@@ -1593,25 +1606,35 @@
         	// var courseType = form.find("select[name='courseType']").val();
         	var programList = form.find("select[name='programList']").val();
         	var courseType = form.find("select[name='courseType[]']").val();
-            var type = form.find('input[name="type"]');
-
+            var type = form.find('input[name="type"]').val();
+            var data = {
+                    id : id,
+                    title : title,
+                    course : course,
+                    assign_instructor : assign_instructor,
+                    time : time,
+                    days : days,
+                    duration : duration,
+                    courseType :  courseType,
+                    programList :  programList,
+                    // type : type
+                }
+            //     var data1 = JSON.stringify(data,removeCircularReferences());
+            // console.log(data,data1);
+            if (errors.length) {
+//         	       		console.log(errors);
+                $('.preloader').hide();
+                $('input[type="submit"]').attr('disabled', false);
+                $.each(errors.reverse(), function (index, item) {
+                    toastr.error(item, 'Error', 1000);
+                });
+                return false;
+            }
             $.ajax({
                 type: 'post',
                 url: '{{ URL::to('virtualclass/validateClass') }}',
-                data: {
-                    'id': id,
-                    'title': title,
-                    'course': course,
-                    'assign_instructor': assign_instructor,
-                    'time': time,
-                    'days': days,
-                    'duration': duration,
-                    'courseType':  courseType,
-                    'programList':  programList,
-                    'type': type
-                },
+                data: data,
                 success: function(data) {
-
 					if(data.done == 'merge'){
 						$('.preloader').hide();
 						$("#courseTypConfirmMessage").text(data.error);
@@ -1623,8 +1646,7 @@
                  	}
 
                    	if (errors.length) {
-//         	       		console.log(errors);
-        	        	$('.preloader').hide();
+                        $('.preloader').hide();
         	          	$('input[type="submit"]').attr('disabled', false);
         	          	$.each(errors.reverse(), function (index, item) {
         	        		toastr.error(item, 'Error', 1000);
@@ -1637,8 +1659,8 @@
                 error: function(e){
                   console.log(e);
                 }
-            })
-    	}
+            });
+        }
     </script>
     {{-- @if(isset($class))
         

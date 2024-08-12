@@ -5,28 +5,7 @@
 @endsection
 @php
     $table_name = 'package_pricing';
-    // if (\Route::current()->getName() == 'getAllCourse') {
-    //     $url = route('getAllCourseData') . '?course_status=3';
-    //     $text = trans('common.All');
-    // } elseif (\Route::current()->getName() == 'getActiveCourse') {
-    //     $url = route('getAllCourseData') . '?course_status=1';
-    //     $text = trans('common.Active');
-    // } elseif (\Route::current()->getName() == 'getPendingCourse') {
-    //     $url = route('getAllCourseData') . '?course_status=0';
-    //     $text = trans('common.Pending');
-    // } elseif (\Route::current()->getName() == 'courseSortBy' || \Route::current()->getName() == 'courseSortByGet') {
-    //     $category = request()->get('category');
-    //     $type = request()->get('type');
-    //     $instructor = request()->get('instructor');
-    //     $status = request()->get('search_status');
-    //     $search_required_type = request()->get('search_required_type');
-    //     $search_delivery_mode = request()->get('search_delivery_mode');
-    //     $url = route('getAllCourseData') . '?search_status=' . $status . '&category=' . $category . '&type=' . $type . '&instructor=' . $instructor . '&required_type=' . $search_required_type . '&mode_of_delivery=' . $search_delivery_mode;
-    //     $text = trans('common.Filter');
-    // } else {
-    //     $url = route('getAllCourseData');
-    //     $text = trans('common.All');
-    // }
+    
     $url = route('getAllPackagePricing');
 @endphp
 @section('table')
@@ -45,7 +24,7 @@
                                 {{ $title ?? 'Package Pricing' }}
                             </h3>
                             <ul class="d-flex custom_list_style p-0">
-                                @if (isAdmin() && $total_packages < 3)
+                                @if (isAdmin())
                                     <li>
                                         <a class="primary-btn radius_30px fix-gr-bg mr-10" href="{{ route('addPackage') }}">
                                             <i class="ti-plus"></i>{{ __('Add Package') }}</a>
@@ -68,11 +47,11 @@
                                             <th scope="col"> {{ __('Title') }}</th>
                                             <th scope="col">{{ __('Price') }}</th>
                                             <th scope="col">{{ __('Allowed Courses') }}</th>
-                                            <th scope="col">{{ __('Option 1 ') }}</th>
-                                            <th scope="col">{{ __('Option 2') }}</th>
+                                            <th scope="col">{{ __('Option') }}</th>
+                                            {{-- <th scope="col">{{ __('Option 2') }}</th>
                                             <th scope="col">{{ __('Option 3') }}</th>
                                             <th scope="col">{{ __('Option 4') }}</th>
-                                            <th scope="col">{{ __('Option 5') }}</th>
+                                            <th scope="col">{{ __('Option 5') }}</th> --}}
                                             <th scope="col">{{ __('common.Status') }}</th>
                                             <th scope="col">{{ __('common.Action') }}</th>
                                         </tr>
@@ -161,25 +140,25 @@
                     searchable: false
                 },
                 {
-                    data: 'option_1',
-                    name: 'option_1'
+                    data: 'options',
+                    name: 'options'
                 },
-                {
-                    data: 'option_2',
-                    name: 'option_2'
-                },
-                {
-                    data: 'option_3',
-                    name: 'option_3'
-                },
-                {
-                    data: 'option_4',
-                    name: 'option_4'
-                },
-                {
-                    data: 'option_5',
-                    name: 'option_5'
-                },
+                // {
+                //     data: 'option_2',
+                //     name: 'option_2'
+                // },
+                // {
+                //     data: 'option_3',
+                //     name: 'option_3'
+                // },
+                // {
+                //     data: 'option_4',
+                //     name: 'option_4'
+                // },
+                // {
+                //     data: 'option_5',
+                //     name: 'option_5'
+                // },
                 {
                     data: 'status',
                     name: 'search_status',
