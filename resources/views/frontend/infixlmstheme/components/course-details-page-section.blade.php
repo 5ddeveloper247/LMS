@@ -18,7 +18,6 @@
                     $course_image = getCourseImage($course->image);
                 }
             @endphp
-            {{-- @dd($course->outcomes) --}}
             <!-- firststart -->
             <div class="row px-lg-5 small_screen course_padding">
                 <div class="col-lg-9 col-md-8 col-sm-7 d-flex justify-content-between px-2">
@@ -941,8 +940,12 @@
                                         <div class="col-sm-6 col-xl-4 d-flex justify-content-center mb-3">
                                             <div class="card quiz_wizged rounded-card shadow">
                                                 <div class="rounded-card-img thumb">
+                                                    @if($c->type == 2)
 
+                                                    <a href="{{ route('quizDetailsView',['slug' => $c_slug, 'courseType' => $c->type]) }}">
+                                                    @else
                                                     <a href="{{ route('courseDetailsView',['slug' => $c_slug, 'courseType' => $c->type]) }}">
+                                                    @endif
                                                         <img src="{{ getCourseImage($c->thumbnail) }}"
                                                             alt="" class="img-fluid w-100 img_circle">
                                                         <x-price-tag :price="$price" :discount="$c->discount_price" />
@@ -985,7 +988,7 @@
                                                 </div>
                                                 <div class="card-body course_content">
                                                     <a href="{{ route('courseDetailsView',['slug' => $c_slug, 'courseType' => $c->type]) }}">
-                                                        <h5 class="nobrake">{{ @$c->parent->title }}</h5>
+                                                        <h5 class="nobrake">{{ $c->parent->title ?? $c->title }}</h5>
                                                     </a>
                                                     <div
                                                         class="align-items-baseline d-flex justify-content-between rating_cart">
@@ -1012,7 +1015,7 @@
                                                     </div>
                                                     <div class="course_less_students d-flex justify-content-between course_detail_items" >
                                                         <a href="#"> <i class="ti-agenda course-span"></i>
-                                                            {{ count($c->parent->lessons) }}
+                                                            {{ ($c->parent) ? count($c->parent->lessons) : count($c->lessons) }}
                                                             {{ __('frontend.Lessons') }}</a>
                                                         <a href="#"> <i class="ti-user"></i>
                                                             {{ $c->total_enrolled }}

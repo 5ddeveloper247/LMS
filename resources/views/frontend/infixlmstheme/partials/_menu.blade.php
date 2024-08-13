@@ -344,7 +344,7 @@
                     
 
                     {{-- cart --}}
-                    @if (Settings('show_cart') == 1)
+                    @if (Settings('show_cart') == 1 && !Route::is('CheckOut'))
                         <a href="#" class="float notification_wrapper">
                             <div class="notify_icon cart_store">
                                 <img style="max-width: 30px; padding-left: 8px; min-width: 36px;"

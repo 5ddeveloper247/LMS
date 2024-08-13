@@ -181,6 +181,7 @@
                             <label for="Main_Module_1" class="pl-10 mb-0 text-break">{{ @$chapter->name }}</label>
                         </div>
                         {{-- <div class="arrow collapsed"  data-toggle="collapse" data-target="#Rolechapter_id{{$key}}"  aria-expanded="true"> --}}
+                        @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                         <div class="mr-20 mt-1 d-flex">
                             <a class="chapter_icon mr-20"
                                 href="{{ url('admin/course/course-chapter-show/' . $course->id . '/' . $chapter->id) }}">
@@ -193,7 +194,7 @@
                                 <i class="ti-trash"></i></a>
 
                         </div>
-
+                        @endif
 
                         @if (isset($data['chapter_id']))
                             @if ($data['chapter_id'] == $chapter->id)
@@ -411,6 +412,7 @@
                                                                     <td>{{ $question_key + 1 }}</td>
                                                                     <td>{!! $assign->questionBank->question !!}</td>
                                                                     <td>
+                                                                        @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                                         <div class="btn-group">
 
                                                                             <a
@@ -423,6 +425,7 @@
                                                                             </a>
                                                                             {{-- <a href="{{url('quiz/online-exam-question-unassign/'.$course->id.'/'.$quiz->id.'/'.$assign->questionBank->id)}}" class="ml-10" title="Question Unassigned"><i class="ti-unlink"></i> </a> --}}
                                                                         </div>
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
