@@ -19,7 +19,7 @@ class TeamAuthController extends Controller
         $client_secret = $teamSettings->client_secret;
         $redirect_uri = $teamSettings->redirect_url;
         // dd($redirect_uri);
-        $scopes = 'openid profile email User.Read offline_access OnlineMeetings.ReadWrite Team.ReadBasic.All';
+        $scopes = 'openid profile email User.Read User.ReadBasic.All User.Read.All User.ReadWrite.All offline_access OnlineMeetings.ReadWrite Team.ReadBasic.All';
         // Include 'offline_access' scope
         $authorization_url = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
         // Step 3: Construct Authorization URL and Redirect User

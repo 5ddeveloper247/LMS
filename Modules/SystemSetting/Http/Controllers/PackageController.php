@@ -267,6 +267,14 @@ class PackageController extends Controller
     public function destroy($id)
     {
         $package = PackagePricing::find($id);
+        $package_purchasing = PackagePurchasing::where('package_id',$id)->get()
+        ->filter(function($q) {
+            return $q->latestPackageBuy && $q->id == $q->latestPackageBuy->id;
+        });
+        if(count($package_purchasing)>0){
+            Toastr::error('This Package has been bought and is currently in use.', trans('common.Success'));
+        return redirect()->back();
+        }
         $package->delete();
         Toastr::success(trans('common.Operation successful'), trans('common.Success'));
         return redirect()->back();

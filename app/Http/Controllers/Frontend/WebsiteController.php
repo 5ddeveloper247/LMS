@@ -2335,7 +2335,7 @@ class WebsiteController extends Controller
                         $carts[$key]['program_id'] = $cart['program_id'];
                         $carts[$key]['instructor_id'] = $cart['instructor_id'];
                         $carts[$key]['title'] = $cart->program->programtitle;
-                        $carts[$key]['instructor_name'] = $cart->program->user->name;
+                        $carts[$key]['instructor_name'] = $cart->program->user->name ?? '';
                         $carts[$key]['image'] = getCourseImage($cart->program->icon);
 
                         if ($cart->program->discount_price > 0) {
@@ -2357,7 +2357,7 @@ class WebsiteController extends Controller
                         $carts[$key]['course_id'] = $cart['course_id'];
                         $carts[$key]['instructor_id'] = $cart['instructor_id'];
                         $carts[$key]['title'] = $course_title;
-                        $carts[$key]['instructor_name'] = $cart->course->user->name;
+                        $carts[$key]['instructor_name'] = $cart->course->user->name ?? '';
                         if ($cart->course_type == 4) {
                             $child_image = $check->children()->where('type', $cart->course_type)->first();
                             $carts[$key]['image'] = getCourseImage($child_image->thumbnail);
@@ -2421,7 +2421,6 @@ class WebsiteController extends Controller
                 //                }
             }
         }
-
         return response()->json($carts);
     }
 

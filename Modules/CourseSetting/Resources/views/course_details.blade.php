@@ -365,6 +365,7 @@
                                                                 
                                                             </style>
                                                             <hr>
+                                                            @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                             <div class="row d-flex">
                                                                 <div class="col-lg-2">
                                                                     <button
@@ -430,6 +431,8 @@
                                                                 <div class="col-lg-1"></div>
 
                                                             </div>
+                                                            
+                                                            @endif
                                                             <div class="row" style="display: none">
                                                                 <div class="col-lg-1"></div>
                                                                 <div class="col-lg-10 section_content">
@@ -1934,6 +1937,7 @@
                                         id="course_exercise">
 
                                         <div class="">
+                                            @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                             <div class="row mb_20 mt-20">
                                                 <div class="col-lg-2">
 
@@ -1947,7 +1951,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
-
+                                            @endif
                                             <div class="modal fade admin-query" id="addFile">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
@@ -2030,8 +2034,8 @@
                                             <div class="QA_section QA_section_heading_custom check_box_table hide_btn_tab">
                                                 <div class="QA_table">
                                                     <!-- table-responsive -->
-                                                    <div class="">
-                                                        <table id="lms_table" class="table table-responsive">
+                                                    <div class="table-responsive">
+                                                        <table id="lms_table" class="table">
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">{{ __('common.SL') }}</th>
@@ -2072,6 +2076,7 @@
                                                                                     aria-expanded="false">
                                                                                     {{ __('common.Select') }}
                                                                                 </button>
+                                                                                @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                                                 <div class="dropdown-menu dropdown-menu-right"
                                                                                     aria-labelledby="dropdownMenu2">
                                                                                     <a class="dropdown-item fileEditFrom"
@@ -2084,6 +2089,7 @@
                                                                                         data-target="#deleteQuestionGroupModal{{ $exercise_file->id }}"
                                                                                         href="#">{{ __('common.Delete') }}</a>
                                                                                 </div>
+                                                                                @endif
                                                                             </div>
                                                                             <!-- shortby  -->
                                                                         </td>

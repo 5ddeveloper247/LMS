@@ -244,6 +244,55 @@ class MeetingController extends Controller
         }
     }
 
+    public function createUserEmail($email){
+        // First, retrieve the user's Azure AD object ID
+        $userEmail = $email;
+        $userId = null;
+        $teamauthobj = new TeamAuthController();
+            $tokenData = $teamauthobj->refreshAccessToken();
+            // $tokenData = $this->refreshAccessToken();
+            if(array_key_exists("error",$tokenData)){
+                $msg = (Auth::user()->role_id == 1) ? 'Teams API credentials have expired. Either Generate Token from API Settings or check the Client ID and Secret.' : 'Error creating Teams meeting link. The API credentials may have expired.';
+                Toastr::error($msg);
+                return array('status' => 0,'data' => $msg);
+            }
+
+                $access_token = $tokenData['access_token'];
+        $curl = curl_init();
+        
+        $jsonData = '{
+            "accountEnabled": true,
+            "displayName": "Adele Vance",
+            "mailNickname": "AdeleV",
+            "userPrincipalName": "'.$email.'",
+            "passwordProfile" : {
+                "forceChangePasswordNextSignIn": true,
+                "password": "xWwvJ]6NMw+bWH-d"
+            }
+            }';
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://graph.microsoft.com/v1.0/users',
+            // CURLOPT_URL => 'https://graph.microsoft.com/v1.0/users?$filter=userPrincipalName=' . $userEmail,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $jsonData,
+            CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $access_token,
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        $userData = json_decode($response, true);
+        return array('status' => 1, 'data' => $userData);
+    }
     public function getTeamUserIdFromEmail($email,$access_token){
         // First, retrieve the user's Azure AD object ID
         $userEmail = $email;
@@ -272,7 +321,7 @@ class MeetingController extends Controller
         if (isset($userData['value'][0]['id'])) {
             $userId = $userData['value'][0]['id'];
         }
-        return $response;
+        return $userId;
     }
 
 
@@ -301,7 +350,8 @@ class MeetingController extends Controller
                 $startDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $start_time)->format('Y-m-d\TH:i:s\Z');
                 
                 $endDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $endTime)->format('Y-m-d\TH:i:s\Z');
-                
+                // $attendeeId = $this->getTeamUserIdFromEmail('lmstest@merakinursing.com',$access_token);
+                // dd($attendeeId);
                 $curl = curl_init();
                 $jsonData = '{"startDateTime":"'.$startDateTime.'", 
                 "endDateTime":"'.$endDateTime.'", 
@@ -313,8 +363,8 @@ class MeetingController extends Controller
                 "allowRecording": true,
                 "allowTranscription": true,
                 "isLobbyEnabled": true,
-                "whoCanPresent": "organizer",
-                "allowedPresenters": "organizer",
+                "whoCanPresent": "organization",
+                "allowedPresenters": "organization",
                 "lobbyBypassSettings":{
                     "scope":"everyone",
                     "isDialInBypassEnabled":true
@@ -333,10 +383,10 @@ class MeetingController extends Controller
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => $jsonData,
                     CURLOPT_HTTPHEADER => array(
-                   'Content-Type: application/json',
-                   'Authorization: Bearer ' . $access_token,
-                ),
-            ));
+                    'Content-Type: application/json',
+                    'Authorization: Bearer ' . $access_token,
+                    ),
+                ));
 
             $response = curl_exec($curl);
             curl_close($curl);

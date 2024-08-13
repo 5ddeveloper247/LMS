@@ -231,7 +231,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['student']], function 
     //Route::get('invoice/{id}', 'StudentController@Invoice')->name('invoice');
     Route::get('subscription-invoice/{id}', 'StudentController@subInvoice')->name('subInvoice');
     Route::get('StudentApplyCoupon', 'StudentController@StudentApplyCoupon')->name('StudentApplyCoupon');
-    Route::get('checkout', 'StudentController@CheckOut')->name('CheckOut')->middleware('UserAgreementCheck');
+    Route::get('checkout', 'StudentController@CheckOut')->name('CheckOut');
     Route::get('remove-profile-pic', 'StudentController@removeProfilePic')->name('removeProfilePic');
     Route::get('course-certificate/{id}/{slug}', 'StudentController@getCertificate')->name('getCertificate');
     Route::get('program-certificate/{id}/{slug}', 'StudentController@getProgramCertificate')->name('getProgramCertificate');

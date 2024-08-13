@@ -212,7 +212,7 @@
                 <div id="Rolechapter_id{{ $key }}"
                     class="capter_body @if (isset($data['chapter_id']) && $data['chapter_id'] == $chapter->id) show @endif collapse">
                     {{-- start option head --}}
-
+                    @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                     <div class="row d-flex mt-30 px-2">
                         <div class="col-lg-2">
                             <button class="primary-btn icon-only fix-gr-bg add_option_box mr-10"
@@ -254,7 +254,7 @@
                         </div>
 
                     </div>
-
+                    @endif
 
                     <div class="row" id="lesson_section{{ $key }}" style="display: none">
                         <div class="col-lg-1"></div>
@@ -374,18 +374,24 @@
                                                     <a target="_blank"
                                                         href="{{ route('fullScreenView', [$course->id, $lesson->id]) }}"
                                                         class="dropdown-item">{{ __('common.View') }}</a>
+                                                    @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                     <a href="{{ url('admin/course/course-lesson-show/' . $course->id . '/' . $chapter->id . '/' . $lesson->id).'?type=courses' }}"
                                                         class="dropdown-item">{{ __('common.Edit') }}</a>
+                                                    @endif
                                                     @if ($lesson->is_quiz == 1)
+                                                    @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                         <a class="dropdown-item add_question"
                                                             data-lesson_id="{{ $quiz->id }}"
                                                             data-chapter_id="{{ $chapter->id }}" href="javascript:void(0)">Add
                                                             Question</a>
                                                     @endif
+                                                    @endif
+                                                    @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                     <a href="#" data-toggle="modal"
                                                         data-target="#deleteLesson{{ @$lesson->id }}"
                                                         class="dropdown-item"
                                                         type="button">{{ __('common.Delete') }}</a>
+                                                    @endif
 
                                                 </div>
                                             </div>
@@ -448,14 +454,18 @@
                                                     <a target="_blank"
                                                         href="{{ route('fullScreenView', [$course->id, $lesson->id]) }}"
                                                         class="dropdown-item">{{ __('common.View') }}</a>
+                                                    @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                     @if (isModuleActive('Assignment'))
                                                         <a href="{{ url('admin/course/course-assignment-show/' . $course->id . '/' . $chapter->id . '/' . $lesson->id) }}"
                                                             class="dropdown-item">{{ __('common.Edit') }}</a>
                                                     @endif
+                                                    @endif
+                                                    @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                     <a href="#" data-toggle="modal"
                                                         data-target="#deleteLesson{{ @$lesson->id }}"
                                                         class="dropdown-item"
                                                         type="button">{{ __('common.Delete') }}</a>
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endforeach
@@ -485,12 +495,16 @@
                                                 <a target="_blank"
                                                     href="{{ $lesson->is_quiz == 0 ? route('fullScreenView', [$course->id, $lesson->id]) : route('quizStart', [$course->id, $lesson->quiz_id, $lesson->lessonQuiz->title]) }}"
                                                     class="dropdown-item">{{ __('common.View') }}</a>
+                                                @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                 <a href="{{ url('admin/course/course-lesson-show/' . $course->id . '/' . $chapter->id . '/' . $lesson->id).'?type=courses' }}"
                                                     class="dropdown-item">{{ __('common.Edit') }}</a>
+                                                @endif
+                                                @if($course->type != 9 || ($course->type == 9 && $course->user_id == auth()->user()->id))
                                                 <a href="#" data-toggle="modal"
                                                     data-target="#deleteLesson{{ @$lesson->id }}"
                                                     class="dropdown-item"
                                                     type="button">{{ __('common.Delete') }}</a>
+                                                @endif
                                             </div>
                                         </div>
                                     @endif

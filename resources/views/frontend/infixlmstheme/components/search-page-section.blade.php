@@ -286,7 +286,7 @@
                         $price = $program->get('current_program_plan')[0]['amount'];
                 }else{
                     $routeParams = $program->get('type') == 1 ? [$program->get('slug')] : ['slug' => $program->get('parent')['slug'] ?? $program->get('slug'), 'courseType' => $program->get('type')];
-                    $url_link = route('courseDetailsView', $routeParams);
+                    $url_link = ($program->get('type')==2) ? route('quizDetailsView',$routeParams) : route('courseDetailsView', $routeParams);
                         $course_image = getCourseImage($program->get('thumbnail'));
                         $course_title = $program->get('parent') ? $program->get('parent')['title']['en'] : $program->get('title')['en'];
                         $course_description = $program->get('parent') ? $program->get('parent')['about']['en'] : $program->get('about')['en'];

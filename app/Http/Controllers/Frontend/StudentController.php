@@ -259,6 +259,9 @@ class StudentController extends Controller
         if (!Auth::check()) {
             return redirect()->route('login');
         }
+        if(Auth::user()->role_id != 3){
+            return redirect()->back();
+        }
         try {
             return view(theme('pages.myCertificate'));
         } catch (\Exception $e) {
