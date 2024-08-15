@@ -26,7 +26,7 @@ class checkStudentisEnrolled
             $user_application_exists = UserApplication::where('user_id', Auth::user()->id)->exists();
             $user_declaration_exists = UserDeclaration::where('user_id', Auth::user()->id)->exists();
             $user_payment_exists = CloverPayment::where('user_id', Auth::user()->id)->exists();
-            $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->exists();
+            $user_agreement_exists = UserAuthorzIationAgreement::where('user_id', Auth::user()->id)->first();
             session()->put('user', Auth::user());
             session()->put('userSetting', UserSetting::where('user_id', Auth::user()->id)->first());
 
@@ -58,6 +58,13 @@ class checkStudentisEnrolled
               if (!$user_payment_exists) {
                   Toastr::error('Please Make Your Payment First !', 'Error');
                   return redirect()->to(route('register.pay'));
+              }
+
+              if($user_agreement_exists){
+                if($user_agreement_exists->user_agreement_form == null || $user_agreement_exists->status == null){
+                    Toastr::error('Please Upload Your Agreement Form', 'Error');
+                  return redirect()->to(route('myProfile'));
+                }
               }
             }
         }

@@ -75,10 +75,20 @@ class ProgramPaymentPlanController extends Controller
             return response()->json(['msg' => 'Class Start Date Must be Between Start Date & End Date'], 200);
         }
 
+        
+
         $pay = new PaymentPlans;
 
         if (count($pay->getMatchingTenureForProgramPlan($request->parent_id, $request->id, $start_date, $end_date,'program')) == 0) {
             $plan = PaymentPlans::find($request->id);
+            if(!empty($plan)){
+                $planned_amount = PaymentPlanDetails::where('payment_plan_id', $plan->id)
+                ->sum('amount');
+                if($planned_amount > $request->amount){
+                    return response()->json(['msg' => 'The amount you entered is less than the planned amount.'], 200);
+                }
+            }
+
             if (empty($plan)) {
                 $plan = new PaymentPlans();
                 $plan->plan_order = $order;

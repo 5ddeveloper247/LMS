@@ -712,7 +712,7 @@
 
                     <div class="row mt-40">
                         <div class="col-lg-12 text-center">
-                            @if(empty($user->team_api_key_of_user) ||empty($user->team_api_serect_of_user))
+                            @if(!$teamSetting || empty($teamSetting->client_id) || empty($teamSetting->client_secret))
                                 <small class="text-danger">* Please make sure team api key setup
                                     successfully. Without team api
                                     key setup, you can't create meeting</small>

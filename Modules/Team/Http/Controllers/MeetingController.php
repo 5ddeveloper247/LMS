@@ -47,6 +47,7 @@ class MeetingController extends Controller
         $data['user'] = Auth::user();
         $data['instructors'] = User::select('id', 'name')->whereIn('role_id', [1, 2])->get();
         $data['classes'] = VirtualClass::select('id', 'title')->where('host', 'Team')->latest()->get();
+        $data['teamSetting'] = TeamSetting::first();
         return view('team::meeting.meeting', $data);
     }
 
@@ -394,9 +395,6 @@ class MeetingController extends Controller
             $response = json_decode($response);
             
             
-            dd($response);
-            
-            
             
             // $r=$response['joinMeetingId'];
             $meeting_id = $response->id ?? null;
@@ -564,13 +562,14 @@ class MeetingController extends Controller
 
         try {
             $localMeetingData = TeamMeeting::where('meeting_id', $id)->first();
-
+            
+        $data['teamSetting'] = TeamSetting::first();
             $results = Team::meeting()->find($id);
             if ($localMeetingData) {
                 if ($results) {
                     $results = $results->toArray();
                 }
-                return view('team::meeting.meetingDetails', compact('localMeetingData', 'results'));
+                return view('team::meeting.meetingDetails', compact('localMeetingData', 'results','teamSetting'));
             } else {
                 Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
                 return redirect()->back();
@@ -597,7 +596,8 @@ class MeetingController extends Controller
             $data['classes'] = VirtualClass::select('id', 'title')->where('host', 'Team')->latest()->get();
             $data['instructors'] = User::select('id', 'name')->whereIn('role_id', [1, 2])->get();
             $data['participate_ids'] = DB::table('team_meeting_users')->where('meeting_id', $id)->select('user_id')->pluck('user_id');
-
+            
+        $data['teamSetting'] = TeamSetting::first();
             $data['user_type'] = $data['editdata']->participates[0]['role_id'];
             $data['userList'] = User::where('role_id', $data['user_type'])
                 ->whereIn('id', $data['participate_ids'])

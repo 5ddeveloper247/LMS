@@ -344,7 +344,7 @@
                     
 
                     {{-- cart --}}
-                    @if (Settings('show_cart') == 1 && !Route::is('CheckOut'))
+                    @if (Settings('show_cart') == 1 && !in_array(Route::currentRouteName(),['CheckOut','orderPayment']))
                         <a href="#" class="float notification_wrapper">
                             <div class="notify_icon cart_store">
                                 <img style="max-width: 30px; padding-left: 8px; min-width: 36px;"
@@ -711,7 +711,7 @@
         </div>
     </div>
 @endif
-@if (Settings('show_cart') == 1)
+ @if (Settings('show_cart') == 1 && !in_array(Route::currentRouteName(),['CheckOut','orderPayment']))
     <a href="#" class="float notification_wrapper">
         <div class="notify_icon cart_store">
             <img style="max-width: 30px;

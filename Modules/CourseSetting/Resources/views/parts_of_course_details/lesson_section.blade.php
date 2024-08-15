@@ -475,7 +475,7 @@ $(document).ready(function () {
                 	host == 'Image'){
                         
                 	// if(!$("#hostFile")[0].files.length || $('#hostFile').files.length == 0){
-                    let fileInput = form.find("#hostFile");
+                    let fileInput = $("#hostFile");
                             var pondInstance = FilePond.find(fileInput[0]);
                             if (pondInstance.getFiles().length == 0) {
                 	// if (isEmpty($('#hostFile').val())) {

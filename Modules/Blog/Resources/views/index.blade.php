@@ -96,7 +96,7 @@
                                     <tbody>
                                     @foreach ($blogs as $key => $blog)
                                         <tr>
-                                            <td class=""><span class="m-2">{{++$key}}</span></td>
+                                            <td class=""><span class="m-2">{{ $loop->iteration }}</span></td>
                                             <td>{{@$blog->title}}</td>
                                             <td>{{@$blog->category->title}}</td>
                                             @if(isModuleActive('Org'))
@@ -243,7 +243,7 @@
                 [10, 25, 50, 100]
             ],
             order: [
-                [0, "desc"]
+                [0, "asc"]
             ],
             language: {
                 emptyTable: "{{ __('common.No data available in the table') }}",

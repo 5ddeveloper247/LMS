@@ -1326,7 +1326,7 @@
 
                                                         {{-- @dd($data, $editLesson, $levels, $video_list, $vdocipher_list, $course, $chapters, $categories, $instructors, $languages, $course_exercises, $quizzes, $certificates) --}}
                                                         <div
-                                                            class="col-xl-6 timetableBox mt-30 {{ $course->type == 7 ? '' : 'd-none' }}">
+                                                            class="col-xl-6 timetableBox {{ $course->type == 7 ? '' : 'd-none' }}">
                                                             <select class="primary_select" name="timetable"
                                                                 id="timetableId"
                                                                 {{ $errors->has('timetable') ? 'autofocus' : '' }}>
