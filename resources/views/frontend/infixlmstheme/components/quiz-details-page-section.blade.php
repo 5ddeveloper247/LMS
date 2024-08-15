@@ -55,18 +55,18 @@
 
                                                 @if ($alreadyJoin == 0 || $course->quiz->multiple_attend == 1)
                                                     <a href="{{ route('quizStart', [$course->id, $course->quiz->id, $course->title]) . '?courseType=' . $request->courseType }}"
-                                                        class="theme_btn mr_15 m-auto mt-4 text-center p-2">{{ __('Start Prep-Course') }}</a>
+                                                        class="theme_btn mr_15 mt-4 text-center p-2">{{ __('Start Prep-Course') }}</a>
                                                 @endif
 
                                                 @if (count($preResult) != 0)
                                                     <button type="button"
-                                                        class="theme_line_btn mr_15 showHistory m-auto mt-4 text-center">{{ __('frontend.View History') }}</button>
+                                                        class="theme_line_btn mr_15 showHistory mt-4 text-center">{{ __('frontend.View History') }}</button>
                                                 @endif
 
                                                 @if ($alreadyJoin == 1 && $certificate)
                                                     @if ($isPass == 1)
                                                         <a href="{{ $isPass == 1 ? route('getCertificate', [$course->id, $course->title]) : '#' }}"
-                                                            class="theme_line_btn mr_15 m-auto mt-4 text-center">
+                                                            class="theme_line_btn mr_15 mt-4 text-center">
                                                             {{ __('frontend.Get Certificate') }}
                                                         </a>
                                                     @endif

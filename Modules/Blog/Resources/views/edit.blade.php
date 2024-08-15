@@ -115,7 +115,7 @@
                                         <div class="col-xl-6 mb-25">
                                             <div class="d-flex flex-column">
                                                 <label class="primary_input_label">Featured</label>
-                                                <div class>
+                                                <div class="" style="display: grid; gap: 6px;">
                                                     <label class="primary_checkbox d-flex mr-12">
                                                         <input type="radio" id="featured_yes" name="featured" value="1" @if($blog->featured == 1) checked @endif>
                                                         <span class="checkmark mr-2"></span>Yes

@@ -109,11 +109,11 @@
                                                     <tr>
                                                         <td>{{@$role->name}}</td>
                                                         <td>{{@$role->type}}</td>
-                                                        <td>
+                                                        <td class="d-flex flex-column flex-sm-row" style="gap: 5px">
                                                             @if(@$role->type == 'User Defined')
                                                                 <div class="dropdown CRM_dropdown d-inline">
                                                                     <button
-                                                                        class="btn btn-secondary dropdown-toggle"
+                                                                        class="btn btn-secondary dropdown-toggle mb-2"
                                                                         type="button" id="dropdownMenu2"
                                                                         data-toggle="dropdown" aria-haspopup="true"
                                                                         aria-expanded="false">

@@ -138,6 +138,13 @@
             height: 310px;
              object-fit:cover;
         }
+        .card-header{
+            height: 300px;
+            overflow: hidden;
+        }
+        .card-header img{
+            height: 100%;
+        }
 
         @media only screen and (min-width: 501px) and (max-width: 767px) {
             .btn_responsive {
@@ -150,9 +157,15 @@
                 font-size: 15px !important;
                 border-radius: 20px !important;
             }
+            .card-header{
+            height: 400px !important;
+        }
         }
 
         @media only screen and (min-width: 1800px) {
+            .quiz_wizged {
+            height: 700px !important;
+        }
             .instructor-image{
             height: 420px !important;
              object-fit:cover;
@@ -265,7 +278,7 @@
                 @forelse ($instructors as $instructor)
                     <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 d-flex justify-content-center">
                         <div class="quiz_wizged card rounded-card shadow">
-                            <div class="card-header rounded-card-header p-0">
+                            <div class="card-header rounded-card-header p-0" style="">
                                 <a href="{{ route('tutorDetails', [$instructor->id, Str::slug($instructor->name, '-')]) }}">
                                     <img src="{{ getInstructorImage($instructor->image) }}" alt="Avatar"
                                         class="img-fluid w-100 rounded-card-img instructor_image">

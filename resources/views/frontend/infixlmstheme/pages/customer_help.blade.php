@@ -613,6 +613,7 @@
                                     We will reimburse your tuition if you are a graduate of a recognized nursing or
                                     healthcare career institution, and you did not pass your exam. The following qualifying
                                     requirements must be met by you:
+                                    <br>
                                     <span class="font-weight-bold"> a.</span> The warranty is only valid for the initial
                                     exam taken with the product.
                                     <br>
@@ -622,7 +623,7 @@
                                     <span class="font-weight-bold"> c.</span> A thorough examination and completion of all
                                     the material.
                                     <br>
-                                    <span class="font-weight-bold"> d. </span> to present your board letter and purchase
+                                    <span class="font-weight-bold"> d. </span> To present your board letter and purchase
                                     receipt.
 
                                 </p>
@@ -818,7 +819,7 @@
 
                             <div class="tab-pane fade rounded bg-white p-3 p-lg-5 shadow mb-3" id="v-pills-messages"
                                 role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                <h5 class="font-weight-bold text-center">Merkaii Xcellence Prep: Your One-Stop Shop for Academic Success - Help & Support</h5>
+                                <h5 class="font-weight-bold text-center mb-md-4 mb-2">Merkaii Xcellence Prep: Your One-Stop Shop for Academic Success - Help & Support</h5>
                                 <p>
                                     At Merkaii Xcellence Prep, we're dedicated to empowering students of all backgrounds to
                                     achieve their academic goals. We understand that you might have questions about our prep
@@ -859,7 +860,7 @@
                                 <p>We hope this Help & Support page has answered your questions about Merkaii Xcellence
                                     Prep. If you have any further inquiries, please don't hesitate to reach out to our
                                     support team. We're always happy to help!</p>
-                                <h5>In addition to the above, you may find the following resources helpful</h5>
+                                <h5>In Addition To The Above, You May Find The Following Resources Helpful</h5>
                                 <ul>
                                     <li><span class="font-weight-bold">Our Website:</span><a href="" class="text-dark"> www.merkaiixcelprep.com</a> </li>
                                     <li><span class="font-weight-bold">Our Blog:</span>

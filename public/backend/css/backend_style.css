@@ -1943,7 +1943,8 @@ ul{
 
 .input-right-icon button.primary-btn-small-input {
     margin-left: -95px;
-    padding: 0
+    padding: 0;
+    top: -10px;
 }
 
 .input-right-icon button i {
@@ -3128,7 +3129,8 @@ body.login .footer_area a {
 .student-meta-box .student-meta-img {
     position: absolute;
     top: 50px;
-    left: 30px;
+    left: 50%;
+    transform: translateX(-50px);
     border-radius: 6px
 }
 
@@ -7753,7 +7755,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     text-transform: uppercase;
     overflow: hidden;
     transition: .3s;
-    height: 32px
+    height: auto;
+    margin-bottom: 0px !important;
 }
 
 @media only screen and (min-width:992px) and (max-width:1400px) {
@@ -11741,7 +11744,7 @@ table.dataTable thead .sorting_desc:after {
     position: absolute;
     right: 0;
     border: 0;
-    top: 7px;
+    top: 3px;
     right: 7px;
     padding: 0;
     background: transparent;

@@ -51,7 +51,7 @@
 }
 .bootstrap-tagsinput .tag {
     margin-right: 7px;
-    margin-top: 7px;
+    margin-top: 2px;
     display:inline-flex;
 }
 .bootstrap-tagsinput .tag [data-role="remove"] {
